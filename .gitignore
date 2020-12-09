@@ -32,10 +32,37 @@ luac.out
 *.dylib
 
 # Executables
-*.exe
 *.out
 *.app
 *.i*86
 *.x86_64
 *.hex
 
+# 策划文档
+Design/*.lua
+Design/*.smap
+
+# smap相关
+Smap/*.lua
+Smap/*.csv
+Smap/*.xls
+Smap/*.xlsm
+Smap/*.xlsx
+Smap/*.txt
+*AutoSave_*.smap
+
+# 代码相关
+Code/*.txt
+Code/*.csv
+Code/*.xls
+Code/*.xlsm
+Code/*.xlsx
+Code/*.txt
+Code/*.smap
+
+# other
+*.smap.storage
+*.iso
+~$*
+*.idea/
+*.vscode/
