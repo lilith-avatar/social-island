@@ -108,16 +108,16 @@ function GetMoveDir()
 end
 
 -- 移动逻辑
-function PlayerMove(dir)
-    dir.y = 0
+function PlayerMove(_dir)
+    _dir.y = 0
     if player.State == Enum.CharacterState.Died then
-        dir = Vector3.Zero
+        _dir = Vector3.Zero
     end
-    if dir.Magnitude > 0 then
+    if _dir.Magnitude > 0 then
         if IsFreeMode then
-            player:FaceToDir(dir, 4 * math.pi)
+            player:FaceToDir(_dir, 4 * math.pi)
         end
-        player:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        player:MoveTowards(Vector2(_dir.x, _dir.z).Normalized)
     else
         player:MoveTowards(Vector2.Zero)
     end
@@ -161,21 +161,21 @@ function CountTouch(container)
 end
 
 -- 滑屏转向
-function CameraMove(pos, dis, deltapos, speed)
+function CameraMove(_pos, _dis, _deltapos, _speed)
     if touchNumber == 1 then
         if IsFreeMode() then
-            camera:CameraMove(deltapos)
+            camera:CameraMove(_deltapos)
         else
-            player:RotateAround(player.Position, Vector3.Up, deltapos.x)
-            camera:CameraMove(Vector2(0, deltapos.y))
+            player:RotateAround(player.Position, Vector3.Up, _deltapos.x)
+            camera:CameraMove(Vector2(0, _deltapos.y))
         end
     end
 end
 
 -- 双指缩放摄像机距离
-function CameraZoom(pos1, pos2, dis, speed)
+function CameraZoom(_pos1, _pos2, _dis, _speed)
     if mode == Enum.CameraMode.Social then
-        camera.Distance = camera.Distance - dis / 50
+        camera.Distance = camera.Distance - _dis / 50
     end
 end
 
