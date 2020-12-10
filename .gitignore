@@ -50,6 +50,7 @@ Smap/*.xlsm
 Smap/*.xlsx
 Smap/*.txt
 *AutoSave_*.smap
+*AutoBackup_*.smap
 
 # 代码相关
 Code/*.txt
