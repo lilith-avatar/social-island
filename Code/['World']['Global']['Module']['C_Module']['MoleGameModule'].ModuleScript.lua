@@ -13,6 +13,7 @@ end
 ---数据初始化
 function MoleGame:DataInit()
     this.rangeList = {}
+    this.pitList = {}
     this.score = 0
     this.totalTime = 999  --Config.MoleGlobalConfig.PlayerGameTime
     this.startUpdate = false

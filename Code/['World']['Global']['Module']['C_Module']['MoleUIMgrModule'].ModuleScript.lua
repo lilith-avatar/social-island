@@ -1,7 +1,7 @@
 ---@module MoleUIMgr
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleUIMgr,this = ModuleUtil.New('MoleUIMgr',ClientBase)
+local MoleUIMgr, this = ModuleUtil.New("MoleUIMgr", ClientBase)
 
 ---初始化函数
 function MoleUIMgr:Init()
@@ -20,6 +20,14 @@ end
 
 ---事件绑定
 function MoleUIMgr:EventBind()
+end
+
+---蓄力槽增加
+function MoleUIMgr:BoostAdd(_num)
+end
+
+---强化过程表现
+function MoleUIMgr:Boosting()
 end
 
 ---Update函数
