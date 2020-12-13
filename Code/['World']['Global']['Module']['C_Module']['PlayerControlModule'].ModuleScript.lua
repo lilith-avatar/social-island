@@ -1,7 +1,7 @@
 --- 玩家控制模块
 --- @module Player Controll, client-side
 --- @copyright Lilith Games, Avatar Team
-local PlayerControl, this = ModuleUtil.New('PlayerControl', ClientBase)
+local PlayerControl, this = ModuleUtil.New("PlayerControl", ClientBase)
 local player
 --声明变量
 local isDead = false
@@ -125,6 +125,7 @@ end
 
 -- 跳跃逻辑
 function PlayerJump()
+    NetUtil.Fire_S("LeaveZeppelinEvent", localPlayer)
     if (player.IsOnGround or player.State == Enum.CharacterState.Seated) and not isDead then
         player:Jump()
         return
