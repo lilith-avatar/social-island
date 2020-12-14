@@ -1,10 +1,10 @@
 --- 动画模块
---- @module Player Social PlayAnimation, client-side
+--- @module Player Animation, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author 王殷鹏, Yuancheng Zhang
-local PlayAnimation = {}
+local PlayerAnimation = {}
 
-function PlayAnimation:Init()
+function PlayerAnimation:Init()
     world.OnRenderStepped:Connect(
         function(_delta)
             self:UpdateIK(_delta)
@@ -12,7 +12,7 @@ function PlayAnimation:Init()
     )
 end
 
-function PlayAnimation:Initial(player, animName, layer, bodyPart, loopMode, showname)
+function PlayerAnimation:New(player, animName, layer, bodyPart, loopMode, showname)
     self.__index = self
     local Instance = {}
     setmetatable(Instance, self)
@@ -24,17 +24,17 @@ function PlayAnimation:Initial(player, animName, layer, bodyPart, loopMode, show
     Instance.Playing = false
     Instance.Weight = 0
     if showname then
-        PlayAnimation[showname] = Instance
+        PlayerAnimation[showname] = Instance
     end
     return Instance
 end
 
-function PlayAnimation:BeginIK(mySocket, targetSocket)
-    PlayAnimation.mySocket = mySocket
-    PlayAnimation.targetSocket = targetSocket
+function PlayerAnimation:BeginIK(mySocket, targetSocket)
+    PlayerAnimation.mySocket = mySocket
+    PlayerAnimation.targetSocket = targetSocket
 end
 
-function PlayAnimation:Play(speedScale, weight, transitionDuration, interrupt)
+function PlayerAnimation:Play(speedScale, weight, transitionDuration, interrupt)
     self.Player.Avatar:SetBlendSubtree(self.BodyPart, self.Layer)
     self.Weight = weight or 0
     self.Player.Avatar:PlayAnimation(
@@ -49,43 +49,43 @@ function PlayAnimation:Play(speedScale, weight, transitionDuration, interrupt)
     self.Playing = true
 end
 
-function PlayAnimation:Stop()
+function PlayerAnimation:Stop()
     self.Weight = 0
     self.Player.Avatar:StopAnimation(self.AnimName, self.Layer)
     self.Playing = false
 end
 
-function PlayAnimation:ChangeBodyPart(bodyPart)
+function PlayerAnimation:ChangeBodyPart(bodyPart)
     self.BodyPart = bodyPart
 end
 
-function PlayAnimation:AddEvent(eventName, percent, func)
+function PlayerAnimation:AddEvent(eventName, percent, func)
     self[eventName] = self.Player.Avatar:AddAnimationEvent(self.AnimName, percent)
     self['Func' .. eventName] = func
     self[eventName]:Connect(func)
 end
 
-function PlayAnimation:RemoveEvent(eventName)
+function PlayerAnimation:RemoveEvent(eventName)
     self[eventName]:Disconnect(self['Func' .. eventName])
 end
 
-function PlayAnimation:ClearEvent(eventName)
+function PlayerAnimation:ClearEvent(eventName)
     self[eventName]:Clear()
 end
 
-function PlayAnimation:UpdateIK(delta)
-    if PlayAnimation.mySocket then
+function PlayerAnimation:UpdateIK(delta)
+    if PlayerAnimation.mySocket then
         local Tweener = Tween:TweenValue(0, 1, 1, Enum.EaseCurve.CircularInOut) --构造一个值插值器
-        for i, v in ipairs(PlayAnimation.mySocket) do
+        for i, v in ipairs(PlayerAnimation.mySocket) do
             local rate =
-                math.clamp((v.Socket.Position - PlayAnimation.targetSocket[i].Socket.Position).Magnitude, 0, 0.8)
+                math.clamp((v.Socket.Position - PlayerAnimation.targetSocket[i].Socket.Position).Magnitude, 0, 0.8)
             if v.Target == 1 then
                 --(1 - Tweener:GetValue(rate))/5
-                localPlayer.Avatar.LeftHandTarget = PlayAnimation.targetSocket[i].Socket
+                localPlayer.Avatar.LeftHandTarget = PlayerAnimation.targetSocket[i].Socket
                 localPlayer.Avatar.LeftHandPositionWeight = 1 - Tweener:GetValue(rate)
                 localPlayer.Avatar.LeftHandReach = 0
             elseif v.Target == 2 then
-                localPlayer.Avatar.RightHandTarget = PlayAnimation.targetSocket[i].Socket
+                localPlayer.Avatar.RightHandTarget = PlayerAnimation.targetSocket[i].Socket
                 localPlayer.Avatar.RightHandPositionWeight = 1 - Tweener:GetValue(rate)
                 localPlayer.Avatar.RightHandReach = 0
             --(1 - Tweener:GetValue(rate))/5
@@ -101,10 +101,10 @@ function PlayAnimation:UpdateIK(delta)
     end
 end
 
-function PlayAnimation:StopIK()
-    if PlayAnimation.mySocket then
-        PlayAnimation.mySocket = nil
+function PlayerAnimation:StopIK()
+    if PlayerAnimation.mySocket then
+        PlayerAnimation.mySocket = nil
     end
 end
 
-return PlayAnimation
+return PlayerAnimation

@@ -4,7 +4,7 @@
 --- @author 王殷鹏, Yuancheng Zhang
 local SocialAnimation, this = ModuleUtil.New('SocialAnimation', ClientBase)
 
-local Animation = PlayAnimation
+local PlayerAnimation = PlayerAnimation
 
 local AnimationList = {}
 local AnimationTbl = {}
@@ -19,10 +19,7 @@ function SocialAnimation:Init()
     MultiplayerPanel = RootUI.Multiplayer
     PanelTbl = {EmotionPanel, DancePanel, MultiplayerPanel}
     CurrentIndex = 0
-    EmotionIndex = 0
-    DanceIndex = 0
-    MultiplayerIndex = 0
-    IndexTbl = {EmotionIndex, DanceIndex, MultiplayerIndex}
+
     ButtonTbl = {RootUI.EmotionButton, RootUI.DanceButton, RootUI.MultiplayerButton}
     EmotionTbl = {}
     DanceTbl = {}
@@ -64,13 +61,13 @@ function SocialAnimation:CreateButton(type, index, showname, name, bodyPart, loo
     Button.AnchorsX = Vector2(PosX, PosX) * scale
     Button.AnchorsY = Vector2(0.7, 0.7)
     Button.Size = Vector2(length / 1.4 * 0.7, length / 1.4 * 0.7)
-    local AnimationLogic = Animation:Initial(localPlayer, name, 2, bodyPart, loopMode, showname)
+    local AnimationLogic = PlayerAnimation:New(localPlayer, name, 2, bodyPart, loopMode, showname)
     AnimationLogic:AddEvent(
         showname,
         1,
         function()
             AnimationLogic.Playing = false
-            Animation.mySocket = nil
+            PlayerAnimation.mySocket = nil
             if showname == 'Clap' then
                 if AnimationLogic.Count then
                     AnimationLogic.Count = AnimationLogic.Count + 1
@@ -81,11 +78,9 @@ function SocialAnimation:CreateButton(type, index, showname, name, bodyPart, loo
                     AnimationLogic.Count = 0
                     invoke(
                         function()
-                            localPlayer.ClapEffect:SetActive(true)
-                            local PlayerAudioTrigger = localPlayer.PlayerAudioTrigger
-                            PlayerAudioTrigger.FlyBoardFailEvent:Fire()
+                            localPlayer.Effect.ClapEffect:SetActive(true)
                             wait(0.8)
-                            localPlayer.ClapEffect:SetActive(false)
+                            localPlayer.Effect.ClapEffect:SetActive(false)
                         end
                     )
                 end
@@ -162,11 +157,11 @@ function SocialAnimation:ClearTrigger()
 end
 
 function SocialAnimation:BeginIK(my, target)
-    Animation:BeginIK(my, target)
+    PlayerAnimation:BeginIK(my, target)
 end
 
 function SocialAnimation:StopIK()
-    Animation:StopIK()
+    PlayerAnimation:StopIK()
 end
 
 function CloseAnimPanel()
