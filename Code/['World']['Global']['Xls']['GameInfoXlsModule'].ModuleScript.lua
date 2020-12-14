@@ -3,52 +3,52 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//社交岛任务系统.xlsx
+--- source file: ./Design/社交岛任务系统.xlsx
 
 local GameInfoXls = {
     [1] = {
         GameId = 1,
-        GameName = '打猎'
+        GameName = 'GameInfo_GameName_1'
     },
     [2] = {
         GameId = 2,
-        GameName = '打地鼠'
+        GameName = 'GameInfo_GameName_2'
     },
     [3] = {
         GameId = 3,
-        GameName = '迷宫'
+        GameName = 'GameInfo_GameName_3'
     },
     [4] = {
         GameId = 4,
-        GameName = '人间大炮'
+        GameName = 'GameInfo_GameName_4'
     },
     [5] = {
         GameId = 5,
-        GameName = '青蛙过河'
+        GameName = 'GameInfo_GameName_5'
     },
     [6] = {
         GameId = 6,
-        GameName = '热气球'
+        GameName = 'GameInfo_GameName_6'
     },
     [7] = {
         GameId = 7,
-        GameName = '种花'
+        GameName = 'GameInfo_GameName_7'
     },
     [8] = {
         GameId = 8,
-        GameName = '赛蜗牛'
+        GameName = 'GameInfo_GameName_8'
     },
     [9] = {
         GameId = 9,
-        GameName = '竞速'
+        GameName = 'GameInfo_GameName_9'
     },
     [10] = {
         GameId = 10,
-        GameName = '摇摇椅'
+        GameName = 'GameInfo_GameName_10'
     },
     [11] = {
         GameId = 11,
-        GameName = '斗怪物'
+        GameName = 'GameInfo_GameName_11'
     }
 }
 

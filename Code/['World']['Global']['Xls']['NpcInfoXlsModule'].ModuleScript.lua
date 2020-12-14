@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//社交岛任务系统.xlsx
+--- source file: ./Design/社交岛任务系统.xlsx
 
 local NpcInfoXls = {
     [1] = {
@@ -20,7 +20,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 1,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Achilles'
     },
     [2] = {
         ID = 2,
@@ -36,7 +37,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 2,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Aphrodite'
     },
     [3] = {
         ID = 3,
@@ -52,7 +54,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 3,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Ares'
     },
     [4] = {
         ID = 4,
@@ -68,7 +71,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 4,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Artemis'
     },
     [5] = {
         ID = 5,
@@ -84,7 +88,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 5,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Athena'
     },
     [6] = {
         ID = 6,
@@ -100,7 +105,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 6,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Demeter'
     },
     [7] = {
         ID = 7,
@@ -116,7 +122,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 7,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Dionysus'
     },
     [8] = {
         ID = 8,
@@ -132,7 +139,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 8,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Hermes'
     },
     [9] = {
         ID = 9,
@@ -148,7 +156,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 9,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Hypnos_newest'
     },
     [10] = {
         ID = 10,
@@ -164,7 +173,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 10,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Poseidon'
     },
     [11] = {
         ID = 11,
@@ -180,7 +190,8 @@ local NpcInfoXls = {
         RefreshCount = {"快来玩呀","你见过我的翅膀吗？"},
         GameId = 11,
         PetBattleSwitch = nil,
-        ShopId = nil
+        ShopId = nil,
+        PortraitRes = 'Zeus'
     }
 }
 
