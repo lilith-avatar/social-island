@@ -14,16 +14,17 @@ function MoleHit:DataInit()
     this.pitList = {}
     this.timer = 0
     this.refreshTime = 4 --! Only Test
-    this.refreshList = {} --Todo : lua table
+    this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
 end
 
 --绑定坑位
 function MoleHit:PitListInit()
     for k,v in pairs(world.MoleHit:GetChildren()) do
-        this.pitList[v.Name] = {
+        local data = {
             model = v,
             mole = nil
         }
+        table.insert(this.pitList,data)
     end
 end
 
@@ -39,11 +40,19 @@ end
 
 ---根据玩家人数刷地鼠
 function MoleHit:RefreshMole(_playerNum)
+    --! only test
+    local tmpTable = table.shallowcopy(this.pitList)
+    for i=1,3 do
+    end
 end
 
+local player
 function MoleHit:PlayerHitEvent(_uid,_hitPit)
     if this.pitList[_hitPit].mole then
+        player = world:GetPlayerByUserId(_uid)
         --对象池管理
+
+        NetUtil.Fire_C('',player)
     end
 end
 
