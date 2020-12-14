@@ -3,75 +3,82 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: ./xls/LanguagePack.xls
+--- source file: ./Design/LanguagePack.xls
 
 local LanguagePackXls = {
-    Example1_Des1_1_house = {
-        ID = 'Example1_Des1_1_house',
-        CHS = '我真的很想%s吃饭',
+    GameInfo_GameName_1 = {
+        ID = 'GameInfo_GameName_1',
+        CHS = '打猎',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des2_1_house = {
-        ID = 'Example1_Des2_1_house',
-        CHS = '做什么',
+    GameInfo_GameName_2 = {
+        ID = 'GameInfo_GameName_2',
+        CHS = '打地鼠',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des1_1_MMM = {
-        ID = 'Example1_Des1_1_MMM',
-        CHS = '我饿了',
+    GameInfo_GameName_3 = {
+        ID = 'GameInfo_GameName_3',
+        CHS = '迷宫',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des2_1_MMM = {
-        ID = 'Example1_Des2_1_MMM',
-        CHS = '工作是什么',
+    GameInfo_GameName_4 = {
+        ID = 'GameInfo_GameName_4',
+        CHS = '人间大炮',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des1_1_ddd = {
-        ID = 'Example1_Des1_1_ddd',
-        CHS = '到底什么时候能吃饭',
+    GameInfo_GameName_5 = {
+        ID = 'GameInfo_GameName_5',
+        CHS = '青蛙过河',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des2_1_ddd = {
-        ID = 'Example1_Des2_1_ddd',
-        CHS = '我是谁',
+    GameInfo_GameName_6 = {
+        ID = 'GameInfo_GameName_6',
+        CHS = '热气球',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des1_2_farm = {
-        ID = 'Example1_Des1_2_farm',
-        CHS = '今天晚上吃什么',
+    GameInfo_GameName_7 = {
+        ID = 'GameInfo_GameName_7',
+        CHS = '种花',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des2_2_farm = {
-        ID = 'Example1_Des2_2_farm',
-        CHS = '我从哪里来',
+    GameInfo_GameName_8 = {
+        ID = 'GameInfo_GameName_8',
+        CHS = '赛蜗牛',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des1_2_MMM = {
-        ID = 'Example1_Des1_2_MMM',
-        CHS = '下班就去吃饭吧',
+    GameInfo_GameName_9 = {
+        ID = 'GameInfo_GameName_9',
+        CHS = '竞速',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Example1_Des2_2_MMM = {
-        ID = 'Example1_Des2_2_MMM',
-        CHS = '就这样吧',
+    GameInfo_GameName_10 = {
+        ID = 'GameInfo_GameName_10',
+        CHS = '摇摇椅',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_11 = {
+        ID = 'GameInfo_GameName_11',
+        CHS = '斗怪物',
         CHT = '',
         EN = '',
         JP = ''
