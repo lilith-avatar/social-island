@@ -162,8 +162,10 @@ function Zeppelin:ZeppelinSwitchState(_zeppelin)
     if _zeppelin.state == zeppelinStateEnum.MOVING and _zeppelin.moveStep == 4 then
         _zeppelin.state = zeppelinStateEnum.RESET
         this:ThrowAwayAllPassenger(_zeppelin)
-        _zeppelin.obj.LinearVelocity = Vector3.Zero
-        wait(departureInterval)
+        if this:IsZeppelinWait() then
+            _zeppelin.obj.LinearVelocity = Vector3.Zero
+            wait(departureInterval)
+        end
         return
     end
     if _zeppelin.state == zeppelinStateEnum.RESET then
@@ -171,10 +173,22 @@ function Zeppelin:ZeppelinSwitchState(_zeppelin)
             _zeppelin.state = zeppelinStateEnum.READY
             this:WaitingPassengerGetOn()
         end
-        _zeppelin.obj.LinearVelocity = Vector3.Zero
-        wait(departureInterval)
+        if this:IsZeppelinWait() then
+            _zeppelin.obj.LinearVelocity = Vector3.Zero
+            wait(departureInterval)
+        end
         return
     end
+end
+
+--- 判断热气球是否需要等待
+function Zeppelin:IsZeppelinWait()
+    for k, v in pairs(zeppelinObjPool) do
+        if v.state == zeppelinStateEnum.READY then
+            return true
+        end
+    end
+    return false
 end
 
 --- 计时器运行

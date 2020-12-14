@@ -5,6 +5,7 @@
 local FsmBase = class("FsmBase")
 
 function FsmBase:initialize()
+    print("FsmBase:initialize()")
     self.states = {}
     self.lastState = nil
     self.curState = nil
@@ -42,21 +43,24 @@ end
 --绑定所有状态function
 function FsmBase:ConnectStateFunc(_statesT, _module)
     for k, v in pairs(_statesT) do
-        if _module[k .. "StateOnEnterFunc"] and _module[k .. "StateOnUpdateFunc"] and _module[k .. "StateOnLeaveFunc"] then
-            local tempState = StateBase:new(v.name, v.nextName, v.time)
+        if
+            _module[v.Name .. "StateOnEnterFunc"] and _module[v.Name .. "StateOnUpdateFunc"] and
+                _module[v.Name .. "StateOnLeaveFunc"]
+         then
+            local tempState = StateBase:new(v.Name, v.NextName, v.Dur)
             tempState.OnEnter = function()
-                _module[k .. "StateOnEnterFunc"]()
+                _module[v.Name .. "StateOnEnterFunc"]()
             end
             tempState.OnUpdate = function(dt)
-                _module[k .. "StateOnUpdateFunc"](dt)
+                _module[v.Name .. "StateOnUpdateFunc"](dt)
             end
             tempState.OnLeave = function()
-                _module[k .. "StateOnLeaveFunc"]()
+                _module[v.Name .. "StateOnLeaveFunc"]()
             end
             self:AddState(tempState)
         end
     end
-    self:SetDefaultState(ConstDef.PlayerActStateEnum.Idle)
+    --self:SetDefaultState(ConstDef.PlayerActStateEnum.Idle)
 end
 
 return FsmBase
