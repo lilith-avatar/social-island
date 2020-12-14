@@ -17,6 +17,10 @@ ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
 TimeUtil.Init()
 
+-- Fsm
+FsmBase = require(Module.Fsm_Module.FsmBaseModule)
+StateBase = require(Module.Fsm_Module.StateBaseModule)
+
 -- Framework
 ModuleUtil.LoadModules(Framework)
 
@@ -29,3 +33,7 @@ ModuleUtil.LoadModules(Module.C_Module)
 
 -- Plugin Modules
 GuideSystem = require(world.Global.Plugin.FUNC_Guide.GuideSystemModule)
+
+-- Fsm
+-- FsmBase = require(Utility.FsmBaseModule)
+-- StateBase = require(Utility.StateBaseModule)
