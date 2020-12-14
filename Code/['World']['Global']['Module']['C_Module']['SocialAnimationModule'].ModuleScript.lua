@@ -1,0 +1,200 @@
+--- 玩家社交动画模块
+--- @module Player Social Animation, client-side
+--- @copyright Lilith Games, Avatar Team
+--- @author 王殷鹏, Yuancheng Zhang
+local SocialAnimation, this = ModuleUtil.New('SocialAnimation', ClientBase)
+
+function SocialAnimation:Init()
+    AnimTbl = Csv.AnimationsTable:GetRows()
+    Animation = PlayAnimation
+    AnimationList = {}
+    AnimationTbl = {}
+    RootUI = localPlayer.Local.ControlGui.AnimationPanel
+    RootUI.Header.Color = Color(255, 255, 255, 180)
+    CloseButton = RootUI.Close
+    OpenButton = localPlayer.Local.ControlGui.AnimationButton
+    EmotionPanel = RootUI.Emotion
+    DancePanel = RootUI.Dance
+    MultiplayerPanel = RootUI.Multiplayer
+    PanelTbl = {EmotionPanel, DancePanel, MultiplayerPanel}
+    CurrentIndex = 0
+    EmotionIndex = 0
+    DanceIndex = 0
+    MultiplayerIndex = 0
+    IndexTbl = {EmotionIndex, DanceIndex, MultiplayerIndex}
+    ButtonTbl = {RootUI.EmotionButton, RootUI.DanceButton, RootUI.MultiplayerButton}
+    EmotionTbl = {}
+    DanceTbl = {}
+    MultiplayerTbl = {}
+    OverallTbl = {EmotionTbl, DanceTbl, MultiplayerTbl}
+    self:Initial()
+end
+
+function SocialAnimation:Initial()
+    self.CurrentAnimLogic = nil
+    self:CreatePanel()
+    OpenButton.OnDown:Connect(
+        function()
+            RootUI.Visible = true
+        end
+    )
+    CloseButton.OnDown:Connect(
+        function()
+            RootUI.Visible = false
+        end
+    )
+    localPlayer.OnStateChanged:Connect(
+        function(oldState, newState)
+            if newState == Enum.CharacterState.Jump or oldState == Enum.CharacterState.Idle then
+                self:ClearTrigger()
+                if self.CurrentAnimLogic then
+                    self:StopIK()
+                    if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.FullBody then
+                        self.CurrentAnimLogic:Stop()
+                    elseif self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody and self.CurrentAnimLogic.Playing then
+                        self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.UpperBody)
+                    end
+                end
+            end
+            if newState == Enum.AnimationMode.Idle then
+                if self.CurrentAnimLogic and self.CurrentAnimLogic.Playing then
+                    if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody then
+                        self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.FullBody)
+                    end
+                end
+            end
+        end
+    )
+end
+
+function SocialAnimation:ClearSelected()
+    for i, v in pairs(ButtonTbl) do
+        v.TextColor = Color(255, 255, 255, 255)
+        v.Line.Visible = false
+    end
+    for i, v in pairs(PanelTbl) do
+        v.Visible = false
+    end
+end
+
+function SocialAnimation:CreateButton(type, index, showname, name, bodyPart, loopMode, icon, num, length, scale)
+    local Panel = PanelTbl[type]
+    local Button = world:CreateInstance('AnimationButton', name, Panel)
+    Button.Info.Text = showname
+    if type == 2 then
+        Button.Info.FontSize = 25
+    elseif type == 3 then
+        Button.Info.FontSize = 20
+    end
+    Button.Image = ResourceManager.GetTexture('AnimationIcon/' .. icon)
+    local Gap = 0.1
+    local PosX = ((Gap + 1) * index - 0.5) / ((Gap + 1) * num + Gap)
+    Button.AnchorsX = Vector2(PosX, PosX) * scale
+    Button.AnchorsY = Vector2(0.7, 0.7)
+    Button.Size = Vector2(length / 1.4 * 0.7, length / 1.4 * 0.7)
+    local AnimationLogic = Animation:Initial(localPlayer, name, 2, bodyPart, loopMode, showname)
+    AnimationLogic:AddEvent(
+        showname,
+        1,
+        function()
+            AnimationLogic.Playing = false
+            Animation.mySocket = nil
+            if showname == 'Clap' then
+                if AnimationLogic.Count then
+                    AnimationLogic.Count = AnimationLogic.Count + 1
+                else
+                    AnimationLogic.Count = 1
+                end
+                if AnimationLogic.Count >= 5 then
+                    AnimationLogic.Count = 0
+                    invoke(
+                        function()
+                            localPlayer.ClapEffect:SetActive(true)
+                            local PlayerAudioTrigger = localPlayer.PlayerAudioTrigger
+                            PlayerAudioTrigger.FlyBoardFailEvent:Fire()
+                            wait(0.8)
+                            localPlayer.ClapEffect:SetActive(false)
+                        end
+                    )
+                end
+            end
+        end
+    )
+    Button:ToTop()
+    Button.OnUp:Connect(
+        function()
+            self:ClearTrigger()
+            if type == 3 then
+                world:CreateInstance('MultiAnimation', showname, localPlayer, localPlayer.Position)
+            end
+            if localPlayer.State == Enum.CharacterState.Idle then
+                self.CurrentAnimLogic = AnimationLogic
+                AnimationLogic:Play(1, 1, 0.2)
+            end
+        end
+    )
+end
+
+function SocialAnimation:CreatePanel()
+    for i = 1, Csv.AnimationsTable:GetRowNum() do
+        local Info = AnimTbl[tostring(i)]
+        table.insert(OverallTbl[Info.AnimClass], Info)
+    end
+
+    for i, v in pairs(PanelTbl) do
+        if #OverallTbl[i] > 5 then
+            v.Scroll = Enum.ScrollBarType.Horizontal
+            v.ScrollRange = #OverallTbl[i] / 5.5 * v.FinalSize.X
+            v.AnimationBack.AnchorsX = Vector2(0, v.ScrollRange / v.FinalSize.x)
+        else
+            v.Scroll = Enum.ScrollBarType.None
+            v.ScrollRange = v.FinalSize.x
+        end
+    end
+
+    for i, v in pairs(OverallTbl) do
+        for i1, v1 in pairs(v) do
+            self:CreateButton(
+                i,
+                i1,
+                v1.ShowName,
+                v1.AnimName,
+                v1.BodyPart,
+                v1.LoopMode,
+                v1.Icon,
+                #v,
+                PanelTbl[i].FinalSize.y,
+                PanelTbl[i].ScrollRange / PanelTbl[i].FinalSize.x
+            )
+        end
+    end
+
+    for i, v in pairs(ButtonTbl) do
+        v.Color = Color(255, 255, 255, 0)
+        v.OnDown:Connect(
+            function()
+                self:ClearSelected()
+                v.Line.Visible = true
+                v.TextColor = Color(255, 130, 67, 255)
+                PanelTbl[i].Visible = true
+            end
+        )
+    end
+end
+
+function SocialAnimation:ClearTrigger()
+    for i, v in pairs(localPlayer:GetChildren()) do
+        if v.TriggerItem then
+            v:Destroy()
+        end
+    end
+end
+
+function SocialAnimation:BeginIK(my, target)
+    Animation:BeginIK(my, target)
+end
+
+function SocialAnimation:StopIK()
+    Animation:StopIK()
+end
+return SocialAnimation
