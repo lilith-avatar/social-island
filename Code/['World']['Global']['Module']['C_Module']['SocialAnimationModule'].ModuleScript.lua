@@ -4,11 +4,12 @@
 --- @author 王殷鹏, Yuancheng Zhang
 local SocialAnimation, this = ModuleUtil.New('SocialAnimation', ClientBase)
 
+local Animation = PlayAnimation
+
+local AnimationList = {}
+local AnimationTbl = {}
+
 function SocialAnimation:Init()
-    AnimTbl = Csv.AnimationsTable:GetRows()
-    Animation = PlayAnimation
-    AnimationList = {}
-    AnimationTbl = {}
     RootUI = localPlayer.Local.ControlGui.AnimationPanel
     RootUI.Header.Color = Color(255, 255, 255, 180)
     CloseButton = RootUI.Close
@@ -107,9 +108,8 @@ function SocialAnimation:CreateButton(type, index, showname, name, bodyPart, loo
 end
 
 function SocialAnimation:CreatePanel()
-    for i = 1, Csv.AnimationsTable:GetRowNum() do
-        local Info = AnimTbl[tostring(i)]
-        table.insert(OverallTbl[Info.AnimClass], Info)
+    for i, info in ipairs(Config.SocialAnim) do
+        table.insert(OverallTbl[info.AnimClass], info)
     end
 
     for i, v in pairs(PanelTbl) do
@@ -179,20 +179,20 @@ end
 
 function OnPlayerStateChanged(oldState, newState)
     if newState == Enum.CharacterState.Jump or oldState == Enum.CharacterState.Idle then
-        self:ClearTrigger()
-        if self.CurrentAnimLogic then
-            self:StopIK()
-            if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.FullBody then
-                self.CurrentAnimLogic:Stop()
-            elseif self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody and self.CurrentAnimLogic.Playing then
-                self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.UpperBody)
+        this:ClearTrigger()
+        if this.CurrentAnimLogic then
+            this:StopIK()
+            if this.CurrentAnimLogic.BodyPart == Enum.BodyPart.FullBody then
+                this.CurrentAnimLogic:Stop()
+            elseif this.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody and this.CurrentAnimLogic.Playing then
+                this.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.UpperBody)
             end
         end
     end
     if newState == Enum.AnimationMode.Idle then
-        if self.CurrentAnimLogic and self.CurrentAnimLogic.Playing then
-            if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody then
-                self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.FullBody)
+        if this.CurrentAnimLogic and this.CurrentAnimLogic.Playing then
+            if this.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody then
+                this.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.FullBody)
             end
         end
     end
