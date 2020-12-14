@@ -1,6 +1,6 @@
 --- CustomEvent的定义，用于事件动态生成
--- @module Event Defines
--- @copyright Lilith Games, Avatar Team
+--- @module Event Defines
+--- @copyright Lilith Games, Avatar Team
 local Events = {}
 
 -- 服务器事件列表
@@ -12,7 +12,8 @@ Events.ServerEvents = {
 
 -- 客户端事件列表
 Events.ClientEvents = {
-    --NPC事件
+    -- NPC事件
     'TouchNpcEvent' -- @param _npcId
 }
+
 return Events
