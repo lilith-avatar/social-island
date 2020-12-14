@@ -12,7 +12,7 @@ function SocialAnimation:Init()
     RootUI = localPlayer.Local.ControlGui.AnimationPanel
     RootUI.Header.Color = Color(255, 255, 255, 180)
     CloseButton = RootUI.Close
-    OpenButton = localPlayer.Local.ControlGui.AnimationButton
+    AnimationBtn = localPlayer.Local.ControlGui.AnimationBtn
     EmotionPanel = RootUI.Emotion
     DancePanel = RootUI.Dance
     MultiplayerPanel = RootUI.Multiplayer
@@ -27,44 +27,15 @@ function SocialAnimation:Init()
     DanceTbl = {}
     MultiplayerTbl = {}
     OverallTbl = {EmotionTbl, DanceTbl, MultiplayerTbl}
-    self:Initial()
-end
-
-function SocialAnimation:Initial()
     self.CurrentAnimLogic = nil
     self:CreatePanel()
-    OpenButton.OnDown:Connect(
-        function()
-            RootUI.Visible = true
-        end
-    )
-    CloseButton.OnDown:Connect(
-        function()
-            RootUI.Visible = false
-        end
-    )
-    localPlayer.OnStateChanged:Connect(
-        function(oldState, newState)
-            if newState == Enum.CharacterState.Jump or oldState == Enum.CharacterState.Idle then
-                self:ClearTrigger()
-                if self.CurrentAnimLogic then
-                    self:StopIK()
-                    if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.FullBody then
-                        self.CurrentAnimLogic:Stop()
-                    elseif self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody and self.CurrentAnimLogic.Playing then
-                        self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.UpperBody)
-                    end
-                end
-            end
-            if newState == Enum.AnimationMode.Idle then
-                if self.CurrentAnimLogic and self.CurrentAnimLogic.Playing then
-                    if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody then
-                        self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.FullBody)
-                    end
-                end
-            end
-        end
-    )
+    self:InitListener()
+end
+
+function SocialAnimation:InitListener()
+    AnimationBtn.OnDown:Connect(ToggleAnimPanel)
+    CloseButton.OnDown:Connect(CloseAnimPanel)
+    localPlayer.OnStateChanged:Connect(OnPlayerStateChanged)
 end
 
 function SocialAnimation:ClearSelected()
@@ -197,4 +168,34 @@ end
 function SocialAnimation:StopIK()
     Animation:StopIK()
 end
+
+function CloseAnimPanel()
+    RootUI.Visible = false
+end
+
+function ToggleAnimPanel()
+    RootUI.Visible = not RootUI.Visible
+end
+
+function OnPlayerStateChanged(oldState, newState)
+    if newState == Enum.CharacterState.Jump or oldState == Enum.CharacterState.Idle then
+        self:ClearTrigger()
+        if self.CurrentAnimLogic then
+            self:StopIK()
+            if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.FullBody then
+                self.CurrentAnimLogic:Stop()
+            elseif self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody and self.CurrentAnimLogic.Playing then
+                self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.UpperBody)
+            end
+        end
+    end
+    if newState == Enum.AnimationMode.Idle then
+        if self.CurrentAnimLogic and self.CurrentAnimLogic.Playing then
+            if self.CurrentAnimLogic.BodyPart == Enum.BodyPart.UpperBody then
+                self.CurrentAnimLogic:ChangeBodyPart(Enum.BodyPart.FullBody)
+            end
+        end
+    end
+end
+
 return SocialAnimation
