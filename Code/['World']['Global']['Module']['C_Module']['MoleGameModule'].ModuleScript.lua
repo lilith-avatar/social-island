@@ -36,6 +36,9 @@ function MoleGame:EventBindForStart()
     )
     this.hitRange.OnCollisionEnd:Connect(
         function(_hitObject)
+			if not _hitObject then
+				return
+			end
             this.rangeList[_hitObject.Name] = nil
             print(_hitObject.Name .. " End")
         end

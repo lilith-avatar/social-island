@@ -26,7 +26,7 @@ local function RandomSortByWeights(_moleConfig)
         tmpWeightTab,
         function(a, b)
             if a and b then
-                return (a.weight < b.weight)
+                return (a.weight > b.weight)
             end
         end
     )
@@ -34,8 +34,17 @@ local function RandomSortByWeights(_moleConfig)
     return tmpWeightTab
 end
 
+local function TransformTable(_table)
+    local final = {}
+    for k, v in pairs(_table) do
+        table.insert(final, v)
+    end
+    return final
+end
+
 ---初始化函数
 function MoleHit:Init()
+    print("MoleHit: Init")
     this:DataInit()
     this:PitListInit()
     GetTotalWeights(Config.MoleConfig)
@@ -52,49 +61,71 @@ end
 --绑定坑位
 function MoleHit:PitListInit()
     for k, v in pairs(world.MoleHit:GetChildren()) do
-        local data = {
+        this.pitList[v.Name] = {
             model = v,
             mole = nil
         }
-        table.insert(this.pitList, data)
     end
+    print(table.dump(this.pitList))
 end
 
-function MoleHit:PlayerStartMoleHit(_uid)
+function MoleHit:PlayerStartMoleHitEventHandler(_uid)
     this.playerList[_uid] = {
         inGame = true
     }
 end
 
-function MoleHit:PlayerLeaveMoleHit(_uid)
+function MoleHit:PlayerLeaveMoleHitEventHandler(_uid)
     this.playerList[_uid] = nil
 end
 
 ---根据玩家人数刷地鼠
 function MoleHit:RefreshMole(_playerNum)
     --! only test
-    local tmpTable = table.shallowcopy(this.pitList)
+    --清除现有的地鼠
+    for k, v in pairs(this.pitList) do
+        if v.model.Mole then
+            v.model.Mole:Destroy()
+            v.mole = nil
+        end
+    end
+    local tmpTable = TransformTable(this.pitList)
     local tmpRandomTab
-    for i = 1, Config.MoleGlobalConfig.PlayerNumEffect[_playerNum] do
+    for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
+        local pitIndex = math.random(1, #tmpTable)
         tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
-        tmpTable[math.random(1, #tmpTable)].mole = tmpRandomTab[1].id
+        tmpTable[pitIndex].mole = tmpRandomTab[1].id
         --对象池管理
+        local mole =
+            world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
+        invoke(
+            function(tmpTable, pitIndex, tmpRandomTab, mole)
+                if mole then
+                    mole:Destroy()
+                end
+            end,
+            Config.MoleConfig[tmpRandomTab[1].id].KeepTime
+        )
+        mole.LocalPosition = Vector3(0, 0.5, 0)
+        table.remove(tmpTable, pitIndex)
     end
 end
 
 local player
-function MoleHit:PlayerHitEvent(_uid, _hitPit)
-    if this.pitList[_hitPit].mole then
-        player = world:GetPlayerByUserId(_uid)
-        --对象池管理
-
-        NetUtil.Fire_C(
-            "AddScoreAndBoostEvent",
-            player,
-            Config.MoleConfig[this.pitList[_hitPit].mole].Type,
-            Config.MoleConfig[this.pitList[_hitPit].mole].Reward,
-            Config.MoleConfig[this.pitList[_hitPit].mole].BoostReward
-        )
+function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
+    for k, _ in pairs(_hitPit) do
+        if this.pitList[k] and this.pitList[k].mole and this.pitList[k].model.Mole then
+            player = world:GetPlayerByUserId(_uid)
+            NetUtil.Fire_C(
+                "AddScoreAndBoostEvent",
+                player,
+                Config.MoleConfig[this.pitList[k].mole].Type,
+                Config.MoleConfig[this.pitList[k].mole].Reward,
+                Config.MoleConfig[this.pitList[k].mole].BoostReward
+            )
+            this.pitList[k].model.Mole:Destroy()
+            this.pitList[k].mole = nil
+        end
     end
 end
 
@@ -102,8 +133,9 @@ end
 function MoleHit:Update(dt, tt)
     if table.nums(this.playerList) ~= 0 then
         this.timer = this.timer + dt
-        if this.timer >= this.refreshTime then
-        --刷地鼠
+        if this.timer >= this.refreshTime.Value then
+            this.timer = 0
+            MoleHit:RefreshMole(table.nums(this.playerList) + 1)
         end
     end
 end

@@ -4,11 +4,15 @@
 local Events = {}
 
 -- 服务器事件列表
-Events.ServerEvents = {}
+Events.ServerEvents = {
+    'PlayerHitEvent',
+    'PlayerStartMoleHitEvent'
+}
 
 -- 客户端事件列表
 Events.ClientEvents = {
     --通知事件
-    'NoticeEvent'
+    'NoticeEvent',
+    'AddScoreAndBoostEvent'
 }
 return Events
