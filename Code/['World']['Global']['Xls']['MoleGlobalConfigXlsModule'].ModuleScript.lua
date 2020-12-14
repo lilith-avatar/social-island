@@ -21,6 +21,10 @@ local MoleGlobalConfigXls = {
     PlayerNumEffect = {
         Key = 'PlayerNumEffect',
         Value = {1=3,2=5,3=7,4=9,5=11,6=13}
+    },
+    RefreshTime = {
+        Key = 'RefreshTime',
+        Value = 6.0
     }
 }
 

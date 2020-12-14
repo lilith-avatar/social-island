@@ -2,18 +2,50 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
+local totalWeights = 0
+
+---得到总权重
+local function GetTotalWeights(_moleConfig)
+    for _, v in pairs(_moleConfig) do
+        totalWeights = totalWeights + v.Weight
+    end
+end
+
+---随机权重排序
+local function RandomSortByWeights(_moleConfig)
+    local tmpWeightTab = {}
+    for _, v in pairs(_moleConfig) do
+        local data = {
+            id = v.ID,
+            weight = v.Weight + math.random(0, totalWeights)
+        }
+        table.insert(tmpWeightTab, data)
+    end
+    --进行排序
+    table.sort(
+        tmpWeightTab,
+        function(a, b)
+            if a and b then
+                return (a.weight < b.weight)
+            end
+        end
+    )
+    print(table.dump(tmpWeightTab))
+    return tmpWeightTab
+end
 
 ---初始化函数
 function MoleHit:Init()
     this:DataInit()
     this:PitListInit()
+    GetTotalWeights(Config.MoleConfig)
 end
 
 function MoleHit:DataInit()
     this.playerList = {}
     this.pitList = {}
     this.timer = 0
-    this.refreshTime = 4 --! Only Test
+    this.refreshTime = Config.MoleGlobalConfig.RefreshTime --! Only Test
     this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
 end
 
@@ -42,7 +74,11 @@ end
 function MoleHit:RefreshMole(_playerNum)
     --! only test
     local tmpTable = table.shallowcopy(this.pitList)
+    local tmpRandomTab
     for i = 1, Config.MoleGlobalConfig.PlayerNumEffect[_playerNum] do
+        tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
+        tmpTable[math.random(1, #tmpTable)].mole = tmpRandomTab[1].id
+        --对象池管理
     end
 end
 

@@ -40,7 +40,7 @@ local MoleConfigXls = {
         AppearTime = 0.5,
         KeepTime = 1.0,
         DisapearTime = 0.5,
-        Weight = 10
+        Weight = 30
     },
     M4 = {
         ID = 'M4',
@@ -76,7 +76,7 @@ local MoleConfigXls = {
         AppearTime = 0.5,
         KeepTime = 1.0,
         DisapearTime = 0.5,
-        Weight = 10
+        Weight = 30
     }
 }
 
