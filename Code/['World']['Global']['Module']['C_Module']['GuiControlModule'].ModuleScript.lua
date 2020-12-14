@@ -7,7 +7,6 @@ local player
 local isDead = false
 local forwardDir = Vector3.Forward
 local rightDir = Vector3.Right
-local finalDir = Vector3.Zero
 local horizontal = 0
 local vertical = 0
 
@@ -40,6 +39,7 @@ function GuiControl:Init()
     self:InitNodes()
     self:InitCamera()
     self:InitListener()
+    this.finalDir = Vector3.Zero
 end
 
 function GuiControl:InitGui()
@@ -86,7 +86,7 @@ function GuiControl:InitCamera()
 end
 
 -- 移动方向是否遵循摄像机方向
-function IsFreeMode()
+function GuiControl:IsFreeMode()
     return (mode == Enum.CameraMode.Social and camera.Distance >= 0) or mode == Enum.CameraMode.Orbital or
         mode == Enum.CameraMode.Custom
 end
@@ -104,41 +104,23 @@ end
 
 -- 获取移动方向
 function GetMoveDir()
-    forwardDir = IsFreeMode() and camera.Forward or player.Forward
+    forwardDir = this:IsFreeMode() and camera.Forward or player.Forward
     forwardDir.y = 0
     rightDir = Vector3(0, 1, 0):Cross(forwardDir)
     horizontal = joystick.Horizontal
     vertical = joystick.Vertical
     if horizontal ~= 0 or vertical ~= 0 then
-        finalDir = rightDir * horizontal + forwardDir * vertical
+        this.finalDir = rightDir * horizontal + forwardDir * vertical
     else
         GetKeyValue()
-        finalDir = forwardDir * (moveForwardAxis + moveBackAxis) - rightDir * (moveLeftAxis + moveRightAxis)
-    end
-end
-
--- 移动逻辑
-function PlayerMove(_dir)
-    _dir.y = 0
-    if player.State == Enum.CharacterState.Died then
-        _dir = Vector3.Zero
-    end
-    if _dir.Magnitude > 0 then
-        if IsFreeMode then
-            player:FaceToDir(_dir, 4 * math.pi)
-        end
-        player:MoveTowards(Vector2(_dir.x, _dir.z).Normalized)
-    else
-        player:MoveTowards(Vector2.Zero)
+        this.finalDir = forwardDir * (moveForwardAxis + moveBackAxis) - rightDir * (moveLeftAxis + moveRightAxis)
     end
 end
 
 -- 跳跃逻辑
 function PlayerJump()
-    if (player.IsOnGround or player.State == Enum.CharacterState.Seated) and not isDead then
-        player:Jump()
-        return
-    end
+    NetUtil.Fire_S('LeaveZeppelinEvent', localPlayer)
+    FsmMgr:RepelledTrigger()
 end
 
 -- 鼓掌逻辑
@@ -169,7 +151,6 @@ function MainControl()
     camera = world.CurrentCamera
     mode = camera.CameraMode
     GetMoveDir()
-    PlayerMove(finalDir)
 end
 
 -- 检测触屏的手指数

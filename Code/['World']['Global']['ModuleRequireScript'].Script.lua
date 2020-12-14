@@ -17,16 +17,18 @@ ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
 TimeUtil.Init()
 
+-- Framework
+ModuleUtil.LoadModules(Framework)
+
+-- Globle Defines
+ModuleUtil.LoadModules(Define)
+ModuleUtil.LoadXlsModules(Xls, Config)
+
 -- Fsm
 FsmBase = require(Module.Fsm_Module.FsmBaseModule)
 StateBase = require(Module.Fsm_Module.StateBaseModule)
 
--- Framework
-ModuleUtil.LoadModules(Framework)
-
--- Globle Defines, Server and Clinet Modules
-ModuleUtil.LoadModules(Define)
-ModuleUtil.LoadXlsModules(Xls, Config)
+-- Server and Clinet Modules
 ModuleUtil.LoadModules(Module.S_Module)
 ModuleUtil.LoadModules(Module.Cls_Module)
 ModuleUtil.LoadModules(Module.C_Module)
