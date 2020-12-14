@@ -1,7 +1,7 @@
 --- 玩家控制模块
 --- @module Player Controll, client-side
 --- @copyright Lilith Games, Avatar Team
-local PlayerControl, this = ModuleUtil.New('PlayerControl', ClientBase)
+local GuiControl, this = ModuleUtil.New('GuiControl', ClientBase)
 local player
 --声明变量
 local isDead = false
@@ -33,7 +33,7 @@ local moveBackAxis = 0
 local moveLeftAxis = 0
 local moveRightAxis = 0
 
-function PlayerControl:Init()
+function GuiControl:Init()
     -- 获取本地玩家
     player = localPlayer
     self:InitGui()
@@ -42,7 +42,7 @@ function PlayerControl:Init()
     self:InitListener()
 end
 
-function PlayerControl:InitGui()
+function GuiControl:InitGui()
     gui = localPlayer.Local.ControlGui
     joystick = gui.Joystick
     touchScreen = gui.TouchFig
@@ -50,11 +50,11 @@ function PlayerControl:InitGui()
     useBtn = gui.UseBtn
 end
 
-function PlayerControl:InitNodes()
+function GuiControl:InitNodes()
     LocalAudio = localPlayer.Local.LocalAudio
 end
 
-function PlayerControl:InitListener()
+function GuiControl:InitListener()
     -- Main
     world.OnRenderStepped:Connect(MainControl)
     -- Player
@@ -76,7 +76,7 @@ function PlayerControl:InitListener()
     )
 end
 
-function PlayerControl:InitCamera()
+function GuiControl:InitCamera()
     if not world.CurrentCamera and localPlayer.Local.Independent.GameCam then
         world.CurrentCamera = localPlayer.Local.Independent.GameCam
     end
@@ -197,4 +197,4 @@ function CameraZoom(_pos1, _pos2, _dis, _speed)
     end
 end
 
-return PlayerControl
+return GuiControl

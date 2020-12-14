@@ -1,7 +1,7 @@
 --- 玩家默认UI
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
-local PlayerGuiDefault, this = ModuleUtil.New('PlayerGuiDefault', ClientBase)
+local GuiDefault, this = ModuleUtil.New('GuiDefault', ClientBase)
 
 -- 获取本地玩家
 local player
@@ -17,7 +17,7 @@ local ORANGE_BAR = ResourceManager.GetTexture('Internal/Blood_Orange')
 local HIT_LAST_TIME = 2
 local healthBarShowTime = 0
 
-function PlayerGuiDefault:Init()
+function GuiDefault:Init()
     -- 获取本地玩家
     player = localPlayer
     self:InitNameGui()
@@ -26,21 +26,21 @@ function PlayerGuiDefault:Init()
 end
 
 -- 姓名板
-function PlayerGuiDefault:InitNameGui()
+function GuiDefault:InitNameGui()
     nameGUI = player.NameGui
     nameGUI.NameBarTxt1.Text = player.Name
     nameGUI.NameBarTxt2.Text = player.Name
 end
 
 -- 血条
-function PlayerGuiDefault:InitHealthBarGui()
+function GuiDefault:InitHealthBarGui()
     healthGUI = player.HealthGui
     background = healthGUI.BackgroundImg
     healthBar = background.HealthBarImg
 end
 
 -- 初始化事件
-function PlayerGuiDefault:InitListener()
+function GuiDefault:InitListener()
     player.OnHealthChange:Connect(HealthChange)
     world.OnRenderStepped:Connect(MainGUI)
 end
@@ -90,4 +90,4 @@ function MainGUI(_delta)
     HealthBarLogic(_delta)
 end
 
-return PlayerGuiDefault
+return GuiDefault

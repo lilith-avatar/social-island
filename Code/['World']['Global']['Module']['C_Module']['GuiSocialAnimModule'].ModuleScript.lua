@@ -2,7 +2,7 @@
 --- @module Player Social Animation, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author 王殷鹏, Yuancheng Zhang
-local SocialAnimation, this = ModuleUtil.New('SocialAnimation', ClientBase)
+local GuiSocialAnim, this = ModuleUtil.New('GuiSocialAnim', ClientBase)
 
 local PlayerAnimation = PlayerAnimation
 
@@ -15,14 +15,14 @@ local CREATE_PANEL_DELAY = .2
 local emoTbl, danceTbl, multiTbl = {}, {}, {}
 local overallTbl = {emoTbl, danceTbl, multiTbl}
 
-function SocialAnimation:Init()
+function GuiSocialAnim:Init()
     self.currAnimLogic = nil
     self:InitGui()
     self:InitListener()
     invoke(CreatePanel, CREATE_PANEL_DELAY)
 end
 
-function SocialAnimation:InitGui()
+function GuiSocialAnim:InitGui()
     uiRoot = localPlayer.Local.ControlGui.SocialAnimPnl
     uiRoot.HeaderImg.Color = HEADER_COLOR
     -- Buttons
@@ -38,17 +38,17 @@ function SocialAnimation:InitGui()
     btnTbl = {uiRoot.EmotionBtn, uiRoot.DanceBtn, uiRoot.MultiplayerBtn}
 end
 
-function SocialAnimation:InitListener()
+function GuiSocialAnim:InitListener()
     animBtn.OnDown:Connect(ToggleAnimPanel)
     closeBtn.OnDown:Connect(CloseAnimPanel)
     localPlayer.OnStateChanged:Connect(OnPlayerStateChanged)
 end
 
-function SocialAnimation:BeginIK(my, target)
+function GuiSocialAnim:BeginIK(my, target)
     PlayerAnimation:BeginIK(my, target)
 end
 
-function SocialAnimation:StopIK()
+function GuiSocialAnim:StopIK()
     PlayerAnimation:StopIK()
 end
 
@@ -101,7 +101,7 @@ function CreatePanel()
         )
     end
 
-    print('[SocialAnimation] CreatePanel() done')
+    print('[GuiSocialAnim] CreatePanel() done')
     animBtn.Visible = true
 end
 
@@ -208,4 +208,4 @@ function OnPlayerStateChanged(oldState, newState)
     end
 end
 
-return SocialAnimation
+return GuiSocialAnim

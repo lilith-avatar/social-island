@@ -8,7 +8,7 @@ Events.ServerEvents = {}
 
 -- 客户端事件列表
 Events.ClientEvents = {
-    --通知事件
-    'NoticeEvent'
+    --NPC事件
+    'TouchNpcEvent'
 }
 return Events
