@@ -5,10 +5,10 @@ local Events = {}
 
 -- 服务器事件列表
 Events.ServerEvents = {
-    "LeaveZeppelinEvent",
+    'LeaveZeppelinEvent',
     -- 进入小游戏
-    'EnterMiniGame', -- @param _player, _gameId
-    'ExitMiniGame' -- @param nil
+    'EnterMiniGameEvent', -- @param _player, _gameId
+    'ExitMiniGameEvent' -- @param nil
 }
 
 -- 客户端事件列表

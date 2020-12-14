@@ -97,9 +97,9 @@ function EnterMiniGame()
     end
 
     local gameId = NpcInfo[currNpcId].GameId
-    NetUtil.Fire_S('EnterMiniGame', localPlayer, gameId)
+    NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
     --! Test only
-    print('[GuiNpc] EnterMiniGame', localPlayer, gameId)
+    print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
 end
 
 --- 打开商城

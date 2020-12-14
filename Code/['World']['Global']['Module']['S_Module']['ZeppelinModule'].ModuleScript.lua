@@ -2,11 +2,12 @@
 --- @module Zeppelin Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Zeppelin, this = ModuleUtil.New("Zeppelin", ServerBase)
+local Zeppelin, this = ModuleUtil.New('Zeppelin', ServerBase)
 
 --- 变量声明
 -- 热气球对象池
 local zeppelinObjPool = {}
+local zepRoot
 
 -- 站台等待乘客表
 local platformPassengerTable = {}
@@ -42,8 +43,7 @@ local zeppelinStateEnum = {
 
 --- 初始化
 function Zeppelin:Init()
-    return
-    print("Zeppelin:Init")
+    print('Zeppelin:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -54,23 +54,24 @@ end
 
 --- 节点引用
 function Zeppelin:NodeRef()
+    zepRoot = world.MiniGames.Game_06_Zeppelin
     for i = 1, 3 do
         zeppelinObjPool[i] = {
-            obj = world.Zeppelin.ZeppelinObj["Zeppelin_" .. i],
+            obj = zepRoot.ZeppelinObj['Zeppelin_' .. i],
             passenger = {},
             state = zeppelinStateEnum.UNABLE,
             moveStep = 0
         }
-        platformPassengerTable[i] = world.Zeppelin.Station["Platform_0" .. i]
+        platformPassengerTable[i] = zepRoot.Station['Platform_0' .. i]
     end
-    entranceArea = world.Zeppelin.Station.Entrance
-    exitArea = world.Zeppelin.Station.Exit
+    entranceArea = zepRoot.Station.Entrance
+    exitArea = zepRoot.Station.Exit
 end
 
 --- 数据变量初始化
 function Zeppelin:DataInit()
-    for i = 1, #world.Zeppelin.PathwayPoint:GetChildren() do
-        pathwayPointTable[i] = world.Zeppelin.PathwayPoint["P" .. i].Position
+    for i = 1, #zepRoot.PathwayPoint:GetChildren() do
+        pathwayPointTable[i] = zepRoot.PathwayPoint['P' .. i].Position
     end
 
     zeppelinObjPool[1].state = zeppelinStateEnum.READY
@@ -90,7 +91,7 @@ end
 function Zeppelin:EventBind()
     entranceArea.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject.ClassName == "PlayerInstance" then
+            if _hitObject.ClassName == 'PlayerInstance' then
                 this:GetOnZeppelin(_hitObject)
             end
         end
@@ -104,6 +105,13 @@ function Zeppelin:GetOnZeppelin(_player)
             v.passenger[_player.UserId] = _player
             _player.Position = v.obj.Seat.Position
         end
+    end
+end
+
+--- 节点事件绑定
+function Zeppelin:EnterMiniGameEventHandler(_player, _gameId)
+    if _gameId == 6 then
+        this:GetOnZeppelin(_player)
     end
 end
 
