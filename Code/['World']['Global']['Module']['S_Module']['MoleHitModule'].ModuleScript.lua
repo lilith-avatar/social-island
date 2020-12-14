@@ -19,12 +19,12 @@ end
 
 --绑定坑位
 function MoleHit:PitListInit()
-    for k,v in pairs(world.MoleHit:GetChildren()) do
+    for k, v in pairs(world.MoleHit:GetChildren()) do
         local data = {
             model = v,
             mole = nil
         }
-        table.insert(this.pitList,data)
+        table.insert(this.pitList, data)
     end
 end
 
@@ -42,17 +42,23 @@ end
 function MoleHit:RefreshMole(_playerNum)
     --! only test
     local tmpTable = table.shallowcopy(this.pitList)
-    for i=1,3 do
+    for i = 1, Config.MoleGlobalConfig.PlayerNumEffect[_playerNum] do
     end
 end
 
 local player
-function MoleHit:PlayerHitEvent(_uid,_hitPit)
+function MoleHit:PlayerHitEvent(_uid, _hitPit)
     if this.pitList[_hitPit].mole then
         player = world:GetPlayerByUserId(_uid)
         --对象池管理
 
-        NetUtil.Fire_C('',player)
+        NetUtil.Fire_C(
+            "AddScoreAndBoostEvent",
+            player,
+            Config.MoleConfig[this.pitList[_hitPit].mole].Type,
+            Config.MoleConfig[this.pitList[_hitPit].mole].Reward,
+            Config.MoleConfig[this.pitList[_hitPit].mole].BoostReward
+        )
     end
 end
 
