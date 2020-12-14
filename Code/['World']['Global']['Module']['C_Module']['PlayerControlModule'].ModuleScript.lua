@@ -14,8 +14,11 @@ local vertical = 0
 -- 相机
 local camera, mode
 
+-- 节点声明
+local LocalAudio
+
 -- 手机端交互UI
-local gui, joystick, touchScreen, jumpButton
+local gui, joystick, touchScreen, jumpBtn, useBtn
 
 -- PC端交互按键
 local FORWARD_KEY = Enum.KeyCode.W
@@ -34,8 +37,21 @@ function PlayerControl:Init()
     -- 获取本地玩家
     player = localPlayer
     self:InitGui()
+    self:InitNodes()
     self:InitCamera()
     self:InitListener()
+end
+
+function PlayerControl:InitGui()
+    gui = localPlayer.Local.ControlGui
+    joystick = gui.Joystick
+    touchScreen = gui.TouchFig
+    jumpBtn = gui.JumpBtn
+    useBtn = gui.UseBtn
+end
+
+function PlayerControl:InitNodes()
+    LocalAudio = localPlayer.Local.LocalAudio
 end
 
 function PlayerControl:InitListener()
@@ -48,7 +64,8 @@ function PlayerControl:InitListener()
     touchScreen.OnTouched:Connect(CountTouch)
     touchScreen.OnPanStay:Connect(CameraMove)
     touchScreen.OnPinchStay:Connect(CameraZoom)
-    jumpButton.OnDown:Connect(PlayerJump)
+    jumpBtn.OnDown:Connect(PlayerJump)
+    useBtn.OnDown:Connect(PlayerClap)
     -- Keyboard
     Input.OnKeyDown:Connect(
         function()
@@ -57,13 +74,6 @@ function PlayerControl:InitListener()
             end
         end
     )
-end
-
-function PlayerControl:InitGui()
-    gui = localPlayer.Local.ControlGui
-    joystick = gui.Joystick
-    touchScreen = gui.TouchFig
-    jumpButton = gui.JumpBtn
 end
 
 function PlayerControl:InitCamera()
@@ -129,6 +139,14 @@ function PlayerJump()
         player:Jump()
         return
     end
+end
+
+-- 鼓掌逻辑
+function PlayerClap()
+    player.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 9)
+    player.Avatar:PlayAnimation('SocialApplause', 9, 1, 0, true, false, 1)
+    --拍掌音效
+    LocalAudio.ApplauseAudio:Play()
 end
 
 -- 死亡逻辑

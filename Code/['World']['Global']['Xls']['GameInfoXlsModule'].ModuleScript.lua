@@ -5,7 +5,7 @@
 --- @see https://github.com/endaye/avatar-ava-xls2lua
 --- source file: .//社交岛经济系统.xlsx
 
-local gameInfoXls = {
+local GameInfoXls = {
     [1] = {
         GameId = 1,
         GameName = '打猎'
@@ -52,4 +52,4 @@ local gameInfoXls = {
     }
 }
 
-return gameInfoXls
+return GameInfoXls
