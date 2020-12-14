@@ -1,44 +1,102 @@
 --- 玩家与NPC交互的UI
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
+--- @author Yuancheng Zhang
 local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
 local controlGui, npcBtn
+local npcGui, gameBtn, dialogBtn, shopBtn, leaveBtn
 
--- Resource Const
-local RES_NPC_IMG = 'UI/Icon_Do'
-local RES_NPC_PRESS_IMG = 'UI/Icon_Do_A'
-
--- Resourc
-local resNpcBtn, resNpcBtnPressed
-
--- cache
+-- Cache
 local Config = Config
 local NpcInfo = Config.NpcInfo
 
+-- Data
+local currNpcId
+
 function GuiNpc:Init()
     self:InitGui()
-    self:InitResource()
+    self:InitListener()
 end
 
 function GuiNpc:InitGui()
+    -- Control GUI
     controlGui = localPlayer.Local.ControlGui
     npcBtn = controlGui.NpcBtn
+    -- NPC GUI
+    npcGui = localPlayer.Local.NpcGui
+    gameBtn = npcGui.GameBtn
+    dialogBtn = npcGui.DialogBtn
+    shopBtn = npcGui.ShopBtn
+    leaveBtn = npcGui.LeaveBtn
 end
 
-function GuiNpc:InitResource()
-    resNpcBtn = ResourceManager.GetTexture(RES_NPC_IMG)
-    resNpcBtnPressed = ResourceManager.GetTexture(RES_NPC_PRESS_IMG)
+function GuiNpc:InitListener()
+    npcBtn.OnClick:Connect(OpenNpcGui)
+    gameBtn.OnClick:Connect(EnterMiniGame)
+    dialogBtn.OnClick:Connect(StartDialog)
+    shopBtn.OnClick:Connect(EnterShop)
+    leaveBtn.OnClick:Connect(LeaveNpc)
+end
+
+--- 接触NPC
+function TouchNpc(_npcId)
+    if _npcId == nil then
+        return
+    end
+    print('[GuiNpc] TouchNpc()', _npcId)
+    controlGui.Visible = true
+    npcBtn.Visible = true
+    npcGui.Visible = false
+    currNpcId = _npcId
+end
+
+--- 打开NPC界面
+function OpenNpcGui()
+    print('[GuiNpc] OpenNpcGui()')
+    controlGui.Visible = false
+    npcGui.Visible = true
+end
+
+--- 离开NPC
+function LeaveNpc()
+    print('[GuiNpc] LeaveNpc()', currNpcId)
+    controlGui.Visible = true
+    npcBtn.Visible = false
+    npcGui.Visible = false
+    currNpcId = nil
+end
+
+--- 开始小游戏
+function EnterMiniGame()
+    if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].GameId == nil then
+        return
+    end
+
+    local gameId = NpcInfo[currNpcId].GameId
+    NetUtil.Fire_S('EnterMiniGame', localPlayer, gameId)
+    --! Test only
+    print('[GuiNpc] EnterMiniGame', localPlayer, gameId)
+end
+
+--- 打开商城
+function EnterShop()
+    print('[GuiNpc] EnterShop()')
+end
+
+--- 开始对话
+function StartDialog()
+    print('[GuiNpc] StartDialog()')
 end
 
 function GuiNpc:TouchNpcEventHandler(_npcId)
     -- print(table.dump(NpcInfo[_npcId]))
     if _npcId ~= nil then
-        npcBtn.Image = resNpcBtn
-        npcBtn.PressedImage = resNpcBtnPressed
+        TouchNpc(_npcId)
+    else
+        LeaveNpc()
     end
-    npcBtn.Visible = _npcId ~= nil
 end
 
 return GuiNpc
