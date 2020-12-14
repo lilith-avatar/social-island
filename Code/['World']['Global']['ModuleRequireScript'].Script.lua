@@ -29,3 +29,7 @@ ModuleUtil.LoadModules(Module.Cls_Module)
 
 -- Plugin Modules
 GuideSystem = require(world.Global.Plugin.FUNC_Guide.GuideSystemModule)
+
+-- Fsm
+FsmBase = require(Utility.FsmBaseModule)
+StateBase = require(Utility.StateBaseModule)
