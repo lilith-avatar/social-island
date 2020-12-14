@@ -10,13 +10,15 @@ local npcGui, gameBtn, dialogBtn, shopBtn, leaveBtn
 
 -- Cache
 local Config = Config
-local NpcInfo = Config.NpcInfo
+local NpcInfo
 
 -- Data
 local currNpcId
 
 function GuiNpc:Init()
     self:InitGui()
+    self:InitData()
+    self:InitResource()
     self:InitListener()
 end
 
@@ -26,10 +28,24 @@ function GuiNpc:InitGui()
     npcBtn = controlGui.NpcBtn
     -- NPC GUI
     npcGui = localPlayer.Local.NpcGui
+    portraitImg = npcGui.PortraitImg
     gameBtn = npcGui.GameBtn
     dialogBtn = npcGui.DialogBtn
     shopBtn = npcGui.ShopBtn
     leaveBtn = npcGui.LeaveBtn
+end
+
+function GuiNpc:InitData()
+    NpcInfo = table.deepcopy(Config.NpcInfo)
+end
+
+function GuiNpc:InitResource()
+    for _, npc in pairs(NpcInfo) do
+        if npc.PortraitRes then
+            npc.Portrait = ResourceManager.GetTexture('TestPortrait/' .. npc.PortraitRes)
+            print(npc.PortraitRes)
+        end
+    end
 end
 
 function GuiNpc:InitListener()
@@ -54,9 +70,15 @@ end
 
 --- 打开NPC界面
 function OpenNpcGui()
+    if currNpcId == nil or NpcInfo[currNpcId] == nil then
+        return
+    end
     print('[GuiNpc] OpenNpcGui()')
     controlGui.Visible = false
     npcGui.Visible = true
+    local portrait = NpcInfo[currNpcId].Portrait
+    portraitImg.Texture = portrait
+    portraitImg.Visible = portrait ~= nil
 end
 
 --- 离开NPC
