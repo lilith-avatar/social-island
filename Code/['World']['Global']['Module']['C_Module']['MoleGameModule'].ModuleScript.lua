@@ -61,6 +61,7 @@ function MoleGame:GameOver()
     this.hitRange.OnCollisionBegin:Clear()
     this.hitRange.OnCollisionEnd:Clear()
     this:DataInit()
+    NetUtil.Fire_S('PlayerLeaveMoleHitEvent',localPlayer.UserId)
     --Todo:传送到指定地点
 end
 
@@ -91,6 +92,7 @@ function MoleGame:BoostEffect()
             this.boostEffect = false
             localPlayer.WalkSpeed = 6
             this.boostTime = Config.MoleGlobalConfig.BoostTime.Value
+            
         end
     end
 end

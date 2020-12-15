@@ -6,7 +6,8 @@ local Events = {}
 -- 服务器事件列表
 Events.ServerEvents = {
     'PlayerHitEvent',
-    'PlayerStartMoleHitEvent'
+    'PlayerStartMoleHitEvent',
+    'PlayerLeaveMoleHitEvent'
 }
 
 -- 客户端事件列表
