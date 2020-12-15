@@ -15,10 +15,19 @@ function MoleUIMgr:NodeDef()
     this.gui = localPlayer.Local.MoleHitGui
     this.startButton = this.gui.StartBtn
     this.hitButton = this.gui.HitBtn
+    this.timeText = this.gui.InfoPnl.TimeTxt.NumTxt
+    this.scoreText = this.gui.InfoPnl.ScoreTxt.NumTxt
+    this.boostText = this.gui.InfoPnl.BoostTxt.NumTxt
 end
 
 ---数据初始化
 function MoleUIMgr:DataInit()
+end
+
+function MoleUIMgr:GameOver()
+    --this.gui:SetActive(false)
+    this.startButton:SetActive(true)
+    this.hitButton:SetActive(false)
 end
 
 ---事件绑定
@@ -36,20 +45,26 @@ function MoleUIMgr:EventBind()
     )
 end
 
----蓄力槽增加
-function MoleUIMgr:BoostAdd(_num)
-end
-
 function MoleUIMgr:Hit()
     NetUtil.Fire_S("PlayerHitEvent", localPlayer.UserId, MoleGame.rangeList)
 end
 
-function MoleUIMgr:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
-    --print("类型：" .. _type .. " 奖励：" .. _reward .. " 蓄力槽积攒：" .. _boostReward)
-end
-
 function MoleUIMgr:StartGame()
     NetUtil.Fire_S("PlayerStartMoleHitEvent", localPlayer.UserId)
+    this.startButton:SetActive(false)
+    this.hitButton:SetActive(true)
+end
+
+function MoleUIMgr:UpdateScore(_score)
+    this.scoreText.Text = math.floor(tonumber(_score))
+end
+
+function MoleUIMgr:UpdateBoost(_boostNum)
+    this.boostText.Text = math.floor(tonumber(_boostNum))
+end
+
+function MoleUIMgr:UpdateTime(_time)
+    this.timeText.Text = math.floor(tonumber(_time))
 end
 
 ---强化过程表现

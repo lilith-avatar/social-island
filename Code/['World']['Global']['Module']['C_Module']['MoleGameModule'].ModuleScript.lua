@@ -21,6 +21,7 @@ function MoleGame:DataInit()
     this.boostTime = Config.MoleGlobalConfig.BoostTime.Value
     this.boostNum = 0
     this.timer = 0
+    localPlayer.WalkSpeed = 6
 end
 
 ---节点绑定
@@ -69,6 +70,7 @@ function MoleGame:Update(dt, tt)
     if this.startUpdate and this.timer >= 1 then
         this.timer = 0
         this.time = this.time - 1
+        MoleUIMgr:UpdateTime(this.time)
         --结算强化效果
         this:BoostEffect()
         if this.time <= 0 then
@@ -97,11 +99,19 @@ end
 function MoleGame:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
     if not this.boostEffect then
         this.boostNum = this.boostNum + _boostReward
+        MoleUIMgr:UpdateBoost(this.boostNum)
     end
-    print("当前蓄力值：" .. this.boostNum)
     if this.boostNum >= 100 then
         this.boostEffect = true
         this.boostNum = 0
+    end
+    if _type == 'Time' then
+        this.time = this.time + _reward
+        MoleUIMgr:UpdateTime(this.time)
+    end
+    if _type == 'Score' then
+        this.score = this.score + _reward
+        MoleUIMgr:UpdateScore(this.score)
     end
 end
 
