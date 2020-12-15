@@ -2,7 +2,7 @@
 --- @module Fsm Mgr, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local FsmMgr, this = ModuleUtil.New('FsmMgr', ClientBase)
+local FsmMgr, this = ModuleUtil.New("FsmMgr", ClientBase)
 
 --- 变量声明
 -- 玩家动作状态机
@@ -10,18 +10,18 @@ local playerActFsm = FsmBase:new()
 
 -- 玩家动作状态枚举
 local playerActStateEnum = {
-    IDLE = 'Idle',
-    WALK = 'Walk',
-    RUN = 'Run',
-    JUMP = 'Jump',
-    FLY = 'Fly',
-    SWIM = 'Swim',
-    SOCIAL = 'Social'
+    IDLE = "Idle",
+    WALK = "Walk",
+    RUN = "Run",
+    JUMP = "Jump",
+    FLY = "Fly",
+    SWIM = "Swim",
+    SOCIAL = "Social"
 }
 
 --- 初始化
 function FsmMgr:Init()
-    print('FsmMgr:Init')
+    print("FsmMgr:Init")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -58,27 +58,27 @@ end
 function FsmMgr:IdleStateOnEnterFunc()
     this:ResetTrigger()
     localPlayer:MoveTowards(Vector2.Zero)
-    localPlayer.Avatar:PlayAnimation('Idle', 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
 end
 
 function FsmMgr:WalkStateOnEnterFunc()
     this:ResetTrigger()
-    localPlayer.Avatar:PlayAnimation('WalkingFront', 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("WalkingFront", 2, 1, 0.1, true, true, 1)
 end
 function FsmMgr:RunStateOnEnterFunc()
     this:ResetTrigger()
-    localPlayer.Avatar:PlayAnimation('RunFront', 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("RunFront", 2, 1, 0.1, true, true, 1)
 end
 
 function FsmMgr:JumpStateOnEnterFunc()
     this:ResetTrigger()
     localPlayer:Jump()
-    localPlayer.Avatar:PlayAnimation('Jump', 2, 1, 0.1, true, false, 1)
+    localPlayer.Avatar:PlayAnimation("Jump", 2, 1, 0.1, true, false, 1)
 end
 
 function FsmMgr:IdleStateOnUpdateFunc(dt)
     do ---检测移动键输入
-        local dir = GuiControl.finalDir
+        local dir = PlayerCtrl.finalDir
         dir.y = 0
         if dir.Magnitude > 0 then
             playerActFsm:Switch(playerActStateEnum.WALK)
@@ -93,10 +93,10 @@ end
 
 function FsmMgr:WalkStateOnUpdateFunc(dt)
     do ---检测移动键输入
-        local dir = GuiControl.finalDir
+        local dir = PlayerCtrl.finalDir
         dir.y = 0
         if dir.Magnitude > 0 then
-            if GuiControl:IsFreeMode() then
+            if PlayerCam:IsFreeMode() then
                 localPlayer:FaceToDir(dir, 4 * math.pi)
             end
             localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
@@ -118,10 +118,10 @@ end
 
 function FsmMgr:RunStateOnUpdateFunc(dt)
     do ---检测移动键输入
-        local dir = GuiControl.finalDir
+        local dir = PlayerCtrl.finalDir
         dir.y = 0
         if dir.Magnitude > 0 then
-            if GuiControl:IsFreeMode() then
+            if PlayerCam:IsFreeMode() then
                 localPlayer:FaceToDir(dir, 4 * math.pi)
             end
             localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
