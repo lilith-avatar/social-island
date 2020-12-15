@@ -16,7 +16,7 @@ local MoleGlobalConfigXls = {
     },
     BoostTime = {
         Key = 'BoostTime',
-        Value = 5.0
+        Value = 10.0
     },
     PlayerNumEffect = {
         Key = 'PlayerNumEffect',

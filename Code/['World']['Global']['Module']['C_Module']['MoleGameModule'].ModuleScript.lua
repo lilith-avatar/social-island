@@ -7,7 +7,7 @@ local MoleGame, this = ModuleUtil.New("MoleGame", ClientBase)
 function MoleGame:Init()
     this:DataInit()
     this:NodeDef()
-    this:GameStart()
+    --this:GameStart()
 end
 
 ---数据初始化
@@ -15,9 +15,11 @@ function MoleGame:DataInit()
     this.rangeList = {}
     this.pitList = {}
     this.score = 0
-    this.totalTime = 999  --Config.MoleGlobalConfig.PlayerGameTime
+    this.time = Config.MoleGlobalConfig.PlayerGameTime.Value
     this.startUpdate = false
     this.boostEffect = false
+    this.boostTime = Config.MoleGlobalConfig.BoostTime.Value
+    this.boostNum = 0
     this.timer = 0
 end
 
@@ -31,16 +33,17 @@ function MoleGame:EventBindForStart()
     this.hitRange.OnCollisionBegin:Connect(
         function(_hitObject)
             this.rangeList[_hitObject.Name] = true
-            print(_hitObject.Name .. " Begin")
+            if this.boostEffect then
+                MoleUIMgr:Hit()
+            end
         end
     )
     this.hitRange.OnCollisionEnd:Connect(
         function(_hitObject)
-			if not _hitObject then
-				return
-			end
+            if not _hitObject then
+                return
+            end
             this.rangeList[_hitObject.Name] = nil
-            print(_hitObject.Name .. " End")
         end
     )
 end
@@ -62,16 +65,16 @@ end
 
 ---Update函数
 function MoleGame:Update(dt, tt)
-    if this.startUpdate and this.timer + dt >= 1 then
-        this.totalTime = this.totalTime - 1
+    this.timer = this.timer + dt
+    if this.startUpdate and this.timer >= 1 then
         this.timer = 0
-        if this.totalTime <= 0 then
+        this.time = this.time - 1
+        --结算强化效果
+        this:BoostEffect()
+        if this.time <= 0 then
             this:GameOver()
             return
         end
-        --结算强化效果
-        this:BoostEffect()
-        print(this.totalTime)
     end
 end
 
@@ -80,9 +83,25 @@ function MoleGame:BoostEffect()
     if this.boostEffect then
         --Todo:具体效果
         this.boostTime = this.boostTime - 1
+        localPlayer.WalkSpeed = 8
+        print("强化剩余" .. this.boostTime)
         if this.boostTime <= 0 then
             this.boostEffect = false
+            localPlayer.WalkSpeed = 6
+            this.boostTime = Config.MoleGlobalConfig.BoostTime.Value
         end
+    end
+end
+
+---加分，加时间和积攒蓄力槽
+function MoleGame:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
+    if not this.boostEffect then
+        this.boostNum = this.boostNum + _boostReward
+    end
+    print("当前蓄力值：" .. this.boostNum)
+    if this.boostNum >= 100 then
+        this.boostEffect = true
+        this.boostNum = 0
     end
 end
 

@@ -26,6 +26,7 @@ function MoleUIMgr:EventBind()
     this.startButton.OnClick:Connect(
         function()
             this:StartGame()
+            MoleGame:GameStart()
         end
     )
     this.hitButton.OnClick:Connect(
@@ -44,7 +45,7 @@ function MoleUIMgr:Hit()
 end
 
 function MoleUIMgr:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
-    print("类型：" .. _type .. " 奖励：" .. _reward .. " 蓄力槽积攒：" .. _boostReward)
+    --print("类型：" .. _type .. " 奖励：" .. _reward .. " 蓄力槽积攒：" .. _boostReward)
 end
 
 function MoleUIMgr:StartGame()

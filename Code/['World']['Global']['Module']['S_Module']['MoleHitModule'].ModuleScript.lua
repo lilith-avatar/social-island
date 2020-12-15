@@ -30,7 +30,6 @@ local function RandomSortByWeights(_moleConfig)
             end
         end
     )
-    print(table.dump(tmpWeightTab))
     return tmpWeightTab
 end
 
@@ -66,7 +65,6 @@ function MoleHit:PitListInit()
             mole = nil
         }
     end
-    print(table.dump(this.pitList))
 end
 
 function MoleHit:PlayerStartMoleHitEventHandler(_uid)
@@ -98,14 +96,11 @@ function MoleHit:RefreshMole(_playerNum)
         --对象池管理
         local mole =
             world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
-        invoke(
-            function(tmpTable, pitIndex, tmpRandomTab, mole)
-                if mole then
-                    mole:Destroy()
-                end
-            end,
-            Config.MoleConfig[tmpRandomTab[1].id].KeepTime
-        )
+        invoke(function(tmpTable,pitIndex,tmpRandomTab,mole)
+			if mole then
+				mole:Destroy()
+			end
+        end, Config.MoleConfig[tmpRandomTab[1].id].KeepTime)
         mole.LocalPosition = Vector3(0, 0.5, 0)
         table.remove(tmpTable, pitIndex)
     end
