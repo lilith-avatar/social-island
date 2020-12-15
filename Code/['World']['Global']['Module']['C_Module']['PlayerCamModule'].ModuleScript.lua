@@ -74,7 +74,7 @@ end
 
 -- 修改玩家当前相机
 function PlayerCam:SetCurCamEventHandler(_cam)
-    this.curCamera = _cam
+    this.curCamera = _cam or this.playerGameCam
     world.CurrentCamera = this.curCamera
 end
 
