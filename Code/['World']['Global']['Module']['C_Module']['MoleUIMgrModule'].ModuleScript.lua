@@ -13,7 +13,6 @@ end
 ---节点定义
 function MoleUIMgr:NodeDef()
     this.gui = localPlayer.Local.MoleHitGui
-    this.startButton = this.gui.StartBtn
     this.hitButton = this.gui.HitBtn
     this.timeText = this.gui.InfoPnl.TimeTxt.NumTxt
     this.scoreText = this.gui.InfoPnl.ScoreTxt.NumTxt
@@ -25,24 +24,22 @@ function MoleUIMgr:DataInit()
 end
 
 function MoleUIMgr:GameOver()
-    --this.gui:SetActive(false)
-    this.startButton:SetActive(true)
-    this.hitButton:SetActive(false)
+    this.gui:SetActive(false)
+    --this.hitButton:SetActive(false)
 end
 
 ---事件绑定
 function MoleUIMgr:EventBind()
-    this.startButton.OnClick:Connect(
-        function()
-            this:StartGame()
-            MoleGame:GameStart()
-        end
-    )
     this.hitButton.OnClick:Connect(
         function()
             this:Hit()
         end
     )
+end
+
+function MoleUIMgr:StartMoleEventHandler()
+    this:StartGame()
+    MoleGame:GameStart()
 end
 
 function MoleUIMgr:Hit()
@@ -51,7 +48,7 @@ end
 
 function MoleUIMgr:StartGame()
     NetUtil.Fire_S("PlayerStartMoleHitEvent", localPlayer.UserId)
-    this.startButton:SetActive(false)
+    this.gui:SetActive(true)
     this.hitButton:SetActive(true)
 end
 

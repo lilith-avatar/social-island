@@ -59,11 +59,17 @@ end
 
 --绑定坑位
 function MoleHit:PitListInit()
-    for k, v in pairs(world.MoleHit:GetChildren()) do
+    for k, v in pairs(world.MiniGames.Game_02_WhackAMole.Pits:GetChildren()) do
         this.pitList[v.Name] = {
             model = v,
             mole = nil
         }
+    end
+end
+
+function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
+    if _gameId == 2 then
+        NetUtil.Fire_C('StartMoleEvent',_player)
     end
 end
 

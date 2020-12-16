@@ -20,7 +20,8 @@ Events.ClientEvents = {
     'TouchNpcEvent', -- @param _npcId
     --通知事件
     'NoticeEvent',
-    'AddScoreAndBoostEvent'
+    'AddScoreAndBoostEvent',
+    'StartMoleEvent'
 }
 
 return Events

@@ -54,6 +54,9 @@ function MoleGame:GameStart()
     --Todo:传送到指定地点
     this:EventBindForStart()
     this.startUpdate = true
+	MoleUIMgr:UpdateTime(this.time)
+    MoleUIMgr:UpdateScore(this.score)
+    MoleUIMgr:UpdateBoost(this.boostNum)
 end
 
 ---游戏结束，重置数据
@@ -76,6 +79,7 @@ function MoleGame:Update(dt, tt)
         this:BoostEffect()
         if this.time <= 0 then
             this:GameOver()
+            MoleUIMgr:GameOver()
             return
         end
     end
