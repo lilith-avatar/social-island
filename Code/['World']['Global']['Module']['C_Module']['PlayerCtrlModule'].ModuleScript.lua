@@ -39,6 +39,7 @@ end
 --- 数据变量初始化
 function PlayerCtrl:DataInit()
     this.finalDir = Vector3.Zero
+    this.isControllable = true
 end
 
 --- 节点事件绑定
@@ -82,7 +83,7 @@ end
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
     NetUtil.Fire_S("LeaveZeppelinEvent", localPlayer)
-    FsmMgr:RepelledTrigger()
+    FsmMgr:FsmTriggerEventHandler("Jump")
 end
 
 -- 鼓掌逻辑
@@ -93,8 +94,20 @@ function PlayerCtrl:PlayerClap()
     --LocalAudio.ApplauseAudio:Play()
 end
 
+-- 修改是否能控制角色
+function PlayerCtrl:SetPlayerControllableEventHandler(_bool)
+    this.isControllable = _bool
+    if this.isControllable then
+        localPlayer.Local.ControlGui:SetActive(true)
+    else
+        localPlayer.Local.ControlGui:SetActive(false)
+    end
+end
+
 function PlayerCtrl:Update(dt)
-    GetMoveDir()
+    if this.isControllable then
+        GetMoveDir()
+    end
 end
 
 return PlayerCtrl

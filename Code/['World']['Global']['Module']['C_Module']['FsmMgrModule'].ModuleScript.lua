@@ -37,6 +37,7 @@ function FsmMgr:DataInit()
     playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
 
     this.jumpTrigger = false
+    this.flyTrigger = false
 end
 
 --- 节点事件绑定
@@ -46,12 +47,13 @@ end
 --- 重置触发器
 function FsmMgr:ResetTrigger()
     this.jumpTrigger = false
+    this.flyTrigger = false
 end
 
---- 跳跃触发器
-function FsmMgr:RepelledTrigger()
-    if playerActFsm.curState.stateName ~= playerActStateEnum.JUMP then
-        this.jumpTrigger = true
+--- 状态机改变触发器
+function FsmMgr:FsmTriggerEventHandler(_state)
+    if playerActFsm.curState.stateName ~= _state then
+        this[string.lower(_state) .. "Trigger"] = true
     end
 end
 
@@ -76,6 +78,12 @@ function FsmMgr:JumpStateOnEnterFunc()
     localPlayer.Avatar:PlayAnimation("Jump", 2, 1, 0.1, true, false, 1)
 end
 
+function FsmMgr:FlyStateOnEnterFunc()
+    this:ResetTrigger()
+    PlayerCtrl:SetPlayerControllableEventHandler(false)
+    localPlayer.Avatar:PlayAnimation("Flying", 2, 1, 0.1, true, true, 2)
+end
+
 function FsmMgr:IdleStateOnUpdateFunc(dt)
     do ---检测移动键输入
         local dir = PlayerCtrl.finalDir
@@ -87,6 +95,11 @@ function FsmMgr:IdleStateOnUpdateFunc(dt)
     do ---检测跳跃键输入
         if this.jumpTrigger and localPlayer.IsOnGround then
             playerActFsm:Switch(playerActStateEnum.JUMP)
+        end
+    end
+    do ---检测飞行
+        if this.flyTrigger then
+            playerActFsm:Switch(playerActStateEnum.FLY)
         end
     end
 end
@@ -105,13 +118,18 @@ function FsmMgr:WalkStateOnUpdateFunc(dt)
         end
     end
     do ---是否达到奔跑速度
-        if localPlayer.LinearVelocity.Magnitude >= localPlayer.WalkSpeed then
+        if localPlayer.LinearVelocity.Magnitude >= localPlayer.WalkSpeed * 0.99 then
             playerActFsm:Switch(playerActStateEnum.RUN)
         end
     end
     do ---检测跳跃键输入
         if this.jumpTrigger and localPlayer.IsOnGround then
             playerActFsm:Switch(playerActStateEnum.JUMP)
+        end
+    end
+    do ---检测飞行
+        if this.flyTrigger then
+            playerActFsm:Switch(playerActStateEnum.FLY)
         end
     end
 end
@@ -130,13 +148,26 @@ function FsmMgr:RunStateOnUpdateFunc(dt)
         end
     end
     do ---是否达到行走速度
-        if localPlayer.LinearVelocity.Magnitude < localPlayer.WalkSpeed then
+        if localPlayer.LinearVelocity.Magnitude < localPlayer.WalkSpeed * 0.99 then
             playerActFsm:Switch(playerActStateEnum.WALK)
         end
     end
     do ---检测跳跃键输入
         if this.jumpTrigger and localPlayer.IsOnGround then
             playerActFsm:Switch(playerActStateEnum.JUMP)
+        end
+    end
+    do ---检测飞行
+        if this.flyTrigger then
+            playerActFsm:Switch(playerActStateEnum.FLY)
+        end
+    end
+end
+
+function FsmMgr:FlyStateOnUpdateFunc(dt)
+    do ---是否在地面
+        if localPlayer.IsOnGround then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
 end
@@ -154,6 +185,11 @@ function FsmMgr:RunStateOnLeaveFunc()
 end
 
 function FsmMgr:JumpStateOnLeaveFunc()
+end
+
+function FsmMgr:FlyStateOnLeaveFunc()
+    localPlayer.Rotation = EulerDegree(0, localPlayer.Rotation.y, 0)
+    PlayerCtrl:SetPlayerControllableEventHandler(true)
 end
 
 function FsmMgr:Update(dt)

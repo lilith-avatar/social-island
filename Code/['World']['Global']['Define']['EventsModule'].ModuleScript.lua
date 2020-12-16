@@ -22,7 +22,11 @@ Events.ClientEvents = {
     -- 修改玩家当前相机
     "SetCurCamEvent", -- @param _cam
     -- 显示小游戏的GUI
-    "SetMiniGameGuiEvent" -- @param  _gameId,_selfActive, _ctrlGuiActive
+    "SetMiniGameGuiEvent", -- @param  _gameId,_selfActive, _ctrlGuiActive
+    --- 状态机改变触发
+    "FsmTriggerEvent", -- @param  _state
+    -- 修改是否能控制角色
+    "SetPlayerControllableEvent" -- @param _bool
 }
 
 return Events
