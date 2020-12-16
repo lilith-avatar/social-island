@@ -79,6 +79,8 @@ end
 
 ---根据玩家人数刷地鼠
 function MoleHit:RefreshMole(_playerNum)
+    local tmpTable = TransformTable(this.pitList)
+    local tmpRandomTab
     --! only test
     --清除现有的地鼠
     for k, v in pairs(this.pitList) do
@@ -87,20 +89,23 @@ function MoleHit:RefreshMole(_playerNum)
             v.mole = nil
         end
     end
-    local tmpTable = TransformTable(this.pitList)
-    local tmpRandomTab
+
     for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
         local pitIndex = math.random(1, #tmpTable)
         tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
         tmpTable[pitIndex].mole = tmpRandomTab[1].id
-        --对象池管理
+        --Todo: 对象池
         local mole =
             world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
-        invoke(function(tmpTable,pitIndex,tmpRandomTab,mole)
-			if mole then
-				mole:Destroy()
-			end
-        end, Config.MoleConfig[tmpRandomTab[1].id].KeepTime)
+        invoke(
+            function(tmpTable, pitIndex, tmpRandomTab, mole)
+                if mole then
+                    --Todo: 对象池销毁
+                    mole:Destroy()
+                end
+            end,
+            Config.MoleConfig[tmpRandomTab[1].id].KeepTime
+        )
         mole.LocalPosition = Vector3(0, 0.5, 0)
         table.remove(tmpTable, pitIndex)
     end
