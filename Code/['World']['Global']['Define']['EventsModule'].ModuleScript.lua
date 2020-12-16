@@ -7,8 +7,11 @@ local Events = {}
 Events.ServerEvents = {
     "LeaveZeppelinEvent",
     -- 进入小游戏
-    "EnterMiniGameEvent", -- @param _player, _gameId
-    "ExitMiniGameEvent", -- @param nil
+    'EnterMiniGameEvent', -- @param _player, _gameId
+    'ExitMiniGameEvent', -- @param nil
+    'PlayerHitEvent',
+    'PlayerStartMoleHitEvent',
+    'PlayerLeaveMoleHitEvent',
     -- 人间大炮发射
     "CannonFireEvent",
     -- 人间大炮调整方向
@@ -26,7 +29,9 @@ Events.ClientEvents = {
     --- 状态机改变触发
     "FsmTriggerEvent", -- @param  _state
     -- 修改是否能控制角色
-    "SetPlayerControllableEvent" -- @param _bool
+    "SetPlayerControllableEvent", -- @param _bool
+    'AddScoreAndBoostEvent',
+    'StartMoleEvent'
 }
 
 return Events
