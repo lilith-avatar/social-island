@@ -8,13 +8,19 @@ Events.ServerEvents = {
     'LeaveZeppelinEvent',
     -- 进入小游戏
     'EnterMiniGameEvent', -- @param _player, _gameId
-    'ExitMiniGameEvent' -- @param nil
+    'ExitMiniGameEvent', -- @param nil
+    'PlayerHitEvent',
+    'PlayerStartMoleHitEvent',
+    'PlayerLeaveMoleHitEvent'
 }
 
 -- 客户端事件列表
 Events.ClientEvents = {
     -- NPC事件
-    'TouchNpcEvent' -- @param _npcId
+    'TouchNpcEvent', -- @param _npcId
+    --通知事件
+    'NoticeEvent',
+    'AddScoreAndBoostEvent'
 }
 
 return Events
