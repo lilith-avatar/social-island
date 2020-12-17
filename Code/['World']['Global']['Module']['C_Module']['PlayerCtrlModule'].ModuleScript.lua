@@ -91,7 +91,7 @@ function PlayerCtrl:PlayerClap()
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 9)
     localPlayer.Avatar:PlayAnimation("SocialApplause", 9, 1, 0, true, false, 1)
     --拍掌音效
-    --LocalAudio.ApplauseAudio:Play()
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
 end
 
 -- 修改是否能控制角色
