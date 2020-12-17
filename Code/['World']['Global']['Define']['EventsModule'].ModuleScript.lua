@@ -12,6 +12,8 @@ Events.ServerEvents = {
     'PlayerHitEvent',
     'PlayerStartMoleHitEvent',
     'PlayerLeaveMoleHitEvent',
+    'RaceGameStartEvent',
+	'RaceGameOverEvent',
     -- 人间大炮发射
     "CannonFireEvent",
     -- 人间大炮调整方向
@@ -31,7 +33,8 @@ Events.ClientEvents = {
     -- 修改是否能控制角色
     "SetPlayerControllableEvent", -- @param _bool
     'AddScoreAndBoostEvent',
-    'StartMoleEvent'
+    'StartMoleEvent',
+    'ClintInitRaceEvent'
 }
 
 return Events
