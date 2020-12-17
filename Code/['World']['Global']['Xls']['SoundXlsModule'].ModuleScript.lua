@@ -3,18 +3,17 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: ./xls/Sound.xls
+--- source file: .//SoundConfig.xlsx
 
 local SoundXls = {
-    test_01 = {
-        Type = 1,
-        ID = 'test_01',
+    [1] = {
+        ID = 1,
+        Type = 'SoundEffect',
+        Name = 'Clap',
         IsLoop = false,
-        Volume = 0,
-        FileName = '',
-        Detail = '',
-        Duration = 0,
-        CoverPlay = false
+        Volume = 60.0,
+        Path = 'Audio/Clap',
+        Info = ''
     }
 }
 
