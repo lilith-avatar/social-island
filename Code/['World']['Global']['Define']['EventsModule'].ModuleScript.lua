@@ -34,7 +34,9 @@ Events.ClientEvents = {
     "SetPlayerControllableEvent", -- @param _bool
     'AddScoreAndBoostEvent',
     'StartMoleEvent',
-    'ClintInitRaceEvent'
+    'ClintInitRaceEvent',
+    -- 播放音效
+    'PlayEffectEvent' -- @param _id, _pos
 }
 
 return Events
