@@ -2,7 +2,7 @@
 --- @module Zeppelin Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Zeppelin, this = ModuleUtil.New('Zeppelin', ServerBase)
+local Zeppelin, this = ModuleUtil.New("Zeppelin", ServerBase)
 
 --- 变量声明
 -- 热气球对象池
@@ -43,12 +43,17 @@ local zeppelinStateEnum = {
 
 --- 初始化
 function Zeppelin:Init()
-    print('Zeppelin:Init')
+    print("Zeppelin:Init")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
     for i = 1, 3 do
-        this:ZeppelinMoveAround(zeppelinObjPool[i])
+        invoke(
+            function()
+                this:ZeppelinMoveAround(zeppelinObjPool[i])
+            end,
+            5
+        )
     end
 end
 
@@ -57,12 +62,12 @@ function Zeppelin:NodeRef()
     zepRoot = world.MiniGames.Game_06_Zeppelin
     for i = 1, 3 do
         zeppelinObjPool[i] = {
-            obj = zepRoot.ZeppelinObj['Zeppelin_' .. i],
+            obj = zepRoot.ZeppelinObj["Zeppelin_" .. i],
             passenger = {},
             state = zeppelinStateEnum.UNABLE,
             moveStep = 0
         }
-        platformPassengerTable[i] = zepRoot.Station['Platform_0' .. i]
+        platformPassengerTable[i] = zepRoot.Station["Platform_0" .. i]
     end
     entranceArea = zepRoot.Station.Entrance
     exitArea = zepRoot.Station.Exit
@@ -71,7 +76,7 @@ end
 --- 数据变量初始化
 function Zeppelin:DataInit()
     for i = 1, #zepRoot.PathwayPoint:GetChildren() do
-        pathwayPointTable[i] = zepRoot.PathwayPoint['P' .. i].Position
+        pathwayPointTable[i] = zepRoot.PathwayPoint["P" .. i].Position
     end
 
     zeppelinObjPool[1].state = zeppelinStateEnum.READY
@@ -91,7 +96,7 @@ end
 function Zeppelin:EventBind()
     entranceArea.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
+            if _hitObject.ClassName == "PlayerInstance" then
                 this:GetOnZeppelin(_hitObject)
             end
         end
@@ -168,21 +173,22 @@ function Zeppelin:ZeppelinSwitchState(_zeppelin)
         _zeppelin.state = zeppelinStateEnum.MOVING
         return
     end
-    if _zeppelin.state == zeppelinStateEnum.MOVING and _zeppelin.moveStep == 4 then
+    if _zeppelin.state == zeppelinStateEnum.MOVING and _zeppelin.moveStep == #pathwayPointTable - 2 then
         _zeppelin.state = zeppelinStateEnum.RESET
         this:ThrowAwayAllPassenger(_zeppelin)
-        if this:IsZeppelinWait() then
+        if this:IsZeppelinWait(_zeppelin) then
             _zeppelin.obj.LinearVelocity = Vector3.Zero
             wait(departureInterval)
         end
         return
     end
     if _zeppelin.state == zeppelinStateEnum.RESET then
-        if _zeppelin.moveStep == 6 then
+        if _zeppelin.moveStep == #pathwayPointTable then
             _zeppelin.state = zeppelinStateEnum.READY
             this:WaitingPassengerGetOn()
-        end
-        if this:IsZeppelinWait() then
+            _zeppelin.obj.LinearVelocity = Vector3.Zero
+            wait(departureInterval)
+        elseif this:IsZeppelinWait(_zeppelin) then
             _zeppelin.obj.LinearVelocity = Vector3.Zero
             wait(departureInterval)
         end
@@ -191,10 +197,12 @@ function Zeppelin:ZeppelinSwitchState(_zeppelin)
 end
 
 --- 判断热气球是否需要等待
-function Zeppelin:IsZeppelinWait()
+function Zeppelin:IsZeppelinWait(_zeppelin)
     for k, v in pairs(zeppelinObjPool) do
-        if v.state == zeppelinStateEnum.READY then
-            return true
+        if _zeppelin ~= v then
+            if v.state == zeppelinStateEnum.READY or v.moveStep == #pathwayPointTable - 1 then
+                return true
+            end
         end
     end
     return false
