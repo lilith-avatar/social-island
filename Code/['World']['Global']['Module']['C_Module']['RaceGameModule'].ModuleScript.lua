@@ -1,3 +1,7 @@
+---计时赛跑客户端逻辑模块
+---@module RaceGame
+---@copyright Lilith Games, Avatar Team
+---@author Changoo Wu
 local RaceGame,this = ModuleUtil.New("RaceGame",ClientBase)
 local Config = Config
 
