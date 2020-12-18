@@ -25,9 +25,15 @@ local showLog, PrintMazeData = true
 
 function Maze:Init()
     print('Maze:Init')
+    InitData()
     MazeDataInit()
     MazeDataGen()
-    PrintMazeData()
+    -- PrintMazeData()
+    MazeWallGen()
+end
+
+function InitData()
+    wallArch = 'Maze_Wall_01'
 end
 
 function MazeDataInit()
@@ -51,10 +57,7 @@ function MazeDataGen()
     history:Clear()
     history:Push(cell)
 
-    local cnt = 1
     while not history:IsEmpty() do
-        print('xxxxx,', cnt)
-        cnt = cnt + 1
         -- designate this location as visited
         M[r][c][VISITED] = 1
         -- check if the adjacent cells are valid for moving to
@@ -101,6 +104,17 @@ function MazeDataGen()
         else
             cell = history:Pop()
             r, c = cell[1], cell[2]
+        end
+    end
+end
+
+function MazeWallGen()
+    local wallName
+    local objWall
+    for row = 1, NUM_ROWS do
+        for col = 1, NUM_COLS do
+            wallName = string.format('%s_%s_%s', wallArch, row, col)
+            objWall = world:CreateInstance(wallArch, wallName, world.MiniGames.Game_03_Maze.Walls, Vector3(row, 2, col))
         end
     end
 end
