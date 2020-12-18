@@ -11,7 +11,9 @@ Events.ServerEvents = {
     'ExitMiniGameEvent', -- @param nil
     'PlayerHitEvent',
     'PlayerStartMoleHitEvent',
-    'PlayerLeaveMoleHitEvent'
+    'PlayerLeaveMoleHitEvent',
+    'NormalShakeEvent',
+    'PlayerLeaveChairEvent'
 }
 
 -- 客户端事件列表
@@ -21,7 +23,9 @@ Events.ClientEvents = {
     --通知事件
     'NoticeEvent',
     'AddScoreAndBoostEvent',
-    'StartMoleEvent'
+    'StartMoleEvent',
+    'PlayerSitEvent',
+    'ShakedEvent'
 }
 
 return Events
