@@ -1,3 +1,8 @@
+---计时赛跑服务器管理模块
+---@module TimeLimitRace
+---@copyright Lilith Games, Avatar Team
+---@author Changoo Wu
+
 local TimeLimitRace,this = ModuleUtil.New('TimeLimitRace',ServerBase)
 local nowKey = 1
 local rankList={}
