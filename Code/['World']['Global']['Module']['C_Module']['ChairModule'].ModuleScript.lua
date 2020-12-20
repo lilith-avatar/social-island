@@ -28,12 +28,19 @@ function Chair:DataInit()
         }
     }
     this.chair = nil
+    this.qteTotalTime = 0
+    this.timer = 0
+    this.startUpdate = false
 end
 
 function Chair:PlayerSit(_chairId, _pos, _rot)
     this.chair = _chairId
     localPlayer.Position, localPlayer.Rotation = _pos, _rot
-    localPlayer.Avatar:PlayAnimation('SitIdle',3,1,0,false,true,1)
+    localPlayer.Avatar:PlayAnimation('SitIdle',3,1,0,true,true,1)
+end
+
+function Chair:PlayerLeaveSit()
+    localPlayer.Avatar:StopAnimation('SitIdle',3)
 end
 
 function Chair:NormalSit(_chairId, _pos, _rot)
@@ -55,6 +62,15 @@ function Chair:QteSit(_chairId,_pos,_rot)
     this:PlayerSit(_chairId, _pos, _rot)
     --ui控制
     ChairUIMgr:EnterQte()
+end
+
+function Chair:Update(_dt)
+    if this.startUpdate then
+        this.timer = this.timer + _dt
+        if this.timer >= 1 then
+            this.qteTotalTime = this.qteTotalTime + 1
+        end
+    end
 end
 
 return Chair
