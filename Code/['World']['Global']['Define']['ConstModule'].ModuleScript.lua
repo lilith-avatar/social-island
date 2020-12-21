@@ -14,4 +14,9 @@ Const.LanguageEnum = {
     JP = 'JP' -- 日文
 }
 
+-- Game ID 常量，请小游戏作者陆续添加
+Const.GameEnum = {
+    MAZE = 3
+}
+
 return Const
