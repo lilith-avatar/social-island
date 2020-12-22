@@ -40,6 +40,9 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 
 -- 墙体的Archetype
 local WALL_ARCH = 'Maze_Wall_Test'
+local WALL_HEIGHT = 1 -- 对应Size.Y
+local WALL_LENGTH = 2 -- 对应Size.X
+local WALL_THICKNESS = 0.2 -- 对应Size.Z
 
 -- 墙壁对象池Hierachy根节点
 local WALL_POOL_ROOT = world.MiniGames.Game_03_Maze
@@ -47,27 +50,27 @@ local WALL_POOL_ROOT = world.MiniGames.Game_03_Maze
 local WALL_POOL_POS = Vector3.Down * 100
 
 -- 墙壁位置偏移量
-local WALL_POS_OFFSET = 1
+local WALL_POS_OFFSET = CELL_SIDE * .5
 
 -- 墙壁字典，根据方向确定墙壁Transform信息，用于墙壁生成
 local WALL_DICT = {}
 WALL_DICT[LEFT] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
     rot = EulerDegree(0, -90, 0),
     dir = 'L'
 }
 WALL_DICT[UP] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
     rot = EulerDegree(0, 0, 0),
     dir = 'U'
 }
 WALL_DICT[RIGHT] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
     rot = EulerDegree(0, 90, 0),
     dir = 'R'
 }
 WALL_DICT[DOWN] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
     rot = EulerDegree(0, 180, 0),
     dir = 'D'
 }
@@ -139,8 +142,8 @@ function SpawnWall(_pos, _rot)
     for obj, available in pairs(pool) do
         if available then
             pool[obj] = false
-            obj.Position = _pos
-            obj.Rotation = _rot
+            obj.LocalPosition = _pos
+            obj.LocalRotation = _rot
             obj:SetActive(true)
             return obj
         end
@@ -284,8 +287,6 @@ function MazeWallsGen()
                     pos = Vector3(col * CELL_POS_OFFSET, 0, row * -CELL_POS_OFFSET) + WALL_DICT[dir].pos
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
-                    objWall.LocalPosition = pos
-                    objWall.LocalRotation = rot
                 end
             end
         end
