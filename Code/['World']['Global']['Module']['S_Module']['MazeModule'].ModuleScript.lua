@@ -7,7 +7,7 @@ local Maze, this = ModuleUtil.New('Maze', ServerBase)
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 12, 24
+local NUM_ROWS, NUM_COLS = 6, 8
 
 -- 迷宫中心位置
 local MAZE_CENTER_POS = Vector3(100, 1.5, 0)
@@ -15,6 +15,10 @@ local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
+
+-- 入口、出口位置，只能在左右两侧
+local ENTRANCE = math.floor(NUM_ROWS * .5)
+local EXIT = ENTRANCE
 
 --! 常量配置: Floor 迷宫地板相关
 
@@ -85,7 +89,7 @@ WALL_DICT[DOWN] = {
 local M = {}
 
 -- Set starting row and column
-local r, c = 1, 1
+local r, c = ENTRANCE, 1
 
 -- # The history is the stack of visited locations
 local history = Stack:New()
@@ -270,8 +274,8 @@ function MazeDataGen()
     end
 
     -- Open the walls at the start and finish
-    M[1][1][LEFT] = 1
-    M[NUM_ROWS][NUM_COLS][RIGHT] = 1
+    M[ENTRANCE][1][LEFT] = 1
+    M[EXIT][NUM_COLS][RIGHT] = 1
 end
 
 -- 迷宫墙体生成
