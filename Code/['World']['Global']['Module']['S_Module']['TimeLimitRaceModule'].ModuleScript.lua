@@ -46,8 +46,7 @@ local function SortRankList(_rankList)
                 if result < 0 then
                     local temp1 = table.shallowcopy(_rankList[j])
                     local temp2 = table.shallowcopy(_rankList[j + 1])
-                    _rankList[j] = temp2
-                    _rankList[j + 1] = temp1
+					_rankList[j],_rankList[j + 1]=temp2,temp1
                 end
             end
         end
@@ -55,11 +54,9 @@ local function SortRankList(_rankList)
         for i = 1, #_rankList - 1 do
             if _rankList[i].usedTime ~= _rankList[i + 1].usedTime then
                 _rankList[i].Rank = tempRank
-                tempRank = tempRank + 1
-                _rankList[i + 1].Rank = tempRank
+				tempRank,_rankList[i + 1].Rank=tempRank + 1,tempRank
             else
-                _rankList[i].Rank = tempRank
-                _rankList[i + 1].Rank = tempRank
+				_rankList[i].Rank,_rankList[i + 1].Rank= tempRank,tempRank
             end
         end
     
@@ -110,7 +107,6 @@ function TimeLimitRace:Update(_dt, _tt)
 	totalResetTime = totalResetTime + _dt
 	if totalResetTime > (60 * 30) then
 		totalResetTime = 0
-
 		this:RandomKey()
 		--重置的其他表现
 	end
