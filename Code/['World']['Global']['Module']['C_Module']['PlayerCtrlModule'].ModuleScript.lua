@@ -50,6 +50,9 @@ function PlayerCtrl:EventBind()
             if Input.GetPressKeyData(JUMP_KEY) == 1 then
                 this:PlayerJump()
             end
+            if Input.GetPressKeyData(Enum.KeyCode.Mouse0) == 1 then
+                FsmMgr:FsmTriggerEventHandler("BowAttack")
+            end
         end
     )
 end

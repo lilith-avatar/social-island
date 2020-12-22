@@ -13,7 +13,8 @@ function PlayerCam:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
-    this:InitCamera()
+    --this:InitCamera()
+    this:SetCurCamEventHandler(this.tpsCam)
 end
 
 --- 节点引用
@@ -27,6 +28,9 @@ function PlayerCam:DataInit()
 
     -- 玩家跟随相机
     this.playerGameCam = localPlayer.Local.Independent.GameCam
+
+    -- TPS相机
+    this.tpsCam = localPlayer.Local.Independent.TPSCam
 end
 
 --- 节点事件绑定
@@ -43,9 +47,9 @@ end
 
 -- 玩家移动方向是否遵循玩家摄像机方向
 function PlayerCam:IsFreeMode()
-    return (this.playerGameCam.CameraMode == Enum.CameraMode.Social and this.playerGameCam.Distance >= 0) or
-        this.playerGameCam.CameraMode == Enum.CameraMode.Orbital or
-        this.playerGameCam.CameraMode == Enum.CameraMode.Custom
+    return (this.curCamera.CameraMode == Enum.CameraMode.Social and this.curCamera.Distance >= 0) or
+        this.curCamera.CameraMode == Enum.CameraMode.Orbital or
+        this.curCamera.CameraMode == Enum.CameraMode.Custom
 end
 
 -- 检测触屏的手指数
@@ -57,24 +61,25 @@ end
 function PlayerCam:CameraMove(_pos, _dis, _deltapos, _speed)
     if touchNumber == 1 then
         if this:IsFreeMode() then
-            this.playerGameCam:CameraMove(_deltapos)
+            this.curCamera:CameraMove(_deltapos)
         else
             localPlayer:RotateAround(localPlayer.Position, Vector3.Up, _deltapos.x)
-            this.playerGameCam:CameraMove(Vector2(0, _deltapos.y))
+            this.curCamera:CameraMove(Vector2(0, _deltapos.y))
         end
     end
 end
 
 -- 双指缩放摄像机距离
 function PlayerCam:CameraZoom(_pos1, _pos2, _dis, _speed)
-    if this.playerGameCam.CameraMode == Enum.CameraMode.Social then
-        this.playerGameCam.Distance = this.playerGameCam.Distance - _dis / 50
+    if this.curCamera.CameraMode == Enum.CameraMode.Social then
+        this.curCamera.Distance = this.curCamera.Distance - _dis / 50
     end
 end
 
 -- 修改玩家当前相机
-function PlayerCam:SetCurCamEventHandler(_cam)
+function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
     this.curCamera = _cam or this.playerGameCam
+    this.curCamera.LookAt = _lookAt or localPlayer
     world.CurrentCamera = this.curCamera
 end
 

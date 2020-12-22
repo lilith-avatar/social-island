@@ -8,45 +8,75 @@
 local PlayerActStateXls = {
     [1] = {
         ID = 1,
-        Name = 'Idle',
-        NextName = 'Idle',
+        Name = "Idle",
+        NextName = "Idle",
         Dur = 0.0
     },
     [2] = {
         ID = 2,
-        Name = 'Walk',
-        NextName = 'Walk',
+        Name = "Walk",
+        NextName = "Walk",
         Dur = 0.0
     },
     [3] = {
         ID = 3,
-        Name = 'Run',
-        NextName = 'Run',
+        Name = "Run",
+        NextName = "Run",
         Dur = 0.0
     },
     [4] = {
         ID = 4,
-        Name = 'Jump',
-        NextName = 'Idle',
+        Name = "Jump",
+        NextName = "Idle",
         Dur = 0.4
     },
     [5] = {
         ID = 5,
-        Name = 'Fly',
-        NextName = 'Fly',
+        Name = "Fly",
+        NextName = "Fly",
         Dur = 0.0
     },
     [6] = {
         ID = 6,
-        Name = 'Swim',
-        NextName = 'Swim',
+        Name = "Swim",
+        NextName = "Swim",
         Dur = 0.0
     },
     [7] = {
         ID = 7,
-        Name = 'Social',
-        NextName = 'Social',
+        Name = "Social",
+        NextName = "Social",
         Dur = 0.0
+    },
+    [8] = {
+        ID = 8,
+        Name = "BowIdle",
+        NextName = "BowIdle",
+        Dur = 0.0
+    },
+    [9] = {
+        ID = 9,
+        Name = "BowWalk",
+        NextName = "BowWalk",
+        Dur = 0.0
+    },
+    [10] = {
+        ID = 10,
+        Name = "BowRun",
+        NextName = "BowRun",
+        Dur = 0.0
+    },
+    [11] = {
+        ID = 11,
+        Name = "BowJump",
+        NextName = "BowIdle",
+        Dur = 0.4
+    },
+    [12] = {
+        ID = 12,
+        Name = "BowAttack",
+        NextName = "BowIdle",
+        Dur = 0.3
     }
 }
 
