@@ -7,13 +7,23 @@ local Maze, this = ModuleUtil.New('Maze', ServerBase)
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 24, 24
+local NUM_ROWS, NUM_COLS = 12, 24
 
 -- 迷宫中心位置
-local MAZE_CENTER = Vector3(100, 1.5, 0)
+local MAZE_CENTER_POS = Vector3(100, 1.5, 0)
+local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
+
+--! 常量配置: Floor 迷宫地板相关
+
+-- 迷宫地板厚度
+local MAZE_FLOOR_THICKNESS = 0.2
+-- 迷宫地板颜色
+local MAZE_FLOOR_COLOR = Color(255, 255, 255, 100)
+-- 迷宫地板Obj，根据迷宫中心和尺寸生成
+local floor
 
 --! 常量配置: Cell 迷宫单元格相关
 
@@ -23,8 +33,8 @@ local CELL_SIDE = 2
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
 
--- 迷宫左上角的Cell位置
-local CELL_LEFT_UP_POS = MAZE_CENTER + Vector3(-NUM_COLS, 0, NUM_ROWS) * CELL_SIDE * .5
+-- 迷宫左上角的Cell中心位置
+local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .5
 
 --! 常量配置: Wall 墙体相关
 
@@ -32,7 +42,7 @@ local CELL_LEFT_UP_POS = MAZE_CENTER + Vector3(-NUM_COLS, 0, NUM_ROWS) * CELL_SI
 local WALL_ARCH = 'Maze_Wall_Test'
 
 -- 墙壁对象池Hierachy根节点
-local WALL_POOL_ROOT = world.WallPool
+local WALL_POOL_ROOT = world.MiniGames.Game_03_Maze
 -- 墙壁对象池隐藏默认位置
 local WALL_POOL_POS = Vector3.Down * 100
 
@@ -90,15 +100,19 @@ local showLog, PrintMazeData = false
 -- 初始化
 function Maze:Init()
     print('[Maze] Init()')
+    InitMazeFloor()
     invoke(InitWallPool)
+end
+
+-- 初始化迷宫地板
+function InitMazeFloor()
+    floor = world:CreateObject('Cube', 'Maze_Floor', WALL_POOL_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
+    floor.Color = MAZE_FLOOR_COLOR
 end
 
 -- 初始化对象池
 function InitWallPool()
-    if WALL_POOL_ROOT == nil then
-        world:CreateObject('FolderObject', 'WallPool', world)
-    end
-    WALL_POOL_ROOT = world.WallPool
+    WALL_POOL_ROOT = floor
 
     -- 总共需要多少面墙
     -- 外墙数 = NUM_ROWS * 2 + NUM_COLS * 2
@@ -127,6 +141,7 @@ function SpawnWall(_pos, _rot)
             pool[obj] = false
             obj.Position = _pos
             obj.Rotation = _rot
+            obj:SetActive(true)
             return obj
         end
     end
@@ -138,7 +153,8 @@ function DespawnWall(_obj)
     assert(_obj and not _obj:IsNull(), '[Maze] DespawnWall(_obj) _obj不能为空')
     assert(pool[_obj] ~= nil, '[Maze] DespawnWall(_obj) _obj不在对象池中')
     assert(pool[_obj] == false, '[Maze] DespawnWall(_obj) _obj对象池状态错误')
-    _obj.Position = WALL_POOL_POS
+    -- _obj.Position = WALL_POOL_POS
+    _obj:SetActive(false)
     pool[_obj] = true
 end
 
@@ -159,11 +175,18 @@ function MazeReset()
         return
     end
     print('[Maze] MazeReset() 迷宫重置')
+    MazeFloorReset()
     MazeDataReset()
     MazeWallsReset()
     MazeDataGen()
     PrintMazeData()
     MazeWallsGen()
+end
+
+function MazeFloorReset()
+    local rowlen = NUM_ROWS * CELL_SIDE
+    local collen = NUM_COLS * CELL_SIDE
+    floor.Size = Vector3(collen, MAZE_FLOOR_THICKNESS, rowlen)
 end
 
 -- 迷宫数据重置
@@ -261,6 +284,8 @@ function MazeWallsGen()
                     pos = Vector3(col * CELL_POS_OFFSET, 0, row * -CELL_POS_OFFSET) + WALL_DICT[dir].pos
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
+                    objWall.LocalPosition = pos
+                    objWall.LocalRotation = rot
                 end
             end
         end
