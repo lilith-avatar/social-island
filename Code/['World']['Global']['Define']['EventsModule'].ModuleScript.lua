@@ -17,7 +17,10 @@ Events.ServerEvents = {
     -- 人间大炮发射
     'CannonFireEvent',
     -- 人间大炮调整方向
-    'SetCannonDirEvent' -- @param _dir
+    'SetCannonDirEvent', -- @param _dir
+	'LoadMDataEvent', --@param _userId
+	'SaveMDataEvent', --@param _userId,_playerdata
+	'StartBattleEvent',--@param _isNpc,_playerA,_playerB
 }
 
 -- 客户端事件列表
@@ -36,7 +39,12 @@ Events.ClientEvents = {
     'StartMoleEvent',
     'ClintInitRaceEvent',
     -- 播放音效
-    'PlayEffectEvent' -- @param _id, _pos
+    'PlayEffectEvent', -- @param _id, _pos
+	'LoadMDataBackEvent',
+	--准备战斗
+	'ReadyBattleEvent',
+	--宠物战斗事件
+	'MBattleEvent', --@param _enum,_arg1,_arg2
 }
 
 return Events
