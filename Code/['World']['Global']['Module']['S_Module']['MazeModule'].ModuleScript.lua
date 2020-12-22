@@ -4,42 +4,67 @@
 --- @author Yuancheng Zhang
 local Maze, this = ModuleUtil.New('Maze', ServerBase)
 
--- Const
+--! 常量配置: Maze 迷宫相关
+
+-- 迷宫尺寸
 local NUM_ROWS, NUM_COLS = 24, 24
+
+-- 迷宫中心位置
+local MAZE_CENTER = Vector3(100, 1.5, 0)
+
+-- 迷宫Cell里面的常量，包括方向和访问，用于M
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
-local WALL_ARCH = 'Maze_Wall_Test'
+
+--! 常量配置: Cell 迷宫单元格相关
+
+-- 迷宫Cell单元格尺寸
 local CELL_SIDE = 2
 
-local WALL_ROOT_CENTER = Vector3(100, 1.5, 0)
-
-local WALL_ROOT_NODE = world.MiniGames.Game_03_Maze.Walls
-local WALL_POOL_ROOT = world.WallPool
-local WALL_POOL_POS = Vector3.Down * 100
-local WALL_POS_OFFSET = 1
+-- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
+
+-- 迷宫左上角的Cell位置
+local CELL_LEFT_UP_POS = MAZE_CENTER + Vector3(-NUM_COLS, 0, NUM_ROWS) * CELL_SIDE * .5
+
+--! 常量配置: Wall 墙体相关
+
+-- 墙体的Archetype
+local WALL_ARCH = 'Maze_Wall_Test'
+
+-- 墙壁对象池Hierachy根节点
+local WALL_POOL_ROOT = world.WallPool
+-- 墙壁对象池隐藏默认位置
+local WALL_POOL_POS = Vector3.Down * 100
+
+-- 墙壁位置偏移量
+local WALL_POS_OFFSET = 1
+
+-- 墙壁字典，根据方向确定墙壁Transform信息，用于墙壁生成
 local WALL_DICT = {}
-local WALL_ROOT_POS = WALL_ROOT_CENTER + Vector3(-NUM_COLS, 0, NUM_ROWS) * CELL_SIDE * .5
 WALL_DICT[LEFT] = {
-    pos = WALL_ROOT_POS + Vector3.Left * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET,
     rot = EulerDegree(0, -90, 0),
     dir = 'L'
 }
 WALL_DICT[UP] = {
-    pos = WALL_ROOT_POS + Vector3.Forward * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET,
     rot = EulerDegree(0, 0, 0),
     dir = 'U'
 }
 WALL_DICT[RIGHT] = {
-    pos = WALL_ROOT_POS + Vector3.Right * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET,
     rot = EulerDegree(0, 90, 0),
     dir = 'R'
 }
 WALL_DICT[DOWN] = {
-    pos = WALL_ROOT_POS + Vector3.Back * WALL_POS_OFFSET,
+    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET,
     rot = EulerDegree(0, 180, 0),
     dir = 'D'
 }
 
+--! 迷宫生成数据信息
+
+-- M用于存储迷宫生成数据
 -- The array M is going to hold the array information for each cell.
 -- The first four coordinates tell if walls exist on those sides
 -- and the fifth indicates if the cell has been visited in the search.
@@ -52,7 +77,9 @@ local r, c = 1, 1
 -- # The history is the stack of visited locations
 local history = Stack:New()
 
--- 对象池
+--! 墙体对象池信息
+
+-- 对象池，对象池生成完毕
 local pool, poolDone = {}, false
 
 --! 打印事件日志, true:开启打印
@@ -93,6 +120,7 @@ function InitWallPool()
     print('[Maze] InitWallPool() done')
 end
 
+-- 从对象池中拿取墙壁obj
 function SpawnWall(_pos, _rot)
     for obj, available in pairs(pool) do
         if available then
@@ -105,6 +133,7 @@ function SpawnWall(_pos, _rot)
     error('[Maze] 墙体数量不够')
 end
 
+-- 对象池回收墙壁obj
 function DespawnWall(_obj)
     assert(_obj and not _obj:IsNull(), '[Maze] DespawnWall(_obj) _obj不能为空')
     assert(pool[_obj] ~= nil, '[Maze] DespawnWall(_obj) _obj不在对象池中')
@@ -113,6 +142,7 @@ function DespawnWall(_obj)
     pool[_obj] = true
 end
 
+-- 回收全部墙壁obj
 function DespaceWalls()
     for obj, _ in pairs(pool) do
         obj.Position = WALL_POOL_POS
@@ -130,10 +160,10 @@ function MazeReset()
     end
     print('[Maze] MazeReset() 迷宫重置')
     MazeDataReset()
-    MazeWallReset()
+    MazeWallsReset()
     MazeDataGen()
     PrintMazeData()
-    MazeWallGen()
+    MazeWallsGen()
 end
 
 -- 迷宫数据重置
@@ -147,7 +177,7 @@ function MazeDataReset()
 end
 
 -- 迷宫墙壁重置
-function MazeWallReset()
+function MazeWallsReset()
     DespaceWalls()
 end
 
@@ -219,7 +249,7 @@ function MazeDataGen()
 end
 
 -- 迷宫墙体生成
-function MazeWallGen()
+function MazeWallsGen()
     local wallName
     local objWall
     local cell, pos, rot
