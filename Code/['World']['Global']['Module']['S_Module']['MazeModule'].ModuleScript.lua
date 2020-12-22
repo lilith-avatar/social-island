@@ -7,7 +7,7 @@ local Maze, this = ModuleUtil.New('Maze', ServerBase)
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 6, 8
+local NUM_ROWS, NUM_COLS = 7, 10
 
 -- 迷宫中心位置
 local MAZE_CENTER_POS = Vector3(100, 1.5, 0)
@@ -17,8 +17,8 @@ local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
 
 -- 入口、出口位置，只能在左右两侧
-local ENTRANCE = math.floor(NUM_ROWS * .5)
-local EXIT = ENTRANCE
+local ENTRANCE = math.floor((NUM_ROWS + 1) * .5)
+local EXIT = math.ceil((NUM_ROWS + 1) * .5)
 
 --! 常量配置: Floor 迷宫地板相关
 
@@ -109,6 +109,7 @@ function Maze:Init()
     print('[Maze] Init()')
     InitMazeFloor()
     invoke(InitWallPool)
+    invoke(MazeReset, 2)
 end
 
 -- 初始化迷宫地板
