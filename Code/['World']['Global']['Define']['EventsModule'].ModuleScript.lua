@@ -13,7 +13,8 @@ Events.ServerEvents = {
     'PlayerStartMoleHitEvent',
     'PlayerLeaveMoleHitEvent',
     'NormalShakeEvent',
-    'PlayerLeaveChairEvent'
+    'PlayerLeaveChairEvent',
+    'QteChairMoveEvent'
 }
 
 -- 客户端事件列表

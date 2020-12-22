@@ -68,15 +68,19 @@ function ChairMgr:NormalShakeDown(_chair)
     tweener:WaitForComplete()
 end
 
-function ChairMgr:PlayerLeaveChairEventHandler(_chairId, _uid)
+function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
     if not _chairId then
         return
     end
 
     local player = world:GetPlayerByUserId(_uid)
     this.chairSitter[_chairId] = nil
-    this.ChairList.Normal[_chairId].model.CollisionArea:SetActive(true)
-    player.Position = this.ChairList.Normal[_chairId].model.LeavePosition.Position
+    this.ChairList[_type][_chairId].model.CollisionArea:SetActive(true)
+    player.Position = this.ChairList[_type][_chairId].model.LeavePosition.Position
+end
+
+function ChairMgr:QteChairMoveEventHandler(_dir, _speed)
+    --this.ChairList.QTE
 end
 
 return ChairMgr
