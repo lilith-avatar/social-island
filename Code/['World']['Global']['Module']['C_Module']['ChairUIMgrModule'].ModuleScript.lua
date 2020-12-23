@@ -52,6 +52,8 @@ function ChairUIMgr:NodeDef()
     }
     this.normalBackBtn = this.normalGui.BackBtn
 
+    
+
     this.QteGui = this.gui.QtePnl
     this.qteBtn = {
         forward = this.QteGui.ForwardBtn,
@@ -59,6 +61,7 @@ function ChairUIMgr:NodeDef()
         back = this.QteGui.BackBtn,
         right = this.QteGui.RightBtn
     }
+    this.qteTotalTime = this.QteGui.TimeTxt.NumTxt
 end
 
 function ChairUIMgr:ClickSitBtn(_type, _chairId)
@@ -109,6 +112,7 @@ function ChairUIMgr:NormalBack()
     this.normalGui:SetActive(false)
     this.QteGui:SetActive(false)
     this.gui:SetActive(false)
+    this.qteTotalTime.Text = 0
     Chair:PlayerLeaveSit()
     localPlayer:Jump()
     NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
@@ -140,6 +144,10 @@ end
 
 function ChairUIMgr:ShowQteButton(_keepTime)
     this.buttonKeepTime = _keepTime
+end
+
+function ChairUIMgr:ChangeTotalTime(_total)
+    this.qteTotalTime.Text = tostring(math.floor(_total))
 end
 
 function ChairUIMgr:Update(_dt)

@@ -47,6 +47,11 @@ end
 function Chair:PlayerLeaveSit()
     localPlayer.Avatar:StopAnimation("SitIdle", 3)
     this.startUpdate = false
+    this.qteTotalTime = 0
+    this.keepTime = 0
+    this.timer = 0
+    this.qteDuration = 0
+    this.qteTimer = 0
 end
 
 function Chair:NormalSit(_chairId, _pos, _rot)
@@ -83,6 +88,7 @@ function Chair:Update(_dt)
             this.keepTime = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).ButtonKeepTime
             this.qteDuration = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).QteDuration
             ChairUIMgr:ShowQteButton(this.keepTime)
+            ChairUIMgr:ChangeTotalTime(this.qteTotalTime)
             if this.qteTimer >= this.qteDuration then
                 --跟移动方向一样
                 ChairUIMgr:GetQteForward(
