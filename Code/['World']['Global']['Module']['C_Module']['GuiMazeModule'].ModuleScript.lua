@@ -12,4 +12,12 @@ function GuiMaze:Init()
     player = localPlayer
 end
 
+function GuiMaze:ClientMazeEventHandler(_eventEnum, ...)
+    local args = {...}
+    if _eventEnum == Const.MazeEventEnum.JOIN and #args > 0 then
+        print(table.dump(args))
+        player.Position = args[1]
+    end
+end
+
 return GuiMaze
