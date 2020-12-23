@@ -7,7 +7,7 @@ local Config = Config
 
 
 ---从服务器拿到启动回执
-function RaceGame:ClintInitRaceEventHandler(_nowKey)
+function RaceGame:ClientInitRaceEventHandler(_nowKey)
 	this:DataInit(_nowKey)
 	this:NodeDef()
 	this:GameStart()

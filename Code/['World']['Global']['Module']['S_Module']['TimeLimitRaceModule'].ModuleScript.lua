@@ -67,7 +67,7 @@ end
 function TimeLimitRace:EnterMiniGameEventHandler(_player, _gameId)
 	if _gameId == 9 then
 		NetUtil.Fire_C(
-				"ClintInitRaceEvent",
+				"ClientInitRaceEvent",
 				_player,
 				nowKey
 			)
