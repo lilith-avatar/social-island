@@ -14,7 +14,8 @@ Events.ServerEvents = {
     'PlayerLeaveMoleHitEvent',
     'NormalShakeEvent',
     'PlayerLeaveChairEvent',
-    'QteChairMoveEvent'
+    'QteChairMoveEvent',
+    'PlayerClickSitBtnEvent'
 }
 
 -- 客户端事件列表
@@ -26,7 +27,9 @@ Events.ClientEvents = {
     'AddScoreAndBoostEvent',
     'StartMoleEvent',
     'PlayerSitEvent',
-    'ShakedEvent'
+    'ShakedEvent',
+    'ShowSitBtnEvent',
+    'HideSitBtnEvent'
 }
 
 return Events

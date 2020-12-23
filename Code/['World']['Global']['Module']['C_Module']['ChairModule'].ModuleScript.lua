@@ -51,8 +51,8 @@ end
 
 function Chair:NormalSit(_chairId, _pos, _rot)
     this:PlayerSit(_chairId, _pos, _rot)
-    this.chairType = "normal"
-    this.startUpdate = true
+    this.chairType = "Normal"
+    this.startUpdate = false
     --ui控制
     ChairUIMgr:EnterNormal()
 end

@@ -43,6 +43,7 @@ function ChairUIMgr:EventBind()
 end
 
 function ChairUIMgr:NodeDef()
+    this.sitBtn = localPlayer.Local.ControlGui.SitBtn
     this.gui = localPlayer.Local.ChairGui
     this.normalGui = this.gui.NormalPnl
     this.normalBtn = {
@@ -60,13 +61,36 @@ function ChairUIMgr:NodeDef()
     }
 end
 
+function ChairUIMgr:ClickSitBtn(_type, _chairId)
+    NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, _type, _chairId)
+    this.sitBtn:SetActive(false)
+end
+
+function ChairUIMgr:ShowSitBtnEventHandler(_type, _chairId)
+    this.sitBtn.OnClick:Clear()
+    this.sitBtn.OnClick:Connect(
+        function()
+            this:ClickSitBtn(_type, _chairId)
+        end
+    )
+    this.sitBtn:SetActive(true)
+end
+
+function ChairUIMgr:HideSitBtnEventHandler()
+    this.sitBtn:SetActive(false)
+end
+
 function ChairUIMgr:EnterNormal()
+    this.startUpdate = false
+    this.gui:SetActive(true)
+    this.QteGui:SetActive(false)
     this.normalGui:SetActive(true)
     this.normalBtn.up:SetActive(true)
     this.normalBtn.down:SetActive(true)
 end
 
 function ChairUIMgr:EnterQte()
+    this.gui:SetActive(true)
     this.QteGui:SetActive(true)
 end
 
@@ -83,9 +107,11 @@ end
 
 function ChairUIMgr:NormalBack()
     this.normalGui:SetActive(false)
+    this.QteGui:SetActive(false)
+    this.gui:SetActive(false)
     Chair:PlayerLeaveSit()
     localPlayer:Jump()
-    NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType,Chair.chair, localPlayer.UserId)
+    NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
 end
 
 function ChairUIMgr:GetQteForward(_dir, _speed)
@@ -98,7 +124,7 @@ function ChairUIMgr:GetQteForward(_dir, _speed)
     this.qteBtn[_dir]:SetActive(true)
     this.dirQte = _dir
     this.startUpdate = true
-    NetUtil.Fire_S("QteChairMoveEvent", _dir, _speed)
+    NetUtil.Fire_S("QteChairMoveEvent", _dir, _speed, Chair.chair)
 end
 
 function ChairUIMgr:QteButtonClick(_dir)
@@ -107,7 +133,7 @@ function ChairUIMgr:QteButtonClick(_dir)
         --把玩家甩出去
         this:NormalBack()
     end
-    
+
     this.startUpdate = false
     this.timer = 0
 end
@@ -120,7 +146,6 @@ function ChairUIMgr:Update(_dt)
     if this.startUpdate and this.buttonKeepTime ~= 0 then
         this.timer = this.timer + _dt
         if this.timer >= this.buttonKeepTime then
-            --print('Back!!!!!!',this.buttonKeepTime)
             this.GetQteForward()
             this:NormalBack() --! Only Test
             this.startUpdate = false
