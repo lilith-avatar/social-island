@@ -15,7 +15,14 @@ GlobalFunc = require(Utility.GlobalFuncModule)
 LinkedList = Utility.LinkedListModule
 ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
+CloudLogUtil = require(Utility.CloudLogUtilModule)
+
+-- Game Defines
+GAME_ID = 'A1003'
+
+-- Init Utilities
 TimeUtil.Init()
+CloudLogUtil.Init(GAME_ID)
 
 -- Framework
 ModuleUtil.LoadModules(Framework)
@@ -35,7 +42,3 @@ ModuleUtil.LoadModules(Module.C_Module)
 
 -- Plugin Modules
 GuideSystem = require(world.Global.Plugin.FUNC_Guide.GuideSystemModule)
-
--- Fsm
--- FsmBase = require(Utility.FsmBaseModule)
--- StateBase = require(Utility.StateBaseModule)

@@ -15,21 +15,44 @@ Events.ServerEvents = {
     'NormalShakeEvent',
     'PlayerLeaveChairEvent',
     'QteChairMoveEvent',
-    'PlayerClickSitBtnEvent'
+    'PlayerClickSitBtnEvent',
+    'RaceGameStartEvent',
+    'RaceGameOverEvent',
+    -- 人间大炮发射
+    'CannonFireEvent',
+    -- 人间大炮调整方向
+    'SetCannonDirEvent', -- @param _dir
+	'LoadMDataEvent', --@param _userId
+	'SaveMDataEvent', --@param _userId,_playerdata
+	'StartBattleEvent',--@param _isNpc,_playerA,_playerB
 }
 
 -- 客户端事件列表
 Events.ClientEvents = {
     -- NPC事件
     'TouchNpcEvent', -- @param _npcId
-    --通知事件
-    'NoticeEvent',
+    -- 修改玩家当前相机
+    'SetCurCamEvent', -- @param _cam
+    -- 显示小游戏的GUI
+    'SetMiniGameGuiEvent', -- @param  _gameId,_selfActive, _ctrlGuiActive
+    --- 状态机改变触发
+    'FsmTriggerEvent', -- @param  _state
+    -- 修改是否能控制角色
+    'SetPlayerControllableEvent', -- @param _bool
     'AddScoreAndBoostEvent',
     'StartMoleEvent',
     'PlayerSitEvent',
     'ShakedEvent',
     'ShowSitBtnEvent',
-    'HideSitBtnEvent'
+    'HideSitBtnEvent',
+    'ClientInitRaceEvent',
+    -- 播放音效
+    'PlayEffectEvent', -- @param _id, _pos
+	'LoadMDataBackEvent',
+	--准备战斗
+	'ReadyBattleEvent',
+	--宠物战斗事件
+	'MBattleEvent', --@param _enum,_arg1,_arg2
 }
 
 return Events
