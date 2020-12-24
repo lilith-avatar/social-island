@@ -13,8 +13,8 @@ local animalObjPool = {}
 
 -- 动物活动范围
 local animalMoveRange = {
-    min = Vector3(-20, 0, -20),
-    max = Vector3(20, 0, 20)
+    min = Vector3(-80, 0, -80),
+    max = Vector3(80, 0, 80)
 }
 
 -- 动物运动状态枚举
@@ -45,7 +45,7 @@ function Hunt:DataInit()
                 "Animal_01",
                 "Animal" .. i,
                 rootNode.Animal,
-                rootNode.Animal.Position + Vector3(math.random(-10, 10), 1, math.random(-10, 10)),
+                rootNode.Animal.Position + Vector3(math.random(-50, 50), 1, math.random(-50, 50)),
                 EulerDegree(0, 0, 0)
             ),
             state = animalActState.IDLE,
@@ -87,10 +87,10 @@ function Hunt:ChangeAnimalState(_animalObjPool, _state, _linearVelocity)
     elseif _animalObjPool.state == animalActState.MOVE then
         _animalObjPool.obj:SetActive(true)
         _animalObjPool.obj.LinearVelocityController.TargetLinearVelocity =
-            _linearVelocity or Vector3(math.random(-3, 3), 0, math.random(-3, 3))
+            _linearVelocity or Vector3(math.random(-30, 30), 0, math.random(-30, 30))
     elseif _animalObjPool.state == animalActState.SCARED then
         _animalObjPool.obj.LinearVelocityController.TargetLinearVelocity =
-            (_animalObjPool.obj.Position - _animalObjPool.closePlayer.Position).Normalized * 8
+            (_animalObjPool.obj.Position - _animalObjPool.closePlayer.Position).Normalized * 80
     elseif _animalObjPool.state == animalActState.DEADED then
         _animalObjPool.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
         _animalObjPool.obj:SetActive(false)
@@ -124,15 +124,15 @@ end
 function Hunt:AnimalRangeLimit(_animalObjPool)
     if _animalObjPool.state ~= animalActState.DEADED then
         if
-            _animalObjPool.obj.Position.x > rootNode.Position.x + animalMoveRange.max.x or
-                _animalObjPool.obj.Position.x < rootNode.Position.x + animalMoveRange.min.x or
-                _animalObjPool.obj.Position.z > rootNode.Position.z + animalMoveRange.max.z or
-                _animalObjPool.obj.Position.z < rootNode.Position.z + animalMoveRange.min.z
+            _animalObjPool.obj.Position.x > rootNode.Animal.Position.x + animalMoveRange.max.x or
+                _animalObjPool.obj.Position.x < rootNode.Animal.Position.x + animalMoveRange.min.x or
+                _animalObjPool.obj.Position.z > rootNode.Animal.Position.z + animalMoveRange.max.z or
+                _animalObjPool.obj.Position.z < rootNode.Animal.Position.z + animalMoveRange.min.z
          then
             this:ChangeAnimalState(
                 _animalObjPool,
                 animalActState.MOVE,
-                (rootNode.Position - _animalObjPool.obj.Position).Normalized * math.random(10, 30) / 10
+                (rootNode.Animal.Position - _animalObjPool.obj.Position).Normalized * math.random(10, 30)
             )
         end
     end
