@@ -7,13 +7,13 @@ local Maze, this = ModuleUtil.New('Maze', ServerBase)
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 7, 10
+local NUM_ROWS, NUM_COLS = 8, 8
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
 
 -- 迷宫中心位置
-local MAZE_CENTER_POS = Vector3(100, 1.5, 0)
+local MAZE_CENTER_POS = Vector3(103, -14.25, 14)
 local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
@@ -29,7 +29,7 @@ local entrace, exit
 --! 常量配置: Floor 迷宫地板相关
 
 -- 迷宫地板厚度
-local MAZE_FLOOR_THICKNESS = 0.2
+local MAZE_FLOOR_THICKNESS = 2
 -- 迷宫地板颜色
 local MAZE_FLOOR_COLOR = Color(0xFF, 0xFF, 0xFF, 100)
 -- 迷宫地板Obj，根据迷宫中心和尺寸生成
@@ -116,6 +116,7 @@ local pTrans = {}
 
 -- 寻路节点
 local path = {}
+local checkPoints = {}
 
 --! 打印事件日志, true:开启打印
 local showLog, PrintMazeData, PrintNodePath = false
@@ -136,14 +137,21 @@ end
 
 -- 初始化迷宫墙壁空间
 function InitMazeWallSpace()
-    WALL_SPACE = world:CreateObject('NodeObject', 'Maze_Wall_Space', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
+    WALL_SPACE =
+        world:CreateObject(
+        'NodeObject',
+        'Maze_Wall_Space',
+        MAZE_ROOT,
+        MAZE_CENTER_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5,
+        MAZE_CENTER_ROT
+    )
 end
 
 -- 初始化迷宫地板，与Maze_Wall_Space大小一致
 function InitMazeFloor()
     floor = world:CreateObject('Cube', 'Maze_Floor', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
     floor.Color = MAZE_FLOOR_COLOR
-    -- floor:SetActive(false)
+    floor:SetActive(false)
 end
 
 -- 初始化迷宫入口出口
@@ -152,6 +160,8 @@ function InitMazeEntranceAndExit()
     exit = world:CreateObject('Sphere', 'Exit', floor)
     entrace.Size = Vector3.One * 0.3
     exit.Size = Vector3.One * 0.3
+    entrace.Block = false
+    exit.Block = false
     entrace.Color = Color(0x00, 0xFF, 0x00, 0xFF)
     exit.Color = Color(0xFF, 0x00, 0x00, 0xFF)
     entrace:SetActive(false)
@@ -227,7 +237,7 @@ function MazeReset()
     MazeEntraceAndExitReset()
     MazeDataReset()
     MazeWallsReset()
-    CheckPointReset()
+    CheckPointsReset()
     -- data
     MazeDataGen()
     FindNodePath()
@@ -236,7 +246,7 @@ function MazeReset()
     PrintNodePath()
     -- gen objs
     MazeWallsGen()
-    CheckPointGen()
+    invoke(CheckPointsGen)
 end
 
 -- 重置地板
@@ -244,12 +254,14 @@ function MazeFloorReset()
     local rowlen = NUM_ROWS * CELL_SIDE
     local collen = NUM_COLS * CELL_SIDE
     floor.Size = Vector3(collen, MAZE_FLOOR_THICKNESS, rowlen)
-    -- floor:SetActive(true)
+    floor:SetActive(true)
 end
 
 function MazeEntraceAndExitReset()
-    entrace.LocalPosition = Vector3(1, 0, -ENTRANCE) * CELL_POS_OFFSET + CELL_LEFT_UP_POS
-    exit.LocalPosition = Vector3(NUM_COLS, 0, -EXIT) * CELL_POS_OFFSET + CELL_LEFT_UP_POS
+    entrace.LocalPosition =
+        Vector3(1, 0, -ENTRANCE) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5
+    exit.LocalPosition =
+        Vector3(NUM_COLS, 0, -EXIT) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5
     entrace:SetActive(true)
     exit:SetActive(true)
 end
@@ -270,8 +282,14 @@ function MazeWallsReset()
 end
 
 -- 迷宫检查点重置
-function CheckPointReset()
+function CheckPointsReset()
     --TODO: 重置
+    for k, n in pairs(checkPoints) do
+        if n and not n:IsNull() then
+            n:Destroy()
+        end
+    end
+    checkPoints = {}
 end
 
 -- 迷宫数据生成
@@ -361,9 +379,6 @@ function MazeWallsGen()
     end
 end
 
-function MoveWallsFrom()
-end
-
 -- 找出迷宫路径
 function FindNodePath()
     -- start point
@@ -435,8 +450,22 @@ function FindNodePath()
 end
 
 -- 生成检查点
-function CheckPointGen()
+function CheckPointsGen()
     --TODO: 生成检查点
+    local point, r, c
+    for k, n in pairs(path) do
+        r, c = n[1], n[2]
+        if k ~= 1 then
+            point = world:CreateObject('Sphere', 'Point_' .. k, floor)
+            point.Size = Vector3.One * 0.3
+            point.Color = Color(0x00, 0xFF, 0xFF, 0xFF)
+            point.LocalPosition =
+                Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5
+            table.insert(checkPoints, p)
+            point.Block = false
+            wait()
+        end
+    end
 end
 
 --! 玩家数据的缓存与读取
