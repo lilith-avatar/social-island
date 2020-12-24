@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: ./Design/打地鼠策划案.xlsx
+--- source file: .//打地鼠策划案.xlsx
 
 local MoleConfigXls = {
     M1 = {

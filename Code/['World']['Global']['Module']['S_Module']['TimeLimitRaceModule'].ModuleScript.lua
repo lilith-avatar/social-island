@@ -46,8 +46,7 @@ local function SortRankList(_rankList)
                 if result < 0 then
                     local temp1 = table.shallowcopy(_rankList[j])
                     local temp2 = table.shallowcopy(_rankList[j + 1])
-                    _rankList[j] = temp2
-                    _rankList[j + 1] = temp1
+					_rankList[j],_rankList[j + 1]=temp2,temp1
                 end
             end
         end
@@ -55,11 +54,9 @@ local function SortRankList(_rankList)
         for i = 1, #_rankList - 1 do
             if _rankList[i].usedTime ~= _rankList[i + 1].usedTime then
                 _rankList[i].Rank = tempRank
-                tempRank = tempRank + 1
-                _rankList[i + 1].Rank = tempRank
+				tempRank,_rankList[i + 1].Rank=tempRank + 1,tempRank
             else
-                _rankList[i].Rank = tempRank
-                _rankList[i + 1].Rank = tempRank
+				_rankList[i].Rank,_rankList[i + 1].Rank= tempRank,tempRank
             end
         end
     
@@ -70,7 +67,7 @@ end
 function TimeLimitRace:EnterMiniGameEventHandler(_player, _gameId)
 	if _gameId == 9 then
 		NetUtil.Fire_C(
-				"ClintInitRaceEvent",
+				"ClientInitRaceEvent",
 				_player,
 				nowKey
 			)
@@ -88,9 +85,32 @@ end
 ---刷新排行榜
 function TimeLimitRace:FreshRank(_player,_usedTime)
 	local recordData = {PlayerName = _player.Name, Rank = 1,usedTime = _usedTime}
-	table.insert(rankList, recordData)
-	SortRankList(rankList)
+	for k,v in pairs(rankList) do 
+		if recordData.PlayerName == v.PlayerName and recordData.usedTime < v.usedTime then
+			table.remove(rankList,k)
+			TimeLimitRace:ResortData(recordData)
+		end
+	end
 	
+	if TimeLimitRace:CheckPlayerList(recordData.playerName) == nil then
+		TimeLimitRace:ResortData(recordData)
+	end
+end
+
+---检查玩家是不是已经在列表里
+function TimeLimitRace:CheckPlayerList(_playerName)
+    for k, v in pairs(rankList) do
+        if v.playerName == _playerName then
+            return k
+        end
+    end
+    return nil
+end
+
+---排行榜重排序
+function TimeLimitRace:ResortData(_recordData)
+	table.insert(rankList, _recordData)
+	SortRankList(rankList)
 	for k,v in pairs(rankList) do
 		for k1,v1 in pairs (this.RankTable:GetChildren()) do
 			if v1.Name == tostring(k) then
@@ -104,13 +124,13 @@ function TimeLimitRace:FreshRank(_player,_usedTime)
 end
 
 
+
 ---帧执行逻辑
 local totalResetTime = 0
 function TimeLimitRace:Update(_dt, _tt)
 	totalResetTime = totalResetTime + _dt
 	if totalResetTime > (60 * 30) then
 		totalResetTime = 0
-
 		this:RandomKey()
 		--重置的其他表现
 	end
