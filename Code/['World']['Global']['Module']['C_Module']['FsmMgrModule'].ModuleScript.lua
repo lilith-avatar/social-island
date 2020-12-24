@@ -246,6 +246,11 @@ function FsmMgr:FlyStateOnUpdateFunc(dt)
 end
 
 function FsmMgr:JumpStateOnUpdateFunc(dt)
+    do ---是否在地面
+        if localPlayer.IsOnGround then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
 end
 
 function FsmMgr:BowIdleStateOnUpdateFunc(dt)

@@ -58,6 +58,8 @@ function FsmBase:ConnectStateFunc(_statesT, _module)
                 _module[v.Name .. "StateOnLeaveFunc"]()
             end
             self:AddState(tempState)
+        else
+            error("not exit interface")
         end
     end
     --self:SetDefaultState(ConstDef.PlayerActStateEnum.Idle)
