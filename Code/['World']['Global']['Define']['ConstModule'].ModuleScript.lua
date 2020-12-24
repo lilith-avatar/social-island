@@ -19,4 +19,10 @@ Const.GameEnum = {
     MAZE = 3
 }
 
+Const.MazeEventEnum = {
+    JOIN = 1, -- 进入游戏
+    LEAVE = 2, -- 完成游戏退出
+    QUIT = 3 -- 中途退出
+}
+
 return Const

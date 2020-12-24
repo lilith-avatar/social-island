@@ -9,6 +9,7 @@ Events.ServerEvents = {
     -- 进入小游戏
     'EnterMiniGameEvent', -- @param _player, _gameId
     'ExitMiniGameEvent', -- @param nil
+    'MazeEvent',
     'PlayerHitEvent',
     'PlayerStartMoleHitEvent',
     'PlayerLeaveMoleHitEvent',
@@ -40,6 +41,7 @@ Events.ClientEvents = {
     -- 修改是否能控制角色
     'SetPlayerControllableEvent', -- @param _bool
     'AddScoreAndBoostEvent',
+    'ClientMazeEvent', -- @param _mazeEventEnum, _params
     'StartMoleEvent',
     'PlayerSitEvent',
     'ShakedEvent',
