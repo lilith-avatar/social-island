@@ -55,7 +55,7 @@ local WALL_LENGTH = 2 -- 对应Size.X
 local WALL_THICKNESS = 0.2 -- 对应Size.Z
 
 -- 墙壁对象池Hierachy根节点
-local WALL_POOL_ROOT
+local WALL_SPACE
 -- 墙壁对象池隐藏默认位置
 local WALL_POOL_POS = Vector3.Down * 100
 
@@ -136,8 +136,7 @@ end
 
 -- 初始化迷宫墙壁空间
 function InitMazeWallSpace()
-    WALL_POOL_ROOT = world:CreateObject('Cube', 'Maze_Wall_Space', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
-    WALL_POOL_ROOT.Color = Color(0xFF, 0xFF, 0xFF, 0)
+    WALL_SPACE = world:CreateObject('NodeObject', 'Maze_Wall_Space', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
 end
 
 -- 初始化迷宫地板，与Maze_Wall_Space大小一致
@@ -161,7 +160,7 @@ end
 
 -- 初始化对象池
 function InitWallPool()
-    assert(WALL_POOL_ROOT and not WALL_POOL_ROOT:IsNull(), '[Maze] WALL_POOL_ROOT 为空')
+    assert(WALL_SPACE and not WALL_SPACE:IsNull(), '[Maze] WALL_SPACE 为空')
     -- 总共需要多少面墙
     -- 外墙数 = NUM_ROWS * 2 + NUM_COLS * 2
     -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
@@ -172,7 +171,7 @@ function InitWallPool()
     local wallName
     for i = 1, wallNeeded do
         wallName = string.format('%s_%04d', WALL_ARCH, i)
-        objWall = world:CreateInstance(WALL_ARCH, wallName, WALL_POOL_ROOT, WALL_POOL_POS, rot)
+        objWall = world:CreateInstance(WALL_ARCH, wallName, WALL_SPACE, WALL_POOL_POS, rot)
         pool[objWall] = true
         if i % 5 == 0 then
             wait()
@@ -360,6 +359,9 @@ function MazeWallsGen()
             end
         end
     end
+end
+
+function MoveWallsFrom()
 end
 
 -- 找出迷宫路径
