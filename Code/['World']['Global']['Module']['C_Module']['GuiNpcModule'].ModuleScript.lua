@@ -1,7 +1,7 @@
 --- 玩家与NPC交互的UI
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
---- @author Yuancheng Zhang
+--- @author Yuancheng Zhang, Lin
 local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
@@ -14,6 +14,7 @@ local NpcInfo
 
 -- Data
 local currNpcId
+local currNpcObj
 
 function GuiNpc:Init()
     self:InitGui()
@@ -57,7 +58,7 @@ function GuiNpc:InitListener()
 end
 
 --- 接触NPC
-function TouchNpc(_npcId)
+function TouchNpc(_npcId,_npcObj)
     if _npcId == nil then
         return
     end
@@ -66,6 +67,7 @@ function TouchNpc(_npcId)
     npcBtn.Visible = true
     npcGui.Visible = false
     currNpcId = _npcId
+	currNpcObj = _npcObj
 end
 
 --- 打开NPC界面
@@ -79,6 +81,14 @@ function OpenNpcGui()
     local portrait = NpcInfo[currNpcId].Portrait
     portraitImg.Texture = portrait
     portraitImg.Visible = portrait ~= nil
+	
+	--使NPC面向玩家
+	local _ry = Vector3.Angle(Vector3(0,0,1),localPlayer.Position-currNpcObj.Position)
+	if localPlayer.Position.x - currNpcObj.Position.x >= 0 then
+		currNpcObj.Rotation = EulerDegree(0,_ry,0) 
+	else
+		currNpcObj.Rotation = EulerDegree(0,360 -_ry ,0) 
+	end
 end
 
 --- 离开NPC
@@ -88,6 +98,7 @@ function LeaveNpc()
     npcBtn.Visible = false
     npcGui.Visible = false
     currNpcId = nil
+	currNpcObj = nil
 end
 
 --- 开始小游戏
@@ -110,12 +121,18 @@ end
 --- 开始对话
 function StartDialog()
     print('[GuiNpc] StartDialog()')
+	NpcStartBattle()
 end
 
-function GuiNpc:TouchNpcEventHandler(_npcId)
+--- 开始宠物战斗
+function NpcStartBattle()
+	NetUtil.Fire_S("StartBattleEvent",true,currNpcObj,localPlayer)
+end
+
+function GuiNpc:TouchNpcEventHandler(_npcId,_npcObj)
     -- print(table.dump(NpcInfo[_npcId]))
     if _npcId ~= nil then
-        TouchNpc(_npcId)
+        TouchNpc(_npcId,_npcObj)
     else
         LeaveNpc()
     end

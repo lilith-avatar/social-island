@@ -1,12 +1,13 @@
+---计时赛跑客户端逻辑模块
+---@module RaceGame
+---@copyright Lilith Games, Avatar Team
+---@author Changoo Wu
 local RaceGame,this = ModuleUtil.New("RaceGame",ClientBase)
 local Config = Config
 
-function RaceGame:Init()
-
-end
 
 ---从服务器拿到启动回执
-function RaceGame:ClintInitRaceEventHandler(_nowKey)
+function RaceGame:ClientInitRaceEventHandler(_nowKey)
 	this:DataInit(_nowKey)
 	this:NodeDef()
 	this:GameStart()
@@ -21,7 +22,6 @@ function RaceGame:DataInit(_nowKey)
     this.startUpdate = false
     this.boostEffect = false
     this.timer = 0
-	
 end
 
 ---节点绑定
@@ -41,7 +41,6 @@ function RaceGame:GameStart()
     --Todo:面朝第一个点
 	this.startUpdate = true
 	RaceGameUIMgr:Show()
-
 end
 
 

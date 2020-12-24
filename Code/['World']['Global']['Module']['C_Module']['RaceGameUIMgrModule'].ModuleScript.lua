@@ -1,3 +1,8 @@
+---计时赛跑客户端逻辑模块
+---@module RaceGameUIMgr
+---@copyright Lilith Games, Avatar Team
+---@author Changoo Wu
+
 local RaceGameUIMgr,this = ModuleUtil.New("RaceGameUIMgr",ClientBase)
 local Config = Config
 function RaceGameUIMgr:Init()
