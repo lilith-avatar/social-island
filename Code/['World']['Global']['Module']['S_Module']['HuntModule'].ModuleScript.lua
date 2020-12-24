@@ -58,7 +58,7 @@ function Hunt:DataInit()
                     if _hitObject.Name == "Arrow" then
                         _hitObject:Destroy()
                         animalObjPool[i].stateTime = 10
-                        this:ChangeanimalState(animalObjPool[i], animalActState.DEADED)
+                        this:ChangeAnimalState(animalObjPool[i], animalActState.DEADED)
                     end
                 end
             end
@@ -79,7 +79,7 @@ function Hunt:EnterMiniGameEventHandler(_player, _gameId)
 end
 
 --- 动物运动状态改变
-function Hunt:ChangeanimalState(_animalObjPool, _state, _linearVelocity)
+function Hunt:ChangeAnimalState(_animalObjPool, _state, _linearVelocity)
     _animalObjPool.state = _state
     if _animalObjPool.state == animalActState.IDLE then
         _animalObjPool.obj:SetActive(true)
@@ -109,11 +109,11 @@ function Hunt:AnimalScared(_animalObjPool)
                             _animalObjPool.closePlayer == nil
                      then
                         _animalObjPool.closePlayer = v
-                        this:ChangeanimalState(_animalObjPool, animalActState.SCARED)
+                        this:ChangeAnimalState(_animalObjPool, animalActState.SCARED)
                     end
                 else
                     _animalObjPool.closePlayer = v
-                    this:ChangeanimalState(_animalObjPool, animalActState.SCARED)
+                    this:ChangeAnimalState(_animalObjPool, animalActState.SCARED)
                 end
             end
         end
@@ -129,7 +129,7 @@ function Hunt:AnimalRangeLimit(_animalObjPool)
                 _animalObjPool.obj.Position.z > rootNode.Position.z + animalMoveRange.max.z or
                 _animalObjPool.obj.Position.z < rootNode.Position.z + animalMoveRange.min.z
          then
-            this:ChangeanimalState(
+            this:ChangeAnimalState(
                 _animalObjPool,
                 animalActState.MOVE,
                 (rootNode.Position - _animalObjPool.obj.Position).Normalized * math.random(10, 30) / 10
@@ -145,7 +145,7 @@ function Hunt:AnimalMove(dt)
             v.stateTime = v.stateTime - dt
         else
             v.stateTime = math.random(5, 20)
-            this:ChangeanimalState(v, v.state % 2 + 1)
+            this:ChangeAnimalState(v, v.state % 2 + 1)
         end
         this:AnimalScared(v)
         this:AnimalRangeLimit(v)
