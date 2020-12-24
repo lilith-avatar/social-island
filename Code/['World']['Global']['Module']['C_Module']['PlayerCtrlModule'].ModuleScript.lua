@@ -50,7 +50,7 @@ function PlayerCtrl:EventBind()
             if Input.GetPressKeyData(JUMP_KEY) == 1 then
                 this:PlayerJump()
             end
-            if Input.GetPressKeyData(Enum.KeyCode.Mouse0) == 1 then
+            if Input.GetPressKeyData(Enum.KeyCode.F) == 1 then
                 FsmMgr:FsmTriggerEventHandler("BowAttack")
             end
         end
@@ -95,6 +95,26 @@ function PlayerCtrl:PlayerClap()
     localPlayer.Avatar:PlayAnimation("SocialApplause", 9, 1, 0, true, false, 1)
     --拍掌音效
     NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
+end
+
+-- 射箭逻辑
+function PlayerCtrl:PlayerArchery()
+    
+    local dir = (localPlayer.ArrowAim.Position - localPlayer.Position)
+    dir.y = PlayerCam:TPSGetRayDir().y
+    dir = dir.Normalized
+    local arrow =
+        world:CreateInstance("Arrow_01", "Arrow", world, localPlayer.Avatar.Bone_R_Hand.Position, localPlayer.Rotation)
+    arrow.Forward = dir
+    arrow.LinearVelocity = arrow.Forward * 40
+    invoke(
+        function()
+            if arrow then
+                arrow:Destroy()
+            end
+        end,
+        3
+    )
 end
 
 -- 修改是否能控制角色

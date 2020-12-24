@@ -13,8 +13,7 @@ function PlayerCam:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
-    --this:InitCamera()
-    this:SetCurCamEventHandler(this.tpsCam)
+    this:InitCamera()
 end
 
 --- 节点引用
@@ -73,6 +72,16 @@ end
 function PlayerCam:CameraZoom(_pos1, _pos2, _dis, _speed)
     if this.curCamera.CameraMode == Enum.CameraMode.Social then
         this.curCamera.Distance = this.curCamera.Distance - _dis / 50
+    end
+end
+
+--- TPS相机射线检测目标
+function PlayerCam:TPSGetRayDir()
+    local hitResult = Physics:Raycast(this.tpsCam.Position, this.tpsCam.Forward * 50, true)
+    if hitResult.Hitobject then
+        return hitResult.Hitobject.Position
+    else
+        return this.tpsCam.Forward * 20
     end
 end
 

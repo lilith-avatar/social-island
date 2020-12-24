@@ -43,8 +43,9 @@ function FsmMgr:DataInit()
     --将第3层的动作设为下半身动作
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 3)
     playerActFsm:ConnectStateFunc(Config.PlayerActState, self)
-    playerActFsm:SetDefaultState(playerActStateEnum.BOWIDLE)
+    playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
 
+    this.IdleTrigger = false
     this.JumpTrigger = false
     this.FlyTrigger = false
     this.BowIdleTrigger = false
@@ -55,8 +56,9 @@ end
 function FsmMgr:EventBind()
 end
 
---- 重置触发器F
+--- 重置触发器
 function FsmMgr:ResetTrigger()
+    this.IdleTrigger = false
     this.JumpTrigger = false
     this.FlyTrigger = false
     this.BowIdleTrigger = false
@@ -66,7 +68,6 @@ end
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
     if playerActFsm.curState.stateName ~= _state then
-        print(_state)
         this[_state .. "Trigger"] = true
     end
 end
@@ -138,6 +139,7 @@ end
 function FsmMgr:BowAttackStateOnEnterFunc()
     this:ResetTrigger()
     localPlayer.Avatar:PlayAnimation("BowAttack", 2, 1, 0.1, true, false, 1)
+    PlayerCtrl:PlayerArchery()
 end
 
 function FsmMgr:IdleStateOnUpdateFunc(dt)
@@ -262,8 +264,12 @@ function FsmMgr:BowIdleStateOnUpdateFunc(dt)
     end
     do ---攻击检测
         if this.BowAttackTrigger then
-            print("攻击检测")
             playerActFsm:Switch(playerActStateEnum.BOWATTACK)
+        end
+    end
+    do ---检测默认状态
+        if this.IdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
 end
@@ -297,6 +303,11 @@ function FsmMgr:BowWalkStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.BOWATTACK)
         end
     end
+    do ---检测默认状态
+        if this.IdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
 end
 
 function FsmMgr:BowRunStateOnUpdateFunc(dt)
@@ -304,8 +315,7 @@ function FsmMgr:BowRunStateOnUpdateFunc(dt)
         local dir = PlayerCtrl.finalDir
         dir.y = 0
         if dir.Magnitude > 0 then
-            print(Vector3.Angle(dir, localPlayer.LinearVelocity))
-            if localPlayer.LinearVelocity.Magnitude > 0 and Vector3.Angle(dir, localPlayer.LinearVelocity) > 1 then
+            if localPlayer.LinearVelocity.Magnitude > 0 and Vector3.Angle(dir, localPlayer.LinearVelocity) > 30 then
                 if Vector3.Angle(dir, localPlayer.Forward) < 60 then
                     localPlayer.Avatar:PlayAnimation("RunFront", 3, 1, 0.1, true, true, 1)
                 elseif Vector3.Angle(dir, localPlayer.Right) < 30 then
@@ -334,6 +344,11 @@ function FsmMgr:BowRunStateOnUpdateFunc(dt)
     do ---攻击检测
         if this.BowAttackTrigger then
             playerActFsm:Switch(playerActStateEnum.BOWATTACK)
+        end
+    end
+    do ---检测默认状态
+        if this.IdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
 end
