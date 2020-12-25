@@ -10,35 +10,35 @@ local ChairInfoXls = {
         ID = 'C1',
         Archetype = 'Chair_Normal',
         Type = 'Normal',
-        Position = Vector3(-145.712,  -3.9355,  109.495),
+        Position = Vector3(-131.893,  -5.3452,  100.473),
         Rotation = EulerDegree(0,  0,  0)
     },
     C2 = {
         ID = 'C2',
         Archetype = 'Chair_Normal',
         Type = 'Normal',
-        Position = Vector3(-147.284,  -3.9355,  109.495),
+        Position = Vector3(-134.731,  -5.4864,  100.473),
         Rotation = EulerDegree(0,  0,  0)
     },
     C3 = {
         ID = 'C3',
         Archetype = 'Chair_Normal',
         Type = 'Normal',
-        Position = Vector3(-148.989,  -3.9355,  109.495),
+        Position = Vector3(-140.288,  -5.0425,  100.473),
         Rotation = EulerDegree(0,  0,  0)
     },
     C4 = {
         ID = 'C4',
         Archetype = 'Chair_Normal',
         Type = 'Normal',
-        Position = Vector3(-150.788,  -3.9355,  109.495),
+        Position = Vector3(-137.439,  -5.1564,  100.473),
         Rotation = EulerDegree(0,  0,  0)
     },
     C5 = {
         ID = 'C5',
         Archetype = 'Chair_QTE',
         Type = 'QTE',
-        Position = Vector3(-135.347,  -3.3005,  110.637),
+        Position = Vector3(-128.79,  -4.4959,  102.965),
         Rotation = EulerDegree(0,  0,  0)
     }
 }
