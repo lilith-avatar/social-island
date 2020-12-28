@@ -27,11 +27,12 @@ function SMonsterBattle:LoadMDataEventHandler(_userId)
 		if errCode then
 			print(errCode)
 		end
-		print(table.dump(value))
+		--print(table.dump(value))
 		local _playerData = {}
 		if value == nil then
 			_playerData.showMonster = {}
 			_playerData.monsterLis = {}
+			_playerData.flowerLis = {} --种花需要的长期数据
 		else
 			_playerData = value
 		end
