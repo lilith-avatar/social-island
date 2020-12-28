@@ -38,41 +38,47 @@ local PlayerActStateXls = {
     },
     [6] = {
         ID = 6,
-        Name = "Swim",
-        NextName = "Swim",
+        Name = "SwimIdle",
+        NextName = "SwimIdle",
         Dur = 0.0
     },
     [7] = {
+        ID = 6,
+        Name = "Swimming",
+        NextName = "Swimming",
+        Dur = 0.0
+    },
+    [8] = {
         ID = 7,
         Name = "Social",
         NextName = "Social",
         Dur = 0.0
     },
-    [8] = {
+    [9] = {
         ID = 8,
         Name = "BowIdle",
         NextName = "BowIdle",
         Dur = 0.0
     },
-    [9] = {
+    [10] = {
         ID = 9,
         Name = "BowWalk",
         NextName = "BowWalk",
         Dur = 0.0
     },
-    [10] = {
+    [11] = {
         ID = 10,
         Name = "BowRun",
         NextName = "BowRun",
         Dur = 0.0
     },
-    [11] = {
+    [12] = {
         ID = 11,
         Name = "BowJump",
         NextName = "BowIdle",
         Dur = 0.4
     },
-    [12] = {
+    [13] = {
         ID = 12,
         Name = "BowAttack",
         NextName = "BowIdle",
