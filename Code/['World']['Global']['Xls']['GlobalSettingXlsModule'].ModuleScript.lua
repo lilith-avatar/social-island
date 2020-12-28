@@ -3,29 +3,10 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: ./xls/GlobalSetting.xls
+--- source file: .//GlobalSetting.xls
 
 local GlobalSettingXls = {
-    DefaultLanguage = {
-        Key = 'DefaultLanguage',
-        Value = "CHS"
-    },
-    PlayerPosition = {
-        Key = 'PlayerPosition',
-        Value = Vector3(0,-1,0)
-    },
-    PlayerRotation = {
-        Key = 'PlayerRotation',
-        Value = Euler(90,0,0)
-    },
-    MaxPlayerNumber = {
-        Key = 'MaxPlayerNumber',
-        Value = 100.0
-    },
-    ScoreRate = {
-        Key = 'ScoreRate',
-        Value = 12.5
-    }
+    DefaultLanguage = "EN"
 }
 
 return GlobalSettingXls
