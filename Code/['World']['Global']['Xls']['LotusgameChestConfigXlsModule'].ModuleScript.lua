@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//社交岛采荷(青蛙过河).xlsx
+--- source file: .//GameLotus.xlsx
 
 local LotusgameChestConfigXls = {
     [1] = {
