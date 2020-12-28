@@ -21,6 +21,7 @@ end
 function CreateNpcFolder()
     if world.NPC == nil then
         world:CreateObject('FolderObject', 'NPC', world)
+		world:CreateObject('FolderObject', 'NPCMonster', world)
     end
     npcFolder = world.NPC
 end
@@ -37,7 +38,7 @@ function SpawnNpcs()
 				local _attackVal = world:CreateObject('IntValueObject','AttackVal',npcObj)
 				local _monsterVal = world:CreateObject('ObjRefValueObject','MonsterVal',npcObj)
 				world:CreateObject('IntValueObject','BattleVal',npcObj)
-				_monsterVal.Value = world:CreateInstance('Monster','Monster'..npc.Name,world,npcObj.Position - npcObj.Forward*2)
+				_monsterVal.Value = world:CreateInstance('Monster','Monster'..npc.Name,world.NPCMonster,npcObj.Position - npcObj.Forward*2)
 				InitMonster(npcObj,_monsterVal.Value)
 			end)
 		end
