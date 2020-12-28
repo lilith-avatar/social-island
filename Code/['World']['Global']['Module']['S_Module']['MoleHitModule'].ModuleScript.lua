@@ -46,6 +46,7 @@ function MoleHit:Init()
     print("MoleHit: Init")
     this:DataInit()
     this:PitListInit()
+    this:PoolInit()
     GetTotalWeights(Config.MoleConfig)
 end
 
@@ -109,14 +110,12 @@ function MoleHit:RefreshMole(_playerNum)
         tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
         tmpTable[pitIndex].mole = tmpRandomTab[1].id
         --Todo: 对象池
-        local mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model)
-        mole.LocalPosition = Vector3(0, 0.5, 0)
-            --world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
+        local mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model,tmpTable[pitIndex].model.Position,tmpTable[pitIndex].model.Rotation)
         invoke(
-            function(tmpTable, pitIndex, tmpRandomTab, mole)
+            function()
                 if mole then
                     --Todo: 对象池销毁
-                    mole:Destroy()
+                    this.molePool[tmpRandomTab[1].id]:Destroy(mole)
                 end
             end,
             Config.MoleConfig[tmpRandomTab[1].id].KeepTime

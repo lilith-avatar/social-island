@@ -9,6 +9,7 @@ function MolePool:initialize(_objName, poolSize)
     self.pool = {}
     self.maxSize = poolSize
     self.objName = _objName
+    print(_objName, poolSize)
 end
 
 function MolePool:Destroy(_obj)
@@ -23,14 +24,17 @@ end
 function MolePool:Create(_parent, _pos, _rot)
     local mole
     if self.pool[1] then
+        self.pool[1].Parent = _parent
         self.pool[1].Position, self.pool[1].Rotation = _pos, _rot
-        self.pool[1]:SetParentTo(_parent, _pos, _rot)
         self.pool[1]:SetActive(true)
-        mole = self.pool[1]
-        table.remove(self.pool, 1)
+        mole = table.deepcopy(self.pool[1])
+        invoke(function()
+			table.remove(self.pool, 1)
+		end,wait())
         return mole
     else
         mole = world:CreateInstance(self.objName, self.objName, _parent)
+        mole:SetActive(true)
         return mole
     end
 end
