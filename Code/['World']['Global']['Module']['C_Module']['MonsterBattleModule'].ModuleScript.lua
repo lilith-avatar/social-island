@@ -11,27 +11,6 @@ function MonsterBattle:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
-	this:LoadData()
-	wait(2)
-	--this:GetNewMonster()
-	invoke(function() this:MonsterFollow() end)
-	this:ShowMonster()
-	world:CreateObject('StringValueObject','EnemyVal',localPlayer)
-	
-	invoke(function() 
-		local _moveTime = 2
-		while true do
-			wait()
-			if RealMonster and RealMonster.Cube then
-				local Tweener = Tween:TweenProperty(RealMonster.Cube,{LocalPosition = Vector3(0,2.5,0)},_moveTime,Enum.EaseCurve.Linear)
-				Tweener:Play()
-				wait(_moveTime)
-				Tweener = Tween:TweenProperty(RealMonster.Cube,{LocalPosition = Vector3(0,2,0)},_moveTime,Enum.EaseCurve.Linear)
-				Tweener:Play()
-				wait(_moveTime)
-			end
-		end
-	end)
 end
 
 --节点引用
@@ -113,6 +92,32 @@ function MonsterBattle:EventBind()
 	this.BattlePanel.Button3.OnClick:Connect(function()
 		localPlayer.BattleVal.Value = 3
 	end)
+end
+
+function  MonsterBattle:OnPlayerJoinEventHandler()
+	--print('111111111111111111111111111111')
+	this:LoadData()
+	wait(2)
+	--this:GetNewMonster()
+	invoke(function() this:MonsterFollow() end)
+	this:ShowMonster()
+	world:CreateObject('StringValueObject','EnemyVal',localPlayer)
+	
+	invoke(function() 
+		local _moveTime = 2
+		while true do
+			wait()
+			if RealMonster and RealMonster.Cube then
+				local Tweener = Tween:TweenProperty(RealMonster.Cube,{LocalPosition = Vector3(0,2.5,0)},_moveTime,Enum.EaseCurve.Linear)
+				Tweener:Play()
+				wait(_moveTime)
+				Tweener = Tween:TweenProperty(RealMonster.Cube,{LocalPosition = Vector3(0,2,0)},_moveTime,Enum.EaseCurve.Linear)
+				Tweener:Play()
+				wait(_moveTime)
+			end
+		end
+	end)
+	this.MonsterGUI.MainBtn:SetActive(true)
 end
 
 function MonsterBattle:Update(dt, tt)
