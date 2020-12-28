@@ -55,6 +55,14 @@ function MoleHit:DataInit()
     this.timer = 0
     this.refreshTime = Config.MoleGlobalConfig.RefreshTime --! Only Test
     this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
+    ---对象池表
+    this.molePool = {}
+end
+
+function MoleHit:PoolInit()
+    for k, v in pairs(Config.MoleConfig) do
+        this.molePool[k] = MolePool:new(v.Archetype, 10)
+    end
 end
 
 --绑定坑位
@@ -69,7 +77,7 @@ end
 
 function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C('StartMoleEvent',_player)
+        NetUtil.Fire_C("StartMoleEvent", _player)
     end
 end
 
@@ -101,8 +109,9 @@ function MoleHit:RefreshMole(_playerNum)
         tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
         tmpTable[pitIndex].mole = tmpRandomTab[1].id
         --Todo: 对象池
-        local mole =
-            world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
+        local mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model)
+        mole.LocalPosition = Vector3(0, 0.5, 0)
+            --world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
         invoke(
             function(tmpTable, pitIndex, tmpRandomTab, mole)
                 if mole then
@@ -112,7 +121,6 @@ function MoleHit:RefreshMole(_playerNum)
             end,
             Config.MoleConfig[tmpRandomTab[1].id].KeepTime
         )
-        mole.LocalPosition = Vector3(0, 0.5, 0)
         table.remove(tmpTable, pitIndex)
     end
 end
