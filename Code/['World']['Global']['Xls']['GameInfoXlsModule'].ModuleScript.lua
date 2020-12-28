@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//社交岛任务系统.xlsx
+--- source file: .//NpcAndTask.xlsx
 
 local GameInfoXls = {
     [1] = {
