@@ -3,119 +3,99 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//社交岛限时竞速.xlsx
+--- source file: .//GameRace.xlsx
 
 local RacePointXls = {
     [1] = {
         [1] = {
             LineId = 1,
-            MaxTime = 20.0,
+            MaxTime = 180.0,
             PointId = 1,
-            Pos = Vector3(0.7006, 0.8972, 112.6)
+            Pos = Vector3(-69.8638, -10.0106, -5.3391)
         },
         [2] = {
             LineId = 1,
-            MaxTime = 20.0,
+            MaxTime = 180.0,
             PointId = 2,
-            Pos = Vector3(18.8255, 0.8972, 112.83)
+            Pos = Vector3(-78.0624, -10.5096, 6.2366)
         },
         [3] = {
             LineId = 1,
-            MaxTime = 20.0,
+            MaxTime = 180.0,
             PointId = 3,
-            Pos = Vector3(18.9675, 0.8972, 96.8965)
+            Pos = Vector3(-86.9721, -12.0669, 16.6466)
         },
         [4] = {
             LineId = 1,
-            MaxTime = 20.0,
+            MaxTime = 180.0,
             PointId = 4,
-            Pos = Vector3(18.2834, 0.8972, 82.2129)
+            Pos = Vector3(-96.5374, -13.5251, 29.3649)
         },
         [5] = {
             LineId = 1,
-            MaxTime = 20.0,
+            MaxTime = 180.0,
             PointId = 5,
-            Pos = Vector3(-2.147, 0.8972, 81.4643)
+            Pos = Vector3(-105.32, -14.7065, 46.2399)
         },
         [6] = {
             LineId = 1,
-            MaxTime = 20.0,
+            MaxTime = 180.0,
             PointId = 6,
-            Pos = Vector3(-21.9368, 0.8972, 120.19)
-        }
-    },
-    [2] = {
-        [1] = {
-            LineId = 2,
-            MaxTime = 15.0,
-            PointId = 1,
-            Pos = Vector3(-0.8655, 0.8972, 107.027)
-        },
-        [2] = {
-            LineId = 2,
-            MaxTime = 15.0,
-            PointId = 2,
-            Pos = Vector3(-5.2555, 0.8972, 105.15)
-        },
-        [3] = {
-            LineId = 2,
-            MaxTime = 15.0,
-            PointId = 3,
-            Pos = Vector3(-8.2158, 0.8972, 101.093)
-        },
-        [4] = {
-            LineId = 2,
-            MaxTime = 15.0,
-            PointId = 4,
-            Pos = Vector3(-8.2931, 0.8972, 95.2642)
-        },
-        [5] = {
-            LineId = 2,
-            MaxTime = 15.0,
-            PointId = 5,
-            Pos = Vector3(-4.3369, 0.8972, 92.546)
-        },
-        [6] = {
-            LineId = 2,
-            MaxTime = 15.0,
-            PointId = 6,
-            Pos = Vector3(0.3469, 0.8972, 91.4593)
+            Pos = Vector3(-109.49, -13.5963, 59.8948)
         },
         [7] = {
-            LineId = 2,
-            MaxTime = 15.0,
+            LineId = 1,
+            MaxTime = 180.0,
             PointId = 7,
-            Pos = Vector3(4.3508, 0.8972, 94.114)
+            Pos = Vector3(-108.539, -10.054, 73.117)
         },
         [8] = {
-            LineId = 2,
-            MaxTime = 15.0,
+            LineId = 1,
+            MaxTime = 180.0,
             PointId = 8,
-            Pos = Vector3(6.0184, 0.8972, 98.6277)
+            Pos = Vector3(-102.145, -4.3244, 87.8177)
         },
         [9] = {
-            LineId = 2,
-            MaxTime = 15.0,
+            LineId = 1,
+            MaxTime = 180.0,
             PointId = 9,
-            Pos = Vector3(6.2401, 0.8972, 101.047)
+            Pos = Vector3(-92.2954, -1.5132, 84.4649)
         },
         [10] = {
-            LineId = 2,
-            MaxTime = 15.0,
+            LineId = 1,
+            MaxTime = 180.0,
             PointId = 10,
-            Pos = Vector3(5.7228, 0.8972, 104.008)
+            Pos = Vector3(-85.9159, 0.0462, 74.8248)
         },
         [11] = {
-            LineId = 2,
-            MaxTime = 15.0,
+            LineId = 1,
+            MaxTime = 180.0,
             PointId = 11,
-            Pos = Vector3(3.4371, 0.8972, 106.247)
+            Pos = Vector3(-73.7495, 1.8776, 68.3394)
         },
         [12] = {
-            LineId = 2,
-            MaxTime = 15.0,
+            LineId = 1,
+            MaxTime = 180.0,
             PointId = 12,
-            Pos = Vector3(0.9136, 0.8972, 108.627)
+            Pos = Vector3(-60.9025, 3.4547, 67.6347)
+        },
+        [13] = {
+            LineId = 1,
+            MaxTime = 180.0,
+            PointId = 13,
+            Pos = Vector3(-60.138, 7.9217, 75.1006)
+        },
+        [14] = {
+            LineId = 1,
+            MaxTime = 180.0,
+            PointId = 14,
+            Pos = Vector3(-58.904, 10.4552, 87.3052)
+        },
+        [15] = {
+            LineId = 1,
+            MaxTime = 180.0,
+            PointId = 15,
+            Pos = Vector3(-58.2137, 10.7482, 106.001)
         }
     }
 }

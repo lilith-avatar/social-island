@@ -67,7 +67,7 @@ end
 function TimeLimitRace:EnterMiniGameEventHandler(_player, _gameId)
 	if _gameId == 9 then
 		NetUtil.Fire_C(
-				"ClintInitRaceEvent",
+				"ClientInitRaceEvent",
 				_player,
 				nowKey
 			)
@@ -85,9 +85,32 @@ end
 ---刷新排行榜
 function TimeLimitRace:FreshRank(_player,_usedTime)
 	local recordData = {PlayerName = _player.Name, Rank = 1,usedTime = _usedTime}
-	table.insert(rankList, recordData)
-	SortRankList(rankList)
+	for k,v in pairs(rankList) do 
+		if recordData.PlayerName == v.PlayerName and recordData.usedTime < v.usedTime then
+			table.remove(rankList,k)
+			TimeLimitRace:ResortData(recordData)
+		end
+	end
 	
+	if TimeLimitRace:CheckPlayerList(recordData.playerName) == nil then
+		TimeLimitRace:ResortData(recordData)
+	end
+end
+
+---检查玩家是不是已经在列表里
+function TimeLimitRace:CheckPlayerList(_playerName)
+    for k, v in pairs(rankList) do
+        if v.playerName == _playerName then
+            return k
+        end
+    end
+    return nil
+end
+
+---排行榜重排序
+function TimeLimitRace:ResortData(_recordData)
+	table.insert(rankList, _recordData)
+	SortRankList(rankList)
 	for k,v in pairs(rankList) do
 		for k1,v1 in pairs (this.RankTable:GetChildren()) do
 			if v1.Name == tostring(k) then
@@ -99,6 +122,7 @@ function TimeLimitRace:FreshRank(_player,_usedTime)
 		end
 	end
 end
+
 
 
 ---帧执行逻辑

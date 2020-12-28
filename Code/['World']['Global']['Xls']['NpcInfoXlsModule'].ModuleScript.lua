@@ -3,14 +3,14 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: ./Design/社交岛任务系统.xlsx
+--- source file: .//NpcAndTask.xlsx
 
 local NpcInfoXls = {
     [1] = {
         ID = 1,
-        Name = 'toji_01',
+        Name = '猎人',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(0, 2, 0),
+        SpawnPos = Vector3(-164.103, -0.6742, 37.9646),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 0.01,
@@ -25,9 +25,9 @@ local NpcInfoXls = {
     },
     [2] = {
         ID = 2,
-        Name = 'toji_02',
+        Name = '农夫',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(50, 2, 0),
+        SpawnPos = Vector3(-50.1779, 10.5797, 86.6413),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 1.01,
@@ -42,9 +42,9 @@ local NpcInfoXls = {
     },
     [3] = {
         ID = 3,
-        Name = 'toji_03',
+        Name = '魔法师',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(100, 2, 0),
+        SpawnPos = Vector3(83.4593, -13.067, 19.6369),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 2.01,
@@ -59,9 +59,9 @@ local NpcInfoXls = {
     },
     [4] = {
         ID = 4,
-        Name = 'toji_04',
+        Name = '炮王',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(150, 2, 0),
+        SpawnPos = Vector3(-8.3725, -11.2545, 40.0694),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 3.01,
@@ -93,9 +93,9 @@ local NpcInfoXls = {
     },
     [6] = {
         ID = 6,
-        Name = 'toji_06',
+        Name = '热气球',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(50, 2, 50),
+        SpawnPos = Vector3(-53.8858, -9.1085, -17.083),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 5.01,
@@ -110,9 +110,9 @@ local NpcInfoXls = {
     },
     [7] = {
         ID = 7,
-        Name = 'toji_07',
+        Name = '种花',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(100, 2, 50),
+        SpawnPos = Vector3(-83.0742, -8.1397, -43.4591),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 6.01,
@@ -127,9 +127,9 @@ local NpcInfoXls = {
     },
     [8] = {
         ID = 8,
-        Name = 'toji_08',
+        Name = '蜗牛饲养员',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(150, 2, 50),
+        SpawnPos = Vector3(-64.3475, -9.386, -32.5694),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 7.01,
@@ -144,9 +144,9 @@ local NpcInfoXls = {
     },
     [9] = {
         ID = 9,
-        Name = 'toji_09',
+        Name = '赛跑管理员',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(0, 2, 100),
+        SpawnPos = Vector3(-67.5148, -9.0046, -10.6404),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 8.01,
@@ -161,9 +161,9 @@ local NpcInfoXls = {
     },
     [10] = {
         ID = 10,
-        Name = 'toji_10',
+        Name = '摇摇椅管理员',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(50, 2, 100),
+        SpawnPos = Vector3(-158.145, -3.6195, 104.38),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 9.01,
@@ -178,9 +178,9 @@ local NpcInfoXls = {
     },
     [11] = {
         ID = 11,
-        Name = 'toji_11',
+        Name = '野牛',
         Model = 'Npc_Toji',
-        SpawnPos = Vector3(100, 2, 100),
+        SpawnPos = Vector3(-86.349, -8.7172, -23.1847),
         SpawnRot = EulerDegree(0, 0, 0),
         Ani = {"吃","喝","嫖","赌"},
         AniSpace = 10.01,

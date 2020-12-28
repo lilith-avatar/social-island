@@ -9,9 +9,14 @@ Events.ServerEvents = {
     -- 进入小游戏
     'EnterMiniGameEvent', -- @param _player, _gameId
     'ExitMiniGameEvent', -- @param nil
+    'MazeEvent',
     'PlayerHitEvent',
     'PlayerStartMoleHitEvent',
     'PlayerLeaveMoleHitEvent',
+    'NormalShakeEvent',
+    'PlayerLeaveChairEvent',
+    'QteChairMoveEvent',
+    'PlayerClickSitBtnEvent',
     'RaceGameStartEvent',
     'RaceGameOverEvent',
     -- 人间大炮发射
@@ -21,6 +26,7 @@ Events.ServerEvents = {
 	'LoadMDataEvent', --@param _userId
 	'SaveMDataEvent', --@param _userId,_playerdata
 	'StartBattleEvent',--@param _isNpc,_playerA,_playerB
+	'PlantFlowerEvent' --@param _userId,_flowerObj
 }
 
 -- 客户端事件列表
@@ -36,8 +42,13 @@ Events.ClientEvents = {
     -- 修改是否能控制角色
     'SetPlayerControllableEvent', -- @param _bool
     'AddScoreAndBoostEvent',
+    'ClientMazeEvent', -- @param _mazeEventEnum, _params
     'StartMoleEvent',
-    'ClintInitRaceEvent',
+    'PlayerSitEvent',
+    'ShakedEvent',
+    'ShowSitBtnEvent',
+    'HideSitBtnEvent',
+    'ClientInitRaceEvent',
     -- 播放音效
     'PlayEffectEvent', -- @param _id, _pos
 	'LoadMDataBackEvent',
