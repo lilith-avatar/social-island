@@ -6,7 +6,7 @@ local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
 local controlGui, npcBtn
-local npcGui, gameBtn, dialogBtn, shopBtn, leaveBtn
+local npcGui, gameBtn, BattleBtn, shopBtn, leaveBtn
 
 -- Cache
 local Config = Config
@@ -31,7 +31,7 @@ function GuiNpc:InitGui()
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
     gameBtn = npcGui.GameBtn
-    dialogBtn = npcGui.DialogBtn
+    battleBtn = npcGui.BattleBtn
     shopBtn = npcGui.ShopBtn
     leaveBtn = npcGui.LeaveBtn
 end
@@ -52,13 +52,13 @@ end
 function GuiNpc:InitListener()
     npcBtn.OnClick:Connect(OpenNpcGui)
     gameBtn.OnClick:Connect(EnterMiniGame)
-    dialogBtn.OnClick:Connect(StartDialog)
+    battleBtn.OnClick:Connect(StartMonsterBattle)
     shopBtn.OnClick:Connect(EnterShop)
     leaveBtn.OnClick:Connect(LeaveNpc)
 end
 
 --- 接触NPC
-function TouchNpc(_npcId,_npcObj)
+function TouchNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
@@ -67,7 +67,7 @@ function TouchNpc(_npcId,_npcObj)
     npcBtn.Visible = true
     npcGui.Visible = false
     currNpcId = _npcId
-	currNpcObj = _npcObj
+    currNpcObj = _npcObj
 end
 
 --- 打开NPC界面
@@ -81,14 +81,14 @@ function OpenNpcGui()
     local portrait = NpcInfo[currNpcId].Portrait
     portraitImg.Texture = portrait
     portraitImg.Visible = portrait ~= nil
-	
-	--使NPC面向玩家
-	local _ry = Vector3.Angle(Vector3(0,0,1),localPlayer.Position-currNpcObj.Position)
-	if localPlayer.Position.x - currNpcObj.Position.x >= 0 then
-		currNpcObj.Rotation = EulerDegree(0,_ry,0) 
-	else
-		currNpcObj.Rotation = EulerDegree(0,360 -_ry ,0) 
-	end
+
+    --使NPC面向玩家
+    local _ry = Vector3.Angle(Vector3(0, 0, 1), localPlayer.Position - currNpcObj.Position)
+    if localPlayer.Position.x - currNpcObj.Position.x >= 0 then
+        currNpcObj.Rotation = EulerDegree(0, _ry, 0)
+    else
+        currNpcObj.Rotation = EulerDegree(0, 360 - _ry, 0)
+    end
 end
 
 --- 离开NPC
@@ -98,7 +98,7 @@ function LeaveNpc()
     npcBtn.Visible = false
     npcGui.Visible = false
     currNpcId = nil
-	currNpcObj = nil
+    currNpcObj = nil
 end
 
 --- 开始小游戏
@@ -119,20 +119,20 @@ function EnterShop()
 end
 
 --- 开始对话
-function StartDialog()
-    print('[GuiNpc] StartDialog()')
-	NpcStartBattle()
+function StartMonsterBattle()
+    print('[GuiNpc] StartMonsterBattle()')
+    NpcStartBattle()
 end
 
 --- 开始宠物战斗
 function NpcStartBattle()
-	NetUtil.Fire_S("StartBattleEvent",true,currNpcObj,localPlayer)
+    NetUtil.Fire_S('StartBattleEvent', true, currNpcObj, localPlayer)
 end
 
-function GuiNpc:TouchNpcEventHandler(_npcId,_npcObj)
+function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
     -- print(table.dump(NpcInfo[_npcId]))
     if _npcId ~= nil then
-        TouchNpc(_npcId,_npcObj)
+        TouchNpc(_npcId, _npcObj)
     else
         LeaveNpc()
     end
