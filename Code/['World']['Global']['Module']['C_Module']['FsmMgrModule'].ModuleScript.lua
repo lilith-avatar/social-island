@@ -47,6 +47,7 @@ function FsmMgr:DataInit()
     playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
 
     this:ResetTrigger()
+    this.fsmState = "Idle"
 end
 
 --- 节点事件绑定
@@ -65,11 +66,13 @@ function FsmMgr:FsmTriggerEventHandler(_state)
     if playerActFsm.curState.stateName ~= _state then
         this[_state .. "Trigger"] = true
     end
+    this.fsmState = playerActFsm.curState.stateName
 end
 
 function FsmMgr:IdleStateOnEnterFunc()
     this:ResetTrigger()
     localPlayer:MoveTowards(Vector2.Zero)
+    localPlayer.GravityScale = 4
     localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation("Idle", 3, 1, 0.1, true, true, 1)
 end
@@ -101,14 +104,17 @@ end
 
 function FsmMgr:SwimIdleStateOnEnterFunc()
     this:ResetTrigger()
-    localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, false, 1)
-    localPlayer.Avatar:PlayAnimation("SwimIdle", 3, 1, 0.1, true, false, 1)
+    localPlayer:MoveTowards(Vector2.Zero)
+    localPlayer.GravityScale = 0
+    localPlayer.LinearVelocity = Vector3(0, 0.01, 0)
+    localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("SwimIdle", 3, 1, 0.1, true, true, 1)
 end
 
 function FsmMgr:SwimmingStateOnEnterFunc()
     this:ResetTrigger()
-    localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, false, 1)
-    localPlayer.Avatar:PlayAnimation("Swimming", 3, 1, 0.1, true, false, 1)
+    localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("Swimming", 3, 1, 0.1, true, true, 1)
 end
 
 function FsmMgr:BowIdleStateOnEnterFunc()
@@ -163,6 +169,11 @@ function FsmMgr:IdleStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.JUMP)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
     do ---检测飞行
         if this.FlyTrigger then
             playerActFsm:Switch(playerActStateEnum.FLY)
@@ -196,6 +207,11 @@ function FsmMgr:WalkStateOnUpdateFunc(dt)
     do ---检测跳跃键输入
         if this.JumpTrigger and localPlayer.IsOnGround then
             playerActFsm:Switch(playerActStateEnum.JUMP)
+        end
+    end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
     do ---检测飞行
@@ -233,6 +249,11 @@ function FsmMgr:RunStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.JUMP)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
     do ---检测飞行
         if this.FlyTrigger then
             playerActFsm:Switch(playerActStateEnum.FLY)
@@ -251,9 +272,19 @@ function FsmMgr:FlyStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:JumpStateOnUpdateFunc(dt)
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:SwimIdleStateOnUpdateFunc(dt)
@@ -261,7 +292,7 @@ function FsmMgr:SwimIdleStateOnUpdateFunc(dt)
         local dir = PlayerCtrl.finalDir
         dir.y = 0
         if dir.Magnitude > 0 then
-            playerActFsm:Switch(playerActStateEnum.WALK)
+            playerActFsm:Switch(playerActStateEnum.SWIMMING)
         end
     end
     do ---检测默认状态
@@ -280,8 +311,14 @@ function FsmMgr:SwimmingStateOnUpdateFunc(dt)
                 localPlayer:FaceToDir(dir, 4 * math.pi)
             end
             localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+            localPlayer.LinearVelocity =
+                Vector3(
+                localPlayer.LinearVelocity.x,
+                PlayerCam.playerGameCam.Forward.y * 5,
+                localPlayer.LinearVelocity.z
+            )
         else
-            playerActFsm:Switch(playerActStateEnum.IDLE)
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
     do ---检测默认状态
@@ -313,6 +350,11 @@ function FsmMgr:BowIdleStateOnUpdateFunc(dt)
     do ---检测默认状态
         if this.IdleTrigger then
             playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
 end
@@ -349,6 +391,11 @@ function FsmMgr:BowWalkStateOnUpdateFunc(dt)
     do ---检测默认状态
         if this.IdleTrigger then
             playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
 end
@@ -394,6 +441,11 @@ function FsmMgr:BowRunStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:BowJumpStateOnUpdateFunc(dt)
@@ -402,9 +454,19 @@ function FsmMgr:BowJumpStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.BOWIDLE)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:BowAttackStateOnUpdateFunc(dt)
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:IdleStateOnLeaveFunc()
@@ -422,6 +484,12 @@ end
 function FsmMgr:FlyStateOnLeaveFunc()
     localPlayer.Rotation = EulerDegree(0, localPlayer.Rotation.y, 0)
     PlayerCtrl:SetPlayerControllableEventHandler(true)
+end
+
+function FsmMgr:SwimIdleStateOnLeaveFunc()
+end
+
+function FsmMgr:SwimmingStateOnLeaveFunc()
 end
 
 function FsmMgr:BowIdleStateOnLeaveFunc()
