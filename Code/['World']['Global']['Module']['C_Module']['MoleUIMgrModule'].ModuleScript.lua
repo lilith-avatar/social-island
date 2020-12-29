@@ -21,6 +21,9 @@ end
 
 ---数据初始化
 function MoleUIMgr:DataInit()
+    this.isCooling = false
+    this.coolTime = 1
+    this.timer = 0
 end
 
 function MoleUIMgr:GameOver()
@@ -32,7 +35,11 @@ end
 function MoleUIMgr:EventBind()
     this.hitButton.OnClick:Connect(
         function()
+            if this.isCooling then
+                return
+            end
             this:Hit()
+            this.isCooling = true
         end
     )
 end
@@ -69,7 +76,14 @@ function MoleUIMgr:Boosting()
 end
 
 ---Update函数
-function MoleUIMgr:Update()
+function MoleUIMgr:Update(_dt)
+    if this.isCooling then
+        this.timer = this.timer + _dt
+        if this.timer >= this.coolTime then
+            this.timer = 0
+            this.isCooling = false
+        end
+    end
 end
 
 return MoleUIMgr

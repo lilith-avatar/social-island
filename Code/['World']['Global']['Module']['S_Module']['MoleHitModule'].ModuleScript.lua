@@ -118,7 +118,7 @@ function MoleHit:RefreshMole(_playerNum)
                     this.molePool[tmpRandomTab[1].id]:Destroy(mole)
                 end
             end,
-            Config.MoleConfig[tmpRandomTab[1].id].KeepTime
+            Config.MoleConfig[tmpRandomTab[1].id].KeepTime+Config.MoleConfig[tmpRandomTab[1].id].DisapearTime
         )
         table.remove(tmpTable, pitIndex)
     end

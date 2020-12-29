@@ -30,7 +30,7 @@ function MolePool:Create(_parent, _pos, _rot)
         mole = table.deepcopy(self.pool[1])
         invoke(function()
 			table.remove(self.pool, 1)
-		end,wait())
+        end,wait())
         return mole
     else
         mole = world:CreateInstance(self.objName, self.objName, _parent)
