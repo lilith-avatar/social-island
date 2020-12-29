@@ -7,7 +7,7 @@ local Maze, this = ModuleUtil.New('Maze', ServerBase)
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 8, 8
+local NUM_ROWS, NUM_COLS = 24, 24
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
@@ -20,8 +20,8 @@ local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
 
 -- 入口、出口位置，只能在左右两侧
-local ENTRANCE = math.floor((NUM_ROWS + 1) * .5)
-local EXIT = math.ceil((NUM_ROWS + 1) * .5)
+local ENTRANCE = 1
+local EXIT = NUM_ROWS
 
 -- 入口出口对象
 local entrace, exit
@@ -38,7 +38,7 @@ local floor
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
-local CELL_SIDE = 2
+local CELL_SIDE = 1
 
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
@@ -52,7 +52,7 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 local WALL_ARCH = 'Maze_Wall_Test'
 local WALL_HEIGHT = 1 -- 对应Size.Y
 local WALL_LENGTH = 2 -- 对应Size.X
-local WALL_THICKNESS = 0.2 -- 对应Size.Z
+local WALL_THICKNESS = 0.1 -- 对应Size.Z
 
 -- 墙壁对象池Hierachy根节点
 local WALL_SPACE
