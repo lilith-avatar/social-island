@@ -85,7 +85,6 @@ end
 
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
-    NetUtil.Fire_S("LeaveZeppelinEvent", localPlayer)
     FsmMgr:FsmTriggerEventHandler("Jump")
 end
 
