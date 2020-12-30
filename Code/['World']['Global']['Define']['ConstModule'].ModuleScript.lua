@@ -21,7 +21,7 @@ Const.GameEnum = {
 
 Const.MazeEventEnum = {
     JOIN = 1, -- 进入游戏
-    LEAVE = 2, -- 完成游戏退出
+    FINISH = 2, -- 完成游戏退出
     QUIT = 3 -- 中途退出
 }
 

@@ -4,10 +4,14 @@
 --- @author Yuancheng Zhang
 local Maze, this = ModuleUtil.New('Maze', ServerBase)
 
+--! 常量配置: 玩家相关
+-- 游戏时长(秒)
+local TOTAL_TIME = 120
+
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 8, 8
+local NUM_ROWS, NUM_COLS = 24, 24
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
@@ -20,8 +24,8 @@ local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
 
 -- 入口、出口位置，只能在左右两侧
-local ENTRANCE = math.floor((NUM_ROWS + 1) * .5)
-local EXIT = math.ceil((NUM_ROWS + 1) * .5)
+local ENTRANCE = 1
+local EXIT = NUM_ROWS
 
 -- 入口出口对象
 local entrace, exit
@@ -38,7 +42,7 @@ local floor
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
-local CELL_SIDE = 2
+local CELL_SIDE = 1
 
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
@@ -52,7 +56,7 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 local WALL_ARCH = 'Maze_Wall_Test'
 local WALL_HEIGHT = 1 -- 对应Size.Y
 local WALL_LENGTH = 2 -- 对应Size.X
-local WALL_THICKNESS = 0.2 -- 对应Size.Z
+local WALL_THICKNESS = 0.1 -- 对应Size.Z
 
 -- 墙壁对象池Hierachy根节点
 local WALL_SPACE
@@ -111,8 +115,8 @@ local pool, poolDone = {}, false
 
 --! 其他数据
 
--- 玩家进入Maze前的数据，退出游戏后需要接恢复
-local pTrans = {}
+-- 玩家数据
+local playerData = {}
 
 -- 寻路节点
 local path = {}
@@ -166,6 +170,7 @@ function InitMazeEntranceAndExit()
     exit.Color = Color(0xFF, 0x00, 0x00, 0xFF)
     entrace:SetActive(false)
     exit:SetActive(false)
+    exit.OnCollisionBegin:Connect(PlayerReachExit)
 end
 
 -- 初始化对象池
@@ -247,6 +252,8 @@ function MazeReset()
     -- gen objs
     MazeWallsGen()
     invoke(CheckPointsGen)
+    -- show maze
+    MazeShow()
 end
 
 -- 重置地板
@@ -468,16 +475,71 @@ function CheckPointsGen()
     end
 end
 
---! 玩家数据的缓存与读取
-
--- 玩家进入迷宫前，数据缓存
-function CachePlayerTrans(_player)
-    pTrans.pos = _player.Position
-    pTrans.rot = _player.Rotation
+-- 迷宫显示
+function MazeShow()
+    print('[Maze] MazeShow')
 end
 
--- 玩家离开迷宫后，读取数据
-function LoadPlayerTrans(_player)
+-- 迷宫隐藏
+function MazeHide()
+    print('[Maze] MazeHide')
+end
+
+--! 玩家相关
+
+-- 玩家开始迷宫
+function PlayerStartMaze(_player)
+    print('[Maze] PlayerStartMaze')
+    playerData = {}
+    playerData.player = _player
+    playerData.score = 0
+    playerData.time = 0
+    NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position)
+end
+
+-- 玩家抵达终点
+function PlayerReachExit(_hitObj)
+    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
+        print('[Maze] PlayerReachExit')
+        NetUtil.Fire_C(
+            'ClientMazeEvent',
+            playerData.player,
+            Const.MazeEventEnum.FINISH,
+            playerData.score,
+            playerData.time
+        )
+    end
+end
+
+-- 玩家中途离开或者时间用完
+function PlayerQuitMaze()
+    print('[Maze] PlayerQuitMaze')
+    if CheckPlayerExists() then
+        NetUtil.Fire_C(
+            'ClientMazeEvent',
+            playerData.player,
+            Const.MazeEventEnum.QUIT,
+            playerData.score,
+            playerData.time
+        )
+    end
+end
+
+-- 检查玩家是否在线
+function CheckPlayerExists()
+    if playerData.player then
+        return true
+    else
+        PlayerDisconnected()
+        return false
+    end
+end
+
+-- 玩家离线
+function PlayerDisconnected()
+    -- TODO: 重置时间，重置玩家数据，隐藏迷宫
+    playerData = {}
+    MazeHide()
 end
 
 --! Event handlers 事件处理
@@ -489,12 +551,24 @@ function Maze:EnterMiniGameEventHandler(_player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE then
         print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
         MazeReset()
-        CachePlayerTrans(_player)
-        NetUtil.Fire_C('ClientMazeEvent', _player, Const.MazeEventEnum.JOIN, entrace.Position)
+        MazeShow()
+        PlayerStartMaze(_player)
+    end
+end
+
+-- 离开小游戏事件
+-- @param _player 玩家
+-- @param _gameId 游戏ID
+function Maze:ExitMiniGameEventHandler(_player, _gameId)
+    if _player and _gameId == Const.GameEnum.MAZE then
+        print('[Maze] ExitMiniGameEventHandler', _player, _gameId)
+        PlayerQuitMaze()
+        MazeHide()
     end
 end
 
 --! Aux 辅助功能
+
 -- 打印迷宫数据
 PrintMazeData = showLog and function()
         for row = 1, NUM_ROWS do

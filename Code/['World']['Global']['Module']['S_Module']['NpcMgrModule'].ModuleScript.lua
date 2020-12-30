@@ -5,6 +5,7 @@
 local NpcMgr, this = ModuleUtil.New('NpcMgr', ServerBase)
 
 -- cache
+local ServerUtil = ServerUtil
 local Config = Config
 local NpcInfo = Config.NpcInfo
 local npcFolder
@@ -37,14 +38,14 @@ function SpawnNpcs()
         local npcInfo = npc -- 用于闭包
         npcObj.CollisionArea.OnCollisionBegin:Connect(
             function(_hitObj)
-                if CheckHitObjIsPlayer(_hitObj) then
+                if ServerUtil.CheckHitObjIsPlayer(_hitObj) then
                     NetUtil.Fire_C('TouchNpcEvent', _hitObj, npcInfo.ID, npcObj)
                 end
             end
         )
         npcObj.CollisionArea.OnCollisionEnd:Connect(
             function(_hitObj)
-                if CheckHitObjIsPlayer(_hitObj) then
+                if ServerUtil.CheckHitObjIsPlayer(_hitObj) then
                     NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
                 end
             end
