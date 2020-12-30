@@ -486,8 +486,8 @@ end
 -- @param _player 玩家
 -- @param _gameId 游戏ID
 function Maze:EnterMiniGameEventHandler(_player, _gameId)
-    print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE then
+        print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
         MazeReset()
         CachePlayerTrans(_player)
         NetUtil.Fire_C('ClientMazeEvent', _player, Const.MazeEventEnum.JOIN, entrace.Position)
