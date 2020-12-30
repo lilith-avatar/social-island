@@ -21,19 +21,23 @@ function MolePool:Destroy(_obj)
     end
 end
 
-function MolePool:Create(_parent, _pos, _rot)
+function MolePool:Create(_parent, _name)
     local mole
     if self.pool[1] then
         self.pool[1].Parent = _parent
-        self.pool[1].Position, self.pool[1].Rotation = _pos, _rot
+        self.pool[1].Position, self.pool[1].Rotation = _parent.Position, _parent.Rotation
         self.pool[1]:SetActive(true)
         mole = table.deepcopy(self.pool[1])
-        invoke(function()
-			table.remove(self.pool, 1)
-        end,wait())
+        invoke(
+            function()
+                table.remove(self.pool, 1)
+            end,
+            wait()
+        )
         return mole
     else
-        mole = world:CreateInstance(self.objName, self.objName, _parent)
+        mole = world:CreateInstance(self.objName, _name, _parent)
+        mole.Position, mole.Rotation = _parent.Position, _parent.Rotation
         mole:SetActive(true)
         return mole
     end

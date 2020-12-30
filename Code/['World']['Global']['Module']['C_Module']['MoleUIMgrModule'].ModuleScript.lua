@@ -14,6 +14,7 @@ end
 function MoleUIMgr:NodeDef()
     this.gui = localPlayer.Local.MoleHitGui
     this.hitButton = this.gui.HitBtn
+    this.hitMask = this.hitButton.MaskImg
     this.timeText = this.gui.InfoPnl.TimeTxt.NumTxt
     this.scoreText = this.gui.InfoPnl.ScoreTxt.NumTxt
     this.boostText = this.gui.InfoPnl.BoostTxt.NumTxt
@@ -79,6 +80,7 @@ end
 function MoleUIMgr:Update(_dt)
     if this.isCooling then
         this.timer = this.timer + _dt
+        this.hitMask.FillAmount = 1 - this.timer/this.coolTime
         if this.timer >= this.coolTime then
             this.timer = 0
             this.isCooling = false

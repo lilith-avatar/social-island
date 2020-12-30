@@ -95,48 +95,38 @@ end
 ---根据玩家人数刷地鼠
 function MoleHit:RefreshMole(_playerNum)
     local tmpTable = TransformTable(this.pitList)
-    local tmpRandomTab
-    --! only test
-    --清除现有的地鼠
-    for k, v in pairs(this.pitList) do
-        if v.model.Mole then
-            v.model.Mole:Destroy()
-            v.mole = nil
-        end
-    end
+    local tmpRandomTab, pitIndex, mole
 
     for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
-        local pitIndex = math.random(1, #tmpTable)
-        tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
-        tmpTable[pitIndex].mole = tmpRandomTab[1].id
-        --Todo: 对象池
-        local mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model,tmpTable[pitIndex].model.Position,tmpTable[pitIndex].model.Rotation)
-        invoke(
-            function()
-                if mole then
-                    --Todo: 对象池销毁
-                    this.molePool[tmpRandomTab[1].id]:Destroy(mole)
-                end
-            end,
-            Config.MoleConfig[tmpRandomTab[1].id].KeepTime+Config.MoleConfig[tmpRandomTab[1].id].DisapearTime
+        pitIndex, tmpRandomTab = math.random(1, #tmpTable), RandomSortByWeights(Config.MoleConfig)
+        mole = this.molePool[tmpRandomTab[1].id]:Create(
+            tmpTable[pitIndex].model,tmpRandomTab[1].id
         )
-        table.remove(tmpTable, pitIndex)
+        print(mole.Name)
+        this.pitList[tmpTable[pitIndex].model.Name].mole = mole
+        invoke(function()
+            if mole then
+                this.molePool[tmpRandomTab[1].id]:Destroy(mole)
+                this.pitList[tmpTable[pitIndex].model.Name].mole = nil
+            end
+        end,Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime)
+        table.remove(tmpTable,pitIndex)
     end
 end
 
 local player
 function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
     for k, _ in pairs(_hitPit) do
-        if this.pitList[k] and this.pitList[k].mole and this.pitList[k].model.Mole then
+        if this.pitList[k] and this.pitList[k].mole then
             player = world:GetPlayerByUserId(_uid)
             NetUtil.Fire_C(
                 "AddScoreAndBoostEvent",
                 player,
-                Config.MoleConfig[this.pitList[k].mole].Type,
-                Config.MoleConfig[this.pitList[k].mole].Reward,
-                Config.MoleConfig[this.pitList[k].mole].BoostReward
+                Config.MoleConfig[this.pitList[k].mole.Name].Type,
+                Config.MoleConfig[this.pitList[k].mole.Name].Reward,
+                Config.MoleConfig[this.pitList[k].mole.Name].BoostReward
             )
-            this.pitList[k].model.Mole:Destroy()
+            this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
             this.pitList[k].mole = nil
         end
     end
