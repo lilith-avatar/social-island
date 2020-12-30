@@ -4,8 +4,8 @@
 --- @author Yuancheng Zhang
 local Maze, this = ModuleUtil.New('Maze', ServerBase)
 
---! 打印事件日志, true:开启打印
-local showLog, PrintMazeData, PrintNodePath, GenNodePath = false
+--! 打印事件日志, true:开启Debug模式
+local debug, PrintMazeData, PrintNodePath, GenNodePath = false
 
 --! 常量配置: 玩家相关
 
@@ -97,6 +97,12 @@ WALL_DICT[DOWN] = {
     symbol = '↓'
 }
 
+--! 常量配置: Boundary 空气墙相关
+
+-- 高度，厚度
+local BOUNDARY_HEIGHT, BOUNDARY_THICKNESS = 3, .5
+local boundary = {}
+
 --! 常量配置: Check Point 积分点相关
 
 -- 积分点总数
@@ -141,6 +147,9 @@ local pathNodes = {}
 -- 计数器id
 local timer, startTime, now = 0, 0, Timer.GetTime
 
+-- Debug模式下显示透明度，非debug模式为0
+local DEBUG_ALPHA = debug and 0x10 or 0x00
+
 --! 初始化
 
 -- 初始化
@@ -150,9 +159,9 @@ function Maze:Init()
     InitMazeCheckerSpace()
     InitMazeFloor()
     InitMazeEntranceAndExit()
-    InitBoundary()
-    invoke(InitWallPool)
-    invoke(InitCheckerPool)
+    invoke(InitBoundary)
+    invoke(InitCheckerPool, .2)
+    invoke(InitWallPool, 1)
     MazeHide()
     --* TEST ONLY
     -- invoke(MazeReset, 5)
@@ -206,6 +215,37 @@ end
 
 -- 初始化空气墙
 function InitBoundary()
+    wait()
+    boundary.left = world:CreateObject('Cube', 'Boundary_Left', floor)
+    boundary.right = world:CreateObject('Cube', 'Boundary_Right', floor)
+    boundary.up = world:CreateObject('Cube', 'Boundary_Up', floor)
+    boundary.down = world:CreateObject('Cube', 'Boundary_Down', floor)
+    boundary.ceil = world:CreateObject('Cube', 'Boundary_Ceil', floor)
+    -- 尺寸
+    boundary.left.Size = Vector3(NUM_COLS * CELL_SIDE, BOUNDARY_HEIGHT, BOUNDARY_THICKNESS)
+    boundary.right.Size = Vector3(NUM_COLS * CELL_SIDE, BOUNDARY_HEIGHT, BOUNDARY_THICKNESS)
+    boundary.up.Size = Vector3(NUM_ROWS * CELL_SIDE, BOUNDARY_HEIGHT, BOUNDARY_THICKNESS)
+    boundary.down.Size = Vector3(NUM_ROWS * CELL_SIDE, BOUNDARY_HEIGHT, BOUNDARY_THICKNESS)
+    boundary.ceil.Size = Vector3(NUM_ROWS * CELL_SIDE, BOUNDARY_THICKNESS, NUM_ROWS * CELL_SIDE)
+    -- 颜色
+    boundary.left.Color = Color(0xFF, 0xFF, 0xFF, DEBUG_ALPHA)
+    boundary.right.Color = Color(0xFF, 0xFF, 0xFF, DEBUG_ALPHA)
+    boundary.up.Color = Color(0xFF, 0xFF, 0xFF, DEBUG_ALPHA)
+    boundary.down.Color = Color(0xFF, 0xFF, 0xFF, DEBUG_ALPHA)
+    boundary.ceil.Color = Color(0xFF, 0xFF, 0xFF, DEBUG_ALPHA)
+    -- Transform
+    local arroundHeight = (MAZE_FLOOR_THICKNESS + BOUNDARY_HEIGHT) * .5
+    local offsetX = (NUM_ROWS * CELL_SIDE + BOUNDARY_THICKNESS) * .5
+    local offsetY = (NUM_COLS * CELL_SIDE + BOUNDARY_THICKNESS) * .5
+    -- local pos
+    boundary.left.LocalPosition = Vector3(-offsetX, arroundHeight, 0)
+    boundary.right.LocalPosition = Vector3(offsetX, arroundHeight, 0)
+    boundary.up.LocalPosition = Vector3(0, arroundHeight, -offsetY)
+    boundary.down.LocalPosition = Vector3(0, arroundHeight, offsetY)
+    boundary.ceil.LocalPosition = Vector3(0, (MAZE_FLOOR_THICKNESS + BOUNDARY_THICKNESS) * .5 + BOUNDARY_HEIGHT, 0)
+    -- local rot
+    boundary.left.LocalRotation = EulerDegree(0, 90, 0)
+    boundary.right.LocalRotation = EulerDegree(0, 90, 0)
 end
 
 -- 初始化对象池 - 墙壁
@@ -247,7 +287,7 @@ function InitCheckerPool()
         local objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
         objChecker.Size = Vector3.One * 0.5
         objChecker.Block = false
-        objChecker.Color = Color(0x00, 0x00, 0xFF, 0x2F)
+        objChecker.Color = Color(0x00, 0x00, 0xFF, DEBUG_ALPHA * 3)
         objChecker.OnCollisionBegin:Connect(
             function(_hitObj)
                 PlayerHitChecker(_hitObj, objChecker)
@@ -701,7 +741,7 @@ end
 --! Aux 辅助功能
 
 -- 打印迷宫数据
-PrintMazeData = showLog and function()
+PrintMazeData = debug and function()
         for row = 1, NUM_ROWS do
             for col = 1, NUM_COLS do
                 print(table.dump(M[row][col]))
@@ -712,7 +752,7 @@ PrintMazeData = showLog and function()
     end
 
 -- 打印寻路结果
-PrintNodePath = showLog and function()
+PrintNodePath = debug and function()
         print('打印寻路结果')
         for k, n in pairs(path) do
             print(string.format('[%02d] %s (%s, %s) %s', k, WALL_DICT[n[3]].symbol, n[1], n[2], WALL_DICT[n[4]].symbol))
@@ -722,7 +762,7 @@ PrintNodePath = showLog and function()
 
 -- 在迷宫上生成路径
 GenNodePath =
-    showLog and
+    debug and
     function()
         -- 删除路径点
         local point
