@@ -154,7 +154,7 @@ end
 --! Event handlers 事件处理
 
 function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
-    -- print(table.dump(NpcInfo[_npcId]))
+    print('[GuiNpc] TouchNpcEventHandler', _npcId)
     if _npcId ~= nil then
         TouchNpc(_npcId, _npcObj)
     else
