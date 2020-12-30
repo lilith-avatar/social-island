@@ -4,20 +4,24 @@
 --- @author Yuancheng Zhang
 local Maze, this = ModuleUtil.New('Maze', ServerBase)
 
+--! 打印事件日志, true:开启打印
+local showLog, PrintMazeData, PrintNodePath, GenNodePath = false
+
 --! 常量配置: 玩家相关
+
 -- 游戏时长(秒)
-local TOTAL_TIME = 120
+local TOTAL_TIME = 30
 
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 24, 24
+local NUM_ROWS, NUM_COLS = 15, 15
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
 
 -- 迷宫中心位置
-local MAZE_CENTER_POS = Vector3(103, -14.25, 14)
+local MAZE_CENTER_POS = Vector3(103, -13.25, 14)
 local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
@@ -93,6 +97,16 @@ WALL_DICT[DOWN] = {
     symbol = '↓'
 }
 
+--! 常量配置: Check Point 积分点相关
+
+-- 积分点总数
+local TOTAL_CHECKER = 20
+
+-- 墙壁对象池Hierachy根节点
+local CHECKER_SPACE
+-- 墙壁对象池隐藏默认位置
+local CHECKER_POOL_POS = Vector3.Down * 100
+
 --! 迷宫生成数据信息
 
 -- M用于存储迷宫生成数据
@@ -108,22 +122,24 @@ local r, c = ENTRANCE, 1
 -- # The history is the stack of visited locations
 local history = Stack:New()
 
---! 墙体对象池信息
+--! 对象池
 
--- 对象池，对象池生成完毕
-local pool, poolDone = {}, false
+-- 墙壁对象池，墙壁对象池生成完毕
+local wallPool, wallPoolDone = {}, false
+-- 积分点对象池，积分点对象池生成完毕
+local checkerPool, checkerPoolDone = {}, false
 
 --! 其他数据
 
 -- 玩家数据
-local playerData = {}
+local playerData
 
 -- 寻路节点
 local path = {}
-local checkPoints = {}
+local pathNodes = {}
 
---! 打印事件日志, true:开启打印
-local showLog, PrintMazeData, PrintNodePath = false
+-- 计数器id
+local timer
 
 --! 初始化
 
@@ -131,9 +147,11 @@ local showLog, PrintMazeData, PrintNodePath = false
 function Maze:Init()
     print('[Maze] Init()')
     InitMazeWallSpace()
+    InitMazeCheckerSpace()
     InitMazeFloor()
     InitMazeEntranceAndExit()
     invoke(InitWallPool)
+    invoke(InitCheckerPool)
 
     --* TEST ONLY
     -- invoke(MazeReset, 5)
@@ -151,6 +169,18 @@ function InitMazeWallSpace()
     )
 end
 
+-- 初始化检查点空间
+function InitMazeCheckerSpace()
+    CHECKER_SPACE =
+        world:CreateObject(
+        'NodeObject',
+        'Maze_Checker_Space',
+        MAZE_ROOT,
+        MAZE_CENTER_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5,
+        MAZE_CENTER_ROT
+    )
+end
+
 -- 初始化迷宫地板，与Maze_Wall_Space大小一致
 function InitMazeFloor()
     floor = world:CreateObject('Cube', 'Maze_Floor', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
@@ -162,8 +192,8 @@ end
 function InitMazeEntranceAndExit()
     entrace = world:CreateObject('Sphere', 'Entrance', floor)
     exit = world:CreateObject('Sphere', 'Exit', floor)
-    entrace.Size = Vector3.One * 0.3
-    exit.Size = Vector3.One * 0.3
+    entrace.Size = Vector3.One * 0.5
+    exit.Size = Vector3.One * 0.5
     entrace.Block = false
     exit.Block = false
     entrace.Color = Color(0x00, 0xFF, 0x00, 0xFF)
@@ -173,8 +203,11 @@ function InitMazeEntranceAndExit()
     exit.OnCollisionBegin:Connect(PlayerReachExit)
 end
 
--- 初始化对象池
+-- 初始化对象池 - 墙壁
 function InitWallPool()
+    if wallPoolDone then
+        return
+    end
     assert(WALL_SPACE and not WALL_SPACE:IsNull(), '[Maze] WALL_SPACE 为空')
     -- 总共需要多少面墙
     -- 外墙数 = NUM_ROWS * 2 + NUM_COLS * 2
@@ -183,48 +216,110 @@ function InitWallPool()
     local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1) * 2 - 2
     print('[Maze] InitWallPool() 需要墙数', wallNeeded)
     local rot = EulerDegree(0, 0, 0)
-    local wallName
+    local name
     for i = 1, wallNeeded do
-        wallName = string.format('%s_%04d', WALL_ARCH, i)
-        objWall = world:CreateInstance(WALL_ARCH, wallName, WALL_SPACE, WALL_POOL_POS, rot)
-        pool[objWall] = true
+        name = string.format('%s_%04d', WALL_ARCH, i)
+        objWall = world:CreateInstance(WALL_ARCH, name, WALL_SPACE, WALL_POOL_POS, rot)
+        wallPool[objWall] = true
         if i % 5 == 0 then
             wait()
         end
     end
-    poolDone = true
+    wallPoolDone = true
     print('[Maze] InitWallPool() done')
 end
 
+-- 初始化对象池 - 积分点
+function InitCheckerPool()
+    if checkerPoolDone then
+        return
+    end
+    assert(CHECKER_SPACE and not CHECKER_SPACE:IsNull(), '[Maze] CHECKER_SPACE 为空')
+    local rot = EulerDegree(0, 0, 0)
+    local name
+    for i = 1, TOTAL_CHECKER do
+        name = string.format('Check_Point_%04d', i)
+        local objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
+        objChecker.Size = Vector3.One * 0.3
+        objChecker.Block = false
+        objChecker.Color = Color(0x00, 0x00, 0xFF, 0x2F)
+        objChecker.OnCollisionBegin:Connect(
+            function(_hitObj)
+                PlayerHitChecker(_hitObj, objChecker)
+            end
+        )
+        checkerPool[objChecker] = true
+        if i % 5 == 0 then
+            wait()
+        end
+    end
+    checkerPoolDone = true
+    print('[Maze] InitWallPool() done')
+end
+
+--! 对象池生成和回收
+
 -- 从对象池中拿取墙壁obj
 function SpawnWall(_pos, _rot)
-    for obj, available in pairs(pool) do
+    for obj, available in pairs(wallPool) do
         if available then
-            pool[obj] = false
+            wallPool[obj] = false
             obj.LocalPosition = _pos
             obj.LocalRotation = _rot
             obj:SetActive(true)
             return obj
         end
     end
-    error('[Maze] 墙体数量不够')
+    error('[Maze] SpawnWall() 墙体数量不够')
 end
 
 -- 对象池回收墙壁obj
 function DespawnWall(_obj)
     assert(_obj and not _obj:IsNull(), '[Maze] DespawnWall(_obj) _obj不能为空')
-    assert(pool[_obj] ~= nil, '[Maze] DespawnWall(_obj) _obj不在对象池中')
-    assert(pool[_obj] == false, '[Maze] DespawnWall(_obj) _obj对象池状态错误')
+    assert(wallPool[_obj] ~= nil, '[Maze] DespawnWall(_obj) _obj不在对象池中')
+    assert(wallPool[_obj] == false, '[Maze] DespawnWall(_obj) _obj对象池状态错误')
     -- _obj.Position = WALL_POOL_POS
     _obj:SetActive(false)
-    pool[_obj] = true
+    wallPool[_obj] = true
 end
 
 -- 回收全部墙壁obj
-function DespaceWalls()
-    for obj, _ in pairs(pool) do
+function DespawnWalls()
+    for obj, _ in pairs(wallPool) do
         obj.Position = WALL_POOL_POS
-        pool[obj] = true
+        wallPool[obj] = true
+    end
+end
+
+-- 从对象池中取出积分点obj
+function SpawnChecker(_pos, _rot)
+    for obj, available in pairs(checkerPool) do
+        if available then
+            checkerPool[obj] = false
+            obj.LocalPosition = _pos
+            obj.LocalRotation = _rot
+            obj:SetActive(true)
+            return obj
+        end
+    end
+    error('[Maze] SpawnChecker() 积分点数量不够')
+end
+
+-- 对象池回积分点obj
+function DespawnChecker(_obj)
+    assert(_obj and not _obj:IsNull(), '[Maze] DespawnChecker(_obj) _obj不能为空')
+    assert(checkerPool[_obj] ~= nil, '[Maze] DespawnChecker(_obj) _obj不在对象池中')
+    assert(checkerPool[_obj] == false, '[Maze] DespawnChecker(_obj) _obj对象池状态错误')
+    _obj:SetActive(false)
+    checkerPool[_obj] = true
+end
+
+-- 回收全部积分点obj
+function DespawnCheckers()
+    for obj, _ in pairs(checkerPool) do
+        obj.Position = CHECKER_POOL_POS
+        obj:SetActive(false)
+        checkerPool[obj] = true
     end
 end
 
@@ -232,7 +327,7 @@ end
 
 -- 迷宫重置
 function MazeReset()
-    if not poolDone then
+    if not wallPoolDone or not checkerPoolDone then
         error('[Maze] 对象池初始化未完成，MazeReset() 不能执行')
         return
     end
@@ -241,8 +336,7 @@ function MazeReset()
     MazeFloorReset()
     MazeEntraceAndExitReset()
     MazeDataReset()
-    MazeWallsReset()
-    CheckPointsReset()
+    MazeObjsReset()
     -- data
     MazeDataGen()
     FindNodePath()
@@ -251,7 +345,8 @@ function MazeReset()
     PrintNodePath()
     -- gen objs
     MazeWallsGen()
-    invoke(CheckPointsGen)
+    MazeCheckersGen()
+    invoke(GenNodePath)
     -- show maze
     MazeShow()
 end
@@ -266,9 +361,11 @@ end
 
 function MazeEntraceAndExitReset()
     entrace.LocalPosition =
-        Vector3(1, 0, -ENTRANCE) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5
+        Vector3(1, 0, -ENTRANCE) * CELL_POS_OFFSET + CELL_LEFT_UP_POS +
+        Vector3.Up * (MAZE_FLOOR_THICKNESS + WALL_HEIGHT) * .5
     exit.LocalPosition =
-        Vector3(NUM_COLS, 0, -EXIT) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5
+        Vector3(NUM_COLS, 0, -EXIT) * CELL_POS_OFFSET + CELL_LEFT_UP_POS +
+        Vector3.Up * (MAZE_FLOOR_THICKNESS + WALL_HEIGHT) * .5
     entrace:SetActive(true)
     exit:SetActive(true)
 end
@@ -284,19 +381,9 @@ function MazeDataReset()
 end
 
 -- 迷宫墙壁重置
-function MazeWallsReset()
-    DespaceWalls()
-end
-
--- 迷宫检查点重置
-function CheckPointsReset()
-    --TODO: 重置
-    for k, n in pairs(checkPoints) do
-        if n and not n:IsNull() then
-            n:Destroy()
-        end
-    end
-    checkPoints = {}
+function MazeObjsReset()
+    DespawnWalls()
+    DespawnCheckers()
 end
 
 -- 迷宫数据生成
@@ -386,6 +473,35 @@ function MazeWallsGen()
     end
 end
 
+-- 迷宫积分点生成
+function MazeCheckersGen()
+    local objChecker, node, r, c
+    local pos, rot = nil, EulerDegree(0, 0, 0)
+    local step = math.ceil(#path / TOTAL_CHECKER)
+    for i = 1, #path, step do
+        node = path[i]
+        r, c = node[1], node[2]
+        pos = Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * WALL_HEIGHT * .5
+        objChecker = SpawnChecker(pos, rot)
+    end
+end
+
+-- 迷宫显示
+function MazeShow()
+    print('[Maze] MazeShow')
+    WALL_SPACE:SetActive(true)
+    CHECKER_SPACE:SetActive(true)
+    floor:SetActive(true)
+end
+
+-- 迷宫隐藏
+function MazeHide()
+    print('[Maze] MazeHide')
+    WALL_SPACE:SetActive(false)
+    CHECKER_SPACE:SetActive(false)
+    floor:SetActive(false)
+end
+
 -- 找出迷宫路径
 function FindNodePath()
     -- start point
@@ -454,35 +570,10 @@ function FindNodePath()
         idx = idx + 1
         found = (r == tr and c == tc)
     end
-end
 
--- 生成检查点
-function CheckPointsGen()
-    --TODO: 生成检查点
-    local point, r, c
-    for k, n in pairs(path) do
-        r, c = n[1], n[2]
-        if k ~= 1 then
-            point = world:CreateObject('Sphere', 'Point_' .. k, floor)
-            point.Size = Vector3.One * 0.3
-            point.Color = Color(0x00, 0xFF, 0xFF, 0xFF)
-            point.LocalPosition =
-                Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5
-            table.insert(checkPoints, p)
-            point.Block = false
-            wait()
-        end
+    for i = #path, idx, -1 do
+        table.remove(path, i)
     end
-end
-
--- 迷宫显示
-function MazeShow()
-    print('[Maze] MazeShow')
-end
-
--- 迷宫隐藏
-function MazeHide()
-    print('[Maze] MazeHide')
 end
 
 --! 玩家相关
@@ -492,15 +583,19 @@ function PlayerStartMaze(_player)
     print('[Maze] PlayerStartMaze')
     playerData = {}
     playerData.player = _player
+    playerData.checker = 0
     playerData.score = 0
     playerData.time = 0
-    NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position)
+    NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position, TOTAL_TIME)
+    timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME)
 end
 
 -- 玩家抵达终点
 function PlayerReachExit(_hitObj)
     if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         print('[Maze] PlayerReachExit')
+        MazeHide()
+        GetResult()
         NetUtil.Fire_C(
             'ClientMazeEvent',
             playerData.player,
@@ -508,12 +603,25 @@ function PlayerReachExit(_hitObj)
             playerData.score,
             playerData.time
         )
+        playerData = nil
+    end
+    TimeUtil.ClearTimeout(timer)
+end
+
+-- 玩家触碰积分点
+function PlayerHitChecker(_hitObj, _checkObj)
+    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
+        playerData.checker = playerData.checker + 1
+        print('[Maze] PlayerHitChecker()', playerData.checker)
+        DespawnChecker(_checkObj)
     end
 end
 
 -- 玩家中途离开或者时间用完
 function PlayerQuitMaze()
     print('[Maze] PlayerQuitMaze')
+    MazeHide()
+    GetResult()
     if CheckPlayerExists() then
         NetUtil.Fire_C(
             'ClientMazeEvent',
@@ -522,12 +630,14 @@ function PlayerQuitMaze()
             playerData.score,
             playerData.time
         )
+        playerData = nil
     end
+    TimeUtil.ClearTimeout(timer)
 end
 
--- 检查玩家是否在线
+-- 检查玩家是否在线，防止玩家在迷宫的时候中途退出游戏
 function CheckPlayerExists()
-    if playerData.player then
+    if playerData and playerData.player then
         return true
     else
         PlayerDisconnected()
@@ -537,9 +647,17 @@ end
 
 -- 玩家离线
 function PlayerDisconnected()
-    -- TODO: 重置时间，重置玩家数据，隐藏迷宫
-    playerData = {}
+    playerData = nil
     MazeHide()
+    TimeUtil.ClearTimeout(timer)
+end
+
+-- 得到玩家结果
+function GetResult()
+    if playerData and playerData.player then
+        -- TODO: 最终得分计算，以下为临时
+        playerData.score = playerData.checker
+    end
 end
 
 --! Event handlers 事件处理
@@ -548,11 +666,19 @@ end
 -- @param _player 玩家
 -- @param _gameId 游戏ID
 function Maze:EnterMiniGameEventHandler(_player, _gameId)
-    if _player and _gameId == Const.GameEnum.MAZE then
+    if _player and _gameId == Const.GameEnum.MAZE and not playerData then
         print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
-        MazeReset()
-        MazeShow()
-        PlayerStartMaze(_player)
+        if not wallPoolDone or not checkerPoolDone then
+            -- TODO: 反馈给NPC对话，说明此原因
+            print('[Maze] EnterMiniGameEventHandler 迷宫初始化未完成，请等待')
+        elseif playerData then
+            -- TODO: 反馈给NPC对话，说明此原因
+            print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
+        else
+            MazeReset()
+            MazeShow()
+            PlayerStartMaze(_player)
+        end
     end
 end
 
@@ -563,7 +689,6 @@ function Maze:ExitMiniGameEventHandler(_player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE then
         print('[Maze] ExitMiniGameEventHandler', _player, _gameId)
         PlayerQuitMaze()
-        MazeHide()
     end
 end
 
@@ -587,6 +712,42 @@ PrintNodePath = showLog and function()
             print(string.format('[%02d] %s (%s, %s) %s', k, WALL_DICT[n[3]].symbol, n[1], n[2], WALL_DICT[n[4]].symbol))
         end
     end or function()
+    end
+
+-- 在迷宫上生成路径
+GenNodePath =
+    showLog and
+    function()
+        -- 删除路径点
+        local point
+        for i = #pathNodes, 1, -1 do
+            point = pathNodes[i]
+            if point and not point:IsNull() then
+                point:Destroy()
+                table.remove(pathNodes, i)
+            end
+            if i % 5 == 0 then
+                wait()
+            end
+        end
+        -- 生成路径点
+        local r, c, name
+        for k, n in pairs(path) do
+            r, c = n[1], n[2]
+            name = string.format('Path_Node_%04d', k)
+            point = world:CreateObject('Sphere', name, floor)
+            point.Size = Vector3.One * 0.1
+            point.Block = false
+            point.Color = Color(0x00, 0xFF, 0xFF, 0xFF)
+            point.LocalPosition =
+                Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS +
+                Vector3.Up * (MAZE_FLOOR_THICKNESS + WALL_HEIGHT) * .5
+            table.insert(pathNodes, point)
+            point.Block = false
+            wait()
+        end
+    end or
+    function()
     end
 
 return Maze
