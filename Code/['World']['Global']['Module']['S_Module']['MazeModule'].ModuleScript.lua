@@ -139,7 +139,7 @@ local path = {}
 local pathNodes = {}
 
 -- 计数器id
-local timer
+local timer, startTime, now = 0, 0, Timer.GetTime
 
 --! 初始化
 
@@ -150,6 +150,7 @@ function Maze:Init()
     InitMazeCheckerSpace()
     InitMazeFloor()
     InitMazeEntranceAndExit()
+    InitBoundary()
     invoke(InitWallPool)
     invoke(InitCheckerPool)
     MazeHide()
@@ -201,6 +202,10 @@ function InitMazeEntranceAndExit()
     entrace:SetActive(false)
     exit:SetActive(false)
     exit.OnCollisionBegin:Connect(PlayerReachExit)
+end
+
+-- 初始化空气墙
+function InitBoundary()
 end
 
 -- 初始化对象池 - 墙壁
@@ -586,6 +591,7 @@ function PlayerStartMaze(_player)
     playerData.time = 0
     NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position, TOTAL_TIME)
     timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME)
+    startTime = now()
 end
 
 -- 玩家抵达终点
@@ -593,6 +599,7 @@ function PlayerReachExit(_hitObj)
     if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         print('[Maze] PlayerReachExit')
         MazeHide()
+        playerData.checker = TOTAL_CHECKER
         GetResult()
         NetUtil.Fire_C(
             'ClientMazeEvent',
@@ -604,15 +611,6 @@ function PlayerReachExit(_hitObj)
         playerData = nil
     end
     TimeUtil.ClearTimeout(timer)
-end
-
--- 玩家触碰积分点
-function PlayerHitChecker(_hitObj, _checkObj)
-    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
-        playerData.checker = playerData.checker + 1
-        print('[Maze] PlayerHitChecker()', playerData.checker)
-        DespawnChecker(_checkObj)
-    end
 end
 
 -- 玩家中途离开或者时间用完
@@ -650,10 +648,20 @@ function PlayerDisconnected()
     TimeUtil.ClearTimeout(timer)
 end
 
+-- 玩家触碰积分点
+function PlayerHitChecker(_hitObj, _checkObj)
+    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
+        playerData.checker = playerData.checker + 1
+        print('[Maze] PlayerHitChecker()', playerData.checker)
+        DespawnChecker(_checkObj)
+    end
+end
+
 -- 得到玩家结果
 function GetResult()
     if playerData and playerData.player then
         -- TODO: 最终得分计算，以下为临时
+        playerData.time = math.min(TOTAL_TIME, now() - startTime)
         playerData.score = playerData.checker
     end
 end
