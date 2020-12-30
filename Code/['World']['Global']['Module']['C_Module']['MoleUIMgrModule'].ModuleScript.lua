@@ -12,8 +12,10 @@ end
 
 ---节点定义
 function MoleUIMgr:NodeDef()
+    this.contrlGui = localPlayer.Local.ControlGui
     this.gui = localPlayer.Local.MoleHitGui
     this.hitButton = this.gui.HitBtn
+    this.hitMask = this.hitButton.MaskImg
     this.timeText = this.gui.InfoPnl.TimeTxt.NumTxt
     this.scoreText = this.gui.InfoPnl.ScoreTxt.NumTxt
     this.boostText = this.gui.InfoPnl.BoostTxt.NumTxt
@@ -21,10 +23,14 @@ end
 
 ---数据初始化
 function MoleUIMgr:DataInit()
+    this.isCooling = false
+    this.coolTime = 1
+    this.timer = 0
 end
 
 function MoleUIMgr:GameOver()
     this.gui:SetActive(false)
+    this.contrlGui.UseBtn:SetActive(true)
     --this.hitButton:SetActive(false)
 end
 
@@ -32,7 +38,11 @@ end
 function MoleUIMgr:EventBind()
     this.hitButton.OnClick:Connect(
         function()
+            if this.isCooling then
+                return
+            end
             this:Hit()
+            this.isCooling = true
         end
     )
 end
@@ -50,6 +60,7 @@ function MoleUIMgr:StartGame()
     NetUtil.Fire_S("PlayerStartMoleHitEvent", localPlayer.UserId)
     this.gui:SetActive(true)
     this.hitButton:SetActive(true)
+    this.contrlGui.UseBtn:SetActive(false)
 end
 
 function MoleUIMgr:UpdateScore(_score)
@@ -69,7 +80,15 @@ function MoleUIMgr:Boosting()
 end
 
 ---Update函数
-function MoleUIMgr:Update()
+function MoleUIMgr:Update(_dt)
+    if this.isCooling then
+        this.timer = this.timer + _dt
+        this.hitMask.FillAmount = 1 - this.timer/this.coolTime
+        if this.timer >= this.coolTime then
+            this.timer = 0
+            this.isCooling = false
+        end
+    end
 end
 
 return MoleUIMgr
