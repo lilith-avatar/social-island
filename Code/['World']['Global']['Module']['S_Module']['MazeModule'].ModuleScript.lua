@@ -501,9 +501,6 @@ function FindNodePath()
     for i = #path, idx, -1 do
         table.remove(path, i)
     end
-
-    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-    print(#path, idx)
 end
 
 -- 迷宫显示
