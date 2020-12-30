@@ -454,6 +454,10 @@ function FindNodePath()
         idx = idx + 1
         found = (r == tr and c == tc)
     end
+
+    for i = #path, idx, -1 do
+        table.remove(path, i)
+    end
 end
 
 -- 生成检查点
