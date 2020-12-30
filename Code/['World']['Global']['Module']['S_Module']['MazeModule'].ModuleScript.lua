@@ -478,11 +478,15 @@ end
 -- 迷宫显示
 function MazeShow()
     print('[Maze] MazeShow')
+    WALL_SPACE:SetActive(true)
+    floor:SetActive(true)
 end
 
 -- 迷宫隐藏
 function MazeHide()
     print('[Maze] MazeHide')
+    WALL_SPACE:SetActive(false)
+    floor:SetActive(false)
 end
 
 --! 玩家相关
@@ -501,6 +505,7 @@ end
 function PlayerReachExit(_hitObj)
     if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         print('[Maze] PlayerReachExit')
+        MazeHide()
         NetUtil.Fire_C(
             'ClientMazeEvent',
             playerData.player,
@@ -514,6 +519,7 @@ end
 -- 玩家中途离开或者时间用完
 function PlayerQuitMaze()
     print('[Maze] PlayerQuitMaze')
+    MazeHide()
     if CheckPlayerExists() then
         NetUtil.Fire_C(
             'ClientMazeEvent',
