@@ -17,7 +17,7 @@ local NUM_ROWS, NUM_COLS = 24, 24
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
 
 -- 迷宫中心位置
-local MAZE_CENTER_POS = Vector3(103, -14.25, 14)
+local MAZE_CENTER_POS = Vector3(103, -13.25, 14)
 local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
