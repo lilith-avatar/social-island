@@ -5,7 +5,7 @@
 local Maze, this = ModuleUtil.New('Maze', ServerBase)
 
 --! 打印事件日志, true:开启打印
-local showLog, PrintMazeData, PrintNodePath, GenNodePath = true
+local showLog, PrintMazeData, PrintNodePath, GenNodePath = false
 
 --! 常量配置: 玩家相关
 
@@ -490,6 +490,7 @@ end
 function MazeShow()
     print('[Maze] MazeShow')
     WALL_SPACE:SetActive(true)
+    CHECKER_SPACE:SetActive(true)
     floor:SetActive(true)
 end
 
@@ -497,6 +498,7 @@ end
 function MazeHide()
     print('[Maze] MazeHide')
     WALL_SPACE:SetActive(false)
+    CHECKER_SPACE:SetActive(false)
     floor:SetActive(false)
 end
 
@@ -593,6 +595,7 @@ function PlayerReachExit(_hitObj)
     if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         print('[Maze] PlayerReachExit')
         MazeHide()
+        GetResult()
         NetUtil.Fire_C(
             'ClientMazeEvent',
             playerData.player,
@@ -618,6 +621,7 @@ end
 function PlayerQuitMaze()
     print('[Maze] PlayerQuitMaze')
     MazeHide()
+    GetResult()
     if CheckPlayerExists() then
         NetUtil.Fire_C(
             'ClientMazeEvent',
@@ -652,7 +656,7 @@ end
 function GetResult()
     if playerData and playerData.player then
         -- TODO: 最终得分计算，以下为临时
-        playerData.score = player.checker
+        playerData.score = playerData.checker
     end
 end
 
