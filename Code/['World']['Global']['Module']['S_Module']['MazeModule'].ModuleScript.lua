@@ -150,6 +150,7 @@ function Maze:Init()
     InitMazeCheckerSpace()
     InitMazeFloor()
     InitMazeEntranceAndExit()
+    InitBoundary()
     invoke(InitWallPool)
     invoke(InitCheckerPool)
     MazeHide()
@@ -201,6 +202,10 @@ function InitMazeEntranceAndExit()
     entrace:SetActive(false)
     exit:SetActive(false)
     exit.OnCollisionBegin:Connect(PlayerReachExit)
+end
+
+-- 初始化空气墙
+function InitBoundary()
 end
 
 -- 初始化对象池 - 墙壁
