@@ -10,12 +10,12 @@ local showLog, PrintMazeData, PrintNodePath, GenNodePath = true
 --! 常量配置: 玩家相关
 
 -- 游戏时长(秒)
-local TOTAL_TIME = 120
+local TOTAL_TIME = 30
 
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 24, 24
+local NUM_ROWS, NUM_COLS = 15, 15
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
@@ -138,6 +138,9 @@ local playerData
 local path = {}
 local pathNodes = {}
 
+-- 计数器id
+local timer
+
 --! 初始化
 
 -- 初始化
@@ -236,10 +239,15 @@ function InitCheckerPool()
     local name
     for i = 1, TOTAL_CHECKER do
         name = string.format('Check_Point_%04d', i)
-        objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
+        local objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
         objChecker.Size = Vector3.One * 0.3
         objChecker.Block = false
-        objChecker.Color = Color(0x00, 0x00, 0xFF, 0xFF)
+        objChecker.Color = Color(0x00, 0x00, 0xFF, 0x2F)
+        objChecker.OnCollisionBegin:Connect(
+            function(_hitObj)
+                PlayerHitChecker(_hitObj, objChecker)
+            end
+        )
         checkerPool[objChecker] = true
         if i % 5 == 0 then
             wait()
@@ -248,6 +256,8 @@ function InitCheckerPool()
     checkerPoolDone = true
     print('[Maze] InitWallPool() done')
 end
+
+--! 对象池生成和回收
 
 -- 从对象池中拿取墙壁obj
 function SpawnWall(_pos, _rot)
@@ -260,7 +270,7 @@ function SpawnWall(_pos, _rot)
             return obj
         end
     end
-    error('[Maze] 墙体数量不够')
+    error('[Maze] SpawnWall() 墙体数量不够')
 end
 
 -- 对象池回收墙壁obj
@@ -274,10 +284,42 @@ function DespawnWall(_obj)
 end
 
 -- 回收全部墙壁obj
-function DespaceWalls()
+function DespawnWalls()
     for obj, _ in pairs(wallPool) do
         obj.Position = WALL_POOL_POS
         wallPool[obj] = true
+    end
+end
+
+-- 从对象池中取出积分点obj
+function SpawnChecker(_pos, _rot)
+    for obj, available in pairs(checkerPool) do
+        if available then
+            checkerPool[obj] = false
+            obj.LocalPosition = _pos
+            obj.LocalRotation = _rot
+            obj:SetActive(true)
+            return obj
+        end
+    end
+    error('[Maze] SpawnChecker() 积分点数量不够')
+end
+
+-- 对象池回积分点obj
+function DespawnChecker(_obj)
+    assert(_obj and not _obj:IsNull(), '[Maze] DespawnChecker(_obj) _obj不能为空')
+    assert(checkerPool[_obj] ~= nil, '[Maze] DespawnChecker(_obj) _obj不在对象池中')
+    assert(checkerPool[_obj] == false, '[Maze] DespawnChecker(_obj) _obj对象池状态错误')
+    _obj:SetActive(false)
+    checkerPool[_obj] = true
+end
+
+-- 回收全部积分点obj
+function DespawnCheckers()
+    for obj, _ in pairs(checkerPool) do
+        obj.Position = CHECKER_POOL_POS
+        obj:SetActive(false)
+        checkerPool[obj] = true
     end
 end
 
@@ -294,7 +336,7 @@ function MazeReset()
     MazeFloorReset()
     MazeEntraceAndExitReset()
     MazeDataReset()
-    MazeWallsReset()
+    MazeObjsReset()
     -- data
     MazeDataGen()
     FindNodePath()
@@ -303,6 +345,7 @@ function MazeReset()
     PrintNodePath()
     -- gen objs
     MazeWallsGen()
+    MazeCheckersGen()
     invoke(GenNodePath)
     -- show maze
     MazeShow()
@@ -338,8 +381,9 @@ function MazeDataReset()
 end
 
 -- 迷宫墙壁重置
-function MazeWallsReset()
-    DespaceWalls()
+function MazeObjsReset()
+    DespawnWalls()
+    DespawnCheckers()
 end
 
 -- 迷宫数据生成
@@ -429,6 +473,33 @@ function MazeWallsGen()
     end
 end
 
+-- 迷宫积分点生成
+function MazeCheckersGen()
+    local objChecker, node, r, c
+    local pos, rot = nil, EulerDegree(0, 0, 0)
+    local step = math.ceil(#path / TOTAL_CHECKER)
+    for i = 1, #path, step do
+        node = path[i]
+        r, c = node[1], node[2]
+        pos = Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * WALL_HEIGHT * .5
+        objChecker = SpawnChecker(pos, rot)
+    end
+end
+
+-- 迷宫显示
+function MazeShow()
+    print('[Maze] MazeShow')
+    WALL_SPACE:SetActive(true)
+    floor:SetActive(true)
+end
+
+-- 迷宫隐藏
+function MazeHide()
+    print('[Maze] MazeHide')
+    WALL_SPACE:SetActive(false)
+    floor:SetActive(false)
+end
+
 -- 找出迷宫路径
 function FindNodePath()
     -- start point
@@ -503,20 +574,6 @@ function FindNodePath()
     end
 end
 
--- 迷宫显示
-function MazeShow()
-    print('[Maze] MazeShow')
-    WALL_SPACE:SetActive(true)
-    floor:SetActive(true)
-end
-
--- 迷宫隐藏
-function MazeHide()
-    print('[Maze] MazeHide')
-    WALL_SPACE:SetActive(false)
-    floor:SetActive(false)
-end
-
 --! 玩家相关
 
 -- 玩家开始迷宫
@@ -524,9 +581,11 @@ function PlayerStartMaze(_player)
     print('[Maze] PlayerStartMaze')
     playerData = {}
     playerData.player = _player
+    playerData.checker = 0
     playerData.score = 0
     playerData.time = 0
-    NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position)
+    NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position, TOTAL_TIME)
+    timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME)
 end
 
 -- 玩家抵达终点
@@ -542,6 +601,16 @@ function PlayerReachExit(_hitObj)
             playerData.time
         )
         playerData = nil
+    end
+    TimeUtil.ClearTimeout(timer)
+end
+
+-- 玩家触碰积分点
+function PlayerHitChecker(_hitObj, _checkObj)
+    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
+        playerData.checker = playerData.checker + 1
+        print('[Maze] PlayerHitChecker()', playerData.checker)
+        DespawnChecker(_checkObj)
     end
 end
 
@@ -559,9 +628,10 @@ function PlayerQuitMaze()
         )
         playerData = nil
     end
+    TimeUtil.ClearTimeout(timer)
 end
 
--- 检查玩家是否在线
+-- 检查玩家是否在线，防止玩家在迷宫的时候中途退出游戏
 function CheckPlayerExists()
     if playerData and playerData.player then
         return true
@@ -573,9 +643,17 @@ end
 
 -- 玩家离线
 function PlayerDisconnected()
-    -- TODO: 重置时间，重置玩家数据，隐藏迷宫
     playerData = nil
     MazeHide()
+    TimeUtil.ClearTimeout(timer)
+end
+
+-- 得到玩家结果
+function GetResult()
+    if playerData and playerData.player then
+        -- TODO: 最终得分计算，以下为临时
+        playerData.score = player.checker
+    end
 end
 
 --! Event handlers 事件处理
@@ -607,7 +685,6 @@ function Maze:ExitMiniGameEventHandler(_player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE then
         print('[Maze] ExitMiniGameEventHandler', _player, _gameId)
         PlayerQuitMaze()
-        MazeHide()
     end
 end
 
