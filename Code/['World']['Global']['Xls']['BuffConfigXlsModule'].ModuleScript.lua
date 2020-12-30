@@ -23,7 +23,7 @@ local BuffConfigXls = {
         SizeChange = 1.0,
         HeadSizeChange = 1.0,
         WidthChange = 1.0,
-        KeepEffect = ｛[2]=fire｝,
+        KeepEffect = nil,
         SpeedChange = 1.2,
         JumpChange = 1.0,
         GravityChange = 1.0,
