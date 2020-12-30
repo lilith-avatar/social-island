@@ -226,7 +226,7 @@ function InitWallPool()
         end
     end
     wallPoolDone = true
-    print('[Maze] InitWallPool() done')
+    print('[Maze] InitWallPool() done 迷宫墙壁对象池初始化完毕')
 end
 
 -- 初始化对象池 - 积分点
@@ -252,7 +252,7 @@ function InitCheckerPool()
         wait()
     end
     checkerPoolDone = true
-    print('[Maze] InitCheckerPool() done')
+    print('[Maze] InitCheckerPool() done 迷宫积分点对象池初始化完毕')
 end
 
 --! 对象池生成和回收
