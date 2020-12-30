@@ -99,15 +99,19 @@ function MoleHit:RefreshMole(_playerNum)
 
     for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
         pitIndex, tmpRandomTab = math.random(1, #tmpTable), RandomSortByWeights(Config.MoleConfig)
+        --删除该坑仍保留的地鼠
+        for k,v in pairs(tmpTable[pitIndex].model:GetChildren()) do
+            if v.ActiveSelf then
+                v:Destroy()
+            end
+        end
         mole = this.molePool[tmpRandomTab[1].id]:Create(
             tmpTable[pitIndex].model,tmpRandomTab[1].id
         )
-        print(mole.Name)
         this.pitList[tmpTable[pitIndex].model.Name].mole = mole
         invoke(function()
             if mole then
                 this.molePool[tmpRandomTab[1].id]:Destroy(mole)
-                this.pitList[tmpTable[pitIndex].model.Name].mole = nil
             end
         end,Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime)
         table.remove(tmpTable,pitIndex)

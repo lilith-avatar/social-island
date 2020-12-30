@@ -12,6 +12,7 @@ end
 
 ---节点定义
 function MoleUIMgr:NodeDef()
+    this.contrlGui = localPlayer.Local.ControlGui
     this.gui = localPlayer.Local.MoleHitGui
     this.hitButton = this.gui.HitBtn
     this.hitMask = this.hitButton.MaskImg
@@ -29,6 +30,7 @@ end
 
 function MoleUIMgr:GameOver()
     this.gui:SetActive(false)
+    this.contrlGui.UseBtn:SetActive(true)
     --this.hitButton:SetActive(false)
 end
 
@@ -58,6 +60,7 @@ function MoleUIMgr:StartGame()
     NetUtil.Fire_S("PlayerStartMoleHitEvent", localPlayer.UserId)
     this.gui:SetActive(true)
     this.hitButton:SetActive(true)
+    this.contrlGui.UseBtn:SetActive(false)
 end
 
 function MoleUIMgr:UpdateScore(_score)
