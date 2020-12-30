@@ -152,7 +152,7 @@ function Maze:Init()
     InitMazeEntranceAndExit()
     invoke(InitWallPool)
     invoke(InitCheckerPool)
-
+    MazeHide()
     --* TEST ONLY
     -- invoke(MazeReset, 5)
 end
@@ -240,7 +240,7 @@ function InitCheckerPool()
     for i = 1, TOTAL_CHECKER do
         name = string.format('Check_Point_%04d', i)
         local objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
-        objChecker.Size = Vector3.One * 0.3
+        objChecker.Size = Vector3.One * 0.5
         objChecker.Block = false
         objChecker.Color = Color(0x00, 0x00, 0xFF, 0x2F)
         objChecker.OnCollisionBegin:Connect(
@@ -249,12 +249,10 @@ function InitCheckerPool()
             end
         )
         checkerPool[objChecker] = true
-        if i % 5 == 0 then
-            wait()
-        end
+        wait()
     end
     checkerPoolDone = true
-    print('[Maze] InitWallPool() done')
+    print('[Maze] InitCheckerPool() done')
 end
 
 --! 对象池生成和回收
