@@ -33,6 +33,9 @@ end
 function MoleGame:EventBindForStart()
     this.hitRange.OnCollisionBegin:Connect(
         function(_hitObject)
+            if not _hitObject then
+                return
+            end
             this.rangeList[_hitObject.Name] = true
             if this.boostEffect then
                 MoleUIMgr:Hit()

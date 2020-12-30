@@ -101,6 +101,7 @@ function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
     local player = world:GetPlayerByUserId(_uid)
     this.chairSitter[_chairId] = nil
     this.ChairList[_type][_chairId].model.CollisionArea:SetActive(true)
+    this.ChairList[_type][_chairId].model.Seat:SetActive(false)
     player.Position = this.ChairList[_type][_chairId].model.LeavePosition.Position
     this.ChairList[_type][_chairId].model.LinearVelocity = Vector3.Zero
 end
