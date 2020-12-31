@@ -30,25 +30,43 @@ end
 
 --节点事件绑定
 function SPlantFlower:EventBind()
+	world.OnPlayerRemoved:Connect(function(player)
+		OnPlayerDisconnect(player)
+	end)
+end
+
+function OnPlayerDisconnect(player)
+	local _subRealFlower = {}
+	for k,v in ipairs(this.realFlower) do
+		print(v.User)
+		if v.User == player.UserId then
+			table.insert(v,_subRealFlower)
+		end
+	end
+	print(table.dump(_subRealFlower))
+	for k,v in ipairs(_subRealFlower) do
+		v.Obj:Destory()
+		table.removebyvalue(this.realFlower,v)
+	end
 end
 
 ---Update函数
 function SPlantFlower:Update()
 end
 
-function SPlantFlower:PlantFlowerEventHandler(_userId,_flowerObj)
-	table.insert(this.realFlower,_flowerObj)
-	SetCombine()
+function SPlantFlower:PlantFlowerEventHandler(_player,_data)
+	table.insert(this.realFlower,_data)
+	--SetCombine()
 end
 
-function SetCombine()
+function SPlantFlower:SetCombine()
 	print(#this.realFlower)
 	--local _all = #this.realFlower
 	for k,v in ipairs(this.realFlower) do
 		--print(k..'--------------------------------------')
 		--print(math.fmod(k,8))
 		--print(math.modf(k/8)+1)
-		v:SetParentTo(this.Nodes[math.fmod(k-1,8)+1],this.Points[math.modf((k-1)/8)+1],EulerDegree(0,0,0))
+		v.Obj:SetParentTo(this.Nodes[math.fmod(k-1,8)+1],this.Points[math.modf((k-1)/8)+1],EulerDegree(0,0,0))
 	end
 end
 
