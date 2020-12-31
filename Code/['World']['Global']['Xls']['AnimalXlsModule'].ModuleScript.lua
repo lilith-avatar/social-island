@@ -15,7 +15,7 @@ local AnimalXls = {
         IdleAnimationName = {'Idle', 'Idle02'},
         IdleAnimationDurRange = {5, 20},
         MoveAnimationName = {'Run'},
-        MoveAnimationDurRange = {5, 10},
+        MoveAnimationDurRange = {5, 20},
         DeadAnimationName = {},
         Weight = 50
     }
