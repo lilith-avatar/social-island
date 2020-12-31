@@ -10,6 +10,7 @@ local npcGui, gameBtn, battleBtn, shopBtn, leaveBtn, dialogTxt
 
 -- Cache
 local Config = Config
+local NpcText = Config.NpcText
 local NpcInfo
 
 -- Data
@@ -148,7 +149,10 @@ function PickARandomDialog()
     if not currNpcId or not currNpcObj then
         return
     end
-    return table.shuffle(NpcInfo[currNpcId].DialogText)[1]
+    local dialogId = table.shuffle(NpcInfo[currNpcId].DialogId)[1]
+    local dialog = NpcText[dialogId].Text
+    assert(dialogId and dialog, string.format('[GuiNpc] NPC: %s, 不存在DialogId: %s', currNpcId, dialogId))
+    return LanguageUtil.GetText(dialog)
 end
 
 --! Event handlers 事件处理

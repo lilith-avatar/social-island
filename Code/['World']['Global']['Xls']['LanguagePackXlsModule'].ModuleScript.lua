@@ -209,34 +209,6 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
-    NpcAndTask_DialogText_1_1 = {
-        ID = 'NpcAndTask_DialogText_1_1',
-        CHS = '没有人会记得一款准时发售的垃圾游戏',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcAndTask_DialogText_1_2 = {
-        ID = 'NpcAndTask_DialogText_1_2',
-        CHS = '大白鲨，我滴最爱',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcAndTask_BubbleText_1_1 = {
-        ID = 'NpcAndTask_BubbleText_1_1',
-        CHS = '快来玩呀',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcAndTask_BubbleText_1_2 = {
-        ID = 'NpcAndTask_BubbleText_1_2',
-        CHS = '你见过我的翅膀吗？',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
     NpcInfo_Name_1 = {
         ID = 'NpcInfo_Name_1',
         CHS = '猎人',
@@ -310,6 +282,34 @@ local LanguagePackXls = {
     Item_NpcText_5001 = {
         ID = 'Item_NpcText_5001',
         CHS = '啊，那天真是令人怀念，谢谢你！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1001 = {
+        ID = 'NpcText_Text_1001',
+        CHS = '没有人会记得一款准时发售的垃圾游戏',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1002 = {
+        ID = 'NpcText_Text_1002',
+        CHS = '大白鲨，我滴最爱',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_2001 = {
+        ID = 'NpcText_Text_2001',
+        CHS = '快来玩呀',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_2002 = {
+        ID = 'NpcText_Text_2002',
+        CHS = '你见过我的翅膀吗？',
         CHT = '',
         EN = '',
         JP = ''
