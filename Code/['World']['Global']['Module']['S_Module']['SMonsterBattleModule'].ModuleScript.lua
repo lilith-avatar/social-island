@@ -6,6 +6,10 @@ local DataSheet = DataStore:GetSheet('MonsterData')
 
 ---初始化函数
 function SMonsterBattle:Init()
+	this.allPlayerData = {}
+	world.OnPlayerRemoved:Connect(function(player)
+		this:DisconnectSave()
+	end)
 end
 
 ---Update函数
@@ -14,12 +18,28 @@ end
 
 --保存长期数据
 function SMonsterBattle:SaveMDataEventHandler(_userId,_playerData)
+	this.allPlayerData[_userId] = _playerData
+	--[[
 	DataSheet:SetValue(_userId,_playerData,function(value,errCode)
 		if errCode then
 			print(errCode)
 		end
 	end)
+	--]]
 end
+
+function SMonsterBattle:DisconnectSave()
+	print('断线保存')
+	for k,v in pairs(this.allPlayerData) do
+		print(table.dump(v))
+		DataSheet:SetValue(k,v,function(value,errCode)
+		if errCode then
+			print(errCode)
+		end
+	end)
+	end
+end
+
 --读取长期数据
 function SMonsterBattle:LoadMDataEventHandler(_userId)
 	DataSheet:GetValue(_userId,
