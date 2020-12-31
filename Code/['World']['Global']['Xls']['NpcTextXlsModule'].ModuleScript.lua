@@ -14,6 +14,62 @@ local NpcTextXls = {
         ID = 1002,
         Text = 'NpcText_Text_1002'
     },
+    [1003] = {
+        ID = 1003,
+        Text = 'NpcText_Text_1003'
+    },
+    [1004] = {
+        ID = 1004,
+        Text = 'NpcText_Text_1004'
+    },
+    [1005] = {
+        ID = 1005,
+        Text = 'NpcText_Text_1005'
+    },
+    [1006] = {
+        ID = 1006,
+        Text = 'NpcText_Text_1006'
+    },
+    [1007] = {
+        ID = 1007,
+        Text = 'NpcText_Text_1007'
+    },
+    [1008] = {
+        ID = 1008,
+        Text = 'NpcText_Text_1008'
+    },
+    [1009] = {
+        ID = 1009,
+        Text = 'NpcText_Text_1009'
+    },
+    [1010] = {
+        ID = 1010,
+        Text = 'NpcText_Text_1010'
+    },
+    [1011] = {
+        ID = 1011,
+        Text = 'NpcText_Text_1011'
+    },
+    [1012] = {
+        ID = 1012,
+        Text = 'NpcText_Text_1012'
+    },
+    [1013] = {
+        ID = 1013,
+        Text = 'NpcText_Text_1013'
+    },
+    [1014] = {
+        ID = 1014,
+        Text = 'NpcText_Text_1014'
+    },
+    [1015] = {
+        ID = 1015,
+        Text = 'NpcText_Text_1015'
+    },
+    [1016] = {
+        ID = 1016,
+        Text = 'NpcText_Text_1016'
+    },
     [2001] = {
         ID = 2001,
         Text = 'NpcText_Text_2001'
