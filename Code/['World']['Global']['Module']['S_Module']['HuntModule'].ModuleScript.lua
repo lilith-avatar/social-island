@@ -227,6 +227,10 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             1
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
+		_animalData.obj.LinearVelocityController.Intensity = 0
+		_animalData.obj.RotationController.Intensity = 0
+		_animalData.obj.LinearVelocity = Vector3.Zero
+		
     elseif _animalData.state == animalActState.MOVE then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj:SetActive(true)
@@ -242,6 +246,8 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
             Vector3(math.random(-10, 10), -1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+		_animalData.obj.LinearVelocityController.Intensity = 2000000
+		_animalData.obj.RotationController.Intensity = 4000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
         _animalData.obj.RotationController.TargetRotation = _animalData.obj.RotationController.Rotation
     elseif _animalData.state == animalActState.SCARED then
@@ -257,10 +263,14 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
+		_animalData.obj.LinearVelocityController.Intensity = 2000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
         _animalData.obj.RotationController.TargetRotation = _animalData.obj.RotationController.Rotation
     elseif _animalData.state == animalActState.DEADED then
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
+		_animalData.obj.RotationController.Intensity = 0
+		_animalData.obj.LinearVelocityController.Intensity = 0
+		_animalData.obj.LinearVelocity = Vector3.Zero
         if #_animalData.deadAnimationName > 0 then
             _animalData.obj.AnimatedMesh:PlayAnimation(
                 _animalData.deadAnimationName[math.random(#_animalData.deadAnimationName)],
