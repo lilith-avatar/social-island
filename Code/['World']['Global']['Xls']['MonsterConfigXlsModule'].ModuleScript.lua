@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: ./Design/MonsterConfig.xlsx
+--- source file: .//GameMonster.xlsx
 
 local MonsterConfigXls = {
     [1] = {
@@ -24,8 +24,56 @@ local MonsterConfigXls = {
         Describe = '怪物2',
         Icon = '',
         Model = '',
-        HealthMax = 150,
+        HealthMax = 120,
+        AttackMax = 40,
+        BuffId = nil,
+        BuffDescribe = '',
+        BuffVal = nil
+    },
+    [3] = {
+        Id = 3,
+        Name = '怪物3',
+        Describe = '怪物3',
+        Icon = '',
+        Model = '',
+        HealthMax = 140,
         AttackMax = 50,
+        BuffId = nil,
+        BuffDescribe = '',
+        BuffVal = nil
+    },
+    [4] = {
+        Id = 4,
+        Name = '怪物4',
+        Describe = '怪物4',
+        Icon = '',
+        Model = '',
+        HealthMax = 160,
+        AttackMax = 60,
+        BuffId = nil,
+        BuffDescribe = '',
+        BuffVal = nil
+    },
+    [5] = {
+        Id = 5,
+        Name = '怪物5',
+        Describe = '怪物5',
+        Icon = '',
+        Model = '',
+        HealthMax = 180,
+        AttackMax = 70,
+        BuffId = nil,
+        BuffDescribe = '',
+        BuffVal = nil
+    },
+    [6] = {
+        Id = 6,
+        Name = '怪物6',
+        Describe = '怪物6',
+        Icon = '',
+        Model = '',
+        HealthMax = 200,
+        AttackMax = 80,
         BuffId = nil,
         BuffDescribe = '',
         BuffVal = nil
