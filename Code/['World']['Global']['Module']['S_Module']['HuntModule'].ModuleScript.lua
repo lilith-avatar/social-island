@@ -245,11 +245,11 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
-            Vector3(math.random(-10, 10), -1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+            Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
 		_animalData.obj.LinearVelocityController.Intensity = 2000000
-		_animalData.obj.RotationController.Intensity = 4000000
+		_animalData.obj.RotationController.Intensity = 1000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = _animalData.obj.RotationController.Rotation
+        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
     elseif _animalData.state == animalActState.SCARED then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -265,7 +265,7 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
 		_animalData.obj.LinearVelocityController.Intensity = 2000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = _animalData.obj.RotationController.Rotation
+        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
     elseif _animalData.state == animalActState.DEADED then
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
 		_animalData.obj.RotationController.Intensity = 0
