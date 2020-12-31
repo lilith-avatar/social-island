@@ -25,6 +25,7 @@ Events.ServerEvents = {
 	'LoadMDataEvent', --@param _userId
 	'SaveMDataEvent', --@param _userId,_playerdata
 	'StartBattleEvent',--@param _isNpc,_playerA,_playerB
+	'PlantFlowerEvent' --@param _userId,_flowerObj
 }
 
 -- 客户端事件列表
