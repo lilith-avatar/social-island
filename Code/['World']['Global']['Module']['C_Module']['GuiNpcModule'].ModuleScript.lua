@@ -5,8 +5,8 @@
 local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
-local controlGui, npcBtn
-local npcGui, gameBtn, dialogBtn, shopBtn, leaveBtn
+local controlGui, monsterGui, npcBtn
+local npcGui, gameBtn, battleBtn, shopBtn, leaveBtn, dialogTxt
 
 -- Cache
 local Config = Config
@@ -16,6 +16,9 @@ local NpcInfo
 local currNpcId
 local currNpcObj
 
+--! 初始化
+
+--- 初始化
 function GuiNpc:Init()
     self:InitGui()
     self:InitData()
@@ -23,23 +26,30 @@ function GuiNpc:Init()
     self:InitListener()
 end
 
+--- 初始化GUI结点
 function GuiNpc:InitGui()
     -- Control GUI
     controlGui = localPlayer.Local.ControlGui
+    -- Monster GUI
+    monsterGui = localPlayer.Local.MonsterGUI
+    -- NPC btn
     npcBtn = controlGui.NpcBtn
     -- NPC GUI
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
     gameBtn = npcGui.GameBtn
-    dialogBtn = npcGui.DialogBtn
+    battleBtn = npcGui.BattleBtn
     shopBtn = npcGui.ShopBtn
     leaveBtn = npcGui.LeaveBtn
+    dialogTxt = npcGui.DialogTxt
 end
 
+--- 初始化表格
 function GuiNpc:InitData()
     NpcInfo = table.deepcopy(Config.NpcInfo)
 end
 
+--- 预加载资源
 function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
@@ -49,16 +59,20 @@ function GuiNpc:InitResource()
     end
 end
 
+--- 绑定事件
 function GuiNpc:InitListener()
     npcBtn.OnClick:Connect(OpenNpcGui)
+    npcBtn.OnClick:Connect(NpcFaceToPlayer)
     gameBtn.OnClick:Connect(EnterMiniGame)
-    dialogBtn.OnClick:Connect(StartDialog)
+    battleBtn.OnClick:Connect(StartMonsterBattle)
     shopBtn.OnClick:Connect(EnterShop)
     leaveBtn.OnClick:Connect(LeaveNpc)
 end
 
+--! GUI 功能
+
 --- 接触NPC
-function TouchNpc(_npcId,_npcObj)
+function TouchNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
@@ -67,7 +81,18 @@ function TouchNpc(_npcId,_npcObj)
     npcBtn.Visible = true
     npcGui.Visible = false
     currNpcId = _npcId
-	currNpcObj = _npcObj
+    currNpcObj = _npcObj
+end
+
+--- 离开NPC
+function LeaveNpc()
+    print('[GuiNpc] LeaveNpc()', currNpcId)
+    controlGui.Visible = true
+    monsterGui.Visible = true
+    npcBtn.Visible = false
+    npcGui.Visible = false
+    currNpcId = nil
+    currNpcObj = nil
 end
 
 --- 打开NPC界面
@@ -77,28 +102,22 @@ function OpenNpcGui()
     end
     print('[GuiNpc] OpenNpcGui()')
     controlGui.Visible = false
+    monsterGui.Visible = false
     npcGui.Visible = true
     local portrait = NpcInfo[currNpcId].Portrait
     portraitImg.Texture = portrait
     portraitImg.Visible = portrait ~= nil
-	
-	--使NPC面向玩家
-	local _ry = Vector3.Angle(Vector3(0,0,1),localPlayer.Position-currNpcObj.Position)
-	if localPlayer.Position.x - currNpcObj.Position.x >= 0 then
-		currNpcObj.Rotation = EulerDegree(0,_ry,0) 
-	else
-		currNpcObj.Rotation = EulerDegree(0,360 -_ry ,0) 
-	end
+    dialogTxt.Text = PickARandomDialog()
 end
 
---- 离开NPC
-function LeaveNpc()
-    print('[GuiNpc] LeaveNpc()', currNpcId)
-    controlGui.Visible = true
-    npcBtn.Visible = false
-    npcGui.Visible = false
-    currNpcId = nil
-	currNpcObj = nil
+-- 使NPC面向玩家
+function NpcFaceToPlayer()
+    local ry = Vector3.Angle(Vector3.Forward, localPlayer.Position - currNpcObj.Position)
+    if localPlayer.Position.x - currNpcObj.Position.x >= 0 then
+        currNpcObj.Rotation = EulerDegree(0, ry, 0)
+    else
+        currNpcObj.Rotation = EulerDegree(0, 360 - ry, 0)
+    end
 end
 
 --- 开始小游戏
@@ -118,21 +137,26 @@ function EnterShop()
     print('[GuiNpc] EnterShop()')
 end
 
---- 开始对话
-function StartDialog()
-    print('[GuiNpc] StartDialog()')
-	NpcStartBattle()
-end
-
 --- 开始宠物战斗
-function NpcStartBattle()
-	NetUtil.Fire_S("StartBattleEvent",true,currNpcObj,localPlayer)
+function StartMonsterBattle()
+    print('[GuiNpc] StartMonsterBattle()')
+    NetUtil.Fire_S('StartBattleEvent', true, currNpcObj, localPlayer)
 end
 
-function GuiNpc:TouchNpcEventHandler(_npcId,_npcObj)
-    -- print(table.dump(NpcInfo[_npcId]))
+--- 随机选取一段对话
+function PickARandomDialog()
+    if not currNpcId or not currNpcObj then
+        return
+    end
+    return table.shuffle(NpcInfo[currNpcId].DialogText)[1]
+end
+
+--! Event handlers 事件处理
+
+function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
+    print('[GuiNpc] TouchNpcEventHandler', _npcId)
     if _npcId ~= nil then
-        TouchNpc(_npcId,_npcObj)
+        TouchNpc(_npcId, _npcObj)
     else
         LeaveNpc()
     end
