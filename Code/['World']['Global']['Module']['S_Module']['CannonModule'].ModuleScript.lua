@@ -51,20 +51,22 @@ end
 
 --- 节点事件绑定
 function Cannon:EventBind()
+    barrel.Base.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == "PlayerInstance" then
+                this:GetOnCannon(_hitObject)
+            end
+        end
+    )
 end
 
 --- 进入人间大炮
 function Cannon:GetOnCannon(_player)
-    insidePlayer = _player
-    insidePlayer.Position = barrel.InsidePoint.Position
-    NetUtil.Fire_C("SetCurCamEvent", insidePlayer, cam)
-    NetUtil.Fire_C("SetMiniGameGuiEvent", insidePlayer, 4, true, false)
-end
-
---- 节点事件绑定
-function Cannon:EnterMiniGameEventHandler(_player, _gameId)
-    if _gameId == 4 and insidePlayer == nil then
-        this:GetOnCannon(_player)
+    if insidePlayer == nil then
+        insidePlayer = _player
+        insidePlayer.Position = barrel.InsidePoint.Position
+        NetUtil.Fire_C("SetCurCamEvent", insidePlayer, cam)
+        NetUtil.Fire_C("SetMiniGameGuiEvent", insidePlayer, 4, true, false)
     end
 end
 
@@ -73,7 +75,7 @@ function Cannon:CannonFireEventHandler(_force)
     insidePlayer.Rotation = barrel.Rotation
     insidePlayer.Position = insidePlayer.Position + Vector3(0, 0.5, 0)
     insidePlayer.LinearVelocity =
-        (barrel.OutsidePoint.Position - barrel.InsidePoint.Position).Normalized * (15 + 40 * _force)
+        (barrel.OutsidePoint.Position - barrel.InsidePoint.Position).Normalized * (15 + 50 * _force)
     NetUtil.Fire_C("SetMiniGameGuiEvent", insidePlayer, 4, false, false)
     NetUtil.Fire_C("SetCurCamEvent", insidePlayer)
     NetUtil.Fire_C("FsmTriggerEvent", insidePlayer, "Fly")

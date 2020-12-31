@@ -15,7 +15,8 @@ local playerActStateEnum = {
     RUN = "Run",
     JUMP = "Jump",
     FLY = "Fly",
-    SWIM = "Swim",
+    SWIMIDLE = "SwimIdle",
+    SWIMMING = "Swimming",
     SOCIAL = "Social",
     BOWIDLE = "BowIdle",
     BOWWALK = "BowWalk",
@@ -45,11 +46,8 @@ function FsmMgr:DataInit()
     playerActFsm:ConnectStateFunc(Config.PlayerActState, self)
     playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
 
-    this.IdleTrigger = false
-    this.JumpTrigger = false
-    this.FlyTrigger = false
-    this.BowIdleTrigger = false
-    this.BowAttackTrigger = false
+    this:ResetTrigger()
+    this.fsmState = "Idle"
 end
 
 --- 节点事件绑定
@@ -58,11 +56,9 @@ end
 
 --- 重置触发器
 function FsmMgr:ResetTrigger()
-    this.IdleTrigger = false
-    this.JumpTrigger = false
-    this.FlyTrigger = false
-    this.BowIdleTrigger = false
-    this.BowAttackTrigger = false
+    for k, v in pairs(playerActStateEnum) do
+        this[v .. "Trigger"] = false
+    end
 end
 
 --- 状态机改变触发器
@@ -70,11 +66,13 @@ function FsmMgr:FsmTriggerEventHandler(_state)
     if playerActFsm.curState.stateName ~= _state then
         this[_state .. "Trigger"] = true
     end
+    this.fsmState = playerActFsm.curState.stateName
 end
 
 function FsmMgr:IdleStateOnEnterFunc()
     this:ResetTrigger()
     localPlayer:MoveTowards(Vector2.Zero)
+    localPlayer.GravityScale = 4
     localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation("Idle", 3, 1, 0.1, true, true, 1)
 end
@@ -102,6 +100,21 @@ function FsmMgr:FlyStateOnEnterFunc()
     PlayerCtrl:SetPlayerControllableEventHandler(false)
     localPlayer.Avatar:PlayAnimation("Flying", 2, 1, 0.1, true, true, 2)
     localPlayer.Avatar:PlayAnimation("Flying", 3, 1, 0.1, true, true, 2)
+end
+
+function FsmMgr:SwimIdleStateOnEnterFunc()
+    this:ResetTrigger()
+    localPlayer:MoveTowards(Vector2.Zero)
+    localPlayer.GravityScale = 0
+    localPlayer.LinearVelocity = Vector3(0, 0.01, 0)
+    localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("SwimIdle", 3, 1, 0.1, true, true, 1)
+end
+
+function FsmMgr:SwimmingStateOnEnterFunc()
+    this:ResetTrigger()
+    localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("Swimming", 3, 1, 0.1, true, true, 1)
 end
 
 function FsmMgr:BowIdleStateOnEnterFunc()
@@ -136,6 +149,7 @@ function FsmMgr:BowJumpStateOnEnterFunc()
     localPlayer:Jump()
     localPlayer.Avatar:PlayAnimation("Jump", 3, 1, 0.1, true, false, 1)
 end
+
 function FsmMgr:BowAttackStateOnEnterFunc()
     this:ResetTrigger()
     localPlayer.Avatar:PlayAnimation("BowAttack", 2, 1, 0.1, true, false, 1)
@@ -153,6 +167,11 @@ function FsmMgr:IdleStateOnUpdateFunc(dt)
     do ---检测跳跃键输入
         if this.JumpTrigger and localPlayer.IsOnGround then
             playerActFsm:Switch(playerActStateEnum.JUMP)
+        end
+    end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
     do ---检测飞行
@@ -190,6 +209,11 @@ function FsmMgr:WalkStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.JUMP)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
     do ---检测飞行
         if this.FlyTrigger then
             playerActFsm:Switch(playerActStateEnum.FLY)
@@ -225,6 +249,11 @@ function FsmMgr:RunStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.JUMP)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
     do ---检测飞行
         if this.FlyTrigger then
             playerActFsm:Switch(playerActStateEnum.FLY)
@@ -243,9 +272,60 @@ function FsmMgr:FlyStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:JumpStateOnUpdateFunc(dt)
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
+end
+
+function FsmMgr:SwimIdleStateOnUpdateFunc(dt)
+    do ---检测移动键输入
+        local dir = PlayerCtrl.finalDir
+        dir.y = 0
+        if dir.Magnitude > 0 then
+            playerActFsm:Switch(playerActStateEnum.SWIMMING)
+        end
+    end
+    do ---检测默认状态
+        if this.IdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
+end
+
+function FsmMgr:SwimmingStateOnUpdateFunc(dt)
+    do ---检测移动键输入
+        local dir = PlayerCtrl.finalDir
+        dir.y = 0
+        if dir.Magnitude > 0 then
+            if PlayerCam:IsFreeMode() then
+                localPlayer:FaceToDir(dir, 4 * math.pi)
+            end
+            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+            localPlayer.LinearVelocity =
+                Vector3(
+                localPlayer.LinearVelocity.x,
+                PlayerCam.playerGameCam.Forward.y * 5,
+                localPlayer.LinearVelocity.z
+            )
+        else
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
+    do ---检测默认状态
+        if this.IdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
 end
 
 function FsmMgr:BowIdleStateOnUpdateFunc(dt)
@@ -270,6 +350,11 @@ function FsmMgr:BowIdleStateOnUpdateFunc(dt)
     do ---检测默认状态
         if this.IdleTrigger then
             playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
 end
@@ -306,6 +391,11 @@ function FsmMgr:BowWalkStateOnUpdateFunc(dt)
     do ---检测默认状态
         if this.IdleTrigger then
             playerActFsm:Switch(playerActStateEnum.IDLE)
+        end
+    end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
         end
     end
 end
@@ -351,6 +441,11 @@ function FsmMgr:BowRunStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.IDLE)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:BowJumpStateOnUpdateFunc(dt)
@@ -359,9 +454,19 @@ function FsmMgr:BowJumpStateOnUpdateFunc(dt)
             playerActFsm:Switch(playerActStateEnum.BOWIDLE)
         end
     end
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:BowAttackStateOnUpdateFunc(dt)
+    do ---检测游泳
+        if this.SwimIdleTrigger then
+            playerActFsm:Switch(playerActStateEnum.SWIMIDLE)
+        end
+    end
 end
 
 function FsmMgr:IdleStateOnLeaveFunc()
@@ -379,6 +484,12 @@ end
 function FsmMgr:FlyStateOnLeaveFunc()
     localPlayer.Rotation = EulerDegree(0, localPlayer.Rotation.y, 0)
     PlayerCtrl:SetPlayerControllableEventHandler(true)
+end
+
+function FsmMgr:SwimIdleStateOnLeaveFunc()
+end
+
+function FsmMgr:SwimmingStateOnLeaveFunc()
 end
 
 function FsmMgr:BowIdleStateOnLeaveFunc()

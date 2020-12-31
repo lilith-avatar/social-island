@@ -85,7 +85,6 @@ end
 
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
-    NetUtil.Fire_S("LeaveZeppelinEvent", localPlayer)
     FsmMgr:FsmTriggerEventHandler("Jump")
 end
 
@@ -99,7 +98,6 @@ end
 
 -- 射箭逻辑
 function PlayerCtrl:PlayerArchery()
-    
     local dir = (localPlayer.ArrowAim.Position - localPlayer.Position)
     dir.y = PlayerCam:TPSGetRayDir().y
     dir = dir.Normalized
@@ -117,6 +115,31 @@ function PlayerCtrl:PlayerArchery()
     )
 end
 
+--游泳检测
+function PlayerCtrl:PlayerSwim()
+    if FsmMgr.fsmState ~= "SwimIdle" and FsmMgr.fsmState ~= "Swimming" then
+        if
+            localPlayer.Position.x < world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 and
+                localPlayer.Position.x > world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 and
+                localPlayer.Position.z < world.water.DeepWaterCol.Position.z + world.water.DeepWaterCol.Size.z / 2 and
+                localPlayer.Position.z > world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 and
+                localPlayer.Position.y < -15.7
+         then
+            FsmMgr:FsmTriggerEventHandler("SwimIdle")
+        end
+    else
+        if
+            localPlayer.Position.x > world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 or
+                localPlayer.Position.x < world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 or
+                localPlayer.Position.z > world.water.DeepWaterCol.Position.z + world.water.DeepWaterCol.Size.z / 2 or
+                localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
+                localPlayer.Position.y > -15.7
+         then
+            FsmMgr:FsmTriggerEventHandler("Idle")
+        end
+    end
+end
+
 -- 修改是否能控制角色
 function PlayerCtrl:SetPlayerControllableEventHandler(_bool)
     this.isControllable = _bool
@@ -131,6 +154,7 @@ function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()
     end
+    this:PlayerSwim()
 end
 
 return PlayerCtrl

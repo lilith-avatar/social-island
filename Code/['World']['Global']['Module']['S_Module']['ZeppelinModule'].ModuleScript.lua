@@ -12,14 +12,8 @@ local zepRoot
 -- 站台等待乘客表
 local platformPassengerTable = {}
 
--- 入口区域
-local entranceArea = nil
-
 -- 站台区域
 local platformArea = {}
-
--- 出口区域
-local exitArea = nil
 
 -- 移动路径表
 local pathwayPointTable = {}
@@ -69,8 +63,6 @@ function Zeppelin:NodeRef()
         }
         platformPassengerTable[i] = zepRoot.Station["Platform_0" .. i]
     end
-    entranceArea = zepRoot.Station.Entrance
-    exitArea = zepRoot.Station.Exit
 end
 
 --- 数据变量初始化
@@ -94,13 +86,29 @@ end
 
 --- 节点事件绑定
 function Zeppelin:EventBind()
-    entranceArea.OnCollisionBegin:Connect(
-        function(_hitObject)
-            if _hitObject.ClassName == "PlayerInstance" then
-                this:GetOnZeppelin(_hitObject)
+end
+
+--- 热气球距离检测
+function Zeppelin:ZeppelinDisDetect()
+    for k1, v1 in pairs(world:FindPlayers()) do
+        for k2, v2 in pairs(zeppelinObjPool) do
+            if table.exists(zeppelinObjPool.passenger, v1) == false then
+                if
+                    (v1.Position - v2.obj.Seat.BottomPlate.Position).Magnitude < 2 and
+                        v1.Position.y > v2.obj.Seat.BottomPlate.Position.y
+                 then
+                    v2.passenger[v1.UserId] = v1
+                end
+            else
+                if
+                    (v1.Position - v2.obj.Seat.BottomPlate.Position).Magnitude > 2 or
+                        v1.Position.y < v2.obj.Seat.BottomPlate.Position.y
+                 then
+                    v2.passenger[v1.UserId] = nil
+                end
             end
         end
-    )
+    end
 end
 
 --- 进入热气球
@@ -108,35 +116,7 @@ function Zeppelin:GetOnZeppelin(_player)
     for k, v in pairs(zeppelinObjPool) do
         if v.state == zeppelinStateEnum.READY then
             v.passenger[_player.UserId] = _player
-            _player.Position = v.obj.Seat.Position
-        end
-    end
-end
-
---- 节点事件绑定
-function Zeppelin:EnterMiniGameEventHandler(_player, _gameId)
-    if _gameId == 6 then
-        this:GetOnZeppelin(_player)
-    end
-end
-
---- 离开热气球
-function Zeppelin:LeaveZeppelinEventHandler(_player)
-    for k1, v1 in pairs(zeppelinObjPool) do
-        for k2, v2 in pairs(v1.passenger) do
-            if v2 == _player then
-                v1.passenger[_player.UserId] = nil
-                _player.Position = v1.obj.Position + Vector3(0, -2, 0)
-            end
-        end
-    end
-end
-
---- 在站台等待的玩家进入热气球
-function Zeppelin:WaitingPassengerGetOn()
-    for k, v in pairs(world:FindPlayers()) do
-        if (v.Position - entranceArea.Position).Magnitude < 1.2 then
-            this:GetOnZeppelin(v)
+        --_player.Position = v.obj.Seat.Position
         end
     end
 end
@@ -144,7 +124,6 @@ end
 --- 丢弃全部乘客
 function Zeppelin:ThrowAwayAllPassenger(_zeppelin)
     for k, v in pairs(_zeppelin.passenger) do
-        this:LeaveZeppelinEventHandler(v)
     end
 end
 
@@ -175,7 +154,6 @@ function Zeppelin:ZeppelinSwitchState(_zeppelin)
     end
     if _zeppelin.state == zeppelinStateEnum.MOVING and _zeppelin.moveStep == #pathwayPointTable - 2 then
         _zeppelin.state = zeppelinStateEnum.RESET
-        this:ThrowAwayAllPassenger(_zeppelin)
         if this:IsZeppelinWait(_zeppelin) then
             _zeppelin.obj.LinearVelocity = Vector3.Zero
             wait(departureInterval)
@@ -185,10 +163,9 @@ function Zeppelin:ZeppelinSwitchState(_zeppelin)
     if _zeppelin.state == zeppelinStateEnum.RESET then
         if _zeppelin.moveStep == #pathwayPointTable then
             _zeppelin.state = zeppelinStateEnum.READY
-            this:WaitingPassengerGetOn()
             _zeppelin.obj.LinearVelocity = Vector3.Zero
             wait(departureInterval)
-        elseif this:IsZeppelinWait(_zeppelin) then
+        else
             _zeppelin.obj.LinearVelocity = Vector3.Zero
             wait(departureInterval)
         end
@@ -220,6 +197,7 @@ end
 
 function Zeppelin:Update(dt)
     this:timerRunning(dt)
+    this:ZeppelinDisDetect()
 end
 
 return Zeppelin
