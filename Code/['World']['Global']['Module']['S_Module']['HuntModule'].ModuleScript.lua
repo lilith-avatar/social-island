@@ -113,7 +113,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
             Config.Animal[_animalID].ArchetypeName,
             Config.Animal[_animalID].ArchetypeName .. #_animalData + 1,
             _parent,
-            _pos + Vector3(math.random(-0.6 * _range, _range), 0.2, math.random(-0.6 * _range, _range)),
+			_pos + Vector3(0.6 *math.random(-1 * _range, _range), 0.2,0.6 * math.random(-1 * _range, _range)),
             EulerDegree(0, 0, 0)
         ),
         state = animalActState.IDLE,

@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//AnimalConfig.xlsx
+--- source file: .//GameHunting.xlsx
 
 local AnimalXls = {
     [1] = {
@@ -15,7 +15,7 @@ local AnimalXls = {
         IdleAnimationName = {'Idle', 'Idle02'},
         IdleAnimationDurRange = {5, 20},
         MoveAnimationName = {'Run'},
-        MoveAnimationDurRange = {5, 20},
+        MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {},
         Weight = 50
     }

@@ -3,16 +3,63 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//AnimalAreaConfig.xlsx
+--- source file: .//GameHunting.xlsx
 
 local AnimalAreaXls = {
     [1] = {
         ID = 1,
-        Name = '平原1',
-        Pos = Vector3(-73.5046,  -8.6033,  -6.5945),
-        Range = 50.0,
-        AmountMax = 10,
-        InitAmount = 20,
+        Pos = Vector3(-36.478359, -7.336892, -2.477649),
+        Range = 9,
+        AmountMax = 3,
+        InitAmount = 6,
+        AnimalIDList = {1}
+    },
+    [2] = {
+        ID = 2,
+        Pos = Vector3(-149.639267, 1.146443, 28.819593),
+        Range = 7,
+        AmountMax = 2,
+        InitAmount = 4,
+        AnimalIDList = {1}
+    },
+    [3] = {
+        ID = 3,
+        Pos = Vector3(-159.163116, 1.899924, 44.346809),
+        Range = 7,
+        AmountMax = 2,
+        InitAmount = 4,
+        AnimalIDList = {1}
+    },
+    [4] = {
+        ID = 4,
+        Pos = Vector3(-144.763931, 1.541382, 110.011375),
+        Range = 7,
+        AmountMax = 3,
+        InitAmount = 6,
+        AnimalIDList = {1}
+    },
+    [5] = {
+        ID = 5,
+        Pos = Vector3(-123.801033, -0.049904, 102.514153),
+        Range = 11,
+        AmountMax = 2,
+        InitAmount = 4,
+        AnimalIDList = {1}
+    },
+    [6] = {
+        ID = 6,
+        Pos = Vector3(-110.724907, -2.885939, 24.118423),
+        Range = 9,
+        AmountMax = 3,
+        InitAmount = 6,
+        AnimalIDList = {1}
+    },
+    [7] = {
+        ID = 7,
+        Pos = Vector3(-65.938820, 15.370251, 95.961533),
+        Range = 9,
+        AmountMax = 2,
+        InitAmount = 6,
         AnimalIDList = {1}
     }
 }
