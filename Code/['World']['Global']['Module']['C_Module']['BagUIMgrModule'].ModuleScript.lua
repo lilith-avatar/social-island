@@ -34,8 +34,8 @@ end
 function BagUIMgr:DataInit()
     this.slotItem = {}
     this.pageSize = 10 -- 可配置
-    this.pageIndex = 1
-    this.maxPage = nil --最大页数
+    this.pageIndex = 1 -- 页面序号
+    this.maxPage = nil -- 最大页数
     this.selectIndex = nil
 end
 
@@ -111,9 +111,10 @@ end
 
 function BagUIMgr:ClickChangePage(_pageIndex)
     this:ClearSelect()
+    -- TODO: 显示当前页面物品
+
     --页面数字显示
     this.pageTxt = tostring(math.floor(_pageIndex))
-    --显示当前页面物品
     --如果第一页则不显示上一页按钮
     if _pageIndex == 1 then
         this.prevBtn:SetActive(false)
@@ -127,6 +128,11 @@ function BagUIMgr:ClickChangePage(_pageIndex)
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
     end
+end
+
+---更新最大页面数
+function BagUIMgr:GetMaxPageNum(_itemNum)
+    this.maxPage = math.ceil(_itemNum / this.pageSize)
 end
 
 return BagUIMgr
