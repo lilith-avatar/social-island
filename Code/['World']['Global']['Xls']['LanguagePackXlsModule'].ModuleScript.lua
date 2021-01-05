@@ -82,6 +82,237 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Moster Battle',
         JP = ''
+    },
+    Item_Name_1001 = {
+        ID = 'Item_Name_1001',
+        CHS = '光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2001 = {
+        ID = 'Item_Name_2001',
+        CHS = '不稳定的炸弹',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3001 = {
+        ID = 'Item_Name_3001',
+        CHS = '奥特曼的变身棒',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3002 = {
+        ID = 'Item_Name_3002',
+        CHS = '烈焰弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_4001 = {
+        ID = 'Item_Name_4001',
+        CHS = '魔法棒棒糖',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5001 = {
+        ID = 'Item_Name_5001',
+        CHS = 'Toji的房卡',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6001 = {
+        ID = 'Item_Name_6001',
+        CHS = '野猪皮',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_7001 = {
+        ID = 'Item_Name_7001',
+        CHS = '微型战斗机器人N9',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_8001 = {
+        ID = 'Item_Name_8001',
+        CHS = '战斗机器人内存卡',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1001 = {
+        ID = 'Item_Des_1001',
+        CHS = '星球大战',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2001 = {
+        ID = 'Item_Des_2001',
+        CHS = '嘀嘀嘀的响',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3001 = {
+        ID = 'Item_Des_3001',
+        CHS = '如果能量无限就好了',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3002 = {
+        ID = 'Item_Des_3002',
+        CHS = '射出火箭',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_4001 = {
+        ID = 'Item_Des_4001',
+        CHS = '大魔王最喜欢的食物',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5001 = {
+        ID = 'Item_Des_5001',
+        CHS = '怎么野猪身上会有这种东西?',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6001 = {
+        ID = 'Item_Des_6001',
+        CHS = '野猪的皮，怎么感觉纹理像外星人的头？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_7001 = {
+        ID = 'Item_Des_7001',
+        CHS = '很有灵性的样子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_8001 = {
+        ID = 'Item_Des_8001',
+        CHS = '机器人的教科书',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_1 = {
+        ID = 'NpcInfo_Name_1',
+        CHS = '猎人',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_2 = {
+        ID = 'NpcInfo_Name_2',
+        CHS = '农夫',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_3 = {
+        ID = 'NpcInfo_Name_3',
+        CHS = '魔法师',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_4 = {
+        ID = 'NpcInfo_Name_4',
+        CHS = '炮王',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_6 = {
+        ID = 'NpcInfo_Name_6',
+        CHS = '热气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_7 = {
+        ID = 'NpcInfo_Name_7',
+        CHS = '种花',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_8 = {
+        ID = 'NpcInfo_Name_8',
+        CHS = '蜗牛饲养员',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_9 = {
+        ID = 'NpcInfo_Name_9',
+        CHS = '赛跑管理员',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_10 = {
+        ID = 'NpcInfo_Name_10',
+        CHS = '摇摇椅管理员',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_11 = {
+        ID = 'NpcInfo_Name_11',
+        CHS = '野牛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_NpcText_5001 = {
+        ID = 'Item_NpcText_5001',
+        CHS = '啊，那天真是令人怀念，谢谢你！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1001 = {
+        ID = 'NpcText_Text_1001',
+        CHS = '没有人会记得一款准时发售的垃圾游戏',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1002 = {
+        ID = 'NpcText_Text_1002',
+        CHS = '大白鲨，我滴最爱',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_2001 = {
+        ID = 'NpcText_Text_2001',
+        CHS = '快来玩呀',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_2002 = {
+        ID = 'NpcText_Text_2002',
+        CHS = '你见过我的翅膀吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 
