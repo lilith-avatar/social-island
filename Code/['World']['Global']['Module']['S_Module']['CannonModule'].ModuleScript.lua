@@ -54,7 +54,14 @@ function Cannon:EventBind()
     barrel.Base.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.ClassName == "PlayerInstance" then
-                this:GetOnCannon(_hitObject)
+                NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 4)
+            end
+        end
+    )
+    barrel.Base.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == "PlayerInstance" then
+                NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
             end
         end
     )
@@ -67,6 +74,13 @@ function Cannon:GetOnCannon(_player)
         insidePlayer.Position = barrel.InsidePoint.Position
         NetUtil.Fire_C("SetCurCamEvent", insidePlayer, cam)
         NetUtil.Fire_C("SetMiniGameGuiEvent", insidePlayer, 4, true, false)
+    end
+end
+
+function Cannon:InteractSEventHandler(_player, _id)
+    print(_player, _id)
+    if _id == 4 then
+        this:GetOnCannon(_player)
     end
 end
 

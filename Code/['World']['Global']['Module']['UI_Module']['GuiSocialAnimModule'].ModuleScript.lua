@@ -27,7 +27,7 @@ function GuiSocialAnim:InitGui()
     uiRoot.HeaderImg.Color = HEADER_COLOR
     -- Buttons
     closeBtn = uiRoot.CloseBtn
-    animBtn = localPlayer.Local.ControlGui.SocialAnimBtn
+    animBtn = localPlayer.Local.ControlGui.Menu.SocialAnimBtn
     animBtn.Visible = false
     -- Panels
     emoPnl = uiRoot.EmotionPnl

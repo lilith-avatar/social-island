@@ -2,7 +2,7 @@
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang, Lin
-local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
+local GuiNpc, this = ModuleUtil.New("GuiNpc", ClientBase)
 
 -- GUI
 local controlGui, monsterGui, npcBtn
@@ -29,12 +29,8 @@ end
 
 --- 初始化GUI结点
 function GuiNpc:InitGui()
-    -- Control GUI
-    controlGui = localPlayer.Local.ControlGui
     -- Monster GUI
     monsterGui = localPlayer.Local.MonsterGUI
-    -- NPC btn
-    npcBtn = controlGui.NpcBtn
     -- NPC GUI
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
@@ -54,7 +50,7 @@ end
 function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
-            npc.Portrait = ResourceManager.GetTexture('TestPortrait/' .. npc.PortraitRes)
+            npc.Portrait = ResourceManager.GetTexture("TestPortrait/" .. npc.PortraitRes)
             print(npc.PortraitRes)
         end
     end
@@ -62,8 +58,6 @@ end
 
 --- 绑定事件
 function GuiNpc:InitListener()
-    npcBtn.OnClick:Connect(OpenNpcGui)
-    npcBtn.OnClick:Connect(NpcFaceToPlayer)
     gameBtn.OnClick:Connect(EnterMiniGame)
     battleBtn.OnClick:Connect(StartMonsterBattle)
     shopBtn.OnClick:Connect(EnterShop)
@@ -77,20 +71,17 @@ function TouchNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
-    print('[GuiNpc] TouchNpc()', _npcId)
-    controlGui.Visible = true
-    npcBtn.Visible = true
-    npcGui.Visible = false
+    print("[GuiNpc] TouchNpc()", _npcId)
+    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 12)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
 
 --- 离开NPC
 function LeaveNpc()
-    print('[GuiNpc] LeaveNpc()', currNpcId)
-    controlGui.Visible = true
+    print("[GuiNpc] LeaveNpc()", currNpcId)
+    NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
     monsterGui.Visible = true
-    npcBtn.Visible = false
     npcGui.Visible = false
     currNpcId = nil
     currNpcObj = nil
@@ -101,8 +92,8 @@ function OpenNpcGui()
     if currNpcId == nil or NpcInfo[currNpcId] == nil then
         return
     end
-    print('[GuiNpc] OpenNpcGui()')
-    controlGui.Visible = false
+    print("[GuiNpc] OpenNpcGui()")
+    NetUtil.Fire_C("SetDefUIEvent", localPlayer, false, {"Ctrl"})
     monsterGui.Visible = false
     npcGui.Visible = true
     local portrait = NpcInfo[currNpcId].Portrait
@@ -128,20 +119,20 @@ function EnterMiniGame()
     end
 
     local gameId = NpcInfo[currNpcId].GameId
-    NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
+    NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, gameId)
     --! Test only
-    print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
+    print("[GuiNpc] EnterMiniGameEvent", localPlayer, gameId)
 end
 
 --- 打开商城
 function EnterShop()
-    print('[GuiNpc] EnterShop()')
+    print("[GuiNpc] EnterShop()")
 end
 
 --- 开始宠物战斗
 function StartMonsterBattle()
-    print('[GuiNpc] StartMonsterBattle()')
-    NetUtil.Fire_S('StartBattleEvent', true, currNpcObj, localPlayer)
+    print("[GuiNpc] StartMonsterBattle()")
+    NetUtil.Fire_S("StartBattleEvent", true, currNpcObj, localPlayer)
 end
 
 --- 随机选取一段对话
@@ -151,18 +142,25 @@ function PickARandomDialog()
     end
     local dialogId = table.shuffle(NpcInfo[currNpcId].DialogId)[1]
     local dialog = NpcText[dialogId].Text
-    assert(dialogId and dialog, string.format('[GuiNpc] NPC: %s, 不存在DialogId: %s', currNpcId, dialogId))
+    assert(dialogId and dialog, string.format("[GuiNpc] NPC: %s, 不存在DialogId: %s", currNpcId, dialogId))
     return LanguageUtil.GetText(dialog)
 end
 
 --! Event handlers 事件处理
 
 function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
-    print('[GuiNpc] TouchNpcEventHandler', _npcId)
+    print("[GuiNpc] TouchNpcEventHandler", _npcId)
     if _npcId ~= nil then
         TouchNpc(_npcId, _npcObj)
     else
         LeaveNpc()
+    end
+end
+
+function GuiNpc:InteractCEventHandler(_id)
+    if _id == 12 then
+        OpenNpcGui()
+        NpcFaceToPlayer()
     end
 end
 
