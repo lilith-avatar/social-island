@@ -94,12 +94,14 @@ function OpenNpcGui()
     end
     print("[GuiNpc] OpenNpcGui()")
     NetUtil.Fire_C("SetDefUIEvent", localPlayer, false, {"Ctrl"})
-    monsterGui.Visible = false
+    --monsterGui.Visible = false
     npcGui.Visible = true
     local portrait = NpcInfo[currNpcId].Portrait
     portraitImg.Texture = portrait
     portraitImg.Visible = portrait ~= nil
     dialogTxt.Text = PickARandomDialog()
+	--如果玩家没有携带宠物，则隐藏对战按钮
+	battleBtn.Visible = localPlayer.MonsterVal.Value ~= nil
 end
 
 -- 使NPC面向玩家
