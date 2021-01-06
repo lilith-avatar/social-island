@@ -1,18 +1,18 @@
----@module BagUIMgr
+---@module GuiBag
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local BagUIMgr, this = ModuleUtil.New("BagUIMgr", ClientBase)
+local GuiBag, this = ModuleUtil.New("GuiBag", ClientBase)
 
 ---初始化函数
-function BagUIMgr:Init()
-    print("BagUIMgr: Init")
+function GuiBag:Init()
+    print("GuiBag: Init")
     this:NodeDef()
     this:DataInit()
     this:SlotCreate()
     this:EventBind()
 end
 
-function BagUIMgr:NodeDef()
+function GuiBag:NodeDef()
     this.gui = localPlayer.Local.BagGui.BagPnl
     this.slotList = {}
 
@@ -28,7 +28,7 @@ function BagUIMgr:NodeDef()
     this.pageTxt = this.gui.pageTxt
 end
 
-function BagUIMgr:DataInit()
+function GuiBag:DataInit()
     this.slotItem = {}
     this.pageSize = 10 -- 可配置
     this.pageIndex = 1 -- 页面序号
@@ -41,7 +41,7 @@ end
 
 --单元格生成
 local slot
-function BagUIMgr:SlotCreate()
+function GuiBag:SlotCreate()
     for i = 1, this.rowNum * this.colNum do
         --this.rowNum * this.colNum do
         slot = world:CreateInstance("SlotImg", "SlotImg", this.gui.SlotPnl)
@@ -64,7 +64,7 @@ function BagUIMgr:SlotCreate()
     end
 end
 
-function BagUIMgr:EventBind()
+function GuiBag:EventBind()
     this.useBtn.OnClick:Connect(
         function()
             this:ClickUseBtn(this.selectIndex)
@@ -87,23 +87,23 @@ function BagUIMgr:EventBind()
     )
 end
 
-function BagUIMgr:ShowBagUI()
+function GuiBag:ShowBagUI()
     this:ClearSelect()
     this.gui:SetActive(true)
 end
 
-function BagUIMgr:HideBagUI()
+function GuiBag:HideBagUI()
     this.gui:SetActive(false)
 end
 
-function BagUIMgr:ShowItemByIndex(_index, _itemId)
+function GuiBag:ShowItemByIndex(_index, _itemId)
     -- TODO: 更换图片
     this.slotList[_index].Image = nil
     this.slotItem[_index] = _itemId
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
 
-function BagUIMgr:ClickUseBtn(_index)
+function GuiBag:ClickUseBtn(_index)
     if not this.selectIndex then
         return
     end
@@ -115,17 +115,17 @@ function BagUIMgr:ClickUseBtn(_index)
 end
 
 ---选中物品
-function BagUIMgr:SelectItem(_index)
+function GuiBag:SelectItem(_index)
     this:ClearSelect()
     --this.selectIndex = _index
     -- TODO: 进行名字和描述的更换,并高亮该物品
     print(_index)
 end
 
-function BagUIMgr:ChangeSelectOffset(_pageIndex)
+function GuiBag:ChangeSelectOffset(_pageIndex)
 end
 
-function BagUIMgr:ClearSelect()
+function GuiBag:ClearSelect()
     if this.selectIndex then
         this.selectIndex = nil
         --清除描述，清除高亮
@@ -135,7 +135,7 @@ function BagUIMgr:ClearSelect()
     end
 end
 
-function BagUIMgr:ClickChangePage(_pageIndex)
+function GuiBag:ClickChangePage(_pageIndex)
     this:ClearSelect()
     -- TODO: 显示当前页面物品
 
@@ -157,8 +157,8 @@ function BagUIMgr:ClickChangePage(_pageIndex)
 end
 
 ---更新最大页面数
-function BagUIMgr:GetMaxPageNum(_itemNum)
+function GuiBag:GetMaxPageNum(_itemNum)
     this.maxPage = math.ceil(_itemNum / this.pageSize)
 end
 
-return BagUIMgr
+return GuiBag
