@@ -8,6 +8,7 @@ function BagUIMgr:Init()
     print("BagUIMgr: Init")
     this:NodeDef()
     this:DataInit()
+    this:SlotCreate()
     this:EventBind()
 end
 
@@ -25,10 +26,6 @@ function BagUIMgr:NodeDef()
     this.nameTxt = this.gui.NameTxt
     this.descTxt = this.gui.DescTxt
     this.pageTxt = this.gui.pageTxt
-
-    for _, v in pairs() do
-        table.insert(this.slotList, v)
-    end
 end
 
 function BagUIMgr:DataInit()
@@ -37,6 +34,34 @@ function BagUIMgr:DataInit()
     this.pageIndex = 1 -- 页面序号
     this.maxPage = nil -- 最大页数
     this.selectIndex = nil
+    --* 背包物品显示参数
+    this.rowNum = 10
+    this.colNum = 5
+end
+
+--单元格生成
+local slot
+function BagUIMgr:SlotCreate()
+    for i = 1, this.rowNum * this.colNum do
+        --this.rowNum * this.colNum do
+        slot = world:CreateInstance("SlotImg", "SlotImg", this.gui.SlotPnl)
+
+        slot.AnchorsX =
+            Vector2((math.fmod(i, this.rowNum) - 1) * (1 / this.rowNum), math.fmod(i, this.rowNum) * (1 / this.rowNum))
+        slot.AnchorsY =
+            Vector2(
+            1.1 - (math.modf(i / this.rowNum) + 1) * 1 / this.colNum,
+            1.1 - (math.modf(i / this.rowNum) + 1) * 1 / this.colNum
+        )
+        table.insert(this.slotList, slot)
+        -- TODO: 调整位置
+        -- 绑定事件
+        slot.SelectBtn.OnClick:Connect(
+            function()
+                this:SelectItem(i)
+            end
+        )
+    end
 end
 
 function BagUIMgr:EventBind()
@@ -82,18 +107,19 @@ function BagUIMgr:ClickUseBtn(_index)
     if not this.selectIndex then
         return
     end
-    this.slotList[_index].Image = nil
-    this.slotItem[_index] = nil
     -- TODO: 使用物品
 
     -- 清除选择
     this:ClearSelect()
+    -- 重新读取物品信息
 end
 
 ---选中物品
 function BagUIMgr:SelectItem(_index)
     this:ClearSelect()
+    --this.selectIndex = _index
     -- TODO: 进行名字和描述的更换,并高亮该物品
+    print(_index)
 end
 
 function BagUIMgr:ChangeSelectOffset(_pageIndex)
