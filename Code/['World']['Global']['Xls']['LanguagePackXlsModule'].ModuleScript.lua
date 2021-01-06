@@ -239,28 +239,28 @@ local LanguagePackXls = {
     },
     NpcInfo_Name_6 = {
         ID = 'NpcInfo_Name_6',
-        CHS = '热气球',
+        CHS = '蜗牛饲养员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_7 = {
         ID = 'NpcInfo_Name_7',
-        CHS = '种花',
+        CHS = '赛跑管理员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_8 = {
         ID = 'NpcInfo_Name_8',
-        CHS = '蜗牛饲养员',
+        CHS = '摇摇椅管理员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_9 = {
         ID = 'NpcInfo_Name_9',
-        CHS = '赛跑管理员',
+        CHS = '野牛',
         CHT = '',
         EN = '',
         JP = ''
@@ -288,28 +288,133 @@ local LanguagePackXls = {
     },
     NpcText_Text_1001 = {
         ID = 'NpcText_Text_1001',
-        CHS = '没有人会记得一款准时发售的垃圾游戏',
+        CHS = '我可以给你一把弓，来试试打猎吧',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1002 = {
         ID = 'NpcText_Text_1002',
-        CHS = '大白鲨，我滴最爱',
+        CHS = '想要别的弓？你如果有奖券我可以和你换。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
-        CHS = '快来玩呀',
+        CHS = '变异蜗牛大赛跑，买定离手！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2002 = {
         ID = 'NpcText_Text_2002',
-        CHS = '你见过我的翅膀吗？',
+        CHS = '我这是从飞碟下面捡到的外星科技，可带劲了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_5 = {
+        ID = 'NpcInfo_Name_5',
+        CHS = '种花',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1003 = {
+        ID = 'NpcText_Text_1003',
+        CHS = '种花能使你心平气和。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1004 = {
+        ID = 'NpcText_Text_1004',
+        CHS = '你种出好看的花了吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1005 = {
+        ID = 'NpcText_Text_1005',
+        CHS = '想要见识我的魔法吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1006 = {
+        ID = 'NpcText_Text_1006',
+        CHS = '你看过水晶球吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1007 = {
+        ID = 'NpcText_Text_1007',
+        CHS = '变异蜗牛大赛跑，买定离手！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1008 = {
+        ID = 'NpcText_Text_1008',
+        CHS = '我觉得这次远程能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1009 = {
+        ID = 'NpcText_Text_1009',
+        CHS = '我觉得这次小金能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1010 = {
+        ID = 'NpcText_Text_1010',
+        CHS = '我觉得这次toji能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1011 = {
+        ID = 'NpcText_Text_1011',
+        CHS = '我觉得这次胡老板能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1012 = {
+        ID = 'NpcText_Text_1012',
+        CHS = '要来试试喷射椅吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1013 = {
+        ID = 'NpcText_Text_1013',
+        CHS = '我这是从飞碟下面捡到的外星科技，可带劲了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1014 = {
+        ID = 'NpcText_Text_1014',
+        CHS = '坐上去就不想下来，可是，你坚持不了多久~',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1015 = {
+        ID = 'NpcText_Text_1015',
+        CHS = '这块地方有点诡异，你最好拿着这个锤子。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1016 = {
+        ID = 'NpcText_Text_1016',
+        CHS = '追Cube大奖赛',
         CHT = '',
         EN = '',
         JP = ''
