@@ -22,14 +22,18 @@ Events.ServerEvents = {
     'CannonFireEvent',
     -- 人间大炮调整方向
     'SetCannonDirEvent', -- @param _dir
-	'LoadMDataEvent', --@param _userId
-	'SaveMDataEvent', --@param _userId,_playerdata
-	'StartBattleEvent',--@param _isNpc,_playerA,_playerB
-	'PlantFlowerEvent' --@param _userId,_flowerObj
+    'LoadMDataEvent', -- @param _userId
+    'SaveMDataEvent', -- @param _userId, _playerdata
+    'StartBattleEvent', -- @param _isNpc, _playerA, _playerB
+    'PlantFlowerEvent' -- @param _userId, _flowerObj
 }
 
 -- 客户端事件列表
 Events.ClientEvents = {
+    -- 数据同步
+    'SyncDataEvent', -- @param _playerData
+    -- 数据载入结束
+    'EndLoadDataEvent', -- @param nil
     -- NPC事件
     'TouchNpcEvent', -- @param _npcId
     -- 修改玩家当前相机
@@ -50,11 +54,11 @@ Events.ClientEvents = {
     'ClientInitRaceEvent',
     -- 播放音效
     'PlayEffectEvent', -- @param _id, _pos
-	'LoadMDataBackEvent',
-	--准备战斗
-	'ReadyBattleEvent',
-	--宠物战斗事件
-	'MBattleEvent', --@param _enum,_arg1,_arg2
+    'LoadMDataBackEvent',
+    --准备战斗
+    'ReadyBattleEvent',
+    --宠物战斗事件
+    'MBattleEvent' --@param _enum,_arg1,_arg2
 }
 
 return Events
