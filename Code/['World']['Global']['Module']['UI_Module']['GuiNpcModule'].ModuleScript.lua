@@ -72,7 +72,7 @@ function TouchNpc(_npcId, _npcObj)
         return
     end
     print("[GuiNpc] TouchNpc()", _npcId)
-    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 12)
+    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", Config.Interact.NPC.ID)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
@@ -158,7 +158,7 @@ function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
 end
 
 function GuiNpc:InteractCEventHandler(_id)
-    if _id == 12 then
+    if _id == Config.Interact.NPC.ID then
         OpenNpcGui()
         NpcFaceToPlayer()
     end
