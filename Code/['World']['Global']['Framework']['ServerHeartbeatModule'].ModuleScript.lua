@@ -103,6 +103,7 @@ function InitEventsAndListeners()
             if cache[_player] then
                 print('[Heartbeat][Server] OnPlayerLeaveEvent, 玩家主动离开游戏,', _player)
                 NetUtil.Fire_S('OnPlayerLeaveEvent', _player)
+                cache[_player] = nil
             end
         end
     )
