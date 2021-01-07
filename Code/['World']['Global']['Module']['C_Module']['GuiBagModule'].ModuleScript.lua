@@ -2,6 +2,30 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local GuiBag, this = ModuleUtil.New("GuiBag", ClientBase)
+local Config = Config
+
+local transTab, tmp
+---对背包后端数据传过来的表进行转换
+---@param _itemTable table
+---@return table
+local function TransformItemTable(_itemTable)
+    transTab = {}
+    tmp =
+        table.sort(
+        _itemTable,
+        function(a, b)
+            if a and b then
+                return (a.ID < b.ID)
+            end
+        end
+    )
+    for _, v in pairs(_itemTable) do
+        for i = 1, v.count do
+            table.insert(transTab, v)
+        end
+    end
+    return transTab
+end
 
 ---初始化函数
 function GuiBag:Init()
@@ -30,11 +54,11 @@ end
 
 function GuiBag:DataInit()
     this.slotItem = {}
-    this.pageSize = 10 -- 可配置
     this.pageIndex = 1 -- 页面序号
     this.maxPage = nil -- 最大页数
     this.selectIndex = nil
-    --* 背包物品显示参数
+
+    --* 背包物品显示参数-------------
     this.rowNum = 10
     this.colNum = 5
 end
@@ -43,9 +67,10 @@ end
 local slot
 function GuiBag:SlotCreate()
     for i = 1, this.rowNum * this.colNum do
-        --this.rowNum * this.colNum do
         slot = world:CreateInstance("SlotImg", "SlotImg", this.gui.SlotPnl)
-
+        --插入到表
+        table.insert(this.slotList, slot)
+        -- 调整位置
         slot.AnchorsX =
             Vector2((math.fmod(i, this.rowNum) - 1) * (1 / this.rowNum), math.fmod(i, this.rowNum) * (1 / this.rowNum))
         slot.AnchorsY =
@@ -53,8 +78,6 @@ function GuiBag:SlotCreate()
             1.1 - (math.modf(i / this.rowNum) + 1) * 1 / this.colNum,
             1.1 - (math.modf(i / this.rowNum) + 1) * 1 / this.colNum
         )
-        table.insert(this.slotList, slot)
-        -- TODO: 调整位置
         -- 绑定事件
         slot.SelectBtn.OnClick:Connect(
             function()
@@ -97,9 +120,9 @@ function GuiBag:HideBagUI()
 end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
+    this.slotItem[_index] = _itemId
     -- TODO: 更换图片
     this.slotList[_index].Image = nil
-    this.slotItem[_index] = _itemId
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
 
@@ -108,7 +131,13 @@ function GuiBag:ClickUseBtn(_index)
         return
     end
     -- TODO: 使用物品
-
+    -- 进行物品的使用
+    if this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
+        -- 不移除
+    else
+        -- 移除
+        table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
+    end
     -- 清除选择
     this:ClearSelect()
     -- 重新读取物品信息
@@ -116,10 +145,12 @@ end
 
 ---选中物品
 function GuiBag:SelectItem(_index)
-    this:ClearSelect()
-    --this.selectIndex = _index
-    -- TODO: 进行名字和描述的更换,并高亮该物品
-    print(_index)
+    if this.slotItem[_index] then
+        this:ClearSelect()
+        this.selectIndex = _index
+        -- 进行名字和描述的更换,并高亮该物品
+        this:ChangeNameAndDesc(this.slotItem[_index])
+    end
 end
 
 function GuiBag:ChangeSelectOffset(_pageIndex)
@@ -156,9 +187,15 @@ function GuiBag:ClickChangePage(_pageIndex)
     end
 end
 
+function GuiBag:ChangeNameAndDesc(_itemId)
+    --this.nameTxt.Text = Config.itemInfo[_itemId].Name
+    --this.descTxt.Text = Config.itemInfo[_itemId].Description
+    -- TODO: 高亮
+end
+
 ---更新最大页面数
 function GuiBag:GetMaxPageNum(_itemNum)
-    this.maxPage = math.ceil(_itemNum / this.pageSize)
+    this.maxPage = math.ceil(_itemNum / (this.colNum * this.rowNum))
 end
 
 return GuiBag
