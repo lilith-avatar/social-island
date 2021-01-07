@@ -30,6 +30,9 @@ function PlayerCam:DataInit()
 
     -- TPS相机
     this.tpsCam = localPlayer.Local.Independent.TPSCam
+
+    -- 迷宫中的相机
+    this.mazeCam = localPlayer.Local.Independent.MazeCam
 end
 
 --- 节点事件绑定
@@ -90,9 +93,6 @@ function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
     this.curCamera = _cam or this.playerGameCam
     this.curCamera.LookAt = _lookAt or localPlayer
     world.CurrentCamera = this.curCamera
-end
-
-function PlayerCam:Update(dt)
 end
 
 return PlayerCam
