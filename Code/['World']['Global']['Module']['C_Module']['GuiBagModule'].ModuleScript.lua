@@ -22,10 +22,10 @@ local function TransformItemTable(_itemTable)
     for _, v in pairs(tmp) do
         for i = 1, v.count do
             local data = {
-                cd = 0,
-
+                cd = 0
             }
-            table.insert(transTab, v)
+            table.merge(data,v)
+            table.insert(transTab, data)
         end
     end
     return transTab
@@ -33,7 +33,6 @@ end
 
 ---初始化函数
 function GuiBag:Init()
-    print("GuiBag: Init")
     this:NodeDef()
     this:DataInit()
     this:SlotCreate()
@@ -130,7 +129,7 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
     -- TODO: 更换图片
-    this.slotList[_index].Image = ResourceManager.GetTexture(""..Config.Item[_itemId].Ico)
+    this.slotList[_index].Image = ResourceManager.GetTexture("" .. Config.Item[_itemId].Ico)
     this.slotList[_index].Image:SetActive(_itemId and true or false)
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
@@ -167,7 +166,7 @@ function GuiBag:SelectItem(_index)
         this:ChangeNameAndDesc(this.slotItem[_index])
         -- TODO: 红点系统预留
         if this.slotItem[_index].isNew then
-            --消除红点
+        --消除红点
         end
     end
 end
@@ -209,8 +208,8 @@ function GuiBag:ClickChangePage(_pageIndex)
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
-    this.nameTxt.Text = Config.itemInfo[_itemId].Name
-    this.descTxt.Text = Config.itemInfo[_itemId].Des
+    this.nameTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Name)
+    this.descTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Des)
     -- TODO: 高亮
 end
 
@@ -228,11 +227,11 @@ end
 
 ---计时器进行冷却计时
 function GuiBag:Update(dt)
-    for k,v in pairs(this.timer) do
+    for k, v in pairs(this.timer) do
         v = v + dt
         -- CD表现
-        for _,n in pairs(this.cdMask[k]) do
-            n.FillAmount = v/Config.Item[k].UseCD
+        for _, n in pairs(this.cdMask[k]) do
+            n.FillAmount = v / Config.Item[k].UseCD
         end
         if v >= Config.Item[k].UseCD then
             this.timer[k] = nil
