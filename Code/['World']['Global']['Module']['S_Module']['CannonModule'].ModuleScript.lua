@@ -78,7 +78,7 @@ function Cannon:GetOnCannon(_player)
 end
 
 function Cannon:InteractSEventHandler(_player, _id)
-    print(_player, _id)
+    print('[Cannon]', _player, _id)
     if _id == 4 then
         this:GetOnCannon(_player)
     end
