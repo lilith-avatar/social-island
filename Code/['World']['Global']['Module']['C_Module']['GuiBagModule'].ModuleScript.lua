@@ -122,7 +122,7 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
     -- TODO: 更换图片
-    this.slotList[_index].Image = ResourceManager.GetTexture('')
+    this.slotList[_index].Image = ResourceManager.GetTexture("")
     this.slotList[_index].Image:SetActive(_itemId and true or false)
 end
 
@@ -173,8 +173,8 @@ end
 
 function GuiBag:ClickChangePage(_pageIndex)
     this:ClearSelect()
-    -- TODO: 显示当前页面物品
 
+    this:ShowItemsByPageIndex(_pageIndex)
     --页面数字显示
     this.pageTxt = tostring(math.floor(_pageIndex))
     --如果第一页则不显示上一页按钮
@@ -194,8 +194,15 @@ end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
     --this.nameTxt.Text = Config.itemInfo[_itemId].Name
-    --this.descTxt.Text = Config.itemInfo[_itemId].Description
+    --this.descTxt.Text = Config.itemInfo[_itemId].Des
     -- TODO: 高亮
+end
+
+function GuiBag:ShowItemsByPageIndex(_pageIndex)
+    for i = 1, this.rowNum * this.colNum do
+        -- 显示当前页面物品
+        this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+    end
 end
 
 ---更新最大页面数
