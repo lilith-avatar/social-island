@@ -2,7 +2,7 @@
 --- @module Hunt Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Hunt, this = ModuleUtil.New("Hunt", ServerBase)
+local Hunt, this = ModuleUtil.New('Hunt', ServerBase)
 
 --- 变量声明
 -- 节点
@@ -30,7 +30,7 @@ local animalActState = {
 
 --- 初始化
 function Hunt:Init()
-    print("Hunt:Init")
+    print('[Hunt] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -53,8 +53,8 @@ end
 --- 节点事件绑定
 function Hunt:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 1 then
-        NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
-        NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
+        NetUtil.Fire_C('FsmTriggerEvent', _player, 'BowIdle')
+        NetUtil.Fire_C('SetMiniGameGuiEvent', _player, _gameId, true, true)
     end
 end
 
@@ -102,7 +102,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
             Config.Animal[_animalID].ArchetypeName,
             Config.Animal[_animalID].ArchetypeName .. #_animalData + 1,
             _parent,
-			_pos + Vector3(0.6 *math.random(-1 * _range, _range), 0.2,0.6 * math.random(-1 * _range, _range)),
+            _pos + Vector3(0.6 * math.random(-1 * _range, _range), 0.2, 0.6 * math.random(-1 * _range, _range)),
             EulerDegree(0, 0, 0)
         ),
         state = animalActState.IDLE,
@@ -120,7 +120,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
     tempData.obj.Col.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and tempData.state ~= animalActState.DEADED then
-                if _hitObject.Name == "Arrow" then
+                if _hitObject.Name == 'Arrow' then
                     _hitObject:Destroy()
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
                     this:AreaSpawnCtrl()
@@ -210,10 +210,9 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             1
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-		_animalData.obj.LinearVelocityController.Intensity = 0
-		_animalData.obj.RotationController.Intensity = 0
-		_animalData.obj.LinearVelocity = Vector3.Zero
-		
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
     elseif _animalData.state == animalActState.MOVE then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj:SetActive(true)
@@ -229,10 +228,11 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
             Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
-		_animalData.obj.LinearVelocityController.Intensity = 2000000
-		_animalData.obj.RotationController.Intensity = 1000000
+        _animalData.obj.LinearVelocityController.Intensity = 2000000
+        _animalData.obj.RotationController.Intensity = 1000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.SCARED then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -246,14 +246,15 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
-		_animalData.obj.LinearVelocityController.Intensity = 2000000
+        _animalData.obj.LinearVelocityController.Intensity = 2000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.DEADED then
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-		_animalData.obj.RotationController.Intensity = 0
-		_animalData.obj.LinearVelocityController.Intensity = 0
-		_animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
         if #_animalData.deadAnimationName > 0 then
             _animalData.obj.AnimatedMesh:PlayAnimation(
                 _animalData.deadAnimationName[math.random(#_animalData.deadAnimationName)],

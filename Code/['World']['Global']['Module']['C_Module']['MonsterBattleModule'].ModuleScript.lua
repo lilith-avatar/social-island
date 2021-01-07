@@ -2,12 +2,12 @@
 -- @copyright Lilith Games, Avatar Team
 -- @author Lin
 
-local MonsterBattle, this = ModuleUtil.New("MonsterBattle", ClientBase)
+local MonsterBattle, this = ModuleUtil.New('MonsterBattle', ClientBase)
 local RealMonster = nil
 
 function MonsterBattle:Init()
     --Game.SetFPSQuality(Enum.FPSQuality.High)
-    print("MonsterBattle:Init")
+    print('[MonsterBattle] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -18,9 +18,9 @@ function MonsterBattle:NodeRef()
     this.MonsterGUI = localPlayer.Local.MonsterGUI
     this.MainPanel = this.MonsterGUI.MainPanel
     this.BattlePanel = this.MonsterGUI.BattlePanel
-    this.RED_BAR = ResourceManager.GetTexture("Internal/Blood_Red")
-    this.GREEN_BAR = ResourceManager.GetTexture("Internal/Blood_Green")
-    this.ORANGE_BAR = ResourceManager.GetTexture("Internal/Blood_Orange")
+    this.RED_BAR = ResourceManager.GetTexture('Internal/Blood_Red')
+    this.GREEN_BAR = ResourceManager.GetTexture('Internal/Blood_Green')
+    this.ORANGE_BAR = ResourceManager.GetTexture('Internal/Blood_Orange')
 end
 
 --数据变量声明
@@ -28,10 +28,10 @@ function MonsterBattle:DataInit()
     --this.monster = nil
     this.monsterItemLis = {}
     this.focusMonsterItem = nil
-    world:CreateObject("IntValueObject", "HealthVal", localPlayer)
-    world:CreateObject("IntValueObject", "AttackVal", localPlayer)
-    world:CreateObject("ObjRefValueObject", "MonsterVal", localPlayer)
-    world:CreateObject("IntValueObject", "BattleVal", localPlayer)
+    world:CreateObject('IntValueObject', 'HealthVal', localPlayer)
+    world:CreateObject('IntValueObject', 'AttackVal', localPlayer)
+    world:CreateObject('ObjRefValueObject', 'MonsterVal', localPlayer)
+    world:CreateObject('IntValueObject', 'BattleVal', localPlayer)
 end
 
 --节点事件绑定
@@ -43,7 +43,7 @@ function MonsterBattle:EventBind()
             print(not _flag)
             this.MainPanel:SetActive(not _flag)
             if not _flag then
-                print("刷新")
+                print('刷新')
                 this:RefreshBag()
             end
         end
@@ -123,7 +123,7 @@ function MonsterBattle:OnPlayerJoinEventHandler()
         end
     )
     this:ShowMonster()
-    world:CreateObject("StringValueObject", "EnemyVal", localPlayer)
+    world:CreateObject('StringValueObject', 'EnemyVal', localPlayer)
 
     invoke(
         function()
@@ -210,7 +210,7 @@ function MonsterBattle:GetNewMonster(_monsterId)
     math.randomseed(os.time())
     local _monsterData = this:GetMonsterDataById(_monsterId)
     if (_monsterData == nil) then
-        print("表中没有该宠物数据")
+        print('表中没有该宠物数据')
     else
         local _monsterItem = {}
         _monsterItem.Uuid = UUID()
@@ -236,8 +236,8 @@ function MonsterBattle:ShowMonster()
     if _showMonster.Id then
         local _monster =
             world:CreateInstance(
-            "Monster",
-            "Monster" .. localPlayer.UserId,
+            'Monster',
+            'Monster' .. localPlayer.UserId,
             world,
             localPlayer.Position,
             EulerDegree(0, 0, 0)
@@ -249,7 +249,7 @@ function MonsterBattle:ShowMonster()
         this:RefreshShowMonsterVal()
         this:FlashMove()
         this.HealthGUI = localPlayer.MonsterVal.Value.Cube.HealthGui
-        print("更换成功")
+        print('更换成功')
     end
 end
 
@@ -272,10 +272,10 @@ function MonsterBattle:RefreshBag()
 
     local _node = this.MainPanel.BackGround
     for k, v in ipairs(this.playerData.monsterLis) do
-        local _item = world:CreateInstance("MonsterItem", "MonsterItem", _node)
+        local _item = world:CreateInstance('MonsterItem', 'MonsterItem', _node)
         _item.Offset = Vector2(130 * math.fmod(k - 1, 6), 130 * math.modf((k - 1) / 6))
         local _data = this:GetMonsterDataById(v.Id)
-        _item.Text = _data.Name .. "  " .. v.Health .. "  " .. v.Attack
+        _item.Text = _data.Name .. '  ' .. v.Health .. '  ' .. v.Attack
         _item.UUID.Value = v.Uuid
         _item.OnClick:Connect(
             function()
@@ -302,10 +302,10 @@ function MonsterBattle:InitFocusItem()
         showBtn:SetActive(true)
         local _longdata = this:GetMonsterDataByUUID(focusMonsterItem.UUID.Value)
         local _configdata = this:GetMonsterDataById(_longdata.Id)
-        showBtn.Text = "携带: " .. _configdata.Name .. " " .. _longdata.Health .. " " .. _longdata.Attack
+        showBtn.Text = '携带: ' .. _configdata.Name .. ' ' .. _longdata.Health .. ' ' .. _longdata.Attack
     else
         showBtn:SetActive(false)
-        showBtn.Text = ""
+        showBtn.Text = ''
     end
 end
 
@@ -321,22 +321,22 @@ function MonsterBattle:ReadyBattleEventHandler()
 end
 
 function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
-    if _enum == "SkllTime" then
+    if _enum == 'SkllTime' then
         this.BattlePanel.TimeText.Text = _arg1
-    elseif _enum == "ShowSkill" then
-        local _skillTxt = {"石头", "剪刀", "布"}
+    elseif _enum == 'ShowSkill' then
+        local _skillTxt = {'石头', '剪刀', '布'}
         if localPlayer.BattleVal.Value == -1 then --如果没有决定，则随机一个
             math.randomseed(os.time() + Timer.GetTimeMillisecond())
             localPlayer.BattleVal.Value = math.random(1, 3)
         end
         this.HealthGUI.SkillText.Text = _skillTxt[localPlayer.BattleVal.Value]
-    elseif _enum == "NewRound" then
+    elseif _enum == 'NewRound' then
         localPlayer.BattleVal.Value = -1
-    elseif _enum == "BeHit" then
+    elseif _enum == 'BeHit' then
         invoke(
             function()
                 localPlayer.HealthVal.Value = math.max(0, localPlayer.HealthVal.Value - _arg1)
-                local _manaBall = world:CreateObject("Sphere", "Ball", world, _arg2.MonsterVal.Value.Cube.Position)
+                local _manaBall = world:CreateObject('Sphere', 'Ball', world, _arg2.MonsterVal.Value.Cube.Position)
                 _manaBall.Size = Vector3.One * 0.3
                 local Tweener =
                     Tween:TweenProperty(_manaBall, {Position = RealMonster.Cube.Position}, 0.5, Enum.EaseCurve.Linear)
@@ -345,13 +345,13 @@ function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
                 this.HealthGUI.HitText.Text = _arg1
                 _manaBall:Destroy()
                 this:HealthChange()
-                local Tweener = Tween:ShakeProperty(RealMonster.Cube, {"LocalPosition"}, 1, 0.1)
+                local Tweener = Tween:ShakeProperty(RealMonster.Cube, {'LocalPosition'}, 1, 0.1)
                 Tweener:Play()
                 wait(1)
-                this.HealthGUI.HitText.Text = ""
+                this.HealthGUI.HitText.Text = ''
             end
         )
-    elseif _enum == "Over" then
+    elseif _enum == 'Over' then
         this.MainPanel:SetActive(false)
         this.BattlePanel:SetActive(false)
         this.HealthGUI:SetActive(false)
@@ -371,7 +371,7 @@ function MonsterBattle:HealthChange()
             this.HealthGUI.BackgroundImg.HealthBarImg.Texture = this.RED_BAR
         end
         this.HealthGUI.BackgroundImg.HealthBarImg.AnchorsX = Vector2(0.05, 0.9 * percent + 0.05)
-        this.HealthGUI.BloodText.Text = localPlayer.HealthVal.Value .. "/" .. this.playerData.showMonster.Health
+        this.HealthGUI.BloodText.Text = localPlayer.HealthVal.Value .. '/' .. this.playerData.showMonster.Health
     end
 end
 
@@ -382,11 +382,11 @@ end
 --以下为数据交互函数
 --保存长期数据
 function MonsterBattle:SaveData()
-    NetUtil.Fire_S("SaveMDataEvent", localPlayer.UserId, this.playerData)
+    NetUtil.Fire_S('SaveMDataEvent', localPlayer.UserId, this.playerData)
 end
 --读取长期数据
 function MonsterBattle:LoadData()
-    NetUtil.Fire_S("LoadMDataEvent", localPlayer.UserId)
+    NetUtil.Fire_S('LoadMDataEvent', localPlayer.UserId)
 end
 
 function MonsterBattle:LoadMDataBackEventHandler(_userId, _playerData)

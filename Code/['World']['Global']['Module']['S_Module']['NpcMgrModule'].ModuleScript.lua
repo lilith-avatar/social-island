@@ -2,7 +2,7 @@
 --- @module NPC manager
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang, Lin
-local NpcMgr, this = ModuleUtil.New("NpcMgr", ServerBase)
+local NpcMgr, this = ModuleUtil.New('NpcMgr', ServerBase)
 
 -- cache
 local ServerUtil = ServerUtil
@@ -13,6 +13,7 @@ local npcObjs = {}
 
 --- 初始化
 function NpcMgr:Init()
+    print('[NpcMgr] Init()')
     CreateNpcFolder()
     SpawnNpcs()
 end
@@ -20,7 +21,7 @@ end
 --- 生成节点：world.NPC
 function CreateNpcFolder()
     if world.NPC == nil then
-        world:CreateObject("FolderObject", "NPC", world)
+        world:CreateObject('FolderObject', 'NPC', world)
     end
     npcFolder = world.NPC
 end
@@ -29,7 +30,7 @@ end
 function SpawnNpcs()
     for _, npc in pairs(NpcInfo) do
         local npcObj = world:CreateInstance(npc.Model, npc.Name, npcFolder, npc.SpawnPos, npc.SpawnRot)
-        local id = world:CreateObject("IntValueObject", "ID", npcObj)
+        local id = world:CreateObject('IntValueObject', 'ID', npcObj)
         id.Value = npc.ID
 
         -- 生成宠物
@@ -39,14 +40,14 @@ function SpawnNpcs()
         npcObj.CollisionArea.OnCollisionBegin:Connect(
             function(_hitObj)
                 if ServerUtil.CheckHitObjIsPlayer(_hitObj) then
-                    NetUtil.Fire_C("TouchNpcEvent", _hitObj, npcInfo.ID, npcObj)
+                    NetUtil.Fire_C('TouchNpcEvent', _hitObj, npcInfo.ID, npcObj)
                 end
             end
         )
         npcObj.CollisionArea.OnCollisionEnd:Connect(
             function(_hitObj)
                 if ServerUtil.CheckHitObjIsPlayer(_hitObj) then
-                    NetUtil.Fire_C("TouchNpcEvent", _hitObj, nil, nil)
+                    NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
                 end
             end
         )
@@ -56,8 +57,8 @@ end
 
 -- 检查碰撞对象是否为NPC
 function CheckHitObjIsPlayer(_hitObj)
-    return _hitObj and _hitObj.ClassName == "PlayerInstance" and _hitObj.Avatar and
-        _hitObj.Avatar.ClassName == "PlayerAvatarInstance"
+    return _hitObj and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar and
+        _hitObj.Avatar.ClassName == 'PlayerAvatarInstance'
 end
 
 -- 创建NPC的宠物
@@ -67,14 +68,14 @@ function SpawnMonster(_npcObj, _npcInfo)
         invoke(
             function()
                 wait(1)
-                local healthVal = world:CreateObject("IntValueObject", "HealthVal", _npcObj)
-                local attackVal = world:CreateObject("IntValueObject", "AttackVal", _npcObj)
-                local monsterVal = world:CreateObject("ObjRefValueObject", "MonsterVal", _npcObj)
-                world:CreateObject("IntValueObject", "BattleVal", _npcObj)
+                local healthVal = world:CreateObject('IntValueObject', 'HealthVal', _npcObj)
+                local attackVal = world:CreateObject('IntValueObject', 'AttackVal', _npcObj)
+                local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
+                world:CreateObject('IntValueObject', 'BattleVal', _npcObj)
                 monsterVal.Value =
                     world:CreateInstance(
-                    "Monster",
-                    "Monster" .. _npcInfo.Name,
+                    'Monster',
+                    'Monster' .. _npcInfo.Name,
                     world,
                     _npcObj.Position - _npcObj.Forward * 2
                 )

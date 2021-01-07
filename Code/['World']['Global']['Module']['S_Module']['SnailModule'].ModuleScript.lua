@@ -2,7 +2,7 @@
 --- @module Snail Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Snail, this = ModuleUtil.New("Snail", ServerBase)
+local Snail, this = ModuleUtil.New('Snail', ServerBase)
 
 --- 变量声明
 -- 蜗牛对象池
@@ -33,7 +33,7 @@ local gameState = 1
 
 --- 初始化
 function Snail:Init()
-    print("Snail:Init")
+    print('[Snail] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -43,7 +43,7 @@ end
 function Snail:NodeRef()
     for i = 1, 4 do
         snailObjPool[i] = {
-            obj = world.MiniGames.Game_08_Snail.Snail["Snail" .. i],
+            obj = world.MiniGames.Game_08_Snail.Snail['Snail' .. i],
             index = i,
             state = 1,
             moveData = {},
@@ -51,8 +51,8 @@ function Snail:NodeRef()
             betPlayer = {},
             ranking = 0
         }
-        startPoints[i] = world.MiniGames.Game_08_Snail.Track["Start" .. i]
-        endPoints[i] = world.MiniGames.Game_08_Snail.Track["End" .. i]
+        startPoints[i] = world.MiniGames.Game_08_Snail.Track['Start' .. i]
+        endPoints[i] = world.MiniGames.Game_08_Snail.Track['End' .. i]
     end
 end
 
@@ -157,7 +157,7 @@ end
 --- 蜗牛到达终点
 function Snail:SnailFinish(_snailObjPool)
     if _snailObjPool.state == snailActState.MOVE then
-        print(_snailObjPool.obj, "到达终点")
+        print('[Snail]', _snailObjPool.obj, '到达终点')
         _snailObjPool.state = snailActState.FINISH
         _snailObjPool.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
         _snailObjPool.ranking = 1

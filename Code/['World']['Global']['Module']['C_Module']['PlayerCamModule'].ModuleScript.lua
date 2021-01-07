@@ -2,14 +2,14 @@
 --- @module Player Cam Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local PlayerCam, this = ModuleUtil.New("PlayerCam", ClientBase)
+local PlayerCam, this = ModuleUtil.New('PlayerCam', ClientBase)
 
 -- 触屏的手指数
 local touchNumber = 0
 
 --- 初始化
 function PlayerCam:Init()
-    print("PlayerCam:Init")
+    print('[PlayerCam] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

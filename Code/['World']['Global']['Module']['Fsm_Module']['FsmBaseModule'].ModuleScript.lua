@@ -2,10 +2,10 @@
 -- @module Game Manager, Server-side
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local FsmBase = class("FsmBase")
+local FsmBase = class('FsmBase')
 
 function FsmBase:initialize()
-    print("FsmBase:initialize()")
+    print('[FsmBase] initialize()')
     self.states = {}
     self.lastState = nil
     self.curState = nil
@@ -44,22 +44,22 @@ end
 function FsmBase:ConnectStateFunc(_statesT, _module)
     for k, v in pairs(_statesT) do
         if
-            _module[v.Name .. "StateOnEnterFunc"] and _module[v.Name .. "StateOnUpdateFunc"] and
-                _module[v.Name .. "StateOnLeaveFunc"]
+            _module[v.Name .. 'StateOnEnterFunc'] and _module[v.Name .. 'StateOnUpdateFunc'] and
+                _module[v.Name .. 'StateOnLeaveFunc']
          then
             local tempState = StateBase:new(v.Name, v.NextName, v.Dur)
             tempState.OnEnter = function()
-                _module[v.Name .. "StateOnEnterFunc"]()
+                _module[v.Name .. 'StateOnEnterFunc']()
             end
             tempState.OnUpdate = function(dt)
-                _module[v.Name .. "StateOnUpdateFunc"](dt)
+                _module[v.Name .. 'StateOnUpdateFunc'](dt)
             end
             tempState.OnLeave = function()
-                _module[v.Name .. "StateOnLeaveFunc"]()
+                _module[v.Name .. 'StateOnLeaveFunc']()
             end
             self:AddState(tempState)
         else
-            print("not exit interface:" .. v.Name)
+            print('[FsmBase] not exit interface: ' .. v.Name)
         end
     end
     --self:SetDefaultState(ConstDef.PlayerActStateEnum.Idle)
