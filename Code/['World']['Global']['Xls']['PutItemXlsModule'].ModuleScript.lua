@@ -5,15 +5,14 @@
 --- @see https://github.com/endaye/avatar-ava-xls2lua
 --- source file: .//Item.xlsm
 
-local PickItemXls = {
-    [1] = {
-        ID = 1,
-        Archetype = '暴怒的大魔王',
-        Type = 2,
-        ItemId = 2001,
-        LifeTime = 60,
-        Durability = -1
+local PutItemXls = {
+    [4001] = {
+        ItemID = 4001,
+        AnimUse = 'Eat',
+        UseCD = 600.0,
+        UseSound = '',
+        PickItemId = 1
     }
 }
 
-return PickItemXls
+return PutItemXls

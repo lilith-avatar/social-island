@@ -3,9 +3,9 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemConfig.xlsx
+--- source file: .//Item.xlsm
 
-local BuffConfigXls = {
+local BuffXls = {
     [1] = {
         BUFF = 1,
         SizeChange = 2.0,
@@ -32,4 +32,4 @@ local BuffConfigXls = {
     }
 }
 
-return BuffConfigXls
+return BuffXls

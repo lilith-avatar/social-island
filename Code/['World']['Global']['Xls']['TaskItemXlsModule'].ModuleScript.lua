@@ -5,15 +5,14 @@
 --- @see https://github.com/endaye/avatar-ava-xls2lua
 --- source file: .//Item.xlsm
 
-local PickItemXls = {
-    [1] = {
-        ID = 1,
-        Archetype = '暴怒的大魔王',
-        Type = 2,
-        ItemId = 2001,
-        LifeTime = 60,
-        Durability = -1
+local TaskItemXls = {
+    [5001] = {
+        ItemID = 5001,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = 200,
+        NpcText = 'TaskItem_NpcText_5001'
     }
 }
 
-return PickItemXls
+return TaskItemXls
