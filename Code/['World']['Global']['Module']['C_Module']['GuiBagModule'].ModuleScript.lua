@@ -130,7 +130,7 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
     -- TODO: 更换图片
-    this.slotList[_index].Image = ResourceManager.GetTexture("")
+    this.slotList[_index].Image = ResourceManager.GetTexture(""..Config.Item[_itemId].Ico)
     this.slotList[_index].Image:SetActive(_itemId and true or false)
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
