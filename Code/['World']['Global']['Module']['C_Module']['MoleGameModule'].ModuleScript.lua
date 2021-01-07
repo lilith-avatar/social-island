@@ -1,10 +1,11 @@
 ---@module MoleGame
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleGame, this = ModuleUtil.New("MoleGame", ClientBase)
+local MoleGame, this = ModuleUtil.New('MoleGame', ClientBase)
 
 ---初始化函数
 function MoleGame:Init()
+    print('[MoleGame] Init()')
     this:DataInit()
     this:NodeDef()
     --this:GameStart()
@@ -57,7 +58,7 @@ function MoleGame:GameStart()
     --Todo:传送到指定地点
     this:EventBindForStart()
     this.startUpdate = true
-	MoleUIMgr:UpdateTime(this.time)
+    MoleUIMgr:UpdateTime(this.time)
     MoleUIMgr:UpdateScore(this.score)
     MoleUIMgr:UpdateBoost(this.boostNum)
 end
@@ -67,7 +68,7 @@ function MoleGame:GameOver()
     this.hitRange.OnCollisionBegin:Clear()
     this.hitRange.OnCollisionEnd:Clear()
     this:DataInit()
-    NetUtil.Fire_S("PlayerLeaveMoleHitEvent", localPlayer.UserId)
+    NetUtil.Fire_S('PlayerLeaveMoleHitEvent', localPlayer.UserId)
     --Todo:传送到指定地点
 end
 
@@ -94,7 +95,7 @@ function MoleGame:BoostEffect()
         --Todo:具体效果
         this.boostTime = this.boostTime - 1
         localPlayer.WalkSpeed = 8
-        print("强化剩余" .. this.boostTime)
+        print('强化剩余' .. this.boostTime)
         if this.boostTime <= 0 then
             this.boostEffect = false
             localPlayer.WalkSpeed = 6
@@ -113,11 +114,11 @@ function MoleGame:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
         this.boostEffect = true
         this.boostNum = 0
     end
-    if _type == "Time" then
+    if _type == 'Time' then
         this.time = this.time + _reward
         MoleUIMgr:UpdateTime(this.time)
     end
-    if _type == "Score" then
+    if _type == 'Score' then
         this.score = this.score + _reward
         MoleUIMgr:UpdateScore(this.score)
     end

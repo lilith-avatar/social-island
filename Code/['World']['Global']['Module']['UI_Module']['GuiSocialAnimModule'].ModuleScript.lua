@@ -16,6 +16,7 @@ local emoTbl, danceTbl, multiTbl = {}, {}, {}
 local overallTbl = {emoTbl, danceTbl, multiTbl}
 
 function GuiSocialAnim:Init()
+    print('[GuiSocialAnim] Init()')
     self.currAnimLogic = nil
     self:InitGui()
     self:InitListener()

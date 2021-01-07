@@ -13,17 +13,19 @@ local AUTO_SAVE_TIME = 60
 local RELOAD_TIME = 1
 
 -- Cache
--- local DataStore = DataStore
+local DataStore = DataStore
 
 --! 初始化
 
 function DataMgr:Init()
+    print('[DataMgr] Init()')
     TimeUtil.SetInterval(SaveAllGameDataAsync, AUTO_SAVE_TIME)
 end
 
 --- 得到默认的玩家数据
 function GetDefaultPlayerData(_uid)
     --TODO: 添加默认的玩家数据格式
+    print('[DataMgr] 使用默认玩家数据 uid =', _uid)
     return {
         -- 玩家User Id
         uid = _uid,
@@ -62,7 +64,7 @@ end
 --- @param _key string 键名
 function GetDataByUserId(_uid, _key)
     local data = allPlayersData[_uid]
-    return _key and data and data[_key]
+    return (string.isnilorempty(_key)) and (data) or (data and data[_key])
 end
 
 --- 设定指定玩家ID的全部数据
@@ -115,7 +117,7 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
     local player = world:GetPlayerByUserId(_uid)
     assert(player, string.format('[DataMgr] 玩家不存在, uid = %s', _uid))
     if _msg == 0 or _msg == 101 then
-        print('获取玩家数据成功', player.Name)
+        print('[DataMgr] 获取玩家数据成功', player.Name)
         --若以前的数据为空，则让数据等于默认值
         local data = _val or GetDefaultPlayerData(_uid)
         assert(data.uid == _uid, string.format('[DataMgr] uid校验不通过, uid = %s', _uid))
@@ -133,7 +135,15 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
         --成功下载玩家数据后，通知客户端可以正式开始游戏
         NetUtil.Fire_C('EndLoadDataEvent', player)
     else
-        print(string.format('[DataMgr] 获取玩家数据失败，%s秒后重试, uid = %s, msg = %s', RELOAD_TIME, _uid, _msg))
+        print(
+            string.format(
+                '[DataMgr] 获取玩家数据失败，%s秒后重试, uid = %s, player = %s, msg = %s',
+                RELOAD_TIME,
+                _uid,
+                player.Name,
+                _msg
+            )
+        )
         --若失败，则1秒后重新再读取一次
         invoke(
             function()
@@ -194,14 +204,15 @@ end
 -- 玩家加入事件
 function DataMgr:OnPlayerJoinEventHandler(_player)
     local uid = _player.UserId
-    print('OnPlayerJoinEvent', uid)
+    print(string.format('[DataMgr] OnPlayerJoinEvent 玩家加入 name = %s, uid = %s', _player.Name, uid))
     LoadGameDataAsync(uid)
 end
 
 -- 玩家离开事件
 function DataMgr:OnPlayerLeaveEventHandler(_player)
     local uid = _player.UserId
-    print('OnPlayerLeaveEvent', uid)
+    print(string.format('[DataMgr] OnPlayerLeaveEvent 玩家离开 name = %s, uid = %s', _player.Name, uid))
+    SaveGameDataAsync(uid)
 end
 
 return DataMgr

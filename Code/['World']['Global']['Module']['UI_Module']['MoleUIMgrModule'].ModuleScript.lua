@@ -1,10 +1,11 @@
 ---@module MoleUIMgr
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleUIMgr, this = ModuleUtil.New("MoleUIMgr", ClientBase)
+local MoleUIMgr, this = ModuleUtil.New('MoleUIMgr', ClientBase)
 
 ---初始化函数
 function MoleUIMgr:Init()
+    print('[MoleUIMgr] Init()')
     this:NodeDef()
     this:DataInit()
     this:EventBind()
@@ -53,11 +54,11 @@ function MoleUIMgr:StartMoleEventHandler()
 end
 
 function MoleUIMgr:Hit()
-    NetUtil.Fire_S("PlayerHitEvent", localPlayer.UserId, MoleGame.rangeList)
+    NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, MoleGame.rangeList)
 end
 
 function MoleUIMgr:StartGame()
-    NetUtil.Fire_S("PlayerStartMoleHitEvent", localPlayer.UserId)
+    NetUtil.Fire_S('PlayerStartMoleHitEvent', localPlayer.UserId)
     this.gui:SetActive(true)
     this.hitButton:SetActive(true)
     this.contrlGui.UseBtn:SetActive(false)
@@ -83,7 +84,7 @@ end
 function MoleUIMgr:Update(_dt)
     if this.isCooling then
         this.timer = this.timer + _dt
-        this.hitMask.FillAmount = 1 - this.timer/this.coolTime
+        this.hitMask.FillAmount = 1 - this.timer / this.coolTime
         if this.timer >= this.coolTime then
             this.timer = 0
             this.isCooling = false

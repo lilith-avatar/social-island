@@ -18,7 +18,7 @@ TimeUtil = require(Utility.TimeUtilModule)
 CloudLogUtil = require(Utility.CloudLogUtilModule)
 
 -- Game Defines
-GAME_ID = "A1003"
+GAME_ID = 'A1003'
 
 -- Init Utilities
 TimeUtil.Init()
@@ -40,7 +40,6 @@ ModuleUtil.LoadModules(Module.S_Module)
 ModuleUtil.LoadModules(Module.Cls_Module)
 ModuleUtil.LoadModules(Module.UI_Module)
 ModuleUtil.LoadModules(Module.C_Module)
-
 
 -- Plugin Modules
 GuideSystem = require(world.Global.Plugin.FUNC_Guide.GuideSystemModule)

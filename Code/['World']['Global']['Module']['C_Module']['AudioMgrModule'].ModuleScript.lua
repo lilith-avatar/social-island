@@ -4,7 +4,7 @@
 -- @author Dead Ratman
 ---@module AudioMgr
 
-local AudioMgr, this = ModuleUtil.New("AudioMgr", ClientBase)
+local AudioMgr, this = ModuleUtil.New('AudioMgr', ClientBase)
 
 local BGMAudioSources = {}
 local BGMClips = {}
@@ -12,7 +12,7 @@ local EffectAudioSources = {}
 local EffectClips = {}
 
 function AudioMgr:Init()
-    print("AudioMgr:Init")
+    print('[AudioMgr] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -24,8 +24,8 @@ end
 
 --数据变量声明
 function AudioMgr:DataInit()
-    this.BGMAudioSourceNode = PlayerCam.playerGameCam["BGMNode"]
-    this.EffectAudioSourceNode = PlayerCam.playerGameCam["SENode"]
+    this.BGMAudioSourceNode = PlayerCam.playerGameCam['BGMNode']
+    this.EffectAudioSourceNode = PlayerCam.playerGameCam['SENode']
 
     for k, v in pairs(Config.Sound) do
         this:InitEffectClip(v)
@@ -49,7 +49,7 @@ end
 --初始化一个BGM播放器
 function AudioMgr:InitBGMSource(_index)
     BGMAudioSources[_index] = {
-        Source = world:CreateObject("AudioSource", "BGMSource" .. _index, this.BGMAudioSourceNode),
+        Source = world:CreateObject('AudioSource', 'BGMSource' .. _index, this.BGMAudioSourceNode),
         Index = _index
     }
     return BGMAudioSources[_index]
@@ -59,15 +59,15 @@ end
 function AudioMgr:InitEffectSource(_index)
     local tempSourceR =
         world:CreateObject(
-        "AudioSource",
-        "EffectSource" .. _index .. "Right",
+        'AudioSource',
+        'EffectSource' .. _index .. 'Right',
         this.EffectAudioSourceNode,
         PlayerCam.playerGameCam.Position + PlayerCam.playerGameCam.Right
     )
     local tempSourceL =
         world:CreateObject(
-        "AudioSource",
-        "EffectSource" .. _index .. "Left",
+        'AudioSource',
+        'EffectSource' .. _index .. 'Left',
         this.EffectAudioSourceNode,
         PlayerCam.playerGameCam.Position + PlayerCam.playerGameCam.Left
     )
@@ -83,7 +83,7 @@ end
 local function ReleaeseSource(_bgmNum, _effectNum)
     local index = _bgmNum + 1
     while table.nums(BGMAudioSources) > index - 1 do
-        print("index:" .. index)
+        print('index:' .. index)
         if BGMAudioSources[index].Source.State == Enum.AudioSourceState.Stopped then
             local ReleaesedSource = BGMAudioSources[index].Source
             table.remove(BGMAudioSources, index)
@@ -198,7 +198,7 @@ end
 
 --播放3Deffect
 function AudioMgr:PlayEffectEventHandler(_id, _pos)
-    print("播放3Deffect,id:", _id)
+    print('播放3Deffect,id:', _id)
     this.EffectAudioSourceNode.Position = _pos or PlayerCam.playerGameCam.Position
     local PlayTable = nil
     for k, v in pairs(EffectAudioSources) do

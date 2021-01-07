@@ -21,6 +21,7 @@ local currNpcObj
 
 --- 初始化
 function GuiNpc:Init()
+    print('[GuiNpc] Init()')
     self:InitGui()
     self:InitData()
     self:InitResource()

@@ -127,12 +127,12 @@ end
 function CheckPlayerJoin(_player, _sTimestamp)
     if not cache.sTimestamp then
         --* 玩家新加入 OnPlayerJoinEvent
-        print('[Heartbeat][Client] OnPlayerJoinEvent, 新玩家加入,', localPlayer)
+        print('[Heartbeat][Client] OnPlayerJoinEvent, 新玩家加入,', localPlayer, localPlayer.UserId)
         NetUtil.Fire_C('OnPlayerJoinEvent', localPlayer)
         cache.state = HeartbeatEnum.CONNECT
     elseif cache.state == HeartbeatEnum.DISCONNECT then
         --* 玩家断线重连 OnPlayerReconnectEvent
-        print('[Heartbeat][Client] OnPlayerReconnectEvent, 玩家断线重连,', localPlayer)
+        print('[Heartbeat][Client] OnPlayerReconnectEvent, 玩家断线重连,', localPlayer, localPlayer.UserId)
         NetUtil.Fire_C('OnPlayerReconnectEvent', localPlayer)
         cache.state = HeartbeatEnum.CONNECT
     end
@@ -147,7 +147,7 @@ function CheckPlayerState(_player, _cTimestamp)
     PrintHb(string.format('==========================================> diff = %s, %s', diff * .001, localPlayer))
     if cache.state == HeartbeatEnum.CONNECT and diff > HEARTBEAT_THRESHOLD_1 then
         --* 玩家断线，弱网环境
-        print('[Heartbeat][Client] OnPlayerDisconnectEvent, 玩家离线, 弱网环境,', localPlayer)
+        print('[Heartbeat][Client] OnPlayerDisconnectEvent, 玩家离线, 弱网环境,', localPlayer, localPlayer.UserId)
         NetUtil.Fire_C('OnPlayerDisconnectEvent', localPlayer)
         cache.state = HeartbeatEnum.DISCONNECT
     elseif cache.state == HeartbeatEnum.DISCONNECT and diff > HEARTBEAT_THRESHOLD_2 then
@@ -159,7 +159,7 @@ end
 
 --- 退出游戏
 function QuitGame()
-    print('[Heartbeat][Client] Game.Quit(), 玩家退出游戏')
+    print('[Heartbeat][Client] Game.Quit(), 玩家退出游戏', localPlayer, localPlayer.UserId)
     Game.Quit()
 end
 

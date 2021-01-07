@@ -2,14 +2,14 @@
 ---@module MolePool
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MolePool = class("MolePool")
+local MolePool = class('MolePool')
 
 ---初始化函数
 function MolePool:initialize(_objName, poolSize)
     self.pool = {}
     self.maxSize = poolSize
     self.objName = _objName
-    print(_objName, poolSize)
+    print('[MolePool] initialize()', _objName, poolSize)
 end
 
 function MolePool:Destroy(_obj)

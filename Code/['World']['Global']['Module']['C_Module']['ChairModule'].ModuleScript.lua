@@ -1,11 +1,12 @@
 ---@module Chair
 ---@copyright Lilith Games, Avatar Team
 ---@author XXX, XXXX
-local Chair, this = ModuleUtil.New("Chair", ClientBase)
-local Dir = {"forward", "left", "back", "right"}
+local Chair, this = ModuleUtil.New('Chair', ClientBase)
+local Dir = {'forward', 'left', 'back', 'right'}
 
 ---初始化函数
 function Chair:Init()
+    print('[Chair] Init()')
     Chair:DataInit()
 end
 
@@ -41,11 +42,11 @@ end
 function Chair:PlayerSit(_chairId, _pos, _rot)
     this.chair = _chairId
     localPlayer.Position, localPlayer.Rotation = _pos, _rot
-    localPlayer.Avatar:PlayAnimation("SitIdle", 3, 1, 0, true, true, 1)
+    localPlayer.Avatar:PlayAnimation('SitIdle', 3, 1, 0, true, true, 1)
 end
 
 function Chair:PlayerLeaveSit()
-    localPlayer.Avatar:StopAnimation("SitIdle", 3)
+    localPlayer.Avatar:StopAnimation('SitIdle', 3)
     this.startUpdate = false
     this.qteTotalTime = 0
     this.keepTime = 0
@@ -56,7 +57,7 @@ end
 
 function Chair:NormalSit(_chairId, _pos, _rot)
     this:PlayerSit(_chairId, _pos, _rot)
-    this.chairType = "Normal"
+    this.chairType = 'Normal'
     this.startUpdate = false
     --ui控制
     ChairUIMgr:EnterNormal()
@@ -73,7 +74,7 @@ end
 
 function Chair:QteSit(_chairId, _pos, _rot)
     this:PlayerSit(_chairId, _pos, _rot)
-    this.chairType = "QTE"
+    this.chairType = 'QTE'
     this.startUpdate = true
     --ui控制
     ChairUIMgr:EnterQte()
