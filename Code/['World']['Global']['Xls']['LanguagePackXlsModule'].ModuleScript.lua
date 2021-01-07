@@ -418,6 +418,139 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    WeaponItem_Name_1001 = {
+        ID = 'WeaponItem_Name_1001',
+        CHS = '光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    WeaponItem_Des_1001 = {
+        ID = 'WeaponItem_Des_1001',
+        CHS = '星球大战',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    MedicineItem_Name_2001 = {
+        ID = 'MedicineItem_Name_2001',
+        CHS = '不稳定的炸弹',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    MedicineItem_Des_2001 = {
+        ID = 'MedicineItem_Des_2001',
+        CHS = '嘀嘀嘀的响',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Name_3001 = {
+        ID = 'ThrowItem_Name_3001',
+        CHS = '奥特曼的变身棒',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Des_3001 = {
+        ID = 'ThrowItem_Des_3001',
+        CHS = '如果能量无限就好了',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Name_3002 = {
+        ID = 'ThrowItem_Name_3002',
+        CHS = '烈焰弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Des_3002 = {
+        ID = 'ThrowItem_Des_3002',
+        CHS = '射出火箭',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PutItem_Name_4001 = {
+        ID = 'PutItem_Name_4001',
+        CHS = '魔法棒棒糖',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PutItem_Des_4001 = {
+        ID = 'PutItem_Des_4001',
+        CHS = '大魔王最喜欢的食物',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_Name_5001 = {
+        ID = 'TaskItem_Name_5001',
+        CHS = 'Toji的房卡',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_Des_5001 = {
+        ID = 'TaskItem_Des_5001',
+        CHS = '怎么野猪身上会有这种东西?',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5001 = {
+        ID = 'TaskItem_NpcText_5001',
+        CHS = '啊，那天真是令人怀念，谢谢你！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    RubbishItem_Name_6001 = {
+        ID = 'RubbishItem_Name_6001',
+        CHS = '野猪皮',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    RubbishItem_Des_6001 = {
+        ID = 'RubbishItem_Des_6001',
+        CHS = '野猪的皮，怎么感觉纹理像外星人的头？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetItem_Name_7001 = {
+        ID = 'PetItem_Name_7001',
+        CHS = '微型战斗机器人N9',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetItem_Des_7001 = {
+        ID = 'PetItem_Des_7001',
+        CHS = '很有灵性的样子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetFeedItem_Name_8001 = {
+        ID = 'PetFeedItem_Name_8001',
+        CHS = '战斗机器人内存卡',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetFeedItem_Des_8001 = {
+        ID = 'PetFeedItem_Des_8001',
+        CHS = '机器人的教科书',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 

@@ -3,9 +3,9 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemConfig.xlsx
+--- source file: .//Item.xlsm
 
-local SkinConfigXls = {
+local SkinXls = {
     [1] = {
         ID = 1,
         Gender = 'Male',
@@ -30,4 +30,4 @@ local SkinConfigXls = {
     }
 }
 
-return SkinConfigXls
+return SkinXls
