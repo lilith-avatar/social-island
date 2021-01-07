@@ -16,7 +16,6 @@ LinkedList = Utility.LinkedListModule
 ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
 CloudLogUtil = require(Utility.CloudLogUtilModule)
-
 -- Game Defines
 GAME_ID = "A1003"
 
@@ -32,15 +31,16 @@ ModuleUtil.LoadModules(Define)
 ModuleUtil.LoadXlsModules(Xls, Config)
 
 -- Fsm
-FsmBase = require(Module.Fsm_Module.FsmBaseModule)
-StateBase = require(Module.Fsm_Module.StateBaseModule)
+--FsmBase = require(Module.Fsm_Module.FsmBaseModule)
+--StateBase = require(Module.Fsm_Module.StateBaseModule)
+ModuleUtil.LoadModules(Module.Fsm_Module)
+ModuleUtil.LoadModules(Module.Fsm_Module.PlayerActFsm)
 
 -- Server and Clinet Modules
 ModuleUtil.LoadModules(Module.S_Module)
 ModuleUtil.LoadModules(Module.Cls_Module)
 ModuleUtil.LoadModules(Module.UI_Module)
 ModuleUtil.LoadModules(Module.C_Module)
-
 
 -- Plugin Modules
 GuideSystem = require(world.Global.Plugin.FUNC_Guide.GuideSystemModule)

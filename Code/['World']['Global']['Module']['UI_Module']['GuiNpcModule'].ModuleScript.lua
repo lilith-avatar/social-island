@@ -100,8 +100,8 @@ function OpenNpcGui()
     portraitImg.Texture = portrait
     portraitImg.Visible = portrait ~= nil
     dialogTxt.Text = PickARandomDialog()
-	--如果玩家没有携带宠物，则隐藏对战按钮
-	battleBtn.Visible = localPlayer.MonsterVal.Value ~= nil
+    --如果玩家没有携带宠物，则隐藏对战按钮
+    battleBtn.Visible = localPlayer.MonsterVal.Value ~= nil
 end
 
 -- 使NPC面向玩家
