@@ -10,7 +10,7 @@ local debug, PrintMazeData, PrintNodePath, GenNodePath = false
 --! 常量配置: 玩家相关
 
 -- 游戏时长(秒)
-local TOTAL_TIME = 30
+local TOTAL_TIME = 60
 
 --! 常量配置: Maze 迷宫相关
 
@@ -21,7 +21,7 @@ local NUM_ROWS, NUM_COLS = 15, 15
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
 
 -- 迷宫中心位置
-local MAZE_CENTER_POS = Vector3(103, -13.25, 14)
+local MAZE_CENTER_POS = Vector3(103, -14.8175, 14)
 local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
@@ -46,7 +46,7 @@ local floor
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
-local CELL_SIDE = 1
+local CELL_SIDE = .4
 
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
@@ -58,9 +58,9 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 
 -- 墙体的Archetype
 local WALL_ARCH = 'Maze_Wall_Test'
-local WALL_HEIGHT = 1 -- 对应Size.Y
-local WALL_LENGTH = 2 -- 对应Size.X
-local WALL_THICKNESS = 0.1 -- 对应Size.Z
+local WALL_HEIGHT = .2 -- 对应Size.Y
+local WALL_LENGTH = CELL_SIDE -- 对应Size.X
+local WALL_THICKNESS = 0.04 -- 对应Size.Z
 
 -- 墙壁对象池Hierachy根节点
 local WALL_SPACE
@@ -202,8 +202,8 @@ end
 function InitMazeEntranceAndExit()
     entrace = world:CreateObject('Sphere', 'Entrance', floor)
     exit = world:CreateObject('Sphere', 'Exit', floor)
-    entrace.Size = Vector3.One * 0.5
-    exit.Size = Vector3.One * 0.5
+    entrace.Size = Vector3.One * 0.3 * CELL_SIDE
+    exit.Size = Vector3.One * 0.3 * CELL_SIDE
     entrace.Block = false
     exit.Block = false
     entrace.Color = Color(0x00, 0xFF, 0x00, 0xFF)
@@ -285,7 +285,7 @@ function InitCheckerPool()
     for i = 1, TOTAL_CHECKER do
         name = string.format('Check_Point_%04d', i)
         local objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
-        objChecker.Size = Vector3.One * 0.5
+        objChecker.Size = Vector3.One * 0.5 * CELL_SIDE
         objChecker.Block = false
         objChecker.Color = Color(0x00, 0x00, 0xFF, DEBUG_ALPHA * 3)
         objChecker.OnCollisionBegin:Connect(
@@ -629,7 +629,14 @@ function PlayerStartMaze(_player)
     playerData.checker = 0
     playerData.score = 0
     playerData.time = 0
-    NetUtil.Fire_C('ClientMazeEvent', playerData.player, Const.MazeEventEnum.JOIN, entrace.Position, TOTAL_TIME)
+    NetUtil.Fire_C(
+        'ClientMazeEvent',
+        playerData.player,
+        Const.MazeEventEnum.JOIN,
+        entrace.Position,
+        floor.Right,
+        TOTAL_TIME
+    )
     timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME)
     startTime = now()
 end
