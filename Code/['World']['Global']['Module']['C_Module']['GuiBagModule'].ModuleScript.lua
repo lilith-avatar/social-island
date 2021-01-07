@@ -15,7 +15,7 @@ local function TransformItemTable(_itemTable)
         _itemTable,
         function(a, b)
             if a and b then
-                return (a.ID < b.ID)
+                return (a.id < b.id)
             end
         end
     )
@@ -122,8 +122,8 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
     -- TODO: 更换图片
-    this.slotList[_index].Image = nil
-    this.slotList[_index]:SetActive(_itemId and true or false)
+    this.slotList[_index].Image = ResourceManager.GetTexture('')
+    this.slotList[_index].Image:SetActive(_itemId and true or false)
 end
 
 function GuiBag:ClickUseBtn(_index)
@@ -138,6 +138,8 @@ function GuiBag:ClickUseBtn(_index)
         -- 移除
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
     end
+    -- 重新展示当前页面物品信息
+    this:ClickChangePage(this.pageIndex)
     -- 清除选择
     this:ClearSelect()
     -- 重新读取物品信息
@@ -150,6 +152,9 @@ function GuiBag:SelectItem(_index)
         this.selectIndex = _index
         -- 进行名字和描述的更换,并高亮该物品
         this:ChangeNameAndDesc(this.slotItem[_index])
+        -- TODO: 红点系统预留
+        if this.slotItem[_index].isNew then
+        end
     end
 end
 
