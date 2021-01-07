@@ -38,6 +38,7 @@ StateBase = require(Module.Fsm_Module.StateBaseModule)
 -- Server and Clinet Modules
 ModuleUtil.LoadModules(Module.S_Module)
 ModuleUtil.LoadModules(Module.Cls_Module)
+ModuleUtil.LoadModules(Module.UI_Module)
 ModuleUtil.LoadModules(Module.C_Module)
 
 -- Plugin Modules

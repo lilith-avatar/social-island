@@ -2,7 +2,7 @@
 --- @module Zeppelin Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Zeppelin, this = ModuleUtil.New("Zeppelin", ServerBase)
+local Zeppelin, this = ModuleUtil.New('Zeppelin', ServerBase)
 
 --- 变量声明
 -- 热气球对象池
@@ -37,7 +37,7 @@ local zeppelinStateEnum = {
 
 --- 初始化
 function Zeppelin:Init()
-    print("Zeppelin:Init")
+    print('[Zeppelin] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -56,19 +56,19 @@ function Zeppelin:NodeRef()
     zepRoot = world.MiniGames.Game_06_Zeppelin
     for i = 1, 3 do
         zeppelinObjPool[i] = {
-            obj = zepRoot.ZeppelinObj["Zeppelin_" .. i],
+            obj = zepRoot.ZeppelinObj['Zeppelin_' .. i],
             passenger = {},
             state = zeppelinStateEnum.UNABLE,
             moveStep = 0
         }
-        platformPassengerTable[i] = zepRoot.Station["Platform_0" .. i]
+        platformPassengerTable[i] = zepRoot.Station['Platform_0' .. i]
     end
 end
 
 --- 数据变量初始化
 function Zeppelin:DataInit()
     for i = 1, #zepRoot.PathwayPoint:GetChildren() do
-        pathwayPointTable[i] = zepRoot.PathwayPoint["P" .. i].Position
+        pathwayPointTable[i] = zepRoot.PathwayPoint['P' .. i].Position
     end
 
     zeppelinObjPool[1].state = zeppelinStateEnum.READY
