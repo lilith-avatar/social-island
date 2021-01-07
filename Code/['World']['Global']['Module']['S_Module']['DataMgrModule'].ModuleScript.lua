@@ -13,12 +13,12 @@ local AUTO_SAVE_TIME = 60
 local RELOAD_TIME = 1
 
 -- Cache
-local DataStore = DataStore
+-- local DataStore = DataStore
 
 --! 初始化
 
 function DataMgr:Init()
-    TimeMgr.SetInterval(SaveAllGameDataAsync, AUTO_SAVE_TIME)
+    TimeUtil.SetInterval(SaveAllGameDataAsync, AUTO_SAVE_TIME)
 end
 
 --- 得到默认的玩家数据
@@ -195,11 +195,7 @@ end
 function DataMgr:OnPlayerJoinEventHandler(_player)
     local uid = _player.UserId
     print('OnPlayerJoinEvent', uid)
-    if datas[uid] == nil then
-        datas[uid] = {
-            uid = uid
-        }
-    end
+    LoadGameDataAsync(uid)
 end
 
 -- 玩家离开事件
