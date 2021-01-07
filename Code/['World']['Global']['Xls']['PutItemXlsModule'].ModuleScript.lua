@@ -9,7 +9,6 @@ local PutItemXls = {
     [4001] = {
         ItemID = 4001,
         AnimUse = 'Eat',
-        UseCD = 600.0,
         UseSound = '',
         PickItemId = 1
     }

@@ -10,7 +10,6 @@ local MedicineItemXls = {
         ItemID = 2001,
         Model = 'M_Boom',
         AnimUse = 'ThrowLowCharge',
-        UseCD = 600.0,
         Range = 10.0,
         HealthChange = 100,
         UseAddBuff = nil,

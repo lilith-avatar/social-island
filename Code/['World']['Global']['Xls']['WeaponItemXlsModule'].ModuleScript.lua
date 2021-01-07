@@ -10,7 +10,6 @@ local WeaponItemXls = {
         ItemID = 1001,
         Model = 'M_Sword',
         AnimUse = 'TwoHandedSwordAttack1',
-        UseCD = 0.5,
         AttckCD = '2.0',
         SellGold = 3,
         AnimState = 1,
