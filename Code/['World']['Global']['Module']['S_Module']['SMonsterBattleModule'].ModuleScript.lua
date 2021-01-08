@@ -93,34 +93,42 @@ function SMonsterBattle:StartBattleEventHandler(_isNpc, _playerA, _playerB)
                     wait(2)
                     local _result = _playerA.BattleVal.Value - _playerB.BattleVal.Value
                     if _result == 0 then
-                        --[[
-					for i = 1,50,1 do
-						wait(0.1)
-					end
-					--]]
                         print('[SMonsterBattle] 平局')
-                        NetUtil.Fire_C('MBattleEvent', _playerB, 'ShowSkill')
+                        --NetUtil.Fire_C('MBattleEvent', _playerB, 'ShowSkill')
+						local _attack = math.modf(_playerA.AttackVal.Value - math.randomFloat(0, _playerA.AttackVal.Value*(1/3)))
+                        NetUtil.Fire_C('MBattleEvent', _playerB, 'BeHit', _attack, _playerA)
+						
+						local _attack2 = math.modf(_playerB.AttackVal.Value - math.randomFloat(0, _playerB.AttackVal.Value*(1/3)))
+                        if _isNpc then
+                            NetUtil.Fire_C('MBattleEvent', _playerB, 'NPCBeHit', _attack2, _playerB)
+                        end
                     elseif _result == -1 or _result == 2 then
-                        local _attack = math.random(1, _playerA.AttackVal.Value)
+                        local _attack = math.modf(_playerA.AttackVal.Value - math.randomFloat(0, _playerA.AttackVal.Value*(1/3)))
                         NetUtil.Fire_C('MBattleEvent', _playerB, 'BeHit', _attack, _playerA)
                     else
                         --NetUtil.Fire_C("MBattleEvent",_playerB,'BeHit',_attack)
-                        local _attack = math.random(1, _playerB.AttackVal.Value)
+                        local _attack = math.modf(_playerB.AttackVal.Value - math.randomFloat(0, _playerB.AttackVal.Value*(1/3)))
                         if _isNpc then
                             NetUtil.Fire_C('MBattleEvent', _playerB, 'NPCBeHit', _attack, _playerB)
                         end
                     end
+					--_playerB.HealthVal.Value = 0
+					--_playerA.HealthVal.Value = 0
                     wait(1)
+					local _breakFlag = false
                     if (_playerB.HealthVal.Value <= 0) then
                         print('[SMonsterBattle] B输')
                         NetUtil.Fire_C('MBattleEvent', _playerB, 'Over', false)
-                        break
+                        _breakFlag = true
                     end
                     if (_playerA.HealthVal.Value <= 0) then
                         print('[SMonsterBattle] A输')
                         NetUtil.Fire_C('MBattleEvent', _playerB, 'Over', true)
-                        break
+                        _breakFlag = true
                     end
+					if _breakFlag then
+						break
+					end
                     _time = _skillTime
                 end
             end
