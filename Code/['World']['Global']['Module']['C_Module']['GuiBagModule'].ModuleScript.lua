@@ -128,8 +128,9 @@ end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
-    -- TODO: 更换图片
+    -- 更换图片
     this.slotList[_index].IconImg.Image = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
+    this.slotList[_index].IconImg.Size = this.slotList[_index].Size
     this.slotList[_index].IconImg:SetActive(_itemId and true or false)
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
@@ -169,7 +170,7 @@ function GuiBag:SelectItem(_index)
         -- 进行名字和描述的更换,并高亮该物品
         this:ChangeNameAndDesc(this.slotItem[_index])
         -- TODO: 高亮
-        this.slotList[_index].Image = ResourceManager.GetTexture("")
+        this.slotList[_index].Image = ResourceManager.GetTexture("UI/")
         -- 红点系统前端表现
         if this.slotItem[_index].isNew then
             --消除红点
@@ -184,7 +185,7 @@ end
 function GuiBag:ClearSelect()
     if this.selectIndex then
         -- TODO: 清除高亮
-        this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("")
+        this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("UI/")
         this.selectIndex = nil
         --清除描述
         this.nameTxt.Text = " "
