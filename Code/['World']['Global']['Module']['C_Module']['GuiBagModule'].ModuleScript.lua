@@ -24,7 +24,7 @@ local function TransformItemTable(_itemTable)
             local data = {
                 cd = 0
             }
-            table.merge(data,v)
+            table.merge(data, v)
             table.insert(transTab, data)
         end
     end
@@ -129,8 +129,8 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
     -- TODO: 更换图片
-    this.slotList[_index].Image = ResourceManager.GetTexture("" .. Config.Item[_itemId].Ico)
-    this.slotList[_index].Image:SetActive(_itemId and true or false)
+    this.slotList[_index].IconImg.Image = ResourceManager.GetTexture("" .. Config.Item[_itemId].Ico)
+    this.slotList[_index].IconImg:SetActive(_itemId and true or false)
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
         this.cdMask[_itemId] = {}
@@ -164,6 +164,8 @@ function GuiBag:SelectItem(_index)
         this.selectIndex = _index
         -- 进行名字和描述的更换,并高亮该物品
         this:ChangeNameAndDesc(this.slotItem[_index])
+        -- TODO: 高亮
+        this.slotList[_index].Image = ResourceManager.GetTexture("")
         -- TODO: 红点系统预留
         if this.slotItem[_index].isNew then
         --消除红点
@@ -176,8 +178,10 @@ end
 
 function GuiBag:ClearSelect()
     if this.selectIndex then
+        -- TODO: 清除高亮
+        this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("")
         this.selectIndex = nil
-        --清除描述，清除高亮
+        --清除描述
         this.nameTxt.Text = " "
         this.descTxt.Text = " "
         this.useBtn:SetActive(false)
@@ -210,7 +214,6 @@ end
 function GuiBag:ChangeNameAndDesc(_itemId)
     this.nameTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Name)
     this.descTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Des)
-    -- TODO: 高亮
 end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)
