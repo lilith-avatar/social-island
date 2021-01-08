@@ -33,7 +33,7 @@ end
 
 --更新状态
 function StateBase:OnUpdate(dt)
-    print("更新" .. self.stateName)
+    --print("更新" .. self.stateName)
 end
 
 --离开状态

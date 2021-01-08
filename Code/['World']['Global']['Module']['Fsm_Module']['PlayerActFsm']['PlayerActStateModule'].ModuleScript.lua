@@ -10,7 +10,8 @@ function PlayerActState:OnEnter()
 end
 
 ---监听静止
-function PlayerActState:IdleMonitor()
+function PlayerActState:IdleMonitor(_nextStateTypeName)
+    _nextStateTypeName = _nextStateTypeName or ""
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then
@@ -19,44 +20,49 @@ function PlayerActState:IdleMonitor()
         end
         localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
     else
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Jump")
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Idle")
     end
 end
 
 ---监听移动
-function PlayerActState:MoveMonitor()
+function PlayerActState:MoveMonitor(_nextStateTypeName)
+    _nextStateTypeName = _nextStateTypeName or ""
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Walk")
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Walk")
     end
 end
 
 ---监听奔跑
-function PlayerActState:RunMonitor()
+function PlayerActState:RunMonitor(_nextStateTypeName)
+    _nextStateTypeName = _nextStateTypeName or ""
     if localPlayer.LinearVelocity.Magnitude >= localPlayer.WalkSpeed * 0.99 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Run")
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Run")
     end
 end
 
 ---监听行走
-function PlayerActState:WalkMonitor()
+function PlayerActState:WalkMonitor(_nextStateTypeName)
+    _nextStateTypeName = _nextStateTypeName or ""
     if localPlayer.LinearVelocity.Magnitude < localPlayer.WalkSpeed * 0.99 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Walk")
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Walk")
     end
 end
 
 ---监听跳跃
-function PlayerActState:JumpMonitor()
+function PlayerActState:JumpMonitor(_nextStateTypeName)
+    _nextStateTypeName = _nextStateTypeName or ""
     if FsmMgr.playerActFsm.stateTrigger.Jump and localPlayer.IsOnGround then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Jump")
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Jump")
     end
 end
 
 ---监听着地
-function PlayerActState:OnGroundMonitor()
+function PlayerActState:OnGroundMonitor(_nextStateTypeName)
+    _nextStateTypeName = _nextStateTypeName or ""
     if localPlayer.IsOnGround then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Idle")
     end
 end
 
