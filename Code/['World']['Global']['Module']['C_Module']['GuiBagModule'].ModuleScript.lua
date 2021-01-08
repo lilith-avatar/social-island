@@ -136,6 +136,11 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
         this.cdMask[_itemId] = {}
     end
     table.insert(this.cdMask[_itemId], this.slotList[_index].MaskImg)
+    -- TODO: 红点系统预留
+    if this.slotItem[_index].isNew then
+        --消除红点
+        this.slotList[_index].RedDotImg:SetActive(true)
+    end
 end
 
 function GuiBag:ClickUseBtn(_index)
@@ -168,7 +173,8 @@ function GuiBag:SelectItem(_index)
         this.slotList[_index].Image = ResourceManager.GetTexture("")
         -- TODO: 红点系统预留
         if this.slotItem[_index].isNew then
-        --消除红点
+            --消除红点
+            this.slotList[_index].RedDotImg:SetActive(false)
         end
     end
 end
