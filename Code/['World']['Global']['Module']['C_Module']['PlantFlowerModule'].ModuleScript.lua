@@ -31,7 +31,7 @@ end
 
 function PlantFlower:OnPlayerJoinEventHandler()
     wait(3)
-    print('[PlantFlower]', table.dump(this.playerData.flowerLis))
+    --print('[PlantFlower]', table.dump(this.playerData.flowerLis))
     for k, v in ipairs(this.playerData.flowerLis) do
         OnPlant(v)
     end
