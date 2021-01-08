@@ -129,14 +129,14 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index] = _itemId
     -- TODO: 更换图片
-    this.slotList[_index].IconImg.Image = ResourceManager.GetTexture("" .. Config.Item[_itemId].Ico)
+    this.slotList[_index].IconImg.Image = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
     this.slotList[_index].IconImg:SetActive(_itemId and true or false)
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
         this.cdMask[_itemId] = {}
     end
     table.insert(this.cdMask[_itemId], this.slotList[_index].MaskImg)
-    -- TODO: 红点系统预留
+    -- 红点系统前端表现
     if this.slotItem[_index].isNew then
         --消除红点
         this.slotList[_index].RedDotImg:SetActive(true)
@@ -149,7 +149,7 @@ function GuiBag:ClickUseBtn(_index)
     end
     local itemId = this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].id
     -- TODO: 使用物品
-    -- 进行物品的使用
+    -- 物品消耗判定
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
     end
@@ -159,7 +159,6 @@ function GuiBag:ClickUseBtn(_index)
     this:ClickChangePage(this.pageIndex)
     -- 清除选择
     this:ClearSelect()
-    -- 重新读取物品信息
 end
 
 ---选中物品
@@ -171,7 +170,7 @@ function GuiBag:SelectItem(_index)
         this:ChangeNameAndDesc(this.slotItem[_index])
         -- TODO: 高亮
         this.slotList[_index].Image = ResourceManager.GetTexture("")
-        -- TODO: 红点系统预留
+        -- 红点系统前端表现
         if this.slotItem[_index].isNew then
             --消除红点
             this.slotList[_index].RedDotImg:SetActive(false)
@@ -196,7 +195,6 @@ end
 
 function GuiBag:ClickChangePage(_pageIndex)
     this:ClearSelect()
-
     this:ShowItemsByPageIndex(_pageIndex)
     --清除cdmask
     this.cdMask = {}
@@ -232,6 +230,9 @@ end
 ---更新最大页面数
 function GuiBag:GetMaxPageNum(_itemNum)
     this.maxPage = math.ceil(_itemNum / (this.colNum * this.rowNum))
+    if this.maxPage == 0 then
+        this.maxPage = 1
+    end
 end
 
 ---计时器进行冷却计时
