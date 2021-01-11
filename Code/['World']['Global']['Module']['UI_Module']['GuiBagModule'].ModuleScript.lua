@@ -122,7 +122,8 @@ function GuiBag:ShowBagUI()
     this:ClearSelect()
     this.root:SetActive(true)
     -- TODO: 根据长度获取最大页数
-    --this:GetMaxPageNum()
+    -- 显示物品
+    this:ClickChangePage(1)
 end
 
 function GuiBag:HideBagUI()
