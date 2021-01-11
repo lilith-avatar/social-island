@@ -1,7 +1,7 @@
 ---@module MoleHit
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
+local MoleHit, this = ModuleUtil.New('MoleHit', ServerBase)
 local totalWeights = 0
 
 ---得到总权重
@@ -43,7 +43,7 @@ end
 
 ---初始化函数
 function MoleHit:Init()
-    print("MoleHit: Init")
+    print('[MoleHit] Init()')
     this:DataInit()
     this:PitListInit()
     this:PoolInit()
@@ -78,7 +78,7 @@ end
 
 function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C("StartMoleEvent", _player)
+        NetUtil.Fire_C('StartMoleEvent', _player)
     end
 end
 
@@ -100,21 +100,22 @@ function MoleHit:RefreshMole(_playerNum)
     for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
         pitIndex, tmpRandomTab = math.random(1, #tmpTable), RandomSortByWeights(Config.MoleConfig)
         --删除该坑仍保留的地鼠
-        for k,v in pairs(tmpTable[pitIndex].model:GetChildren()) do
+        for k, v in pairs(tmpTable[pitIndex].model:GetChildren()) do
             if v.ActiveSelf then
                 v:Destroy()
             end
         end
-        mole = this.molePool[tmpRandomTab[1].id]:Create(
-            tmpTable[pitIndex].model,tmpRandomTab[1].id
-        )
+        mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model, tmpRandomTab[1].id)
         this.pitList[tmpTable[pitIndex].model.Name].mole = mole
-        invoke(function()
-            if mole then
-                this.molePool[tmpRandomTab[1].id]:Destroy(mole)
-            end
-        end,Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime)
-        table.remove(tmpTable,pitIndex)
+        invoke(
+            function()
+                if mole then
+                    this.molePool[tmpRandomTab[1].id]:Destroy(mole)
+                end
+            end,
+            Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime
+        )
+        table.remove(tmpTable, pitIndex)
     end
 end
 
@@ -124,7 +125,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
         if this.pitList[k] and this.pitList[k].mole then
             player = world:GetPlayerByUserId(_uid)
             NetUtil.Fire_C(
-                "AddScoreAndBoostEvent",
+                'AddScoreAndBoostEvent',
                 player,
                 Config.MoleConfig[this.pitList[k].mole.Name].Type,
                 Config.MoleConfig[this.pitList[k].mole.Name].Reward,

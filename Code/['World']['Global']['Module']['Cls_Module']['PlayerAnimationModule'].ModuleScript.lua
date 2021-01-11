@@ -5,6 +5,7 @@
 local PlayerAnimation = {}
 
 function PlayerAnimation:Init()
+    print('[PlayerAnimation] Init()')
     world.OnRenderStepped:Connect(
         function(_delta)
             self:UpdateIK(_delta)
