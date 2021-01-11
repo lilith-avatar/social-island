@@ -40,7 +40,8 @@ function GuiBag:Init()
 end
 
 function GuiBag:NodeDef()
-    this.gui = localPlayer.Local.BagGui.BagPnl
+    this.root = localPlayer.Local.BagGui
+    this.gui = this.root.BagPnl
     this.slotList = {}
 
     --* Button------------
@@ -119,11 +120,13 @@ end
 
 function GuiBag:ShowBagUI()
     this:ClearSelect()
-    this.gui:SetActive(true)
+    this.root:SetActive(true)
+    -- TODO: 根据长度获取最大页数
+    --this:GetMaxPageNum()
 end
 
 function GuiBag:HideBagUI()
-    this.gui:SetActive(false)
+    this.root:SetActive(false)
 end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
