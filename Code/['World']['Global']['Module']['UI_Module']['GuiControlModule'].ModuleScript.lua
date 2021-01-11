@@ -65,6 +65,11 @@ function GuiControl:InitListener()
             PlayerCtrl:PlayerClap()
         end
     )
+    menuFigure.BagBtn.OnClick:Connect(
+        function()
+            GuiBag:ShowBagUI()
+        end
+    )
 end
 
 --- 点击交互按钮

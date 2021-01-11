@@ -21,6 +21,8 @@ function MonsterBattle:NodeRef()
     this.RED_BAR = ResourceManager.GetTexture('Internal/Blood_Red')
     this.GREEN_BAR = ResourceManager.GetTexture('Internal/Blood_Green')
     this.ORANGE_BAR = ResourceManager.GetTexture('Internal/Blood_Orange')
+	this.Color_Red = Color(255,0,0)
+	this.Color_White = Color(255,255,255)
 end
 
 --数据变量声明
@@ -98,16 +100,25 @@ function MonsterBattle:EventBind()
     this.BattlePanel.Button1.OnClick:Connect(
         function()
             localPlayer.BattleVal.Value = 1
+			this.BattlePanel.Button1.Color = this.Color_Red
+			this.BattlePanel.Button2.Color = this.Color_White
+			this.BattlePanel.Button3.Color = this.Color_White
         end
     )
     this.BattlePanel.Button2.OnClick:Connect(
         function()
             localPlayer.BattleVal.Value = 2
+			this.BattlePanel.Button1.Color = this.Color_White
+			this.BattlePanel.Button2.Color = this.Color_Red
+			this.BattlePanel.Button3.Color = this.Color_White
         end
     )
     this.BattlePanel.Button3.OnClick:Connect(
         function()
             localPlayer.BattleVal.Value = 3
+			this.BattlePanel.Button1.Color = this.Color_White
+			this.BattlePanel.Button2.Color = this.Color_White
+			this.BattlePanel.Button3.Color = this.Color_Red
         end
     )
 end
@@ -280,13 +291,13 @@ function MonsterBattle:RefreshBag()
         _item.OnClick:Connect(
             function()
                 for k2, v2 in ipairs(this.monsterItemLis) do
-                    v2.Color = Color(255, 255, 255)
+                    v2.Color = this.Color_White
                 end
                 if _item == focusMonsterItem then
-                    _item.Color = Color(255, 255, 255)
+                    _item.Color = this.Color_White
                     focusMonsterItem = nil
                 else
-                    _item.Color = Color(255, 0, 0)
+                    _item.Color = this.Color_Red
                     focusMonsterItem = _item
                 end
                 this:InitFocusItem()
@@ -318,6 +329,9 @@ function MonsterBattle:ReadyBattleEventHandler()
     this.BattlePanel:SetActive(true)
     this:RefreshShowMonsterVal()
     this.HealthGUI:SetActive(true)
+	
+	localPlayer.Local.ControlGui.Joystick:SetActive(false)
+		localPlayer.Local.ControlGui.Ctrl:SetActive(false)
 end
 
 function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
@@ -332,6 +346,9 @@ function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
         this.HealthGUI.SkillText.Text = _skillTxt[localPlayer.BattleVal.Value]
     elseif _enum == 'NewRound' then
         localPlayer.BattleVal.Value = -1
+		this.BattlePanel.Button1.Color = this.Color_White
+		this.BattlePanel.Button2.Color = this.Color_White
+		this.BattlePanel.Button3.Color = this.Color_White
     elseif _enum == 'BeHit' then
         invoke(
             function()
@@ -355,7 +372,9 @@ function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
         this.MainPanel:SetActive(false)
         this.BattlePanel:SetActive(false)
         this.HealthGUI:SetActive(false)
-        localPlayer.Local.ControlGui:SetActive(true)
+        --localPlayer.Local.ControlGui:SetActive(true)
+		localPlayer.Local.ControlGui.Joystick:SetActive(true)
+		localPlayer.Local.ControlGui.Ctrl:SetActive(true)
     end
 end
 

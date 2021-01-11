@@ -49,14 +49,15 @@ end
 function OnPlayerDisconnect(player)
     local _subRealFlower = {}
     for k, v in ipairs(this.realFlower) do
-        print(v.User)
+        --print(v.User)
         if v.User == player.UserId then
-            table.insert(v, _subRealFlower)
+            table.insert(_subRealFlower, v)
         end
     end
-    print('[SPlantFlower] OnPlayerDisconnect', table.dump(_subRealFlower))
+    --print('[SPlantFlower] OnPlayerDisconnect', table.dump(_subRealFlower))
     for k, v in ipairs(_subRealFlower) do
-        v.Obj:Destory()
+		--print(v.Obj)
+        v.Obj:Destroy()
         table.removebyvalue(this.realFlower, v)
     end
 end
