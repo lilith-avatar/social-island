@@ -6,7 +6,7 @@ local folder = nil -- 或者路径
 
 ---初始化函数
 function SceneInter:Init()
-    this:CreateInterManager()
+    --this:CreateInterManager()
 end
 
 function SceneInter:CreateInterManager()
