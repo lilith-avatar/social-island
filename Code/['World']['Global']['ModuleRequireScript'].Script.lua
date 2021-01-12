@@ -17,7 +17,7 @@ ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
 CloudLogUtil = require(Utility.CloudLogUtilModule)
 -- Game Defines
-GAME_ID = "A1003"
+GAME_ID = 'A1003'
 
 -- Init Utilities
 TimeUtil.Init()

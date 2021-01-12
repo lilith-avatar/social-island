@@ -3,13 +3,16 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemConfig.xlsx
+--- source file: .//Item.xlsm
 
 local PickItemXls = {
     [1] = {
         ID = 1,
         Archetype = '暴怒的大魔王',
-        ItemId = 2001
+        Type = 2,
+        ItemId = 2001,
+        LifeTime = 60,
+        Durability = -1
     }
 }
 

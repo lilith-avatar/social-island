@@ -1,11 +1,11 @@
 ---@module ChairUIMgr
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local ChairUIMgr, this = ModuleUtil.New("ChairUIMgr", ClientBase)
+local ChairUIMgr, this = ModuleUtil.New('ChairUIMgr', ClientBase)
 
 ---初始化函数
 function ChairUIMgr:Init()
-    print("ChairUIMgr: Init")
+    print('[ChairUIMgr] Init()')
     this:NodeDef()
     this:DataInit()
     this:EventBind()
@@ -52,8 +52,6 @@ function ChairUIMgr:NodeDef()
     }
     this.normalBackBtn = this.normalGui.BackBtn
 
-    
-
     this.QteGui = this.gui.QtePnl
     this.qteBtn = {
         forward = this.QteGui.ForwardBtn,
@@ -65,7 +63,7 @@ function ChairUIMgr:NodeDef()
 end
 
 function ChairUIMgr:ClickSitBtn(_type, _chairId)
-    NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, _type, _chairId)
+    NetUtil.Fire_S('PlayerClickSitBtnEvent', localPlayer.UserId, _type, _chairId)
     this.sitBtn:SetActive(false)
 end
 
@@ -98,8 +96,8 @@ function ChairUIMgr:EnterQte()
 end
 
 function ChairUIMgr:NormalShake(_upOrDown)
-    NetUtil.Fire_S("NormalShakeEvent", Chair.chair, _upOrDown)
-    if _upOrDown == "up" then
+    NetUtil.Fire_S('NormalShakeEvent', Chair.chair, _upOrDown)
+    if _upOrDown == 'up' then
         this.normalBtn.down:SetActive(true)
         this.normalBtn.up:SetActive(false)
     else
@@ -115,7 +113,7 @@ function ChairUIMgr:NormalBack()
     this.qteTotalTime.Text = 0
     Chair:PlayerLeaveSit()
     localPlayer:Jump()
-    NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
+    NetUtil.Fire_S('PlayerLeaveChairEvent', Chair.chairType, Chair.chair, localPlayer.UserId)
 end
 
 function ChairUIMgr:GetQteForward(_dir, _speed)
@@ -128,7 +126,7 @@ function ChairUIMgr:GetQteForward(_dir, _speed)
     this.qteBtn[_dir]:SetActive(true)
     this.dirQte = _dir
     this.startUpdate = true
-    NetUtil.Fire_S("QteChairMoveEvent", _dir, _speed, Chair.chair)
+    NetUtil.Fire_S('QteChairMoveEvent', _dir, _speed, Chair.chair)
 end
 
 function ChairUIMgr:QteButtonClick(_dir)

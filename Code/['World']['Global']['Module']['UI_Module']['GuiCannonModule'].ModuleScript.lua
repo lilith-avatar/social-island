@@ -1,7 +1,7 @@
 --- 人间大炮Gui模块
 --- @module Player Cannon, client-side
 --- @copyright Lilith Games, Avatar Team
-local GuiCannon, this = ModuleUtil.New("GuiCannon", ClientBase)
+local GuiCannon, this = ModuleUtil.New('GuiCannon', ClientBase)
 
 local cannonGui
 
@@ -9,7 +9,7 @@ local forceBarFillAmount = 0
 local isAdd = true
 
 function GuiCannon:Init()
-    print("GuiCannon:Init")
+    print('[GuiCannon] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -25,27 +25,27 @@ end
 function GuiCannon:EventBind()
     cannonGui.Figure.FireBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("CannonFireEvent", forceBarFillAmount)
+            NetUtil.Fire_S('CannonFireEvent', forceBarFillAmount)
         end
     )
     cannonGui.Figure.UpBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Up")
+            NetUtil.Fire_S('SetCannonDirEvent', 'Up')
         end
     )
     cannonGui.Figure.DownBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Down")
+            NetUtil.Fire_S('SetCannonDirEvent', 'Down')
         end
     )
     cannonGui.Figure.RightBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Right")
+            NetUtil.Fire_S('SetCannonDirEvent', 'Right')
         end
     )
     cannonGui.Figure.LeftBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Left")
+            NetUtil.Fire_S('SetCannonDirEvent', 'Left')
         end
     )
 end

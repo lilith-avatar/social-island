@@ -1,12 +1,12 @@
 --- 打猎Gui模块
 --- @module Player Cannon, client-side
 --- @copyright Lilith Games, Avatar Team
-local GuiHunt, this = ModuleUtil.New("GuiHunt", ClientBase)
+local GuiHunt, this = ModuleUtil.New('GuiHunt', ClientBase)
 
 local huntGui
 
 function GuiHunt:Init()
-    print("GuiHunt:Init")
+    print('[GuiHunt] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -22,7 +22,7 @@ end
 function GuiHunt:EventBind()
     huntGui.Figure.ShootBtn.OnClick:Connect(
         function()
-            FsmMgr:FsmTriggerEventHandler("BowAttack")
+            FsmMgr:FsmTriggerEventHandler('BowAttack')
         end
     )
     huntGui.Figure.LeaveBtn.OnClick:Connect(
@@ -53,7 +53,7 @@ end
 -- 退出弓箭状态
 function GuiHunt:LeaveBow()
     PlayerCam:SetCurCamEventHandler()
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
     huntGui:SetActive(false)
     NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
     --localPlayer.Local.ControlGui.UseBtn:SetActive(true)

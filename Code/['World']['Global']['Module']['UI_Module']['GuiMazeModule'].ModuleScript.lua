@@ -5,9 +5,15 @@ local GuiMaze, this = ModuleUtil.New('GuiMaze', ClientBase)
 
 -- 获取本地玩家
 local player
+-- 迷宫中的相机
+local camMaze
 
 -- Const
-local MAZE_CHARACTER_WIDTH = 0.5
+local MAZE_CHARACTER_WIDTH = 0.1
+local AVATAR_HEIGHT = 0.1
+local AVATAR_HEAD_SIZE = 0.1
+local WALK_SPEED = .7
+local JUMP_UP_VELOCITY = 0
 
 -- 缓存玩家进入迷宫前的参数
 local origin = {}
@@ -24,6 +30,7 @@ function GuiMaze:Init()
     print('[GuiMaze] Init()')
     -- 获取本地玩家
     player = localPlayer
+    camMaze = localPlayer.Local.Independent.MazeCam
     self:InitGui()
 end
 
@@ -35,22 +42,33 @@ function GuiMaze:InitGui()
     timerTxt = infoGui.TimerTxt
     -- GUI control
     controlGui = guiRoot.ControlGui
-    jumpBtn = controlGui.JumpBtn
-    useBtn = controlGui.UseBtn
-    socialAnimBtn = controlGui.SocialAnimBtn
+    jumpBtn = controlGui.Ctrl.JumpBtn
+    useBtn = controlGui.Ctrl.UseBtn
+    socialAnimBtn = controlGui.Menu.SocialAnimBtn
     -- GUI monster
     monsterGui = guiRoot.MonsterGUI
     mainBtn = monsterGui.MainBtn
 end
 
 -- 进入迷宫
-function EnterMaze(_enterPos, _totalTime)
+function EnterMaze(_enterPos, _playerDir, _totalTime)
     print('[GuiMaze] EnterMaze')
     -- cache player info
     origin.pos = player.Position
     origin.charWidth = player.CharacterWidth
+    origin.avatarHeight = player.Avatar.Height
+    origin.avatarHeadSize = player.Avatar.HeadSize
+    origin.WalkSpeed = player.WalkSpeed
+    origin.JumpUpVelocity = player.JumpUpVelocity
+    origin.camera = world.CurrentCamera
     player.Position = _enterPos
+    player.Forward = _playerDir
     player.CharacterWidth = MAZE_CHARACTER_WIDTH
+    player.WalkSpeed = WALK_SPEED
+    player.JumpUpVelocity = JUMP_UP_VELOCITY
+    player.Avatar.Height = AVATAR_HEIGHT
+    player.Avatar.HeadSize = AVATAR_HEAD_SIZE
+    NetUtil.Fire_C('SetCurCamEvent', localPlayer, camMaze)
     -- time
     totalTime = _totalTime
     startTime = now()
@@ -79,6 +97,12 @@ function QuitMaze(_score, _time)
     -- resume player info
     player.Position = origin.pos
     player.CharacterWidth = origin.charWidth
+    player.WalkSpeed = origin.WalkSpeed
+    player.JumpUpVelocity = origin.JumpUpVelocity
+    player.Avatar.Height = origin.avatarHeight
+    player.Avatar.HeadSize = origin.avatarHeadSize
+    NetUtil.Fire_C('SetCurCamEvent', localPlayer, origin.camera)
+
     -- GUI
     DisableMazeGui()
     print(string.format('[GuiMaze] 迷宫结束, 用时: %s, 分数: %s', _time, _score))
@@ -139,8 +163,9 @@ function GuiMaze:ClientMazeEventHandler(_eventEnum, ...)
     if _eventEnum == Const.MazeEventEnum.JOIN and #args > 0 then
         print(table.dump(args))
         local enterPos = args[1]
-        local totalTime = args[2]
-        EnterMaze(enterPos, totalTime)
+        local playerDir = args[2]
+        local totalTime = args[3]
+        EnterMaze(enterPos, playerDir, totalTime)
     elseif _eventEnum == Const.MazeEventEnum.FINISH and #args > 1 then
         print(table.dump(args))
         local score = args[1]

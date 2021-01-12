@@ -9,7 +9,7 @@ Events.ServerEvents = {
     "EnterMiniGameEvent", -- @param _player, _gameId
     "ExitMiniGameEvent", -- @param nil
     -- 交互
-    "InteractSEvent", -- @param _player,_id
+    "InteractSEvent", -- @param _player, _id
     "MazeEvent",
     "PlayerHitEvent",
     "PlayerStartMoleHitEvent",
@@ -24,17 +24,20 @@ Events.ServerEvents = {
     "CannonFireEvent",
     -- 人间大炮调整方向
     "SetCannonDirEvent", -- @param _dir
-    "LoadMDataEvent", --@param _userId
-    "SaveMDataEvent", --@param _userId,_playerdata
-    "StartBattleEvent",
-    --@param _isNpc,_playerA,_playerB
-    "PlantFlowerEvent" --@param _userId,_flowerObj
+    "LoadMDataEvent", -- @param _userId
+    "SaveMDataEvent", -- @param _userId, _playerdata
+    "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
+    "PlantFlowerEvent" -- @param _userId, _flowerObj
 }
 
 -- 客户端事件列表
 Events.ClientEvents = {
+    -- 数据同步
+    "SyncDataEvent", -- @param _playerData
+    -- 数据载入结束
+    "EndLoadDataEvent", -- @param nil
     --- 关闭通用UI事件
-    "SetDefUIEvent", -- @param _bool,_nodes, _root
+    "SetDefUIEvent", -- @param _bool, _nodes, _root
     --- 重置通用UI事件
     "ResetDefUIEvent",
     --- 打开动态交互事件
@@ -46,7 +49,7 @@ Events.ClientEvents = {
     -- 修改玩家当前相机
     "SetCurCamEvent", -- @param _cam
     -- 显示小游戏的GUI
-    "SetMiniGameGuiEvent", -- @param  _gameId,_selfActive, _ctrlGuiActive
+    "SetMiniGameGuiEvent", -- @param  _gameId, _selfActive, _ctrlGuiActive
     --- 状态机改变触发
     "FsmTriggerEvent", -- @param  _state
     -- 修改是否能控制角色
