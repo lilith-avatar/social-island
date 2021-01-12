@@ -43,8 +43,10 @@ function GuiHunt:SetMiniGameGuiEventHandler(_gameId, _selfActive, _ctrlGuiActive
             end,
             0.5
         )
-        localPlayer.Local.ControlGui.UseBtn:SetActive(false)
-        localPlayer.Local.ControlGui.SocialAnimBtn:SetActive(false)
+        NetUtil.Fire_C("SetDefUIEvent", localPlayer, false, {"Menu"})
+        NetUtil.Fire_C("SetDefUIEvent", localPlayer, false, {"UseBtn"}, localPlayer.Local.ControlGui.Ctrl)
+    --localPlayer.Local.ControlGui.UseBtn:SetActive(false)
+    --localPlayer.Local.ControlGui.SocialAnimBtn:SetActive(false)
     end
 end
 
@@ -53,8 +55,9 @@ function GuiHunt:LeaveBow()
     PlayerCam:SetCurCamEventHandler()
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
     huntGui:SetActive(false)
-    localPlayer.Local.ControlGui.UseBtn:SetActive(true)
-    localPlayer.Local.ControlGui.SocialAnimBtn:SetActive(true)
+    NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
+    --localPlayer.Local.ControlGui.UseBtn:SetActive(true)
+    --localPlayer.Local.ControlGui.SocialAnimBtn:SetActive(true)
 end
 
 function GuiHunt:Update(dt)

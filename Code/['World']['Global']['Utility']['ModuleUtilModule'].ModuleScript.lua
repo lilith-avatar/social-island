@@ -13,9 +13,11 @@ function ModuleUtil.LoadModules(_root, _scope)
     assert(_root, "[ModuleUtil] Node does NOT exist!")
     local tmp = _root:GetChildren()
     for _, v in pairs(tmp) do
-        name = (v.Name):gsub("Module", "")
-        print("[ModuleUtil] Load Module: " .. name)
-        _scope[name] = require(v)
+        if v.ClassName == "ModuleScriptObject" then
+            name = (v.Name):gsub("Module", "")
+            print("[ModuleUtil] Load Module: " .. name)
+            _scope[name] = require(v)
+        end
     end
 end
 
