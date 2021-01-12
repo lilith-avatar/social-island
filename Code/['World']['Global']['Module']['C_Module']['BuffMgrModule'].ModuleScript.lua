@@ -33,6 +33,7 @@ end
 
 --数据变量声明
 function BuffMgr:DataInit()
+    this:GetBuffEventHandler(1, 10)
 end
 
 --节点事件绑定
@@ -51,12 +52,13 @@ function BuffMgr:GetBuffEventHandler(_buffID, _dur)
     end
     local coverPlayerData = {}
     for k, v in pairs(Config.Buff[_buffID]) do
-        if string.Find(tostring(k), "_Cover") then ---覆盖
+        if string.find(tostring(k), "_Cover") then ---覆盖
             coverPlayerData[k] = v
         end
     end
     --发送覆盖数据和叠加数据
-    this:GetAllBuffData()
+    print(table.dump(coverPlayerData))
+    print(table.dump(this:GetAllBuffData()))
 end
 
 --移除Buff
@@ -82,7 +84,7 @@ function BuffMgr:GetAllBuffData()
     local overlayPlayerData = {}
     for buffID, buffData in pairs(BuffDataList) do
         for k, v in pairs(Config.Buff[buffID]) do
-            if string.Find(tostring(k), "_Overlay") then ---叠加
+            if string.find(tostring(k), "_Overlay") then ---叠加
                 if overlayPlayerData[k] then ---已存在数据
                     if type(overlayPlayerData[k]) == "table" then ---表类型
                         table.insert(overlayPlayerData[k], v)
@@ -90,7 +92,13 @@ function BuffMgr:GetAllBuffData()
                         overlayPlayerData[k] = overlayPlayerData[k] * v
                     end
                 else ---不存在数据
-                    overlayPlayerData[k] = defPlayerData[k]
+                    if type(defPlayerData[k]) == "table" then ---表类型
+                        overlayPlayerData[k] = {}
+                        table.insert(overlayPlayerData[k], v)
+                        --print(table.dump(overlayPlayerData[k]))
+                    elseif type(defPlayerData[k]) == "number" then ---数值类型
+                        overlayPlayerData[k] = defPlayerData[k]
+                    end
                 end
             end
         end

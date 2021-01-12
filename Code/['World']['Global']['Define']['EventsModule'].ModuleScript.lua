@@ -65,7 +65,11 @@ Events.ClientEvents = {
     --准备战斗
     "ReadyBattleEvent",
     --宠物战斗事件
-    "MBattleEvent" --@param _enum,_arg1,_arg2
+    "MBattleEvent", --@param _enum,_arg1,_arg2
+    --获得Buff
+    "GetBuffEvent", --@param _buffID, _dur
+    --移除Buff
+    "RemoveBuffEvent" --@param _buffID
 }
 
 return Events

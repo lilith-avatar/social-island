@@ -20,7 +20,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 1,
         AnimState_Cover = 'nil',
-        EnableEquipable_Cover = nil
+        EnableEquipable_Cover = true
     }
 }
 
