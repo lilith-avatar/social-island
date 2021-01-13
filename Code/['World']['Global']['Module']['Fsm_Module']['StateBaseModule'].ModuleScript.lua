@@ -2,10 +2,9 @@
 -- @module Game Manager, Server-side
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local StateBase = class('StateBase')
+local StateBase = class("StateBase")
 
 function StateBase:initialize(_stateName, _nextStateName, _time)
-    print('[StateBase] initialize()')
     self.stateName = _stateName
     self.nextState = _nextStateName
     self.stateTime = _time or 0
@@ -29,17 +28,17 @@ end
 
 --进入状态
 function StateBase:OnEnter()
-    print('进入' .. self.stateName)
+    print("进入" .. self.stateName)
 end
 
 --更新状态
 function StateBase:OnUpdate(dt)
-    print('更新' .. self.stateName)
+    --print("更新" .. self.stateName)
 end
 
 --离开状态
 function StateBase:OnLeave()
-    print('离开' .. self.stateName)
+    print("离开" .. self.stateName)
 end
 
 return StateBase

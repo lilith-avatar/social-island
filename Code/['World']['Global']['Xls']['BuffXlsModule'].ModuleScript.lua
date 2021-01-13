@@ -3,32 +3,24 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//Item.xlsm
+--- source file: .//ItemConfig.xlsx
 
 local BuffXls = {
     [1] = {
-        BUFF = 1,
-        SizeChange = 2.0,
-        HeadSizeChange = 2.0,
-        WidthChange = 1.0,
-        KeepEffect = nil,
-        SpeedChange = 1.5,
-        JumpChange = 2.0,
-        GravityChange = 0.5,
-        SkinId = 1,
-        KeepAnim = ''
-    },
-    [2] = {
-        BUFF = 2,
-        SizeChange = 1.0,
-        HeadSizeChange = 1.0,
-        WidthChange = 1.0,
-        KeepEffect = {[2]=fire},
-        SpeedChange = 1.2,
-        JumpChange = 1.0,
-        GravityChange = 1.0,
-        SkinId = nil,
-        KeepAnim = 'Onfire'
+        ID = 1,
+        BuffCoverIDList = {0},
+        AvatarHeightSize_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = 'Fire',
+        BodyEffect_Overlay = 'Fire',
+        FootEffect_Overlay = 'Fire',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = 1,
+        AnimState_Cover = 'nil',
+        EnableEquipable_Cover = true
     }
 }
 
