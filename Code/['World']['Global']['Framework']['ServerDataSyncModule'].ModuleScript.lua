@@ -51,7 +51,7 @@ function InitEventsAndListeners()
         world:CreateObject('FolderObject', 'S_Event', world)
     end
     world:CreateObject('CustomEvent', 'DataSyncC2SEvent', world.S_Event)
-    world.S_Event.DataSyncC2SEvent:Connect(DataSyncC2SHandler)
+    world.S_Event.DataSyncC2SEvent:Connect(DataSyncC2SEventHandler)
 end
 
 --! 外部接口
@@ -69,7 +69,7 @@ end
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncC2SHandler(_player, _key, _data)
+function DataSyncC2SEventHandler(_player, _key, _data)
     print('ssssssssssssssssssssssssssssssssssssss')
     print('[DataSync][Server]', _player, _key, _data)
     if not playerDatas[_player] then
@@ -79,3 +79,44 @@ function DataSyncC2SHandler(_player, _key, _data)
 end
 
 return ServerDataSync
+
+--[[
+local people = {
+    name = 'Jey',
+    age = 18,
+    run = function()
+        print('people跑步🏃中')
+    end
+}
+
+local other = {
+    name = '我是多余的'
+}
+
+local tableA = {}
+
+local tableB = {
+    __index = people,
+    __newindex = function(t, k, v)
+        print('xxxxx', k, v)
+        people[k] = v
+    end
+}
+
+setmetatable(tableA, tableB)
+
+tableA.run = function()
+    print('别跑了')
+end
+tableA.age = '20'
+
+-- a
+tableA.run()
+print('tableA.name=' .. tableA.name)
+print('tableA.age=' .. tableA.age)
+
+-- -- other
+-- other.run()
+-- print('other.name=' .. other.name)
+-- print('other.age=' .. other.age)
+]]

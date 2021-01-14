@@ -51,7 +51,7 @@ function InitEventsAndListeners()
         world:CreateObject('FolderObject', 'S_Event', localPlayer)
     end
     world:CreateObject('CustomEvent', 'DataSyncS2CEvent', localPlayer.C_Event)
-    localPlayer.C_Event.DataSyncS2CEvent:Connect(DataSyncS2CHandler)
+    localPlayer.C_Event.DataSyncS2CEvent:Connect(DataSyncS2CEventHandler)
 end
 
 --! 外部接口
@@ -69,7 +69,7 @@ end
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncS2CHandler(_key, _data)
+function DataSyncS2CEventHandler(_key, _data)
     print('cccccccccccccccccccccccccccccccccccccc')
     print('[DataSync][Client]', localPlayer, _key, _data)
     playerCache[_key] = _data
