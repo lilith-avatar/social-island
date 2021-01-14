@@ -12,9 +12,14 @@ end
 function SceneInter:CreateInterManager()
     for k,v in pairs(folder:GetChildren()) do
         v.OnCollisionBegin:Connect(function()
-            --表现
+            this:GrassMove(v)
         end)
     end
+end
+
+function SceneInter:GrassMove(_obj)
+    local tweener = Tween:ShakeProperty(_obj,{Rotation},0.15,8)
+    tweener:Play()
 end
 
 return SceneInter
