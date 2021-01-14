@@ -48,6 +48,7 @@ end
 --*************** 地鼠对象 ***********************
 function MoleClass:initialize(_moleId, _name, _parent)
     self:CreateModel(_moleId, _name, _parent)
+    self.Type = Config.MoleConfig[_moleId].Type
 end
 
 function MoleClass:Reset(_moleId, _name, _parent)

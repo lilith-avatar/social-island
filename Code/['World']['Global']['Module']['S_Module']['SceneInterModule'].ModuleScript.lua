@@ -20,7 +20,6 @@ function SceneInter:CreateInterManager()
 end
 
 function SceneInter:GrassMove(_obj)
-    if 
     local tweener = Tween:ShakeProperty(_obj,{Rotation},0.15,8)
     tweener:Play()
 end
