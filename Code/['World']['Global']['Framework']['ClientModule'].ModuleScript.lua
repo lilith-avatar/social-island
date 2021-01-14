@@ -16,14 +16,14 @@ local initDefaultList, initList, updateList = {}, {}, {}
 
 --- 运行客户端
 function Client:Run()
-    print("[Client] Run()")
+    print('[Client] Run()')
     InitClient()
     StartUpdate()
 end
 
 --- 停止Update
 function Client:Stop()
-    print("[Client] Stop()")
+    print('[Client] Stop()')
     running = false
     ClientHeartbeat.Stop()
 end
@@ -33,9 +33,10 @@ function InitClient()
     if initialized then
         return
     end
-    print("[Client] InitClient()")
+    print('[Client] InitClient()')
     InitRandomSeed()
     InitHeartbeat()
+    InitDataSync()
     InitClientCustomEvents()
     PreloadCsv()
     GenInitAndUpdateList()
@@ -46,20 +47,25 @@ end
 
 --- 初始化心跳包
 function InitHeartbeat()
-    assert(ClientHeartbeat, "[Client][Heartbeat] 找不到ClientHeartbeat,请联系张远程")
+    assert(ClientHeartbeat, '[Client][Heartbeat] 找不到ClientHeartbeat,请联系张远程')
     ClientHeartbeat.Init()
+end
+
+--- 初始化数据同步
+function InitDataSync()
+    ClientDataSync.Init()
 end
 
 --- 初始化客户端的CustomEvent
 function InitClientCustomEvents()
     if localPlayer.C_Event == nil then
-        world:CreateObject("FolderObject", "C_Event", localPlayer)
+        world:CreateObject('FolderObject', 'C_Event', localPlayer)
     end
 
     -- 将插件中的CustomEvent放入Events.ClientEvents中
     for _, m in pairs(Config.PluginEvents) do
         local evts = _G[m].ClientEvents
-        assert(evts, string.format("[Client] %s 中不存在ClientEvents，请检查模块，或从FrameworkConfig删除此配置", m))
+        assert(evts, string.format('[Client] %s 中不存在ClientEvents，请检查模块，或从FrameworkConfig删除此配置', m))
         for __, evt in pairs(evts) do
             if not table.exists(Events.ClientEvents, evt) then
                 table.insert(Events.ClientEvents, evt)
@@ -70,23 +76,23 @@ function InitClientCustomEvents()
     -- 生成CustomEvent节点
     for _, evt in pairs(Events.ClientEvents) do
         if localPlayer.C_Event[evt] == nil then
-            world:CreateObject("CustomEvent", evt, localPlayer.C_Event)
+            world:CreateObject('CustomEvent', evt, localPlayer.C_Event)
         end
     end
 end
 
 --- 生成需要Init和Update的模块列表
 function GenInitAndUpdateList()
-    ModuleUtil.GetModuleListWithFunc(Module.UI_Module, "InitDefault", initDefaultList)
-    ModuleUtil.GetModuleListWithFunc(Module.UI_Module, "Init", initList)
-    ModuleUtil.GetModuleListWithFunc(Module.UI_Module, "Update", updateList)
-    ModuleUtil.GetModuleListWithFunc(Module.C_Module, "InitDefault", initDefaultList)
-    ModuleUtil.GetModuleListWithFunc(Module.C_Module, "Init", initList)
-    ModuleUtil.GetModuleListWithFunc(Module.C_Module, "Update", updateList)
+    ModuleUtil.GetModuleListWithFunc(Module.UI_Module, 'InitDefault', initDefaultList)
+    ModuleUtil.GetModuleListWithFunc(Module.UI_Module, 'Init', initList)
+    ModuleUtil.GetModuleListWithFunc(Module.UI_Module, 'Update', updateList)
+    ModuleUtil.GetModuleListWithFunc(Module.C_Module, 'InitDefault', initDefaultList)
+    ModuleUtil.GetModuleListWithFunc(Module.C_Module, 'Init', initList)
+    ModuleUtil.GetModuleListWithFunc(Module.C_Module, 'Update', updateList)
     for _, m in pairs(Config.PluginModules) do
-        ModuleUtil.GetModuleListWithFunc(m, "InitDefault", initDefaultList)
-        ModuleUtil.GetModuleListWithFunc(m, "Init", initList)
-        ModuleUtil.GetModuleListWithFunc(m, "Update", updateList)
+        ModuleUtil.GetModuleListWithFunc(m, 'InitDefault', initDefaultList)
+        ModuleUtil.GetModuleListWithFunc(m, 'Init', initList)
+        ModuleUtil.GetModuleListWithFunc(m, 'Update', updateList)
     end
 end
 
@@ -104,7 +110,7 @@ end
 
 --- 预加载所有的CSV表格
 function PreloadCsv()
-    print("[Client] PreloadCsv()")
+    print('[Client] PreloadCsv()')
     if Config.ClientPreload and #Config.ClientPreload > 0 then
         CsvUtil.PreloadCsv(Config.ClientPreload, Csv, Config)
     end
@@ -119,8 +125,8 @@ end
 
 --- 开始Update
 function StartUpdate()
-    print("[Client] StartUpdate()")
-    assert(not running, "[Client] StartUpdate() 正在运行")
+    print('[Client] StartUpdate()')
+    assert(not running, '[Client] StartUpdate() 正在运行')
 
     running = true
 

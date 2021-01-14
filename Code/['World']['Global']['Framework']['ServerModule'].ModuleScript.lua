@@ -36,6 +36,7 @@ function InitServer()
     print('[Server] InitServer()')
     InitRandomSeed()
     InitHeartbeat()
+    InitDataSync()
     InitServerCustomEvents()
     InitCsvAndXls()
     GenInitAndUpdateList()
@@ -74,6 +75,11 @@ end
 function InitHeartbeat()
     assert(ServerHeartbeat, '[Server][Heartbeat] 找不到ServerHeartbeat,请联系张远程')
     ServerHeartbeat.Init()
+end
+
+--- 初始化数据同步
+function InitDataSync()
+    ServerDataSync.Init()
 end
 
 --- 生成框架需要的节点
