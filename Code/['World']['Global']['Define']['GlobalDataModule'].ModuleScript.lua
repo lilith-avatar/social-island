@@ -3,7 +3,13 @@
 --- @copyright Lilith Games, Avatar Team
 local GlobalData = {}
 
--- Test only
-GlobalData.PlayerData = {}
+-- const
+local MetaData = MetaData
+
+-- set define 数据同步框架设置
+ClientDataSync.SetGlobalDataDefine(GlobalData)
+ServerDataSync.SetGlobalDataDefine(GlobalData)
+
+GlobalData.Sync = MetaData.New({age = 12})
 
 return GlobalData

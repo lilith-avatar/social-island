@@ -4,10 +4,45 @@
 --- @author Yuancheng Zhang
 local ServerDataSync = {}
 
+-- Localize global vars
+local FrameworkConfig = FrameworkConfig
+
+-- 数据定义格式: 全局数据, 玩家数据
+local GLOBAL_DATA_DEFINE, PLAYER_DATA_DEFINE
+
+-- 设置数据所属
+MetaData.Host = MetaData.SERVER
+
+--- 打印数据同步日志
+local PrintLog = FrameworkConfig.DebugMode and function(...)
+        print('[DataSync][Server]', ...)
+    end or function()
+    end
+
+-- 客户端本地数据: 全局数据, 玩家数据
+local globalData = {}
+local playerDatas = {}
+
+--! 初始化
+
 --- 数据初始化
 function ServerDataSync.Init()
     print('[DataSync][Server] Init()')
     InitEventsAndListeners()
+    InitDefines()
+end
+
+--- 校验数据定义
+function InitDefines()
+    -- 数据校验
+    assert(
+        GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
+        '[DataSync][Server] 全局数据定义有误，请检查 FrameworkConfig.GlobalDataDefine'
+    )
+    assert(
+        PLAYER_DATA_DEFINE and type(PLAYER_DATA_DEFINE) == 'table',
+        '[DataSync][Server] 玩家数据定义有误，请检查 FrameworkConfig.PlayerDataDefine'
+    )
 end
 
 --- 初始化事件和绑定Handler
@@ -19,10 +54,28 @@ function InitEventsAndListeners()
     world.S_Event.DataSyncC2SEvent:Connect(DataSyncC2SHandler)
 end
 
+--! 外部接口
+
+--- 定义全局数据
+function ServerDataSync.SetGlobalDataDefine(_define)
+    GLOBAL_DATA_DEFINE = _define
+end
+
+--- 定义玩家数据
+function ServerDataSync.SetPlayerDataDefine(_define)
+    PLAYER_DATA_DEFINE = _define
+end
+
+--! Event handler
+
 --- 数据同步事件Handler
 function DataSyncC2SHandler(_player, _key, _data)
     print('ssssssssssssssssssssssssssssssssssssss')
-    print(_player, _key, _data)
+    print('[DataSync][Server]', _player, _key, _data)
+    if not playerDatas[_player] then
+        playerDatas[_player] = {}
+    end
+    playerDatas[_player][_key] = _data
 end
 
 return ServerDataSync

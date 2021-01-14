@@ -4,42 +4,45 @@
 --- @author Yuancheng Zhang
 MetaData = {}
 
--- _t = MetaData
+-- enum
+MetaData.UNDEFINED = 0
+MetaData.SERVER = 1
+MetaData.CLIENT = 2
 
--- t = {}
+-- 数据, 1是服务器, 2是客户端
+MetaData.Host = MetaData.UNDEFINED
 
--- -- 原表
---  mt = {
---     IsServer = true,
---     __newindex = function(t, k, v)
---         print('xxxxxx')
---         _t[k] = v
---     end
--- }
+-- metatable
+local smt = {}
+local cmt = {}
 
--- setmetatable(t, mt)
+-- 服务器数据元表
+smt.__newindex = function(_t, _k, _v)
+    NetUtil.Broadcast('DataSyncS2CEvent', _k, _v)
+    print('S => C S => C S => C S => C S => C S => C S => C S => C S => C S => C S => C')
+    print('[MetaData] S => C', _k, _v)
+    _t[_k] = _v
+end
 
--- function MetaData.New(_t)
---     _t = _t or {}
---     setmetatable(_t, MetaData.mt)
---     return _t
--- end
+-- 客户端数据元表
+cmt.__newindex = function(_t, _k, _v)
+    NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, _k, _v)
+    print('C => S C => S C => S C => S C => S C => S C => S C => S C => S C => S C => S')
+    print('[MetaData] C => S', _k, _v)
+    _t[_k] = _v
+end
 
--- --给元表设置__index属性
--- MetaData.mt.__index = {}
-
--- --给元表设置__newindex 属性
--- other_fun = function(t, k, v)
---     print('保护对象表t,让用户不能给t表设置新的方法或者属性')
--- end
--- MetaData.mt.__newindex = other_fun
-
--- dog = MetaData.New({name = 'dog'})
--- print(dog.color)
-
--- print(dog.cloth)
-
--- dog.eyenum = 32
--- print(dot.eyenum)
+-- 生成数据
+function MetaData.New(_t)
+    _t = _t or {}
+    if MetaData.Host == MetaData.SERVER then
+        setmetatable(_t, smt)
+    elseif MetaData.Host == MetaData.CLIENT then
+        setmetatable(_t, cmt)
+    else
+        error('[MetaData] 数据为定义所属，请先定义MetaData.Host，1是服务器, 2是客户端')
+    end
+    return _t
+end
 
 return MetaData

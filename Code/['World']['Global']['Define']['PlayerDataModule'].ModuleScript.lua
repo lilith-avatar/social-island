@@ -5,4 +5,11 @@
 
 local PlayerData = {}
 
+-- const
+local MetaData = MetaData
+
+-- set define 数据同步框架设置
+ClientDataSync.SetPlayerDataDefine(PlayerData)
+ServerDataSync.SetPlayerDataDefine(PlayerData)
+
 return PlayerData

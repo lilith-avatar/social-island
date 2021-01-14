@@ -3,8 +3,11 @@
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang
 local FrameworkConfig = {
+    -- Debug模式
+    DebugMode = true,
     -- 启动心跳
     HeartbeatStart = true,
+    -- 服务器配置
     Server = {
         -- 心跳包间隔时间，单位：秒
         HeartbeatDelta = 1,
@@ -21,6 +24,7 @@ local FrameworkConfig = {
         -- 插件中服务器需要生成的CustomEvent, 模块中必须得有ServerEvents
         PluginEvents = {}
     },
+    -- 客户端配置
     Client = {
         -- 心跳包间隔时间，单位：秒
         HeartbeatDelta = 1,
