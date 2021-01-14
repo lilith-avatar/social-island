@@ -10,7 +10,7 @@ end
 
 function IdleState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Walk", "Jump", "SwimIdle", "Fly", "BowIdle"})
+    FsmMgr.playerActFsm:TriggerMonitor({"SwimIdle", "Fly", "BowIdle"})
     self:MoveMonitor()
     self:JumpMonitor()
 end
