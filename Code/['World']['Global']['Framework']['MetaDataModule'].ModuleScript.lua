@@ -21,6 +21,7 @@ local function SetServerData(_t, _k, _v)
     NetUtil.Broadcast('DataSyncS2CEvent', _k, _v)
     print('S => C S => C S => C S => C S => C S => C S => C S => C S => C S => C S => C')
     print('[MetaData] S => C', _k, _v)
+    -- TODO: 应该不能直接赋值，而是用Add设置？
     sraw[_t][_k] = _v
 end
 
