@@ -28,7 +28,7 @@ end
 
 --进入状态
 function StateBase:OnEnter()
-    print("进入" .. self.stateName)
+    --print("进入" .. self.stateName)
 end
 
 --更新状态
@@ -38,7 +38,7 @@ end
 
 --离开状态
 function StateBase:OnLeave()
-    print("离开" .. self.stateName)
+    --print("离开" .. self.stateName)
 end
 
 return StateBase
