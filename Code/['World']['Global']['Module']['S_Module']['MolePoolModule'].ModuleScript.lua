@@ -107,6 +107,14 @@ function MoleClass:BeBeaten()
     end
 end
 
+function MoleClass:isDestroy()
+    if self.state == MoleStateEnum.Destroy then
+        return true
+    else
+        return false
+    end
+end
+
 function MoleClass:StartTimer(dt)
     self.timer = self.timer + dt
     if self.state == MoleStateEnum.Destroy then

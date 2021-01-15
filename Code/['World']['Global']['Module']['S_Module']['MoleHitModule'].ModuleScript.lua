@@ -1,7 +1,7 @@
 ---@module MoleHit
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleHit, this = ModuleUtil.New('MoleHit', ServerBase)
+local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
 local totalWeights = 0
 
 ---得到总权重
@@ -43,7 +43,7 @@ end
 
 ---初始化函数
 function MoleHit:Init()
-    print('[MoleHit] Init()')
+    print("[MoleHit] Init()")
     this:DataInit()
     this:PitListInit()
     this:PoolInit()
@@ -78,7 +78,7 @@ end
 
 function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C('StartMoleEvent', _player)
+        NetUtil.Fire_C("StartMoleEvent", _player)
     end
 end
 
@@ -118,7 +118,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
         if this.pitList[k] and this.pitList[k].mole then
             player = world:GetPlayerByUserId(_uid)
             NetUtil.Fire_C(
-                'AddScoreAndBoostEvent',
+                "AddScoreAndBoostEvent",
                 player,
                 Config.MoleConfig[this.pitList[k].mole.model.Name].Type,
                 Config.MoleConfig[this.pitList[k].mole.model.Name].Reward,
@@ -138,7 +138,12 @@ function MoleHit:Update(dt, tt)
             this.timer = 0
             MoleHit:RefreshMole(table.nums(this.playerList) + 1)
         end
-        --TODO: 每个老鼠的单独计时
+        --TODO: 每个老鼠的单独计时,若状态为Destroy，则放回到对应的池子中
+        for k, v in pairs() do
+            if v:IsDestroy() then
+                this.molePool[v.model.Name]:Destroy(v)
+            end
+        end
     end
 end
 
