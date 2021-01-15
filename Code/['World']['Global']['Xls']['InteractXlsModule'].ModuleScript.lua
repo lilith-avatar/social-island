@@ -49,7 +49,7 @@ local InteractXls = {
     Race = {
         ID = 9,
         Name = 'Race',
-        IsEnterByNPC = true
+        IsEnterByNPC = false
     },
     Chair = {
         ID = 10,

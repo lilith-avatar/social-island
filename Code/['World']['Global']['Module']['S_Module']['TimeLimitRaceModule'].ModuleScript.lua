@@ -1,4 +1,4 @@
----计时赛跑服务器管理模块
+--[[---计时赛跑服务器管理模块
 ---@module TimeLimitRace
 ---@copyright Lilith Games, Avatar Team
 ---@author Changoo Wu
@@ -130,3 +130,4 @@ function TimeLimitRace:Update(_dt, _tt)
 end
 
 return TimeLimitRace
+]]
