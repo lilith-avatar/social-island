@@ -36,10 +36,6 @@ function MolePool:Create(_parent, _name)
     local mole
     if self.pool[1] then
         mole = self.pool[1]:Reset(nil, _name, _parent)
-        -- self.pool[1].Parent = _parent
-        -- self.pool[1].Position, self.pool[1].Rotation = _parent.Position, _parent.Rotation
-        -- self.pool[1]:SetActive(true)
-        -- mole = table.deepcopy(self.pool[1])
         invoke(
             function()
                 table.remove(self.pool, 1)
@@ -47,9 +43,6 @@ function MolePool:Create(_parent, _name)
             wait()
         )
     else
-        -- mole = world:CreateInstance(self.objName, _name, _parent)
-        -- mole.Position, mole.Rotation = _parent.Position, _parent.Rotation
-        -- mole:SetActive(true)
         mole = MoleClass:new(self.objId, _name, _parent)
     end
     return mole
@@ -75,14 +68,16 @@ function MoleClass:Destroy(_isRealDestroy)
 end
 
 function MoleClass:Reset(_name, _parent)
-    self:CreateModel(self.moleId, _name, _parent)
     self:ResetData()
+    self:CreateModel(self.moleId, _name, _parent)
     --开始计时并表现
     return self
 end
 
 function MoleClass:ResetData()
     self.beatTime = Config.MoleConfig[self.moleId].BeatTime
+    self.timer = 0
+    self.state = MoleStateEnum.Appearing
 end
 
 function MoleClass:CreateModel(_moleId, _name, _parent)
@@ -105,13 +100,39 @@ end
 function MoleClass:BeBeaten()
     self.beatTime = self.beatTime - 1
     if self.beatTime <= 0 then
+        self.state = MoleStateEnum.Destroy
         --TODO: 对象池摧毁
     else
         --TODO: 更换模型
     end
 end
 
-function MoleClass:StartTimer()
+function MoleClass:StartTimer(dt)
+    self.timer = self.timer + dt
+    if self.state == MoleStateEnum.Destroy then
+        return
+    end
+    if self.state == MoleStateEnum.Appearing then
+        if self.timer >= Config.MoleConfig[self.moleId].AppearTime then
+            --停止播放动作
+            self.timer = 0
+            self.state = MoleStateEnum.Keeping
+        end
+    end
+    if self.state == MoleStateEnum.Keeping then
+        if self.timer >= Config.MoleConfig[self.moleId].AppearTime then
+            --播放动作
+            self.timer = 0
+            self.state = MoleStateEnum.Disapearing
+        end
+    end
+    if self.state == MoleStateEnum.Disapearing then
+        if self.timer >= Config.MoleConfig[self.moleId].AppearTime then
+            --销毁
+            self.timer = 0
+            self.state = MoleStateEnum.Destroy
+        end
+    end
 end
 
 return MolePool

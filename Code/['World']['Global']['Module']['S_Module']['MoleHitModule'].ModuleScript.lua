@@ -107,14 +107,7 @@ function MoleHit:RefreshMole(_playerNum)
         end
         mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model, tmpRandomTab[1].id)
         this.pitList[tmpTable[pitIndex].model.Name].mole = mole
-        invoke(
-            function()
-                if mole then
-                    this.molePool[tmpRandomTab[1].id]:Destroy(mole)
-                end
-            end,
-            Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime
-        )
+        --TODO: 优化销毁的流程，在池子中做
         table.remove(tmpTable, pitIndex)
     end
 end
@@ -127,9 +120,9 @@ function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
             NetUtil.Fire_C(
                 'AddScoreAndBoostEvent',
                 player,
-                Config.MoleConfig[this.pitList[k].mole.Name].Type,
-                Config.MoleConfig[this.pitList[k].mole.Name].Reward,
-                Config.MoleConfig[this.pitList[k].mole.Name].BoostReward
+                Config.MoleConfig[this.pitList[k].mole.model.Name].Type,
+                Config.MoleConfig[this.pitList[k].mole.model.Name].Reward,
+                Config.MoleConfig[this.pitList[k].mole.model.Name].BoostReward
             )
             this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
             this.pitList[k].mole = nil
@@ -145,6 +138,7 @@ function MoleHit:Update(dt, tt)
             this.timer = 0
             MoleHit:RefreshMole(table.nums(this.playerList) + 1)
         end
+        --TODO: 每个老鼠的单独计时
     end
 end
 
