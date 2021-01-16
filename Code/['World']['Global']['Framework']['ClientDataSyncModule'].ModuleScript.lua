@@ -6,12 +6,10 @@ local ClientDataSync = {}
 
 -- Localize global vars
 local FrameworkConfig = FrameworkConfig
+local MetaData = MetaData
 
 -- 数据定义格式: 全局数据, 玩家数据
 local GLOBAL_DATA_DEFINE, PLAYER_DATA_DEFINE
-
--- 设置数据所属
-MetaData.Host = MetaData.CLIENT
 
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
@@ -34,6 +32,8 @@ end
 
 --- 校验数据定义
 function InitDefines()
+    -- 定义数据所属
+    MetaData.Host = MetaData.Enum.CLIENT
     -- 数据校验
     assert(
         GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
@@ -69,10 +69,24 @@ end
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncS2CEventHandler(_key, _data)
-    print('cccccccccccccccccccccccccccccccccccccc')
-    print('[DataSync][Client]', localPlayer, _key, _data)
-    playerCache[_key] = _data
+function DataSyncS2CEventHandler(_type, _table, _key, _data)
+    PrintLog(string.format('收到 player = %s, type = %s, key = %s, data = %s', localPlayer, _table, _key, _data))
+    if _type == MetaData.Enum.GLOBAL then
+        MetaData.SetClientGlobalData(_table, _key, _data)
+    elseif _type == MetaData.Enum.PLAYAER then
+        --TODO:
+        MetaData.SetClientPlayerData(_table, _key, _data)
+    else
+        error(
+            string.format(
+                '[DataSync][Client]  MetaData 数据类型错误 type = %s, table = %s, key = %s, data = %s',
+                _type,
+                _table,
+                _key,
+                table.dump(_data)
+            )
+        )
+    end
 end
 
 return ClientDataSync

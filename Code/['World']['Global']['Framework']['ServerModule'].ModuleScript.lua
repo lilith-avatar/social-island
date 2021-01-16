@@ -94,9 +94,15 @@ end
 
 --- 生成需要Init和Update的模块列表
 function GenInitAndUpdateList()
+    -- TODO: 改成在FrameworkConfig中配置
+    -- Init Default
     ModuleUtil.GetModuleListWithFunc(Module.S_Module, 'InitDefault', initDefaultList)
+    -- Init
+    ModuleUtil.GetModuleListWithFunc(Define, 'Init', initList)
     ModuleUtil.GetModuleListWithFunc(Module.S_Module, 'Init', initList)
+    -- Update
     ModuleUtil.GetModuleListWithFunc(Module.S_Module, 'Update', updateList)
+    -- Plugin
     for _, m in pairs(FrameworkConfig.Server.PluginModules) do
         ModuleUtil.GetModuleListWithFunc(m, 'InitDefault', initDefaultList)
         ModuleUtil.GetModuleListWithFunc(m, 'Init', initList)

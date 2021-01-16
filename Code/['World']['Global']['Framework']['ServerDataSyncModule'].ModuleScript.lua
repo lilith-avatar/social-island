@@ -6,12 +6,10 @@ local ServerDataSync = {}
 
 -- Localize global vars
 local FrameworkConfig = FrameworkConfig
+local MetaData = MetaData
 
 -- 数据定义格式: 全局数据, 玩家数据
 local GLOBAL_DATA_DEFINE, PLAYER_DATA_DEFINE
-
--- 设置数据所属
-MetaData.Host = MetaData.SERVER
 
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
@@ -34,6 +32,8 @@ end
 
 --- 校验数据定义
 function InitDefines()
+    -- 定义数据所属
+    MetaData.Host = MetaData.Enum.SERVER
     -- 数据校验
     assert(
         GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
@@ -69,54 +69,24 @@ end
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncC2SEventHandler(_player, _key, _data)
-    print('ssssssssssssssssssssssssssssssssssssss')
-    print('[DataSync][Server]', _player, _key, _data)
-    if not playerDatas[_player] then
-        playerDatas[_player] = {}
+function DataSyncC2SEventHandler(_player, _type, _table, _key, _data)
+    PrintLog(string.format('收到 player = %s, type = %s, key = %s, data = %s', _player, _type, _key, table.dump(_data)))
+    if _type == MetaData.Enum.GLOBAL then
+        MetaData.SetServerGlobalData(_table, _key, _data)
+    elseif _type == MetaData.Enum.PLAYAER then
+        --TODO:
+        MetaData.SetServerPlayerData(_player, _table, _key, _data)
+    else
+        error(
+            string.format(
+                '[DataSync][Server]  MetaData 数据类型错误 type = %s, table = %s, key = %s, data = %s',
+                _type,
+                _table,
+                _key,
+                table.dump(_data)
+            )
+        )
     end
-    playerDatas[_player][_key] = _data
 end
 
 return ServerDataSync
-
---[[
-local people = {
-    name = 'Jey',
-    age = 18,
-    run = function()
-        print('people跑步🏃中')
-    end
-}
-
-local other = {
-    name = '我是多余的'
-}
-
-local tableA = {}
-
-local tableB = {
-    __index = people,
-    __newindex = function(t, k, v)
-        print('xxxxx', k, v)
-        people[k] = v
-    end
-}
-
-setmetatable(tableA, tableB)
-
-tableA.run = function()
-    print('别跑了')
-end
-tableA.age = '20'
-
--- a
-tableA.run()
-print('tableA.name=' .. tableA.name)
-print('tableA.age=' .. tableA.age)
-
--- -- other
--- other.run()
--- print('other.name=' .. other.name)
--- print('other.age=' .. other.age)
-]]
