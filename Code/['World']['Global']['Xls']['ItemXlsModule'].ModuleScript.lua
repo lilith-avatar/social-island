@@ -11,63 +11,63 @@ local ItemXls = {
         Name = 'Item_Name_1001',
         Des = 'Item_Des_1001',
         Ico = 'Ico_Sword',
-        UseCD = 0.5
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     },
     [2001] = {
         ItemID = 2001,
         Name = 'Item_Name_2001',
         Des = 'Item_Des_2001',
-        Ico = 'Ico_Boom',
-        UseCD = 600.0
+        Ico = 'Ico_FireBowl',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     },
     [3001] = {
         ItemID = 3001,
         Name = 'Item_Name_3001',
         Des = 'Item_Des_3001',
-        Ico = 'Ico_MagicStick',
-        UseCD = 300.0
+        Ico = 'Ico_Boom',
+        UseCD = 600.0,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     },
     [3002] = {
         ItemID = 3002,
         Name = 'Item_Name_3002',
         Des = 'Item_Des_3002',
-        Ico = 'Ico_FireBowl',
-        UseCD = 0.5
+        Ico = 'Ico_MagicStick',
+        UseCD = 300.0,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     },
     [4001] = {
         ItemID = 4001,
         Name = 'Item_Name_4001',
         Des = 'Item_Des_4001',
         Ico = 'Ico_lolipop',
-        UseCD = 600.0
+        UseCD = 600.0,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     },
     [5001] = {
         ItemID = 5001,
         Name = 'Item_Name_5001',
         Des = 'Item_Des_5001',
         Ico = 'Ico_Card',
-        UseCD = 0.0
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     },
     [6001] = {
         ItemID = 6001,
         Name = 'Item_Name_6001',
         Des = 'Item_Des_6001',
         Ico = 'Ico_PigSkin',
-        UseCD = 0.5
-    },
-    [7001] = {
-        ItemID = 7001,
-        Name = 'Item_Name_7001',
-        Des = 'Item_Des_7001',
-        Ico = 'Ico_Pet',
-        UseCD = 0.5
-    },
-    [8001] = {
-        ItemID = 8001,
-        Name = 'Item_Name_8001',
-        Des = 'Item_Des_8001',
-        Ico = 'Ico_Memory',
-        UseCD = 0.5
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
     }
 }
 
