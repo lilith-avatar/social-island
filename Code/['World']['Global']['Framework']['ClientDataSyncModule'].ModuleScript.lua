@@ -69,19 +69,28 @@ end
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncS2CEventHandler(_type, _table, _key, _data)
-    PrintLog(string.format('收到 player = %s, type = %s, key = %s, data = %s', localPlayer, _table, _key, _data))
+function DataSyncS2CEventHandler(_type, _metaId, _key, _data)
+    PrintLog(
+        string.format(
+            '收到 player = %s, type = %s, metaId = %s, key = %s, data = %s',
+            localPlayer,
+            _type,
+            _metaId,
+            _key,
+            _data
+        )
+    )
     if _type == MetaData.Enum.GLOBAL then
-        MetaData.SetClientGlobalData(_table, _key, _data)
+        MetaData.SetClientGlobalData(_metaId, _key, _data)
     elseif _type == MetaData.Enum.PLAYAER then
         --TODO:
-        MetaData.SetClientPlayerData(_table, _key, _data)
+        MetaData.SetClientPlayerData(_metaId, _key, _data)
     else
         error(
             string.format(
-                '[DataSync][Client]  MetaData 数据类型错误 type = %s, table = %s, key = %s, data = %s',
+                '[DataSync][Client]  MetaData 数据类型错误 type = %s, metaId = %s, key = %s, data = %s',
                 _type,
-                _table,
+                _metaId,
                 _key,
                 table.dump(_data)
             )

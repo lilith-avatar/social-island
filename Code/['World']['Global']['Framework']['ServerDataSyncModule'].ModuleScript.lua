@@ -50,8 +50,15 @@ function InitEventsAndListeners()
     if world.S_Event == nil then
         world:CreateObject('FolderObject', 'S_Event', world)
     end
+
+    -- 数据同步事件
     world:CreateObject('CustomEvent', 'DataSyncC2SEvent', world.S_Event)
     world.S_Event.DataSyncC2SEvent:Connect(DataSyncC2SEventHandler)
+
+    -- 玩家加入事件
+    local onPlayerJoinEvent = world.S_Event.OnPlayerJoinEvent
+    assert(onPlayerJoinEvent, string.format('[DataSync][Server] %s不存在', onPlayerJoinEvent))
+    onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
 end
 
 --! 外部接口
@@ -69,24 +76,45 @@ end
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncC2SEventHandler(_player, _type, _table, _key, _data)
-    PrintLog(string.format('收到 player = %s, type = %s, key = %s, data = %s', _player, _type, _key, table.dump(_data)))
+function DataSyncC2SEventHandler(_player, _type, _metaId, _key, _data)
+    PrintLog(
+        string.format(
+            '收到 player = %s, type = %s, metaId = %s, key = %s, data = %s',
+            _player,
+            _type,
+            _metaId,
+            _key,
+            table.dump(_data)
+        )
+    )
     if _type == MetaData.Enum.GLOBAL then
-        MetaData.SetServerGlobalData(_table, _key, _data)
+        --* 收到客户端改变数据的时候需要同步给其他玩家
+        MetaData.SetServerGlobalData(_metaId, _key, _data, true)
     elseif _type == MetaData.Enum.PLAYAER then
         --TODO:
-        MetaData.SetServerPlayerData(_player, _table, _key, _data)
+        MetaData.SetServerPlayerData(_player, _metaId, _key, _data)
     else
         error(
             string.format(
-                '[DataSync][Server]  MetaData 数据类型错误 type = %s, table = %s, key = %s, data = %s',
+                '[DataSync][Server]  MetaData 数据类型错误 type = %s, metaId = %s, key = %s, data = %s',
                 _type,
-                _table,
+                _metaId,
                 _key,
                 table.dump(_data)
             )
         )
     end
+end
+
+--- 新玩家加入事件Handler
+function OnPlayerJoinEventHandler(_player)
+    --TODO: 向客户端同步GlobalData
+    for k, v in pairs(GlobalData) do
+        GlobalData[k] = v
+    end
+    --TODO: 获取长期存储
+    --TODO: 服务器端创建PlayerData
+    --TODO: 向客户端同步PlayerData
 end
 
 return ServerDataSync

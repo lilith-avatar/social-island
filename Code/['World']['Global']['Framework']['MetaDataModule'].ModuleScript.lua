@@ -49,16 +49,12 @@ local PrintLog = FrameworkConfig.DebugMode and function(...)
 
 -- 服务器GlobalData数据元表
 local function SetServerGlobalData(_t, _k, _v)
-    NetUtil.Broadcast('DataSyncS2CEvent', MetaData.Enum.GLOBAL, _t._metaId, _k, _v)
-    PrintLog(string.format('[GlobalData] S => C metaId = %s, key = %s, data = %s', _t._metaId, _k, table.dump(_v)))
-    MetaData.SetServerGlobalData(_t._metaId, _k, _v)
+    MetaData.SetServerGlobalData(_t._metaId, _k, _v, true)
 end
 
 -- 客户端GlobalData数据元表
 local function SetClientGlobalData(_t, _k, _v)
-    NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, MetaData.Enum.GLOBAL, _t._metaId, _k, _v)
-    PrintLog(string.format('[GlobalData] C => S metaId = %s, key = %s, data = %s', _t._metaId, _k, table.dump(_v)))
-    MetaData.SetClientGlobalData(_t._metaId, _k, _v)
+    MetaData.SetClientGlobalData(_t._metaId, _k, _v, true)
 end
 
 -- 生成ID
@@ -106,20 +102,28 @@ end
 -- 生成PlayerData数据
 function MetaData.NewPlayerData(_t)
     local proxy = {}
-    --TODO:
+    --TODO: 创建PlayerData格式
     return proxy
 end
 
 -- 直接修改GlobalData：服务器
-function MetaData.SetServerGlobalData(_metaId, _k, _v)
+function MetaData.SetServerGlobalData(_metaId, _k, _v, _sync)
     DataValidation(sgraw, _metaId, _k, _v)
     sgraw[_metaId][_k] = _v
+    if _sync then
+        NetUtil.Broadcast('DataSyncS2CEvent', MetaData.Enum.GLOBAL, _metaId, _k, _v)
+        PrintLog(string.format('[GlobalData] S => C metaId = %s, key = %s, data = %s', _metaId, _k, table.dump(_v)))
+    end
 end
 
 -- 直接修改GlobalData：客户端
-function MetaData.SetClientGlobalData(_metaId, _k, _v)
+function MetaData.SetClientGlobalData(_metaId, _k, _v, _sync)
     DataValidation(cgraw, _metaId, _k, _v)
     cgraw[_metaId][_k] = _v
+    if _sync then
+        NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, MetaData.Enum.GLOBAL, _metaId, _k, _v)
+        PrintLog(string.format('[GlobalData] C => S metaId = %s, key = %s, data = %s', _metaId, _k, table.dump(_v)))
+    end
 end
 
 -- 直接修改PlayerData：服务器
