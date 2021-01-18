@@ -11,7 +11,7 @@ local new = MetaData.NewGlobalData
 ServerDataSync.SetGlobalDataDefine(GlobalData)
 ClientDataSync.SetGlobalDataDefine(GlobalData)
 
-local define = {
+local scheme = {
     a = 'A',
     b = 'B',
     c = {'C1', 'C2', 'C3'},
@@ -30,10 +30,13 @@ end
 
 -- 定义GlobalData的数据格式
 function InitScheme()
-    local scheme = GenSchemeAux(define)
+    local meta = GenSchemeAux(scheme)
     local mt = {
-        __index = scheme,
-        __newindex = scheme
+        __index = meta,
+        __newindex = meta,
+        __pairs = function()
+            return next, meta, nil
+        end
     }
     setmetatable(GlobalData, mt)
 end

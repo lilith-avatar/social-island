@@ -84,6 +84,9 @@ function MetaData.NewGlobalData(_t)
     local metaId = GenDataId()
     _t._metaId = metaId
     mt.__index = _t
+    mt.__pairs = function()
+        return next, _t, nil
+    end
     if MetaData.Host == MetaData.Enum.SERVER then
         sgraw[metaId] = _t
         mt.__newindex = SetServerGlobalData
