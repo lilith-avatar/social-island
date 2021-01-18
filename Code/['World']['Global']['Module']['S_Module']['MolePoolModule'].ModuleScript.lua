@@ -55,6 +55,7 @@ function MoleClass:initialize(_moleId, _name, _parent)
     self.timer = 0
     self.beatTime = Config.MoleConfig[_moleId].HitNum
     self.state = MoleStateEnum.Appearing
+    self.mesh = nil
     self:CreateModel(_moleId, _name, _parent)
     --开始计时并表现
 end
@@ -72,6 +73,7 @@ end
 function MoleClass:Reset(_name, _parent)
     self:ResetData()
     self:CreateModel(self.moleId, _name, _parent)
+    self:ChangeMesh()
     --开始计时并表现
     return self
 end
@@ -80,6 +82,7 @@ function MoleClass:ResetData()
     self.beatTime = Config.MoleConfig[self.moleId].HitNum
     self.timer = 0
     self.state = MoleStateEnum.Appearing
+    self.mesh = nil
 end
 
 function MoleClass:CreateModel(_moleId, _name, _parent)
@@ -102,8 +105,8 @@ end
 function MoleClass:BeBeaten(_player)
     self.beatTime = self.beatTime - 1
     if self.beatTime <= 0 then
+        -- TODO: 播动画
         self.state = MoleStateEnum.Destroy
-        --TODO: 对象池摧毁
         NetUtil.Fire_C(
             "AddScoreAndBoostEvent",
             _player,
@@ -112,7 +115,16 @@ function MoleClass:BeBeaten(_player)
             Config.MoleConfig[self.moleId].BoostReward
         )
     else
-        --TODO: 更换模型
+        self:ChangeMesh()
+    end
+end
+
+function MoleClass:ChangeMesh()
+    for _,v in pairs(self.model:GetChildren()) do
+        v:SetActive(false)
+        if v.Name == Config.MoleConfig[self.moleId].BeatenArch[self.beatTime] then
+            v:SetActive(true)
+        end
     end
 end
 
