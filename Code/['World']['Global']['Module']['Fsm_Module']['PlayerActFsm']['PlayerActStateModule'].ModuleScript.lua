@@ -20,7 +20,7 @@ function PlayerActState:IdleMonitor(_nextStateTypeName)
         end
         localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
     else
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Idle")
+        FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Idle")
     end
 end
 
@@ -30,7 +30,7 @@ function PlayerActState:MoveMonitor(_nextStateTypeName)
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Walk")
+        FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Walk")
     end
 end
 
@@ -38,7 +38,7 @@ end
 function PlayerActState:RunMonitor(_nextStateTypeName)
     _nextStateTypeName = _nextStateTypeName or ""
     if localPlayer.LinearVelocity.Magnitude >= localPlayer.WalkSpeed * 0.99 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Run")
+        FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Run")
     end
 end
 
@@ -46,7 +46,7 @@ end
 function PlayerActState:WalkMonitor(_nextStateTypeName)
     _nextStateTypeName = _nextStateTypeName or ""
     if localPlayer.LinearVelocity.Magnitude < localPlayer.WalkSpeed * 0.99 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Walk")
+        FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Walk")
     end
 end
 
@@ -54,7 +54,7 @@ end
 function PlayerActState:JumpMonitor(_nextStateTypeName)
     _nextStateTypeName = _nextStateTypeName or ""
     if FsmMgr.playerActFsm.stateTrigger.Jump and localPlayer.IsOnGround then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Jump")
+        FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Jump")
     end
 end
 
@@ -62,7 +62,7 @@ end
 function PlayerActState:OnGroundMonitor(_nextStateTypeName)
     _nextStateTypeName = _nextStateTypeName or ""
     if localPlayer.IsOnGround then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, _nextStateTypeName .. "Idle")
+        FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Idle")
     end
 end
 

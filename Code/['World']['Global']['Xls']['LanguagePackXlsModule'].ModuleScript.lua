@@ -92,21 +92,21 @@ local LanguagePackXls = {
     },
     Item_Name_2001 = {
         ID = 'Item_Name_2001',
-        CHS = '不稳定的炸弹',
+        CHS = '烈焰弓',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_3001 = {
         ID = 'Item_Name_3001',
-        CHS = '奥特曼的变身棒',
+        CHS = '不稳定的炸弹',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_3002 = {
         ID = 'Item_Name_3002',
-        CHS = '烈焰弓',
+        CHS = '奥特曼的变身棒',
         CHT = '',
         EN = '',
         JP = ''
@@ -155,21 +155,21 @@ local LanguagePackXls = {
     },
     Item_Des_2001 = {
         ID = 'Item_Des_2001',
-        CHS = '嘀嘀嘀的响',
+        CHS = '射出火箭',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_3001 = {
         ID = 'Item_Des_3001',
-        CHS = '如果能量无限就好了',
+        CHS = '嘀嘀嘀的响',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_3002 = {
         ID = 'Item_Des_3002',
-        CHS = '射出火箭',
+        CHS = '如果能量无限就好了',
         CHT = '',
         EN = '',
         JP = ''

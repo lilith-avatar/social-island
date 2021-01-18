@@ -8,7 +8,7 @@ end
 
 function Swimming:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
     self:IdleMonitor()
 end
 
@@ -29,7 +29,7 @@ function Swimming:IdleMonitor()
             Vector3(localPlayer.LinearVelocity.x, PlayerCam.playerGameCam.Forward.y * 5, localPlayer.LinearVelocity.z)
         localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
     else
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "SwimIdle")
+        FsmMgr.playerActFsm:Switch("SwimIdle")
     end
 end
 
