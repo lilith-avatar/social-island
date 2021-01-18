@@ -119,17 +119,9 @@ end
 local player
 function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
     for k, _ in pairs(_hitPit) do
-        if this.pitList[k] and this.pitList[k].mole and this.pitList[k].mole:IsDestroy() then
+        if this.pitList[k] and this.pitList[k].mole and not this.pitList[k].mole:IsDestroy() then
             player = world:GetPlayerByUserId(_uid)
-            NetUtil.Fire_C(
-                "AddScoreAndBoostEvent",
-                player,
-                Config.MoleConfig[this.pitList[k].mole.moleId].Type,
-                Config.MoleConfig[this.pitList[k].mole.moleId].Reward,
-                Config.MoleConfig[this.pitList[k].mole.moleId].BoostReward
-            )
-            --this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
-            this.pitList[k].mole = nil
+            this.pitList[k].mole:BeBeaten(player)
         end
     end
 end

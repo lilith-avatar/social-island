@@ -53,12 +53,14 @@ function MoleClass:initialize(_moleId, _name, _parent)
     self.type = Config.MoleConfig[_moleId].Type
     self.moleId = _moleId
     self.timer = 0
+    self.beatTime = Config.MoleConfig[_moleId].HitNum
     self.state = MoleStateEnum.Appearing
     self:CreateModel(_moleId, _name, _parent)
     --开始计时并表现
 end
 
 function MoleClass:Destroy(_isRealDestroy)
+    self.state = MoleStateEnum.Destroy
     if _isRealDestroy then
         self.model:Destroy()
         self = nil
@@ -75,7 +77,7 @@ function MoleClass:Reset(_name, _parent)
 end
 
 function MoleClass:ResetData()
-    self.beatTime = Config.MoleConfig[self.moleId].BeatTime
+    self.beatTime = Config.MoleConfig[self.moleId].HitNum
     self.timer = 0
     self.state = MoleStateEnum.Appearing
 end
@@ -97,11 +99,18 @@ function MoleClass:CreateModel(_moleId, _name, _parent)
     end
 end
 
-function MoleClass:BeBeaten()
+function MoleClass:BeBeaten(_player)
     self.beatTime = self.beatTime - 1
     if self.beatTime <= 0 then
         self.state = MoleStateEnum.Destroy
         --TODO: 对象池摧毁
+        NetUtil.Fire_C(
+            "AddScoreAndBoostEvent",
+            _player,
+            Config.MoleConfig[self.moleId].Type,
+            Config.MoleConfig[self.moleId].Reward,
+            Config.MoleConfig[self.moleId].BoostReward
+        )
     else
         --TODO: 更换模型
     end
