@@ -13,6 +13,7 @@ local npcObjs = {}
 
 --- 初始化
 function NpcMgr:Init()
+    print('[NpcMgr] Init()')
     CreateNpcFolder()
     SpawnNpcs()
 end

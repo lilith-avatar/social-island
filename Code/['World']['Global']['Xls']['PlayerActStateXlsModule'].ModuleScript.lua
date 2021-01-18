@@ -28,7 +28,7 @@ local PlayerActStateXls = {
         ID = 4,
         Name = 'Jump',
         NextName = 'Idle',
-        Dur = 0.4
+        Dur = 0.6
     },
     [5] = {
         ID = 5,
@@ -75,8 +75,8 @@ local PlayerActStateXls = {
     [12] = {
         ID = 12,
         Name = 'BowJump',
-        NextName = 'BowJump',
-        Dur = 0.0
+        NextName = 'BowIdle',
+        Dur = 0.6
     },
     [13] = {
         ID = 13,

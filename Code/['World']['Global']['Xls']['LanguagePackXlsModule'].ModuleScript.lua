@@ -239,28 +239,28 @@ local LanguagePackXls = {
     },
     NpcInfo_Name_6 = {
         ID = 'NpcInfo_Name_6',
-        CHS = '热气球',
+        CHS = '蜗牛饲养员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_7 = {
         ID = 'NpcInfo_Name_7',
-        CHS = '种花',
+        CHS = '赛跑管理员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_8 = {
         ID = 'NpcInfo_Name_8',
-        CHS = '蜗牛饲养员',
+        CHS = '摇摇椅管理员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_9 = {
         ID = 'NpcInfo_Name_9',
-        CHS = '赛跑管理员',
+        CHS = '野牛',
         CHT = '',
         EN = '',
         JP = ''
@@ -288,28 +288,266 @@ local LanguagePackXls = {
     },
     NpcText_Text_1001 = {
         ID = 'NpcText_Text_1001',
-        CHS = '没有人会记得一款准时发售的垃圾游戏',
+        CHS = '我可以给你一把弓，来试试打猎吧',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1002 = {
         ID = 'NpcText_Text_1002',
-        CHS = '大白鲨，我滴最爱',
+        CHS = '想要别的弓？你如果有奖券我可以和你换。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
-        CHS = '快来玩呀',
+        CHS = '变异蜗牛大赛跑，买定离手！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2002 = {
         ID = 'NpcText_Text_2002',
-        CHS = '你见过我的翅膀吗？',
+        CHS = '我这是从飞碟下面捡到的外星科技，可带劲了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_5 = {
+        ID = 'NpcInfo_Name_5',
+        CHS = '种花',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1003 = {
+        ID = 'NpcText_Text_1003',
+        CHS = '种花能使你心平气和。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1004 = {
+        ID = 'NpcText_Text_1004',
+        CHS = '你种出好看的花了吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1005 = {
+        ID = 'NpcText_Text_1005',
+        CHS = '想要见识我的魔法吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1006 = {
+        ID = 'NpcText_Text_1006',
+        CHS = '你看过水晶球吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1007 = {
+        ID = 'NpcText_Text_1007',
+        CHS = '变异蜗牛大赛跑，买定离手！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1008 = {
+        ID = 'NpcText_Text_1008',
+        CHS = '我觉得这次远程能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1009 = {
+        ID = 'NpcText_Text_1009',
+        CHS = '我觉得这次小金能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1010 = {
+        ID = 'NpcText_Text_1010',
+        CHS = '我觉得这次toji能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1011 = {
+        ID = 'NpcText_Text_1011',
+        CHS = '我觉得这次胡老板能赢！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1012 = {
+        ID = 'NpcText_Text_1012',
+        CHS = '要来试试喷射椅吗？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1013 = {
+        ID = 'NpcText_Text_1013',
+        CHS = '我这是从飞碟下面捡到的外星科技，可带劲了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1014 = {
+        ID = 'NpcText_Text_1014',
+        CHS = '坐上去就不想下来，可是，你坚持不了多久~',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1015 = {
+        ID = 'NpcText_Text_1015',
+        CHS = '这块地方有点诡异，你最好拿着这个锤子。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1016 = {
+        ID = 'NpcText_Text_1016',
+        CHS = '追Cube大奖赛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    WeaponItem_Name_1001 = {
+        ID = 'WeaponItem_Name_1001',
+        CHS = '光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    WeaponItem_Des_1001 = {
+        ID = 'WeaponItem_Des_1001',
+        CHS = '星球大战',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    MedicineItem_Name_2001 = {
+        ID = 'MedicineItem_Name_2001',
+        CHS = '不稳定的炸弹',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    MedicineItem_Des_2001 = {
+        ID = 'MedicineItem_Des_2001',
+        CHS = '嘀嘀嘀的响',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Name_3001 = {
+        ID = 'ThrowItem_Name_3001',
+        CHS = '奥特曼的变身棒',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Des_3001 = {
+        ID = 'ThrowItem_Des_3001',
+        CHS = '如果能量无限就好了',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Name_3002 = {
+        ID = 'ThrowItem_Name_3002',
+        CHS = '烈焰弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    ThrowItem_Des_3002 = {
+        ID = 'ThrowItem_Des_3002',
+        CHS = '射出火箭',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PutItem_Name_4001 = {
+        ID = 'PutItem_Name_4001',
+        CHS = '魔法棒棒糖',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PutItem_Des_4001 = {
+        ID = 'PutItem_Des_4001',
+        CHS = '大魔王最喜欢的食物',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_Name_5001 = {
+        ID = 'TaskItem_Name_5001',
+        CHS = 'Toji的房卡',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_Des_5001 = {
+        ID = 'TaskItem_Des_5001',
+        CHS = '怎么野猪身上会有这种东西?',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5001 = {
+        ID = 'TaskItem_NpcText_5001',
+        CHS = '啊，那天真是令人怀念，谢谢你！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    RubbishItem_Name_6001 = {
+        ID = 'RubbishItem_Name_6001',
+        CHS = '野猪皮',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    RubbishItem_Des_6001 = {
+        ID = 'RubbishItem_Des_6001',
+        CHS = '野猪的皮，怎么感觉纹理像外星人的头？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetItem_Name_7001 = {
+        ID = 'PetItem_Name_7001',
+        CHS = '微型战斗机器人N9',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetItem_Des_7001 = {
+        ID = 'PetItem_Des_7001',
+        CHS = '很有灵性的样子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetFeedItem_Name_8001 = {
+        ID = 'PetFeedItem_Name_8001',
+        CHS = '战斗机器人内存卡',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    PetFeedItem_Des_8001 = {
+        ID = 'PetFeedItem_Des_8001',
+        CHS = '机器人的教科书',
         CHT = '',
         EN = '',
         JP = ''

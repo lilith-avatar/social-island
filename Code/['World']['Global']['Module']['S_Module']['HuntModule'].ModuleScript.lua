@@ -44,17 +44,6 @@ end
 function Hunt:DataInit()
     this:InitAnimalArea()
     this:InitAnimalData()
-    --[[animalObjPool[i].obj.Col.OnCollisionBegin:Connect(
-            function(_hitObject)
-                if _hitObject then
-                    if _hitObject.Name == "Arrow" then
-                        _hitObject:Destroy()
-                        animalObjPool[i].stateTime = 10
-                        this:ChangeAnimalState(animalObjPool[i], animalActState.DEADED)
-                    end
-                end
-            end
-        )]]
 end
 
 --- 节点事件绑定
@@ -64,6 +53,7 @@ end
 --- 节点事件绑定
 function Hunt:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 1 then
+        print("进入狩猎")
         NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
         NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
     end
@@ -152,10 +142,6 @@ function Hunt:AreaSpawnCtrl()
         end
     else
         for k, v in pairs(animalArea) do
-            print("kill")
-            print(#v.animalData)
-            print(this:CountAreaAliveAnimal(v))
-            print(v.amountMax)
             if this:CountAreaAliveAnimal(v) > v.amountMax then
                 this:KillAreaAnimal(v, this:CountAreaAliveAnimal(v) - v.amountMax)
             end
@@ -189,7 +175,6 @@ function Hunt:KillAreaAnimal(_animalArea, _num)
     for k, v in pairs(_animalArea.animalData) do
         if count > 0 then
             if v.state ~= animalActState.DEADED then
-                print("杀死动物" .. v.obj.Name)
                 this:ChangeAnimalState(v, animalActState.DEADED)
                 count = count - 1
             end
@@ -203,7 +188,6 @@ function Hunt:ResetAreaAnimal(_animalArea, _num)
     for k, v in pairs(_animalArea.animalData) do
         if count > 0 then
             if v.state == animalActState.DEADED then
-                print("复活动物" .. v.obj.Name)
                 this:ChangeAnimalState(v, animalActState.IDLE)
                 count = count - 1
             end
