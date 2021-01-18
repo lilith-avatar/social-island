@@ -83,6 +83,30 @@ local PlayerActStateXls = {
         Name = 'BowAttack',
         NextName = 'BowIdle',
         Dur = 0.2
+    },
+    [14] = {
+        ID = 14,
+        Name = 'HammerWalk',
+        NextName = 'HammerWalk',
+        Dur = 0.0
+    },
+    [15] = {
+        ID = 15,
+        Name = 'HammerAttack',
+        NextName = 'HammerWalk',
+        Dur = 0.3
+    },
+    [16] = {
+        ID = 16,
+        Name = 'HammerRun',
+        NextName = 'HammerRun',
+        Dur = 0.0
+    },
+    [17] = {
+        ID = 17,
+        Name = 'HammerJump',
+        NextName = 'HammerJump',
+        Dur = 0.0
     }
 }
 
