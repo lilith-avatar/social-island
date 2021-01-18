@@ -2,7 +2,7 @@
 --- @module Player GuiControll, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local GuiControl, this = ModuleUtil.New('GuiControl', ClientBase)
+local GuiControl, this = ModuleUtil.New("GuiControl", ClientBase)
 
 -- 手机端交互UI
 local gui, touchScreen, dynamicFigure, infoFigure, menuFigure, ctrlFigure
@@ -14,7 +14,7 @@ local interactID = 0
 local pickItemID = 0
 
 function GuiControl:Init()
-    print('[GuiControl] Init()')
+    print("[GuiControl] Init()")
     self:InitGui()
     self:InitNodes()
     self:InitListener()
@@ -75,8 +75,8 @@ end
 --- 点击交互按钮
 function OnInteractBtnClick()
     dynamicFigure.InteractBtn:SetActive(false)
-    NetUtil.Fire_S('InteractSEvent', localPlayer, interactID)
-    NetUtil.Fire_C('InteractCEvent', localPlayer, interactID)
+    NetUtil.Fire_S("InteractSEvent", localPlayer, interactID)
+    NetUtil.Fire_C("InteractCEvent", localPlayer, interactID)
 end
 
 --- 点击拾取按钮
@@ -121,13 +121,25 @@ end
 --- 打开动态交互事件
 function GuiControl:OpenDynamicEventHandler(_type, _id)
     dynamicFigure:SetActive(true)
-    if _type == 'Interact' then
+    if _type == "Interact" then
         dynamicFigure.InteractBtn:SetActive(true)
         interactID = _id
-    elseif _type == 'Pick' then
+    elseif _type == "Pick" then
         dynamicFigure.PickBtn:SetActive(true)
         pickItemID = _id
     end
+end
+
+--- 显示info
+function GuiControl:ShowInfo(_text, _t)
+    infoFigure:SetActive(true)
+    infoFigure.InfoText.Text = _text
+    invoke(
+        function()
+            infoFigure:SetActive(false)
+        end,
+        _t
+    )
 end
 
 return GuiControl

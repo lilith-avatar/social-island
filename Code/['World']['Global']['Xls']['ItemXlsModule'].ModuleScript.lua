@@ -60,6 +60,15 @@ local ItemXls = {
         UseSoundID = 0,
         UseAnimName = 'nil'
     },
+    [5002] = {
+        ItemID = 5002,
+        Name = 'Item_Name_5002',
+        Des = nil,
+        Ico = 'Ico_PigSkin',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = 'nil'
+    },
     [6001] = {
         ItemID = 6001,
         Name = 'Item_Name_6001',

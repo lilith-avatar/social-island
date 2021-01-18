@@ -21,6 +21,12 @@ end
 
 --数据变量声明
 function ItemMgr:DataInit()
+    this.taskItemList = {}
+    invoke(
+        function()
+            this:GetTaskItem(5001)
+        end
+    )
 end
 
 --节点事件绑定
@@ -49,6 +55,8 @@ end
 
 --实例化任务型道具
 function ItemMgr:Instantiate5(_id)
+    print("实例化任务型道具", _id)
+    print(table.dump(Config.Item[_id]))
     return TaskItem:new(Config.Item[_id], Config.TaskItem[_id])
 end
 
@@ -59,7 +67,27 @@ end
 
 --实例化物品
 function ItemMgr:InstantiateItem(_id)
-    return this["Instantiate" .. string.sub(tostring(_id), 1, 1)]
+    print("实例化物品", _id)
+    return this["Instantiate" .. string.sub(tostring(_id), 1, 1)](self, _id)
+end
+
+--获得任务道具
+function ItemMgr:GetTaskItem(_id)
+    this.taskItemList[_id] = this:InstantiateItem(_id)
+    print(this.taskItemList[_id].id)
+    this.taskItemList[_id]:PutIntoBag()
+end
+
+--检查是否有满足条件的任务道具
+function ItemMgr:CheckTaskItem()
+    for k, v in pairs(this.taskItemList) do
+        v:ContactNPCTask()
+    end
+end
+
+--执行任务反馈
+function ItemMgr:GetTaskFeedback(_taskItemID)
+    this.taskItemList[_taskItemID]:GetTaskReward()
 end
 
 function ItemMgr:Update(dt, tt)
