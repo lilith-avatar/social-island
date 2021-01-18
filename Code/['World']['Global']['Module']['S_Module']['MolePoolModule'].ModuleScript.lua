@@ -35,7 +35,7 @@ end
 function MolePool:Create(_parent, _name)
     local mole
     if self.pool[1] then
-        mole = self.pool[1]:Reset(nil, _name, _parent)
+        mole = self.pool[1]:Reset(nil, _parent)
         invoke(
             function()
                 table.remove(self.pool, 1)
@@ -107,7 +107,7 @@ function MoleClass:BeBeaten()
     end
 end
 
-function MoleClass:isDestroy()
+function MoleClass:IsDestroy()
     if self.state == MoleStateEnum.Destroy then
         return true
     else

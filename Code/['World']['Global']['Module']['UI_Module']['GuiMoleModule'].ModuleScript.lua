@@ -31,7 +31,7 @@ end
 
 function GuiMole:GameOver()
     this.gui:SetActive(false)
-    this.contrlGui.UseBtn:SetActive(true)
+    this.contrlGui.Ctrl:SetActive(true)
     --this.hitButton:SetActive(false)
 end
 
@@ -61,7 +61,7 @@ function GuiMole:StartGame()
     NetUtil.Fire_S('PlayerStartMoleHitEvent', localPlayer.UserId)
     this.gui:SetActive(true)
     this.hitButton:SetActive(true)
-    this.contrlGui.UseBtn:SetActive(false)
+    this.contrlGui.Ctrl:SetActive(false)
 end
 
 function GuiMole:UpdateScore(_score)

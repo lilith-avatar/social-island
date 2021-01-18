@@ -63,7 +63,7 @@ end
 
 function MoleHit:PoolInit()
     for k, v in pairs(Config.MoleConfig) do
-        this.molePool[k] = MolePool:new(v.Archetype, 10)
+        this.molePool[k] = MolePool:new(v.Archetype, 10, v.ID)
     end
 end
 
@@ -106,8 +106,11 @@ function MoleHit:RefreshMole(_playerNum)
                 v:Destroy()
             end
         end
-        mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model, tmpRandomTab[1].id)
-        this.pitList[tmpTable[pitIndex].model.Name].mole = mole
+        mole = {
+            mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model, tmpRandomTab[1].id),
+            pit = tmpTable[pitIndex].model.Name
+        }
+        this.pitList[tmpTable[pitIndex].model.Name].mole = mole.mole
         table.insert(this.moleList, mole)
         table.remove(tmpTable, pitIndex)
     end
@@ -116,7 +119,7 @@ end
 local player
 function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
     for k, _ in pairs(_hitPit) do
-        if this.pitList[k] and this.pitList[k].mole then
+        if this.pitList[k] and this.pitList[k].mole and this.pitList[k].mole:IsDestroy() then
             player = world:GetPlayerByUserId(_uid)
             NetUtil.Fire_C(
                 "AddScoreAndBoostEvent",
@@ -125,7 +128,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
                 Config.MoleConfig[this.pitList[k].mole.moleId].Reward,
                 Config.MoleConfig[this.pitList[k].mole.moleId].BoostReward
             )
-            this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
+            --this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
             this.pitList[k].mole = nil
         end
     end
@@ -141,8 +144,10 @@ function MoleHit:Update(dt, tt)
         end
         -- 每个老鼠的单独计时,若状态为Destroy，则放回到对应的池子中
         for k, v in pairs(this.moleList) do
-            if v:IsDestroy() then
-                this.molePool[v.moleId]:Destroy(v)
+            v.mole:StartTimer(dt)
+            if v.mole:IsDestroy() then
+                this.molePool[v.mole.moleId]:Destroy(v.mole)
+                this.pitList[v.pit].mole = nil
                 -- 将该对象移出存在的池子
                 table.remove(this.moleList, k)
             end
