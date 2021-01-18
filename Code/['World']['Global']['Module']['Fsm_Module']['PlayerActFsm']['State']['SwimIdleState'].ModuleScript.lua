@@ -11,7 +11,7 @@ end
 
 function SwimIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "Swimming"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
     self:MoveMonitor()
 end
 
@@ -24,7 +24,7 @@ function SwimIdle:MoveMonitor()
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Swimming")
+        FsmMgr.playerActFsm:Switch("Swimming")
     end
 end
 
