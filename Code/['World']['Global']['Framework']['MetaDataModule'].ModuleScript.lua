@@ -148,7 +148,7 @@ function MetaData.NewPlayerData(_t, _metaId, _uid)
         PrintLog(string.format('%s uid = %s, _metaId = %s, %s', spraw._name, _uid, metaId, table.dump(_t)))
     elseif MetaData.Host == MetaData.Enum.CLIENT then
         -- 生成客户端Data.Player
-        metaId = 'p' .. _uid .. _metaId
+        metaId = 'p_' .. _uid .. _metaId
         _t._metaId = metaId
         cpraw[metaId] = _t
         mt.__newindex = SetClientPlayerData
