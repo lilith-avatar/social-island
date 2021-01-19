@@ -111,32 +111,32 @@ end
 
 --移除近战武器
 function ItemMgr:Remove1(_id)
-    this.weaponList[_id] = nil
     this.weaponList[_id]:ThrowOutOfBag()
+    this.weaponList[_id] = nil
 end
 
 --移除远程武器
 function ItemMgr:Remove2(_id)
-    this.weaponList[_id] = nil
     this.weaponList[_id]:ThrowOutOfBag()
+    this.weaponList[_id] = nil
 end
 
 --移除即时使用型道具
 function ItemMgr:Remove3(_id)
-    this.usableItemList[_id] = nil
     this.usableItemList[_id]:ThrowOutOfBag()
+    this.usableItemList[_id] = nil
 end
 
 --移除化放置型道具
 function ItemMgr:Remove4(_id)
-    this.placeableItemList[_id] = nil
     this.placeableItemList[_id]:ThrowOutOfBag()
+    this.placeableItemList[_id] = nil
 end
 
 --移除任务道具
 function ItemMgr:Remove5(_id)
-    this.taskItemList[_id] = nil
     this.taskItemList[_id]:ThrowOutOfBag()
+    this.taskItemList[_id] = nil
 end
 
 --获得道具
