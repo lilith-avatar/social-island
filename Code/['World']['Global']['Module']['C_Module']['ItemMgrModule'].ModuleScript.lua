@@ -8,6 +8,8 @@ local ItemMgr, this = ModuleUtil.New("ItemMgr", ClientBase)
 
 local instantiateItemFunc = {}
 
+local itemObjList = {}
+
 function ItemMgr:Init()
     print("ItemMgr:Init")
     this:NodeRef()
@@ -21,10 +23,16 @@ end
 
 --数据变量声明
 function ItemMgr:DataInit()
+    this.weaponList = {}
+    this.usableItemList = {}
+    this.placeableItemList = {}
+    this.rewardItemList = {}
     this.taskItemList = {}
     invoke(
         function()
-            this:GetTaskItem(5001)
+            ItemMgr:CreateItemObj(5001, Vector3(-83.8917, -5.5198, -15.8766))
+
+            --this:Get5(5001)
         end
     )
 end
@@ -71,11 +79,55 @@ function ItemMgr:InstantiateItem(_id)
     return this["Instantiate" .. string.sub(tostring(_id), 1, 1)](self, _id)
 end
 
+--获得近战武器
+function ItemMgr:Get1(_id)
+    this.weaponList[_id] = this:InstantiateItem(_id)
+    this.weaponList[_id]:PutIntoBag()
+end
+
+--获得远程武器
+function ItemMgr:Get2(_id)
+    this.weaponList[_id] = this:InstantiateItem(_id)
+    this.weaponList[_id]:PutIntoBag()
+end
+
+--获得即时使用型道具
+function ItemMgr:Get3(_id)
+    this.usableItemList[_id] = this:InstantiateItem(_id)
+    this.usableItemList[_id]:PutIntoBag()
+end
+
+--获得化放置型道具
+function ItemMgr:Get4(_id)
+    this.placeableItemList[_id] = this:InstantiateItem(_id)
+    this.placeableItemList[_id]:PutIntoBag()
+end
+
 --获得任务道具
-function ItemMgr:GetTaskItem(_id)
+function ItemMgr:Get5(_id)
     this.taskItemList[_id] = this:InstantiateItem(_id)
-    print(this.taskItemList[_id].id)
     this.taskItemList[_id]:PutIntoBag()
+end
+
+--获得道具
+function ItemMgr:GetItem(_id)
+    print("获得道具", _id)
+    this["Get" .. string.sub(tostring(_id), 1, 1)](self, _id)
+end
+
+--在地图上生成一个道具物体
+function ItemMgr:CreateItemObj(_id, _pos)
+    local item =
+        world:CreateInstance("Item", "Item" .. _id .. "_" .. #itemObjList + 1, world.Item, _pos, EulerDegree(0, 0, 0))
+    item.ID.Value = _id
+    item.col.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == "PlayerInstance" then
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Pick", item)
+            end
+        end
+    )
+    itemObjList[#itemObjList + 1] = item
 end
 
 --检查是否有满足条件的任务道具

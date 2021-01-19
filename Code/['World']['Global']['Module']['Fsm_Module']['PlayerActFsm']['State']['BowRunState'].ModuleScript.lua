@@ -44,7 +44,7 @@ function BowRun:IdleMonitor()
         end
         localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
     else
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowIdle")
+        FsmMgr.playerActFsm:Switch("BowIdle")
     end
 end
 
