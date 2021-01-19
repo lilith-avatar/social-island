@@ -84,9 +84,7 @@ function MetaData.NewGlobalData(_t)
     local metaId = GenDataId()
     _t._metaId = metaId
     mt.__index = _t
-    mt.__pairs = function()
-        return next, _t, nil
-    end
+    mt.__pairs = MetaData.Pairs(_t)
     if MetaData.Host == MetaData.Enum.SERVER then
         sgraw[metaId] = _t
         mt.__newindex = SetServerGlobalData
@@ -107,6 +105,19 @@ function MetaData.NewPlayerData(_t)
     local proxy = {}
     --TODO: 创建PlayerData格式
     return proxy
+end
+
+-- 重载MetaData的pairs()方法
+function MetaData.Pairs(_mt)
+    return function()
+        return function(_t, _k)
+            local v
+            repeat
+                _k, v = next(_t, _k)
+            until _k == nil or _k ~= '_metaId'
+            return _k, v
+        end, _mt, nil
+    end
 end
 
 -- 直接修改GlobalData：服务器

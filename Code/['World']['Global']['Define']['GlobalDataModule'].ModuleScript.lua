@@ -34,9 +34,7 @@ function InitScheme()
     local mt = {
         __index = meta,
         __newindex = meta,
-        __pairs = function()
-            return next, meta, nil
-        end
+        __pairs = MetaData.Pairs(getmetatable(meta).__index)
     }
     setmetatable(GlobalData, mt)
 end
