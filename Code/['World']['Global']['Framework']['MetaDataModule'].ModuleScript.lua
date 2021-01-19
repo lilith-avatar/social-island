@@ -88,6 +88,18 @@ local function DataValidation(_raw, _metaId, _k, _v)
     )
 end
 
+-- 生成Scheme的辅助函数
+local function GenSchemeAux(_scheme, _new)
+    if type(_scheme) == 'table' then
+        local meta = {}
+        for k, v in pairs(_scheme) do
+            meta[k] = GenSchemeAux(v, _new)
+        end
+        return _new(meta)
+    end
+    return _scheme
+end
+
 --! 外部接口
 
 -- 生成GlobalData数据
@@ -226,6 +238,19 @@ function MetaData.SetClientPlayerData(_metaId, _k, _v, _sync)
             )
         )
     end
+end
+
+-- 初始化
+function MetaData.InitDataTable(_scheme, _data, _new)
+    assert(_scheme, '[MetaData] InitDataTable(), scheme为空')
+    assert(_new and type(_new) == 'function', '[MetaData] InitDataTable(), new为空')
+    local meta = GenSchemeAux(_scheme, _new)
+    local mt = {
+        __index = meta,
+        __newindex = meta,
+        __pairs = MetaData.Pairs(getmetatable(meta).__index)
+    }
+    setmetatable(_data, mt)
 end
 
 return MetaData

@@ -8,18 +8,11 @@ local ServerDataSync = {}
 local FrameworkConfig = FrameworkConfig
 local MetaData = MetaData
 
--- 数据定义格式: 全局数据, 玩家数据
-local GLOBAL_DATA_DEFINE, PLAYER_DATA_DEFINE
-
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
         print('[DataSync][Server]', ...)
     end or function()
     end
-
--- 客户端本地数据: 全局数据, 玩家数据
-local globalData = {}
-local playerDatas = {}
 
 --! 初始化
 
@@ -28,7 +21,6 @@ function ServerDataSync.Init()
     print('[DataSync][Server] Init()')
     InitEventsAndListeners()
     InitDefines()
-    InitPlayersData()
 end
 
 --- 初始化事件和绑定Handler
@@ -56,34 +48,11 @@ end
 function InitDefines()
     -- 定义数据所属
     MetaData.Host = MetaData.Enum.SERVER
-    -- 数据校验
-    assert(
-        GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
-        '[DataSync][Server] 全局数据定义有误，请检查 FrameworkConfig.GlobalDataDefine'
-    )
-    assert(
-        PLAYER_DATA_DEFINE and type(PLAYER_DATA_DEFINE) == 'table',
-        '[DataSync][Server] 玩家数据定义有误，请检查 FrameworkConfig.PlayerDataDefine'
-    )
-end
-
--- 创建PlayersData：服务器only
-function InitPlayersData()
-    if not localPlayer then
-        _G.PlayersData = {}
-    end
-end
-
---! 外部接口
-
---- 定义全局数据
-function ServerDataSync.SetGlobalDataDefine(_define)
-    GLOBAL_DATA_DEFINE = _define
-end
-
---- 定义玩家数据
-function ServerDataSync.SetPlayerDataDefine(_define)
-    PLAYER_DATA_DEFINE = _define
+    -- 定义服务器的两个数据
+    Data.Global = {}
+    Data.Players = {}
+    -- 生成数据
+    MetaData.InitDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData)
 end
 
 --! Event handler
@@ -121,20 +90,22 @@ end
 --- 新玩家加入事件Handler
 function OnPlayerJoinEventHandler(_player)
     --TODO: 重置玩家Counter
-    --TODO: 向客户端同步GlobalData
-    for k, v in pairs(GlobalData) do
-        GlobalData[k] = v
+
+    -- 向客户端同步GlobalData
+    for k, v in pairs(Data.Global) do
+        Data.Global[k] = v
     end
 
     --TODO: 获取长期存储
 
-    --TODO: 服务器端创建PlayerData
-    -- PlayersData[_player.UserId] = PlayersData[_player.UserId] or {}
-    -- local playerData = PlayersData[_player.UserId]
+    -- -- 服务器端创建PlayerData
+    -- local uid = _player.UserId
+    -- Data.Players[uid] = {}
+    -- MetaData.InitDataTable(DataScheme.Player, Data.Players[uid], MetaData.NewPlayerData)
 
     -- -- 向客户端同步PlayerData
-    -- for k, v in pairs(playerData) do
-    --     playerData[k] = v
+    -- for k, v in pairs(Data.Players[uid]) do
+    --     Data.Players[uid][k] = v
     -- end
 end
 
