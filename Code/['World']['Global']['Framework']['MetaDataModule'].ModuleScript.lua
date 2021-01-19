@@ -20,6 +20,9 @@ MetaData.Enum.PLAYER = 4
 -- 数据, 1是服务器, 2是客户端
 MetaData.Host = MetaData.Enum.UNDEFINED
 
+-- Default
+SERVER_ID = 'SERVER_ID'
+
 -- 说明：两种双向同步机制
 -- 1. GlobalData
 --  a. 客户端和服务器持有相同的GlobalData数据类型
@@ -31,13 +34,13 @@ MetaData.Host = MetaData.Enum.UNDEFINED
 --  c. S=>C，服务器更新，自动发送给对应客户端，客户端更新玩家数据
 
 -- metatable
-local sgraw = {_name = 'Global Data Server-side'} -- server global raw data
-local cgraw = {_name = 'Global Data Client-side'} -- client global raw data
-local spraw = {_name = 'Player Data Server-side'} -- server player raw data
-local cpraw = {_name = 'Player Data Client-side'} -- client player raw data
+local sgraw = {_name = '[GlobalData][Server]'} -- server global raw data
+local cgraw = {_name = '[GlobalData][Client]'} -- client global raw data
+local spraw = {_name = '[PlayerData][Server]'} -- server player raw data
+local cpraw = {_name = '[PlayerData][Client]'} -- client player raw data
 
 -- 计数器，用于生成 metadata id (_metaId)
-local cnt = 0
+local cnts = {}
 
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
@@ -58,19 +61,20 @@ local function SetClientGlobalData(_t, _k, _v)
 end
 
 -- 生成ID
-local function GenDataId()
-    cnt = cnt + 1
-    return cnt
+local function GenDataId(_uid)
+    cnts[_uid] = cnts[_uid] or 0
+    cnts[_uid] = cnts[_uid] + 1
+    return cnts[_uid]
 end
 
 -- 数据校验
 local function DataValidation(_raw, _metaId, _k, _v)
-    assert(_k, string.format('[MetaData][%s] 数据key为空', _raw._name))
-    assert(_v, string.format('[MetaData][%s] 数据value为空', _raw._name))
-    assert(_raw[_metaId], string.format('[MetaData][%s] metaId对应数据不存在, metaId = %s', _raw._name, _metaId))
+    assert(_k, string.format('[MetaData]%s 数据key为空', _raw._name))
+    assert(_v, string.format('[MetaData]%s 数据value为空', _raw._name))
+    assert(_raw[_metaId], string.format('[MetaData]%s metaId对应数据不存在, metaId = %s', _raw._name, _metaId))
     assert(
         _raw[_metaId][_k],
-        string.format('[MetaData][%s] metaId不存在key的数据, metaId = %s, key = %s', _raw._name, _metaId, _k)
+        string.format('[MetaData]%s metaId不存在key的数据, metaId = %s, key = %s', _raw._name, _metaId, _k)
     )
 end
 
@@ -79,20 +83,22 @@ end
 -- 生成GlobalData数据
 function MetaData.NewGlobalData(_t)
     -- ref https://www.jianshu.com/p/f556441bcf00
-    local proxy = {}
-    local mt = {}
-    local metaId = GenDataId()
-    _t._metaId = metaId
+    local proxy, mt, metaId = {}, {}
     mt.__index = _t
     mt.__pairs = MetaData.Pairs(_t)
     if MetaData.Host == MetaData.Enum.SERVER then
+        metaId = GenDataId(SERVER_ID)
+        _t._metaId = metaId
         sgraw[metaId] = _t
         mt.__newindex = SetServerGlobalData
-        PrintLog(string.format('[Server][GlobalData] _metaId = %s, %s', metaId, table.dump(_t)))
+        PrintLog(string.format('[MetaData]%s _metaId = %s, %s', sgraw._name, metaId, table.dump(_t)))
     elseif MetaData.Host == MetaData.Enum.CLIENT then
+        assert(localPlayer, string.format('[MetaData]%s 未找到localPlayer', cgraw._name))
+        metaId = GenDataId(localPlayer.UserId)
+        _t._metaId = metaId
         cgraw[metaId] = _t
         mt.__newindex = SetClientGlobalData
-        PrintLog(string.format('[Client][GlobalData] _metaId = %s, %s', metaId, table.dump(_t)))
+        PrintLog(string.format('[MetaData]%s _metaId = %s, %s', cgraw._name, metaId, table.dump(_t)))
     else
         error('[MetaData] NewGlobalData() 数据为定义所属，请先定义MetaData.Host，1是服务器, 2是客户端')
     end
@@ -103,7 +109,19 @@ end
 -- 生成PlayerData数据
 function MetaData.NewPlayerData(_t)
     local proxy = {}
-    --TODO: 创建PlayerData格式
+    local mt = {}
+    local metaId = GenDataId()
+    _t._metaId = metaId
+    mt.__indxe = _t
+    mt.__pairs = MetaData.Pairs(_t)
+    if MetaData.Host == MetaData.Enum.SERVER then
+        -- TODO: 检查长期存储；若有：用长期存储生成表发给客户端；若无：生成默认的发给客户端
+    elseif MetaData.Host == MetaData.Enum.CLIENT then
+        -- TODO: 生成默认的客户端
+    else
+        error('[MetaData] NewPlayerData() 数据为定义所属，请先定义MetaData.Host，1是服务器, 2是客户端')
+    end
+    setmetatable(proxy, mt)
     return proxy
 end
 
@@ -126,7 +144,15 @@ function MetaData.SetServerGlobalData(_metaId, _k, _v, _sync)
     sgraw[_metaId][_k] = _v
     if _sync then
         NetUtil.Broadcast('DataSyncS2CEvent', MetaData.Enum.GLOBAL, _metaId, _k, _v)
-        PrintLog(string.format('[GlobalData] S => C metaId = %s, key = %s, data = %s', _metaId, _k, table.dump(_v)))
+        PrintLog(
+            string.format(
+                '[MetaData]%s S => C metaId = %s, key = %s, data = %s',
+                sgraw._name,
+                _metaId,
+                _k,
+                table.dump(_v)
+            )
+        )
     end
 end
 
@@ -136,7 +162,15 @@ function MetaData.SetClientGlobalData(_metaId, _k, _v, _sync)
     cgraw[_metaId][_k] = _v
     if _sync then
         NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, MetaData.Enum.GLOBAL, _metaId, _k, _v)
-        PrintLog(string.format('[GlobalData] C => S metaId = %s, key = %s, data = %s', _metaId, _k, table.dump(_v)))
+        PrintLog(
+            string.format(
+                '[MetaData]%s C => S metaId = %s, key = %s, data = %s',
+                cgraw._name,
+                _metaId,
+                _k,
+                table.dump(_v)
+            )
+        )
     end
 end
 
