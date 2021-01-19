@@ -28,7 +28,7 @@ local PlayerActStateXls = {
         ID = 4,
         Name = 'Jump',
         NextName = 'Idle',
-        Dur = 0.4
+        Dur = 0.6
     },
     [5] = {
         ID = 5,
@@ -75,8 +75,8 @@ local PlayerActStateXls = {
     [12] = {
         ID = 12,
         Name = 'BowJump',
-        NextName = 'BowJump',
-        Dur = 0.0
+        NextName = 'BowIdle',
+        Dur = 0.6
     },
     [13] = {
         ID = 13,
@@ -86,27 +86,123 @@ local PlayerActStateXls = {
     },
     [14] = {
         ID = 14,
-        Name = 'HammerWalk',
-        NextName = 'HammerWalk',
+        Name = 'OneHandedSwordIdle',
+        NextName = 'OneHandedSwordIdle',
         Dur = 0.0
     },
     [15] = {
         ID = 15,
-        Name = 'HammerAttack',
-        NextName = 'HammerWalk',
-        Dur = 0.3
+        Name = 'OneHandedSwordWalk',
+        NextName = 'OneHandedSwordWalk',
+        Dur = 0.0
     },
     [16] = {
         ID = 16,
-        Name = 'HammerRun',
-        NextName = 'HammerRun',
+        Name = 'OneHandedSwordRun',
+        NextName = 'OneHandedSwordRun',
         Dur = 0.0
     },
     [17] = {
         ID = 17,
-        Name = 'HammerJump',
-        NextName = 'HammerJump',
+        Name = 'OneHandedSwordJump',
+        NextName = 'OneHandedSwordIdle',
+        Dur = 0.5
+    },
+    [18] = {
+        ID = 18,
+        Name = 'OneHandedSwordAttack1',
+        NextName = 'OneHandedSwordAfterAttack1',
+        Dur = 0.4
+    },
+    [19] = {
+        ID = 19,
+        Name = 'OneHandedSwordAfterAttack1',
+        NextName = 'OneHandedSwordIdle',
+        Dur = 0.5
+    },
+    [20] = {
+        ID = 20,
+        Name = 'OneHandedSwordAttack2',
+        NextName = 'OneHandedSwordAfterAttack2',
+        Dur = 0.4
+    },
+    [21] = {
+        ID = 21,
+        Name = 'OneHandedSwordAfterAttack2',
+        NextName = 'OneHandedSwordIdle',
+        Dur = 0.5
+    },
+    [22] = {
+        ID = 22,
+        Name = 'OneHandedSwordAttack3',
+        NextName = 'OneHandedSwordAfterAttack3',
+        Dur = 0.4
+    },
+    [23] = {
+        ID = 23,
+        Name = 'OneHandedSwordAfterAttack3',
+        NextName = 'OneHandedSwordIdle',
+        Dur = 0.2
+    },
+    [24] = {
+        ID = 24,
+        Name = 'TwoHandedSwordIdle',
+        NextName = 'TwoHandedSwordIdle',
         Dur = 0.0
+    },
+    [25] = {
+        ID = 25,
+        Name = 'TwoHandedSwordWalk',
+        NextName = 'TwoHandedSwordWalk',
+        Dur = 0.0
+    },
+    [26] = {
+        ID = 26,
+        Name = 'TwoHandedSwordRun',
+        NextName = 'TwoHandedSwordRun',
+        Dur = 0.0
+    },
+    [27] = {
+        ID = 27,
+        Name = 'TwoHandedSwordJump',
+        NextName = 'TwoHandedSwordIdle',
+        Dur = 0.6
+    },
+    [28] = {
+        ID = 28,
+        Name = 'TwoHandedSwordAttack1',
+        NextName = 'TwoHandedSwordAfterAttack1',
+        Dur = 0.4
+    },
+    [29] = {
+        ID = 29,
+        Name = 'TwoHandedSwordAfterAttack1',
+        NextName = 'TwoHandedSwordIdle',
+        Dur = 0.5
+    },
+    [30] = {
+        ID = 30,
+        Name = 'TwoHandedSwordAttack2',
+        NextName = 'TwoHandedSwordAfterAttack2',
+        Dur = 0.4
+    },
+    [31] = {
+        ID = 31,
+        Name = 'TwoHandedSwordAfterAttack2',
+        NextName = 'TwoHandedSwordIdle',
+        Dur = 0.5
+    },
+    [32] = {
+        ID = 32,
+        Name = 'TwoHandedSwordAttack3',
+        NextName = 'TwoHandedSwordAfterAttack3',
+        Dur = 0.4
+    },
+    [33] = {
+        ID = 33,
+        Name = 'TwoHandedSwordAfterAttack3',
+        NextName = 'TwoHandedSwordIdle',
+        Dur = 0.2
     }
 }
 
