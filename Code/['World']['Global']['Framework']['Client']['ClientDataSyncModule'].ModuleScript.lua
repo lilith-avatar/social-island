@@ -5,8 +5,7 @@
 local ClientDataSync = {}
 
 -- Localize global vars
-local FrameworkConfig = FrameworkConfig
-local MetaData = MetaData
+local FrameworkConfig, MetaData = FrameworkConfig, MetaData
 
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
@@ -40,8 +39,8 @@ function InitDefines()
     Data.Global = {}
     Data.Player = {}
     -- 生成数据
-    MetaData.InitDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData)
-    -- MetaData.InitDataTable(DataScheme.Player, Data.Player, MetaData.NewPlayerData)
+    MetaData.CreateDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData)
+    MetaData.CreateDataTable(DataScheme.Player, Data.Player, MetaData.NewPlayerData, localPlayer)
 end
 
 --! Event handler
@@ -60,7 +59,7 @@ function DataSyncS2CEventHandler(_type, _metaId, _key, _data)
     )
     if _type == MetaData.Enum.GLOBAL then
         MetaData.SetClientGlobalData(_metaId, _key, _data)
-    elseif _type == MetaData.Enum.PLAYAER then
+    elseif _type == MetaData.Enum.PLAYER then
         MetaData.SetClientPlayerData(_metaId, _key, _data)
     else
         error(

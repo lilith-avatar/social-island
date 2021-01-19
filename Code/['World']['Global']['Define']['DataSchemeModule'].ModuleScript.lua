@@ -21,7 +21,7 @@ DataScheme.Global = {
         d2 = 'D2'
     },
     e = 'E',
-    [12312] = {
+    [5566] = {
         id = 1,
         type = '!!!!'
     }
