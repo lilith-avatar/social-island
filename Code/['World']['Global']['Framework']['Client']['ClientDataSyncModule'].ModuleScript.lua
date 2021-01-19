@@ -39,8 +39,8 @@ function InitDefines()
     Data.Global = {}
     Data.Player = {}
     -- 生成数据
-    MetaData.CreateDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData)
-    MetaData.CreateDataTable(DataScheme.Player, Data.Player, MetaData.NewPlayerData, localPlayer)
+    MetaData.CreateDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData, localPlayer.UserId)
+    MetaData.CreateDataTable(DataScheme.Player, Data.Player, MetaData.NewPlayerData, localPlayer.UserId)
 end
 
 --! Event handler

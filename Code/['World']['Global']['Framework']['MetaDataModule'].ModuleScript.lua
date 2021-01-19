@@ -20,9 +20,6 @@ MetaData.Enum.PLAYER = 4
 -- 数据, 1是服务器, 2是客户端
 MetaData.Host = MetaData.Enum.UNDEFINED
 
--- Default
-SERVER_ID = 'SERVER_ID'
-
 -- 说明：两种双向同步机制
 -- 1. GlobalData
 --  a. 客户端和服务器持有相同的GlobalData数据类型
@@ -38,15 +35,6 @@ local sgraw = {_name = '[GlobalData][Server]'} -- server global raw data
 local cgraw = {_name = '[GlobalData][Client]'} -- client global raw data
 local spraw = {_name = '[PlayerData][Server]'} -- server player raw data
 local cpraw = {_name = '[PlayerData][Client]'} -- client player raw data
-
--- 计数器，用于生成 metadata id (_metaId)
-local cnts = {}
-local CNT_TYPE = {
-    SG = 1, -- Server GlobalData
-    CG = 2, -- Client GlobalData
-    SP = 3, -- Server PlayerData
-    CP = 4 -- Client PlayerData
-}
 
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
@@ -80,11 +68,12 @@ local function SetClientPlayerData(_t, _k, _v)
 end
 
 -- 生成ID
-local function GenDataId(_type, _uid, _depth)
-    cnts[_type] = cnts[_type] or {}
-    cnts[_type][_uid] = cnts[_type][_uid] or 0
-    cnts[_type][_uid] = cnts[_type][_uid] + 1
-    return cnts[_type][_uid]
+local function GenDataId(_type, _uid, _path)
+    -- cnts[_type] = cnts[_type] or {}
+    -- cnts[_type][_uid] = cnts[_type][_uid] or 0
+    -- cnts[_type][_uid] = cnts[_type][_uid] + 1
+    -- return cnts[_type][_uid]
+    return _type .. _uid .. _path
 end
 
 -- 数据校验
@@ -100,13 +89,13 @@ local function DataValidation(_raw, _metaId, _k, _v)
 end
 
 -- 生成Scheme的辅助函数
-local function GenSchemeAux(_scheme, _new, _uid, _depth)
+local function GenSchemeAux(_scheme, _new, _uid, _metaId)
     if type(_scheme) == 'table' then
         local meta = {}
         for k, v in pairs(_scheme) do
-            meta[k] = GenSchemeAux(v, _new, _uid, _depth + 1)
+            meta[k] = GenSchemeAux(v, _new, _uid, _metaId .. tostring(k))
         end
-        return _new(meta, _depth, _uid)
+        return _new(meta, _metaId, _uid)
     end
     return _scheme
 end
@@ -114,27 +103,27 @@ end
 --! 外部接口
 
 -- 生成GlobalData数据
-function MetaData.NewGlobalData(_t, _depth)
+function MetaData.NewGlobalData(_t, _metaId)
     -- ref https://www.jianshu.com/p/f556441bcf00
     local proxy, mt, metaId = {}, {}
     mt.__index = _t
     mt.__pairs = MetaData.Pairs(_t)
     if MetaData.Host == MetaData.Enum.SERVER then
         -- 生成服务器Data.Global
-        metaId = GenDataId(CNT_TYPE.SG, SERVER_ID, _depth)
-        _t._metaId = metaId
-        sgraw[metaId] = _t
+        _metaId = 'g_' .. _metaId
+        _t._metaId = _metaId
+        sgraw[_metaId] = _t
         mt.__newindex = SetServerGlobalData
-        PrintLog(string.format('%s _metaId = %s, %s', sgraw._name, metaId, table.dump(_t)))
+        PrintLog(string.format('%s metaId = %s, %s', sgraw._name, _metaId, table.dump(_t)))
     elseif MetaData.Host == MetaData.Enum.CLIENT then
         assert(localPlayer, string.format('[MetaData]%s 未找到localPlayer', cgraw._name))
         local uid = localPlayer.UserId
         assert(not string.isnilorempty(uid), string.format('[MetaData]%s uid不存在, uid = %s', cgraw._name, uid))
-        metaId = GenDataId(CNT_TYPE.CG, uid)
-        _t._metaId = metaId
-        cgraw[metaId] = _t
+        _metaId = 'g_' .. _metaId
+        _t._metaId = _metaId
+        cgraw[_metaId] = _t
         mt.__newindex = SetClientGlobalData
-        PrintLog(string.format('%s _metaId = %s, %s', cgraw._name, metaId, table.dump(_t)))
+        PrintLog(string.format('%s metaId = %s, %s', cgraw._name, _metaId, table.dump(_t)))
     else
         error('[MetaData] NewGlobalData() 数据为定义所属，请先定义MetaData.Host，1是服务器, 2是客户端')
     end
@@ -144,14 +133,14 @@ end
 
 --- 生成PlayerData数据
 
-function MetaData.NewPlayerData(_t, _depth, _uid)
+function MetaData.NewPlayerData(_t, _metaId, _uid)
     assert(not string.isnilorempty(_uid), '[MetaData] uid不存在')
     local proxy, mt, metaId = {}, {}
     mt.__index = _t
     mt.__pairs = MetaData.Pairs(_t)
     if MetaData.Host == MetaData.Enum.SERVER then
         -- 生成服务器Data.Players[_uid]
-        metaId = GenDataId(CNT_TYPE.SP, _uid, _depth)
+        metaId = 'p_' .. _uid .. _metaId
         _t._metaId = metaId
         spraw[_uid] = spraw[_uid] or {_name = spraw._name}
         spraw[_uid][metaId] = _t
@@ -159,7 +148,7 @@ function MetaData.NewPlayerData(_t, _depth, _uid)
         PrintLog(string.format('%s uid = %s, _metaId = %s, %s', spraw._name, _uid, metaId, table.dump(_t)))
     elseif MetaData.Host == MetaData.Enum.CLIENT then
         -- 生成客户端Data.Player
-        metaId = GenDataId(CNT_TYPE.CP, _uid)
+        metaId = 'p' .. _uid .. _metaId
         _t._metaId = metaId
         cpraw[metaId] = _t
         mt.__newindex = SetClientPlayerData
@@ -251,7 +240,7 @@ function MetaData.CreateDataTable(_scheme, _data, _new, _uid)
     -- PrintLog('CreateDataTable()', _scheme, _data, _new, _player)
     assert(_scheme, '[MetaData] CreateDataTable(), scheme为空')
     assert(_new and type(_new) == 'function', '[MetaData] CreateDataTable(), new为空')
-    local meta = GenSchemeAux(_scheme, _new, _uid, 0)
+    local meta = GenSchemeAux(_scheme, _new, _uid, 'mid_')
     local mt = {
         __index = meta,
         __newindex = meta,
@@ -263,7 +252,6 @@ end
 -- 删除一个Data表
 function MetaData.DeleleServerPlayerData(_uid)
     spraw[_uid] = nil
-    cnts[CNT_TYPE.SP][_uid] = nil
 end
 
 return MetaData

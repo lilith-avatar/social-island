@@ -73,7 +73,6 @@ function DataSyncC2SEventHandler(_player, _type, _metaId, _key, _data)
         MetaData.SetServerGlobalData(_metaId, _key, _data, true)
     elseif _type == MetaData.Enum.PLAYER then
         local uid = _player.UserId
-        print('xxxxxxxxxxxxxxxxxxxxx', uid)
         MetaData.SetServerPlayerData(uid, _metaId, _key, _data)
     else
         error(
