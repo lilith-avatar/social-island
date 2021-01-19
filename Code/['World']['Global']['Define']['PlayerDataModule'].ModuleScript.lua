@@ -6,6 +6,7 @@ local PlayerData = {}
 
 -- const
 local MetaData = MetaData
+local new = MetaData.NewPlayerData
 
 -- set define 数据同步框架设置
 ClientDataSync.SetPlayerDataDefine(PlayerData)

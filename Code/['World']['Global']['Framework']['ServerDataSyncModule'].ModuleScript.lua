@@ -59,6 +59,11 @@ function InitEventsAndListeners()
     local onPlayerJoinEvent = world.S_Event.OnPlayerJoinEvent
     assert(onPlayerJoinEvent, string.format('[DataSync][Server] %s不存在', onPlayerJoinEvent))
     onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
+
+    -- 玩家离开事件
+    local onPlayerLeaveEvent = world.S_Event.OnPlayerLeaveEvent
+    assert(onPlayerLeaveEvent, string.format('[DataSync][Server] %s不存在', onPlayerLeaveEvent))
+    onPlayerLeaveEvent:Connect(OnPlayerLeaveEventHandler)
 end
 
 --! 外部接口
@@ -108,6 +113,7 @@ end
 
 --- 新玩家加入事件Handler
 function OnPlayerJoinEventHandler(_player)
+    --TODO: 重置玩家Counter
     --TODO: 向客户端同步GlobalData
     for k, v in pairs(GlobalData) do
         GlobalData[k] = v
@@ -115,6 +121,13 @@ function OnPlayerJoinEventHandler(_player)
     --TODO: 获取长期存储
     --TODO: 服务器端创建PlayerData
     --TODO: 向客户端同步PlayerData
+end
+
+--- 玩家离开事件Handler
+function OnPlayerLeaveEventHandler(_player)
+    --TODO 删除玩家Counter
+    --TODO: 保存长期存储
+    --TODO 删除玩家端数据
 end
 
 return ServerDataSync
