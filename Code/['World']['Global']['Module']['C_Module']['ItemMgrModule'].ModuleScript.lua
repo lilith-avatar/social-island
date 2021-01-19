@@ -109,10 +109,46 @@ function ItemMgr:Get5(_id)
     this.taskItemList[_id]:PutIntoBag()
 end
 
+--移除近战武器
+function ItemMgr:Remove1(_id)
+    this.weaponList[_id] = nil
+    this.weaponList[_id]:ThrowOutOfBag()
+end
+
+--移除远程武器
+function ItemMgr:Remove2(_id)
+    this.weaponList[_id] = nil
+    this.weaponList[_id]:ThrowOutOfBag()
+end
+
+--移除即时使用型道具
+function ItemMgr:Remove3(_id)
+    this.usableItemList[_id] = nil
+    this.usableItemList[_id]:ThrowOutOfBag()
+end
+
+--移除化放置型道具
+function ItemMgr:Remove4(_id)
+    this.placeableItemList[_id] = nil
+    this.placeableItemList[_id]:ThrowOutOfBag()
+end
+
+--移除任务道具
+function ItemMgr:Remove5(_id)
+    this.taskItemList[_id] = nil
+    this.taskItemList[_id]:ThrowOutOfBag()
+end
+
 --获得道具
 function ItemMgr:GetItem(_id)
     print("获得道具", _id)
     this["Get" .. string.sub(tostring(_id), 1, 1)](self, _id)
+end
+
+--移除道具
+function ItemMgr:RemoveItem(_id)
+    print("移除道具", _id)
+    this["Remove" .. string.sub(tostring(_id), 1, 1)](self, _id)
 end
 
 --在地图上生成一个道具物体
@@ -140,6 +176,7 @@ end
 --执行任务反馈
 function ItemMgr:GetTaskFeedback(_taskItemID)
     this.taskItemList[_taskItemID]:GetTaskReward()
+    this:RemoveItem(_taskItemID)
 end
 
 function ItemMgr:Update(dt, tt)
