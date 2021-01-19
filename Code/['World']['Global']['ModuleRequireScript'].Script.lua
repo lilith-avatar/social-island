@@ -34,10 +34,11 @@ ModuleUtil.LoadModules(Define)
 ModuleUtil.LoadXlsModules(Xls, Config)
 
 -- Fsm
---FsmBase = require(Module.Fsm_Module.FsmBaseModule)
---StateBase = require(Module.Fsm_Module.StateBaseModule)
 ModuleUtil.LoadModules(Module.Fsm_Module)
 ModuleUtil.LoadModules(Module.Fsm_Module.PlayerActFsm)
+
+-- Item
+ModuleUtil.LoadModules(Module.Item_Module)
 
 -- Server and Clinet Modules
 ModuleUtil.LoadModules(Module.S_Module)

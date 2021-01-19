@@ -93,9 +93,9 @@ function BuffMgr:GetAllBuffData()
                     end
                 else ---不存在数据
                     if type(defPlayerData[k]) == "table" then ---表类型
+                        --print(table.dump(overlayPlayerData[k]))
                         overlayPlayerData[k] = {}
                         table.insert(overlayPlayerData[k], v)
-                        --print(table.dump(overlayPlayerData[k]))
                     elseif type(defPlayerData[k]) == "number" then ---数值类型
                         overlayPlayerData[k] = defPlayerData[k]
                     end
@@ -111,7 +111,7 @@ function BuffMgr:FadeBuffByTime(dt)
     for k, v in pairs(BuffDataList) do
         if v.curTime > 0 then
             v.curTime = v.curTime - dt
-        else
+        elseif v.curTime > -1 then
             BuffDataList[k] = nil
         end
     end
