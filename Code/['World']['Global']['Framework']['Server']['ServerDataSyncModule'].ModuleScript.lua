@@ -72,7 +72,9 @@ function DataSyncC2SEventHandler(_player, _type, _metaId, _key, _data)
         --* 收到客户端改变数据的时候需要同步给其他玩家
         MetaData.SetServerGlobalData(_metaId, _key, _data, true)
     elseif _type == MetaData.Enum.PLAYER then
-        MetaData.SetServerPlayerData(_player, _metaId, _key, _data)
+        local uid = _player.UserId
+        print('xxxxxxxxxxxxxxxxxxxxx', uid)
+        MetaData.SetServerPlayerData(uid, _metaId, _key, _data)
     else
         error(
             string.format(
@@ -88,33 +90,28 @@ end
 
 --- 新玩家加入事件Handler
 function OnPlayerJoinEventHandler(_player)
-    --TODO: 重置玩家Counter
-
-    --TODO: 获取长期存储
-
-    -- 服务器端创建PlayerData
+    --* 服务器端创建PlayerData
     local uid = _player.UserId
     Data.Players[uid] = {}
-    MetaData.CreateDataTable(DataScheme.Player, Data.Players[uid], MetaData.NewPlayerData, _player)
+    MetaData.CreateDataTable(DataScheme.Player, Data.Players[uid], MetaData.NewPlayerData, uid)
 
-    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-    -- 向客户端同步PlayerData
-    for k, v in pairs(Data.Players[uid]) do
-        print(k, table.dump(v))
-        -- Data.Players[uid][k] = v
-    end
+    --TODO: 获取长期存储,成功后向客户端同步
 
-    -- 向客户端同步GlobalData
+    --* 向客户端同步GlobalData
     for k, v in pairs(Data.Global) do
         Data.Global[k] = v
     end
 end
 
 --- 玩家离开事件Handler
-function OnPlayerLeaveEventHandler(_player)
-    --TODO 删除玩家Counter
+function OnPlayerLeaveEventHandler(_player, _uid)
+    assert(not string.isnilorempty(_uid), '[ServerDataSync] OnPlayerLeaveEventHandler() uid不存在')
+
     --TODO: 保存长期存储
-    --TODO 删除玩家端数据
+
+    --* 删除玩家端数据
+    Data.Players[_uid] = nil
+    MetaData.DeleleServerPlayerData(_uid)
 end
 
 return ServerDataSync
