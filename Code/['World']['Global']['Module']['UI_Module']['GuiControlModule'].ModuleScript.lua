@@ -10,8 +10,8 @@ local gui, touchScreen, dynamicFigure, infoFigure, menuFigure, ctrlFigure
 -- 交互ID
 local interactID = 0
 
--- 拾取ID
-local pickItemID = 0
+-- 拾取物体
+local pickItemObj = 0
 
 function GuiControl:Init()
     print("[GuiControl] Init()")
@@ -81,6 +81,9 @@ end
 
 --- 点击拾取按钮
 function OnPickBtnClick()
+    dynamicFigure.PickBtn:SetActive(false)
+    ItemMgr:GetItem(pickItemObj.ID.Value)
+    pickItemObj:Destroy()
 end
 
 --- 设置通用UI事件
@@ -119,14 +122,14 @@ function GuiControl:ResetDefUIEventHandler()
 end
 
 --- 打开动态交互事件
-function GuiControl:OpenDynamicEventHandler(_type, _id)
+function GuiControl:OpenDynamicEventHandler(_type, _var)
     dynamicFigure:SetActive(true)
     if _type == "Interact" then
         dynamicFigure.InteractBtn:SetActive(true)
-        interactID = _id
+        interactID = _var
     elseif _type == "Pick" then
         dynamicFigure.PickBtn:SetActive(true)
-        pickItemID = _id
+        pickItemObj = _var
     end
 end
 

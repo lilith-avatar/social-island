@@ -9,62 +9,74 @@ local InteractXls = {
     Hunt = {
         ID = 1,
         Name = 'Hunt',
-        IsEnterByNPC = false
+        IsEnterByNPC = false,
+        RewardItemID = {}
     },
     WhackAMole = {
         ID = 2,
         Name = 'WhackAMole',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     Maze = {
         ID = 3,
         Name = 'Maze',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     Cannon = {
         ID = 4,
         Name = 'Cannon',
-        IsEnterByNPC = false
+        IsEnterByNPC = false,
+        RewardItemID = {}
     },
     Frog = {
         ID = 5,
         Name = 'Frog',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     Zeppelin = {
         ID = 6,
         Name = 'Zeppelin',
-        IsEnterByNPC = false
+        IsEnterByNPC = false,
+        RewardItemID = {}
     },
     Flower = {
         ID = 7,
         Name = 'Flower',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     Snail = {
         ID = 8,
         Name = 'Snail',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     Race = {
         ID = 9,
         Name = 'Race',
-        IsEnterByNPC = false
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     Chair = {
         ID = 10,
         Name = 'Chair',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     MonsterArena = {
         ID = 11,
         Name = 'MonsterArena',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     },
     NPC = {
         ID = 12,
         Name = 'NPC',
-        IsEnterByNPC = true
+        IsEnterByNPC = true,
+        RewardItemID = {}
     }
 }
 
