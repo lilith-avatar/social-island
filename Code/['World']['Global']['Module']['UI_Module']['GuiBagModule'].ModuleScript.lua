@@ -121,9 +121,14 @@ end
 function GuiBag:ShowBagUI()
     this:ClearSelect()
     this.root:SetActive(true)
-    -- TODO: 根据长度获取最大页数
+    -- TODO: 转表
+    if #this.slotItem == 0 or not this.slotItem then
+        --this.slotItem = TransformItemTable()
+    end
     -- 显示物品
     this:ClickChangePage(1)
+    -- 根据长度获取最大页数
+    this:GetMaxPageNum(#this.slotItem)
 end
 
 function GuiBag:HideBagUI()
@@ -181,9 +186,6 @@ function GuiBag:SelectItem(_index)
             this.slotList[_index].RedDotImg:SetActive(false)
         end
     end
-end
-
-function GuiBag:ChangeSelectOffset(_pageIndex)
 end
 
 function GuiBag:ClearSelect()
