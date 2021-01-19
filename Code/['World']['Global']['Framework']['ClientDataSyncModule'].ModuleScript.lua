@@ -35,14 +35,8 @@ function InitDefines()
     -- 定义数据所属
     MetaData.Host = MetaData.Enum.CLIENT
     -- 数据校验
-    assert(
-        GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
-        '[DataSync][Client] 全局数据定义有误，请检查 FrameworkConfig.GlobalDataDefine'
-    )
-    assert(
-        PLAYER_DATA_DEFINE and type(PLAYER_DATA_DEFINE) == 'table',
-        '[DataSync][Client] 玩家数据定义有误，请检查 FrameworkConfig.PlayerDataDefine'
-    )
+    assert(GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table', '[DataSync][Client] 全局数据定义有误，请检查 GlobalData')
+    assert(PLAYER_DATA_DEFINE and type(PLAYER_DATA_DEFINE) == 'table', '[DataSync][Client] 玩家数据定义有误，请检查 PlayerData')
 end
 
 --- 初始化事件和绑定Handler
@@ -83,7 +77,6 @@ function DataSyncS2CEventHandler(_type, _metaId, _key, _data)
     if _type == MetaData.Enum.GLOBAL then
         MetaData.SetClientGlobalData(_metaId, _key, _data)
     elseif _type == MetaData.Enum.PLAYAER then
-        --TODO:
         MetaData.SetClientPlayerData(_metaId, _key, _data)
     else
         error(

@@ -28,21 +28,7 @@ function ServerDataSync.Init()
     print('[DataSync][Server] Init()')
     InitEventsAndListeners()
     InitDefines()
-end
-
---- 校验数据定义
-function InitDefines()
-    -- 定义数据所属
-    MetaData.Host = MetaData.Enum.SERVER
-    -- 数据校验
-    assert(
-        GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
-        '[DataSync][Server] 全局数据定义有误，请检查 FrameworkConfig.GlobalDataDefine'
-    )
-    assert(
-        PLAYER_DATA_DEFINE and type(PLAYER_DATA_DEFINE) == 'table',
-        '[DataSync][Server] 玩家数据定义有误，请检查 FrameworkConfig.PlayerDataDefine'
-    )
+    InitPlayersData()
 end
 
 --- 初始化事件和绑定Handler
@@ -64,6 +50,28 @@ function InitEventsAndListeners()
     local onPlayerLeaveEvent = world.S_Event.OnPlayerLeaveEvent
     assert(onPlayerLeaveEvent, string.format('[DataSync][Server] %s不存在', onPlayerLeaveEvent))
     onPlayerLeaveEvent:Connect(OnPlayerLeaveEventHandler)
+end
+
+--- 校验数据定义
+function InitDefines()
+    -- 定义数据所属
+    MetaData.Host = MetaData.Enum.SERVER
+    -- 数据校验
+    assert(
+        GLOBAL_DATA_DEFINE and type(GLOBAL_DATA_DEFINE) == 'table',
+        '[DataSync][Server] 全局数据定义有误，请检查 FrameworkConfig.GlobalDataDefine'
+    )
+    assert(
+        PLAYER_DATA_DEFINE and type(PLAYER_DATA_DEFINE) == 'table',
+        '[DataSync][Server] 玩家数据定义有误，请检查 FrameworkConfig.PlayerDataDefine'
+    )
+end
+
+-- 创建PlayersData：服务器only
+function InitPlayersData()
+    if not localPlayer then
+        _G.PlayersData = {}
+    end
 end
 
 --! 外部接口
@@ -96,7 +104,6 @@ function DataSyncC2SEventHandler(_player, _type, _metaId, _key, _data)
         --* 收到客户端改变数据的时候需要同步给其他玩家
         MetaData.SetServerGlobalData(_metaId, _key, _data, true)
     elseif _type == MetaData.Enum.PLAYAER then
-        --TODO:
         MetaData.SetServerPlayerData(_player, _metaId, _key, _data)
     else
         error(
@@ -118,9 +125,17 @@ function OnPlayerJoinEventHandler(_player)
     for k, v in pairs(GlobalData) do
         GlobalData[k] = v
     end
+
     --TODO: 获取长期存储
+
     --TODO: 服务器端创建PlayerData
-    --TODO: 向客户端同步PlayerData
+    -- PlayersData[_player.UserId] = PlayersData[_player.UserId] or {}
+    -- local playerData = PlayersData[_player.UserId]
+
+    -- -- 向客户端同步PlayerData
+    -- for k, v in pairs(playerData) do
+    --     playerData[k] = v
+    -- end
 end
 
 --- 玩家离开事件Handler

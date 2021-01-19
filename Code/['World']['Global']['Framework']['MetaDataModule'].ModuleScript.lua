@@ -2,7 +2,7 @@
 --- @module Sync Data Base, Both-side
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang
-MetaData = {}
+local MetaData = {}
 
 -- Localize global vars
 local FrameworkConfig = FrameworkConfig
@@ -56,6 +56,16 @@ local function SetServerGlobalData(_t, _k, _v)
 end
 
 -- 客户端GlobalData数据元表
+local function SetClientGlobalData(_t, _k, _v)
+    MetaData.SetClientGlobalData(_t._metaId, _k, _v, true)
+end
+
+-- 服务器PlayerData数据元表
+local function SetServerGlobalData(_t, _k, _v)
+    MetaData.SetServerGlobalData(_t._metaId, _k, _v, true)
+end
+
+-- 客户端PlayerData数据元表
 local function SetClientGlobalData(_t, _k, _v)
     MetaData.SetClientGlobalData(_t._metaId, _k, _v, true)
 end
@@ -116,8 +126,14 @@ function MetaData.NewPlayerData(_t)
     mt.__pairs = MetaData.Pairs(_t)
     if MetaData.Host == MetaData.Enum.SERVER then
         -- TODO: 检查长期存储；若有：用长期存储生成表发给客户端；若无：生成默认的发给客户端
+        -- metaId = GenDataId()
     elseif MetaData.Host == MetaData.Enum.CLIENT then
-        -- TODO: 生成默认的客户端
+        -- 生成默认的客户端
+        assert(localPlayer, string.format('[MetaData]%s 未找到localPlayer', cpraw._name))
+        metaId = GenDataId(localPlayer.UserId)
+        _t._metaId = metaId
+        cpraw[metaId] = _t
+        mt.__newindex = SetClientGlobalData
     else
         error('[MetaData] NewPlayerData() 数据为定义所属，请先定义MetaData.Host，1是服务器, 2是客户端')
     end
@@ -175,16 +191,41 @@ function MetaData.SetClientGlobalData(_metaId, _k, _v, _sync)
 end
 
 -- 直接修改PlayerData：服务器
-function MetaData.SetServerPlayerData(_player, _metaId, _k, _v)
-    -- TODO: 数据验证
-    spraw[_player][_metaId][_k] = _v
+function MetaData.SetServerPlayerData(_player, _metaId, _k, _v, _sync)
+    assert(localPlayer, string.format('[MetaData]%s 未找到player', cpraw._name))
+    local uid = _player.UserId
+    DataValidation(spraw[uid], _metaId, _k, _v)
+    spraw[uid][_metaId][_k] = _v
+    if _sync then
+        NetUtil.Fire_C('DataSyncS2CEvent', _player, MetaData.Enum.PLAYER, _metaId, _k, _v)
+        PrintLog(
+            string.format(
+                '[MetaData]%s S => C metaId = %s, key = %s, data = %s',
+                sgraw._name,
+                _metaId,
+                _k,
+                table.dump(_v)
+            )
+        )
+    end
 end
 
 -- 直接修改PlayerData：客户端
-function MetaData.SetClientPlayerData(_metaId, _k, _v)
-    -- TODO: 数据验证
-    print()
-    spraw[_metaId][_k] = _v
+function MetaData.SetClientPlayerData(_metaId, _k, _v, _sync)
+    DataValidation(cpraw, _metaId, _k, _v)
+    cpraw[_metaId][_k] = _v
+    if _sync then
+        NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, MetaData.Enum.PLAYER, _metaId, _k, _v)
+        PrintLog(
+            string.format(
+                '[MetaData]%s C => S metaId = %s, key = %s, data = %s',
+                cpraw._name,
+                _metaId,
+                _k,
+                table.dump(_v)
+            )
+        )
+    end
 end
 
 return MetaData
