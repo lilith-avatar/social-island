@@ -25,6 +25,8 @@ CloudLogUtil.Init(GAME_ID)
 
 -- Framework
 ModuleUtil.LoadModules(Framework)
+ModuleUtil.LoadModules(Framework.Server)
+ModuleUtil.LoadModules(Framework.Client)
 
 -- Globle Defines
 ModuleUtil.LoadModules(Define)
