@@ -4,14 +4,7 @@
 --- @copyright Lilith Games, Avatar Team
 local DataScheme = {}
 
--- -- Cache global vars
--- local MetaData = MetaData
--- local new = MetaData.NewGlobalData
-
--- -- set define 数据同步框架设置
--- ServerDataSync.SetGlobalDataDefine(GlobalData)
--- ClientDataSync.SetGlobalDataDefine(GlobalData)
-
+-- 全局变量定义
 DataScheme.Global = {
     a = 'A',
     b = 'B',
@@ -27,6 +20,7 @@ DataScheme.Global = {
     }
 }
 
+-- 玩家数据定义
 DataScheme.Player = {
     -- 玩家属性
     attr = {
@@ -48,35 +42,5 @@ DataScheme.Player = {
     -- 统计数据
     stats = {}
 }
-
--- -- 初始化
--- function GlobalData:Init()
---     print('[GlobalData] Init()')
---     InitScheme()
--- end
-
--- -- 定义GlobalData的数据格式
--- function InitScheme()
---     local meta = GenSchemeAux(scheme)
---     local mt = {
---         __index = meta,
---         __newindex = meta,
---         __pairs = MetaData.Pairs(getmetatable(meta).__index)
---     }
---     setmetatable(GlobalData, mt)
--- end
-
--- -- 生成Scheme的辅助函数
--- function GenSchemeAux(_define)
---     assert(_define, '[GlobalData] GenSchemeAux(), define为空')
---     if type(_define) == 'table' then
---         local meta = {}
---         for k, v in pairs(_define) do
---             meta[k] = GenSchemeAux(v)
---         end
---         return new(meta)
---     end
---     return _define
--- end
 
 return DataScheme
