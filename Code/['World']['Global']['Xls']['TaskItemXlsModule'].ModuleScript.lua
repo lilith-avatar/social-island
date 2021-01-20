@@ -71,7 +71,7 @@ local TaskItemXls = {
     },
     [5010] = {
         ItemID = 5010,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
@@ -85,7 +85,7 @@ local TaskItemXls = {
     },
     [5012] = {
         ItemID = 5012,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
@@ -121,76 +121,76 @@ local TaskItemXls = {
     [5017] = {
         ItemID = 5017,
         Npc = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
-        RewardItem = 0,
+        RewardItem = nil,
         RewardGold = 80,
         NpcText = 'TaskItem_NpcText_5017'
     },
     [5018] = {
         ItemID = 5018,
-        Npc = nil,
+        Npc = {},
         RewardItem = 2021,
-        RewardGold = 0,
+        RewardGold = nil,
         NpcText = 'TaskItem_NpcText_5018'
     },
     [5019] = {
         ItemID = 5019,
-        Npc = nil,
+        Npc = {2},
         RewardItem = nil,
         RewardGold = 100,
         NpcText = 'TaskItem_NpcText_5019'
     },
     [5020] = {
         ItemID = 5020,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5021] = {
         ItemID = 5021,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5022] = {
         ItemID = 5022,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5023] = {
         ItemID = 5023,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5024] = {
         ItemID = 5024,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5025] = {
         ItemID = 5025,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5026] = {
         ItemID = 5026,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
     },
     [5027] = {
         ItemID = 5027,
-        Npc = nil,
+        Npc = {},
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
