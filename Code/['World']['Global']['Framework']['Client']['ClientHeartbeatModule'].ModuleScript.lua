@@ -37,7 +37,7 @@ local diff  -- 时间戳插值
 local sTmpTs, cTmpTs  -- 时间戳缓存
 
 --- 打印心跳日志
-local PrintHb = Setting.ShowHeartbeatLog and function(...)
+local PrintHb = Setting.DebugMode and Setting.ShowHeartbeatLog and function(...)
         print('[Heartbeat][Client]', ...)
     end or function()
     end
@@ -153,7 +153,7 @@ function CheckPlayerState(_player, _cTimestamp)
     elseif cache.state == HeartbeatEnum.DISCONNECT and diff > HEARTBEAT_THRESHOLD_2 then
         --* 玩家断线, 退出游戏
         -- QuitGame()
-        NetUtil.Fire_C('OnPlayerLeaveEvent', localPlayer)
+        NetUtil.Fire_C('OnPlayerLeaveEvent', localPlayer, localPlayer.UserId)
     end
 end
 

@@ -34,7 +34,7 @@ local diff  -- 时间戳插值
 local sTmpTs, cTmpTs  -- 时间戳缓存
 
 --- 打印心跳日志
-local PrintHb = Setting.ShowHeartbeatLog and function(...)
+local PrintHb = Setting.DebugMode and Setting.ShowHeartbeatLog and function(...)
         print('[Heartbeat][Server]', ...)
     end or function()
     end
@@ -100,10 +100,12 @@ function InitEventsAndListeners()
     -- 玩家退出，发出OnPlayerLeaveEvent
     world.OnPlayerRemoved:Connect(
         function(_player)
-            if cache[_player] then
-                print('[Heartbeat][Server] OnPlayerLeaveEvent, 玩家主动离开游戏,', _player, _player.UserId)
-                NetUtil.Fire_S('OnPlayerLeaveEvent', _player)
-                cache[_player] = nil
+            local player = _player
+            local uid = player.UserId
+            if cache[player] then
+                print('[Heartbeat][Server] OnPlayerLeaveEvent, 玩家主动离开游戏,', player, uid)
+                NetUtil.Fire_S('OnPlayerLeaveEvent', player, uid)
+                cache[player] = nil
             end
         end
     )
@@ -168,11 +170,13 @@ function CheckPlayerStates(_player, _sTimestam)
         cache[_player].state = HeartbeatEnum.DISCONNECT
     elseif cache[_player].state == HeartbeatEnum.DISCONNECT and diff > HEARTBEAT_THRESHOLD_2 then
         --* 玩家彻底断线，剔除玩家
-        print('[Heartbeat][Server] OnPlayerLeaveEvent, 剔除离线玩家,', _player, _player.UserId)
-        NetUtil.Fire_S('OnPlayerLeaveEvent', _player)
-        print('[Heartbeat][Server] OnPlayerLeave, 发送客户端离线事件,', _player, _player.UserId)
-        NetUtil.Fire_C('OnPlayerLeaveEvent', _player)
-        cache[_player] = nil
+        local player = _player
+        local uid = player.UserId
+        print('[Heartbeat][Server] OnPlayerLeaveEvent, 剔除离线玩家,', player, uid)
+        NetUtil.Fire_S('OnPlayerLeaveEvent', player, uid)
+        print('[Heartbeat][Server] OnPlayerLeave, 发送客户端离线事件,', player, uid)
+        NetUtil.Fire_C('OnPlayerLeaveEvent', player, uid)
+        cache[player] = nil
     end
 end
 
