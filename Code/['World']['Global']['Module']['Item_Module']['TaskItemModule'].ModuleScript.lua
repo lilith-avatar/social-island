@@ -29,7 +29,7 @@ end
 
 --获得任务奖励
 function TaskItem:GetTaskReward()
-    if self.config.RewardItem or self.config.RewardItem ~= 0 then
+    if self.config.RewardItem then
         ItemMgr:GetItem(self.config.RewardItem)
     end
 end

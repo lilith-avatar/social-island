@@ -61,7 +61,7 @@ function MoleUIMgr:StartGame()
     NetUtil.Fire_S('PlayerStartMoleHitEvent', localPlayer.UserId)
     this.gui:SetActive(true)
     this.hitButton:SetActive(true)
-    this.contrlGui.UseBtn:SetActive(false)
+    this.contrlGui.Ctrl.UseBtn:SetActive(false)
 end
 
 function MoleUIMgr:UpdateScore(_score)

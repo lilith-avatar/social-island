@@ -15,6 +15,7 @@ end
 local withPet = true
 local totalResetTime = 0
 function RaceGame:PetCheck(_dt, _tt)
+	print(Config.RacePoint[3][1].Pos)
 	if withPet == true then
 		totalResetTime = totalResetTime + _dt
 		if totalResetTime > (60 * 0.75) then
@@ -40,14 +41,15 @@ end
 
 ---刷新起始点
 function RaceGame:FreshStartPoint()
-	print(this.startPoint.Position)
-	print(Config.RacePoint)print(Config.RacePoint[nowKey][1])print(Config.RacePoint[nowKey][1].Pos)
+	--print(this.startPoint.Position)
+	--print(Config.RacePoint)print(Config.RacePoint[nowKey][1])print(Config.RacePoint[nowKey][1].Pos)
 	this.startPoint.Position = Config.RacePoint[nowKey][1].Pos
 end
 
 ---刷新现在挑战的序列
 function RaceGame:RandomKey()
     nowKey = math.random(1, #Config.RacePoint)
+	print('现在的跑步序列是'..nowKey)
 end
 
 ---数据初始化

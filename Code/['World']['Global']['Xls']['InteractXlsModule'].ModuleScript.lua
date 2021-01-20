@@ -15,7 +15,7 @@ local InteractXls = {
     WhackAMole = {
         ID = 2,
         Name = 'WhackAMole',
-        IsEnterByNPC = true,
+        IsEnterByNPC = false,
         RewardItemID = {}
     },
     Maze = {
@@ -57,7 +57,7 @@ local InteractXls = {
     Race = {
         ID = 9,
         Name = 'Race',
-        IsEnterByNPC = true,
+        IsEnterByNPC = false,
         RewardItemID = {}
     },
     Chair = {
