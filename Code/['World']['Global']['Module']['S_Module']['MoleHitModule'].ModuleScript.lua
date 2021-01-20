@@ -91,7 +91,6 @@ function MoleHit:PitListInit()
 end
 
 function MoleHit:InteractSEventHandler(_player, _gameId)
-print(111111)
     if _gameId == 2 then
         NetUtil.Fire_C('StartMoleEvent', _player)
     end

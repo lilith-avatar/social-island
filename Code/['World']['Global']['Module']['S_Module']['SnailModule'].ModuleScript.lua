@@ -170,12 +170,23 @@ function Snail:SnailFinish(_snailObjPool)
             invoke(
                 function()
                     this:ResetSnailRace()
+					--- 发奖励的临时代码
+					this:GiveReward()
                 end,
                 2
             )
         end
     end
     --_snailObjPool.obj.Position = startPoints[_snailObjPool.index].Position
+end
+
+--- 发奖励的临时代码
+local coinNum
+function Snail:GiveReward()
+	for k,v in pairs(world:FindPlayers()) do
+		coinNum = math.random(1,50)
+		NetUtil.Fire_C('GetCoinEvent', v, coinNum,5011)
+	end
 end
 
 --- 检查是否重置

@@ -194,6 +194,12 @@ function ItemMgr:GetTaskFeedback(_taskItemID)
     item:GetTaskReward()
 end
 
+---服务器结算处理
+function ItemMgr:GetCoinEventHandler(_CoinNum,_itemId)
+	this:GetCoin(_CoinNum)
+	this:Get5(_itemId)
+end
+
 --获得金币
 function ItemMgr:GetCoin(_num)
     if _num and _num > 0 then

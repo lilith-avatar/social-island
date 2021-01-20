@@ -43,7 +43,7 @@ function ChairUIMgr:EventBind()
 end
 
 function ChairUIMgr:NodeDef()
-    this.sitBtn = localPlayer.Local.ControlGui.SitBtn
+    this.sitBtn = localPlayer.Local.ControlGui.Dynamic.InteractBtn
     this.gui = localPlayer.Local.ChairGui
     this.normalGui = this.gui.NormalPnl
     this.normalBtn = {

@@ -119,11 +119,16 @@ function SMonsterBattle:StartBattleEventHandler(_isNpc, _playerA, _playerB)
                     if (_playerB.HealthVal.Value <= 0) then
                         print('[SMonsterBattle] B输')
                         NetUtil.Fire_C('MBattleEvent', _playerB, 'Over', false)
+						NetUtil.Fire_C('GetCoinEvent', _playerB, 20,5020)
+						NetUtil.Fire_C('GetCoinEvent', _playerA, 50,5020)
                         _breakFlag = true
                     end
                     if (_playerA.HealthVal.Value <= 0) then
                         print('[SMonsterBattle] A输')
                         NetUtil.Fire_C('MBattleEvent', _playerB, 'Over', true)
+						---发奖励的临时代码
+						NetUtil.Fire_C('GetCoinEvent', _playerB, 50,5020)
+						NetUtil.Fire_C('GetCoinEvent', _playerA, 20,5020)
                         _breakFlag = true
                     end
 					if _breakFlag then

@@ -31,7 +31,7 @@ end
 
 function MoleUIMgr:GameOver()
     this.gui:SetActive(false)
-    this.contrlGui.UseBtn:SetActive(true)
+    --this.contrlGui.UseBtn:SetActive(true)
     --this.hitButton:SetActive(false)
 end
 
