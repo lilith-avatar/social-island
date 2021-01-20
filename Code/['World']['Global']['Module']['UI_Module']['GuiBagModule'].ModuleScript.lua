@@ -147,7 +147,7 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
     end
     table.insert(this.cdMask[_itemId], this.slotList[_index].MaskImg)
     -- 红点系统前端表现
-    -- if this.slotItem[_index].isNew then
+    -- if this.slotItem[_index].isNew and this.slotItem[_index] then
     --     --消除红点
     --     this.slotList[_index].RedDotImg:SetActive(true)
     -- end
@@ -162,6 +162,7 @@ function GuiBag:ClickUseBtn(_index)
     -- 物品消耗判定
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
+        Data.Player.bag[itemId].count = Data.Player.bag[itemId].count - 1
     end
     -- 该cd物品进入 cd
     this.timer[itemId] = 0
@@ -180,11 +181,13 @@ function GuiBag:SelectItem(_index)
         this:ChangeNameAndDesc(this.slotItem[_index])
         -- TODO: 高亮
         this.slotList[_index].Image = ResourceManager.GetTexture("UI/")
-        -- 红点系统前端表现
-        -- if this.slotItem[_index].isNew then
-        --     --消除红点
-        --     this.slotList[_index].RedDotImg:SetActive(false)
-        -- end
+        --开启使用按钮
+        this.useBtn:SetActive(true)
+    -- 红点系统前端表现
+    -- if this.slotItem[_index].isNew and this.slotItem[_index] then
+    --     --消除红点
+    --     this.slotList[_index].RedDotImg:SetActive(false)
+    -- end
     end
 end
 
@@ -229,8 +232,10 @@ end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)
     for i = 1, this.rowNum * this.colNum do
-        -- 显示当前页面物品
-        this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+        if this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i] then
+            -- 显示当前页面物品
+            this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+        end
     end
 end
 
