@@ -10,25 +10,27 @@ local transTab, tmp
 ---@return table
 local function TransformItemTable(_itemTable)
     transTab = {}
-    tmp =
-        table.sort(
-        _itemTable,
-        function(a, b)
-            if a and b then
-                return (a.id < b.id)
-            end
-        end
-    )
-    for _, v in pairs(tmp) do
+
+    for k, v in pairs(_itemTable) do
         for i = 1, v.count do
             local data = {
+                id = k,
                 cd = 0
             }
             table.merge(data, v)
             table.insert(transTab, data)
         end
     end
-    return transTab
+    tmp =
+        table.sort(
+        transTab,
+        function(a, b)
+            if a and b then
+                return (a.id < b.id)
+            end
+        end
+    )
+    return transTab --! Only Test
 end
 
 ---初始化函数
@@ -121,10 +123,8 @@ end
 function GuiBag:ShowBagUI()
     this:ClearSelect()
     this.root:SetActive(true)
-    -- TODO: 转表
-    if #this.slotItem == 0 or not this.slotItem then
-        --this.slotItem = TransformItemTable()
-    end
+    -- 转表
+    this.slotItem = TransformItemTable(Data.Player.bag)
     -- 显示物品
     this:ClickChangePage(1)
     -- 根据长度获取最大页数
@@ -147,10 +147,10 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
     end
     table.insert(this.cdMask[_itemId], this.slotList[_index].MaskImg)
     -- 红点系统前端表现
-    if this.slotItem[_index].isNew then
-        --消除红点
-        this.slotList[_index].RedDotImg:SetActive(true)
-    end
+    -- if this.slotItem[_index].isNew then
+    --     --消除红点
+    --     this.slotList[_index].RedDotImg:SetActive(true)
+    -- end
 end
 
 function GuiBag:ClickUseBtn(_index)
@@ -181,10 +181,10 @@ function GuiBag:SelectItem(_index)
         -- TODO: 高亮
         this.slotList[_index].Image = ResourceManager.GetTexture("UI/")
         -- 红点系统前端表现
-        if this.slotItem[_index].isNew then
-            --消除红点
-            this.slotList[_index].RedDotImg:SetActive(false)
-        end
+        -- if this.slotItem[_index].isNew then
+        --     --消除红点
+        --     this.slotList[_index].RedDotImg:SetActive(false)
+        -- end
     end
 end
 
@@ -223,8 +223,8 @@ function GuiBag:ClickChangePage(_pageIndex)
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
-    this.nameTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Name)
-    this.descTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Des)
+    this.nameTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Name)
+    this.descTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Des)
 end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)
