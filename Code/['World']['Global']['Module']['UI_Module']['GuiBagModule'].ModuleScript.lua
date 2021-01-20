@@ -66,7 +66,7 @@ function GuiBag:DataInit()
     this.rowNum = 10
     this.colNum = 5
 
-    --* 计时器
+    --* 计时器---------------
     this.timer = {}
     this.cdMask = {}
 end
