@@ -35,8 +35,8 @@ end
 function TaskItem:GetTaskReward()
     if self.config.RewardItem and self.config.RewardItem ~= 0 then
         ItemMgr:GetItem(self.config.RewardItem)
-        ItemMgr:GetCoin(self.config.RewardGold)
     end
+	ItemMgr:GetCoin(self.config.RewardGold)
 end
 
 --触发NPC任务

@@ -121,7 +121,7 @@ local TaskItemXls = {
     [5017] = {
         ItemID = 5017,
         Npc = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
-        RewardItem = nil,
+        RewardItem = 0,
         RewardGold = 80,
         NpcText = 'TaskItem_NpcText_5017'
     },
@@ -129,7 +129,7 @@ local TaskItemXls = {
         ItemID = 5018,
         Npc = nil,
         RewardItem = 2021,
-        RewardGold = nil,
+        RewardGold = 0,
         NpcText = 'TaskItem_NpcText_5018'
     },
     [5019] = {

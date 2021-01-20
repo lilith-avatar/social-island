@@ -165,6 +165,10 @@ function ItemMgr:RemoveItem(_id)
     this["Remove" .. string.sub(tostring(_id), 1, 1)](self, _id)
 end
 
+function ItemMgr:CreateItemObjEventHandler(_id, _pos)
+	ItemMgr:CreateItemObj(_id, _pos)
+end
+
 --在地图上生成一个道具物体
 function ItemMgr:CreateItemObj(_id, _pos)
     local item =
