@@ -3,8 +3,12 @@
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang
 local FrameworkConfig = {
+    -- Debug模式
+    DebugMode = true,
     -- 启动心跳
     HeartbeatStart = true,
+    -- TODO: Data Scheme配置：解决底层对逻辑层的反向引用问题
+    -- 服务器配置
     Server = {
         -- 心跳包间隔时间，单位：秒
         HeartbeatDelta = 1,
@@ -21,6 +25,7 @@ local FrameworkConfig = {
         -- 插件中服务器需要生成的CustomEvent, 模块中必须得有ServerEvents
         PluginEvents = {}
     },
+    -- 客户端配置
     Client = {
         -- 心跳包间隔时间，单位：秒
         HeartbeatDelta = 1,
