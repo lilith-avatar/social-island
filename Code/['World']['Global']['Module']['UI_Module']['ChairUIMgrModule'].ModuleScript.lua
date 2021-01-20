@@ -1,11 +1,14 @@
 ---@module ChairUIMgr
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local ChairUIMgr, this = ModuleUtil.New('ChairUIMgr', ClientBase)
+local ChairUIMgr, this = ModuleUtil.New("ChairUIMgr", ClientBase)
+
+local type = ""
+local chairId = 0
 
 ---初始化函数
 function ChairUIMgr:Init()
-    print('[ChairUIMgr] Init()')
+    print("[ChairUIMgr] Init()")
     this:NodeDef()
     this:DataInit()
     this:EventBind()
@@ -43,7 +46,7 @@ function ChairUIMgr:EventBind()
 end
 
 function ChairUIMgr:NodeDef()
-    this.sitBtn = localPlayer.Local.ControlGui.Dynamic.InteractBtn
+    this.sitBtn = localPlayer.Local.ControlGui.SitBtn
     this.gui = localPlayer.Local.ChairGui
     this.normalGui = this.gui.NormalPnl
     this.normalBtn = {
@@ -63,18 +66,26 @@ function ChairUIMgr:NodeDef()
 end
 
 function ChairUIMgr:ClickSitBtn(_type, _chairId)
-    NetUtil.Fire_S('PlayerClickSitBtnEvent', localPlayer.UserId, _type, _chairId)
+    NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, _type, _chairId)
     this.sitBtn:SetActive(false)
 end
 
+function ChairUIMgr:InteractCEventHandler(_id)
+    if _id == 10 then
+        NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, type, chairId)
+    end
+end
+
 function ChairUIMgr:ShowSitBtnEventHandler(_type, _chairId)
-    this.sitBtn.OnClick:Clear()
+    --[[this.sitBtn.OnClick:Clear()
     this.sitBtn.OnClick:Connect(
         function()
             this:ClickSitBtn(_type, _chairId)
         end
     )
-    this.sitBtn:SetActive(true)
+    this.sitBtn:SetActive(true)]]
+    type = _type
+    chairId = _chairId
 end
 
 function ChairUIMgr:HideSitBtnEventHandler()
@@ -96,8 +107,8 @@ function ChairUIMgr:EnterQte()
 end
 
 function ChairUIMgr:NormalShake(_upOrDown)
-    NetUtil.Fire_S('NormalShakeEvent', Chair.chair, _upOrDown)
-    if _upOrDown == 'up' then
+    NetUtil.Fire_S("NormalShakeEvent", Chair.chair, _upOrDown)
+    if _upOrDown == "up" then
         this.normalBtn.down:SetActive(true)
         this.normalBtn.up:SetActive(false)
     else
@@ -113,7 +124,7 @@ function ChairUIMgr:NormalBack()
     this.qteTotalTime.Text = 0
     Chair:PlayerLeaveSit()
     localPlayer:Jump()
-    NetUtil.Fire_S('PlayerLeaveChairEvent', Chair.chairType, Chair.chair, localPlayer.UserId)
+    NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
 end
 
 function ChairUIMgr:GetQteForward(_dir, _speed)
@@ -126,7 +137,7 @@ function ChairUIMgr:GetQteForward(_dir, _speed)
     this.qteBtn[_dir]:SetActive(true)
     this.dirQte = _dir
     this.startUpdate = true
-    NetUtil.Fire_S('QteChairMoveEvent', _dir, _speed, Chair.chair)
+    NetUtil.Fire_S("QteChairMoveEvent", _dir, _speed, Chair.chair)
 end
 
 function ChairUIMgr:QteButtonClick(_dir)
