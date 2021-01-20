@@ -13,11 +13,15 @@ end
 
 --放入背包
 function TaskItem:PutIntoBag()
-    GuiControl:ShowInfo("获得" .. LanguageUtil.GetText(Config.Item[self.id].Name), 1)
+    GuiControl:ShowInfo("获得" .. LanguageUtil.GetText(Config.Item[self.id].Name), 2)
+    localPlayer.Local.InfoGui:SetActive(true)
+    localPlayer.Local.InfoGui.ItemDes.Text = LanguageUtil.GetText(Config.Item[self.id].Des)
 end
 
 --从背包里扔掉
 function TaskItem:ThrowOutOfBag()
+    localPlayer.Local.InfoGui.ItemDes.Text = ""
+    localPlayer.Local.InfoGui:SetActive(false)
 end
 
 --使用
@@ -29,8 +33,9 @@ end
 
 --获得任务奖励
 function TaskItem:GetTaskReward()
-    if self.config.RewardItem then
+    if self.config.RewardItem and self.config.RewardItem ~= 0 then
         ItemMgr:GetItem(self.config.RewardItem)
+        ItemMgr:GetCoin(self.config.RewardGold)
     end
 end
 

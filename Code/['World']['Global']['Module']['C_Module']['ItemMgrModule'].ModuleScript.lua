@@ -6,9 +6,9 @@
 
 local ItemMgr, this = ModuleUtil.New("ItemMgr", ClientBase)
 
-local instantiateItemFunc = {}
-
 local itemObjList = {}
+
+local coin = 0
 
 function ItemMgr:Init()
     print("ItemMgr:Init")
@@ -175,8 +175,24 @@ end
 
 --执行任务反馈
 function ItemMgr:GetTaskFeedback(_taskItemID)
-    this.taskItemList[_taskItemID]:GetTaskReward()
+    local item = this.taskItemList[_taskItemID]
     this:RemoveItem(_taskItemID)
+    item:GetTaskReward()
+end
+
+--获得金币
+function ItemMgr:GetCoin(_num)
+    if _num and _num > 0 then
+        coin = coin + _num
+        localPlayer.Local.CoinGui.CoinNum.Text = "金币：" .. coin
+        localPlayer.Local.CoinGui.Info.Text = "获得" .. coin .. "金币"
+        invoke(
+            function()
+                localPlayer.Local.CoinGui.Info.Text = ""
+            end,
+            1
+        )
+    end
 end
 
 function ItemMgr:Update(dt, tt)
