@@ -1258,6 +1258,111 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    TaskItem_NpcText_5028 = {
+        ID = 'TaskItem_NpcText_5028',
+        CHS = '这是从UFO下面捡到的碎片吗？可能飞碟是出了什么事故才停在这里的。这个碎片很有研究价值，谢谢你拿给我看！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5022 = {
+        ID = 'Item_Name_5022',
+        CHS = '药草',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5022 = {
+        ID = 'Item_Des_5022',
+        CHS = '药草，可以换成钱，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5023 = {
+        ID = 'Item_Name_5023',
+        CHS = '蜻蜓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5023 = {
+        ID = 'Item_Des_5023',
+        CHS = '蜻蜓，可以换成钱，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5024 = {
+        ID = 'Item_Name_5024',
+        CHS = '光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5024 = {
+        ID = 'Item_Des_5024',
+        CHS = '光剑，可以当武器，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5025 = {
+        ID = 'Item_Name_5025',
+        CHS = '变大器',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5025 = {
+        ID = 'Item_Des_5025',
+        CHS = '使用可以变大，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5026 = {
+        ID = 'Item_Name_5026',
+        CHS = '花种',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5026 = {
+        ID = 'Item_Des_5026',
+        CHS = '可以用来种花，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5027 = {
+        ID = 'Item_Name_5027',
+        CHS = '松果',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5027 = {
+        ID = 'Item_Des_5027',
+        CHS = '松果，可以换成钱，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_5028 = {
+        ID = 'Item_Name_5028',
+        CHS = '金属碎片',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5028 = {
+        ID = 'Item_Des_5028',
+        CHS = '疑似UFO掉落的碎片，拿给Learze看看吧。',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 

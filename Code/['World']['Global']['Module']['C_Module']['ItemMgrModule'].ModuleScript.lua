@@ -30,9 +30,23 @@ function ItemMgr:DataInit()
     this.taskItemList = {}
     invoke(
         function()
-            ItemMgr:CreateItemObj(5001, Vector3(-83.8917, -5.5198, -15.8766))
-
-            --this:Get5(5001)
+			this:Get5(5001)
+			
+            ItemMgr:CreateItemObj(5022, Vector3(-39.4065, -11.6012, -0.4372))
+			ItemMgr:CreateItemObj(5023, Vector3(-20.9087, -14.2145, -1.6095))
+			ItemMgr:CreateItemObj(5022, Vector3(-103.577, -9.1927, 2.7578))
+			ItemMgr:CreateItemObj(5022, Vector3(-86.3498, -9.1927, -11.2409))
+			ItemMgr:CreateItemObj(5017, Vector3(-84.8463, -9.4947, 0.2409))
+			ItemMgr:CreateItemObj(5017, Vector3(-60.9962, -13.4307, 27.1079))
+			ItemMgr:CreateItemObj(5024, Vector3(-83.8917, -5.5198, -15.8766))
+			ItemMgr:CreateItemObj(5018, Vector3(31.6175, -12.8839, 127.295))
+			ItemMgr:CreateItemObj(5025, Vector3(106.888, -10.4713, 0.1005))
+			ItemMgr:CreateItemObj(5026, Vector3(-150.064, -13.1113, 69.8964))
+			ItemMgr:CreateItemObj(5027, Vector3(-158.677, -1.1168, 53.8572))
+			ItemMgr:CreateItemObj(5027, Vector3(-158.677, -3.0511, 116.602))
+			ItemMgr:CreateItemObj(5026, Vector3(-83.8917, -5.5198, -15.8766))
+			ItemMgr:CreateItemObj(5028, Vector3(40.8512, -11.2896, 28.5415))
+			ItemMgr:CreateItemObj(5019, Vector3(-62.5168, -6.5986, -59.9787))
         end
     )
 end

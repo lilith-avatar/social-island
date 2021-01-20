@@ -152,6 +152,55 @@ local TaskItemXls = {
         RewardItem = nil,
         RewardGold = nil,
         NpcText = nil
+    },
+    [5022] = {
+        ItemID = 5022,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = nil
+    },
+    [5023] = {
+        ItemID = 5023,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = nil
+    },
+    [5024] = {
+        ItemID = 5024,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = nil
+    },
+    [5025] = {
+        ItemID = 5025,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = nil
+    },
+    [5026] = {
+        ItemID = 5026,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = nil
+    },
+    [5027] = {
+        ItemID = 5027,
+        Npc = nil,
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = nil
+    },
+    [5028] = {
+        ItemID = 5028,
+        Npc = {1},
+        RewardItem = nil,
+        RewardGold = nil,
+        NpcText = 'TaskItem_NpcText_5028'
     }
 }
 

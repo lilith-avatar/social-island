@@ -231,6 +231,69 @@ local ItemXls = {
         UseSoundID = 0,
         UseAnimName = ''
     },
+    [5022] = {
+        ItemID = 5022,
+        Name = 'Item_Name_5022',
+        Des = 'Item_Des_5022',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [5023] = {
+        ItemID = 5023,
+        Name = 'Item_Name_5023',
+        Des = 'Item_Des_5023',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [5024] = {
+        ItemID = 5024,
+        Name = 'Item_Name_5024',
+        Des = 'Item_Des_5024',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [5025] = {
+        ItemID = 5025,
+        Name = 'Item_Name_5025',
+        Des = 'Item_Des_5025',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [5026] = {
+        ItemID = 5026,
+        Name = 'Item_Name_5026',
+        Des = 'Item_Des_5026',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [5027] = {
+        ItemID = 5027,
+        Name = 'Item_Name_5027',
+        Des = 'Item_Des_5027',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [5028] = {
+        ItemID = 5028,
+        Name = 'Item_Name_5028',
+        Des = 'Item_Des_5028',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
     [6001] = {
         ItemID = 6001,
         Name = 'Item_Name_6001',
