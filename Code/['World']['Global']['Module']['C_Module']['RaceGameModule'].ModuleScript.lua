@@ -15,7 +15,6 @@ end
 local withPet = true
 local totalResetTime = 0
 function RaceGame:PetCheck(_dt, _tt)
-	print(Config.RacePoint[3][1].Pos)
 	if withPet == true then
 		totalResetTime = totalResetTime + _dt
 		if totalResetTime > (60 * 0.75) then
