@@ -43,6 +43,7 @@ end
 function TaskItem:ContactNPCTask()
     for k, v in pairs(self.config.Npc) do
         GuiNpc:ContactTask(v, self.id, self:GetNPCText())
+		return
     end
 end
 
