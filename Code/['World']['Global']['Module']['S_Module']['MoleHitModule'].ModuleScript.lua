@@ -58,6 +58,7 @@ function MoleHit:DataInit()
     this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
     ---对象池表
     this.molePool = {}
+
 	world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.ClassName == 'PlayerInstance' then

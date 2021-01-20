@@ -89,7 +89,7 @@ function Cannon:CannonFireEventHandler(_force)
     insidePlayer.Rotation = barrel.Rotation
     insidePlayer.Position = insidePlayer.Position + Vector3(0, 0.5, 0)
     insidePlayer.LinearVelocity =
-        (barrel.OutsidePoint.Position - barrel.InsidePoint.Position).Normalized * (15 + 50 * _force)
+        (barrel.OutsidePoint.Position - barrel.InsidePoint.Position).Normalized * (10 + 30 * _force)
     NetUtil.Fire_C('SetMiniGameGuiEvent', insidePlayer, 4, false, false)
     NetUtil.Fire_C('SetCurCamEvent', insidePlayer)
     NetUtil.Fire_C('FsmTriggerEvent', insidePlayer, 'Fly')

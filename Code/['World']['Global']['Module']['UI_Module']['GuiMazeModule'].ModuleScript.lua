@@ -38,7 +38,7 @@ function GuiMaze:InitGui()
     -- GUI root
     guiRoot = localPlayer.Local
     -- GUI info
-    infoGui = guiRoot.InfoGui
+    infoGui = guiRoot.MazeGui
     timerTxt = infoGui.TimerTxt
     -- GUI control
     controlGui = guiRoot.ControlGui
@@ -120,8 +120,8 @@ function EnableMazeGui()
     mainBtn:SetActive(false)
     -- GUI info
     infoGui:SetActive(true)
-    --timerTxt:SetActive(true)
-    --timerTxt.Text = FormatTimeBySec(totalTime)
+    timerTxt:SetActive(true)
+    timerTxt.Text = FormatTimeBySec(totalTime)
 end
 
 -- 关闭迷宫GUI模式
@@ -134,8 +134,8 @@ function DisableMazeGui()
     mainBtn:SetActive(true)
     -- GUI info
     infoGui:SetActive(false)
-    --timerTxt:SetActive(false)
-    --timerTxt.Text = ''
+    timerTxt:SetActive(false)
+    timerTxt.Text = ''
 end
 
 -- 时间格式工具:秒
@@ -153,7 +153,7 @@ function GuiMaze:Update(_dt)
     if not inMaze then
         return
     end
-    --timerTxt.Text = FormatTimeBySec(totalTime - (now() - startTime))
+    timerTxt.Text = FormatTimeBySec(totalTime - (now() - startTime))
 end
 
 --! Event handlers 事件处理
