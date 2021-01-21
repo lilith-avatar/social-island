@@ -136,16 +136,18 @@ function GuiBag:HideBagUI()
 end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
-    this.slotItem[_index] = _itemId
+    this.slotItem[_index].id = _itemId
     -- 更换图片
-    this.slotList[_index].IconImg.Image = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
+    this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
     this.slotList[_index].IconImg.Size = this.slotList[_index].Size
     this.slotList[_index].IconImg:SetActive(_itemId and true or false)
+
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
         this.cdMask[_itemId] = {}
     end
     table.insert(this.cdMask[_itemId], this.slotList[_index].MaskImg)
+
     -- 红点系统前端表现
     -- if this.slotItem[_index].isNew and this.slotItem[_index] then
     --     --消除红点
@@ -158,14 +160,15 @@ function GuiBag:ClickUseBtn(_index)
         return
     end
     local itemId = this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].id
+    this.cdMask[itemId] = { this.slotList[_index].MaskImg }
+    -- 该cd物品进入 cd
+    this.timer[itemId] = 0
     -- TODO: 使用物品
     -- 物品消耗判定
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
         Data.Player.bag[itemId].count = Data.Player.bag[itemId].count - 1
     end
-    -- 该cd物品进入 cd
-    this.timer[itemId] = 0
     -- 重新展示当前页面物品信息
     this:ClickChangePage(this.pageIndex)
     -- 清除选择
@@ -178,7 +181,7 @@ function GuiBag:SelectItem(_index)
         this:ClearSelect()
         this.selectIndex = _index
         -- 进行名字和描述的更换,并高亮该物品
-        this:ChangeNameAndDesc(this.slotItem[_index])
+        this:ChangeNameAndDesc(this.slotItem[_index].id)
         -- TODO: 高亮
         this.slotList[_index].Image = ResourceManager.GetTexture("UI/")
         --开启使用按钮
@@ -204,10 +207,11 @@ function GuiBag:ClearSelect()
 end
 
 function GuiBag:ClickChangePage(_pageIndex)
-    this:ClearSelect()
-    this:ShowItemsByPageIndex(_pageIndex)
     --清除cdmask
     this.cdMask = {}
+    this:ClearSelect()
+    this:ShowItemsByPageIndex(_pageIndex)
+
     --页面数字显示
     this.pageTxt = tostring(math.floor(_pageIndex))
     --如果第一页则不显示上一页按钮
@@ -223,6 +227,7 @@ function GuiBag:ClickChangePage(_pageIndex)
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
     end
+    table.dump(print(this.cdMask))
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
@@ -235,6 +240,9 @@ function GuiBag:ShowItemsByPageIndex(_pageIndex)
         if this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i] then
             -- 显示当前页面物品
             this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+        else
+            this.slotList[i].MaskImg.FillAmount = 0
+            this.slotList[i].IconImg:SetActive(false)
         end
     end
 end
@@ -250,15 +258,16 @@ end
 ---计时器进行冷却计时
 function GuiBag:Update(dt)
     for k, v in pairs(this.timer) do
-        v = v + dt
-        -- CD表现
-        for _, n in pairs(this.cdMask[k]) do
-            n.FillAmount = v / Config.Item[k].UseCD
+        this.timer[k] = this.timer[k] + dt
+        if this.cdMask[k] then
+            -- CD表现
+            for _, n in pairs(this.cdMask[k]) do
+                n.FillAmount = 1 - this.timer[k] / Config.Item[k].UseCD
+            end
         end
-        if v >= Config.Item[k].UseCD then
+        if this.timer[k] >= Config.Item[k].UseCD then
             this.timer[k] = nil
         end
     end
 end
-
 return GuiBag
