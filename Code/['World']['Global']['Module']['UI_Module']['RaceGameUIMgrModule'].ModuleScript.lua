@@ -76,14 +76,9 @@ local radm = 0
 function RaceGameUIMgr:GetCheckPoint(_nowScore, _totalPointNum)
     ---拿完成度做点什么事情
     this.CheckPoint:SetActive(true)
+	
     radm = math.random(0, 100)
-    if radm > 0 and radm < 33 then
-        this.CheckPointText.Text = '牛逼！'
-    elseif radm > 33 and radm < 66 then
-        this.CheckPointText.Text = '太棒了！'
-    else
-        this.CheckPointText.Text = '加油！'
-    end
+    this.CheckPointText.Text = '采集完成'..tostring(_nowScore) .. '/' .. tostring(_totalPointNum)
 
     invoke(
         function()

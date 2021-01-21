@@ -209,8 +209,8 @@ function DataMgr:OnPlayerJoinEventHandler(_player)
 end
 
 -- 玩家离开事件
-function DataMgr:OnPlayerLeaveEventHandler(_player)
-    local uid = _player.UserId
+function DataMgr:OnPlayerLeaveEventHandler(_player, _uid)
+    local uid = _uid
     print(string.format('[DataMgr] OnPlayerLeaveEvent 玩家离开 name = %s, uid = %s', _player.Name, uid))
     SaveGameDataAsync(uid)
 end
