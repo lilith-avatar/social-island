@@ -63,6 +63,9 @@ end
 
 -- 创建NPC的宠物
 function SpawnMonster(_npcObj, _npcInfo)
+	if world.NPCMonster == nil then
+        world:CreateObject('FolderObject', 'NPCMonster', world)
+    end
     -- TODO: 这里是根据表判断这个NPC是否是可战斗的NPC
     if true then
         invoke(
@@ -76,7 +79,7 @@ function SpawnMonster(_npcObj, _npcInfo)
                     world:CreateInstance(
                     'Monster',
                     'Monster' .. _npcInfo.Name,
-                    world,
+                    world.NPCMonster,
                     _npcObj.Position - _npcObj.Forward * 2
                 )
                 MoveMonster(_npcObj, monsterVal.Value)

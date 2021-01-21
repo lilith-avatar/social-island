@@ -11,6 +11,7 @@ function MonsterBattle:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
+	localPlayer.Local.ControlGui.Menu.PetBtn:SetActive(false)
 end
 
 --节点引用
@@ -34,6 +35,7 @@ function MonsterBattle:DataInit()
     world:CreateObject('IntValueObject', 'AttackVal', localPlayer)
     world:CreateObject('ObjRefValueObject', 'MonsterVal', localPlayer)
     world:CreateObject('IntValueObject', 'BattleVal', localPlayer)
+	this.canFollow = true
 end
 
 --节点事件绑定
@@ -128,6 +130,9 @@ function MonsterBattle:OnPlayerJoinEventHandler()
     this:LoadData()
     wait(2)
     --this:GetNewMonster()
+	this.MonsterGUI:SetActive(true)
+	localPlayer.Local.ControlGui.Menu.PetBtn:SetActive(true)
+	
     invoke(
         function()
             this:MonsterFollow()
@@ -174,7 +179,7 @@ end
 function MonsterBattle:MonsterFollow()
     while true do
         wait(0.1)
-        if RealMonster ~= nil then
+        if RealMonster ~= nil and this.canFollow then
             --[[
 			local _ry = Vector3.Angle(Vector3(0,0,1),localPlayer.Position-RealMonster.Position)
 			if localPlayer.Position.x - RealMonster.Position.x >= 0 then
@@ -394,8 +399,39 @@ function MonsterBattle:HealthChange()
     end
 end
 
-function MonsterBattle:FlashMove()
-    RealMonster.Position = localPlayer.Position - localPlayer.Forward * 2
+function MonsterBattle:MonsterScanEventHandler(_pos,_euler,_time)
+	print('[Monster]'..'开始扫描')
+	invoke(function()
+		this.canFollow = false
+		this:FlashMove(_pos)
+		RealMonster.Rotation = _euler
+		wait(0.2)
+		RealMonster.Cube.FX1:SetActive(true)
+		local Tweener =
+            Tween:TweenProperty(
+            RealMonster,
+            {Rotation = _euler - EulerDegree(0,180,0)},
+            _time,
+            Enum.EaseCurve.Linear
+        )
+        Tweener:Play()
+		wait(_time)
+		RealMonster.Cube.FX1:SetActive(false)
+		this.canFollow = true
+	end)
+	--EulerDegree
+end
+
+function MonsterBattle:TestScan()
+	NetUtil.Fire_C('MonsterScanEvent',localPlayer,localPlayer.Position+Vector3(3,0,0),EulerDegree(0,0,0),5)
+end
+
+function MonsterBattle:FlashMove(_pos)
+	if _pos == nil then
+		RealMonster.Position = localPlayer.Position - localPlayer.Forward * 2
+	else
+		RealMonster.Position = _pos
+	end
 end
 
 --以下为数据交互函数
