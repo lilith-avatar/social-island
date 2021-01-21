@@ -15,14 +15,17 @@ end
 local withPet = true
 local totalResetTime = 0
 function RaceGame:PetCheck(_dt, _tt)
-	if withPet == true then
+	if localPlayer.MonsterVal and localPlayer.MonsterVal.Value ~= nil then
+		withPet = true
 		totalResetTime = totalResetTime + _dt
-		if totalResetTime > (60 * 0.75) then
+		if totalResetTime > (60 * 0.02) then
 			totalResetTime = 0
 			this:RandomKey()
 			this:FreshStartPoint()
 			---重置的其他表现
 		end
+	else
+		withPet = false
     end
 end
 
@@ -100,6 +103,7 @@ end
 function RaceGame:GameStart()
     this.startUpdate = true
     RaceGameUIMgr:Show()
+	MonsterBattle:MonsterScanEventHandler(this.startPoint.Cube.Position,EulerDegree(0,0,0),3)
 	this.startPoint.Position = Vector3(0,-1000,0)
 	this.checkPoint.Position = Config.RacePoint[nowKey][2].Pos
 	this:FaceToNextPoint()
@@ -125,6 +129,8 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
     if _hitObject == localPlayer and withPet then
 		--todo：获得一个移动速度变成0的持续一秒的BUFF
 		--todo：在检查点的位置放一个扫描的宠物动画
+		localPlayer.WalkSpeed = 0
+		MonsterBattle:MonsterScanEventHandler(this.checkPoint.Cube.Position,EulerDegree(0,0,0),3)
 		this.checkPoint:SetActive(false)
 		this.pointRecord = this.pointRecord + 1
 		
@@ -136,8 +142,9 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
 				this.checkPoint.Position = Config.RacePoint[nowKey][this.pointRecord + 1].Pos
 				this.checkPoint:SetActive(true)
 				this:FaceToNextPoint()
+				localPlayer.WalkSpeed = 6
 			end
-		end,1)
+		end,3)
 		
 	elseif _hitObject == localPlayer then
 		---弹报错说需要带上宠物
