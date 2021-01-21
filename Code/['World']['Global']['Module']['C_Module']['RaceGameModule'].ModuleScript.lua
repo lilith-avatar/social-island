@@ -40,8 +40,6 @@ end
 
 ---刷新起始点
 function RaceGame:FreshStartPoint()
-	print(this.startPoint.Position)
-	print(Config.RacePoint)print(Config.RacePoint[nowKey][1])print(Config.RacePoint[nowKey][1].Pos)
 	this.startPoint.Position = Config.RacePoint[nowKey][1].Pos
 end
 
@@ -117,6 +115,7 @@ function RaceGame:GameOver()
     else
         RaceGameUIMgr:ShowGameOver('lose')
     end
+	this:RandomKey()
     NetUtil.Fire_S('RaceGameOverEvent', localPlayer, this.timer, rewardRate)
 	this.checkPoint.Position = Vector3(0,-1100,0)
 end
