@@ -49,7 +49,6 @@ end
 ---刷新现在挑战的序列
 function RaceGame:RandomKey()
     nowKey = math.random(1, #Config.RacePoint)
-	print('现在的跑步序列是'..nowKey)
 end
 
 ---数据初始化
@@ -117,16 +116,12 @@ function RaceGame:GameOver()
     rewardRate = this.pointRecord / this.pointNum
     if rewardRate == 1 then
         RaceGameUIMgr:ShowGameOver('win')
-		--发奖励的临时代码
-		itemId = 5012 + math.random(1,4)
-		NetUtil.Fire_C('GetCoinEvent', localPlayer, 20,itemId)
     else
         RaceGameUIMgr:ShowGameOver('lose')
     end
 	this:RandomKey()
     NetUtil.Fire_S('RaceGameOverEvent', localPlayer, this.timer, rewardRate)
 	this.checkPoint.Position = Vector3(0,-1100,0)
-	
 end
 
 ---碰到检查点之后的逻辑
@@ -135,7 +130,8 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
 		--todo：获得一个移动速度变成0的持续一秒的BUFF
 		--todo：在检查点的位置放一个扫描的宠物动画
 		localPlayer.WalkSpeed = 0
-		MonsterBattle:MonsterScanEventHandler(this.checkPoint.Cube.Position,EulerDegree(0,0,0),3)
+		NetUtil.Fire_C("MonsterScanEvent",localPlayer,this.checkPoint.Cube.Position,EulerDegree(0,0,0),3)
+		--MonsterBattle:MonsterScanEventHandler(this.checkPoint.Cube.Position,EulerDegree(0,0,0),3)
 		this.checkPoint:SetActive(false)
 		this.pointRecord = this.pointRecord + 1
 		
