@@ -49,6 +49,7 @@ end
 ---刷新现在挑战的序列
 function RaceGame:RandomKey()
     nowKey = math.random(1, #Config.RacePoint)
+	print('现在的跑步序列是'..nowKey)
 end
 
 ---数据初始化
@@ -116,12 +117,16 @@ function RaceGame:GameOver()
     rewardRate = this.pointRecord / this.pointNum
     if rewardRate == 1 then
         RaceGameUIMgr:ShowGameOver('win')
+		--发奖励的临时代码
+		itemId = 5012 + math.random(1,4)
+		NetUtil.Fire_C('GetCoinEvent', localPlayer, 20,itemId)
     else
         RaceGameUIMgr:ShowGameOver('lose')
     end
 	this:RandomKey()
     NetUtil.Fire_S('RaceGameOverEvent', localPlayer, this.timer, rewardRate)
 	this.checkPoint.Position = Vector3(0,-1100,0)
+	
 end
 
 ---碰到检查点之后的逻辑

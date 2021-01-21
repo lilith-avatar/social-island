@@ -122,9 +122,11 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
         function(_hitObject)
             if _hitObject and tempData.state ~= animalActState.DEADED then
                 if _hitObject.Name == "Arrow" then
+                    ItemPool:CreateItemObj(5006, _hitObject.Position)
                     _hitObject:Destroy()
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
                     this:AreaSpawnCtrl()
+					
                 end
             end
         end
@@ -251,6 +253,7 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
         _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
     elseif _animalData.state == animalActState.DEADED then
+		
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
 		_animalData.obj.RotationController.Intensity = 0
 		_animalData.obj.LinearVelocityController.Intensity = 0
@@ -265,6 +268,7 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
                 true,
                 1
             )
+		
         end
         invoke(
             function()

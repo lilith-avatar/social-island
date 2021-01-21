@@ -2,7 +2,7 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local GuiBag, this = ModuleUtil.New("GuiBag", ClientBase)
-local Config = Config
+local Config = Config.Item
 
 local transTab, tmp
 ---对背包后端数据传过来的表进行转换
@@ -189,7 +189,7 @@ end
 function GuiBag:ClearSelect()
     if this.selectIndex then
         -- TODO: 清除高亮
-        this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("UI/")
+        this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("UI/Btn_Left")
         this.selectIndex = nil
         --清除描述
         this.nameTxt.Text = " "
