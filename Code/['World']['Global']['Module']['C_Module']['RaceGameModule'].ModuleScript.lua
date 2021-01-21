@@ -17,7 +17,7 @@ local totalResetTime = 0
 function RaceGame:PetCheck(_dt, _tt)
 	if withPet == true then
 		totalResetTime = totalResetTime + _dt
-		if totalResetTime > (60 * 0.02) then
+		if totalResetTime > (60 * 0.75) then
 			totalResetTime = 0
 			this:RandomKey()
 			this:FreshStartPoint()
@@ -98,7 +98,6 @@ end
 
 ---游戏开始
 function RaceGame:GameStart()
-    --Todo:面朝第一个点
     this.startUpdate = true
     RaceGameUIMgr:Show()
 	this.startPoint.Position = Vector3(0,-1000,0)
