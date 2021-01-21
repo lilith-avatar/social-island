@@ -1,18 +1,18 @@
 -- @module  MonsterBattle
 -- @copyright Lilith Games, Avatar Team
 -- @author Lin
-local SPlantFlower, this = ModuleUtil.New('SPlantFlower', ServerBase)
+local PlantFlowerMgr, this = ModuleUtil.New('PlantFlowerMgr', ServerBase)
 
 ---初始化函数
-function SPlantFlower:Init()
-    print('[SPlantFlower] Init()')
+function PlantFlowerMgr:Init()
+    print('[PlantFlowerMgr] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
 end
 
 --节点引用
-function SPlantFlower:NodeRef()
+function PlantFlowerMgr:NodeRef()
     this.Nodes = {}
     for i = 1, 8, 1 do
         table.insert(this.Nodes, world.FlowerLand['Node' .. i])
@@ -21,7 +21,7 @@ function SPlantFlower:NodeRef()
 end
 
 --数据变量声明
-function SPlantFlower:DataInit()
+function PlantFlowerMgr:DataInit()
     if this.realFlower == nil then
         this.realFlower = {}
     end
@@ -34,11 +34,11 @@ function SPlantFlower:DataInit()
         Vector3(6, 0, 0),
         Vector3(7, 0, 0)
     }
-    print('[SPlantFlower]', table.dump(this.Points))
+    print('[PlantFlowerMgr]', table.dump(this.Points))
 end
 
 --节点事件绑定
-function SPlantFlower:EventBind()
+function PlantFlowerMgr:EventBind()
     world.OnPlayerRemoved:Connect(
         function(player)
             OnPlayerDisconnect(player)
@@ -54,7 +54,7 @@ function OnPlayerDisconnect(player)
             table.insert(_subRealFlower, v)
         end
     end
-    --print('[SPlantFlower] OnPlayerDisconnect', table.dump(_subRealFlower))
+    --print('[PlantFlowerMgr] OnPlayerDisconnect', table.dump(_subRealFlower))
     for k, v in ipairs(_subRealFlower) do
 		--print(v.Obj)
         v.Obj:Destroy()
@@ -62,13 +62,13 @@ function OnPlayerDisconnect(player)
     end
 end
 
-function SPlantFlower:PlantFlowerEventHandler(_player, _data)
+function PlantFlowerMgr:PlantFlowerEventHandler(_player, _data)
     table.insert(this.realFlower, _data)
     --SetCombine()
 end
 
-function SPlantFlower:SetCombine()
-    print('[SPlantFlower] SetCombine()', #this.realFlower)
+function PlantFlowerMgr:SetCombine()
+    print('[PlantFlowerMgr] SetCombine()', #this.realFlower)
     --local _all = #this.realFlower
     for k, v in ipairs(this.realFlower) do
         --print(k..'--------------------------------------')
@@ -82,4 +82,4 @@ function SPlantFlower:SetCombine()
     end
 end
 
-return SPlantFlower
+return PlantFlowerMgr

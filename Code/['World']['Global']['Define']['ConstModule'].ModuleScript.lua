@@ -25,4 +25,13 @@ Const.MazeEventEnum = {
     QUIT = 3 -- 中途退出
 }
 
+Const.MonsterEnum = {
+	NEWROUND = 1,
+	SKILLTIME = 2,
+	SHOWSKILL = 3, 
+	BEHIT = 4,
+	OVER = 5,
+	NPCBEHIT = 6
+}
+
 return Const

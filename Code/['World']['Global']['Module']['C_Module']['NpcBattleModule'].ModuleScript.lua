@@ -38,16 +38,16 @@ function NpcBattle:ReadyBattleEventHandler(_currObj)
 end
 
 function NpcBattle:MBattleEventHandler(_enum, _arg1, _arg2)
-    if _enum == 'ShowSkill' then
+    if _enum == Const.MonsterEnum.SHOWSKILL then
         local _skillTxt = {'石头', '剪刀', '布'}
         if currNpcObj.BattleVal.Value == -1 then --如果没有决定，则随机一个
             math.randomseed(os.time() - 0.1)
             currNpcObj.BattleVal.Value = math.random(1, 3)
         end
         this.HealthGUI.SkillText.Text = _skillTxt[currNpcObj.BattleVal.Value]
-    elseif _enum == 'NewRound' then
+    elseif _enum == Const.MonsterEnum.NEWROUND then
         currNpcObj.BattleVal.Value = -1
-    elseif _enum == 'NPCBeHit' then
+    elseif _enum == Const.MonsterEnum.NPCBEHIT then
         invoke(
             function()
                 currNpcObj.HealthVal.Value = math.max(0, currNpcObj.HealthVal.Value - _arg1)
@@ -71,7 +71,7 @@ function NpcBattle:MBattleEventHandler(_enum, _arg1, _arg2)
                 this.HealthGUI.HitText.Text = ''
             end
         )
-    elseif _enum == 'Over' then
+    elseif _enum == Const.MonsterEnum.OVER then
         this.HealthGUI:SetActive(false)
     end
 end

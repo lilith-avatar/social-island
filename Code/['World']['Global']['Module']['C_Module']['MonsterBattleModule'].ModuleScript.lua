@@ -126,10 +126,8 @@ function MonsterBattle:EventBind()
 end
 
 function MonsterBattle:OnPlayerJoinEventHandler()
-    --print('111111111111111111111111111111')
     this:LoadData()
-    wait(2)
-    --this:GetNewMonster()
+    wait(1)
 	this.MonsterGUI:SetActive(true)
 	localPlayer.Local.ControlGui.Menu.PetBtn:SetActive(true)
 	
@@ -140,8 +138,37 @@ function MonsterBattle:OnPlayerJoinEventHandler()
     )
     this:ShowMonster()
     world:CreateObject('StringValueObject', 'EnemyVal', localPlayer)
+	MonsterUpDown()
+end
 
-    invoke(
+function MonsterBattle:Update(dt, tt)
+    --world.Monster.PositionController.TargetPosition = localPlayer.Position + Vector3(0,2,0) - localPlayer.Forward
+end
+
+--宠物跟随
+function MonsterBattle:MonsterFollow()
+    while true do
+        wait(0.1)
+        if RealMonster ~= nil and this.canFollow then
+            if (RealMonster.Position - localPlayer.Position).Magnitude > 2 then
+                RealMonster.LinearVelocity =
+                    (localPlayer.Position - RealMonster.Position).Normalized * 6 *
+                    (RealMonster.Position - localPlayer.Position).Magnitude /
+                    3
+            else
+                RealMonster.LinearVelocity = Vector3.Zero
+            end
+            RealMonster.Cube:LookAt(localPlayer, Vector3.Up)
+            if (RealMonster.Position - localPlayer.Position).Magnitude > 10 then
+                this:FlashMove()
+            end
+        end
+    end
+end
+
+--宠物晃动
+function MonsterUpDown()
+	invoke(
         function()
             local _moveTime = 2
             while true do
@@ -169,56 +196,6 @@ function MonsterBattle:OnPlayerJoinEventHandler()
             end
         end
     )
-end
-
-function MonsterBattle:Update(dt, tt)
-    --world.Monster.PositionController.TargetPosition = localPlayer.Position + Vector3(0,2,0) - localPlayer.Forward
-end
-
---宠物跟随
-function MonsterBattle:MonsterFollow()
-    while true do
-        wait(0.1)
-        if RealMonster ~= nil and this.canFollow then
-            --[[
-			local _ry = Vector3.Angle(Vector3(0,0,1),localPlayer.Position-RealMonster.Position)
-			if localPlayer.Position.x - RealMonster.Position.x >= 0 then
-				RealMonster.Rotation = EulerDegree(0,_ry,0) 
-			else
-				RealMonster.Rotation = EulerDegree(0,360 -_ry ,0) 
-			end
-			if (RealMonster.Position - localPlayer.Position).Magnitude > 2 then
-				local forwardx = RealMonster.Position.x - localPlayer.Position.x
-				local forwardz = RealMonster.Position.z - localPlayer.Position.z
-				local forward = Vector2(-forwardx,-forwardz)
-				RealMonster:MoveTowards(forward)
-			else 
-				RealMonster:MoveTowards(Vector2.Zero)
-			end
-			RealMonster:LookAt(localPlayer, Vector3.Up)
-			RealMonster.PositionController.TargetPosition = localPlayer.Position + Vector3(0,2,0) - localPlayer.Forward
-			
-			local _ry = Vector3.Angle(Vector3(0,0,1),localPlayer.Position-RealMonster.Position)
-			if localPlayer.Position.x - RealMonster.Position.x >= 0 then
-				RealMonster.Rotation = EulerDegree(0,_ry,0) 
-			else
-				RealMonster.Rotation = EulerDegree(0,360 -_ry ,0) 
-			end
-			--]]
-            if (RealMonster.Position - localPlayer.Position).Magnitude > 2 then
-                RealMonster.LinearVelocity =
-                    (localPlayer.Position - RealMonster.Position).Normalized * 6 *
-                    (RealMonster.Position - localPlayer.Position).Magnitude /
-                    3
-            else
-                RealMonster.LinearVelocity = Vector3.Zero
-            end
-            RealMonster.Cube:LookAt(localPlayer, Vector3.Up)
-            if (RealMonster.Position - localPlayer.Position).Magnitude > 10 then
-                this:FlashMove()
-            end
-        end
-    end
 end
 
 --获取新的宠物
@@ -340,21 +317,21 @@ function MonsterBattle:ReadyBattleEventHandler()
 end
 
 function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
-    if _enum == 'SkllTime' then
+    if _enum == Const.MonsterEnum.SKILLTIME then
         this.BattlePanel.TimeText.Text = _arg1
-    elseif _enum == 'ShowSkill' then
+    elseif _enum == Const.MonsterEnum.SHOWSKILL then
         local _skillTxt = {'石头', '剪刀', '布'}
         if localPlayer.BattleVal.Value == -1 then --如果没有决定，则随机一个
             math.randomseed(os.time() + Timer.GetTimeMillisecond())
             localPlayer.BattleVal.Value = math.random(1, 3)
         end
         this.HealthGUI.SkillText.Text = _skillTxt[localPlayer.BattleVal.Value]
-    elseif _enum == 'NewRound' then
+    elseif _enum == Const.MonsterEnum.NEWROUND then
         localPlayer.BattleVal.Value = -1
 		this.BattlePanel.Button1.Color = this.Color_White
 		this.BattlePanel.Button2.Color = this.Color_White
 		this.BattlePanel.Button3.Color = this.Color_White
-    elseif _enum == 'BeHit' then
+    elseif _enum == Const.MonsterEnum.BEHIT then
         invoke(
             function()
                 localPlayer.HealthVal.Value = math.max(0, localPlayer.HealthVal.Value - _arg1)
@@ -373,7 +350,7 @@ function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
                 this.HealthGUI.HitText.Text = ''
             end
         )
-    elseif _enum == 'Over' then
+    elseif _enum == Const.MonsterEnum.OVER then
         this.MainPanel:SetActive(false)
         this.BattlePanel:SetActive(false)
         this.HealthGUI:SetActive(false)
@@ -403,6 +380,7 @@ function MonsterBattle:MonsterScanEventHandler(_pos,_euler,_time)
 	print('[Monster]'..'开始扫描')
 	invoke(function()
 		this.canFollow = false
+		RealMonster.LinearVelocity = Vector3.Zero
 		this:FlashMove(_pos)
 		RealMonster.Rotation = _euler
 		wait(0.2)
