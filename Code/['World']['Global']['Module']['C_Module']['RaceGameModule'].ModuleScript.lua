@@ -17,7 +17,7 @@ local totalResetTime = 0
 function RaceGame:PetCheck(_dt, _tt)
 	if withPet == true then
 		totalResetTime = totalResetTime + _dt
-		if totalResetTime > (60 * 0.75) then
+		if totalResetTime > (60 * 0.02) then
 			totalResetTime = 0
 			this:RandomKey()
 			this:FreshStartPoint()
@@ -103,6 +103,7 @@ function RaceGame:GameStart()
     RaceGameUIMgr:Show()
 	this.startPoint.Position = Vector3(0,-1000,0)
 	this.checkPoint.Position = Config.RacePoint[nowKey][2].Pos
+	this:FaceToNextPoint()
 end
 
 ---游戏结束
@@ -135,12 +136,19 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
 				RaceGameUIMgr:GetCheckPoint(this.pointRecord, this.pointNum)
 				this.checkPoint.Position = Config.RacePoint[nowKey][this.pointRecord + 1].Pos
 				this.checkPoint:SetActive(true)
+				this:FaceToNextPoint()
 			end
 		end,1)
 		
 	elseif _hitObject == localPlayer then
 		---弹报错说需要带上宠物
     end
+end
+
+---玩家转向下一个点
+function RaceGame:FaceToNextPoint()
+	local nowDir = this.checkPoint.Position - localPlayer.Position
+	localPlayer:FaceToDir(nowDir, math.pi*3)
 end
 
 ---游戏计时器逻辑
