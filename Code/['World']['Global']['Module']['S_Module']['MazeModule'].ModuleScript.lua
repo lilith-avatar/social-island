@@ -655,6 +655,8 @@ function PlayerReachExit(_hitObj)
             playerData.score,
             playerData.time
         )
+		---发奖励的临时代码
+		NetUtil.Fire_C('GetCoinEvent', playerData.player, 20,5017)
         playerData = nil
     end
     TimeUtil.ClearTimeout(timer)

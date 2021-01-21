@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemConfig.xlsx
+--- source file: .//Item.xlsm
 
 local BuffXls = {
     [1] = {

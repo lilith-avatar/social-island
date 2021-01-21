@@ -1,17 +1,19 @@
 ---@module ChairMgr
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local ChairMgr, this = ModuleUtil.New('ChairMgr', ServerBase)
+local ChairMgr, this = ModuleUtil.New("ChairMgr", ServerBase)
 local dir = {
-    forward = 'Forward',
-    left = 'Left',
-    right = 'Right',
-    back = 'Back'
+    forward = "Forward",
+    left = "Left",
+    right = "Right",
+    back = "Back"
 }
+
+local playerChair = {}
 
 ---初始化函数
 function ChairMgr:Init()
-    print('[ChairMgr] Init()')
+    print("[ChairMgr] Init()")
     this:DataInit()
     this:ChairCreate()
 end
@@ -38,23 +40,35 @@ function ChairMgr:ChairCreate()
             model = world:CreateInstance(
                 v.Archetype,
                 k,
-                world.MiniGames.Game_10_Chair[v.Type .. 'Chair'],
+                world.MiniGames.Game_10_Chair[v.Type .. "Chair"],
                 v.Position,
                 v.Rotation
             ),
             isSeat = false
         }
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionBegin:Connect(
-            function(_hitObject)
+            --[[function(_hitObject)
                 if _hitObject.ClassName == 'PlayerInstance' and not this.chairSitter[k] and _hitObject then
+                    NetUtil.Fire_C('ShowSitBtnEvent', _hitObject, v.Type, v.ID)
+                end
+            end]]
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 10)
                     NetUtil.Fire_C('ShowSitBtnEvent', _hitObject, v.Type, v.ID)
                 end
             end
         )
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionEnd:Connect(
-            function(_hitObject)
+            --[[function(_hitObject)
                 if _hitObject.ClassName == 'PlayerInstance' and not this.chairSitter[k] and _hitObject then
                     NetUtil.Fire_C('HideSitBtnEvent', _hitObject)
+                end
+            end]]
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
+                    NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
+                    playerChair[_hitObject.UserId] = nil
                 end
             end
         )
@@ -69,7 +83,7 @@ function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
     this.ChairList[_type][_chairId].model.Seat:SetActive(true)
     player.Position = this.ChairList[_type][_chairId].model.Seat.Position
     NetUtil.Fire_C(
-        'PlayerSitEvent',
+        "PlayerSitEvent",
         player,
         _type,
         _chairId,

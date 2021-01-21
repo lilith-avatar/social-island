@@ -38,7 +38,7 @@ function GuiMaze:InitGui()
     -- GUI root
     guiRoot = localPlayer.Local
     -- GUI info
-    infoGui = guiRoot.InfoGui
+    infoGui = guiRoot.MazeGui
     timerTxt = infoGui.TimerTxt
     -- GUI control
     controlGui = guiRoot.ControlGui
