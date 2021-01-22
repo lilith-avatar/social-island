@@ -6,17 +6,20 @@ local DataScheme = {}
 
 -- 全局变量定义
 DataScheme.Global = {
-    a = 'A',
-    b = 'B',
-    c = {'C1', 'C2', 'C3'},
+    a = "A",
+    b = "B",
+    c = {"C1", "C2", "C3"},
     d = {
-        d1 = {d11 = 'D11', d12 = 'D12'},
-        d2 = 'D2'
+        d1 = {
+            d11 = "D11",
+            d12 = "D12"
+        },
+        d2 = "D2"
     },
-    e = 'E',
+    e = "E",
     [5566] = {
         id = 1,
-        type = '!!!!'
+        type = "!!!!"
     }
 }
 
@@ -24,7 +27,17 @@ DataScheme.Global = {
 DataScheme.Player = {
     -- 玩家属性
     attr = {
-        uid = ''
+        uid = "",
+        AvatarHeight = 1,
+        AvatarHeadSize = 1,
+        AvatarWidth = 1,
+        HeadEffect = {},
+        BodyEffect = {},
+        FootEffect = {},
+        WalkSpeed = 6,
+        JumpUpVelocity = 8,
+        GravityScale = 2,
+        SkinID = 0
     },
     -- 背包
     bag = {

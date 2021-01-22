@@ -158,6 +158,11 @@ function PlayerCtrl:SetPlayerControllableEventHandler(_bool)
     end
 end
 
+-- 角色属性更新
+function PlayerCtrl:PlayerAttrUpdate()
+    
+end
+
 function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()

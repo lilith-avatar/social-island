@@ -8,16 +8,17 @@ local BuffMgr, this = ModuleUtil.New("BuffMgr", ClientBase)
 
 local BuffDataList = {}
 
+local buffDataTable = {}
 local defPlayerData = {
-    AvatarHeadSize_Overlay = 1,
-    AvatarWidth_Overlay = 1,
-    AvatarHeight_Overlay = 1,
-    HeadEffect_Overlay = {},
-    BodyEffect_Overlay = {},
-    FootEffect_Overlay = {},
-    WalkSpeed_Overlay = 6,
-    JumpUpVelocity_Overlay = 8,
-    GravityScale_Overlay = 2
+    AvatarHeadSize = 1,
+    AvatarWidth = 1,
+    AvatarHeight = 1,
+    HeadEffect = {},
+    BodyEffect = {},
+    FootEffect = {},
+    WalkSpeed = 6,
+    JumpUpVelocity = 8,
+    GravityScale = 2
 }
 
 function BuffMgr:Init()
@@ -33,7 +34,13 @@ end
 
 --数据变量声明
 function BuffMgr:DataInit()
-    this:GetBuffEventHandler(1, 10)
+    print(table.dump(Data.Player.attr))
+    invoke(
+        function()
+            this:GetBuffEventHandler(1, 10)
+        end,
+        2
+    )
 end
 
 --节点事件绑定
@@ -50,15 +57,9 @@ function BuffMgr:GetBuffEventHandler(_buffID, _dur)
         }
         this:RemoveCoverBuff(Config.Buff[_buffID].BuffCoverIDList)
     end
-    local coverPlayerData = {}
-    for k, v in pairs(Config.Buff[_buffID]) do
-        if string.find(tostring(k), "_Cover") then ---覆盖
-            coverPlayerData[k] = v
-        end
-    end
+
     --发送覆盖数据和叠加数据
-    print(table.dump(coverPlayerData))
-    print(table.dump(this:GetAllBuffData()))
+    this:GetAllBuffData()
 end
 
 --移除Buff
@@ -81,29 +82,26 @@ end
 
 --获得所有Buff的效果数据
 function BuffMgr:GetAllBuffData()
-    local overlayPlayerData = {}
+    for k, v in pairs(defPlayerData) do
+        buffDataTable[k] = v
+    end
     for buffID, buffData in pairs(BuffDataList) do
         for k, v in pairs(Config.Buff[buffID]) do
-            if string.find(tostring(k), "_Overlay") then ---叠加
-                if overlayPlayerData[k] then ---已存在数据
-                    if type(overlayPlayerData[k]) == "table" then ---表类型
-                        table.insert(overlayPlayerData[k], v)
-                    elseif type(overlayPlayerData[k]) == "number" then ---数值类型
-                        overlayPlayerData[k] = overlayPlayerData[k] * v
-                    end
-                else ---不存在数据
-                    if type(defPlayerData[k]) == "table" then ---表类型
-                        --print(table.dump(overlayPlayerData[k]))
-                        overlayPlayerData[k] = {}
-                        table.insert(overlayPlayerData[k], v)
-                    elseif type(defPlayerData[k]) == "number" then ---数值类型
-                        overlayPlayerData[k] = defPlayerData[k]
-                    end
+            if string.find(tostring(k), "_Overlay") and defPlayerData[string.gsub(k, "_Overlay", "")] then ---叠加
+                if type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "table" then ---表类型
+                    table.insert(buffDataTable[string.gsub(k, "_Overlay", "")], v)
+                elseif type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "number" then ---数值类型
+                    buffDataTable[string.gsub(k, "_Overlay", "")] = buffDataTable[string.gsub(k, "_Overlay", "")] * v
                 end
+            elseif string.find(tostring(k), "_Cover") and defPlayerData[string.gsub(k, "_Cover", "")] then ---覆盖
+                buffDataTable[string.gsub(k, "_Cover", "")] = v
             end
         end
     end
-    return overlayPlayerData
+    for k, v in pairs(buffDataTable) do
+        Data.Player.attr[k] = v
+    end
+    --print(table.dump(buffDataTable))
 end
 
 --按时间消退Buff
