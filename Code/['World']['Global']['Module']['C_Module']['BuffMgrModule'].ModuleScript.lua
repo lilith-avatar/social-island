@@ -18,7 +18,8 @@ local defPlayerData = {
     FootEffect = {},
     WalkSpeed = 6,
     JumpUpVelocity = 8,
-    GravityScale = 2
+    GravityScale = 2,
+    SkinID = 0
 }
 
 function BuffMgr:Init()
@@ -57,9 +58,16 @@ function BuffMgr:GetBuffEventHandler(_buffID, _dur)
         }
         this:RemoveCoverBuff(Config.Buff[_buffID].BuffCoverIDList)
     end
-
-    --发送覆盖数据和叠加数据
+    buffDataTable = table.deepcopy(defPlayerData)
+    for k, v in pairs(Config.Buff[_buffID]) do
+        if string.find(tostring(k), "_Cover") and defPlayerData[string.gsub(k, "_Cover", "")] then ---覆盖
+            buffDataTable[string.gsub(k, "_Cover", "")] = v
+            print(string.gsub(k, "_Cover", ""))
+            print(buffDataTable[string.gsub(k, "_Cover", "")])
+        end
+    end
     this:GetAllBuffData()
+    PlayerCtrl:PlayerAttrUpdate()
 end
 
 --移除Buff
@@ -67,8 +75,9 @@ function BuffMgr:RemoveBuffEventHandler(_buffID)
     if BuffDataList[_buffID] then
         BuffDataList[_buffID] = nil
     end
+    buffDataTable = table.deepcopy(defPlayerData)
     this:GetAllBuffData()
-    --发送叠加数据
+    PlayerCtrl:PlayerAttrUpdate()
 end
 
 --移除互斥Buff
@@ -82,19 +91,15 @@ end
 
 --获得所有Buff的效果数据
 function BuffMgr:GetAllBuffData()
-    for k, v in pairs(defPlayerData) do
-        buffDataTable[k] = v
-    end
     for buffID, buffData in pairs(BuffDataList) do
         for k, v in pairs(Config.Buff[buffID]) do
             if string.find(tostring(k), "_Overlay") and defPlayerData[string.gsub(k, "_Overlay", "")] then ---叠加
                 if type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "table" then ---表类型
+                    print(v, buffID)
                     table.insert(buffDataTable[string.gsub(k, "_Overlay", "")], v)
                 elseif type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "number" then ---数值类型
                     buffDataTable[string.gsub(k, "_Overlay", "")] = buffDataTable[string.gsub(k, "_Overlay", "")] * v
                 end
-            elseif string.find(tostring(k), "_Cover") and defPlayerData[string.gsub(k, "_Cover", "")] then ---覆盖
-                buffDataTable[string.gsub(k, "_Cover", "")] = v
             end
         end
     end
@@ -110,7 +115,8 @@ function BuffMgr:FadeBuffByTime(dt)
         if v.curTime > 0 then
             v.curTime = v.curTime - dt
         elseif v.curTime > -1 then
-            BuffDataList[k] = nil
+            this:RemoveBuffEventHandler(k)
+        --BuffDataList[k] = nil
         end
     end
 end

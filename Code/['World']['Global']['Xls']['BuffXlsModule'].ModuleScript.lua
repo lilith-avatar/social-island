@@ -9,17 +9,17 @@ local BuffXls = {
     [1] = {
         ID = 1,
         BuffCoverIDList = {0},
-        AvatarHeight_Overlay = 1.0,
-        AvatarHeadSize_Overlay = 1.0,
+        AvatarHeight_Overlay = 2.0,
+        AvatarHeadSize_Overlay = 2.0,
         AvatarWidth_Overlay = 1.0,
         HeadEffect_Overlay = 'Fire',
         BodyEffect_Overlay = 'Fire',
         FootEffect_Overlay = 'Fire',
-        WalkSpeed_Overlay = 1.0,
-        JumpUpVelocity_Overlay = 1.0,
+        WalkSpeed_Overlay = 2.0,
+        JumpUpVelocity_Overlay = 2.0,
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 1,
-        AnimState_Cover = 'nil',
+        AnimState_Cover = '',
         EnableEquipable_Cover = true
     }
 }
