@@ -2,8 +2,8 @@ local RunState = class("RunState", PlayerActState)
 
 function RunState:OnEnter()
     PlayerActState.OnEnter(self)
-    localPlayer.Avatar:PlayAnimation("RunFront", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("RunFront", 3, 1, 0.1, true, true, 1)
+    --localPlayer.Avatar:PlayAnimation("RunFront", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("RunFront", 4, 1, 0.1, true, true, 1)
 end
 
 function RunState:OnUpdate(dt)

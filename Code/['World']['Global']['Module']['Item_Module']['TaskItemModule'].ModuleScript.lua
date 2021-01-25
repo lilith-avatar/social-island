@@ -36,20 +36,8 @@ function TaskItem:GetTaskReward()
     if self.config.RewardItem and self.config.RewardItem ~= 0 then
         ItemMgr:GetItem(self.config.RewardItem)
     end
-	ItemMgr:GetCoin(self.config.RewardGold)
-end
-
---触发NPC任务
-function TaskItem:ContactNPCTask()
-    for k, v in pairs(self.config.Npc) do
-        GuiNpc:ContactTask(v, self.id, self:GetNPCText())
-		return
-    end
-end
-
---获取NPC对话文本
-function TaskItem:GetNPCText()
-    return self.config.NpcText
+    ItemMgr:GetCoin(self.config.RewardGold)
+    ItemMgr:RemoveItem(self.id)
 end
 
 --CD消退

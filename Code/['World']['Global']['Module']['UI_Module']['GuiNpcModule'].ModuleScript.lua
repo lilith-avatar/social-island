@@ -103,11 +103,12 @@ function OpenNpcGui()
     portraitImg.Texture = portrait
     portraitImg.Visible = portrait ~= nil
 
-    ItemMgr:CheckTaskItem()
+    taskItemID = ItemMgr:GetTaskItem(currNpcId)
     if taskItemID == 0 then
         dialogTxt.Text = PickARandomDialog()
     else
-        ItemMgr:GetTaskFeedback(taskItemID)
+        dialogTxt.Text = LanguageUtil.GetText(ItemMgr.itemInstance[taskItemID].config.NpcText)
+        ItemMgr.itemInstance[taskItemID]:GetTaskReward()
         taskItemID = 0
     end
 
@@ -157,14 +158,6 @@ function PickARandomDialog()
     local dialog = NpcText[dialogId].Text
     assert(dialogId and dialog, string.format("[GuiNpc] NPC: %s, 不存在DialogId: %s", currNpcId, dialogId))
     return LanguageUtil.GetText(dialog)
-end
-
---- 触发任务
-function GuiNpc:ContactTask(_npcID, _taskItemID, _text)
-    if _npcID == currNpcId then
-        dialogTxt.Text = LanguageUtil.GetText(_text)
-        taskItemID = _taskItemID
-    end
 end
 
 --! Event handlers 事件处理

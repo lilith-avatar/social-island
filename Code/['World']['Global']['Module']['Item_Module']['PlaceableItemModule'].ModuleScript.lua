@@ -8,10 +8,7 @@ function PlaceableItem:initialize(_data)
     ItemBase.initialize(self, _data)
     print("PlaceableItem:initialize()")
     self.isUsable = true
-    self.isEquipable = true
-    self.weaponObj = nil
-    self.config = Config.WeaponItem[self.id]
-    self.attackCT = self.config.AttackCD
+    self.isEquipable = false
 end
 
 --放入背包

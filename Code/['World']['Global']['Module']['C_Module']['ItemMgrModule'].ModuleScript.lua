@@ -6,8 +6,6 @@
 
 local ItemMgr, this = ModuleUtil.New("ItemMgr", ClientBase)
 
-local itemObjList = {}
-
 local coin = 0
 
 function ItemMgr:Init()
@@ -23,21 +21,39 @@ end
 
 --数据变量声明
 function ItemMgr:DataInit()
-    this.weaponList = {}
-    this.usableItemList = {}
-    this.placeableItemList = {}
-    this.rewardItemList = {}
-    this.taskItemList = {}
+    this.itemInstance = {}
+    for k, v in pairs(Config.Item) do
+        this.itemInstance[k] = this:InstantiateItem(k)
+    end
+
+    this.curWeapon = nil
     invoke(
         function()
-			this:Get5(5001)
-			
+            this:InitBagData()
+            wait(.5)
+            this:GetItem(5001)
         end
     )
 end
 
 --节点事件绑定
 function ItemMgr:EventBind()
+end
+
+--初始化背包数据
+function ItemMgr:InitBagData()
+    local tempBagData = {}
+    for k, v in pairs(Config.Item) do
+        tempBagData[k] = {
+            id = k,
+            type = string.sub(tostring(k), 1, 1),
+            count = 0,
+            lastestTime = 0,
+            isNew = true,
+            isCount = true
+        }
+    end
+    Data.Player.bag = tempBagData
 end
 
 --实例化近战武器
@@ -62,8 +78,6 @@ end
 
 --实例化任务型道具
 function ItemMgr:Instantiate5(_id)
-    print("实例化任务型道具", _id)
-    print(table.dump(Config.Item[_id]))
     return TaskItem:new(Config.Item[_id], Config.TaskItem[_id])
 end
 
@@ -74,100 +88,45 @@ end
 
 --实例化物品
 function ItemMgr:InstantiateItem(_id)
-    print("实例化物品", _id)
     return this["Instantiate" .. string.sub(tostring(_id), 1, 1)](self, _id)
-end
-
---获得近战武器
-function ItemMgr:Get1(_id)
-    this.weaponList[_id] = this:InstantiateItem(_id)
-    this.weaponList[_id]:PutIntoBag()
-end
-
---获得远程武器
-function ItemMgr:Get2(_id)
-    this.weaponList[_id] = this:InstantiateItem(_id)
-    this.weaponList[_id]:PutIntoBag()
-end
-
---获得即时使用型道具
-function ItemMgr:Get3(_id)
-    this.usableItemList[_id] = this:InstantiateItem(_id)
-    this.usableItemList[_id]:PutIntoBag()
-end
-
---获得化放置型道具
-function ItemMgr:Get4(_id)
-    this.placeableItemList[_id] = this:InstantiateItem(_id)
-    this.placeableItemList[_id]:PutIntoBag()
-end
-
---获得任务道具
-function ItemMgr:Get5(_id)
-    this.taskItemList[_id] = this:InstantiateItem(_id)
-    this.taskItemList[_id]:PutIntoBag()
-end
-
---移除近战武器
-function ItemMgr:Remove1(_id)
-    this.weaponList[_id]:ThrowOutOfBag()
-    this.weaponList[_id] = nil
-end
-
---移除远程武器
-function ItemMgr:Remove2(_id)
-    this.weaponList[_id]:ThrowOutOfBag()
-    this.weaponList[_id] = nil
-end
-
---移除即时使用型道具
-function ItemMgr:Remove3(_id)
-    this.usableItemList[_id]:ThrowOutOfBag()
-    this.usableItemList[_id] = nil
-end
-
---移除化放置型道具
-function ItemMgr:Remove4(_id)
-    this.placeableItemList[_id]:ThrowOutOfBag()
-    this.placeableItemList[_id] = nil
-end
-
---移除任务道具
-function ItemMgr:Remove5(_id)
-    this.taskItemList[_id]:ThrowOutOfBag()
-    this.taskItemList[_id] = nil
 end
 
 --获得道具
 function ItemMgr:GetItem(_id)
     print("获得道具", _id)
-    this["Get" .. string.sub(tostring(_id), 1, 1)](self, _id)
+    Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
+    this.itemInstance[_id]:PutIntoBag()
+    print(_id, Data.Player.bag[_id].count)
 end
 
 --移除道具
 function ItemMgr:RemoveItem(_id)
     print("移除道具", _id)
-    this["Remove" .. string.sub(tostring(_id), 1, 1)](self, _id)
+    Data.Player.bag[_id].count = Data.Player.bag[_id].count - 1
+    this.itemInstance[_id]:ThrowOutOfBag()
 end
 
---检查是否有满足条件的任务道具
-function ItemMgr:CheckTaskItem()
-    for k, v in pairs(this.taskItemList) do
-        v:ContactNPCTask()
+--获取满足条件的任务道具
+function ItemMgr:GetTaskItem(_npcID)
+    for k1, v1 in pairs(Data.Player.bag) do
+        print(k1, v1.count)
+        if string.sub(tostring(k1), 1, 1) == "5" and v1.count > 0 then
+            print("获取满足条件的任务道具", k1)
+            local npcTable = this.itemInstance[k1].config.Npc
+            for k2, v2 in pairs(npcTable) do
+                if v2 == _npcID then
+                    return k1
+                end
+            end
+        end
     end
-end
-
---执行任务反馈
-function ItemMgr:GetTaskFeedback(_taskItemID)
-    local item = this.taskItemList[_taskItemID]
-    this:RemoveItem(_taskItemID)
-    item:GetTaskReward()
+    return 0
 end
 
 ---服务器结算处理
-function ItemMgr:GetCoinEventHandler(_CoinNum,_itemId)
-	this:GetCoin(_CoinNum)
-	this:Get5(_itemId)
+function ItemMgr:GetCoinEventHandler(_CoinNum, _itemId)
+    this:GetCoin(_CoinNum)
+    this:Get5(_itemId)
 end
 
 --获得金币

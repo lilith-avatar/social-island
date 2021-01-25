@@ -158,6 +158,76 @@ function PlayerCtrl:SetPlayerControllableEventHandler(_bool)
     end
 end
 
+-- 角色属性更新
+function PlayerCtrl:PlayerAttrUpdate()
+    localPlayer.WalkSpeed = Data.Player.attr.WalkSpeed
+    localPlayer.JumpUpVelocity = Data.Player.attr.JumpUpVelocity
+    localPlayer.Avatar.HeadSize = Data.Player.attr.AvatarHeadSize
+    localPlayer.Avatar.Height = Data.Player.attr.AvatarHeight
+    localPlayer.Avatar.Width = Data.Player.attr.AvatarWidth
+    localPlayer.CharacterWidth = localPlayer.Avatar.Width * 0.5
+    localPlayer.CharacterHeight = localPlayer.Avatar.Height * 1.7
+    this:PlayerHeadEffectUpdate(Data.Player.attr.HeadEffect)
+    this:PlayerBodyEffectUpdate(Data.Player.attr.HeadEffect)
+    this:PlayerFootEffectUpdate(Data.Player.attr.HeadEffect)
+    this:PlayerSkinUpdate(Data.Player.attr.SkinID)
+    if Data.Player.attr.AnimState ~= "" then
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
+    else
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+    end
+end
+
+-- 更新角色特效
+function PlayerCtrl:PlayerHeadEffectUpdate(_effectList)
+    for k, v in pairs(localPlayer.Avatar.Bone_Head.HeadEffect:GetChildren()) do
+        if v.ActiveSelf then
+            v:SetActive(false)
+        end
+    end
+    for k, v in pairs(_effectList) do
+        localPlayer.Avatar.Bone_Head.HeadEffect[v]:SetActive(true)
+    end
+end
+function PlayerCtrl:PlayerBodyEffectUpdate(_effectList)
+    for k, v in pairs(localPlayer.Avatar.Bone_Pelvis.BodyEffect:GetChildren()) do
+        if v.ActiveSelf then
+            v:SetActive(false)
+        end
+    end
+    for k, v in pairs(_effectList) do
+        localPlayer.Avatar.Bone_Pelvis.BodyEffect[v]:SetActive(true)
+    end
+end
+function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
+    for k, v in pairs(localPlayer.Avatar.Bone_R_Foot.FootEffect:GetChildren()) do
+        if v.ActiveSelf then
+            v:SetActive(false)
+        end
+    end
+    for k, v in pairs(localPlayer.Avatar.Bone_L_Foot.FootEffect:GetChildren()) do
+        if v.ActiveSelf then
+            v:SetActive(false)
+        end
+    end
+    for k, v in pairs(_effectList) do
+        localPlayer.Avatar.Bone_R_Foot.FootEffect[v]:SetActive(true)
+        localPlayer.Avatar.Bone_L_Foot.FootEffect[v]:SetActive(true)
+    end
+end
+
+-- 更新角色服装
+function PlayerCtrl:PlayerSkinUpdate(_skinID)
+    if _skinID ~= 0 then
+        for k, v in pairs(Config.Skin[_skinID]) do
+            if localPlayer.Avatar[k] then
+                localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
+                --print(k, v)
+            end
+        end
+    end
+end
+
 function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()
