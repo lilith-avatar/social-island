@@ -39,7 +39,7 @@ function WeaponBase:Equip()
         self.config.ParentNode.Positon + self.config.Offset,
         self.config.ParentNode.Rotation + self.config.Angle
     )
-    self:PlayIdleAnim()
+    --self:PlayIdleAnim()
     NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
     NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
 end

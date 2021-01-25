@@ -171,6 +171,11 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerBodyEffectUpdate(Data.Player.attr.HeadEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.HeadEffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
+    if Data.Player.attr.AnimState ~= "" then
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
+    else
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+    end
 end
 
 -- 更新角色特效
@@ -217,7 +222,7 @@ function PlayerCtrl:PlayerSkinUpdate(_skinID)
         for k, v in pairs(Config.Skin[_skinID]) do
             if localPlayer.Avatar[k] then
                 localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
-                print(k, v)
+                --print(k, v)
             end
         end
     end

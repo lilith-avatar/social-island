@@ -56,6 +56,7 @@ end
 
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
+    print("状态机改变触发器", _state)
     this.playerActFsm:ContactTrigger(_state)
     this.fsmState = this.playerActFsm.curState.stateName
 end

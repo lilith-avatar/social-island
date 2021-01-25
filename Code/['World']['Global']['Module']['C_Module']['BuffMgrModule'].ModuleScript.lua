@@ -19,7 +19,9 @@ local defPlayerData = {
     WalkSpeed = 6,
     JumpUpVelocity = 8,
     GravityScale = 2,
-    SkinID = 0
+    SkinID = 0,
+    AnimState = "",
+    EnableEquipable = true
 }
 
 function BuffMgr:Init()
@@ -36,12 +38,12 @@ end
 --数据变量声明
 function BuffMgr:DataInit()
     print(table.dump(Data.Player.attr))
-    invoke(
+    --[[invoke(
         function()
             this:GetBuffEventHandler(1, 10)
         end,
-        2
-    )
+        6
+    )]]
 end
 
 --节点事件绑定

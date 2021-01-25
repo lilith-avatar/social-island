@@ -37,7 +37,9 @@ DataScheme.Player = {
         WalkSpeed = 6,
         JumpUpVelocity = 8,
         GravityScale = 2,
-        SkinID = 0
+        SkinID = 0,
+        AnimState = "Idle",
+        EnableEquipable = true
     },
     -- 背包
     bag = {
