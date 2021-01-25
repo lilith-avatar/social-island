@@ -70,6 +70,11 @@ function GuiControl:InitListener()
             GuiBag:ShowBagUI()
         end
     )
+	menuFigure.ResetBtn.OnClick:Connect(
+		function()
+			localPlayer.Position = world.SpawnLocations.StartPortal00.Position
+		end
+	)
 end
 
 --- 点击交互按钮
