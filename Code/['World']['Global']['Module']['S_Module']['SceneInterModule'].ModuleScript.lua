@@ -1,8 +1,14 @@
 ---@module SceneInter
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local SceneInter,this = ModuleUtil.New('SceneInter',ServerBase)
-local folder = nil -- 或者路径
+local SceneInter, this = ModuleUtil.New("SceneInter", ServerBase)
+local folder = {
+    Grass = nil,
+    Bush = nil,
+    Tree = nil,
+    Stone = nil,
+    Fish = nil
+} --场景路径
 
 ---初始化函数
 function SceneInter:Init()
@@ -10,18 +16,18 @@ function SceneInter:Init()
 end
 
 function SceneInter:CreateInterManager()
-    for k,v in pairs(folder:GetChildren()) do
-        v.OnCollisionBegin:Connect(function(_hitObj)
-            if _hitObj:IsA('PlayerInstance') then
-                this:GrassMove(v)
-            end
-        end)
+    for k, v in pairs(folder) do
+        for _, n in pairs(v:GetChildren()) do
+            n.OnCollisionBegin:Connect(
+                function(_hitObject)
+                    this[k .. "Inter"](_hitObject, n, self)
+                end
+            )
+        end
     end
 end
 
-function SceneInter:GrassMove(_obj)
-    local tweener = Tween:ShakeProperty(_obj,{Rotation},0.15,8)
-    tweener:Play()
+function SceneInter:GrassInter(_hitObject, _Object)
 end
 
 return SceneInter

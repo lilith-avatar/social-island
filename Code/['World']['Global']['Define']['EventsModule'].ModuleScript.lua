@@ -76,7 +76,8 @@ Events.ClientEvents = {
     "GetCoinEvent",
     "CreateItemObjEvent",
     --开始扫描事件
-    "MonsterScanEvent" --@param _pos,_euler,_time
+    "MonsterScanEvent", --@param _pos,_euler,_time
+    "LeaveMoleGameRangeEvent"
 }
 
 return Events

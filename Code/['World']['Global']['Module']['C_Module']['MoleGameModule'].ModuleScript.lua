@@ -124,4 +124,11 @@ function MoleGame:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
     end
 end
 
+function MoleGame:LeaveMoleGameRangeEventHandler()
+    if this.startUpdate then
+        this:GameOver()
+        MoleUIMgr:GameOver()
+    end
+end
+
 return MoleGame
