@@ -47,11 +47,6 @@ function ChairMgr:ChairCreate()
             isSeat = false
         }
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionBegin:Connect(
-            --[[function(_hitObject)
-                if _hitObject.ClassName == 'PlayerInstance' and not this.chairSitter[k] and _hitObject then
-                    NetUtil.Fire_C('ShowSitBtnEvent', _hitObject, v.Type, v.ID)
-                end
-            end]]
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
                     NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 10)
@@ -60,11 +55,6 @@ function ChairMgr:ChairCreate()
             end
         )
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionEnd:Connect(
-            --[[function(_hitObject)
-                if _hitObject.ClassName == 'PlayerInstance' and not this.chairSitter[k] and _hitObject then
-                    NetUtil.Fire_C('HideSitBtnEvent', _hitObject)
-                end
-            end]]
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
                     NetUtil.Fire_C("ResetDefUIEvent", _hitObject)

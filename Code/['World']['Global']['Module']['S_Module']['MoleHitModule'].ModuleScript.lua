@@ -73,6 +73,14 @@ function MoleHit:DataInit()
             end
         end
     )
+
+    world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
+            end
+        end
+    )
 end
 
 function MoleHit:PoolInit()
