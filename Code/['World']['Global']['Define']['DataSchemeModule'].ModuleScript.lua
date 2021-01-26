@@ -43,14 +43,16 @@ DataScheme.Player = {
     },
     -- 背包
     bag = {
-        [1212] = {
-            id = 1212,
-            type = 12,
-            count = 12,
-            lastestTime = 0,
-            isNew = true,
-            isCount = true
-        }
+        [1001] = {
+            id = 1001,
+            count = 2,
+            isNew = true
+        },
+		[3001] = {
+            id = 3001,
+			count = 10,
+			isNew = false
+		}
     },
     -- 小游戏相关
     mini = {},

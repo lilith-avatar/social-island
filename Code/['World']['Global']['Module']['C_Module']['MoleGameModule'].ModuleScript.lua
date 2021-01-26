@@ -39,7 +39,7 @@ function MoleGame:EventBindForStart()
             end
             this.rangeList[_hitObject.Name] = true
             if this.boostEffect then
-                MoleUIMgr:Hit()
+                GuiMole:Hit()
             end
         end
     )
@@ -58,9 +58,9 @@ function MoleGame:GameStart()
     --Todo:传送到指定地点
     this:EventBindForStart()
     this.startUpdate = true
-    MoleUIMgr:UpdateTime(this.time)
-    MoleUIMgr:UpdateScore(this.score)
-    MoleUIMgr:UpdateBoost(this.boostNum)
+    GuiMole:UpdateTime(this.time)
+    GuiMole:UpdateScore(this.score)
+    GuiMole:UpdateBoost(this.boostNum)
 end
 
 ---游戏结束，重置数据
@@ -78,12 +78,12 @@ function MoleGame:Update(dt, tt)
     if this.startUpdate and this.timer >= 1 then
         this.timer = 0
         this.time = this.time - 1
-        MoleUIMgr:UpdateTime(this.time)
+        GuiMole:UpdateTime(this.time)
         --结算强化效果
         this:BoostEffect()
         if this.time <= 0 then
             this:GameOver()
-            MoleUIMgr:GameOver()
+            GuiMole:GameOver()
             return
         end
     end
@@ -108,7 +108,7 @@ end
 function MoleGame:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
     if not this.boostEffect then
         this.boostNum = this.boostNum + _boostReward
-        MoleUIMgr:UpdateBoost(this.boostNum)
+        GuiMole:UpdateBoost(this.boostNum)
     end
     if this.boostNum >= 100 then
         this.boostEffect = true
@@ -116,11 +116,11 @@ function MoleGame:AddScoreAndBoostEventHandler(_type, _reward, _boostReward)
     end
     if _type == 'Time' then
         this.time = this.time + _reward
-        MoleUIMgr:UpdateTime(this.time)
+        GuiMole:UpdateTime(this.time)
     end
     if _type == 'Score' then
         this.score = this.score + _reward
-        MoleUIMgr:UpdateScore(this.score)
+        GuiMole:UpdateScore(this.score)
     end
 end
 
