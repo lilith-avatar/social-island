@@ -2,7 +2,13 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local SceneInter,this = ModuleUtil.New('SceneInter',ServerBase)
-local folder = nil -- 或者路径
+local folder = {
+    Grass = nil,
+    Bush = nil,
+    Tree = nil,
+    Stone = nil,
+    Fish = nil
+} --场景路径
 
 ---初始化函数
 function SceneInter:Init()
@@ -10,11 +16,16 @@ function SceneInter:Init()
 end
 
 function SceneInter:CreateInterManager()
-    for k,v in pairs(folder:GetChildren()) do
-        v.OnCollisionBegin:Connect(function()
-            --表现
-        end)
+    for k,v in pairs(folder) do
+        for _,n in pairs(v:GetChildren())do
+            n.OnCollisionBegin:Connect(function(_hitObject)
+                this[k..'Inter'](_hitObject,self)
+            end)
+        end
     end
+end
+
+function SceneInter:GrassInter(_hitObject)
 end
 
 return SceneInter
