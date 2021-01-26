@@ -2,7 +2,7 @@
 --- @module Cannon Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Cannon, this = ModuleUtil.New("Cannon", ServerBase)
+local Cannon, this = ModuleUtil.New('Cannon', ServerBase)
 
 --- 变量声明
 -- 炮筒
@@ -32,7 +32,7 @@ local spinTweener
 
 --- 初始化
 function Cannon:Init()
-    print("Cannon:Init")
+    print('[Cannon] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -51,19 +51,35 @@ end
 
 --- 节点事件绑定
 function Cannon:EventBind()
+    barrel.Base.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 4)
+            end
+        end
+    )
+    barrel.Base.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('ResetDefUIEvent', _hitObject)
+            end
+        end
+    )
 end
 
 --- 进入人间大炮
 function Cannon:GetOnCannon(_player)
-    insidePlayer = _player
-    insidePlayer.Position = barrel.InsidePoint.Position
-    NetUtil.Fire_C("SetCurCamEvent", insidePlayer, cam)
-    NetUtil.Fire_C("SetMiniGameGuiEvent", insidePlayer, 4, true, false)
+    if insidePlayer == nil then
+        insidePlayer = _player
+        insidePlayer.Position = barrel.InsidePoint.Position
+        NetUtil.Fire_C('SetCurCamEvent', insidePlayer, cam)
+        NetUtil.Fire_C('SetMiniGameGuiEvent', insidePlayer, 4, true, false)
+    end
 end
 
---- 节点事件绑定
-function Cannon:EnterMiniGameEventHandler(_player, _gameId)
-    if _gameId == 4 and insidePlayer == nil then
+function Cannon:InteractSEventHandler(_player, _id)
+    print('[Cannon]', _player, _id)
+    if _id == 4 then
         this:GetOnCannon(_player)
     end
 end
@@ -73,28 +89,28 @@ function Cannon:CannonFireEventHandler(_force)
     insidePlayer.Rotation = barrel.Rotation
     insidePlayer.Position = insidePlayer.Position + Vector3(0, 0.5, 0)
     insidePlayer.LinearVelocity =
-        (barrel.OutsidePoint.Position - barrel.InsidePoint.Position).Normalized * (15 + 40 * _force)
-    NetUtil.Fire_C("SetMiniGameGuiEvent", insidePlayer, 4, false, false)
-    NetUtil.Fire_C("SetCurCamEvent", insidePlayer)
-    NetUtil.Fire_C("FsmTriggerEvent", insidePlayer, "Fly")
+        (barrel.OutsidePoint.Position - barrel.InsidePoint.Position).Normalized * (10 + 30 * _force)
+    NetUtil.Fire_C('SetMiniGameGuiEvent', insidePlayer, 4, false, false)
+    NetUtil.Fire_C('SetCurCamEvent', insidePlayer)
+    NetUtil.Fire_C('FsmTriggerEvent', insidePlayer, 'Fly')
     insidePlayer = nil
 end
 
 --- 大炮方向调整
 function Cannon:SetCannonDirEventHandler(_dir)
-    if _dir == "Up" then
+    if _dir == 'Up' then
         if cannonDir.Up < cannonDir.Range then
             cannonDir.Up = cannonDir.Up + 1
         end
-    elseif _dir == "Down" then
+    elseif _dir == 'Down' then
         if cannonDir.Up > -1 * cannonDir.Range then
             cannonDir.Up = cannonDir.Up - 1
         end
-    elseif _dir == "Right" then
+    elseif _dir == 'Right' then
         if cannonDir.Right < cannonDir.Range then
             cannonDir.Right = cannonDir.Right + 1
         end
-    elseif _dir == "Left" then
+    elseif _dir == 'Left' then
         if cannonDir.Right > -1 * cannonDir.Range then
             cannonDir.Right = cannonDir.Right - 1
         end

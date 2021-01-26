@@ -2,6 +2,9 @@
 -- @script Module Defines
 -- @copyright Lilith Games, Avatar Team
 
+-- Game Defines
+GAME_ID = 'A1003'
+
 -- Utilities
 ModuleUtil = require(Utility.ModuleUtilModule)
 LuaJsonUtil = require(Utility.LuaJsonUtilModule)
@@ -15,22 +18,32 @@ GlobalFunc = require(Utility.GlobalFuncModule)
 LinkedList = Utility.LinkedListModule
 ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
+CloudLogUtil = require(Utility.CloudLogUtilModule)
+
+-- Init Utilities
 TimeUtil.Init()
+CloudLogUtil.Init(GAME_ID)
 
 -- Framework
 ModuleUtil.LoadModules(Framework)
+ModuleUtil.LoadModules(Framework.Server)
+ModuleUtil.LoadModules(Framework.Client)
 
 -- Globle Defines
 ModuleUtil.LoadModules(Define)
 ModuleUtil.LoadXlsModules(Xls, Config)
 
 -- Fsm
-FsmBase = require(Module.Fsm_Module.FsmBaseModule)
-StateBase = require(Module.Fsm_Module.StateBaseModule)
+ModuleUtil.LoadModules(Module.Fsm_Module)
+ModuleUtil.LoadModules(Module.Fsm_Module.PlayerActFsm)
+
+-- Item
+ModuleUtil.LoadModules(Module.Item_Module)
 
 -- Server and Clinet Modules
 ModuleUtil.LoadModules(Module.S_Module)
 ModuleUtil.LoadModules(Module.Cls_Module)
+ModuleUtil.LoadModules(Module.UI_Module)
 ModuleUtil.LoadModules(Module.C_Module)
 
 -- Plugin Modules

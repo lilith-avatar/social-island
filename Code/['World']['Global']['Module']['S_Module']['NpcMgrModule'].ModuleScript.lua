@@ -1,10 +1,11 @@
 --- NPC管理
 --- @module NPC manager
 --- @copyright Lilith Games, Avatar Team
---- @author Yuancheng Zhang
+--- @author Yuancheng Zhang, Lin
 local NpcMgr, this = ModuleUtil.New('NpcMgr', ServerBase)
 
 -- cache
+local ServerUtil = ServerUtil
 local Config = Config
 local NpcInfo = Config.NpcInfo
 local npcFolder
@@ -12,9 +13,9 @@ local npcObjs = {}
 
 --- 初始化
 function NpcMgr:Init()
+    print('[NpcMgr] Init()')
     CreateNpcFolder()
     SpawnNpcs()
-    print(table.dump(npcObjs))
 end
 
 --- 生成节点：world.NPC
@@ -29,26 +30,101 @@ end
 function SpawnNpcs()
     for _, npc in pairs(NpcInfo) do
         local npcObj = world:CreateInstance(npc.Model, npc.Name, npcFolder, npc.SpawnPos, npc.SpawnRot)
-        local npcInfo = npc
+        local id = world:CreateObject('IntValueObject', 'ID', npcObj)
+        id.Value = npc.ID
+
+        -- 生成宠物
+        SpawnMonster(npcObj, npc)
+
+        local npcInfo = npc -- 用于闭包
         npcObj.CollisionArea.OnCollisionBegin:Connect(
             function(_hitObj)
-                if not _hitObj or _hitObj.ClassName ~= 'PlayerInstance' or _hitObj.Name == npcObj.Name then
-                    return
+                if ServerUtil.CheckHitObjIsPlayer(_hitObj) then
+                    NetUtil.Fire_C('TouchNpcEvent', _hitObj, npcInfo.ID, npcObj)
                 end
-                print(npcObj.Name)
-                NetUtil.Fire_C('TouchNpcEvent', _hitObj, npcInfo.ID)
             end
         )
         npcObj.CollisionArea.OnCollisionEnd:Connect(
             function(_hitObj)
-                if not _hitObj or _hitObj.ClassName ~= 'PlayerInstance' or _hitObj.Name == npcObj.Name then
-                    return
+                if ServerUtil.CheckHitObjIsPlayer(_hitObj) then
+                    NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
                 end
-                NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil)
+            end
+        )
+        table.insert(npcObjs, npcObj)
+    end
+end
+
+-- 检查碰撞对象是否为NPC
+function CheckHitObjIsPlayer(_hitObj)
+    return _hitObj and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar and
+        _hitObj.Avatar.ClassName == 'PlayerAvatarInstance'
+end
+
+-- 创建NPC的宠物
+function SpawnMonster(_npcObj, _npcInfo)
+	if world.NPCMonster == nil then
+        world:CreateObject('FolderObject', 'NPCMonster', world)
+    end
+    -- TODO: 这里是根据表判断这个NPC是否是可战斗的NPC
+    if true then
+        invoke(
+            function()
+                wait(1)
+                local healthVal = world:CreateObject('IntValueObject', 'HealthVal', _npcObj)
+                local attackVal = world:CreateObject('IntValueObject', 'AttackVal', _npcObj)
+                local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
+                world:CreateObject('IntValueObject', 'BattleVal', _npcObj)
+                monsterVal.Value =
+                    world:CreateInstance(
+                    'Monster',
+                    'Monster' .. _npcInfo.Name,
+                    world.NPCMonster,
+                    _npcObj.Position - _npcObj.Forward * 2
+                )
+                MoveMonster(_npcObj, monsterVal.Value)
             end
         )
     end
-    table.insert(npcObjs, npcObj)
+end
+
+-- 移动宠物
+function MoveMonster(_npcobj, _monster)
+    invoke(
+        function()
+            local timeUp, timeDown = 3, 2
+
+            -- 插入一个随机值，让NPC的宠物错落有致的移动
+            wait(math.random() * timeUp)
+
+            -- 宠物向上
+            local twUp =
+                Tween:TweenProperty(
+                _monster.Cube,
+                {
+                    LocalPosition = Vector3(0, 2.5, 0)
+                },
+                timeUp,
+                Enum.EaseCurve.SinOut
+            )
+            -- 宠物向下
+            local twDown =
+                Tween:TweenProperty(
+                _monster.Cube,
+                {
+                    LocalPosition = Vector3(0, 2, 0)
+                },
+                timeDown,
+                Enum.EaseCurve.BackOut
+            )
+            while _monster and _monster.Cube do
+                twUp:Play()
+                wait(timeUp + .5)
+                twDown:Play()
+                wait(timeDown)
+            end
+        end
+    )
 end
 
 return NpcMgr

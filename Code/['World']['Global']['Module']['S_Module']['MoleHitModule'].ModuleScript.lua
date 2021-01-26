@@ -1,7 +1,7 @@
 ---@module MoleHit
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
+local MoleHit, this = ModuleUtil.New('MoleHit', ServerBase)
 local totalWeights = 0
 
 ---得到总权重
@@ -43,9 +43,10 @@ end
 
 ---初始化函数
 function MoleHit:Init()
-    print("MoleHit: Init")
+    print('[MoleHit] Init()')
     this:DataInit()
     this:PitListInit()
+    this:PoolInit()
     GetTotalWeights(Config.MoleConfig)
 end
 
@@ -55,6 +56,29 @@ function MoleHit:DataInit()
     this.timer = 0
     this.refreshTime = Config.MoleGlobalConfig.RefreshTime --! Only Test
     this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
+    ---对象池表
+    this.molePool = {}
+
+	world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
+            end
+        end
+    )
+    world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('ResetDefUIEvent', _hitObject)
+            end
+        end
+    )
+end
+
+function MoleHit:PoolInit()
+    for k, v in pairs(Config.MoleConfig) do
+        this.molePool[k] = MolePool:new(v.Archetype, 10)
+    end
 end
 
 --绑定坑位
@@ -67,9 +91,9 @@ function MoleHit:PitListInit()
     end
 end
 
-function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
+function MoleHit:InteractSEventHandler(_player, _gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C('StartMoleEvent',_player)
+        NetUtil.Fire_C('StartMoleEvent', _player)
     end
 end
 
@@ -86,33 +110,26 @@ end
 ---根据玩家人数刷地鼠
 function MoleHit:RefreshMole(_playerNum)
     local tmpTable = TransformTable(this.pitList)
-    local tmpRandomTab
-    --! only test
-    --清除现有的地鼠
-    for k, v in pairs(this.pitList) do
-        if v.model.Mole then
-            v.model.Mole:Destroy()
-            v.mole = nil
-        end
-    end
+    local tmpRandomTab, pitIndex, mole
 
     for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
-        local pitIndex = math.random(1, #tmpTable)
-        tmpRandomTab = RandomSortByWeights(Config.MoleConfig)
-        tmpTable[pitIndex].mole = tmpRandomTab[1].id
-        --Todo: 对象池
-        local mole =
-            world:CreateInstance(Config.MoleConfig[tmpRandomTab[1].id].Archetype, "Mole", tmpTable[pitIndex].model)
+        pitIndex, tmpRandomTab = math.random(1, #tmpTable), RandomSortByWeights(Config.MoleConfig)
+        --删除该坑仍保留的地鼠
+        for k, v in pairs(tmpTable[pitIndex].model:GetChildren()) do
+            if v.ActiveSelf then
+                v:Destroy()
+            end
+        end
+        mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model, tmpRandomTab[1].id)
+        this.pitList[tmpTable[pitIndex].model.Name].mole = mole
         invoke(
-            function(tmpTable, pitIndex, tmpRandomTab, mole)
+            function()
                 if mole then
-                    --Todo: 对象池销毁
-                    mole:Destroy()
+                    this.molePool[tmpRandomTab[1].id]:Destroy(mole)
                 end
             end,
-            Config.MoleConfig[tmpRandomTab[1].id].KeepTime
+            Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime
         )
-        mole.LocalPosition = Vector3(0, 0.5, 0)
         table.remove(tmpTable, pitIndex)
     end
 end
@@ -120,16 +137,16 @@ end
 local player
 function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
     for k, _ in pairs(_hitPit) do
-        if this.pitList[k] and this.pitList[k].mole and this.pitList[k].model.Mole then
+        if this.pitList[k] and this.pitList[k].mole then
             player = world:GetPlayerByUserId(_uid)
             NetUtil.Fire_C(
-                "AddScoreAndBoostEvent",
+                'AddScoreAndBoostEvent',
                 player,
-                Config.MoleConfig[this.pitList[k].mole].Type,
-                Config.MoleConfig[this.pitList[k].mole].Reward,
-                Config.MoleConfig[this.pitList[k].mole].BoostReward
+                Config.MoleConfig[this.pitList[k].mole.Name].Type,
+                Config.MoleConfig[this.pitList[k].mole.Name].Reward,
+                Config.MoleConfig[this.pitList[k].mole.Name].BoostReward
             )
-            this.pitList[k].model.Mole:Destroy()
+            this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
             this.pitList[k].mole = nil
         end
     end

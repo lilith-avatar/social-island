@@ -5,8 +5,6 @@
 local FsmMgr, this = ModuleUtil.New("FsmMgr", ClientBase)
 
 --- 变量声明
--- 玩家动作状态机
-local playerActFsm = FsmBase:new()
 
 -- 玩家动作状态枚举
 local playerActStateEnum = {
@@ -15,8 +13,14 @@ local playerActStateEnum = {
     RUN = "Run",
     JUMP = "Jump",
     FLY = "Fly",
-    SWIM = "Swim",
-    SOCIAL = "Social"
+    SWIMIDLE = "SwimIdle",
+    SWIMMING = "Swimming",
+    SOCIAL = "Social",
+    BOWIDLE = "BowIdle",
+    BOWWALK = "BowWalk",
+    BOWRUN = "BowRun",
+    BOWJUMP = "BowJump",
+    BOWATTACK = "BowAttack"
 }
 
 --- 初始化
@@ -33,167 +37,34 @@ end
 
 --- 数据变量初始化
 function FsmMgr:DataInit()
-    playerActFsm:ConnectStateFunc(Config.PlayerActState, self)
-    playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
+    -- 玩家动作状态机
+    this.playerActFsm = PlayerActFsm:new()
 
-    this.jumpTrigger = false
-    this.flyTrigger = false
+    --将第2层的动作设为上半身动作
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 2)
+    --将第3层的动作设为下半身动作
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 3)
+
+    this.playerActFsm:ConnectStateFunc(Config.PlayerActState, Module.Fsm_Module.PlayerActFsm.State)
+    this.playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
+    this.fsmState = "Idle"
 end
 
 --- 节点事件绑定
 function FsmMgr:EventBind()
 end
 
---- 重置触发器
-function FsmMgr:ResetTrigger()
-    this.jumpTrigger = false
-    this.flyTrigger = false
-end
-
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
-    if playerActFsm.curState.stateName ~= _state then
-        this[string.lower(_state) .. "Trigger"] = true
-    end
-end
-
-function FsmMgr:IdleStateOnEnterFunc()
-    this:ResetTrigger()
-    localPlayer:MoveTowards(Vector2.Zero)
-    localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
-end
-
-function FsmMgr:WalkStateOnEnterFunc()
-    this:ResetTrigger()
-    localPlayer.Avatar:PlayAnimation("WalkingFront", 2, 1, 0.1, true, true, 1)
-end
-function FsmMgr:RunStateOnEnterFunc()
-    this:ResetTrigger()
-    localPlayer.Avatar:PlayAnimation("RunFront", 2, 1, 0.1, true, true, 1)
-end
-
-function FsmMgr:JumpStateOnEnterFunc()
-    this:ResetTrigger()
-    localPlayer:Jump()
-    localPlayer.Avatar:PlayAnimation("Jump", 2, 1, 0.1, true, false, 1)
-end
-
-function FsmMgr:FlyStateOnEnterFunc()
-    this:ResetTrigger()
-    PlayerCtrl:SetPlayerControllableEventHandler(false)
-    localPlayer.Avatar:PlayAnimation("Flying", 2, 1, 0.1, true, true, 2)
-end
-
-function FsmMgr:IdleStateOnUpdateFunc(dt)
-    do ---检测移动键输入
-        local dir = PlayerCtrl.finalDir
-        dir.y = 0
-        if dir.Magnitude > 0 then
-            playerActFsm:Switch(playerActStateEnum.WALK)
-        end
-    end
-    do ---检测跳跃键输入
-        if this.jumpTrigger and localPlayer.IsOnGround then
-            playerActFsm:Switch(playerActStateEnum.JUMP)
-        end
-    end
-    do ---检测飞行
-        if this.flyTrigger then
-            playerActFsm:Switch(playerActStateEnum.FLY)
-        end
-    end
-end
-
-function FsmMgr:WalkStateOnUpdateFunc(dt)
-    do ---检测移动键输入
-        local dir = PlayerCtrl.finalDir
-        dir.y = 0
-        if dir.Magnitude > 0 then
-            if PlayerCam:IsFreeMode() then
-                localPlayer:FaceToDir(dir, 4 * math.pi)
-            end
-            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-        else
-            playerActFsm:Switch(playerActStateEnum.IDLE)
-        end
-    end
-    do ---是否达到奔跑速度
-        if localPlayer.LinearVelocity.Magnitude >= localPlayer.WalkSpeed * 0.99 then
-            playerActFsm:Switch(playerActStateEnum.RUN)
-        end
-    end
-    do ---检测跳跃键输入
-        if this.jumpTrigger and localPlayer.IsOnGround then
-            playerActFsm:Switch(playerActStateEnum.JUMP)
-        end
-    end
-    do ---检测飞行
-        if this.flyTrigger then
-            playerActFsm:Switch(playerActStateEnum.FLY)
-        end
-    end
-end
-
-function FsmMgr:RunStateOnUpdateFunc(dt)
-    do ---检测移动键输入
-        local dir = PlayerCtrl.finalDir
-        dir.y = 0
-        if dir.Magnitude > 0 then
-            if PlayerCam:IsFreeMode() then
-                localPlayer:FaceToDir(dir, 4 * math.pi)
-            end
-            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-        else
-            playerActFsm:Switch(playerActStateEnum.IDLE)
-        end
-    end
-    do ---是否达到行走速度
-        if localPlayer.LinearVelocity.Magnitude < localPlayer.WalkSpeed * 0.99 then
-            playerActFsm:Switch(playerActStateEnum.WALK)
-        end
-    end
-    do ---检测跳跃键输入
-        if this.jumpTrigger and localPlayer.IsOnGround then
-            playerActFsm:Switch(playerActStateEnum.JUMP)
-        end
-    end
-    do ---检测飞行
-        if this.flyTrigger then
-            playerActFsm:Switch(playerActStateEnum.FLY)
-        end
-    end
-end
-
-function FsmMgr:FlyStateOnUpdateFunc(dt)
-    do ---是否在地面
-        if localPlayer.IsOnGround then
-            playerActFsm:Switch(playerActStateEnum.IDLE)
-        end
-    end
-end
-
-function FsmMgr:JumpStateOnUpdateFunc(dt)
-end
-
-function FsmMgr:IdleStateOnLeaveFunc()
-end
-
-function FsmMgr:WalkStateOnLeaveFunc()
-end
-
-function FsmMgr:RunStateOnLeaveFunc()
-end
-
-function FsmMgr:JumpStateOnLeaveFunc()
-end
-
-function FsmMgr:FlyStateOnLeaveFunc()
-    localPlayer.Rotation = EulerDegree(0, localPlayer.Rotation.y, 0)
-    PlayerCtrl:SetPlayerControllableEventHandler(true)
+    print("状态机改变触发器", _state)
+    this.playerActFsm:ContactTrigger(_state)
+    this.fsmState = this.playerActFsm.curState.stateName
 end
 
 function FsmMgr:Update(dt)
-    playerActFsm:Update(dt)
+    this.playerActFsm:Update(dt)
+    --print(this.playerActFsm.curState.stateName)
+    --print(this.playerActFsm.stateTrigger.Jump)
 end
 
 return FsmMgr

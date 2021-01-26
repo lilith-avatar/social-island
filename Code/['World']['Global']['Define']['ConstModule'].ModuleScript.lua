@@ -14,4 +14,24 @@ Const.LanguageEnum = {
     JP = 'JP' -- 日文
 }
 
+-- Game ID 常量，请小游戏作者陆续添加
+Const.GameEnum = {
+    MAZE = 3
+}
+
+Const.MazeEventEnum = {
+    JOIN = 1, -- 进入游戏
+    FINISH = 2, -- 完成游戏退出
+    QUIT = 3 -- 中途退出
+}
+
+Const.MonsterEnum = {
+	NEWROUND = 1,
+	SKILLTIME = 2,
+	SHOWSKILL = 3, 
+	BEHIT = 4,
+	OVER = 5,
+	NPCBEHIT = 6
+}
+
 return Const
