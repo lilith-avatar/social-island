@@ -15,14 +15,17 @@ end
 local withPet = true
 local totalResetTime = 0
 function RaceGame:PetCheck(_dt, _tt)
-	if withPet == true then
+	if localPlayer.MonsterVal and localPlayer.MonsterVal.Value ~= nil then
+		withPet = true
 		totalResetTime = totalResetTime + _dt
-		if totalResetTime > (60 * 0.75) then
+		if totalResetTime > (60 * 0.02) then
 			totalResetTime = 0
 			this:RandomKey()
 			this:FreshStartPoint()
 			---重置的其他表现
 		end
+	else
+		withPet = false
     end
 end
 
@@ -40,8 +43,6 @@ end
 
 ---刷新起始点
 function RaceGame:FreshStartPoint()
-	print(this.startPoint.Position)
-	print(Config.RacePoint)print(Config.RacePoint[nowKey][1])print(Config.RacePoint[nowKey][1].Pos)
 	this.startPoint.Position = Config.RacePoint[nowKey][1].Pos
 end
 
@@ -100,11 +101,12 @@ end
 
 ---游戏开始
 function RaceGame:GameStart()
-    --Todo:面朝第一个点
     this.startUpdate = true
     RaceGameUIMgr:Show()
+	MonsterBattle:MonsterScanEventHandler(this.startPoint.Cube.Position,EulerDegree(0,0,0),3)
 	this.startPoint.Position = Vector3(0,-1000,0)
 	this.checkPoint.Position = Config.RacePoint[nowKey][2].Pos
+	this:FaceToNextPoint()
 end
 
 ---游戏结束
@@ -117,6 +119,7 @@ function RaceGame:GameOver()
     else
         RaceGameUIMgr:ShowGameOver('lose')
     end
+	this:RandomKey()
     NetUtil.Fire_S('RaceGameOverEvent', localPlayer, this.timer, rewardRate)
 	this.checkPoint.Position = Vector3(0,-1100,0)
 end
@@ -126,6 +129,9 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
     if _hitObject == localPlayer and withPet then
 		--todo：获得一个移动速度变成0的持续一秒的BUFF
 		--todo：在检查点的位置放一个扫描的宠物动画
+		localPlayer.WalkSpeed = 0
+		NetUtil.Fire_C("MonsterScanEvent",localPlayer,this.checkPoint.Cube.Position,EulerDegree(0,0,0),3)
+		--MonsterBattle:MonsterScanEventHandler(this.checkPoint.Cube.Position,EulerDegree(0,0,0),3)
 		this.checkPoint:SetActive(false)
 		this.pointRecord = this.pointRecord + 1
 		
@@ -136,12 +142,20 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
 				RaceGameUIMgr:GetCheckPoint(this.pointRecord, this.pointNum)
 				this.checkPoint.Position = Config.RacePoint[nowKey][this.pointRecord + 1].Pos
 				this.checkPoint:SetActive(true)
+				this:FaceToNextPoint()
+				localPlayer.WalkSpeed = 6
 			end
-		end,1)
+		end,3)
 		
 	elseif _hitObject == localPlayer then
 		---弹报错说需要带上宠物
     end
+end
+
+---玩家转向下一个点
+function RaceGame:FaceToNextPoint()
+	local nowDir = this.checkPoint.Position - localPlayer.Position
+	localPlayer:FaceToDir(nowDir, math.pi*3)
 end
 
 ---游戏计时器逻辑

@@ -72,7 +72,11 @@ Events.ClientEvents = {
     --获得Buff
     "GetBuffEvent", --@param _buffID, _dur
     --移除Buff
-    "RemoveBuffEvent" --@param _buffID
+    "RemoveBuffEvent", --@param _buffID
+    "GetCoinEvent",
+    "CreateItemObjEvent",
+    --开始扫描事件
+    "MonsterScanEvent" --@param _pos,_euler,_time
 }
 
 return Events

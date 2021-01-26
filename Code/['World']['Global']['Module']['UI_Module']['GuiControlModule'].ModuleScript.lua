@@ -2,7 +2,7 @@
 --- @module Player GuiControll, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local GuiControl, this = ModuleUtil.New('GuiControl', ClientBase)
+local GuiControl, this = ModuleUtil.New("GuiControl", ClientBase)
 
 -- 手机端交互UI
 local gui, touchScreen, dynamicFigure, infoFigure, menuFigure, ctrlFigure
@@ -10,11 +10,11 @@ local gui, touchScreen, dynamicFigure, infoFigure, menuFigure, ctrlFigure
 -- 交互ID
 local interactID = 0
 
--- 拾取ID
-local pickItemID = 0
+-- 拾取物体
+local pickItemObj = 0
 
 function GuiControl:Init()
-    print('[GuiControl] Init()')
+    print("[GuiControl] Init()")
     self:InitGui()
     self:InitNodes()
     self:InitListener()
@@ -70,17 +70,25 @@ function GuiControl:InitListener()
             GuiBag:ShowBagUI()
         end
     )
+	menuFigure.ResetBtn.OnClick:Connect(
+		function()
+			localPlayer.Position = world.SpawnLocations.StartPortal00.Position
+		end
+	)
 end
 
 --- 点击交互按钮
 function OnInteractBtnClick()
     dynamicFigure.InteractBtn:SetActive(false)
-    NetUtil.Fire_S('InteractSEvent', localPlayer, interactID)
-    NetUtil.Fire_C('InteractCEvent', localPlayer, interactID)
+    NetUtil.Fire_S("InteractSEvent", localPlayer, interactID)
+    NetUtil.Fire_C("InteractCEvent", localPlayer, interactID)
 end
 
 --- 点击拾取按钮
 function OnPickBtnClick()
+    dynamicFigure.PickBtn:SetActive(false)
+    ItemMgr:GetItem(pickItemObj.ID.Value)
+    pickItemObj:Destroy()
 end
 
 --- 设置通用UI事件
@@ -119,15 +127,27 @@ function GuiControl:ResetDefUIEventHandler()
 end
 
 --- 打开动态交互事件
-function GuiControl:OpenDynamicEventHandler(_type, _id)
+function GuiControl:OpenDynamicEventHandler(_type, _var)
     dynamicFigure:SetActive(true)
-    if _type == 'Interact' then
+    if _type == "Interact" then
         dynamicFigure.InteractBtn:SetActive(true)
-        interactID = _id
-    elseif _type == 'Pick' then
+        interactID = _var
+    elseif _type == "Pick" then
         dynamicFigure.PickBtn:SetActive(true)
-        pickItemID = _id
+        pickItemObj = _var
     end
+end
+
+--- 显示info
+function GuiControl:ShowInfo(_text, _t)
+    infoFigure:SetActive(true)
+    infoFigure.InfoText.Text = _text
+    invoke(
+        function()
+            infoFigure:SetActive(false)
+        end,
+        _t
+    )
 end
 
 return GuiControl

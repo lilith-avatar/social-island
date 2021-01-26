@@ -59,6 +59,21 @@ function MoleHit:DataInit()
     this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
     ---对象池表
     this.molePool = {}
+
+	world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
+            end
+        end
+    )
+    world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('ResetDefUIEvent', _hitObject)
+            end
+        end
+    )
 end
 
 function MoleHit:PoolInit()
@@ -77,7 +92,7 @@ function MoleHit:PitListInit()
     end
 end
 
-function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
+function MoleHit:InteractSEventHandler(_player, _gameId)
     if _gameId == 2 then
         NetUtil.Fire_C("StartMoleEvent", _player)
     end

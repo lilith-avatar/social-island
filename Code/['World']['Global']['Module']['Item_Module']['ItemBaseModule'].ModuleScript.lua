@@ -6,7 +6,7 @@ local ItemBase = class("ItemBase")
 
 function ItemBase:initialize(_data, _config)
     print("ItemBase:initialize()")
-    self.id = _data.ID
+    self.id = _data.ItemID
     self.useCD = _data.UseCD
     self.useCT = _data.UseCD
     self.useSoundID = _data.UseSoundID
