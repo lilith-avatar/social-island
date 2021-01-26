@@ -25,6 +25,7 @@ function ItemMgr:DataInit()
     for k, v in pairs(Config.Item) do
         this.itemInstance[k] = this:InstantiateItem(k)
     end
+    this.curWeaponID = 0
 
     this.curWeapon = nil
     invoke(
@@ -96,7 +97,6 @@ function ItemMgr:GetItem(_id)
     print("获得道具", _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     this.itemInstance[_id]:PutIntoBag()
-    print(_id, Data.Player.bag[_id].count)
 end
 
 --移除道具
@@ -109,9 +109,7 @@ end
 --获取满足条件的任务道具
 function ItemMgr:GetTaskItem(_npcID)
     for k1, v1 in pairs(Data.Player.bag) do
-        print(k1, v1.count)
         if string.sub(tostring(k1), 1, 1) == "5" and v1.count > 0 then
-            print("获取满足条件的任务道具", k1)
             local npcTable = this.itemInstance[k1].config.Npc
             for k2, v2 in pairs(npcTable) do
                 if v2 == _npcID then

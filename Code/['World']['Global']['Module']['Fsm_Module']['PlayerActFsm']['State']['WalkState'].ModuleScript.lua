@@ -3,7 +3,7 @@ local WalkState = class("WalkState", PlayerActState)
 function WalkState:OnEnter()
     PlayerActState.OnEnter(self)
     --localPlayer.Avatar:PlayAnimation("WalkingFront", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("WalkingFront", 4, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("WalkingFront", 2, 1, 0.1, true, true, 1)
 end
 
 function WalkState:OnUpdate(dt)

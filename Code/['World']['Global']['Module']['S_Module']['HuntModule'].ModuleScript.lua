@@ -54,8 +54,8 @@ end
 function Hunt:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 1 then
         print("进入狩猎")
-        NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
-        NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
+        --NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
+        --NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
     end
 end
 

@@ -30,7 +30,7 @@ local ItemXls = {
         Des = 'Item_Des_2001',
         Ico = '',
         UseCD = 0.0,
-        UseSoundID = 0,
+        UseSoundID = 1,
         UseAnimName = ''
     },
     [4001] = {

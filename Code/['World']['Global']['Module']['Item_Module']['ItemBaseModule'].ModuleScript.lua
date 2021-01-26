@@ -26,7 +26,6 @@ end
 
 --销毁
 function ItemBase:DestroyItem()
-    
 end
 
 --使用
@@ -45,7 +44,7 @@ end
 
 --播放使用音效
 function ItemBase:PlayUseSound()
-    NetUtil.Fire_C("PlayEffectEvent", self.useSoundID)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.useSoundID)
 end
 
 --播放使用动作

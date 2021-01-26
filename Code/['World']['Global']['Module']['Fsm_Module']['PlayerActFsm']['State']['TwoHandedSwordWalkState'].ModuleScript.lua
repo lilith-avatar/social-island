@@ -2,7 +2,7 @@ local TwoHandedSwordWalk = class("TwoHandedSwordWalk", PlayerActState)
 
 function TwoHandedSwordWalk:OnEnter()
     PlayerActState.OnEnter(self)
-    localPlayer.Avatar:PlayAnimation("TwoHandedSwordWalk", 4, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("TwoHandedSwordWalk", 2, 1, 0.1, true, true, 1)
     --localPlayer.Avatar:PlayAnimation("TwoHandedSwordWalk", 3, 1, 0.1, true, true, 1)
 end
 
