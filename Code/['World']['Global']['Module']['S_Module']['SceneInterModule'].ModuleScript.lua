@@ -1,7 +1,7 @@
 ---@module SceneInter
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local SceneInter,this = ModuleUtil.New('SceneInter',ServerBase)
+local SceneInter, this = ModuleUtil.New("SceneInter", ServerBase)
 local folder = {
     Grass = nil,
     Bush = nil,
@@ -16,16 +16,18 @@ function SceneInter:Init()
 end
 
 function SceneInter:CreateInterManager()
-    for k,v in pairs(folder) do
-        for _,n in pairs(v:GetChildren())do
-            n.OnCollisionBegin:Connect(function(_hitObject)
-                this[k..'Inter'](_hitObject,self)
-            end)
+    for k, v in pairs(folder) do
+        for _, n in pairs(v:GetChildren()) do
+            n.OnCollisionBegin:Connect(
+                function(_hitObject)
+                    this[k .. "Inter"](_hitObject, n, self)
+                end
+            )
         end
     end
 end
 
-function SceneInter:GrassInter(_hitObject)
+function SceneInter:GrassInter(_hitObject, _Object)
 end
 
 return SceneInter
