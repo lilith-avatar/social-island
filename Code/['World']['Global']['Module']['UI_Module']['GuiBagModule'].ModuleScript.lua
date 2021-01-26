@@ -153,7 +153,8 @@ function GuiBag:ClickUseBtn(_index)
         return
     end
     local itemId = this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].id
-    -- TODO: 使用物品
+    -- 使用物品
+    ItemMgr.itemInstance[itemId]:Use()
     -- 物品消耗判定
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
@@ -226,9 +227,12 @@ function GuiBag:ChangeNameAndDesc(_itemId)
 end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)
+    
     for i = 1, this.rowNum * this.colNum do
         -- 显示当前页面物品
-        this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+		if this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i] then
+			this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+		end
     end
 end
 
