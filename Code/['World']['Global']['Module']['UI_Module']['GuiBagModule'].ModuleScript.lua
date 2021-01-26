@@ -10,25 +10,27 @@ local transTab, tmp
 ---@return table
 local function TransformItemTable(_itemTable)
     transTab = {}
-    tmp =
-        table.sort(
-        _itemTable,
-        function(a, b)
-            if a and b then
-                return (a.id < b.id)
-            end
-        end
-    )
-    for _, v in pairs(tmp) do
+
+    for k, v in pairs(_itemTable) do
         for i = 1, v.count do
             local data = {
+                id = k,
                 cd = 0
             }
             table.merge(data, v)
             table.insert(transTab, data)
         end
     end
-    return transTab
+    tmp =
+        table.sort(
+        transTab,
+        function(a, b)
+            if a and b then
+                return (a.id < b.id)
+            end
+        end
+    )
+    return transTab --! Only Test
 end
 
 ---初始化函数
@@ -66,7 +68,7 @@ function GuiBag:DataInit()
     this.rowNum = 10
     this.colNum = 5
 
-    --* 计时器
+    --* 计时器---------------
     this.timer = {}
     this.cdMask = {}
 end
@@ -121,9 +123,12 @@ end
 function GuiBag:ShowBagUI()
     this:ClearSelect()
     this.root:SetActive(true)
-    -- TODO: 根据长度获取最大页数
+    -- 转表
+    this.slotItem = TransformItemTable(Data.Player.bag)
     -- 显示物品
     this:ClickChangePage(1)
+    -- 根据长度获取最大页数
+    this:GetMaxPageNum(#this.slotItem)
 end
 
 function GuiBag:HideBagUI()
@@ -131,21 +136,23 @@ function GuiBag:HideBagUI()
 end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
-    this.slotItem[_index] = _itemId
+    this.slotItem[_index].id = _itemId
     -- 更换图片
-    this.slotList[_index].IconImg.Image = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
+    this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
     this.slotList[_index].IconImg.Size = this.slotList[_index].Size
     this.slotList[_index].IconImg:SetActive(_itemId and true or false)
+
     -- 若存在cd,则将mask放入表中
     if not this.cdMask[_itemId] then
         this.cdMask[_itemId] = {}
     end
     table.insert(this.cdMask[_itemId], this.slotList[_index].MaskImg)
+
     -- 红点系统前端表现
-    if this.slotItem[_index].isNew then
-        --消除红点
-        this.slotList[_index].RedDotImg:SetActive(true)
-    end
+    -- if this.slotItem[_index].isNew and this.slotItem[_index] then
+    --     --消除红点
+    --     this.slotList[_index].RedDotImg:SetActive(true)
+    -- end
 end
 
 function GuiBag:ClickUseBtn(_index)
@@ -153,13 +160,15 @@ function GuiBag:ClickUseBtn(_index)
         return
     end
     local itemId = this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].id
+    this.cdMask[itemId] = {this.slotList[_index].MaskImg}
+    -- 该cd物品进入 cd
+    this.timer[itemId] = 0
     -- TODO: 使用物品
     -- 物品消耗判定
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
+        Data.Player.bag[itemId].count = Data.Player.bag[itemId].count - 1
     end
-    -- 该cd物品进入 cd
-    this.timer[itemId] = 0
     -- 重新展示当前页面物品信息
     this:ClickChangePage(this.pageIndex)
     -- 清除选择
@@ -172,18 +181,17 @@ function GuiBag:SelectItem(_index)
         this:ClearSelect()
         this.selectIndex = _index
         -- 进行名字和描述的更换,并高亮该物品
-        this:ChangeNameAndDesc(this.slotItem[_index])
+        this:ChangeNameAndDesc(this.slotItem[_index].id)
         -- TODO: 高亮
         this.slotList[_index].Image = ResourceManager.GetTexture("UI/")
-        -- 红点系统前端表现
-        if this.slotItem[_index].isNew then
-            --消除红点
-            this.slotList[_index].RedDotImg:SetActive(false)
-        end
+        --开启使用按钮
+        this.useBtn:SetActive(true)
+    -- 红点系统前端表现
+    -- if this.slotItem[_index].isNew and this.slotItem[_index] then
+    --     --消除红点
+    --     this.slotList[_index].RedDotImg:SetActive(false)
+    -- end
     end
-end
-
-function GuiBag:ChangeSelectOffset(_pageIndex)
 end
 
 function GuiBag:ClearSelect()
@@ -199,10 +207,12 @@ function GuiBag:ClearSelect()
 end
 
 function GuiBag:ClickChangePage(_pageIndex)
-    this:ClearSelect()
-    this:ShowItemsByPageIndex(_pageIndex)
     --清除cdmask
     this.cdMask = {}
+    this.slotList = {}
+    this:ClearSelect()
+    this:ShowItemsByPageIndex(_pageIndex)
+
     --页面数字显示
     this.pageTxt = tostring(math.floor(_pageIndex))
     --如果第一页则不显示上一页按钮
@@ -218,17 +228,23 @@ function GuiBag:ClickChangePage(_pageIndex)
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
     end
+    table.dump(print(this.cdMask))
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
-    this.nameTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Name)
-    this.descTxt.Text = LanguageUtil.GetText(Config.itemInfo[_itemId].Des)
+    this.nameTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Name)
+    this.descTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Des)
 end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)
     for i = 1, this.rowNum * this.colNum do
-        -- 显示当前页面物品
-        this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+        if this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i] then
+            -- 显示当前页面物品
+            this:ShowItemByIndex(i, this.slotItem[(_pageIndex - 1) * this.colNum * this.rowNum + i].id)
+        else
+            this.slotList[i].MaskImg.FillAmount = 0
+            this.slotList[i].IconImg:SetActive(false)
+        end
     end
 end
 
@@ -243,12 +259,14 @@ end
 ---计时器进行冷却计时
 function GuiBag:Update(dt)
     for k, v in pairs(this.timer) do
-        v = v + dt
-        -- CD表现
-        for _, n in pairs(this.cdMask[k]) do
-            n.FillAmount = v / Config.Item[k].UseCD
+        this.timer[k] = this.timer[k] + dt
+        if this.cdMask[k] then
+            -- CD表现
+            for _, n in pairs(this.cdMask[k]) do
+                n.FillAmount = 1 - this.timer[k] / Config.Item[k].UseCD
+            end
         end
-        if v >= Config.Item[k].UseCD then
+        if this.timer[k] >= Config.Item[k].UseCD then
             this.timer[k] = nil
         end
     end

@@ -16,7 +16,8 @@ local MoleConfigXls = {
         AppearTime = 1.0,
         KeepTime = 3.0,
         DisapearTime = 1.0,
-        Weight = 100
+        Weight = 100,
+        BeatenArch = {}
     },
     M2 = {
         ID = 'M2',
@@ -28,7 +29,8 @@ local MoleConfigXls = {
         AppearTime = 1.0,
         KeepTime = 3.0,
         DisapearTime = 1.0,
-        Weight = 50
+        Weight = 50,
+        BeatenArch = {}
     },
     M3 = {
         ID = 'M3',
@@ -40,7 +42,8 @@ local MoleConfigXls = {
         AppearTime = 0.5,
         KeepTime = 1.0,
         DisapearTime = 0.5,
-        Weight = 30
+        Weight = 30,
+        BeatenArch = {}
     },
     M4 = {
         ID = 'M4',
@@ -52,7 +55,8 @@ local MoleConfigXls = {
         AppearTime = 1.0,
         KeepTime = 3.0,
         DisapearTime = 1.0,
-        Weight = 80
+        Weight = 80,
+        BeatenArch = {}
     },
     M5 = {
         ID = 'M5',
@@ -64,7 +68,8 @@ local MoleConfigXls = {
         AppearTime = 1.0,
         KeepTime = 3.0,
         DisapearTime = 1.0,
-        Weight = 50
+        Weight = 50,
+        BeatenArch = {}
     },
     M6 = {
         ID = 'M6',
@@ -76,7 +81,8 @@ local MoleConfigXls = {
         AppearTime = 0.5,
         KeepTime = 1.0,
         DisapearTime = 0.5,
-        Weight = 30
+        Weight = 30,
+        BeatenArch = {}
     }
 }
 
