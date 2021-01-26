@@ -160,7 +160,7 @@ function GuiBag:ClickUseBtn(_index)
         return
     end
     local itemId = this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].id
-    this.cdMask[itemId] = { this.slotList[_index].MaskImg }
+    this.cdMask[itemId] = {this.slotList[_index].MaskImg}
     -- 该cd物品进入 cd
     this.timer[itemId] = 0
     -- TODO: 使用物品
@@ -271,4 +271,5 @@ function GuiBag:Update(dt)
         end
     end
 end
+
 return GuiBag
