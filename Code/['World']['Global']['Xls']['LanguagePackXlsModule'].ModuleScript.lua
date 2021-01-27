@@ -1363,6 +1363,48 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    NpcInfo_Title_1 = {
+        ID = 'NpcInfo_Title_1',
+        CHS = '探险领队',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_2 = {
+        ID = 'NpcInfo_Title_2',
+        CHS = '原住民',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_3 = {
+        ID = 'NpcInfo_Title_3',
+        CHS = '原住民',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_4 = {
+        ID = 'NpcInfo_Title_4',
+        CHS = '迷宫摊主',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_5 = {
+        ID = 'NpcInfo_Title_5',
+        CHS = '花农',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_6 = {
+        ID = 'NpcInfo_Title_6',
+        CHS = '蜗牛饲养者',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 
