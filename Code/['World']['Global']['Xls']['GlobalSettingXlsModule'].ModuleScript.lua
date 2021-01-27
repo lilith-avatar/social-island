@@ -8,7 +8,7 @@
 local GlobalSettingXls = {
     DefaultLanguage = "EN",
     NpcBubbleShowTime = 3.0,
-    NpcBubbleIntervalTime = 5.0
+    NpcBubbleInterval = {5,8}
 }
 
 return GlobalSettingXls
