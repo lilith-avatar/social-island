@@ -8,14 +8,14 @@ local NpcMgr, this = ModuleUtil.New('NpcMgr', ServerBase)
 local ServerUtil = ServerUtil
 local Config = Config
 local NpcInfo = Config.NpcInfo
-local npcFolder
+local npcFolder, monsterFolder
 local npcObjs = {}
 
 --- 初始化
 function NpcMgr:Init()
     print('[NpcMgr] Init()')
     CreateNpcFolder()
-    SpawnNpcs()
+    invoke(CreateNpcs)
 end
 
 --- 生成节点：world.NPC
@@ -24,18 +24,26 @@ function CreateNpcFolder()
         world:CreateObject('FolderObject', 'NPC', world)
     end
     npcFolder = world.NPC
+    if world.NPCMonster == nil then
+        world:CreateObject('FolderObject', 'NPCMonster', world)
+    end
+    monsterFolder = world.NPCMonster
 end
 
 --- 创建NPC
-function SpawnNpcs()
+function CreateNpcs()
     for _, npc in pairs(NpcInfo) do
-        local npcObj = world:CreateInstance(npc.Model, npc.Name, npcFolder, npc.SpawnPos, npc.SpawnRot)
+        local npcObj = world:CreateInstance(npc.Model, 'NPC_' .. npc.ID, npcFolder, npc.SpawnPos, npc.SpawnRot)
         local id = world:CreateObject('IntValueObject', 'ID', npcObj)
         id.Value = npc.ID
 
         -- 生成宠物
-        SpawnMonster(npcObj, npc)
+        CreateMonster(npcObj, npc)
 
+        -- npc name
+        CreateGui(npcObj, npc)
+
+        -- 事件绑定
         local npcInfo = npc -- 用于闭包
         npcObj.CollisionArea.OnCollisionBegin:Connect(
             function(_hitObj)
@@ -55,37 +63,31 @@ function SpawnNpcs()
     end
 end
 
--- 检查碰撞对象是否为NPC
-function CheckHitObjIsPlayer(_hitObj)
-    return _hitObj and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar and
-        _hitObj.Avatar.ClassName == 'PlayerAvatarInstance'
+-- 创建NPC名片
+function CreateGui(_npcObj, _npcInfo)
+    local gui = world:CreateInstance('NpcCardGui', 'CardGui', _npcObj)
+    gui.NameBarTxt1.Text = LanguageUtil.GetText(_npcInfo.Name)
+    gui.NameBarTxt2.Text = LanguageUtil.GetText(_npcInfo.Name)
+    gui.TitleBarTxt1.Text = LanguageUtil.GetText(_npcInfo.Title)
+    gui.TitleBarTxt2.Text = LanguageUtil.GetText(_npcInfo.Title)
+    gui.LocalPosition = Vector3(0, 2, 0)
+    gui.LocalRotation = EulerDegree(0, 0, 0)
 end
 
 -- 创建NPC的宠物
-function SpawnMonster(_npcObj, _npcInfo)
-	if world.NPCMonster == nil then
-        world:CreateObject('FolderObject', 'NPCMonster', world)
+function CreateMonster(_npcObj, _npcInfo)
+    if not _npcInfo.PetBattleSwitch then
+        return
     end
-    -- TODO: 这里是根据表判断这个NPC是否是可战斗的NPC
-    if true then
-        invoke(
-            function()
-                wait(1)
-                local healthVal = world:CreateObject('IntValueObject', 'HealthVal', _npcObj)
-                local attackVal = world:CreateObject('IntValueObject', 'AttackVal', _npcObj)
-                local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
-                world:CreateObject('IntValueObject', 'BattleVal', _npcObj)
-                monsterVal.Value =
-                    world:CreateInstance(
-                    'Monster',
-                    'Monster' .. _npcInfo.Name,
-                    world.NPCMonster,
-                    _npcObj.Position - _npcObj.Forward * 2
-                )
-                MoveMonster(_npcObj, monsterVal.Value)
-            end
-        )
-    end
+    world:CreateObject('IntValueObject', 'HealthVal', _npcObj)
+    world:CreateObject('IntValueObject', 'AttackVal', _npcObj)
+    world:CreateObject('IntValueObject', 'BattleVal', _npcObj)
+    local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
+    local monsterObj = world:CreateInstance(_npcInfo.PetModel, 'Pet_' .. _npcInfo.ID, monsterFolder)
+    monsterObj.Position = _npcObj.Position - _npcObj.Forward * 2
+    monsterObj.Forward = _npcObj.Forward
+    monsterVal.Value = monsterObj
+    MoveMonster(_npcObj, monsterVal.Value)
 end
 
 -- 移动宠物
