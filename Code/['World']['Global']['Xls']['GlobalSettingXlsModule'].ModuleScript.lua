@@ -6,7 +6,9 @@
 --- source file: .//GlobalSetting.xls
 
 local GlobalSettingXls = {
-    DefaultLanguage = "EN"
+    DefaultLanguage = "EN",
+    NpcBubbleShowTime = 3.0,
+    NpcBubbleIntervalTime = 5.0
 }
 
 return GlobalSettingXls
