@@ -2,7 +2,7 @@
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang, Lin
-local GuiNpc, this = ModuleUtil.New("GuiNpc", ClientBase)
+local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
 local controlGui, monsterGui, npcBtn
@@ -22,7 +22,7 @@ local taskItemID = 0
 
 --- 初始化
 function GuiNpc:Init()
-    print("[GuiNpc] Init()")
+    print('[GuiNpc] Init()')
     self:InitGui()
     self:InitData()
     self:InitResource()
@@ -52,7 +52,7 @@ end
 function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
-            npc.Portrait = ResourceManager.GetTexture("TestPortrait/" .. npc.PortraitRes)
+            npc.Portrait = ResourceManager.GetTexture('TestPortrait/' .. npc.PortraitRes)
         -- print('[GuiNpc] InitResource()', npc.PortraitRes)
         end
     end
@@ -73,18 +73,22 @@ function TouchNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
-    print("[GuiNpc] TouchNpc()", _npcId)
-    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", Config.Interact.NPC.ID)
+    print('[GuiNpc] TouchNpc()', _npcId)
+    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', Config.Interact.NPC.ID)
+    NetUtil.Fire_S('TouchNpcEvent', localPlayer, _npcId)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
 
 --- 离开NPC
 function LeaveNpc()
-    print("[GuiNpc] LeaveNpc()", currNpcId)
-    NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
+    print('[GuiNpc] LeaveNpc()', currNpcId)
+    NetUtil.Fire_C('ResetDefUIEvent', localPlayer)
     monsterGui.Visible = true
     npcGui.Visible = false
+    if currNpcId then
+        NetUtil.Fire_S('LeaveNpcEvent', localPlayer, currNpcId)
+    end
     currNpcId = nil
     currNpcObj = nil
 end
@@ -94,8 +98,9 @@ function OpenNpcGui()
     if currNpcId == nil or NpcInfo[currNpcId] == nil then
         return
     end
-    print("[GuiNpc] OpenNpcGui()")
-    NetUtil.Fire_C("SetDefUIEvent", localPlayer, false, {"Ctrl"})
+    print('[GuiNpc] OpenNpcGui()')
+    NetUtil.Fire_C('SetDefUIEvent', localPlayer, false, {'Ctrl'})
+    NetUtil.Fire_S('StartTalkNpcEvent', localPlayer, currNpcId)
     --monsterGui.Visible = false
     npcGui.Visible = true
 
@@ -116,16 +121,6 @@ function OpenNpcGui()
     battleBtn.Visible = localPlayer.MonsterVal.Value ~= nil
 end
 
--- 使NPC面向玩家
-function NpcFaceToPlayer()
-    local ry = Vector3.Angle(Vector3.Forward, localPlayer.Position - currNpcObj.Position)
-    if localPlayer.Position.x - currNpcObj.Position.x >= 0 then
-        currNpcObj.Rotation = EulerDegree(0, ry, 0)
-    else
-        currNpcObj.Rotation = EulerDegree(0, 360 - ry, 0)
-    end
-end
-
 --- 开始小游戏
 function EnterMiniGame()
     if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].GameId == nil then
@@ -133,20 +128,21 @@ function EnterMiniGame()
     end
 
     local gameId = NpcInfo[currNpcId].GameId
-    NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, gameId)
+    NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
     --! Test only
-    print("[GuiNpc] EnterMiniGameEvent", localPlayer, gameId)
+    print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
 end
 
 --- 打开商城
 function EnterShop()
-    print("[GuiNpc] EnterShop()")
+    print('[GuiNpc] EnterShop()')
+    -- TODO: 商店相关逻辑
 end
 
 --- 开始宠物战斗
 function StartMonsterBattle()
-    print("[GuiNpc] StartMonsterBattle()")
-    NetUtil.Fire_S("StartBattleEvent", true, currNpcObj, localPlayer)
+    print('[GuiNpc] StartMonsterBattle()')
+    NetUtil.Fire_S('StartBattleEvent', true, currNpcObj, localPlayer)
 end
 
 --- 随机选取一段对话
@@ -156,15 +152,15 @@ function PickARandomDialog()
     end
     local dialogId = table.shuffle(NpcInfo[currNpcId].DialogId)[1]
     local dialog = NpcText[dialogId].Text
-    assert(dialogId and dialog, string.format("[GuiNpc] NPC: %s, 不存在DialogId: %s", currNpcId, dialogId))
+    assert(dialogId and dialog, string.format('[GuiNpc] NPC: %s, 不存在DialogId: %s', currNpcId, dialogId))
     return LanguageUtil.GetText(dialog)
 end
 
 --! Event handlers 事件处理
 
+-- 进入或离开NPC碰撞区域
 function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
-    print("[GuiNpc] TouchNpcEventHandler", _npcId)
-    if _npcId ~= nil then
+    if _npcId and _npcObj then
         TouchNpc(_npcId, _npcObj)
     else
         LeaveNpc()
@@ -174,7 +170,6 @@ end
 function GuiNpc:InteractCEventHandler(_id)
     if _id == Config.Interact.NPC.ID then
         OpenNpcGui()
-        NpcFaceToPlayer()
     end
 end
 

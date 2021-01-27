@@ -1226,14 +1226,14 @@ local LanguagePackXls = {
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
-        CHS = '变异蜗牛大赛跑，买定离手！',
+        CHS = '气泡测试：小伙子，来玩儿游戏啊！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2002 = {
         ID = 'NpcText_Text_2002',
-        CHS = '我这是从飞碟下面捡到的外星科技，可带劲了。',
+        CHS = '气泡测试：小姐姐，来玩儿游戏啊！',
         CHT = '',
         EN = '',
         JP = ''
