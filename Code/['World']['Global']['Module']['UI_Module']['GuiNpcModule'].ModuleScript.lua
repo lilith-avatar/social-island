@@ -74,7 +74,7 @@ function TouchNpc(_npcId, _npcObj)
         return
     end
     print("[GuiNpc] TouchNpc()", _npcId)
-    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", Config.Interact.NPC.ID)
+    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 12)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
@@ -82,7 +82,7 @@ end
 --- 离开NPC
 function LeaveNpc()
     print("[GuiNpc] LeaveNpc()", currNpcId)
-    NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
     monsterGui.Visible = true
     npcGui.Visible = false
     currNpcId = nil
@@ -95,7 +95,7 @@ function OpenNpcGui()
         return
     end
     print("[GuiNpc] OpenNpcGui()")
-    NetUtil.Fire_C("SetDefUIEvent", localPlayer, false, {"Ctrl"})
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 12)
     --monsterGui.Visible = false
     npcGui.Visible = true
 
@@ -172,7 +172,7 @@ function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
 end
 
 function GuiNpc:InteractCEventHandler(_id)
-    if _id == Config.Interact.NPC.ID then
+    if _id == 12 then
         OpenNpcGui()
         NpcFaceToPlayer()
     end

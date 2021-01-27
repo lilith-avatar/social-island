@@ -62,7 +62,24 @@ function GuiControl:InitListener()
     )
     ctrlFigure.UseBtn.OnDown:Connect(
         function()
+            if ItemMgr.curWeaponID ~= 0 then
+                ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+                return
+            end
             PlayerCtrl:PlayerClap()
+        end
+    )
+    ctrlFigure.TakeOffBtn.OnDown:Connect(
+        function()
+            ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
+        end
+    )
+    ctrlFigure.LeaveBtn.OnDown:Connect(
+        function()
+            if interactID == 10 then
+                ChairUIMgr:NormalBack()
+                return
+            end
         end
     )
     menuFigure.BagBtn.OnClick:Connect(
@@ -70,7 +87,7 @@ function GuiControl:InitListener()
             GuiBag:ShowBagUI()
         end
     )
-	--[[menuFigure.ResetBtn.OnClick:Connect(
+    --[[menuFigure.ResetBtn.OnClick:Connect(
 		function()
 			localPlayer.Position = world.SpawnLocations.StartPortal00.Position
 		end
@@ -107,22 +124,28 @@ end
 
 --- 重置通用UI事件
 function GuiControl:ResetDefUIEventHandler()
-    dynamicFigure:SetActive(false)
-    infoFigure:SetActive(false)
-    menuFigure:SetActive(true)
-    ctrlFigure:SetActive(true)
-    local tmp = gui:GetChildren()
-    for _, v in pairs(dynamicFigure:GetChildren()) do
-        v:SetActive(false)
-    end
-    for _, v in pairs(infoFigure:GetChildren()) do
-        v:SetActive(true)
-    end
-    for _, v in pairs(menuFigure:GetChildren()) do
-        v:SetActive(true)
-    end
-    for _, v in pairs(ctrlFigure:GetChildren()) do
-        v:SetActive(true)
+    if interactID == 0 then
+        print("重置通用UI事件")
+        gui.Joystick:SetActive(true)
+        dynamicFigure:SetActive(false)
+        infoFigure:SetActive(false)
+        menuFigure:SetActive(true)
+        ctrlFigure:SetActive(true)
+        local tmp = gui:GetChildren()
+        for _, v in pairs(dynamicFigure:GetChildren()) do
+            v:SetActive(false)
+        end
+        for _, v in pairs(infoFigure:GetChildren()) do
+            v:SetActive(true)
+        end
+        for _, v in pairs(menuFigure:GetChildren()) do
+            v:SetActive(true)
+        end
+        for _, v in pairs(ctrlFigure:GetChildren()) do
+            v:SetActive(true)
+        end
+        gui.Ctrl.LeaveBtn:SetActive(false)
+        this:UpdateTakeOffBtn()
     end
 end
 
@@ -148,6 +171,51 @@ function GuiControl:ShowInfo(_text, _t)
         end,
         _t
     )
+end
+
+--- 改变使用按钮图标
+function GuiControl:ChangeUseBtnIcon(_icon)
+    _icon = _icon or "Icon_Control"
+    gui.Ctrl.UseBtn.Image = ResourceManager.GetTexture("UI/" .. _icon)
+    gui.Ctrl.UseBtn.PressedImage = ResourceManager.GetTexture("UI/" .. _icon .. "_A")
+end
+
+--- 进入小游戏修改UI
+function GuiControl:ChangeMiniGameUIEventHandler(_id)
+    _id = _id or 0
+    local config = Config.Interact[_id]
+    gui.Joystick:SetActive(config.JoystickActive)
+    gui.Menu:SetActive(config.MenuActive)
+    gui.Ctrl:SetActive(config.CtrlActive)
+    if config.CtrlActive then
+        gui.Ctrl.UseBtn:SetActive(config.UseBtnActive)
+        gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
+        gui.Ctrl.LeaveBtn:SetActive(config.LeaveBtnActive)
+    end
+    if config.UseBtnIcon ~= "" then
+        this:ChangeUseBtnIcon(config.UseBtnIcon)
+    end
+
+    for k, v in pairs(localPlayer.Local:GetChildren()) do
+        if v.ClassName == "UiScreenUiObject" and v.Name ~= "ControlGui" and v.ActiveSelf then
+            v:SetActive(false)
+        end
+    end
+    localPlayer.Local[config.OpenGui]:SetActive(true)
+    if _id == 0 then
+        interactID = 0
+        this:ResetDefUIEventHandler()
+    end
+    this:UpdateTakeOffBtn()
+end
+
+--- 更新脱下Btn显示
+function GuiControl:UpdateTakeOffBtn()
+    if ItemMgr.curWeaponID == 0 or ItemMgr.curWeaponID == nil then
+        gui.Ctrl.TakeOffBtn:SetActive(false)
+    else
+        gui.Ctrl.TakeOffBtn:SetActive(true)
+    end
 end
 
 return GuiControl

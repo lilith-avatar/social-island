@@ -40,6 +40,8 @@ Events.ClientEvents = {
     "SetDefUIEvent", -- @param _bool, _nodes, _root
     --- 重置通用UI事件
     "ResetDefUIEvent",
+    --- 进入小游戏修改UI事件
+    "ChangeMiniGameUIEvent",
     --- 打开动态交互事件
     "OpenDynamicEvent", -- @param _type, _id
     -- 交互
