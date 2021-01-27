@@ -36,21 +36,20 @@ end
 
 function ChairMgr:ChairCreate()
     for k, v in pairs(Config.ChairInfo) do
-        this.ChairList[v.Type][k] = {
-            model = world:CreateInstance(
-                v.Archetype,
-                k,
-                world.MiniGames.Game_10_Chair[v.Type .. "Chair"],
-                v.Position,
-                v.Rotation
-            ),
-            isSeat = false
-        }
+        this.ChairList[v.Type][k] =
+            ChairClass:new(
+            v.Type,
+            k,
+            v.Archetype,
+            world.MiniGames.Game_10_Chair[v.Type .. "Chair"],
+            v.Position,
+            v.Rotation
+        )
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
                     NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 10)
-                    NetUtil.Fire_C('ShowSitBtnEvent', _hitObject, v.Type, v.ID)
+                    NetUtil.Fire_C("ShowSitBtnEvent", _hitObject, v.Type, v.ID)
                 end
             end
         )
@@ -68,9 +67,7 @@ end
 function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
     local player = world:GetPlayerByUserId(_uid)
     --让玩家坐（发事件）
-    this.ChairList[_type][_chairId].model.CollisionArea:SetActive(false)
-    this.ChairList[_type][_chairId].model.Rotation = Config.ChairInfo[_chairId].Rotation
-    this.ChairList[_type][_chairId].model.Seat:SetActive(true)
+    this.ChairList[_type][_chairId]:Sit(player)
     player.Position = this.ChairList[_type][_chairId].model.Seat.Position
     NetUtil.Fire_C(
         "PlayerSitEvent",
