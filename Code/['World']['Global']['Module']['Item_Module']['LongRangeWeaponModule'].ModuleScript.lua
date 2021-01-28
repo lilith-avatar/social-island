@@ -23,7 +23,7 @@ function LongRangeWeapon:ShootArrow()
     local arrow =
         world:CreateInstance(
         self.config.ArrowModelName,
-        "Arrow",
+        config.ArrowModelName,
         world,
         localPlayer.Avatar.Bone_R_Hand.Position,
         localPlayer.Rotation

@@ -37,7 +37,7 @@ end
 --装备
 function WeaponBase:Equip()
     local node1, node2 = string.match(self.config.ParentNode, "([%w_]+).([%w_]+)")
-    print(node1,node1)
+    print(node1, node1)
     local pNode = localPlayer.Avatar[node1][node2]
     self.weaponObj =
         world:CreateInstance(
@@ -58,15 +58,17 @@ function WeaponBase:Equip()
     --self:PlayIdleAnim()
     print("装备")
     NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
+    --NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
+    GuiControl:UpdateTakeOffBtn()
 end
 
 --取下装备
 function WeaponBase:Unequip()
     NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuff)
+    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
     self.weaponObj:Destroy()
     ItemMgr.curWeaponID = 0
+    GuiControl:UpdateTakeOffBtn()
 end
 
 --攻击

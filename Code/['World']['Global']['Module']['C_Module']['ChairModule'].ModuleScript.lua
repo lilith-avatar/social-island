@@ -60,7 +60,7 @@ function Chair:NormalSit(_chairId, _pos, _rot)
     this.chairType = 'Normal'
     this.startUpdate = false
     --ui控制
-    ChairUIMgr:EnterNormal()
+    GuiChair:EnterNormal()
 end
 
 function Chair:DestroyChair()
@@ -77,7 +77,7 @@ function Chair:QteSit(_chairId, _pos, _rot)
     this.chairType = 'QTE'
     this.startUpdate = true
     --ui控制
-    ChairUIMgr:EnterQte()
+    GuiChair:EnterQte()
 end
 
 function Chair:Update(_dt)
@@ -88,11 +88,11 @@ function Chair:Update(_dt)
             this.qteTimer = this.qteTimer + 1
             this.keepTime = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).ButtonKeepTime
             this.qteDuration = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).QteDuration
-            ChairUIMgr:ShowQteButton(this.keepTime)
-            ChairUIMgr:ChangeTotalTime(this.qteTotalTime)
+            GuiChair:ShowQteButton(this.keepTime)
+            GuiChair:ChangeTotalTime(this.qteTotalTime)
             if this.qteTimer >= this.qteDuration then
                 --跟移动方向一样
-                ChairUIMgr:GetQteForward(
+                GuiChair:GetQteForward(
                     Dir[math.random(1, 4)],
                     this:ChangeKeepTimeByTotalTime(this.qteTotalTime).BullSpeed
                 )

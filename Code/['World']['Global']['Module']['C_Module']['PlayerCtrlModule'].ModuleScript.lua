@@ -149,6 +149,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.7
          then
+            NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
             FsmMgr:FsmTriggerEventHandler("Idle")
         end
     end
@@ -174,8 +175,8 @@ function PlayerCtrl:PlayerAttrUpdate()
     localPlayer.CharacterWidth = localPlayer.Avatar.Width * 0.5
     localPlayer.CharacterHeight = localPlayer.Avatar.Height * 1.7
     this:PlayerHeadEffectUpdate(Data.Player.attr.HeadEffect)
-    this:PlayerBodyEffectUpdate(Data.Player.attr.HeadEffect)
-    this:PlayerFootEffectUpdate(Data.Player.attr.HeadEffect)
+    this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
+    this:PlayerFootEffectUpdate(Data.Player.attr.Footffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
     if Data.Player.attr.AnimState ~= "" then
         NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
@@ -224,13 +225,19 @@ end
 
 -- 更新角色服装
 function PlayerCtrl:PlayerSkinUpdate(_skinID)
-    if _skinID ~= 0 then
-        for k, v in pairs(Config.Skin[_skinID]) do
-            if localPlayer.Avatar[k] then
-            --localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
-            --print(k, v)
-            end
+    for k, v in pairs(Config.Skin[_skinID]) do
+        if localPlayer.Avatar[k] and v ~= "" then
+            localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
+        --print(k, v)
         end
+    end
+end
+
+-- 更新金币
+function PlayerCtrl:UpdateCoinEventHandler(_num)
+    if _num then
+        Data.Player.coin = Data.Player.coin + _num
+        GuiControl:UpdateCoinNum(_num)
     end
 end
 

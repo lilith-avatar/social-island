@@ -50,19 +50,6 @@ function GuiCannon:EventBind()
     )
 end
 
--- 显示小游戏的GUI
-function GuiCannon:SetMiniGameGuiEventHandler(_gameId, _selfActive, _ctrlGuiActive)
-    if _gameId == 4 then
-        cannonGui:SetActive(_selfActive)
-        invoke(
-            function()
-                localPlayer.Local.ControlGui:SetActive(_ctrlGuiActive)
-            end,
-            0.5
-        )
-    end
-end
-
 -- 力度条变化
 function GuiCannon:ForceBarChange(dt)
     if isAdd then
