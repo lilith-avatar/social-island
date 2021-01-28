@@ -85,7 +85,7 @@ local LanguagePackXls = {
     },
     Item_Name_1001 = {
         ID = 'Item_Name_1001',
-        CHS = '光剑',
+        CHS = '扇子',
         CHT = '',
         EN = '',
         JP = ''
@@ -148,7 +148,7 @@ local LanguagePackXls = {
     },
     Item_Des_1001 = {
         ID = 'Item_Des_1001',
-        CHS = '星球大战',
+        CHS = '一把亚洲风格的折扇。',
         CHT = '',
         EN = '',
         JP = ''
@@ -1360,6 +1360,482 @@ local LanguagePackXls = {
     Item_Des_5028 = {
         ID = 'Item_Des_5028',
         CHS = '疑似UFO掉落的碎片，拿给Learze看看吧。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_1 = {
+        ID = 'NpcInfo_Title_1',
+        CHS = '探险领队',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_2 = {
+        ID = 'NpcInfo_Title_2',
+        CHS = '原住民',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_3 = {
+        ID = 'NpcInfo_Title_3',
+        CHS = '原住民',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_4 = {
+        ID = 'NpcInfo_Title_4',
+        CHS = '迷宫摊主',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_5 = {
+        ID = 'NpcInfo_Title_5',
+        CHS = '花农',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_6 = {
+        ID = 'NpcInfo_Title_6',
+        CHS = '蜗牛饲养者',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1002 = {
+        ID = 'Item_Name_1002',
+        CHS = '树枝',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1002 = {
+        ID = 'Item_Des_1002',
+        CHS = '树上掉落的枝桠，挥动起来很顺手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1003 = {
+        ID = 'Item_Name_1003',
+        CHS = '扳钳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1003 = {
+        ID = 'Item_Des_1003',
+        CHS = '能当锤子，能当杠杆，Zander最爱的工具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1004 = {
+        ID = 'Item_Name_1004',
+        CHS = '扳手',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1004 = {
+        ID = 'Item_Des_1004',
+        CHS = '拧螺丝用的扳手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1005 = {
+        ID = 'Item_Name_1005',
+        CHS = '锄头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1005 = {
+        ID = 'Item_Des_1005',
+        CHS = '和Jake的不太一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1006 = {
+        ID = 'Item_Name_1006',
+        CHS = '大铁锤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1006 = {
+        ID = 'Item_Des_1006',
+        CHS = '熊也受不了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1007 = {
+        ID = 'Item_Name_1007',
+        CHS = '消防斧',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1007 = {
+        ID = 'Item_Des_1007',
+        CHS = '如果不砍厚重的东西就很是趁手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1008 = {
+        ID = 'Item_Name_1008',
+        CHS = '大骨锤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1008 = {
+        ID = 'Item_Des_1008',
+        CHS = '好像是什么神奇生物的骨头。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1009 = {
+        ID = 'Item_Name_1009',
+        CHS = '轻便的匕首',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1009 = {
+        ID = 'Item_Des_1009',
+        CHS = '森林求生的好助手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1010 = {
+        ID = 'Item_Name_1010',
+        CHS = '损坏的钉鞋',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1010 = {
+        ID = 'Item_Des_1010',
+        CHS = '加了钉子的登山鞋，已经破旧的没法穿了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1011 = {
+        ID = 'Item_Name_1011',
+        CHS = '登山斧',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1011 = {
+        ID = 'Item_Des_1011',
+        CHS = '一只手就可以挥动，能有力的嵌入墙壁。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1012 = {
+        ID = 'Item_Name_1012',
+        CHS = '简易的斧头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1012 = {
+        ID = 'Item_Des_1012',
+        CHS = '森林的原住民砍柴用的斧头。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1013 = {
+        ID = 'Item_Name_1013',
+        CHS = '旧斧头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1013 = {
+        ID = 'Item_Des_1013',
+        CHS = '已经不再锋利了，但是好在还没有生锈。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1014 = {
+        ID = 'Item_Name_1014',
+        CHS = '红光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1014 = {
+        ID = 'Item_Des_1014',
+        CHS = '外星人的宝藏！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1015 = {
+        ID = 'Item_Name_1015',
+        CHS = '蓝光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1015 = {
+        ID = 'Item_Des_1015',
+        CHS = '外星人的宝藏！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1016 = {
+        ID = 'Item_Name_1016',
+        CHS = '狼牙锤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1016 = {
+        ID = 'Item_Des_1016',
+        CHS = '将猎物一击毙命，但影响口感。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1017 = {
+        ID = 'Item_Name_1017',
+        CHS = '棒球棍',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1017 = {
+        ID = 'Item_Des_1017',
+        CHS = '精选树枝，打磨而成。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1018 = {
+        ID = 'Item_Name_1018',
+        CHS = '平底锅',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1018 = {
+        ID = 'Item_Des_1018',
+        CHS = '居家旅行必备单品！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1019 = {
+        ID = 'Item_Name_1019',
+        CHS = '农耙',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1019 = {
+        ID = 'Item_Des_1019',
+        CHS = '松软土地，好种庄稼。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1020 = {
+        ID = 'Item_Name_1020',
+        CHS = '草叉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1020 = {
+        ID = 'Item_Des_1020',
+        CHS = 'Geralt不喜欢它。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1021 = {
+        ID = 'Item_Name_1021',
+        CHS = '磁铁',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1021 = {
+        ID = 'Item_Des_1021',
+        CHS = '有人坚信可以通过这个东西找到外星人。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1022 = {
+        ID = 'Item_Name_1022',
+        CHS = '皮搋子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1022 = {
+        ID = 'Item_Des_1022',
+        CHS = '马桶伴侣。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1023 = {
+        ID = 'Item_Name_1023',
+        CHS = '溢能锄',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1023 = {
+        ID = 'Item_Des_1023',
+        CHS = '外星人可能用过它？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1024 = {
+        ID = 'Item_Name_1024',
+        CHS = '耀光撬棍',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1024 = {
+        ID = 'Item_Des_1024',
+        CHS = '外星人可能用过它？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1025 = {
+        ID = 'Item_Name_1025',
+        CHS = '耀光改锥',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1025 = {
+        ID = 'Item_Des_1025',
+        CHS = '外星人可能用过它？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1026 = {
+        ID = 'Item_Name_1026',
+        CHS = '奇异勺',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1026 = {
+        ID = 'Item_Des_1026',
+        CHS = '闪烁着生命能量。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1027 = {
+        ID = 'Item_Name_1027',
+        CHS = '聚能锹',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1027 = {
+        ID = 'Item_Des_1027',
+        CHS = '仿佛在搜集地球环境的能量。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1028 = {
+        ID = 'Item_Name_1028',
+        CHS = '迷你松树',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1028 = {
+        ID = 'Item_Des_1028',
+        CHS = '和迷宫的缩小器似乎有关系。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1029 = {
+        ID = 'Item_Name_1029',
+        CHS = 'G_Bomb_Red_01',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1029 = {
+        ID = 'Item_Des_1029',
+        CHS = 'G_Bomb_Red_01',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2002 = {
+        ID = 'Item_Name_2002',
+        CHS = '木弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2002 = {
+        ID = 'Item_Des_2002',
+        CHS = '从Johnny处借的新手打猎用弓。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2003 = {
+        ID = 'Item_Name_2003',
+        CHS = '弹弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2003 = {
+        ID = 'Item_Des_2003',
+        CHS = '硕大的弹弓，打到自己会很疼。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2004 = {
+        ID = 'Item_Name_2004',
+        CHS = '弹弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2004 = {
+        ID = 'Item_Des_2004',
+        CHS = '硕大的弹弓，打到自己会很疼。',
         CHT = '',
         EN = '',
         JP = ''
