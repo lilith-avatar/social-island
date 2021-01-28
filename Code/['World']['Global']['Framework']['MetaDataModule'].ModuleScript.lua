@@ -80,7 +80,7 @@ end
 local function DataValidation(_raw, _metaId, _k, _v)
     assert(_raw, '[MetaData] 原始数据丢失 _raw')
     assert(_k, string.format('[MetaData]%s 数据key为空', _raw._name))
-    assert(_v, string.format('[MetaData]%s 数据value为空', _raw._name))
+    assert(_v ~= nil, string.format('[MetaData]%s 数据value为空', _raw._name))
     assert(_raw[_metaId], string.format('[MetaData]%s metaId对应数据不存在, metaId = %s', _raw._name, _metaId))
     assert(
         _raw[_metaId][_k],
