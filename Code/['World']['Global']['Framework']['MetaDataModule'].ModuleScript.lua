@@ -83,7 +83,7 @@ local function DataValidation(_raw, _metaId, _k, _v)
     assert(_v ~= nil, string.format('[MetaData]%s 数据value为空', _raw._name))
     assert(_raw[_metaId], string.format('[MetaData]%s metaId对应数据不存在, metaId = %s', _raw._name, _metaId))
     assert(
-        _raw[_metaId][_k],
+        _raw[_metaId][_k]~= nil,
         string.format('[MetaData]%s metaId不存在key的数据, metaId = %s, key = %s', _raw._name, _metaId, _k)
     )
 end

@@ -76,10 +76,10 @@ end
 function BuffMgr:RemoveBuffEventHandler(_buffID)
     if BuffDataList[_buffID] then
         BuffDataList[_buffID] = nil
+        buffDataTable = table.deepcopy(defPlayerData)
+        this:GetAllBuffData()
+        PlayerCtrl:PlayerAttrUpdate()
     end
-    buffDataTable = table.deepcopy(defPlayerData)
-    this:GetAllBuffData()
-    PlayerCtrl:PlayerAttrUpdate()
 end
 
 --移除互斥Buff
