@@ -5,6 +5,7 @@
 local LanguageUtil, this = ModuleUtil.New('LanguageUtil', ClientBase)
 local lang = Config.GlobalSetting.DefaultLanguage
 local defaultLang = Const.LanguageEnum.CHS
+local valid = FrameworkConfig.DebugMode and false -- 打开参数校验
 
 --- 设置当前语言
 function LanguageUtil.SetLanguage(_lang)
@@ -23,9 +24,12 @@ function LanguageUtil.GetText(_id)
     )
     local text = Config.LanguagePack[_id][lang]
     if string.isnilorempty(text) then
-        print(string.format('[LanguageUtil] LanguagePack[%s][%s] 不存在对应语言翻译内容，默认使用中文', _id, lang))
         text = '*' .. Config.LanguagePack[_id][defaultLang]
     end
+    assert(
+        not (valid and string.isnilorempty(text)),
+        string.format('[LanguageUtil] LanguagePack[%s][%s] 不存在对应语言翻译内容，默认使用中文', _id, lang)
+    )
     return text
 end
 

@@ -8,6 +8,12 @@ Events.ServerEvents = {
     -- 进入小游戏
     "EnterMiniGameEvent", -- @param _player, _gameId
     "ExitMiniGameEvent", -- @param nil
+    -- 接触NPC
+    "TouchNpcEvent", -- @param _player, _npcId
+    -- 离开NPC
+    "LeaveNpcEvent", -- @param _player, _npcId
+    -- 开始与NPC对话
+    "StartTalkNpcEvent", -- @param _player, _npcId
     -- 交互
     "InteractSEvent", -- @param _player, _id
     "MazeEvent",
@@ -39,6 +45,7 @@ Events.ClientEvents = {
     --- 关闭通用UI事件
     "SetDefUIEvent", -- @param _bool, _nodes, _root
     --- 重置通用UI事件
+
     "ResetDefUIEvent",
     --- 进入小游戏修改UI事件
     "ChangeMiniGameUIEvent",
@@ -47,7 +54,7 @@ Events.ClientEvents = {
     -- 交互
     "InteractCEvent", -- @param _id
     -- NPC事件
-    "TouchNpcEvent", -- @param _npcId
+    "TouchNpcEvent", -- @param _npcId, _npcObj
     -- 修改玩家当前相机
     "SetCurCamEvent", -- @param _cam
     -- 显示小游戏的GUI
@@ -80,7 +87,8 @@ Events.ClientEvents = {
     "RemoveItemEvent",
     "CreateItemObjEvent",
     --开始扫描事件
-    "MonsterScanEvent" --@param _pos,_euler,_time
+    "MonsterScanEvent", --@param _pos,_euler,_time
+    "LeaveMoleGameRangeEvent"
 }
 
 return Events

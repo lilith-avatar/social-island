@@ -8,7 +8,7 @@
 local SkinXls = {
     [1] = {
         ID = 1,
-        --Gender = 'Male',
+        Gender = 'Male',
         Head = 'DefaultMale',
         Clothes = 'RedJacket',
         Trousers = 'Male_Leg_PantsLRobtEva_001',
