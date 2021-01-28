@@ -58,14 +58,14 @@ function WeaponBase:Equip()
     --self:PlayIdleAnim()
     print("装备")
     NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
+    --NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
     GuiControl:UpdateTakeOffBtn()
 end
 
 --取下装备
 function WeaponBase:Unequip()
     NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuff)
+    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
     self.weaponObj:Destroy()
     ItemMgr.curWeaponID = 0
     GuiControl:UpdateTakeOffBtn()

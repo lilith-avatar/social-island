@@ -15,6 +15,10 @@ function MeleeWeapon:Attack()
     self:PlayAttackAnim()
 end
 
+function MeleeWeapon:Use()
+    WeaponBase.Use(self)
+end
+
 --获取攻击数据
 function MeleeWeapon:GetAttackData()
     return {
