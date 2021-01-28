@@ -209,7 +209,6 @@ end
 function GuiBag:ClickChangePage(_pageIndex)
     --清除cdmask
     this.cdMask = {}
-    this.slotItem = {}
     this:ClearSelect()
     this:ShowItemsByPageIndex(_pageIndex)
 
