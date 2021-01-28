@@ -102,15 +102,12 @@ function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
     end
     local player = world:GetPlayerByUserId(_uid)
     this.chairSitter[_chairId] = nil
-    this.ChairList[_type][_chairId].model.CollisionArea:SetActive(true)
-    this.ChairList[_type][_chairId].model.Seat:SetActive(false)
+    this.ChairList[_type][_chairId]:Stand()
     player.Position = this.ChairList[_type][_chairId].model.LeavePosition.Position
-    this.ChairList[_type][_chairId].model.LinearVelocity = Vector3.Zero
 end
 
 function ChairMgr:QteChairMoveEventHandler(_dir, _speed, _chairId)
-    local chair = this.ChairList.QTE[_chairId].model
-    chair.LinearVelocity = chair[dir[_dir]] * _speed
+    this.ChairList.QTE[_chairId]:SetSpeed(_dir, _speed)
 end
 
 return ChairMgr
