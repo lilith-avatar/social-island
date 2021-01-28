@@ -234,6 +234,14 @@ function PlayerCtrl:PlayerSkinUpdate(_skinID)
     end
 end
 
+-- 更新金币
+function PlayerCtrl:UpdateCoinEventHandler(_num)
+    if _num then
+        Data.Player.coin = Data.Player.coin + _num
+        GuiControl:UpdateCoinNum(_num)
+    end
+end
+
 function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()

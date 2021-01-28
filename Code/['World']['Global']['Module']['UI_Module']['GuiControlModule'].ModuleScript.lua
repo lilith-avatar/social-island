@@ -13,6 +13,14 @@ local interactID = 0
 -- 拾取物体
 local pickItemObj = 0
 
+-- 文字FadeTween动画
+local textFadeTween = nil
+
+-- 底部文字处理队列
+local bottomTextList = {}
+-- 顶部文字处理队列
+local topTextList = {}
+
 function GuiControl:Init()
     print("[GuiControl] Init()")
     self:InitGui()
@@ -104,7 +112,7 @@ end
 --- 点击拾取按钮
 function OnPickBtnClick()
     dynamicFigure.PickBtn:SetActive(false)
-    ItemMgr:GetItem(pickItemObj.ID.Value)
+    ItemMgr:GetItemEventHandler(pickItemObj.ID.Value)
     pickItemObj:Destroy()
 end
 
@@ -128,7 +136,7 @@ function GuiControl:ResetDefUIEventHandler()
         print("重置通用UI事件")
         gui.Joystick:SetActive(true)
         dynamicFigure:SetActive(false)
-        infoFigure:SetActive(false)
+        infoFigure:SetActive(true)
         menuFigure:SetActive(true)
         ctrlFigure:SetActive(true)
         local tmp = gui:GetChildren()
@@ -161,16 +169,82 @@ function GuiControl:OpenDynamicEventHandler(_type, _var)
     end
 end
 
---- 显示info
-function GuiControl:ShowInfo(_text, _t)
-    infoFigure:SetActive(true)
-    infoFigure.InfoText.Text = _text
-    invoke(
-        function()
-            infoFigure:SetActive(false)
-        end,
-        _t
+--- 文字渐隐渐显
+function GuiControl:TextFade(_text, _isFade)
+    local alpha = _isFade and 0 or 255
+    textFadeTween =
+        Tween:TweenProperty(
+        _text,
+        {Color = Color(_text.Color.r, _text.Color.g, _text.Color.b, _isFade and 0 or 255)},
+        1,
+        Enum.EaseCurve.Linear
     )
+    textFadeTween:Play()
+end
+
+--- 插入info文字
+function GuiControl:InsertInfoEventHandler(_text, _t, _isTop)
+    if _isTop then
+        table.insert(
+            topTextList,
+            {
+                text = _text,
+                t = _t + 2
+            }
+        )
+    else
+        table.insert(
+            bottomTextList,
+            {
+                text = _text,
+                t = _t + 2
+            }
+        )
+    end
+end
+
+--- 显示文字
+function GuiControl:ShowInfo(dt)
+    if #topTextList > 0 then
+        if infoFigure.TopInfoBG.InfoText.Text ~= topTextList[1].text then
+            infoFigure.TopInfoBG.InfoText.Text = topTextList[1].text
+            this:TextFade(infoFigure.TopInfoBG.InfoText, false)
+        end
+        topTextList[1].t = topTextList[1].t - dt
+        if topTextList[1].t <= 1 and infoFigure.TopInfoBG.InfoText.Color.a == 255 then
+            this:TextFade(infoFigure.TopInfoBG.InfoText, true)
+            invoke(
+                function()
+                    table.remove(topTextList, 1)
+                    infoFigure.TopInfoBG.InfoText.Text = ""
+                end,
+                1
+            )
+        end
+    end
+    if #bottomTextList > 0 then
+        if infoFigure.BottomInfoBG.InfoText.Text ~= bottomTextList[1].text then
+            infoFigure.BottomInfoBG.InfoText.Text = bottomTextList[1].text
+            this:TextFade(infoFigure.BottomInfoBG.InfoText, false)
+        end
+        bottomTextList[1].t = bottomTextList[1].t - dt
+        if bottomTextList[1].t <= 1 and infoFigure.BottomInfoBG.InfoText.Color.a == 255 then
+            this:TextFade(infoFigure.BottomInfoBG.InfoText, true)
+            invoke(
+                function()
+                    table.remove(bottomTextList, 1)
+                    infoFigure.BottomInfoBG.InfoText.Text = ""
+                end,
+                1
+            )
+        end
+    end
+end
+
+--- 更新金币显示
+function GuiControl:UpdateCoinNum(_num)
+    this:InsertInfoEventHandler(_num >= 0 and "获得" .. _num .. "金币" or "失去" .. _num .. "金币", 0.5, true)
+    gui.Menu.CoinNum.Text = "金币：" .. Data.Player.coin
 end
 
 --- 改变使用按钮图标
@@ -216,6 +290,10 @@ function GuiControl:UpdateTakeOffBtn()
     else
         gui.Ctrl.TakeOffBtn:SetActive(true)
     end
+end
+
+function GuiControl:Update(dt)
+    this:ShowInfo(dt)
 end
 
 return GuiControl
