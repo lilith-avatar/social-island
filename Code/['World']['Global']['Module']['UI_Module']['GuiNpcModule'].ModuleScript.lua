@@ -74,7 +74,7 @@ function TouchNpc(_npcId, _npcObj)
         return
     end
     print('[GuiNpc] TouchNpc()', _npcId)
-    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', Config.Interact.NPC.ID)
+    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 12)
     NetUtil.Fire_S('TouchNpcEvent', localPlayer, _npcId)
     currNpcId = _npcId
     currNpcObj = _npcObj

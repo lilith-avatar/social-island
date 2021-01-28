@@ -2,7 +2,7 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local GuiBag, this = ModuleUtil.New("GuiBag", ClientBase)
-local Config = Config.Item
+--local Config = Config.Item
 
 local transTab, tmp
 ---对背包后端数据传过来的表进行转换
@@ -137,9 +137,10 @@ end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index].id = _itemId
+	print(_index,this.slotList[_index].Name)
     -- 更换图片
-    this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
-    this.slotList[_index].IconImg.Size = this.slotList[_index].Size
+    --this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
+    --this.slotList[_index].IconImg.Size = this.slotList[_index].Size
     this.slotList[_index].IconImg:SetActive(_itemId and true or false)
 
     -- 若存在cd,则将mask放入表中
@@ -209,7 +210,7 @@ end
 function GuiBag:ClickChangePage(_pageIndex)
     --清除cdmask
     this.cdMask = {}
-    this.slotList = {}
+    --this.slotItem = {}
     this:ClearSelect()
     this:ShowItemsByPageIndex(_pageIndex)
 
