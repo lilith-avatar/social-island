@@ -2,7 +2,6 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local GuiBag, this = ModuleUtil.New("GuiBag", ClientBase)
---local Config = Config.Item
 
 local transTab, tmp
 ---对背包后端数据传过来的表进行转换
@@ -210,7 +209,6 @@ end
 function GuiBag:ClickChangePage(_pageIndex)
     --清除cdmask
     this.cdMask = {}
-    --this.slotItem = {}
     this:ClearSelect()
     this:ShowItemsByPageIndex(_pageIndex)
 
