@@ -51,7 +51,7 @@ function ItemMgr:InitBagData()
             count = 0,
             lastestTime = 0,
             isNew = true,
-            isCount = true
+            isConst = true
         }
     end
     Data.Player.bag = tempBagData

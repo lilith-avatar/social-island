@@ -43,18 +43,7 @@ DataScheme.Player = {
     },
     coin = 0,
     -- 背包
-    bag = {
-        [1001] = {
-            id = 1001,
-            count = 2,
-            isNew = true
-        },
-		[3001] = {
-            id = 3001,
-			count = 10,
-			isNew = false
-		}
-    },
+    bag = {},
     -- 小游戏相关
     mini = {},
     -- 统计数据
