@@ -643,7 +643,7 @@ end
 
 -- 玩家抵达终点
 function PlayerReachExit(_hitObj)
-    if GlobalFunc.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
+    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         print('[Maze] PlayerReachExit')
         MazeHide()
         playerData.checker = TOTAL_CHECKER
@@ -656,7 +656,8 @@ function PlayerReachExit(_hitObj)
             playerData.time
         )
         ---发奖励的临时代码
-        NetUtil.Fire_C('GetCoinEvent', playerData.player, 20, 5017)
+        NetUtil.Fire_C("UpdateCoinEvent", playerData.player, 20)
+        NetUtil.Fire_C("GetItemEvent", playerData.player, 5017)
         playerData = nil
     end
     TimeUtil.ClearTimeout(timer)
@@ -699,7 +700,7 @@ end
 
 -- 玩家触碰积分点
 function PlayerHitChecker(_hitObj, _checkObj)
-    if GlobalFunc.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
+    if ServerUtil.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         playerData.checker = playerData.checker + 1
         print('[Maze] PlayerHitChecker()', playerData.checker)
         DespawnChecker(_checkObj)

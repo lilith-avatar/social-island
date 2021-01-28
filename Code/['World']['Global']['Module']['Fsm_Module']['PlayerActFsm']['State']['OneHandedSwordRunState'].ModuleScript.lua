@@ -2,7 +2,7 @@ local OneHandedSwordRun = class("OneHandedSwordRun", PlayerActState)
 
 function OneHandedSwordRun:OnEnter()
     PlayerActState.OnEnter(self)
-    localPlayer.Avatar:PlayAnimation("OneHandedSwordRun", 4, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("OneHandedSwordRun", 2, 1, 0.1, true, true, 1)
     --localPlayer.Avatar:PlayAnimation("OneHandedSwordRun", 3, 1, 0.1, true, true, 1)
 end
 

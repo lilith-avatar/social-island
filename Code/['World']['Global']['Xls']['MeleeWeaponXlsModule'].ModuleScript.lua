@@ -8,19 +8,20 @@
 local MeleeWeaponXls = {
     [1001] = {
         ItemID = 1001,
+        AttackAnimName = {'TwoHandedSwordAttack1', 'TwoHandedSwordAttack2', 'TwoHandedSwordAttack3'},
         ModelName = 'M_Sword',
         AttckCD = 2.0,
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),
         Angle = EulerDegree(0, 0, 0),
-        HealthChange = 34,
-        UseAddBuffID = 0,
-        UseAddBuffDur = 0.0,
+        HealthChange = 20,
+        UseAddBuffID = 2,
+        UseAddBuffDur = -1.0,
         HitAddBuffID = 0,
         HitAddBuffDur = 0.0,
         HitRemoveBuffID = 0,
-        HitEffectName = 'nil',
-        HitSoundID = '0.0',
+        HitEffectName = '',
+        HitSoundID = '',
         Hunt = false,
         Mole = false
     }

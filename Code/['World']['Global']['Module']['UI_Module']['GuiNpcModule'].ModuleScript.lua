@@ -82,8 +82,8 @@ end
 
 --- 离开NPC
 function LeaveNpc()
-    print('[GuiNpc] LeaveNpc()', currNpcId)
-    NetUtil.Fire_C('ResetDefUIEvent', localPlayer)
+    print("[GuiNpc] LeaveNpc()", currNpcId)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
     monsterGui.Visible = true
     npcGui.Visible = false
     if currNpcId then
@@ -98,8 +98,8 @@ function OpenNpcGui()
     if currNpcId == nil or NpcInfo[currNpcId] == nil then
         return
     end
-    print('[GuiNpc] OpenNpcGui()')
-    NetUtil.Fire_C('SetDefUIEvent', localPlayer, false, {'Ctrl'})
+    print("[GuiNpc] OpenNpcGui()")
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 12)
     NetUtil.Fire_S('StartTalkNpcEvent', localPlayer, currNpcId)
     --monsterGui.Visible = false
     npcGui.Visible = true
@@ -168,7 +168,7 @@ function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
 end
 
 function GuiNpc:InteractCEventHandler(_id)
-    if _id == Config.Interact.NPC.ID then
+    if _id == 12 then
         OpenNpcGui()
     end
 end

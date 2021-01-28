@@ -3,7 +3,7 @@ local OneHandedSwordAttack1 = class("OneHandedSwordAttack1", PlayerActState)
 function OneHandedSwordAttack1:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer:MoveTowards(Vector2.Zero)
-    localPlayer.Avatar:PlayAnimation("OneHandedSwordAttack1", 4, 1, 0.1, true, false, 1)
+    localPlayer.Avatar:PlayAnimation("OneHandedSwordAttack1", 2, 1, 0.1, true, false, 1)
     --localPlayer.Avatar:PlayAnimation("OneHandedSwordAttack1", 3, 1, 0.1, true, false, 1)
 end
 

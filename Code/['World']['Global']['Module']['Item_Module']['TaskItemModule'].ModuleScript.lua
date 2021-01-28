@@ -13,9 +13,10 @@ end
 
 --放入背包
 function TaskItem:PutIntoBag()
-    GuiControl:ShowInfo("获得" .. LanguageUtil.GetText(Config.Item[self.id].Name), 2)
-    localPlayer.Local.InfoGui:SetActive(true)
-    localPlayer.Local.InfoGui.ItemDes.Text = LanguageUtil.GetText(Config.Item[self.id].Des)
+    GuiControl:InsertInfoEventHandler(LanguageUtil.GetText(Config.Item[self.id].Name), 2, false)
+    GuiControl:InsertInfoEventHandler(LanguageUtil.GetText(Config.Item[self.id].Des), 3, true)
+    --localPlayer.Local.InfoGui:SetActive(true)
+    --localPlayer.Local.InfoGui.ItemDes.Text = LanguageUtil.GetText(Config.Item[self.id].Des)
 end
 
 --从背包里扔掉
@@ -34,10 +35,10 @@ end
 --获得任务奖励
 function TaskItem:GetTaskReward()
     if self.config.RewardItem and self.config.RewardItem ~= 0 then
-        ItemMgr:GetItem(self.config.RewardItem)
+        ItemMgr:GetItemEventHandler(self.config.RewardItem)
     end
-    ItemMgr:GetCoin(self.config.RewardGold)
-    ItemMgr:RemoveItem(self.id)
+    PlayerCtrl:UpdateCoinEventHandler(self.config.RewardGold)
+    ItemMgr:RemoveItemEventHandler(self.id)
 end
 
 --CD消退

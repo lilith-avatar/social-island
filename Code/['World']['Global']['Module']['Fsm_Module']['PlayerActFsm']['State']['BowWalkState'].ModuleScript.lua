@@ -2,7 +2,7 @@ local BowWalk = class("BowWalk", PlayerActState)
 
 function BowWalk:OnEnter()
     PlayerActState.OnEnter(self)
-    localPlayer.Avatar:PlayAnimation("WalkingFront", 3, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("WalkingFront", 2, 1, 0.1, true, true, 1)
 end
 
 function BowWalk:OnUpdate(dt)

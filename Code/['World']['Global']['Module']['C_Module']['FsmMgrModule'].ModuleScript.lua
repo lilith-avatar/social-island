@@ -40,11 +40,6 @@ function FsmMgr:DataInit()
     -- 玩家动作状态机
     this.playerActFsm = PlayerActFsm:new()
 
-    --将第2层的动作设为上半身动作
-    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 2)
-    --将第3层的动作设为下半身动作
-    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 3)
-
     this.playerActFsm:ConnectStateFunc(Config.PlayerActState, Module.Fsm_Module.PlayerActFsm.State)
     this.playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
     this.fsmState = "Idle"
@@ -56,7 +51,6 @@ end
 
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
-    print("状态机改变触发器", _state)
     this.playerActFsm:ContactTrigger(_state)
     this.fsmState = this.playerActFsm.curState.stateName
 end

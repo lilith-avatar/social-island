@@ -41,6 +41,7 @@ DataScheme.Player = {
         AnimState = "Idle",
         EnableEquipable = true
     },
+    coin = 0,
     -- 背包
     bag = {
         [1001] = {

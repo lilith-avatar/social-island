@@ -54,12 +54,18 @@ function PlayerCtrl:EventBind()
                 FsmMgr:FsmTriggerEventHandler("BowAttack")
             end
             if Input.GetPressKeyData(Enum.KeyCode.P) == 1 then
-                FsmMgr:FsmTriggerEventHandler("TwoHandedSwordIdle")
+                ItemMgr.itemInstance[1001]:Use()
+            --FsmMgr:FsmTriggerEventHandler("TwoHandedSwordIdle")
             end
-            if Input.GetPressKeyData(Enum.KeyCode.Mouse2) == 1 then
-                FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack1")
+            if Input.GetPressKeyData(Enum.KeyCode.O) == 1 then
+                ItemMgr.itemInstance[2001]:Use()
+            --FsmMgr:FsmTriggerEventHandler("TwoHandedSwordIdle")
+            end
+            if Input.GetPressKeyData(Enum.KeyCode.Mouse2) == 1 and ItemMgr.curWeaponID ~= 0 then
+                ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+            --[[FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack1")
                 FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack2")
-                FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack3")
+                FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack3")]]
             end
         end
     )
@@ -221,10 +227,18 @@ function PlayerCtrl:PlayerSkinUpdate(_skinID)
     if _skinID ~= 0 then
         for k, v in pairs(Config.Skin[_skinID]) do
             if localPlayer.Avatar[k] then
-                localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
-                --print(k, v)
+            --localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
+            --print(k, v)
             end
         end
+    end
+end
+
+-- 更新金币
+function PlayerCtrl:UpdateCoinEventHandler(_num)
+    if _num then
+        Data.Player.coin = Data.Player.coin + _num
+        GuiControl:UpdateCoinNum(_num)
     end
 end
 

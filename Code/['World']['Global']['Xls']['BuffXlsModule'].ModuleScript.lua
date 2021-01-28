@@ -21,6 +21,38 @@ local BuffXls = {
         SkinID_Cover = 1,
         AnimState_Cover = '',
         EnableEquipable_Cover = true
+    },
+    [2] = {
+        ID = 2,
+        BuffCoverIDList = {1},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = 1,
+        AnimState_Cover = 'TwoHandedSwordIdle',
+        EnableEquipable_Cover = true
+    },
+    [3] = {
+        ID = 3,
+        BuffCoverIDList = {1},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = 1,
+        AnimState_Cover = 'BowIdle',
+        EnableEquipable_Cover = true
     }
 }
 
