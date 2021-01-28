@@ -50,22 +50,14 @@ function PlayerCtrl:EventBind()
             if Input.GetPressKeyData(JUMP_KEY) == 1 then
                 this:PlayerJump()
             end
-            if Input.GetPressKeyData(Enum.KeyCode.F) == 1 then
-                FsmMgr:FsmTriggerEventHandler("BowAttack")
-            end
             if Input.GetPressKeyData(Enum.KeyCode.P) == 1 then
                 ItemMgr.itemInstance[1001]:Use()
-            --FsmMgr:FsmTriggerEventHandler("TwoHandedSwordIdle")
             end
             if Input.GetPressKeyData(Enum.KeyCode.O) == 1 then
                 ItemMgr.itemInstance[2001]:Use()
-            --FsmMgr:FsmTriggerEventHandler("TwoHandedSwordIdle")
             end
             if Input.GetPressKeyData(Enum.KeyCode.Mouse2) == 1 and ItemMgr.curWeaponID ~= 0 then
                 ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
-            --[[FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack1")
-                FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack2")
-                FsmMgr:FsmTriggerEventHandler("TwoHandedSwordAttack3")]]
             end
         end
     )
@@ -176,7 +168,7 @@ function PlayerCtrl:PlayerAttrUpdate()
     localPlayer.CharacterHeight = localPlayer.Avatar.Height * 1.7
     this:PlayerHeadEffectUpdate(Data.Player.attr.HeadEffect)
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
-    this:PlayerFootEffectUpdate(Data.Player.attr.Footffect)
+    this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
     if Data.Player.attr.AnimState ~= "" then
         NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
