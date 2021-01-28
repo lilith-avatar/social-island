@@ -68,6 +68,7 @@ function ChairClass:CommonDataInit(_arch, _parent, _pos, _rot, _id)
     self.state = StateEnum.free
     self.sitter = nil
     self.startUpdate = false
+    self.freshcoo = _pos
     self.timer = 0
     self.id = _id
 end
@@ -123,6 +124,7 @@ end
 
 function ChairClass:Return()
     -- TODO: 开始返程
+    self.model.LinearVelocity = 10 * (self.model.Position - self.freshcoo) --! 10 is a temp data!!!
 end
 
 function ChairClass:Update(dt)
