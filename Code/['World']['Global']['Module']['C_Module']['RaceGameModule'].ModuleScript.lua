@@ -102,6 +102,7 @@ end
 ---游戏开始
 function RaceGame:GameStart()
     this.startUpdate = true
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 9)
     RaceGameUIMgr:Show()
 	MonsterBattle:MonsterScanEventHandler(this.startPoint.Cube.Position,EulerDegree(0,0,0),3)
 	this.startPoint.Position = Vector3(0,-1000,0)
@@ -121,7 +122,8 @@ function RaceGame:GameOver()
     end
 	this:RandomKey()
     NetUtil.Fire_S('RaceGameOverEvent', localPlayer, this.timer, rewardRate)
-	this.checkPoint.Position = Vector3(0,-1100,0)
+    this.checkPoint.Position = Vector3(0,-1100,0)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 
 ---碰到检查点之后的逻辑

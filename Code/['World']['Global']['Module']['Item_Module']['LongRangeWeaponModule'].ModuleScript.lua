@@ -2,10 +2,10 @@
 -- @module LongRangeWeapon
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local LongRangeWeapon = class("LongRangeWeapon", ItemBase)
+local LongRangeWeapon = class("LongRangeWeapon", WeaponBase)
 
 function LongRangeWeapon:initialize(_data, _config)
-    ItemBase.initialize(self, _data, _config)
+    WeaponBase.initialize(self, _data, _config)
     print("LongRangeWeapon:initialize()")
 end
 
@@ -13,7 +13,6 @@ end
 function LongRangeWeapon:Attack()
     self.attackCT = self.config.AttackCD
     self:PlayAttackAnim()
-    self:PlayAttackSound()
 end
 
 --发射弓箭
@@ -24,7 +23,7 @@ function LongRangeWeapon:ShootArrow()
     local arrow =
         world:CreateInstance(
         self.config.ArrowModelName,
-        "Arrow",
+        config.ArrowModelName,
         world,
         localPlayer.Avatar.Bone_R_Hand.Position,
         localPlayer.Rotation

@@ -3,7 +3,7 @@ local Swimming = class("Swimming", PlayerActState)
 function Swimming:OnEnter()
     PlayerActState.OnEnter(self)
     --localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("Swimming", 4, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
 end
 
 function Swimming:OnUpdate(dt)

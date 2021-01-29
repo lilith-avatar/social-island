@@ -3,7 +3,7 @@ local BowJump = class("BowJump", PlayerActState)
 function BowJump:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer:Jump()
-    localPlayer.Avatar:PlayAnimation("BowJump", 3, 1, 0.1, true, false, 1)
+    localPlayer.Avatar:PlayAnimation("BowJump", 2, 1, 0.1, true, false, 1)
 end
 
 function BowJump:OnUpdate(dt)

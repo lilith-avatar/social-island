@@ -41,17 +41,9 @@ DataScheme.Player = {
         AnimState = "Idle",
         EnableEquipable = true
     },
+    coin = 0,
     -- 背包
-    bag = {
-        [1212] = {
-            id = 1212,
-            type = 12,
-            count = 12,
-            lastestTime = 0,
-            isNew = true,
-            isCount = true
-        }
-    },
+    bag = {},
     -- 小游戏相关
     mini = {},
     -- 统计数据
