@@ -60,7 +60,9 @@ function CreateNpcs()
         -- NPC空闲动作
         InitNpcIdleAction(npcObj, npcInfo)
         -- 生成宠物
-        CreateMonster(npcObj, npcInfo)
+		if npcInfo.PetBattleSwitch then
+			MonsterBattleMgr:CreateMonster(npcObj, npcInfo)
+		end
     end
 end
 
@@ -176,61 +178,6 @@ function OnExitNpc(_hitObj, _npcId)
     if GlobalFunc.CheckHitObjIsPlayer(_hitObj) then
         NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
     end
-end
-
--- 创建NPC的宠物
-function CreateMonster(_npcObj, _npcInfo)
-    if not _npcInfo.PetBattleSwitch then
-        return
-    end
-    world:CreateObject('IntValueObject', 'HealthVal', _npcObj)
-    world:CreateObject('IntValueObject', 'AttackVal', _npcObj)
-    world:CreateObject('IntValueObject', 'BattleVal', _npcObj)
-    local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
-    local monsterObj = world:CreateInstance(_npcInfo.PetModel, 'Pet_' .. _npcInfo.ID, monsterFolder)
-    monsterObj.Position = _npcObj.Position - _npcObj.Forward * 2
-    monsterObj.Forward = _npcObj.Forward
-    monsterVal.Value = monsterObj
-    MoveMonster(_npcObj, monsterVal.Value)
-end
-
--- 移动宠物
-function MoveMonster(_npcobj, _monster)
-    invoke(
-        function()
-            local timeUp, timeDown = 3, 2
-
-            -- 插入一个随机值，让NPC的宠物错落有致的移动
-            wait(math.random() * timeUp)
-
-            -- 宠物向上
-            local twUp =
-                Tween:TweenProperty(
-                _monster.Cube,
-                {
-                    LocalPosition = Vector3(0, 2.5, 0)
-                },
-                timeUp,
-                Enum.EaseCurve.SinOut
-            )
-            -- 宠物向下
-            local twDown =
-                Tween:TweenProperty(
-                _monster.Cube,
-                {
-                    LocalPosition = Vector3(0, 2, 0)
-                },
-                timeDown,
-                Enum.EaseCurve.BackOut
-            )
-            while _monster and _monster.Cube do
-                twUp:Play()
-                wait(timeUp + .5)
-                twDown:Play()
-                wait(timeDown)
-            end
-        end
-    )
 end
 
 -- 使NPC面向玩家
