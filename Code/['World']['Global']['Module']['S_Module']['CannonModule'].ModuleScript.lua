@@ -74,6 +74,7 @@ function Cannon:GetOnCannon(_player)
         insidePlayer.Position = barrel.InsidePoint.Position
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 4)
         NetUtil.Fire_C("SetCurCamEvent", insidePlayer, cam)
+        NetUtil.Fire_C("InsertInfoEvent", insidePlayer, "点击发射按钮射出", 5, true)
     end
 end
 

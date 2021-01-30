@@ -88,7 +88,8 @@ Events.ClientEvents = {
     "CreateItemObjEvent",
     --开始扫描事件
     "MonsterScanEvent", --@param _pos,_euler,_time
-    "LeaveMoleGameRangeEvent"
+    "LeaveMoleGameRangeEvent",
+    "InsertInfoEvent"
 }
 
 return Events

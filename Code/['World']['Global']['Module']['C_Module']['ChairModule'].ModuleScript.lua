@@ -61,6 +61,7 @@ function Chair:NormalSit(_chairId, _pos, _rot)
     this.startUpdate = false
     --ui控制
     GuiChair:EnterNormal()
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "摇起来！！！", 5, true)
 end
 
 function Chair:DestroyChair()
@@ -78,6 +79,7 @@ function Chair:QteSit(_chairId, _pos, _rot)
     this.startUpdate = true
     --ui控制
     GuiChair:EnterQte()
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "快速点击按钮让自己不掉下去", 5, true)
 end
 
 function Chair:Update(_dt)
