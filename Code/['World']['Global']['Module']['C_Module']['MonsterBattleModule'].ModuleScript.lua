@@ -123,6 +123,8 @@ function MonsterBattle:EventBind()
 			this.BattlePanel.Button3.Color = this.Color_Red
         end
     )
+	localPlayer.OnCollisionBegin:Connect(CheckMonsterRangeBegin)
+    localPlayer.OnCollisionEnd:Connect(CheckMonsterRangeEnd)
 end
 
 function MonsterBattle:OnPlayerJoinEventHandler()
@@ -139,6 +141,24 @@ function MonsterBattle:OnPlayerJoinEventHandler()
     this:ShowMonster()
     world:CreateObject('StringValueObject', 'EnemyVal', localPlayer)
 	MonsterUpDown()
+end
+
+function CheckMonsterRangeBegin(_hitObj, _hitPoint, hitNormal)
+    if _hitObj.Name == 'MonsterRange' then
+		this.MonsterGUI.BattleBtn.Visible = true
+		this.MonsterGUI.BattleBtn.OnClick:Connect(
+        function()
+            NetUtil.Fire_S("StartBattleEvent", true, _hitObj, localPlayer)
+			this.MonsterGUI.BattleBtn.Visible = false
+        end
+    )
+    end	
+end
+
+function CheckMonsterRangeEnd(_hitObj, _hitPoint, hitNormal)
+	if _hitObj.Name == 'MonsterRange' then
+		this.MonsterGUI.BattleBtn.Visible = false
+    end	
 end
 
 function MonsterBattle:Update(dt, tt)
@@ -410,6 +430,16 @@ function MonsterBattle:FlashMove(_pos)
 	else
 		RealMonster.Position = _pos
 	end
+	local _fx = world:CreateInstance('FX_FLASHMOVE','fx',RealMonster,Vector3.Zero,EulerDegree(0,0,0))
+	_fx.LocalPosition = RealMonster.Cube.LocalPosition
+	DelayDestroy(_fx,1)
+end
+
+function DelayDestroy(_obj,_delayTime)
+	invoke(function()
+		wait(_delayTime)
+		_obj:Destroy()
+	end)
 end
 
 --以下为数据交互函数
