@@ -217,6 +217,94 @@ local NpcTextXls = {
     [2002] = {
         ID = 2002,
         Text = 'NpcText_Text_2002'
+    },
+    [2011] = {
+        ID = 2011,
+        Text = 'NpcText_Text_2011'
+    },
+    [2012] = {
+        ID = 2012,
+        Text = 'NpcText_Text_2012'
+    },
+    [2013] = {
+        ID = 2013,
+        Text = 'NpcText_Text_2013'
+    },
+    [2014] = {
+        ID = 2014,
+        Text = 'NpcText_Text_2014'
+    },
+    [2015] = {
+        ID = 2015,
+        Text = 'NpcText_Text_2015'
+    },
+    [2021] = {
+        ID = 2021,
+        Text = 'NpcText_Text_2021'
+    },
+    [2022] = {
+        ID = 2022,
+        Text = 'NpcText_Text_2022'
+    },
+    [2023] = {
+        ID = 2023,
+        Text = 'NpcText_Text_2023'
+    },
+    [2024] = {
+        ID = 2024,
+        Text = 'NpcText_Text_2024'
+    },
+    [2031] = {
+        ID = 2031,
+        Text = 'NpcText_Text_2031'
+    },
+    [2032] = {
+        ID = 2032,
+        Text = 'NpcText_Text_2032'
+    },
+    [2033] = {
+        ID = 2033,
+        Text = 'NpcText_Text_2033'
+    },
+    [2041] = {
+        ID = 2041,
+        Text = 'NpcText_Text_2041'
+    },
+    [2042] = {
+        ID = 2042,
+        Text = 'NpcText_Text_2042'
+    },
+    [2043] = {
+        ID = 2043,
+        Text = 'NpcText_Text_2043'
+    },
+    [2044] = {
+        ID = 2044,
+        Text = 'NpcText_Text_2044'
+    },
+    [2045] = {
+        ID = 2045,
+        Text = 'NpcText_Text_2045'
+    },
+    [2051] = {
+        ID = 2051,
+        Text = 'NpcText_Text_2051'
+    },
+    [2052] = {
+        ID = 2052,
+        Text = 'NpcText_Text_2052'
+    },
+    [2053] = {
+        ID = 2053,
+        Text = 'NpcText_Text_2053'
+    },
+    [2054] = {
+        ID = 2054,
+        Text = 'NpcText_Text_2054'
+    },
+    [1000] = {
+        ID = 1000,
+        Text = 'NpcText_Text_1000'
     }
 }
 

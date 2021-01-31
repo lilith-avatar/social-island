@@ -17,6 +17,7 @@ end
 --- 根据ID返回当前游戏语言对应的文本信息，如果对应语言为空，默认返回'*'+中文内容
 -- @param @number _id LanguagePack.xls中的编号
 function LanguageUtil.GetText(_id)
+	
     assert(not string.isnilorempty(_id), '[LanguageUtil] 翻译ID为空，请检查策划表和LanguagePack')
     assert(
         Config.LanguagePack[_id],

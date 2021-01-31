@@ -133,7 +133,7 @@ end
 function BubbleShow(_npcId)
     local npcObj = npcs[_npcId].obj
     local gui = npcObj.BubbleGui
-    npcObj.Avatar:PlayAnimation('SocialComeHere', 9, 1, 0.1, true, false, 1)
+    --npcObj.Avatar:PlayAnimation('SocialComeHere', 9, 1, 0.1, true, false, 1)
     gui.BubbleTxt.Text = PickARandomBubble(npcs[_npcId].info)
     gui.Visible = true
     TimeUtil.SetTimeout(
