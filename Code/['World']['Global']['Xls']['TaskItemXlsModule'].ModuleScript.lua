@@ -44,7 +44,7 @@ local TaskItemXls = {
     [5006] = {
         ItemID = 5006,
         Npc = {1},
-        RewardItem = 5003,
+        RewardItem = 5007,
         RewardGold = 50,
         NpcText = 'TaskItem_NpcText_5006'
     },
@@ -65,142 +65,79 @@ local TaskItemXls = {
     [5009] = {
         ItemID = 5009,
         Npc = {3},
-        RewardItem = 5010,
+        RewardItem = 2001,
         RewardGold = 200,
         NpcText = 'TaskItem_NpcText_5009'
     },
     [5010] = {
         ItemID = 5010,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
+        Npc = {5},
+        RewardItem = 5011,
+        RewardGold = 200,
+        NpcText = 'TaskItem_NpcText_5010'
     },
     [5011] = {
         ItemID = 5011,
-        Npc = {5},
-        RewardItem = 5012,
-        RewardGold = 200,
-        NpcText = 'TaskItem_NpcText_5011'
+        Npc = {},
+        RewardItem = 0,
+        RewardGold = 0,
+        NpcText = nil
     },
     [5012] = {
         ItemID = 5012,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
+        Npc = {17},
+        RewardItem = 6002,
+        RewardGold = 200,
+        NpcText = 'TaskItem_NpcText_5012'
     },
     [5013] = {
         ItemID = 5013,
         Npc = {17},
-        RewardItem = 5020,
+        RewardItem = 6002,
         RewardGold = 200,
         NpcText = 'TaskItem_NpcText_5013'
     },
     [5014] = {
         ItemID = 5014,
         Npc = {17},
-        RewardItem = 5020,
+        RewardItem = 6002,
         RewardGold = 200,
         NpcText = 'TaskItem_NpcText_5014'
     },
     [5015] = {
         ItemID = 5015,
         Npc = {17},
-        RewardItem = 5020,
+        RewardItem = 6002,
         RewardGold = 200,
         NpcText = 'TaskItem_NpcText_5015'
     },
     [5016] = {
         ItemID = 5016,
-        Npc = {17},
-        RewardItem = 5020,
-        RewardGold = 200,
+        Npc = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
+        RewardItem = nil,
+        RewardGold = 80,
         NpcText = 'TaskItem_NpcText_5016'
     },
     [5017] = {
         ItemID = 5017,
-        Npc = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
-        RewardItem = nil,
-        RewardGold = 80,
+        Npc = {},
+        RewardItem = 2021,
+        RewardGold = nil,
         NpcText = 'TaskItem_NpcText_5017'
     },
     [5018] = {
         ItemID = 5018,
-        Npc = {},
-        RewardItem = 2021,
-        RewardGold = nil,
+        Npc = {2},
+        RewardItem = 0,
+        RewardGold = 100,
         NpcText = 'TaskItem_NpcText_5018'
     },
     [5019] = {
         ItemID = 5019,
-        Npc = {2},
-        RewardItem = nil,
+        Npc = {1},
+        RewardItem = 0,
         RewardGold = 100,
         NpcText = 'TaskItem_NpcText_5019'
-    },
-    [5020] = {
-        ItemID = 5020,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5021] = {
-        ItemID = 5021,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5022] = {
-        ItemID = 5022,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5023] = {
-        ItemID = 5023,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5024] = {
-        ItemID = 5024,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5025] = {
-        ItemID = 5025,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5026] = {
-        ItemID = 5026,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5027] = {
-        ItemID = 5027,
-        Npc = {},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = nil
-    },
-    [5028] = {
-        ItemID = 5028,
-        Npc = {1},
-        RewardItem = nil,
-        RewardGold = nil,
-        NpcText = 'TaskItem_NpcText_5028'
     }
 }
 

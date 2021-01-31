@@ -9,6 +9,86 @@ local RewardItemXls = {
     [6001] = {
         ItemID = 6001,
         RewardGold = 200
+    },
+    [6002] = {
+        ItemID = 6002,
+        RewardGold = 50
+    },
+    [6003] = {
+        ItemID = 6003,
+        RewardGold = 100
+    },
+    [6004] = {
+        ItemID = 6004,
+        RewardGold = 50
+    },
+    [6005] = {
+        ItemID = 6005,
+        RewardGold = 20
+    },
+    [6006] = {
+        ItemID = 6006,
+        RewardGold = 20
+    },
+    [6007] = {
+        ItemID = 6007,
+        RewardGold = 5
+    },
+    [6008] = {
+        ItemID = 6008,
+        RewardGold = 5
+    },
+    [6009] = {
+        ItemID = 6009,
+        RewardGold = 5
+    },
+    [6010] = {
+        ItemID = 6010,
+        RewardGold = 40
+    },
+    [6011] = {
+        ItemID = 6011,
+        RewardGold = 20
+    },
+    [6012] = {
+        ItemID = 6012,
+        RewardGold = 60
+    },
+    [6013] = {
+        ItemID = 6013,
+        RewardGold = 80
+    },
+    [6014] = {
+        ItemID = 6014,
+        RewardGold = 20
+    },
+    [6015] = {
+        ItemID = 6015,
+        RewardGold = 40
+    },
+    [6016] = {
+        ItemID = 6016,
+        RewardGold = 100
+    },
+    [6017] = {
+        ItemID = 6017,
+        RewardGold = 120
+    },
+    [6018] = {
+        ItemID = 6018,
+        RewardGold = 120
+    },
+    [6019] = {
+        ItemID = 6019,
+        RewardGold = 20
+    },
+    [6020] = {
+        ItemID = 6020,
+        RewardGold = 5
+    },
+    [6021] = {
+        ItemID = 6021,
+        RewardGold = 5
     }
 }
 
