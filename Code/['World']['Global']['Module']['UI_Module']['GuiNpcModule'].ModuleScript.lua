@@ -23,6 +23,9 @@ local taskItemID = 0
 --- 初始化
 function GuiNpc:Init()
     print('[GuiNpc] Init()')
+    -- Cache
+    ItemMgr = ItemMgr
+
     self:InitGui()
     self:InitData()
     self:InitResource()
@@ -63,27 +66,29 @@ function GuiNpc:InitListener()
     gameBtn.OnClick:Connect(EnterMiniGame)
     battleBtn.OnClick:Connect(StartMonsterBattle)
     shopBtn.OnClick:Connect(EnterShop)
-    leaveBtn.OnClick:Connect(LeaveNpc)
+    leaveBtn.OnClick:Connect(BeyondNpc)
 end
 
 --! GUI 功能
 
 --- 接触NPC
-function TouchNpc(_npcId, _npcObj)
+function FoundNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
-    print('[GuiNpc] TouchNpc()', _npcId)
+    print('[GuiNpc] FoundNpc()', _npcId)
     NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 12)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
 
 --- 离开NPC
-function LeaveNpc()
-    print('[GuiNpc] LeaveNpc()', currNpcId)
+function BeyondNpc()
+    print('[GuiNpc] BeyondNpc()')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-    NetUtil.Fire_C('LeaveNpcEvent', localPlayer, currNpcId)
+    if currNpcId then
+        NetUtil.Fire_C('LeaveNpcEvent', localPlayer, currNpcId)
+    end
     monsterGui.Visible = true
     npcGui.Visible = false
     currNpcId = nil
@@ -110,8 +115,8 @@ function OpenNpcGui()
     if taskItemID == 0 then
         dialogTxt.Text = PickARandomDialog()
     else
-        dialogTxt.Text = LanguageUtil.GetText(ItemMgr.itemInstance[taskItemID].config.NpcText)
-        ItemMgr.itemInstance[taskItemID]:GetTaskReward()
+        dialogTxt.Text = ItemMgr:GetNpcText(taskItemID)
+        ItemMgr:RedeemTaskItemReward(taskItemID)
         taskItemID = 0
     end
 
@@ -162,9 +167,9 @@ end
 -- 进入或离开NPC碰撞区域
 function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
     if _npcId and _npcObj then
-        TouchNpc(_npcId, _npcObj)
+        FoundNpc(_npcId, _npcObj)
     else
-        LeaveNpc()
+        BeyondNpc()
     end
 end
 

@@ -20,6 +20,9 @@ local npcs = {}
 function NpcMgr:Init()
     print('[NpcMgr] Init()')
     assert(bubbleShowTime < bubbleIntervalMin, '[NpcMgr] NpcBubbleShowTime需要小于NpcBubbleIntervalTime，请检查GlobalSetting表')
+    -- Cache
+    ItemMgr = ItemMgr
+
     CreateNpcFolder()
     invoke(CreateNpcs)
 end
@@ -59,6 +62,8 @@ function CreateNpcs()
         InitNpcIdleAction(npcObj, npcInfo)
         -- NPC气泡开启
         InitNpcBubble(npcInfo.ID)
+        -- 刷新NPC任务符号
+        invoke(RefreshNpcTaskSign, .1)
         wait()
     end
 end
@@ -71,6 +76,18 @@ function CreateCardGui(_npcObj, _npcInfo)
     gui.TitleBarTxt1.Text = LanguageUtil.GetText(_npcInfo.Title)
     gui.TitleBarTxt2.Text = LanguageUtil.GetText(_npcInfo.Title)
     gui.LocalPosition = Vector3(0, 2, 0)
+    gui.LocalRotation = EulerDegree(0, 0, 0)
+    --TODO: 任务提示符，之后可能变成图片
+    gui.TaskSignTxt.Visible = false
+end
+
+-- 创建NPC气泡
+function CreateBubbleGui(_npcObj, _npcInfo)
+    if not _npcInfo.BubbleId or #_npcInfo.BubbleId == 0 then
+        return -- 没有气泡
+    end
+    local gui = world:CreateInstance('NpcBubbleGui', 'BubbleGui', _npcObj)
+    gui.LocalPosition = Vector3(0, 1.5, 0)
     gui.LocalRotation = EulerDegree(0, 0, 0)
 end
 
@@ -87,16 +104,6 @@ function BindNpcEvents(_npcObj, _npcInfo)
             OnExitNpc(_hitObj, npcInfo.ID)
         end
     )
-end
-
--- 创建NPC气泡
-function CreateBubbleGui(_npcObj, _npcInfo)
-    if not _npcInfo.BubbleId or #_npcInfo.BubbleId == 0 then
-        return -- 没有气泡
-    end
-    local gui = world:CreateInstance('NpcBubbleGui', 'BubbleGui', _npcObj)
-    gui.LocalPosition = Vector3(0, 1.5, 0)
-    gui.LocalRotation = EulerDegree(0, 0, 0)
 end
 
 -- NPC空闲动作
@@ -217,7 +224,18 @@ function NpcFaceReset(_npcId)
     npcs[_npcId].obj.Rotation = npcs[_npcId].info.SpawnRot
 end
 
+-- 刷新NPC头上的任务符号
+-- 此方法推荐等待0.1秒后调用，
+-- invoke(RefreshNpcTaskSign, .1)
+function RefreshNpcTaskSign()
+    for _, npc in pairs(npcs) do
+        --TODO: 任务提示符，之后可能变成图片
+        npc.obj.CardGui.TaskSignTxt.Visible = (ItemMgr:GetTaskItem(npc.info.ID) > 0)
+    end
+end
+
 --! Update
+
 function NpcMgr:Update(_dt)
     for _, npc in pairs(npcs) do
         if npc.obj.NpcState.Value == Const.NpcState.SEE_PLAYER or npc.obj.NpcState.Value == Const.NpcState.TALKING then
@@ -247,6 +265,16 @@ function NpcMgr:LeaveNpcEventHandler(_npcId)
         npc.obj.NpcState.Value = Const.NpcState.IDLE
         npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
     end
+end
+
+--获得道具
+function NpcMgr:GetItemEventHandler(_id)
+    invoke(RefreshNpcTaskSign, .1)
+end
+
+--移除道具
+function NpcMgr:RemoveItemEventHandler(_id)
+    invoke(RefreshNpcTaskSign, .1)
 end
 
 return NpcMgr
