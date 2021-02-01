@@ -16,8 +16,86 @@ local AnimalXls = {
         IdleAnimationDurRange = {5, 20},
         MoveAnimationName = {'Run'},
         MoveAnimationDurRange = {2, 4},
-        DeadAnimationName = {},
-        Weight = 50
+        DeadAnimationName = {'Dead'},
+        Weight = 5
+    },
+    [2] = {
+        ID = 2,
+        Name = '黄野猪',
+        ArchetypeName = 'Animal_Boar001',
+        DefMoveSpeed = 5.0,
+        ScaredMoveSpeed = 10.0,
+        IdleAnimationName = {'Idle', 'Idle2'},
+        IdleAnimationDurRange = {5, 20},
+        MoveAnimationName = {'Walk'},
+        MoveAnimationDurRange = {2, 4},
+        DeadAnimationName = {'Dead'},
+        Weight = 5
+    },
+    [3] = {
+        ID = 3,
+        Name = '黑野猪',
+        ArchetypeName = 'Animal_Boar002',
+        DefMoveSpeed = 5.0,
+        ScaredMoveSpeed = 10.0,
+        IdleAnimationName = {'Idle', 'Idle2'},
+        IdleAnimationDurRange = {5, 20},
+        MoveAnimationName = {'Walk'},
+        MoveAnimationDurRange = {2, 4},
+        DeadAnimationName = {'Dead'},
+        Weight = 5
+    },
+    [4] = {
+        ID = 4,
+        Name = '猫头鹰',
+        ArchetypeName = 'Animal_Owl',
+        DefMoveSpeed = 0.001,
+        ScaredMoveSpeed = 0.001,
+        IdleAnimationName = {'Idle', 'Idle2'},
+        IdleAnimationDurRange = {60, 60},
+        MoveAnimationName = {'Idle', 'Idle2'},
+        MoveAnimationDurRange = {5, 5},
+        DeadAnimationName = {'Dead'},
+        Weight = 20
+    },
+    [5] = {
+        ID = 5,
+        Name = '山鸡',
+        ArchetypeName = 'Animal_Pheasant',
+        DefMoveSpeed = 1.5,
+        ScaredMoveSpeed = 4.0,
+        IdleAnimationName = {'Idle', 'Idle2'},
+        IdleAnimationDurRange = {5, 20},
+        MoveAnimationName = {'Walk'},
+        MoveAnimationDurRange = {1, 3},
+        DeadAnimationName = {'Dead'},
+        Weight = 5
+    },
+    [6] = {
+        ID = 6,
+        Name = '棕熊',
+        ArchetypeName = 'Animal_Bear',
+        DefMoveSpeed = 3.0,
+        ScaredMoveSpeed = 6.0,
+        IdleAnimationName = {'Idle', 'Idle2'},
+        IdleAnimationDurRange = {5, 20},
+        MoveAnimationName = {'Walk'},
+        MoveAnimationDurRange = {1, 2},
+        DeadAnimationName = {'Dead'},
+        Weight = 5
+    },
+    [7] = {
+        ID = 7,
+        Name = '灰狼',
+        ArchetypeName = 'Animal_wolf',
+        DefMoveSpeed = 3.0,
+        ScaredMoveSpeed = 8.0,
+        IdleAnimationName = {'Idle', 'Idle2'},
+        IdleAnimationDurRange = {5, 20},
+        MoveAnimationName = {'Walk'},
+        MoveAnimationDurRange = {1, 2},
+        DeadAnimationName = {'Dead'},
+        Weight = 5
     }
 }
 

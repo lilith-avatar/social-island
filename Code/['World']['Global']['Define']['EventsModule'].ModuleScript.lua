@@ -33,7 +33,9 @@ Events.ServerEvents = {
     "LoadMDataEvent", -- @param _userId
     "SaveMDataEvent", -- @param _userId, _playerdata
     "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
-    "PlantFlowerEvent" -- @param _userId, _flowerObj
+    "PlantFlowerEvent", -- @param _userId, _flowerObj
+    "DeleteFlowerEvent", -- @param _userId, _uuid
+    "WaterEvent" --@param _userId, _pos
 }
 
 -- 客户端事件列表
@@ -89,7 +91,9 @@ Events.ClientEvents = {
     --开始扫描事件
     "MonsterScanEvent", --@param _pos,_euler,_time
     "LeaveMoleGameRangeEvent",
-    "InsertInfoEvent"
+    "InsertInfoEvent",
+    "LightHitEvent", --雷电打击
+    "WaterEvent" -- @Pos
 }
 
 return Events

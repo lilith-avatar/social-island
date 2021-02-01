@@ -54,8 +54,8 @@ end
 function Hunt:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 1 then
         print("进入狩猎")
-        --NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
-        --NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
+    --NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
+    --NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
     end
 end
 
@@ -103,7 +103,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
             Config.Animal[_animalID].ArchetypeName,
             Config.Animal[_animalID].ArchetypeName .. #_animalData + 1,
             _parent,
-			_pos + Vector3(0.6 *math.random(-1 * _range, _range), 0.2,0.6 * math.random(-1 * _range, _range)),
+            _pos + Vector3(0.6 * math.random(-1 * _range, _range), 0.2, 0.6 * math.random(-1 * _range, _range)),
             EulerDegree(0, 0, 0)
         ),
         state = animalActState.IDLE,
@@ -126,7 +126,6 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
                     _hitObject:Destroy()
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
                     this:AreaSpawnCtrl()
-					
                 end
             end
         end
@@ -174,9 +173,9 @@ end
 --- 杀死区域中一定数量动物
 function Hunt:KillAreaAnimal(_animalArea, _num)
     local count = _num
-    for k, v in pairs(_animalArea.animalData) do
-        if count > 0 then
-            if v.state ~= animalActState.DEADED then
+    while count > 0 do
+        for k, v in pairs(_animalArea.animalData) do
+            if v.state ~= animalActState.DEADED and math.random(3) > 2 then
                 this:ChangeAnimalState(v, animalActState.DEADED)
                 count = count - 1
             end
@@ -187,11 +186,13 @@ end
 --- 复活区域中一定数量动物
 function Hunt:ResetAreaAnimal(_animalArea, _num)
     local count = _num
-    for k, v in pairs(_animalArea.animalData) do
-        if count > 0 then
-            if v.state == animalActState.DEADED then
-                this:ChangeAnimalState(v, animalActState.IDLE)
-                count = count - 1
+    while count > 0 do
+        for k, v in pairs(_animalArea.animalData) do
+            if count > 0 then
+                if v.state == animalActState.DEADED and math.random(3) > 2 then
+                    this:ChangeAnimalState(v, animalActState.IDLE)
+                    count = count - 1
+                end
             end
         end
     end
@@ -213,10 +214,9 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             1
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-		_animalData.obj.LinearVelocityController.Intensity = 0
-		_animalData.obj.RotationController.Intensity = 0
-		_animalData.obj.LinearVelocity = Vector3.Zero
-		
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
     elseif _animalData.state == animalActState.MOVE then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj:SetActive(true)
@@ -232,10 +232,11 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
             Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
-		_animalData.obj.LinearVelocityController.Intensity = 2000000
-		_animalData.obj.RotationController.Intensity = 1000000
+        _animalData.obj.LinearVelocityController.Intensity = 8000000
+        _animalData.obj.RotationController.Intensity = 3000000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.SCARED then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -245,19 +246,19 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             0.1,
             true,
             true,
-            1.4
+            _animalData.scaredMoveSpeed / _animalData.defMoveSpeed
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
-		_animalData.obj.LinearVelocityController.Intensity = 2000000
+        _animalData.obj.LinearVelocityController.Intensity = 8000000
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.DEADED then
-		
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-		_animalData.obj.RotationController.Intensity = 0
-		_animalData.obj.LinearVelocityController.Intensity = 0
-		_animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
         if #_animalData.deadAnimationName > 0 then
             _animalData.obj.AnimatedMesh:PlayAnimation(
                 _animalData.deadAnimationName[math.random(#_animalData.deadAnimationName)],
@@ -268,7 +269,6 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
                 true,
                 1
             )
-		
         end
         invoke(
             function()

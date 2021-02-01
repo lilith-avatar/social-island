@@ -6,345 +6,499 @@
 --- source file: .//LanguagePack.xls
 
 local LanguagePackXls = {
-    GameInfo_GameName_1 = {
-        ID = 'GameInfo_GameName_1',
-        CHS = '打猎',
-        CHT = '',
-        EN = 'Hunting',
-        JP = ''
-    },
-    GameInfo_GameName_10 = {
-        ID = 'GameInfo_GameName_10',
-        CHS = '摇摇椅',
-        CHT = '',
-        EN = 'Chair Club',
-        JP = ''
-    },
-    GameInfo_GameName_11 = {
-        ID = 'GameInfo_GameName_11',
-        CHS = '斗怪物',
-        CHT = '',
-        EN = 'Moster Battle',
-        JP = ''
-    },
-    GameInfo_GameName_2 = {
-        ID = 'GameInfo_GameName_2',
-        CHS = '打地鼠',
-        CHT = '',
-        EN = 'Whack-A-Mole',
-        JP = ''
-    },
-    GameInfo_GameName_3 = {
-        ID = 'GameInfo_GameName_3',
-        CHS = '迷宫',
-        CHT = '',
-        EN = 'Maze',
-        JP = ''
-    },
-    GameInfo_GameName_4 = {
-        ID = 'GameInfo_GameName_4',
-        CHS = '人间大炮',
-        CHT = '',
-        EN = 'Cannon',
-        JP = ''
-    },
-    GameInfo_GameName_5 = {
-        ID = 'GameInfo_GameName_5',
-        CHS = '青蛙过河',
-        CHT = '',
-        EN = 'Frog',
-        JP = ''
-    },
-    GameInfo_GameName_6 = {
-        ID = 'GameInfo_GameName_6',
-        CHS = '热气球',
-        CHT = '',
-        EN = 'Zeppelin',
-        JP = ''
-    },
-    GameInfo_GameName_7 = {
-        ID = 'GameInfo_GameName_7',
-        CHS = '种花',
-        CHT = '',
-        EN = 'Farming',
-        JP = ''
-    },
-    GameInfo_GameName_8 = {
-        ID = 'GameInfo_GameName_8',
-        CHS = '赛蜗牛',
-        CHT = '',
-        EN = 'Snail Battle',
-        JP = ''
-    },
-    GameInfo_GameName_9 = {
-        ID = 'GameInfo_GameName_9',
-        CHS = '竞速',
-        CHT = '',
-        EN = 'Racing',
-        JP = ''
-    },
-    Item_Des_1001 = {
-        ID = 'Item_Des_1001',
-        CHS = '星球大战',
+    lang_str_001 = {
+        ID = 'lang_str_001',
+        CHS = '使用药品可以恢复生命',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_2001 = {
-        ID = 'Item_Des_2001',
-        CHS = '射出火箭',
+    lang_str_002 = {
+        ID = 'lang_str_002',
+        CHS = '在水中游泳会消耗体力，体力耗尽则消耗生命',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_3001 = {
-        ID = 'Item_Des_3001',
-        CHS = '嘀嘀嘀的响',
+    lang_str_003 = {
+        ID = 'lang_str_003',
+        CHS = '注意预警，预警之后岛屿会下沉',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_3002 = {
-        ID = 'Item_Des_3002',
-        CHS = '如果能量无限就好了',
+    lang_str_004 = {
+        ID = 'lang_str_004',
+        CHS = '宝箱会刷新不同等级的道具',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_4001 = {
-        ID = 'Item_Des_4001',
-        CHS = '大魔王最喜欢的食物',
+    lang_str_005 = {
+        ID = 'lang_str_005',
+        CHS = '注意指示灯，桥会定期升降',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5001 = {
-        ID = 'Item_Des_5001',
-        CHS = '探险前记得和Learze告别。',
+    Example1_Des1_1_house = {
+        ID = 'Example1_Des1_1_house',
+        CHS = '我真的很想%s吃饭',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5002 = {
-        ID = 'Item_Des_5002',
-        CHS = '去和河对面的原住民打个招呼吧。',
+    Example1_Des2_1_house = {
+        ID = 'Example1_Des2_1_house',
+        CHS = '做什么',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5003 = {
-        ID = 'Item_Des_5003',
-        CHS = '和另一个原住民打招呼。',
+    Example1_Des1_1_MMM = {
+        ID = 'Example1_Des1_1_MMM',
+        CHS = '我饿了',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5004 = {
-        ID = 'Item_Des_5004',
-        CHS = '找到湖边的怪人。',
+    Example1_Des2_1_MMM = {
+        ID = 'Example1_Des2_1_MMM',
+        CHS = '工作是什么',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5005 = {
-        ID = 'Item_Des_5005',
-        CHS = '找到另一个怪人.',
+    Example1_Des1_1_ddd = {
+        ID = 'Example1_Des1_1_ddd',
+        CHS = '到底什么时候能吃饭',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5006 = {
-        ID = 'Item_Des_5006',
-        CHS = '好像外星人的头，Learze应该会对这个感兴趣。',
+    Example1_Des2_1_ddd = {
+        ID = 'Example1_Des2_1_ddd',
+        CHS = '我是谁',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5007 = {
-        ID = 'Item_Des_5007',
-        CHS = '问问Johnny有没有见过这样的鹿皮。',
+    Example1_Des1_2_farm = {
+        ID = 'Example1_Des1_2_farm',
+        CHS = '今天晚上吃什么',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5008 = {
-        ID = 'Item_Des_5008',
-        CHS = '石头人掉落的碎片，拿给Learze看看吧。',
+    Example1_Des2_2_farm = {
+        ID = 'Example1_Des2_2_farm',
+        CHS = '我从哪里来',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5009 = {
-        ID = 'Item_Des_5009',
-        CHS = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
+    Example1_Des1_2_MMM = {
+        ID = 'Example1_Des1_2_MMM',
+        CHS = '下班就去吃饭吧',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Des_5010 = {
-        ID = 'Item_Des_5010',
-        CHS = '一个发射火箭的弓，但是物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5011 = {
-        ID = 'Item_Des_5011',
-        CHS = '蜗牛退下的壳，和平常的蜗牛壳完全不同，找Jake问问怎么回事。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5012 = {
-        ID = 'Item_Des_5012',
-        CHS = '这个道具已经变成种花的种子了，但是物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5013 = {
-        ID = 'Item_Des_5013',
-        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5014 = {
-        ID = 'Item_Des_5014',
-        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5015 = {
-        ID = 'Item_Des_5015',
-        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5016 = {
-        ID = 'Item_Des_5016',
-        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5017 = {
-        ID = 'Item_Des_5017',
-        CHS = '长的很漂亮的苹果，可以用作礼物送给别人。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5018 = {
-        ID = 'Item_Des_5018',
-        CHS = '一个外星采集单位的内核，或许飞碟的AI能够修复它。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5019 = {
-        ID = 'Item_Des_5019',
-        CHS = '一根漂亮的羽毛，Johnny很喜欢。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5020 = {
-        ID = 'Item_Des_5020',
-        CHS = '这是培养机器人的食物，但是物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5021 = {
-        ID = 'Item_Des_5021',
-        CHS = '这是换成机器人的物品，但是物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5022 = {
-        ID = 'Item_Des_5022',
-        CHS = '药草，可以换成钱，但物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5023 = {
-        ID = 'Item_Des_5023',
-        CHS = '蜻蜓，可以换成钱，但物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5024 = {
-        ID = 'Item_Des_5024',
-        CHS = '光剑，可以当武器，但物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5025 = {
-        ID = 'Item_Des_5025',
-        CHS = '使用可以变大，但物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5026 = {
-        ID = 'Item_Des_5026',
-        CHS = '可以用来种花，但物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5027 = {
-        ID = 'Item_Des_5027',
-        CHS = '松果，可以换成钱，但物品系统还没实装。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_5028 = {
-        ID = 'Item_Des_5028',
-        CHS = '疑似UFO掉落的碎片，拿给Learze看看吧。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_6001 = {
-        ID = 'Item_Des_6001',
-        CHS = '野猪的皮，很值钱的样子。',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_7001 = {
-        ID = 'Item_Des_7001',
-        CHS = '很有灵性的样子',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Des_8001 = {
-        ID = 'Item_Des_8001',
-        CHS = '机器人的教科书',
+    Example1_Des2_2_MMM = {
+        ID = 'Example1_Des2_2_MMM',
+        CHS = '就这样吧',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_1001 = {
         ID = 'Item_Name_1001',
-        CHS = '光剑',
+        CHS = '扇子',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Name_2001 = {
-        ID = 'Item_Name_2001',
-        CHS = '烈焰弓',
+    Item_Des_1001 = {
+        ID = 'Item_Des_1001',
+        CHS = '一把亚洲风格的折扇。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1002 = {
+        ID = 'Item_Name_1002',
+        CHS = '树枝',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1002 = {
+        ID = 'Item_Des_1002',
+        CHS = '树上掉落的枝桠，挥动起来很顺手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1003 = {
+        ID = 'Item_Name_1003',
+        CHS = '扳钳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1003 = {
+        ID = 'Item_Des_1003',
+        CHS = '能当锤子，能当杠杆，Zander最爱的工具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1004 = {
+        ID = 'Item_Name_1004',
+        CHS = '扳手',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1004 = {
+        ID = 'Item_Des_1004',
+        CHS = '拧螺丝用的扳手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1005 = {
+        ID = 'Item_Name_1005',
+        CHS = '锄头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1005 = {
+        ID = 'Item_Des_1005',
+        CHS = '和Jake的不太一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1006 = {
+        ID = 'Item_Name_1006',
+        CHS = '大铁锤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1006 = {
+        ID = 'Item_Des_1006',
+        CHS = '熊也受不了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1007 = {
+        ID = 'Item_Name_1007',
+        CHS = '消防斧',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1007 = {
+        ID = 'Item_Des_1007',
+        CHS = '如果不砍厚重的东西就很是趁手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1008 = {
+        ID = 'Item_Name_1008',
+        CHS = '大骨锤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1008 = {
+        ID = 'Item_Des_1008',
+        CHS = '好像是什么神奇生物的骨头。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1009 = {
+        ID = 'Item_Name_1009',
+        CHS = '轻便的匕首',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1009 = {
+        ID = 'Item_Des_1009',
+        CHS = '森林求生的好助手。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1010 = {
+        ID = 'Item_Name_1010',
+        CHS = '损坏的钉鞋',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1010 = {
+        ID = 'Item_Des_1010',
+        CHS = '加了钉子的登山鞋，已经破旧的没法穿了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1011 = {
+        ID = 'Item_Name_1011',
+        CHS = '登山斧',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1011 = {
+        ID = 'Item_Des_1011',
+        CHS = '一只手就可以挥动，能有力的嵌入墙壁。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1012 = {
+        ID = 'Item_Name_1012',
+        CHS = '简易的斧头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1012 = {
+        ID = 'Item_Des_1012',
+        CHS = '森林的原住民砍柴用的斧头。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1013 = {
+        ID = 'Item_Name_1013',
+        CHS = '旧斧头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1013 = {
+        ID = 'Item_Des_1013',
+        CHS = '已经不再锋利了，但是好在还没有生锈。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1014 = {
+        ID = 'Item_Name_1014',
+        CHS = '红光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1014 = {
+        ID = 'Item_Des_1014',
+        CHS = '外星人的宝藏！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1015 = {
+        ID = 'Item_Name_1015',
+        CHS = '蓝光剑',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1015 = {
+        ID = 'Item_Des_1015',
+        CHS = '外星人的宝藏！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1016 = {
+        ID = 'Item_Name_1016',
+        CHS = '狼牙锤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1016 = {
+        ID = 'Item_Des_1016',
+        CHS = '将猎物一击毙命，但影响口感。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1017 = {
+        ID = 'Item_Name_1017',
+        CHS = '棒球棍',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1017 = {
+        ID = 'Item_Des_1017',
+        CHS = '精选树枝，打磨而成。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1018 = {
+        ID = 'Item_Name_1018',
+        CHS = '平底锅',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1018 = {
+        ID = 'Item_Des_1018',
+        CHS = '居家旅行必备单品！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1019 = {
+        ID = 'Item_Name_1019',
+        CHS = '农耙',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1019 = {
+        ID = 'Item_Des_1019',
+        CHS = '松软土地，好种庄稼。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1020 = {
+        ID = 'Item_Name_1020',
+        CHS = '草叉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1020 = {
+        ID = 'Item_Des_1020',
+        CHS = 'Geralt不喜欢它。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1021 = {
+        ID = 'Item_Name_1021',
+        CHS = '磁铁',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1021 = {
+        ID = 'Item_Des_1021',
+        CHS = '有人坚信可以通过这个东西找到外星人。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1022 = {
+        ID = 'Item_Name_1022',
+        CHS = '皮搋子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1022 = {
+        ID = 'Item_Des_1022',
+        CHS = '马桶伴侣。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1023 = {
+        ID = 'Item_Name_1023',
+        CHS = '溢能锄',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1023 = {
+        ID = 'Item_Des_1023',
+        CHS = '外星人可能用过它？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1024 = {
+        ID = 'Item_Name_1024',
+        CHS = '耀光撬棍',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1024 = {
+        ID = 'Item_Des_1024',
+        CHS = '外星人可能用过它？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1025 = {
+        ID = 'Item_Name_1025',
+        CHS = '耀光改锥',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1025 = {
+        ID = 'Item_Des_1025',
+        CHS = '外星人可能用过它？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1026 = {
+        ID = 'Item_Name_1026',
+        CHS = '奇异勺',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1026 = {
+        ID = 'Item_Des_1026',
+        CHS = '闪烁着生命能量。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1027 = {
+        ID = 'Item_Name_1027',
+        CHS = '聚能锹',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1027 = {
+        ID = 'Item_Des_1027',
+        CHS = '仿佛在搜集地球环境的能量。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1028 = {
+        ID = 'Item_Name_1028',
+        CHS = '迷你松树',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1028 = {
+        ID = 'Item_Des_1028',
+        CHS = '和迷宫的缩小器似乎有关系。',
         CHT = '',
         EN = '',
         JP = ''
@@ -356,9 +510,135 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_3001 = {
+        ID = 'Item_Des_3001',
+        CHS = '嘀嘀嘀的响',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_3002 = {
         ID = 'Item_Name_3002',
-        CHS = '奥特曼的变身棒',
+        CHS = '奇怪的生物组织',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3002 = {
+        ID = 'Item_Des_3002',
+        CHS = '一种奇怪的生物组织，还是别碰为妙。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3003 = {
+        ID = 'Item_Name_3003',
+        CHS = '奇怪的生物组织',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3003 = {
+        ID = 'Item_Des_3003',
+        CHS = '一种奇怪的生物组织，还是别碰为妙。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3004 = {
+        ID = 'Item_Name_3004',
+        CHS = '闪光的矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3004 = {
+        ID = 'Item_Des_3004',
+        CHS = '带有神奇的能量',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3005 = {
+        ID = 'Item_Name_3005',
+        CHS = '宇航员套装',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3005 = {
+        ID = 'Item_Des_3005',
+        CHS = '每个外星爱好者的梦想。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3006 = {
+        ID = 'Item_Name_3006',
+        CHS = '宇航员套装',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3006 = {
+        ID = 'Item_Des_3006',
+        CHS = '每个外星爱好者的梦想。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3007 = {
+        ID = 'Item_Name_3007',
+        CHS = '脉冲发生器',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3007 = {
+        ID = 'Item_Des_3007',
+        CHS = '应该是飞碟上的设施，看上去很危险的样子。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2001 = {
+        ID = 'Item_Name_2001',
+        CHS = '烈焰弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2001 = {
+        ID = 'Item_Des_2001',
+        CHS = '射出火箭',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2002 = {
+        ID = 'Item_Name_2002',
+        CHS = '木弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2002 = {
+        ID = 'Item_Des_2002',
+        CHS = '从Johnny处借的新手打猎用弓。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_2003 = {
+        ID = 'Item_Name_2003',
+        CHS = '弹弓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_2003 = {
+        ID = 'Item_Des_2003',
+        CHS = '硕大的弹弓，打到自己会很疼。',
         CHT = '',
         EN = '',
         JP = ''
@@ -370,9 +650,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_4001 = {
+        ID = 'Item_Des_4001',
+        CHS = '大魔王最喜欢的食物',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5001 = {
         ID = 'Item_Name_5001',
         CHS = '探险巴士车票',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5001 = {
+        ID = 'Item_Des_5001',
+        CHS = '探险前记得和Learze告别。',
         CHT = '',
         EN = '',
         JP = ''
@@ -384,9 +678,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_5002 = {
+        ID = 'Item_Des_5002',
+        CHS = '去和河对面的原住民打个招呼吧。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5003 = {
         ID = 'Item_Name_5003',
         CHS = '探险巴士车票',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5003 = {
+        ID = 'Item_Des_5003',
+        CHS = '和另一个原住民打招呼。',
         CHT = '',
         EN = '',
         JP = ''
@@ -398,9 +706,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_5004 = {
+        ID = 'Item_Des_5004',
+        CHS = '找到湖边的怪人。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5005 = {
         ID = 'Item_Name_5005',
         CHS = '探险巴士车票',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5005 = {
+        ID = 'Item_Des_5005',
+        CHS = '找到另一个怪人.',
         CHT = '',
         EN = '',
         JP = ''
@@ -412,9 +734,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_5006 = {
+        ID = 'Item_Des_5006',
+        CHS = '好像外星人的头，Learze应该会对这个感兴趣。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5007 = {
         ID = 'Item_Name_5007',
         CHS = '有奇怪标记的鹿皮',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5007 = {
+        ID = 'Item_Des_5007',
+        CHS = '问问Johnny有没有见过这样的鹿皮。',
         CHT = '',
         EN = '',
         JP = ''
@@ -426,6 +762,13 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_5008 = {
+        ID = 'Item_Des_5008',
+        CHS = '石头人掉落的碎片，拿给Learze看看吧。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5009 = {
         ID = 'Item_Name_5009',
         CHS = '野猪王的獠牙',
@@ -433,9 +776,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_5009 = {
+        ID = 'Item_Des_5009',
+        CHS = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5010 = {
         ID = 'Item_Name_5010',
-        CHS = '烈焰弓',
+        CHS = '奇怪的蜗牛壳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5010 = {
+        ID = 'Item_Des_5010',
+        CHS = '蜗牛退下的壳，和平常的蜗牛壳完全不同，找Jake问问怎么回事。',
         CHT = '',
         EN = '',
         JP = ''
@@ -447,121 +804,121 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    Item_Des_5011 = {
+        ID = 'Item_Des_5011',
+        CHS = '这个道具已经变成种花的种子了，但是物品系统和种花还没对接。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     Item_Name_5012 = {
         ID = 'Item_Name_5012',
-        CHS = '奇怪的蜗牛壳',
+        CHS = '样本YH-002',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5012 = {
+        ID = 'Item_Des_5012',
+        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5013 = {
         ID = 'Item_Name_5013',
-        CHS = '样本YH-002',
+        CHS = '样本YH-001',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5013 = {
+        ID = 'Item_Des_5013',
+        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5014 = {
         ID = 'Item_Name_5014',
-        CHS = '样本YH-001',
+        CHS = '样本YH-006',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5014 = {
+        ID = 'Item_Des_5014',
+        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5015 = {
         ID = 'Item_Name_5015',
-        CHS = '样本YH-006',
+        CHS = '样本HJ-218',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5015 = {
+        ID = 'Item_Des_5015',
+        CHS = '你的机器人采集到的数据，或许可以把它交到UFO上。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5016 = {
         ID = 'Item_Name_5016',
-        CHS = '样本HJ-218',
+        CHS = '完美的苹果',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5016 = {
+        ID = 'Item_Des_5016',
+        CHS = '长的很漂亮的苹果，可以用作礼物送给别人。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5017 = {
         ID = 'Item_Name_5017',
-        CHS = '完美的苹果',
+        CHS = '采集单位G8的内核',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5017 = {
+        ID = 'Item_Des_5017',
+        CHS = '一个外星采集单位的内核，或许飞碟的AI能够修复它。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5018 = {
         ID = 'Item_Name_5018',
-        CHS = '采集单位G8的内核',
+        CHS = '漂亮的羽毛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5018 = {
+        ID = 'Item_Des_5018',
+        CHS = '一根漂亮的羽毛，Johnny很喜欢。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5019 = {
         ID = 'Item_Name_5019',
-        CHS = '漂亮的羽毛',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5020 = {
-        ID = 'Item_Name_5020',
-        CHS = '机器人记忆芯片',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5021 = {
-        ID = 'Item_Name_5021',
-        CHS = 'G8采集机器人',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5022 = {
-        ID = 'Item_Name_5022',
-        CHS = '药草',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5023 = {
-        ID = 'Item_Name_5023',
-        CHS = '蜻蜓',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5024 = {
-        ID = 'Item_Name_5024',
-        CHS = '光剑',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5025 = {
-        ID = 'Item_Name_5025',
-        CHS = '变大器',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5026 = {
-        ID = 'Item_Name_5026',
-        CHS = '花种',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5027 = {
-        ID = 'Item_Name_5027',
-        CHS = '松果',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    Item_Name_5028 = {
-        ID = 'Item_Name_5028',
         CHS = '金属碎片',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5019 = {
+        ID = 'Item_Des_5019',
+        CHS = '疑似UFO掉落的碎片，拿给Learze看看吧。',
         CHT = '',
         EN = '',
         JP = ''
@@ -573,37 +930,415 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
-    Item_Name_7001 = {
-        ID = 'Item_Name_7001',
-        CHS = '微型战斗机器人N9',
+    Item_Des_6001 = {
+        ID = 'Item_Des_6001',
+        CHS = '野猪的皮，很值钱的样子。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_Name_8001 = {
-        ID = 'Item_Name_8001',
-        CHS = '战斗机器人内存卡',
+    Item_Name_6002 = {
+        ID = 'Item_Name_6002',
+        CHS = '机器人记忆芯片',
         CHT = '',
         EN = '',
         JP = ''
     },
-    Item_NpcText_5001 = {
-        ID = 'Item_NpcText_5001',
-        CHS = '啊，那天真是令人怀念，谢谢你！',
+    Item_Des_6002 = {
+        ID = 'Item_Des_6002',
+        CHS = '这是培养机器人的食物，但是物品系统和宠物系统还没对接。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    MedicineItem_Des_2001 = {
-        ID = 'MedicineItem_Des_2001',
-        CHS = '嘀嘀嘀的响',
+    Item_Name_6003 = {
+        ID = 'Item_Name_6003',
+        CHS = 'G8采集机器人',
         CHT = '',
         EN = '',
         JP = ''
     },
-    MedicineItem_Name_2001 = {
-        ID = 'MedicineItem_Name_2001',
-        CHS = '不稳定的炸弹',
+    Item_Des_6003 = {
+        ID = 'Item_Des_6003',
+        CHS = '这是培养机器人的食物，但是物品系统和宠物系统还没对接。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6004 = {
+        ID = 'Item_Name_6004',
+        CHS = '药草',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6004 = {
+        ID = 'Item_Des_6004',
+        CHS = '很值钱的植物。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6005 = {
+        ID = 'Item_Name_6005',
+        CHS = '蜻蜓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6005 = {
+        ID = 'Item_Des_6005',
+        CHS = '翅膀闪烁着七彩光泽。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6006 = {
+        ID = 'Item_Name_6006',
+        CHS = '花种',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6006 = {
+        ID = 'Item_Des_6006',
+        CHS = '可以用来种花，但物品系统和种花还没对接。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6007 = {
+        ID = 'Item_Name_6007',
+        CHS = '松果',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6007 = {
+        ID = 'Item_Des_6007',
+        CHS = '松果，可以换成钱，但物品系统还没实装。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6008 = {
+        ID = 'Item_Name_6008',
+        CHS = '碎石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6008 = {
+        ID = 'Item_Des_6008',
+        CHS = '石头的碎屑。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6009 = {
+        ID = 'Item_Name_6009',
+        CHS = '树枝',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6009 = {
+        ID = 'Item_Des_6009',
+        CHS = '有人拿来当柴火。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6010 = {
+        ID = 'Item_Name_6010',
+        CHS = '铜矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6010 = {
+        ID = 'Item_Des_6010',
+        CHS = '一块铜矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6011 = {
+        ID = 'Item_Name_6011',
+        CHS = '铁矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6011 = {
+        ID = 'Item_Des_6011',
+        CHS = '一块铁矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6012 = {
+        ID = 'Item_Name_6012',
+        CHS = '银矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6012 = {
+        ID = 'Item_Des_6012',
+        CHS = '一块银矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6013 = {
+        ID = 'Item_Name_6013',
+        CHS = '金矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6013 = {
+        ID = 'Item_Des_6013',
+        CHS = '一块金矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6014 = {
+        ID = 'Item_Name_6014',
+        CHS = '蜗牛壳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6014 = {
+        ID = 'Item_Des_6014',
+        CHS = '就像人的指纹，每个蜗牛的壳的形状都不一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6015 = {
+        ID = 'Item_Name_6015',
+        CHS = '孔雀翎',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6015 = {
+        ID = 'Item_Des_6015',
+        CHS = '这片森林有孔雀？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6016 = {
+        ID = 'Item_Name_6016',
+        CHS = '窃蛋龙足化石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6016 = {
+        ID = 'Item_Des_6016',
+        CHS = '像鸡爪一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6017 = {
+        ID = 'Item_Name_6017',
+        CHS = '三角龙角化石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6017 = {
+        ID = 'Item_Des_6017',
+        CHS = '像利齿一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6018 = {
+        ID = 'Item_Name_6018',
+        CHS = '霸王龙蛋化石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6018 = {
+        ID = 'Item_Des_6018',
+        CHS = '又大又圆。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6019 = {
+        ID = 'Item_Name_6019',
+        CHS = '蛐蛐',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6019 = {
+        ID = 'Item_Des_6019',
+        CHS = '吵闹的小家伙。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6020 = {
+        ID = 'Item_Name_6020',
+        CHS = '蜘蛛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6020 = {
+        ID = 'Item_Des_6020',
+        CHS = '可怕的东西，应该没有毒吧？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6021 = {
+        ID = 'Item_Name_6021',
+        CHS = '鼠妇',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6021 = {
+        ID = 'Item_Des_6021',
+        CHS = '潮湿的地方就有它。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5001 = {
+        ID = 'TaskItem_NpcText_5001',
+        CHS = '我是Learze，本次探险的领队，有新奇的发现记得分享给我呀！河对岸好像有原住民，去和他们打个招呼吧！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5002 = {
+        ID = 'TaskItem_NpcText_5002',
+        CHS = '外来人？我是Johnny，一个猎人，如果你只对UFO感兴趣，我们就没什么可说的了。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5003 = {
+        ID = 'TaskItem_NpcText_5003',
+        CHS = '你好，我是Zander，Johnny的弟弟，欢迎你们来这片森林，奇怪的事情？在UFO来之前有两个奇怪的人在湖边定居了，你可以去看看。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5004 = {
+        ID = 'TaskItem_NpcText_5004',
+        CHS = '你好，我是Jake，一个人类，和你们一样，唔……',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5005 = {
+        ID = 'TaskItem_NpcText_5005',
+        CHS = '我叫Neytiri，有人说我和Jake奇怪？讨厌，我们只是晒的比较黑而已，就这么说我们。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5006 = {
+        ID = 'TaskItem_NpcText_5006',
+        CHS = '哦？这块皮真神奇。这头鹿可能是外星人采集的样本！你可以去问问Johny有没有发现这样的现象。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5007 = {
+        ID = 'TaskItem_NpcText_5007',
+        CHS = '奇怪的鹿皮？我也有一些，或许拼起来之后能发现一些秘密，你如果看到更多也可以拿给我！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5008 = {
+        ID = 'TaskItem_NpcText_5008',
+        CHS = '这些符文或许是外星人的语言，我需要更多，如果有发现就带来给我吧！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5009 = {
+        ID = 'TaskItem_NpcText_5009',
+        CHS = '恭喜你，在我们这里每个成年的猎人都要猎杀野猪王证明自己，你已经是一个出色的猎人了，这是我新做的弓，这把弓或许能帮你更进一步！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5010 = {
+        ID = 'TaskItem_NpcText_5010',
+        CHS = '倪好……&%%，啊，这是Neytiri的蜗牛的壳，花园好久都没有施肥了，你不如把它埋到花园里。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5012 = {
+        ID = 'TaskItem_NpcText_5012',
+        CHS = '正在上传数据……上传成功……',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5013 = {
+        ID = 'TaskItem_NpcText_5013',
+        CHS = '正在上传数据……上传成功……',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5014 = {
+        ID = 'TaskItem_NpcText_5014',
+        CHS = '正在上传数据……上传成功……',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5015 = {
+        ID = 'TaskItem_NpcText_5015',
+        CHS = '正在上传数据……上传成功……',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5016 = {
+        ID = 'TaskItem_NpcText_5016',
+        CHS = '啊！这是你摘的苹果嘛！谢谢你！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5017 = {
+        ID = 'TaskItem_NpcText_5017',
+        CHS = '检测到G8单位部分损毁，正在启动修理进程……修复完毕……',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5018 = {
+        ID = 'TaskItem_NpcText_5018',
+        CHS = '啊！这是猫头鹰的羽毛吗？你要送给我？谢谢！下次我们一起打猎吧！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    TaskItem_NpcText_5019 = {
+        ID = 'TaskItem_NpcText_5019',
+        CHS = '这是从UFO下面捡到的碎片吗？可能飞碟是出了什么事故才停在这里的。这个碎片很有研究价值，谢谢你拿给我看！',
         CHT = '',
         EN = '',
         JP = ''
@@ -612,112 +1347,7 @@ local LanguagePackXls = {
         ID = 'NpcInfo_Name_1',
         CHS = '马克·波罗',
         CHT = '',
-        EN = 'Marco Polo',
-        JP = ''
-    },
-    NpcInfo_Name_10 = {
-        ID = 'NpcInfo_Name_10',
-        CHS = '伊莎贝拉·伯德',
-        CHT = '',
-        EN = 'Isabella Bird',
-        JP = ''
-    },
-    NpcInfo_Name_11 = {
-        ID = 'NpcInfo_Name_11',
-        CHS = '奥利维亚',
-        CHT = '',
-        EN = 'Olivia',
-        JP = ''
-    },
-    NpcInfo_Name_12 = {
-        ID = 'NpcInfo_Name_12',
-        CHS = '詹姆斯·库克',
-        CHT = '',
-        EN = 'James Cook',
-        JP = ''
-    },
-    NpcInfo_Name_13 = {
-        ID = 'NpcInfo_Name_13',
-        CHS = '约翰·卡伯特',
-        CHT = '',
-        EN = 'John Cabot',
-        JP = ''
-    },
-    NpcInfo_Name_14 = {
-        ID = 'NpcInfo_Name_14',
-        CHS = '米亚',
-        CHT = '',
-        EN = 'Mia',
-        JP = ''
-    },
-    NpcInfo_Name_15 = {
-        ID = 'NpcInfo_Name_15',
-        CHS = '诺亚',
-        CHT = '',
-        EN = 'Noah ',
-        JP = ''
-    },
-    NpcInfo_Name_16 = {
-        ID = 'NpcInfo_Name_16',
-        CHS = '格特鲁德·贝尔',
-        CHT = '',
-        EN = 'Gertrude Bell',
-        JP = ''
-    },
-    NpcInfo_Name_2 = {
-        ID = 'NpcInfo_Name_2',
-        CHS = '约翰·瑞欧',
-        CHT = '',
-        EN = 'Johnny Rico',
-        JP = ''
-    },
-    NpcInfo_Name_3 = {
-        ID = 'NpcInfo_Name_3',
-        CHS = '赞德·巴卡洛',
-        CHT = '',
-        EN = 'Zander Barcalow',
-        JP = ''
-    },
-    NpcInfo_Name_4 = {
-        ID = 'NpcInfo_Name_4',
-        CHS = '拉拉·克罗夫特',
-        CHT = '',
-        EN = 'Lara Croft',
-        JP = ''
-    },
-    NpcInfo_Name_5 = {
-        ID = 'NpcInfo_Name_5',
-        CHS = '杰克·苏利',
-        CHT = '',
-        EN = 'Jake Sully',
-        JP = ''
-    },
-    NpcInfo_Name_6 = {
-        ID = 'NpcInfo_Name_6',
-        CHS = '内蒂里',
-        CHT = '',
-        EN = 'Neytiri',
-        JP = ''
-    },
-    NpcInfo_Name_7 = {
-        ID = 'NpcInfo_Name_7',
-        CHS = '托尼',
-        CHT = '',
-        EN = 'Tony',
-        JP = ''
-    },
-    NpcInfo_Name_8 = {
-        ID = 'NpcInfo_Name_8',
-        CHS = '安娜',
-        CHT = '',
-        EN = 'Anna',
-        JP = ''
-    },
-    NpcInfo_Name_9 = {
-        ID = 'NpcInfo_Name_9',
-        CHS = '瑞',
-        CHT = '',
-        EN = 'Ryan',
+        EN = '',
         JP = ''
     },
     NpcInfo_Title_1 = {
@@ -727,51 +1357,9 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
-    NpcInfo_Title_10 = {
-        ID = 'NpcInfo_Title_10',
-        CHS = '探险家',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcInfo_Title_11 = {
-        ID = 'NpcInfo_Title_11',
-        CHS = '外星人爱好者',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcInfo_Title_12 = {
-        ID = 'NpcInfo_Title_12',
-        CHS = '探险家',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcInfo_Title_13 = {
-        ID = 'NpcInfo_Title_13',
-        CHS = '探险家',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcInfo_Title_14 = {
-        ID = 'NpcInfo_Title_14',
-        CHS = '学生',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcInfo_Title_15 = {
-        ID = 'NpcInfo_Title_15',
-        CHS = '外星人爱好者',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcInfo_Title_16 = {
-        ID = 'NpcInfo_Title_16',
-        CHS = '探险家',
+    NpcInfo_Name_2 = {
+        ID = 'NpcInfo_Name_2',
+        CHS = '约翰·瑞欧',
         CHT = '',
         EN = '',
         JP = ''
@@ -783,9 +1371,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    NpcInfo_Name_3 = {
+        ID = 'NpcInfo_Name_3',
+        CHS = '赞德·巴卡洛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     NpcInfo_Title_3 = {
         ID = 'NpcInfo_Title_3',
         CHS = '原住民',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_4 = {
+        ID = 'NpcInfo_Name_4',
+        CHS = '劳拉·克罗夫特',
         CHT = '',
         EN = '',
         JP = ''
@@ -797,9 +1399,23 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
+    NpcInfo_Name_5 = {
+        ID = 'NpcInfo_Name_5',
+        CHS = '杰克·苏利',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
     NpcInfo_Title_5 = {
         ID = 'NpcInfo_Title_5',
         CHS = '花农',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_6 = {
+        ID = 'NpcInfo_Name_6',
+        CHS = '内蒂里',
         CHT = '',
         EN = '',
         JP = ''
@@ -811,23 +1427,149 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
-    NpcInfo_Title_7 = {
-        ID = 'NpcInfo_Title_7',
+    NpcInfo_Name_7 = {
+        ID = 'NpcInfo_Name_7',
         CHS = '学生',
         CHT = '',
         EN = '',
         JP = ''
     },
-    NpcInfo_Title_8 = {
-        ID = 'NpcInfo_Title_8',
+    NpcInfo_Name_8 = {
+        ID = 'NpcInfo_Name_8',
         CHS = '学生',
         CHT = '',
         EN = '',
         JP = ''
     },
-    NpcInfo_Title_9 = {
-        ID = 'NpcInfo_Title_9',
+    NpcInfo_Name_9 = {
+        ID = 'NpcInfo_Name_9',
         CHS = '外星人爱好者',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_10 = {
+        ID = 'NpcInfo_Name_10',
+        CHS = '探险家',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_11 = {
+        ID = 'NpcInfo_Name_11',
+        CHS = '外星人爱好者',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_12 = {
+        ID = 'NpcInfo_Name_12',
+        CHS = '探险家',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_13 = {
+        ID = 'NpcInfo_Name_13',
+        CHS = '探险家',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_14 = {
+        ID = 'NpcInfo_Name_14',
+        CHS = '学生',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_15 = {
+        ID = 'NpcInfo_Name_15',
+        CHS = '外星人爱好者',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_16 = {
+        ID = 'NpcInfo_Name_16',
+        CHS = '探险家',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_1 = {
+        ID = 'GameInfo_GameName_1',
+        CHS = '打猎',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_2 = {
+        ID = 'GameInfo_GameName_2',
+        CHS = '打地鼠',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_3 = {
+        ID = 'GameInfo_GameName_3',
+        CHS = '迷宫',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_4 = {
+        ID = 'GameInfo_GameName_4',
+        CHS = '人间大炮',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_5 = {
+        ID = 'GameInfo_GameName_5',
+        CHS = '青蛙过河',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_6 = {
+        ID = 'GameInfo_GameName_6',
+        CHS = '热气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_7 = {
+        ID = 'GameInfo_GameName_7',
+        CHS = '种花',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_8 = {
+        ID = 'GameInfo_GameName_8',
+        CHS = '赛蜗牛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_9 = {
+        ID = 'GameInfo_GameName_9',
+        CHS = '竞速',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_10 = {
+        ID = 'GameInfo_GameName_10',
+        CHS = '摇摇椅',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    GameInfo_GameName_11 = {
+        ID = 'GameInfo_GameName_11',
+        CHS = '斗怪物',
         CHT = '',
         EN = '',
         JP = ''
@@ -874,34 +1616,6 @@ local LanguagePackXls = {
         EN = '',
         JP = ''
     },
-    NpcText_Text_1007 = {
-        ID = 'NpcText_Text_1007',
-        CHS = '变异蜗牛大赛跑，买定离手！',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcText_Text_1008 = {
-        ID = 'NpcText_Text_1008',
-        CHS = '我觉得这次远程能赢！',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcText_Text_1009 = {
-        ID = 'NpcText_Text_1009',
-        CHS = '我觉得这次小金能赢！',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcText_Text_1010 = {
-        ID = 'NpcText_Text_1010',
-        CHS = '我觉得这次toji能赢！',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
     NpcText_Text_1011 = {
         ID = 'NpcText_Text_1011',
         CHS = '唉，动物们因为你们出现都藏起来了，但是森林倒是热闹起来了。',
@@ -933,13 +1647,6 @@ local LanguagePackXls = {
     NpcText_Text_1015 = {
         ID = 'NpcText_Text_1015',
         CHS = '如果打到了好的猎物，一定要拿给我看看！',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    NpcText_Text_1016 = {
-        ID = 'NpcText_Text_1016',
-        CHS = '追Cube大奖赛',
         CHT = '',
         EN = '',
         JP = ''
@@ -1226,252 +1933,238 @@ local LanguagePackXls = {
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
-        CHS = '气泡测试：小伙子，来玩儿游戏啊！',
+        CHS = '又是一次激动人心的探险！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2002 = {
         ID = 'NpcText_Text_2002',
-        CHS = '气泡测试：小姐姐，来玩儿游戏啊！',
+        CHS = '发现神奇的东西记得和我分享啊！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    PetFeedItem_Des_8001 = {
-        ID = 'PetFeedItem_Des_8001',
-        CHS = '机器人的教科书',
+    NpcText_Text_2011 = {
+        ID = 'NpcText_Text_2011',
+        CHS = '不要只关注飞碟，大自然的馈赠同样可贵。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    PetFeedItem_Name_8001 = {
-        ID = 'PetFeedItem_Name_8001',
-        CHS = '战斗机器人内存卡',
+    NpcText_Text_2012 = {
+        ID = 'NpcText_Text_2012',
+        CHS = '打猎要有节制！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    PetItem_Des_7001 = {
-        ID = 'PetItem_Des_7001',
-        CHS = '很有灵性的样子',
+    NpcText_Text_2013 = {
+        ID = 'NpcText_Text_2013',
+        CHS = '也不知道我弟弟去哪了',
         CHT = '',
         EN = '',
         JP = ''
     },
-    PetItem_Name_7001 = {
-        ID = 'PetItem_Name_7001',
-        CHS = '微型战斗机器人N9',
+    NpcText_Text_2014 = {
+        ID = 'NpcText_Text_2014',
+        CHS = '如果你想打猎，我可以给你一把弓！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    PutItem_Des_4001 = {
-        ID = 'PutItem_Des_4001',
-        CHS = '大魔王最喜欢的食物',
+    NpcText_Text_2015 = {
+        ID = 'NpcText_Text_2015',
+        CHS = '希望这片森林早日恢复平静。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    PutItem_Name_4001 = {
-        ID = 'PutItem_Name_4001',
-        CHS = '魔法棒棒糖',
+    NpcText_Text_2021 = {
+        ID = 'NpcText_Text_2021',
+        CHS = '快试试我搭的热气球吧！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    RubbishItem_Des_6001 = {
-        ID = 'RubbishItem_Des_6001',
-        CHS = '野猪的皮，怎么感觉纹理像外星人的头？',
+    NpcText_Text_2022 = {
+        ID = 'NpcText_Text_2022',
+        CHS = '怎么才能让热气球接近飞碟呢！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    RubbishItem_Name_6001 = {
-        ID = 'RubbishItem_Name_6001',
-        CHS = '野猪皮',
+    NpcText_Text_2023 = {
+        ID = 'NpcText_Text_2023',
+        CHS = '今天的太阳真是太舒服了！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_Des_5001 = {
-        ID = 'TaskItem_Des_5001',
-        CHS = '怎么野猪身上会有这种东西?',
+    NpcText_Text_2024 = {
+        ID = 'NpcText_Text_2024',
+        CHS = '大家要保护大自然哦！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_Name_5001 = {
-        ID = 'TaskItem_Name_5001',
-        CHS = 'Toji的房卡',
+    NpcText_Text_2031 = {
+        ID = 'NpcText_Text_2031',
+        CHS = '快来看看外星人的神秘科技吧！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5001 = {
-        ID = 'TaskItem_NpcText_5001',
-        CHS = '我是Learze，本次探险的领队，有新奇的发现记得分享给我呀！河对岸好像有原住民，去和他们打个招呼吧！',
+    NpcText_Text_2032 = {
+        ID = 'NpcText_Text_2032',
+        CHS = '你看过蚁人吗！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5002 = {
-        ID = 'TaskItem_NpcText_5002',
-        CHS = '外来人？我是Johnny，一个猎人，如果你只对UFO感兴趣，我们就没什么可说的了。',
+    NpcText_Text_2033 = {
+        ID = 'NpcText_Text_2033',
+        CHS = '大家注意不要弄坏迷宫哦！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5003 = {
-        ID = 'TaskItem_NpcText_5003',
-        CHS = '你好，我是Zander，Johnny的弟弟，欢迎你们来这片森林，奇怪的事情？在UFO来之前有两个奇怪的人在湖边定居了，你可以去看看。',
+    NpcText_Text_2041 = {
+        ID = 'NpcText_Text_2041',
+        CHS = '%*&&&?/.@!@!',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5004 = {
-        ID = 'TaskItem_NpcText_5004',
-        CHS = '你好，我是Jake，一个人类，和你们一样，唔……',
+    NpcText_Text_2042 = {
+        ID = 'NpcText_Text_2042',
+        CHS = '对面的田可以种花哦，我可以给你种子。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5005 = {
-        ID = 'TaskItem_NpcText_5005',
-        CHS = '我叫Neytiri，有人说我和Jake奇怪？讨厌，我们只是晒的比较黑而已，就这么说我们。',
+    NpcText_Text_2043 = {
+        ID = 'NpcText_Text_2043',
+        CHS = '我有你们从没见过的花哦。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5006 = {
-        ID = 'TaskItem_NpcText_5006',
-        CHS = '哦？这块皮真神奇。这头鹿可能是外星人采集的样本！你可以去问问Johny有没有发现这样的现象。',
+    NpcText_Text_2044 = {
+        ID = 'NpcText_Text_2044',
+        CHS = '正在建立链接……',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5007 = {
-        ID = 'TaskItem_NpcText_5007',
-        CHS = '奇怪的鹿皮？我也有一些，或许拼起来之后能发现一些秘密，你如果看到更多也可以拿给我！',
+    NpcText_Text_2045 = {
+        ID = 'NpcText_Text_2045',
+        CHS = '这里的样本……哦不，生态环境真是丰富多样',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5008 = {
-        ID = 'TaskItem_NpcText_5008',
-        CHS = '这些符文或许是外星人的语言，我需要更多，如果有发现就带来给我吧！',
+    NpcText_Text_2051 = {
+        ID = 'NpcText_Text_2051',
+        CHS = '瞧一瞧看一看，大蜗牛赛跑咯！',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5009 = {
-        ID = 'TaskItem_NpcText_5009',
-        CHS = '恭喜你，在我们这里每个成年的猎人都要猎杀野猪王证明自己，你已经是一个出色的猎人了，这是我新做的弓，这把弓或许能帮你更进一步！',
+    NpcText_Text_2052 = {
+        ID = 'NpcText_Text_2052',
+        CHS = '我的宝贝们真是可爱，尤其是它们的孢子……我是说壳。',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5011 = {
-        ID = 'TaskItem_NpcText_5011',
-        CHS = '倪好……&%%，啊，这是Neytiri的蜗牛的壳，花园好久都没有施肥了，你不如把它埋到花园里。',
+    NpcText_Text_2053 = {
+        ID = 'NpcText_Text_2053',
+        CHS = '%*&&&?/.@!@!',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5013 = {
-        ID = 'TaskItem_NpcText_5013',
-        CHS = '正在上传数据……上传成功……',
+    NpcText_Text_2054 = {
+        ID = 'NpcText_Text_2054',
+        CHS = '猜猜谁会赢！猜对有奖哦',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5014 = {
-        ID = 'TaskItem_NpcText_5014',
-        CHS = '正在上传数据……上传成功……',
+    NpcInfo_Title_7 = {
+        ID = 'NpcInfo_Title_7',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5015 = {
-        ID = 'TaskItem_NpcText_5015',
-        CHS = '正在上传数据……上传成功……',
+    NpcInfo_Title_8 = {
+        ID = 'NpcInfo_Title_8',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5016 = {
-        ID = 'TaskItem_NpcText_5016',
-        CHS = '正在上传数据……上传成功……',
+    NpcInfo_Title_9 = {
+        ID = 'NpcInfo_Title_9',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5017 = {
-        ID = 'TaskItem_NpcText_5017',
-        CHS = '啊！这是你摘的苹果嘛！谢谢你！',
+    NpcInfo_Title_10 = {
+        ID = 'NpcInfo_Title_10',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5018 = {
-        ID = 'TaskItem_NpcText_5018',
-        CHS = '检测到G8单位部分损毁，正在启动修理进程……修复完毕……',
+    NpcInfo_Title_11 = {
+        ID = 'NpcInfo_Title_11',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5019 = {
-        ID = 'TaskItem_NpcText_5019',
-        CHS = '啊！这是猫头鹰的羽毛吗？你要送给我？谢谢！下次我们一起打猎吧！',
+    NpcInfo_Title_12 = {
+        ID = 'NpcInfo_Title_12',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    TaskItem_NpcText_5028 = {
-        ID = 'TaskItem_NpcText_5028',
-        CHS = '这是从UFO下面捡到的碎片吗？可能飞碟是出了什么事故才停在这里的。这个碎片很有研究价值，谢谢你拿给我看！',
+    NpcInfo_Title_13 = {
+        ID = 'NpcInfo_Title_13',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    ThrowItem_Des_3001 = {
-        ID = 'ThrowItem_Des_3001',
-        CHS = '如果能量无限就好了',
+    NpcInfo_Title_14 = {
+        ID = 'NpcInfo_Title_14',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    ThrowItem_Des_3002 = {
-        ID = 'ThrowItem_Des_3002',
-        CHS = '射出火箭',
+    NpcInfo_Title_15 = {
+        ID = 'NpcInfo_Title_15',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    ThrowItem_Name_3001 = {
-        ID = 'ThrowItem_Name_3001',
-        CHS = '奥特曼的变身棒',
+    NpcInfo_Title_16 = {
+        ID = 'NpcInfo_Title_16',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
     },
-    ThrowItem_Name_3002 = {
-        ID = 'ThrowItem_Name_3002',
-        CHS = '烈焰弓',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    WeaponItem_Des_1001 = {
-        ID = 'WeaponItem_Des_1001',
-        CHS = '星球大战',
-        CHT = '',
-        EN = '',
-        JP = ''
-    },
-    WeaponItem_Name_1001 = {
-        ID = 'WeaponItem_Name_1001',
-        CHS = '光剑',
+    NpcText_Text_1000 = {
+        ID = 'NpcText_Text_1000',
+        CHS = ' ',
         CHT = '',
         EN = '',
         JP = ''
