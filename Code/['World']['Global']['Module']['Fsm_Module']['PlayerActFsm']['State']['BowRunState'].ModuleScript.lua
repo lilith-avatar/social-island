@@ -4,13 +4,13 @@ function BowRun:OnEnter()
     PlayerActState.OnEnter(self)
     local dir = PlayerCtrl.finalDir
     if Vector3.Angle(dir, localPlayer.Forward) < 60 then
-        localPlayer.Avatar:PlayAnimation("RunFront", 3, 1, 0.1, true, true, 1)
+        localPlayer.Avatar:PlayAnimation("BowRun", 2, 1, 0.1, true, true, 1)
     elseif Vector3.Angle(dir, localPlayer.Right) < 30 then
-        localPlayer.Avatar:PlayAnimation("RunRight", 3, 1, 0.1, true, true, 1)
+        localPlayer.Avatar:PlayAnimation("BowRunRight", 2, 1, 0.1, true, true, 1)
     elseif Vector3.Angle(dir, localPlayer.Left) < 30 then
-        localPlayer.Avatar:PlayAnimation("RunLeft", 3, 1, 0.1, true, true, 1)
+        localPlayer.Avatar:PlayAnimation("BowRunLeft", 2, 1, 0.1, true, true, 1)
     else
-        localPlayer.Avatar:PlayAnimation("RunBack", 3, 1, 0.1, true, true, 1)
+        localPlayer.Avatar:PlayAnimation("BowRunBack", 2, 1, 0.1, true, true, 1)
     end
 end
 
@@ -33,13 +33,13 @@ function BowRun:IdleMonitor()
     if dir.Magnitude > 0 then
         if localPlayer.LinearVelocity.Magnitude > 0 and Vector3.Angle(dir, localPlayer.LinearVelocity) > 30 then
             if Vector3.Angle(dir, localPlayer.Forward) < 60 then
-                localPlayer.Avatar:PlayAnimation("RunFront", 3, 1, 0.1, true, true, 1)
+                localPlayer.Avatar:PlayAnimation("BowRun", 2, 1, 0.1, true, true, 1)
             elseif Vector3.Angle(dir, localPlayer.Right) < 30 then
-                localPlayer.Avatar:PlayAnimation("RunRight", 3, 1, 0.1, true, true, 1)
+                localPlayer.Avatar:PlayAnimation("BowRunRight", 2, 1, 0.1, true, true, 1)
             elseif Vector3.Angle(dir, localPlayer.Left) < 30 then
-                localPlayer.Avatar:PlayAnimation("RunLeft", 3, 1, 0.1, true, true, 1)
+                localPlayer.Avatar:PlayAnimation("BowRunLeft", 2, 1, 0.1, true, true, 1)
             else
-                localPlayer.Avatar:PlayAnimation("RunBack", 3, 1, 0.1, true, true, 1)
+                localPlayer.Avatar:PlayAnimation("BowRunBack", 2, 1, 0.1, true, true, 1)
             end
         end
         localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)

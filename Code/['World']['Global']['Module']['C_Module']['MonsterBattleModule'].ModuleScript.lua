@@ -7,7 +7,7 @@ local RealMonster = nil
 
 function MonsterBattle:Init()
     --Game.SetFPSQuality(Enum.FPSQuality.High)
-    print('[MonsterBattle] Init()')
+    print("[MonsterBattle] Init()")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -47,7 +47,7 @@ function MonsterBattle:EventBind()
             print(not _flag)
             this.MainPanel:SetActive(not _flag)
             if not _flag then
-                print('刷新')
+                print("[MonsterBattle] 菜单刷新")
                 this:RefreshBag()
             end
         end
@@ -123,6 +123,8 @@ function MonsterBattle:EventBind()
 			this.BattlePanel.Button3.Color = this.Color_Red
         end
     )
+	localPlayer.OnCollisionBegin:Connect(CheckMonsterRangeBegin)
+    localPlayer.OnCollisionEnd:Connect(CheckMonsterRangeEnd)
 end
 
 function MonsterBattle:OnPlayerJoinEventHandler()
@@ -139,6 +141,30 @@ function MonsterBattle:OnPlayerJoinEventHandler()
     this:ShowMonster()
     world:CreateObject('StringValueObject', 'EnemyVal', localPlayer)
 	MonsterUpDown()
+end
+
+function CheckMonsterRangeBegin(_hitObj, _hitPoint, hitNormal)
+	if _hitObj == nil then
+		return
+	end
+    if _hitObj.Name == 'MonsterRange' then
+		this.MonsterGUI.BattleBtn.Visible = true
+		this.MonsterGUI.BattleBtn.OnClick:Connect(
+        function()
+            NetUtil.Fire_S("StartBattleEvent", true, _hitObj, localPlayer)
+			this.MonsterGUI.BattleBtn.Visible = false
+        end
+    )
+    end	
+end
+
+function CheckMonsterRangeEnd(_hitObj, _hitPoint, hitNormal)
+	if _hitObj == nil then
+		return
+	end
+	if _hitObj.Name == 'MonsterRange' then
+		this.MonsterGUI.BattleBtn.Visible = false
+    end	
 end
 
 function MonsterBattle:Update(dt, tt)
@@ -203,7 +229,7 @@ function MonsterBattle:GetNewMonster(_monsterId)
     math.randomseed(os.time())
     local _monsterData = this:GetMonsterDataById(_monsterId)
     if (_monsterData == nil) then
-        print('表中没有该宠物数据')
+        print("[MonsterBattle] 表中没有该宠物数据")
     else
         local _monsterItem = {}
         _monsterItem.Uuid = UUID()
@@ -242,7 +268,7 @@ function MonsterBattle:ShowMonster()
         this:RefreshShowMonsterVal()
         this:FlashMove()
         this.HealthGUI = localPlayer.MonsterVal.Value.Cube.HealthGui
-        print('更换成功')
+        print("[MonsterBattle] 更换成功")
     end
 end
 
@@ -295,7 +321,7 @@ function MonsterBattle:InitFocusItem()
         showBtn:SetActive(true)
         local _longdata = this:GetMonsterDataByUUID(focusMonsterItem.UUID.Value)
         local _configdata = this:GetMonsterDataById(_longdata.Id)
-        showBtn.Text = '携带: ' .. _configdata.Name .. ' ' .. _longdata.Health .. ' ' .. _longdata.Attack
+        showBtn.Text = "携带: " .. _configdata.Name .. ' ' .. _longdata.Health .. ' ' .. _longdata.Attack
     else
         showBtn:SetActive(false)
         showBtn.Text = ''
@@ -377,7 +403,7 @@ function MonsterBattle:HealthChange()
 end
 
 function MonsterBattle:MonsterScanEventHandler(_pos,_euler,_time)
-	print('[Monster]'..'开始扫描')
+	print("[Monster]'..'开始扫描")
 	invoke(function()
 		this.canFollow = false
 		RealMonster.LinearVelocity = Vector3.Zero
@@ -410,6 +436,16 @@ function MonsterBattle:FlashMove(_pos)
 	else
 		RealMonster.Position = _pos
 	end
+	local _fx = world:CreateInstance('FX_FLASHMOVE','fx',RealMonster,Vector3.Zero,EulerDegree(0,0,0))
+	_fx.LocalPosition = RealMonster.Cube.LocalPosition
+	DelayDestroy(_fx,1)
+end
+
+function DelayDestroy(_obj,_delayTime)
+	invoke(function()
+		wait(_delayTime)
+		_obj:Destroy()
+	end)
 end
 
 --以下为数据交互函数

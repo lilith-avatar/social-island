@@ -6,7 +6,7 @@ function SwimIdle:OnEnter()
     localPlayer.GravityScale = 0
     localPlayer.LinearVelocity = Vector3(0, 0.01, 0)
     --localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("SwimIdle", 4, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
 end
 
 function SwimIdle:OnUpdate(dt)

@@ -8,6 +8,12 @@ Events.ServerEvents = {
     -- 进入小游戏
     "EnterMiniGameEvent", -- @param _player, _gameId
     "ExitMiniGameEvent", -- @param nil
+    -- 接触NPC
+    "TouchNpcEvent", -- @param _player, _npcId
+    -- 离开NPC
+    "LeaveNpcEvent", -- @param _player, _npcId
+    -- 开始与NPC对话
+    "StartTalkNpcEvent", -- @param _player, _npcId
     -- 交互
     "InteractSEvent", -- @param _player, _id
     "MazeEvent",
@@ -27,7 +33,9 @@ Events.ServerEvents = {
     "LoadMDataEvent", -- @param _userId
     "SaveMDataEvent", -- @param _userId, _playerdata
     "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
-    "PlantFlowerEvent" -- @param _userId, _flowerObj
+    "PlantFlowerEvent", -- @param _userId, _flowerObj
+	"DeleteFlowerEvent", -- @param _userId, _uuid
+	"WaterEvent", --@param _userId, _pos
 }
 
 -- 客户端事件列表
@@ -39,13 +47,16 @@ Events.ClientEvents = {
     --- 关闭通用UI事件
     "SetDefUIEvent", -- @param _bool, _nodes, _root
     --- 重置通用UI事件
+
     "ResetDefUIEvent",
+    --- 进入小游戏修改UI事件
+    "ChangeMiniGameUIEvent",
     --- 打开动态交互事件
     "OpenDynamicEvent", -- @param _type, _id
     -- 交互
     "InteractCEvent", -- @param _id
     -- NPC事件
-    "TouchNpcEvent", -- @param _npcId
+    "TouchNpcEvent", -- @param _npcId, _npcObj
     -- 修改玩家当前相机
     "SetCurCamEvent", -- @param _cam
     -- 显示小游戏的GUI
@@ -73,11 +84,15 @@ Events.ClientEvents = {
     "GetBuffEvent", --@param _buffID, _dur
     --移除Buff
     "RemoveBuffEvent", --@param _buffID
-    "GetCoinEvent",
+    "UpdateCoinEvent",
+    "GetItemEvent",
+    "RemoveItemEvent",
     "CreateItemObjEvent",
     --开始扫描事件
     "MonsterScanEvent", --@param _pos,_euler,_time
-    "LeaveMoleGameRangeEvent"
+    "LeaveMoleGameRangeEvent",
+	"LightHitEvent", --雷电打击
+	"WaterEvent", -- @Pos
 }
 
 return Events

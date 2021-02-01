@@ -3,7 +3,7 @@ local TwoHandedSwordJump = class("TwoHandedSwordJump", PlayerActState)
 function TwoHandedSwordJump:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer:Jump()
-    localPlayer.Avatar:PlayAnimation("TwoHandedSwordJump", 4, 1, 0, true, false, 1)
+    localPlayer.Avatar:PlayAnimation("TwoHandedSwordJump", 2, 1, 0, true, false, 1)
     --localPlayer.Avatar:PlayAnimation("TwoHandedSwordJump", 3, 1, 0, true, false, 1)
 end
 

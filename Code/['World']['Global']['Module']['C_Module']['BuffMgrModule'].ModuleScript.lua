@@ -76,10 +76,10 @@ end
 function BuffMgr:RemoveBuffEventHandler(_buffID)
     if BuffDataList[_buffID] then
         BuffDataList[_buffID] = nil
+        buffDataTable = table.deepcopy(defPlayerData)
+        this:GetAllBuffData()
+        PlayerCtrl:PlayerAttrUpdate()
     end
-    buffDataTable = table.deepcopy(defPlayerData)
-    this:GetAllBuffData()
-    PlayerCtrl:PlayerAttrUpdate()
 end
 
 --移除互斥Buff
@@ -98,7 +98,9 @@ function BuffMgr:GetAllBuffData()
             if string.find(tostring(k), "_Overlay") and defPlayerData[string.gsub(k, "_Overlay", "")] then ---叠加
                 if type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "table" then ---表类型
                     print(v, buffID)
-                    table.insert(buffDataTable[string.gsub(k, "_Overlay", "")], v)
+                    if v ~= "" then
+                        table.insert(buffDataTable[string.gsub(k, "_Overlay", "")], v)
+                    end
                 elseif type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "number" then ---数值类型
                     buffDataTable[string.gsub(k, "_Overlay", "")] = buffDataTable[string.gsub(k, "_Overlay", "")] * v
                 end

@@ -2,15 +2,17 @@ local BowIdle = class("BowIdle", PlayerActState)
 
 function BowIdle:OnEnter()
     PlayerActState.OnEnter(self)
+    PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
+    localPlayer.Local.BowAimGUI:SetActive(true)
     localPlayer:MoveTowards(Vector2.Zero)
+    --localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("BowChargeIdle", 3, 1, 0.1, true, true, 1)
 end
 
 function BowIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     localPlayer:MoveTowards(Vector2.Zero)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle", "BowAttack"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle", "BowAttack", "TwoHandedSwordIdle", "OneHandedSwordIdle"})
     self:MoveMonitor("Bow")
     self:JumpMonitor("Bow")
 end

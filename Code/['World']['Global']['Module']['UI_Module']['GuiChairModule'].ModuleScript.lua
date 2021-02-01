@@ -38,11 +38,11 @@ function ChairUIMgr:EventBind()
             end
         )
     end
-    this.normalBackBtn.OnClick:Connect(
+    --[[this.normalBackBtn.OnClick:Connect(
         function()
             this:NormalBack()
         end
-    )
+    )]]
 end
 
 function ChairUIMgr:NodeDef()
@@ -53,7 +53,7 @@ function ChairUIMgr:NodeDef()
         up = this.normalGui.UpBtn,
         down = this.normalGui.DownBtn
     }
-    this.normalBackBtn = this.normalGui.BackBtn
+    --this.normalBackBtn = this.normalGui.BackBtn
 
     this.QteGui = this.gui.QtePnl
     this.qteBtn = {
@@ -69,6 +69,7 @@ function ChairUIMgr:ClickSitBtn(_type, _chairId)
     NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, _type, _chairId)
     this.sitBtn:SetActive(false)
 end
+
 
 function ChairUIMgr:InteractCEventHandler(_id)
     if _id == 10 then
@@ -99,11 +100,13 @@ function ChairUIMgr:EnterNormal()
     this.normalGui:SetActive(true)
     this.normalBtn.up:SetActive(true)
     this.normalBtn.down:SetActive(true)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
 end
 
 function ChairUIMgr:EnterQte()
     this.gui:SetActive(true)
     this.QteGui:SetActive(true)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
 end
 
 function ChairUIMgr:NormalShake(_upOrDown)
@@ -125,6 +128,7 @@ function ChairUIMgr:NormalBack()
     Chair:PlayerLeaveSit()
     localPlayer:Jump()
     NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 
 function ChairUIMgr:GetQteForward(_dir, _speed)
