@@ -62,6 +62,7 @@ function ChairMgr:ChairCreate()
             end
         )
     end
+    
 end
 
 function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
@@ -82,7 +83,7 @@ end
 
 function ChairMgr:Update(dt)
     for k,v in pairs(this.ChairList.QTE) do
-        v:Update(dt)
+        v:ChairUpdate(dt)
     end
 end
 

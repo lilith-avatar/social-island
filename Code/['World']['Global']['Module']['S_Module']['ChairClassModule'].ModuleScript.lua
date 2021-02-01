@@ -19,39 +19,6 @@ local TypeEnum = {
     QTE = 2
 }
 
---- ***** qte 旋转函数 ******
----@param _obj Object
-local function MoveForward(_obj)
-    _obj:Rotate()
-end
-
-local function MoveLeft(_obj)
-    _obj:Rotate()
-end
-
-local function MoveBack(_obj)
-    _obj:Rotate()
-end
-
-local function MoveRight(_obj)
-    _obj:Rotate()
-end
-
-local DirFunction = {
-    Forward = function(_obj)
-        MoveForward(_obj)
-    end,
-    Left = function(_obj)
-        MoveLeft(_obj)
-    end,
-    Back = function(_obj)
-        MoveBack(_obj)
-    end,
-    Right = function(_obj)
-        MoveRight(_obj)
-    end
-}
-
 ---方向函数
 
 ---椅子的构造函数
@@ -59,6 +26,9 @@ local DirFunction = {
 ---@param _pos Vector3
 --- @param _rot EulerDegree
 function ChairClass:initialize(_type, _id, _arch, _parent, _pos, _rot)
+    if not _id then
+        return
+    end
     self.type = TypeEnum[_type]
     self:CommonDataInit(_arch, _parent, _pos, _rot, _id)
 end
@@ -69,12 +39,13 @@ function ChairClass:CommonDataInit(_arch, _parent, _pos, _rot, _id)
     self.sitter = nil
     self.startUpdate = false
     self.freshcoo = _pos
+    self.qteDir = nil
     self.timer = 0
     self.id = _id
 end
 
 function ChairClass:Sit(_player)
-    if not self.sitter or self.state ~= StateEnum.free then
+    if self.sitter or self.state ~= StateEnum.free then
         return
     end
     self.sitter = _player
@@ -85,6 +56,7 @@ function ChairClass:Sit(_player)
     --判断是否开始QTE
     if self.type == TypeEnum.QTE then
         self:Fly()
+        self.state = StateEnum.flying
     end
 end
 
@@ -95,6 +67,7 @@ function ChairClass:Stand()
     self.model.CollisionArea:SetActive(true)
     --判断是否结束QTE
     if self.type == TypeEnum.QTE then
+        self.model:Rotate(EulerDegree(-30, 0, 0))
         self.state = StateEnum.returning
         self:Return()
     end
@@ -104,22 +77,25 @@ end
 function ChairClass:Fly()
     --self.state = StateEnum.flying
     --喷射
-    self.tweener = Tween:ShakeProperty(self.model, {Rotation}, 100, 5)
+    self.tweener = Tween:ShakeProperty(self.model, {"Rotation"}, 100, 0.5)
     self.tweener:Play()
 end
 
 function ChairClass:Flying(dt)
     -- 一段时间后停下
     self.timer = self.timer + dt
-    if self.timer >= Config.ChairGlobalConfig[self.id].FlyingTime then
+    self.model.LinearVelocity = (self.model.Forward + self.model.Up) * 30
+    if self.timer >= Config.ChairGlobalConfig.FlyingTime.Value then
+        self.model.LinearVelocity = Vector3.Zero
         self.state = StateEnum.qteing
         self.timer = 0
     end
 end
 
 function ChairClass:SetSpeed(_dir, _speed)
-    DirFunction[_dir](self.model)
+    print(_dir)
     self.model.LinearVelocity = self.model.Forward * _speed
+    self.qteDir = _dir
 end
 
 function ChairClass:Return()
@@ -127,12 +103,15 @@ function ChairClass:Return()
     self.model.LinearVelocity = 10 * (self.model.Position - self.freshcoo) --! 10 is a temp data!!!
 end
 
-function ChairClass:Update(dt)
+function ChairClass:ChairUpdate(dt)
+    print(self.model.Right)
     if self.type == TypeEnum.Normal or not self.startUpdate then
         return
     end
     if self.state == StateEnum.flying then
         self:Flying(dt)
+    end
+    if self.state == StateEnum.qteing and self.qteDir then
     end
     if self.state == StateEnum.returning then
         if (self.model.Position - Config.ChairInfo[self.id].Position).Magnitude <= 3 then
