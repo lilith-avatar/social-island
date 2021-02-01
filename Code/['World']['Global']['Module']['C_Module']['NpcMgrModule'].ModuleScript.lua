@@ -14,6 +14,8 @@ local bubbleIntervalMax = Config.GlobalSetting.NpcBubbleInterval[2]
 local npcFolder
 local npcs = {}
 
+--! 初始化
+
 --- 初始化
 function NpcMgr:Init()
     print('[NpcMgr] Init()')
@@ -40,8 +42,8 @@ function CreateNpcs()
         local id = world:CreateObject('IntValueObject', 'ID', npcObj)
         id.Value = npcInfo.ID
         -- 创建当前玩家
-        world:CreateObject('ObjRefValueObject', 'CurrPlayer', npcObj) -- 当前NPC面对的玩家
-
+        local state = world:CreateObject('IntValueObject', 'NpcState', npcObj) -- 当前NPC面对的玩家
+        state.Value = Const.NpcState.IDLE
         -- cache
         npcs[npcInfo.ID] = {
             obj = npcObj, -- Npc对象
@@ -57,6 +59,7 @@ function CreateNpcs()
         InitNpcIdleAction(npcObj, npcInfo)
         -- NPC气泡开启
         InitNpcBubble(npcInfo.ID)
+        wait()
     end
 end
 
@@ -147,7 +150,7 @@ end
 function BubbleShow(_npcId)
     local npcObj = npcs[_npcId].obj
     local gui = npcObj.BubbleGui
-    if npcObj.CurrPlayer.Value ~= nil then
+    if npcObj.NpcState.Value == Const.NpcState.TALKING then
         BubbleHide(_npcId)
         return
     end
@@ -184,7 +187,8 @@ end
 function OnEnterNpc(_hitObj, _npcId)
     if _hitObj == localPlayer then
         local npc = npcs[_npcId]
-        if not npc.obj.CurrPlayer.Value then
+        if npc.obj.NpcState.Value == Const.NpcState.IDLE then
+            npc.obj.NpcState.Value = Const.NpcState.SEE_PLAYER
             NetUtil.Fire_C('TouchNpcEvent', localPlayer, _npcId, npc.obj)
             npc.obj.Avatar:PlayAnimation(npc.info.WelcomeAnim, 9, 1, 0.1, true, false, 1)
             NpcFaceToPlayer(_npcId)
@@ -197,7 +201,7 @@ function OnExitNpc(_hitObj, _npcId)
     if _hitObj == localPlayer then
         local npc = npcs[_npcId]
         NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
-        npc.obj.CurrPlayer.Value = nil
+        npc.obj.NpcState.Value = Const.NpcState.IDLE
         npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
     end
 end
@@ -213,12 +217,23 @@ function NpcFaceReset(_npcId)
     npcs[_npcId].obj.Rotation = npcs[_npcId].info.SpawnRot
 end
 
+--! Update
+function NpcMgr:Update(_dt)
+    for _, npc in pairs(npcs) do
+        if npc.obj.NpcState.Value == Const.NpcState.SEE_PLAYER or npc.obj.NpcState.Value == Const.NpcState.TALKING then
+            NpcFaceToPlayer(npc.info.ID)
+        end
+    end
+end
+
+--! Event handlers 事件处理
+
 -- 玩家开始与NPC对话
 function NpcMgr:TalkToNpcEventHandler(_npcId)
     assert(_npcId, string.format('[NpcMgr] TalkToNpcEvent, 事件参数有误, player = %s, npcId = %s', localPlayer, _npcId))
     assert(npcs[_npcId], string.format('[NpcMgr] TalkToNpcEvent, 不存在对应的NPC, npcId = %s', _npcId))
     local npc = npcs[_npcId]
-    npc.obj.CurrPlayer.Value = localPlayer
+    npc.obj.NpcState.Value = Const.NpcState.TALKING
     npc.obj.Avatar:PlayAnimation(npc.info.TalkAnim, 9, 1, 0.1, true, false, 1)
     BubbleHide(_npcId)
 end
@@ -228,8 +243,8 @@ function NpcMgr:LeaveNpcEventHandler(_npcId)
     assert(_npcId, '[NpcMgr] LeaveNpcEvent, 事件参数有误')
     assert(npcs[_npcId], '[NpcMgr] LeaveNpcEvent, 不存在对应的NPC, npcId = ' .. _npcId)
     local npc = npcs[_npcId]
-    if npc.obj.CurrPlayer.Value == localPlayer then
-        npc.obj.CurrPlayer.Value = nil
+    if npc.obj.NpcState.Value == Const.NpcState.TALKING then
+        npc.obj.NpcState.Value = Const.NpcState.SEE_PLAYER
         npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
     end
 end
