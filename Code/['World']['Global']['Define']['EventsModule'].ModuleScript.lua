@@ -35,7 +35,8 @@ Events.ServerEvents = {
     "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
     "PlantFlowerEvent", -- @param _userId, _flowerObj
     "DeleteFlowerEvent", -- @param _userId, _uuid
-    "WaterEvent" --@param _userId, _pos
+    "WaterEvent", --@param _userId, _pos
+    "SPlayerHitEvent"
 }
 
 -- 客户端事件列表
@@ -63,6 +64,7 @@ Events.ClientEvents = {
     "SetMiniGameGuiEvent", -- @param  _gameId, _selfActive, _ctrlGuiActive
     --- 状态机改变触发
     "FsmTriggerEvent", -- @param  _state
+    "CPlayerHitEvent",
     -- 修改是否能控制角色
     "SetPlayerControllableEvent", -- @param _bool
     "AddScoreAndBoostEvent",

@@ -128,6 +128,7 @@ function ChairUIMgr:NormalBack()
     Chair:PlayerLeaveSit()
     localPlayer:Jump()
     NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
+    print("NormalBack")
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 

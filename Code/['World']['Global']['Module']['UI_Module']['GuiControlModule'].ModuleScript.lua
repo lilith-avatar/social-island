@@ -84,7 +84,9 @@ function GuiControl:InitListener()
     )
     ctrlFigure.LeaveBtn.OnDown:Connect(
         function()
+            print("LeaveBtnClick")
             if interactID == 10 then
+                print("ChairUIMgr:NormalBack()")
                 ChairUIMgr:NormalBack()
                 return
             end
@@ -257,6 +259,7 @@ end
 --- 进入小游戏修改UI
 function GuiControl:ChangeMiniGameUIEventHandler(_id)
     _id = _id or 0
+    print("进入小游戏修改UI",_id)
     local config = Config.Interact[_id]
     gui.Joystick:SetActive(config.JoystickActive)
     gui.Menu:SetActive(config.MenuActive)

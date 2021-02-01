@@ -59,13 +59,13 @@ end
 
 --实例化近战武器
 function ItemMgr:Instantiate1(_id)
-    print("实例化近战武器",_id)
+    print("实例化近战武器", _id)
     return MeleeWeapon:new(Config.Item[_id], Config.MeleeWeapon[_id])
 end
 
 --实例化远程武器
 function ItemMgr:Instantiate2(_id)
-    print("实例化远程武器",_id)
+    print("实例化远程武器", _id)
     return LongRangeWeapon:new(Config.Item[_id], Config.LongRangeWeapon[_id])
 end
 
