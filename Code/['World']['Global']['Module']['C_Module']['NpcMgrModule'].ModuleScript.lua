@@ -71,10 +71,16 @@ end
 -- 创建NPC名片
 function CreateCardGui(_npcObj, _npcInfo)
     local gui = world:CreateInstance('NpcCardGui', 'CardGui', _npcObj)
+    assert(not string.isnilorempty(_npcInfo.Name), string.format('[NpcMgr] NPC的Name不能为空, NpcId = %s', _npcInfo.ID))
     gui.NameBarTxt1.Text = LanguageUtil.GetText(_npcInfo.Name)
     gui.NameBarTxt2.Text = LanguageUtil.GetText(_npcInfo.Name)
-    gui.TitleBarTxt1.Text = LanguageUtil.GetText(_npcInfo.Title)
-    gui.TitleBarTxt2.Text = LanguageUtil.GetText(_npcInfo.Title)
+    if string.isnilorempty(_npcInfo.Title) then
+        gui.TitleBarTxt1.Text = ''
+        gui.TitleBarTxt2.Text = ''
+    else
+        gui.TitleBarTxt1.Text = LanguageUtil.GetText(_npcInfo.Title)
+        gui.TitleBarTxt2.Text = LanguageUtil.GetText(_npcInfo.Title)
+    end
     gui.LocalPosition = Vector3(0, 2, 0)
     gui.LocalRotation = EulerDegree(0, 0, 0)
     --TODO: 任务提示符，之后可能变成图片
