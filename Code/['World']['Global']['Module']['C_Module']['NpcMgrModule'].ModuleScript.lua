@@ -2,9 +2,8 @@
 --- @module NPC manager
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang, Lin
-local NpcMgr, this = ModuleUtil.New('NpcMgr', ServerBase)
+local NpcMgr, this = ModuleUtil.New('NpcMgr', ClientBase)
 
--- cache
 local Config = Config
 local NpcInfo = Config.NpcInfo
 local NpcText = Config.NpcText
@@ -12,27 +11,24 @@ local bubbleShowTime = Config.GlobalSetting.NpcBubbleShowTime
 local bubbleIntervalMin = Config.GlobalSetting.NpcBubbleInterval[1]
 local bubbleIntervalMax = Config.GlobalSetting.NpcBubbleInterval[2]
 
-local npcFolder, monsterFolder
+local npcFolder
 local npcs = {}
 
 --- 初始化
 function NpcMgr:Init()
-    -- print('[NpcMgr] Init()')
-    -- assert(bubbleShowTime < bubbleIntervalMin, '[NpcMgr] NpcBubbleShowTime需要小于NpcBubbleIntervalTime，请检查GlobalSetting表')
-    -- CreateNpcFolder()
-    -- invoke(CreateNpcs)
+    print('[NpcMgr] Init()')
+    assert(bubbleShowTime < bubbleIntervalMin, '[NpcMgr] NpcBubbleShowTime需要小于NpcBubbleIntervalTime，请检查GlobalSetting表')
+    CreateNpcFolder()
+    invoke(CreateNpcs)
 end
 
---- 生成节点：world.NPC
+--- 生成节点
 function CreateNpcFolder()
-    if world.NPC == nil then
-        world:CreateObject('FolderObject', 'NPC', world)
+    assert(localPlayer, '[NpcMgr] CreateNpcFolder, localPlayer不存在')
+    if localPlayer.Local.Independent.NPC == nil then
+        world:CreateObject('FolderObject', 'NPC', localPlayer.Local.Independent)
     end
-    npcFolder = world.NPC
-    if world.NPCMonster == nil then
-        world:CreateObject('FolderObject', 'NPCMonster', world)
-    end
-    monsterFolder = world.NPCMonster
+    npcFolder = localPlayer.Local.Independent.NPC
 end
 
 --- 创建NPC
@@ -59,9 +55,9 @@ function CreateNpcs()
         -- NPC空闲动作
         InitNpcIdleAction(npcObj, npcInfo)
         -- 生成宠物
-        if npcInfo.PetBattleSwitch then
-            MonsterBattleMgr:CreateMonster(npcObj, npcInfo)
-        end
+        -- if npcInfo.PetBattleSwitch then
+        --     MonsterBattleMgr:CreateMonster(npcObj, npcInfo)
+        -- end
     end
 end
 
@@ -163,7 +159,7 @@ end
 
 -- 玩家进入NPC碰撞盒
 function OnEnterNpc(_hitObj, _npcId)
-    if GlobalFunc.CheckHitObjIsPlayer(_hitObj) then
+    if _hitObj == localPlayer then
         local npcObj = npcs[_npcId].obj
         if not npcObj.CurrPlayer.Value then
             NetUtil.Fire_C('TouchNpcEvent', _hitObj, _npcId, npcObj)
@@ -174,66 +170,19 @@ end
 
 -- 玩家离开NPC碰撞盒
 function OnExitNpc(_hitObj, _npcId)
-    if GlobalFunc.CheckHitObjIsPlayer(_hitObj) then
+    if _hitObj == localPlayer then
         NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
     end
 end
 
 -- 使NPC面向玩家
-function NpcFaceToPlayer(_npcObj, _player)
-    local ry = Vector3.Angle(Vector3.Forward, _player.Position - _npcObj.Position)
-    if _player.Position.x - _npcObj.Position.x >= 0 then
+function NpcFaceToPlayer(_npcObj)
+    local ry = Vector3.Angle(Vector3.Forward, localPlayer.Position - _npcObj.Position)
+    if localPlayer.Position.x - _npcObj.Position.x >= 0 then
         _npcObj.Rotation = EulerDegree(0, ry, 0)
     else
         _npcObj.Rotation = EulerDegree(0, 360 - ry, 0)
     end
-end
-
---! Event handlers 事件处理
-
--- 玩家主动接触NPC
-function NpcMgr:TouchNpcEventHandler(_player, _npcId)
-    -- assert(
-    --     _player and _npcId,
-    --     string.format('[NpcMgr] TouchNpcEvent, 事件参数有误, player = %s, npcId = %s', _player, _npcId)
-    -- )
-    -- assert(npcs[_npcId], string.format('[NpcMgr] TouchNpcEvent, 不存在对应的NPC, npcId = %s', _npcId))
-    -- local npc = npcs[_npcId]
-    -- npc.obj.CurrPlayer.Value = _player
-    -- npc.obj.Avatar:PlayAnimation(npc.info.WelcomeAnim, 9, 1, 0.1, true, false, 1)
-    -- NpcFaceToPlayer(npc.obj, _player)
-end
-
--- 玩家主动离开NPC
-function NpcMgr:LeaveNpcEventHandler(_player, _npcId)
-    -- assert(_player and _npcId, '[NpcMgr] LeaveNpcEvent, 事件参数有误')
-    -- assert(npcs[_npcId], '[NpcMgr] LeaveNpcEvent, 不存在对应的NPC, npcId = ' .. _npcId)
-    -- local npc = npcs[_npcId]
-    -- if npc.obj.CurrPlayer.Value == _player then
-    --     npc.obj.CurrPlayer.Value = nil
-    --     npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
-    -- end
-end
-
--- 玩家开始与NPC对话
-function NpcMgr:StartTalkNpcEventHandler(_player, _npcId)
-    -- assert(
-    --     _player and _npcId,
-    --     string.format('[NpcMgr] StartTalkNpcEvent, 事件参数有误, player = %s, npcId = %s', _player, _npcId)
-    -- )
-    -- assert(npcs[_npcId], string.format('[NpcMgr] StartTalkNpcEvent, 不存在对应的NPC, npcId = %s', _npcId))
-    -- local npc = npcs[_npcId]
-    -- npc.obj.CurrPlayer.Value = _player
-    -- npc.obj.Avatar:PlayAnimation(npc.info.TalkAnim, 9, 1, 0.1, true, false, 1)
-end
-
--- 玩家退出
-function NpcMgr:OnPlayerLeaveEventHandler(_player, _uid)
-    -- for _, npc in ipairs(npcs) do
-    --     if npc.obj.CurrPlayer.Value == _player then
-    --         npc.obj.CurrPlayer.Value = nil
-    --     end
-    -- end
 end
 
 return NpcMgr

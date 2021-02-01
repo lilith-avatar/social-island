@@ -11,7 +11,7 @@ local npcGui, gameBtn, battleBtn, shopBtn, leaveBtn, dialogTxt
 -- Cache
 local Config = Config
 local NpcText = Config.NpcText
-local NpcInfo
+local NpcInfo = Config.NpcInfo
 
 -- Data
 local currNpcId
@@ -82,8 +82,8 @@ end
 
 --- 离开NPC
 function LeaveNpc()
-    print("[GuiNpc] LeaveNpc()", currNpcId)
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+    print('[GuiNpc] LeaveNpc()', currNpcId)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     monsterGui.Visible = true
     npcGui.Visible = false
     if currNpcId then
@@ -98,8 +98,8 @@ function OpenNpcGui()
     if currNpcId == nil or NpcInfo[currNpcId] == nil then
         return
     end
-    print("[GuiNpc] OpenNpcGui()")
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 12)
+    print('[GuiNpc] OpenNpcGui()')
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 12)
     NetUtil.Fire_S('StartTalkNpcEvent', localPlayer, currNpcId)
     --monsterGui.Visible = false
     npcGui.Visible = true
