@@ -57,6 +57,9 @@ function PlantFlower:Update(dt, tt)
 end
 
 function CheckFlowerLandBegin(_hitObj, _hitPoint, hitNormal)
+	if _hitObj == nil then
+		return
+	end
     if _hitObj.Name == 'FlowerLand' then
         this.PlantGUI.PlantButton1.Visible = true
 		this.PlantGUI.PlantButton2.Visible = true
@@ -74,6 +77,9 @@ function CheckFlowerLandBegin(_hitObj, _hitPoint, hitNormal)
 end
 
 function CheckFlowerLandEnd(_hitObj, _hitPoint, hitNormal)
+	if _hitObj == nil then
+		return
+	end
     if _hitObj and _hitObj.Name == 'FlowerLand' then
         this.PlantGUI.PlantButton1.Visible = false
 		this.PlantGUI.PlantButton2.Visible = false
@@ -307,10 +313,10 @@ function CanPlantFlower()
 	end
 	
 	if #this.playerData.flowerLis - #_subLis >= MAX_FLOWER then
-		print('[PlantFlower] 超过可种植上限，请收获部分植物再进行操作')
+		print("[PlantFlower] 超过可种植上限，请收获部分植物再进行操作")
 		return false
 	else
-		print('[PlantFlower] 可种植')
+		print("[PlantFlower] 可种植")
 		return true
 	end
 end
