@@ -98,8 +98,9 @@ function OpenNpcGui()
     print('[GuiNpc] OpenNpcGui()')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 12)
     NetUtil.Fire_C('TalkToNpcEvent', localPlayer, currNpcId)
-    --monsterGui.Visible = false
     npcGui.Visible = true
+    gameBtn.Visible = NpcInfo[currNpcId].GameId ~= nil
+    shopBtn.Visible = NpcInfo[currNpcId].ShopId ~= nil
 
     local portrait = NpcInfo[currNpcId].Portrait
     portraitImg.Texture = portrait
@@ -133,6 +134,9 @@ end
 --- 打开商城
 function EnterShop()
     print('[GuiNpc] EnterShop()')
+    if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].ShopId == nil then
+        return
+    end
     -- TODO: 商店相关逻辑
 end
 

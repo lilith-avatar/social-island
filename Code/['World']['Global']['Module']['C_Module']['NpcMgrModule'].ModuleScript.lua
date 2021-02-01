@@ -147,6 +147,10 @@ end
 function BubbleShow(_npcId)
     local npcObj = npcs[_npcId].obj
     local gui = npcObj.BubbleGui
+    if npcObj.CurrPlayer.Value ~= nil then
+        BubbleHide(_npcId)
+        return
+    end
     --npcObj.Avatar:PlayAnimation('SocialComeHere', 9, 1, 0.1, true, false, 1)
     gui.BubbleTxt.Text = PickARandomBubble(npcs[_npcId].info)
     gui.Visible = true
@@ -182,7 +186,6 @@ function OnEnterNpc(_hitObj, _npcId)
         local npc = npcs[_npcId]
         if not npc.obj.CurrPlayer.Value then
             NetUtil.Fire_C('TouchNpcEvent', localPlayer, _npcId, npc.obj)
-            npc.obj.CurrPlayer.Value = localPlayer
             npc.obj.Avatar:PlayAnimation(npc.info.WelcomeAnim, 9, 1, 0.1, true, false, 1)
             NpcFaceToPlayer(_npcId)
         end
@@ -217,6 +220,7 @@ function NpcMgr:TalkToNpcEventHandler(_npcId)
     local npc = npcs[_npcId]
     npc.obj.CurrPlayer.Value = localPlayer
     npc.obj.Avatar:PlayAnimation(npc.info.TalkAnim, 9, 1, 0.1, true, false, 1)
+    BubbleHide(_npcId)
 end
 
 -- 玩家主动离开NPC
