@@ -80,6 +80,12 @@ function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
     this.chairSitter[_chairId] = player
 end
 
+function ChairMgr:Update(dt)
+    for k,v in pairs(this.ChairList.QTE) do
+        v:Update(dt)
+    end
+end
+
 function ChairMgr:NormalShakeEventHandler(_chairId, _upOrDown)
     this.NormalShake[_upOrDown](this.ChairList.Normal[_chairId].model)
 end
