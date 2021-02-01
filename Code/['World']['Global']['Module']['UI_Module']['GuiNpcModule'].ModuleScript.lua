@@ -75,7 +75,6 @@ function TouchNpc(_npcId, _npcObj)
     end
     print('[GuiNpc] TouchNpc()', _npcId)
     NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 12)
-    NetUtil.Fire_S('TouchNpcEvent', localPlayer, _npcId)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
@@ -84,11 +83,9 @@ end
 function LeaveNpc()
     print('[GuiNpc] LeaveNpc()', currNpcId)
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+    NetUtil.Fire_C('LeaveNpcEvent', localPlayer, currNpcId)
     monsterGui.Visible = true
     npcGui.Visible = false
-    if currNpcId then
-        NetUtil.Fire_S('LeaveNpcEvent', localPlayer, currNpcId)
-    end
     currNpcId = nil
     currNpcObj = nil
 end
@@ -100,7 +97,7 @@ function OpenNpcGui()
     end
     print('[GuiNpc] OpenNpcGui()')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 12)
-    NetUtil.Fire_S('StartTalkNpcEvent', localPlayer, currNpcId)
+    NetUtil.Fire_C('TalkToNpcEvent', localPlayer, currNpcId)
     --monsterGui.Visible = false
     npcGui.Visible = true
 

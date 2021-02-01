@@ -36,6 +36,7 @@ function CreateNpcs()
     for _, npcInfo in pairs(NpcInfo) do
         local npcObj =
             world:CreateInstance(npcInfo.Model, 'NPC_' .. npcInfo.ID, npcFolder, npcInfo.SpawnPos, npcInfo.SpawnRot)
+        npcObj.Rotation = npcInfo.SpawnRot
         local id = world:CreateObject('IntValueObject', 'ID', npcObj)
         id.Value = npcInfo.ID
         -- 创建当前玩家
@@ -54,10 +55,8 @@ function CreateNpcs()
         BindNpcEvents(npcObj, npcInfo)
         -- NPC空闲动作
         InitNpcIdleAction(npcObj, npcInfo)
-        -- 生成宠物
-        -- if npcInfo.PetBattleSwitch then
-        --     MonsterBattleMgr:CreateMonster(npcObj, npcInfo)
-        -- end
+        -- NPC气泡开启
+        InitNpcBubble(npcInfo.ID)
     end
 end
 
@@ -99,29 +98,49 @@ end
 
 -- NPC空闲动作
 function InitNpcIdleAction(_npcObj, _npcInfo)
-    TimeUtil.SetInterval(
+    if not _npcInfo.Anim or #_npcInfo.Anim == 0 then
+        return
+    end
+    -- 绑定idle动画序列
+    for i, anim in ipairs(_npcInfo.Anim) do
+        local ani = _npcObj.Avatar:AddAnimationEvent(anim, 1)
+        local idx = i ~= #_npcInfo.Anim and i + 1 or 1
+        ani:Connect(
+            function()
+                PlayNpcAnim(_npcObj, _npcInfo, idx)
+            end
+        )
+    end
+    -- 绑定EndTalkAnim动画完成后的Idle动画
+    local ani = _npcObj.Avatar:AddAnimationEvent(_npcInfo.EndTalkAnim, 1)
+    ani:Connect(
         function()
-            PickARandomeIdle(_npcInfo.ID)
+            NpcFaceReset(_npcInfo.ID)
+            PlayNpcAnim(_npcObj, _npcInfo, 1)
+        end
+    )
+    -- 随机延时开始播放动画
+    TimeUtil.SetTimeout(
+        function()
+            PlayNpcAnim(_npcObj, _npcInfo, 1)
         end,
-        math.random(bubbleIntervalMin, bubbleIntervalMax)
+        math.random() * 5
     )
 end
 
--- 执行一个随机空闲动作
-function PickARandomeIdle(_npcId)
-    if npcs[_npcId].obj.CurrPlayer.Value then
-        return
-    end
+-- 播放NPC动画
+function PlayNpcAnim(_npcObj, _npcInfo, _animIdx)
+    _npcObj.Avatar:PlayAnimation(_npcInfo.Anim[_animIdx], 9, 1, 0.1, true, false, 1)
+end
 
-    local isBubble = math.random(1, 2) == 1
-    if isBubble then
-        BubbleShow(_npcId)
-    else
-        local npcObj = npcs[_npcId].obj
-        local npcInfo = npcs[_npcId].info
-        local idx = math.random(1, #npcInfo.Anim)
-        npcObj.Avatar:PlayAnimation(npcInfo.Anim[idx], 9, 1, 0.1, true, false, 1)
-    end
+-- NPC气泡开启
+function InitNpcBubble(_npcId)
+    TimeUtil.SetInterval(
+        function()
+            BubbleShow(_npcId)
+        end,
+        math.random(bubbleIntervalMin, bubbleIntervalMax)
+    )
 end
 
 -- 显示气泡
@@ -160,10 +179,12 @@ end
 -- 玩家进入NPC碰撞盒
 function OnEnterNpc(_hitObj, _npcId)
     if _hitObj == localPlayer then
-        local npcObj = npcs[_npcId].obj
-        if not npcObj.CurrPlayer.Value then
-            NetUtil.Fire_C('TouchNpcEvent', _hitObj, _npcId, npcObj)
-            npcObj.CurrPlayer.Value = _hitObj
+        local npc = npcs[_npcId]
+        if not npc.obj.CurrPlayer.Value then
+            NetUtil.Fire_C('TouchNpcEvent', localPlayer, _npcId, npc.obj)
+            npc.obj.CurrPlayer.Value = localPlayer
+            npc.obj.Avatar:PlayAnimation(npc.info.WelcomeAnim, 9, 1, 0.1, true, false, 1)
+            NpcFaceToPlayer(_npcId)
         end
     end
 end
@@ -171,17 +192,41 @@ end
 -- 玩家离开NPC碰撞盒
 function OnExitNpc(_hitObj, _npcId)
     if _hitObj == localPlayer then
+        local npc = npcs[_npcId]
         NetUtil.Fire_C('TouchNpcEvent', _hitObj, nil, nil)
+        npc.obj.CurrPlayer.Value = nil
+        npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
     end
 end
 
 -- 使NPC面向玩家
-function NpcFaceToPlayer(_npcObj)
-    local ry = Vector3.Angle(Vector3.Forward, localPlayer.Position - _npcObj.Position)
-    if localPlayer.Position.x - _npcObj.Position.x >= 0 then
-        _npcObj.Rotation = EulerDegree(0, ry, 0)
-    else
-        _npcObj.Rotation = EulerDegree(0, 360 - ry, 0)
+function NpcFaceToPlayer(_npcId)
+    local npcObj = npcs[_npcId].obj
+    npcObj.Forward = localPlayer.Position - npcObj.Position
+end
+
+-- 使NPC回复方向
+function NpcFaceReset(_npcId)
+    npcs[_npcId].obj.Rotation = npcs[_npcId].info.SpawnRot
+end
+
+-- 玩家开始与NPC对话
+function NpcMgr:TalkToNpcEventHandler(_npcId)
+    assert(_npcId, string.format('[NpcMgr] TalkToNpcEvent, 事件参数有误, player = %s, npcId = %s', localPlayer, _npcId))
+    assert(npcs[_npcId], string.format('[NpcMgr] TalkToNpcEvent, 不存在对应的NPC, npcId = %s', _npcId))
+    local npc = npcs[_npcId]
+    npc.obj.CurrPlayer.Value = localPlayer
+    npc.obj.Avatar:PlayAnimation(npc.info.TalkAnim, 9, 1, 0.1, true, false, 1)
+end
+
+-- 玩家主动离开NPC
+function NpcMgr:LeaveNpcEventHandler(_npcId)
+    assert(_npcId, '[NpcMgr] LeaveNpcEvent, 事件参数有误')
+    assert(npcs[_npcId], '[NpcMgr] LeaveNpcEvent, 不存在对应的NPC, npcId = ' .. _npcId)
+    local npc = npcs[_npcId]
+    if npc.obj.CurrPlayer.Value == localPlayer then
+        npc.obj.CurrPlayer.Value = nil
+        npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
     end
 end
 
