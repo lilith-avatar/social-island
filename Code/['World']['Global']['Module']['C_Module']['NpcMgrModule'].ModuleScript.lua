@@ -244,7 +244,7 @@ function NpcMgr:LeaveNpcEventHandler(_npcId)
     assert(npcs[_npcId], '[NpcMgr] LeaveNpcEvent, 不存在对应的NPC, npcId = ' .. _npcId)
     local npc = npcs[_npcId]
     if npc.obj.NpcState.Value == Const.NpcState.TALKING then
-        npc.obj.NpcState.Value = Const.NpcState.SEE_PLAYER
+        npc.obj.NpcState.Value = Const.NpcState.IDLE
         npc.obj.Avatar:PlayAnimation(npc.info.EndTalkAnim, 9, 1, 0.1, true, false, 1)
     end
 end
