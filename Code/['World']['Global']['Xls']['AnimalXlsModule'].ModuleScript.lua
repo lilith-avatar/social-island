@@ -17,7 +17,9 @@ local AnimalXls = {
         MoveAnimationName = {'Run'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [2] = {
         ID = 2,
@@ -30,7 +32,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [3] = {
         ID = 3,
@@ -43,7 +47,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [4] = {
         ID = 4,
@@ -56,7 +62,9 @@ local AnimalXls = {
         MoveAnimationName = {'Idle', 'Idle2'},
         MoveAnimationDurRange = {5, 5},
         DeadAnimationName = {'Dead'},
-        Weight = 20
+        Weight = 20,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [5] = {
         ID = 5,
@@ -69,7 +77,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 3},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [6] = {
         ID = 6,
@@ -82,7 +92,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 2},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [7] = {
         ID = 7,
@@ -95,7 +107,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 2},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     }
 }
 
