@@ -3,10 +3,10 @@
 ---@author Yen Yuan
 local ChairMgr, this = ModuleUtil.New("ChairMgr", ServerBase)
 local dir = {
-    forward = "Forward",
-    left = "Left",
-    right = "Right",
-    back = "Back"
+    Forward = "Forward",
+    Left = "Left",
+    Right = "Right",
+    Back = "Back"
 }
 
 local playerChair = {}
@@ -62,7 +62,6 @@ function ChairMgr:ChairCreate()
             end
         )
     end
-    
 end
 
 function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)

@@ -57,10 +57,10 @@ function GuiChair:NodeDef()
 
     this.QteGui = this.gui.QtePnl
     this.qteBtn = {
-        forward = this.QteGui.ForwardBtn,
-        left = this.QteGui.LeftBtn,
-        back = this.QteGui.BackBtn,
-        right = this.QteGui.RightBtn
+        Forward = this.QteGui.ForwardBtn,
+        Left = this.QteGui.LeftBtn,
+        Back = this.QteGui.BackBtn,
+        Right = this.QteGui.RightBtn
     }
     this.qteTotalTime = this.QteGui.TimeTxt.NumTxt
 end

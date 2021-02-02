@@ -65,6 +65,7 @@ function ChairClass:Stand()
     self.state = StateEnum.free
     self.model.Seat:SetActive(false)
     self.model.CollisionArea:SetActive(true)
+    self.qteDir = nil
     --判断是否结束QTE
     if self.type == TypeEnum.QTE then
         self.model:Rotate(EulerDegree(-30, 0, 0))
@@ -77,8 +78,8 @@ end
 function ChairClass:Fly()
     --self.state = StateEnum.flying
     --喷射
-    self.tweener = Tween:ShakeProperty(self.model, {"Rotation"}, 100, 0.5)
-    self.tweener:Play()
+    --self.tweener = Tween:ShakeProperty(self.model, {"Rotation"}, 100, 0.5)
+    --self.tweener:Play()
 end
 
 function ChairClass:Flying(dt)
@@ -94,8 +95,8 @@ end
 
 function ChairClass:SetSpeed(_dir, _speed)
     print(_dir)
-    self.model.LinearVelocity = self.model.Forward * _speed
-    self.qteDir = _dir
+    self.qteDir = self.model[_dir]
+    self.model.LinearVelocity = self.model[_dir] * _speed
 end
 
 function ChairClass:Return()
@@ -104,7 +105,6 @@ function ChairClass:Return()
 end
 
 function ChairClass:ChairUpdate(dt)
-    print(self.model.Right)
     if self.type == TypeEnum.Normal or not self.startUpdate then
         return
     end
@@ -112,6 +112,8 @@ function ChairClass:ChairUpdate(dt)
         self:Flying(dt)
     end
     if self.state == StateEnum.qteing and self.qteDir then
+        self.model.Forward = Vector3.Slerp(self.model.Forward,self.qteDir,0.8 * dt)
+        --self.model.Forward = self.model.Forward:Slerp(self.model.Back, 0.8 * dt)
     end
     if self.state == StateEnum.returning then
         if (self.model.Position - Config.ChairInfo[self.id].Position).Magnitude <= 3 then
