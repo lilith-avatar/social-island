@@ -55,8 +55,8 @@ function ChairMgr:ChairCreate()
         )
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionEnd:Connect(
             function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
-                    NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                     playerChair[_hitObject.UserId] = nil
                 end
             end
@@ -81,7 +81,7 @@ function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
 end
 
 function ChairMgr:Update(dt)
-    for k,v in pairs(this.ChairList.QTE) do
+    for k, v in pairs(this.ChairList.QTE) do
         v:ChairUpdate(dt)
     end
 end
