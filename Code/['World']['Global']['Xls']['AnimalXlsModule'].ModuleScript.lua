@@ -17,6 +17,8 @@ local AnimalXls = {
         MoveAnimationName = {'Run'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 50000000,
         Weight = 5
     },
     [2] = {
@@ -30,6 +32,8 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
         Weight = 5
     },
     [3] = {
@@ -43,6 +47,8 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
         Weight = 5
     },
     [4] = {
@@ -56,6 +62,8 @@ local AnimalXls = {
         MoveAnimationName = {'Idle', 'Idle2'},
         MoveAnimationDurRange = {5, 5},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
         Weight = 20
     },
     [5] = {
@@ -69,6 +77,8 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 3},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
         Weight = 5
     },
     [6] = {
@@ -82,6 +92,8 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 2},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
         Weight = 5
     },
     [7] = {
@@ -95,7 +107,24 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 2},
         DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
         Weight = 5
+    },
+    [8] = {
+        ID = 8,
+        Name = '蜗牛',
+        ArchetypeName = 'Animal_Snail',
+        DefMoveSpeed = 0.5,
+        ScaredMoveSpeed = 1.5,
+        IdleAnimationName = {'Idel'},
+        IdleAnimationDurRange = {5, 60},
+        MoveAnimationName = {'Move'},
+        MoveAnimationDurRange = {3, 6},
+        DeadAnimationName = {'Dead'},
+        RotationPidIntensity = 40000000,
+        LinearVelocityPidIntensity = 40000000,
+        Weight = nil
     }
 }
 
