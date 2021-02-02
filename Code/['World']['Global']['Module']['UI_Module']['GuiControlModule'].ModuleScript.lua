@@ -2,7 +2,7 @@
 --- @module Player GuiControll, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local GuiControl, this = ModuleUtil.New("GuiControl", ClientBase)
+local GuiControl, this = ModuleUtil.New('GuiControl', ClientBase)
 
 -- 手机端交互UI
 local gui, touchScreen, dynamicFigure, infoFigure, menuFigure, ctrlFigure
@@ -22,7 +22,7 @@ local bottomTextList = {}
 local topTextList = {}
 
 function GuiControl:Init()
-    print("[GuiControl] Init()")
+    print('[GuiControl] Init()')
     self:InitGui()
     self:InitNodes()
     self:InitListener()
@@ -107,14 +107,14 @@ end
 --- 点击交互按钮
 function OnInteractBtnClick()
     dynamicFigure.InteractBtn:SetActive(false)
-    NetUtil.Fire_S("InteractSEvent", localPlayer, interactID)
-    NetUtil.Fire_C("InteractCEvent", localPlayer, interactID)
+    NetUtil.Fire_S('InteractSEvent', localPlayer, interactID)
+    NetUtil.Fire_C('InteractCEvent', localPlayer, interactID)
 end
 
 --- 点击拾取按钮
 function OnPickBtnClick()
     dynamicFigure.PickBtn:SetActive(false)
-    ItemMgr:GetItemEventHandler(pickItemObj.ID.Value)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, pickItemObj.ID.Value)
     pickItemObj:Destroy()
 end
 
@@ -135,7 +135,7 @@ end
 --- 重置通用UI事件
 function GuiControl:ResetDefUIEventHandler()
     if interactID == 0 then
-        print("重置通用UI事件")
+        print('重置通用UI事件')
         gui.Joystick:SetActive(true)
         dynamicFigure:SetActive(false)
         infoFigure:SetActive(true)
@@ -162,10 +162,10 @@ end
 --- 打开动态交互事件
 function GuiControl:OpenDynamicEventHandler(_type, _var)
     dynamicFigure:SetActive(true)
-    if _type == "Interact" then
+    if _type == 'Interact' then
         dynamicFigure.InteractBtn:SetActive(true)
         interactID = _var
-    elseif _type == "Pick" then
+    elseif _type == 'Pick' then
         dynamicFigure.PickBtn:SetActive(true)
         pickItemObj = _var
     end
@@ -218,7 +218,7 @@ function GuiControl:ShowInfo(dt)
             invoke(
                 function()
                     table.remove(topTextList, 1)
-                    infoFigure.TopInfoBG.InfoText.Text = ""
+                    infoFigure.TopInfoBG.InfoText.Text = ''
                 end,
                 1
             )
@@ -235,7 +235,7 @@ function GuiControl:ShowInfo(dt)
             invoke(
                 function()
                     table.remove(bottomTextList, 1)
-                    infoFigure.BottomInfoBG.InfoText.Text = ""
+                    infoFigure.BottomInfoBG.InfoText.Text = ''
                 end,
                 1
             )
@@ -245,15 +245,15 @@ end
 
 --- 更新金币显示
 function GuiControl:UpdateCoinNum(_num)
-    this:InsertInfoEventHandler(_num >= 0 and "获得" .. _num .. "金币" or "失去" .. _num .. "金币", 0.5, true)
-    gui.Menu.CoinNum.Text = "金币：" .. Data.Player.coin
+    this:InsertInfoEventHandler(_num >= 0 and '获得' .. _num .. '金币' or '失去' .. _num .. '金币', 0.5, true)
+    gui.Menu.CoinNum.Text = '金币：' .. Data.Player.coin
 end
 
 --- 改变使用按钮图标
 function GuiControl:ChangeUseBtnIcon(_icon)
-    _icon = _icon or "Icon_Control"
-    gui.Ctrl.UseBtn.Image = ResourceManager.GetTexture("UI/" .. _icon)
-    gui.Ctrl.UseBtn.PressedImage = ResourceManager.GetTexture("UI/" .. _icon .. "_A")
+    _icon = _icon or 'Icon_Control'
+    gui.Ctrl.UseBtn.Image = ResourceManager.GetTexture('UI/' .. _icon)
+    gui.Ctrl.UseBtn.PressedImage = ResourceManager.GetTexture('UI/' .. _icon .. '_A')
 end
 
 --- 进入小游戏修改UI
@@ -269,12 +269,12 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
         gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
         gui.Ctrl.LeaveBtn:SetActive(config.LeaveBtnActive)
     end
-    if config.UseBtnIcon ~= "" then
+    if config.UseBtnIcon ~= '' then
         this:ChangeUseBtnIcon(config.UseBtnIcon)
     end
 
     for k, v in pairs(localPlayer.Local:GetChildren()) do
-        if v.ClassName == "UiScreenUiObject" and v.Name ~= "ControlGui" and v.ActiveSelf then
+        if v.ClassName == 'UiScreenUiObject' and v.Name ~= 'ControlGui' and v.ActiveSelf then
             v:SetActive(false)
         end
     end

@@ -4,12 +4,12 @@
 -- @author Dead Ratman
 ---@module ItemMgr
 
-local ItemMgr, this = ModuleUtil.New("ItemMgr", ClientBase)
+local ItemMgr, this = ModuleUtil.New('ItemMgr', ClientBase)
 
 local coin = 0
 
 function ItemMgr:Init()
-    print("ItemMgr:Init")
+    print('ItemMgr:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -32,7 +32,7 @@ function ItemMgr:DataInit()
         function()
             this:InitBagData()
             wait(.5)
-            this:GetItemEventHandler(5001)
+            NetUtil.Fire_C('GetItemEvent', localPlayer, 5001)
         end
     )
 end
@@ -59,13 +59,11 @@ end
 
 --实例化近战武器
 function ItemMgr:Instantiate1(_id)
-    print("实例化近战武器", _id)
     return MeleeWeapon:new(Config.Item[_id], Config.MeleeWeapon[_id])
 end
 
 --实例化远程武器
 function ItemMgr:Instantiate2(_id)
-    print("实例化远程武器", _id)
     return LongRangeWeapon:new(Config.Item[_id], Config.LongRangeWeapon[_id])
 end
 
@@ -91,28 +89,34 @@ end
 
 --实例化物品
 function ItemMgr:InstantiateItem(_id)
-    return this["Instantiate" .. string.sub(tostring(_id), 1, 1)](self, _id)
+    return this['Instantiate' .. string.sub(tostring(_id), 1, 1)](self, _id)
+end
+
+--兑换任务奖励
+function ItemMgr:RedeemTaskItemReward(_id)
+    this.itemInstance[_id]:GetTaskReward()
 end
 
 --获得道具
 function ItemMgr:GetItemEventHandler(_id)
-    print("获得道具", _id)
+    print('获得道具', _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     this.itemInstance[_id]:PutIntoBag()
 end
 
 --移除道具
 function ItemMgr:RemoveItemEventHandler(_id)
-    print("移除道具", _id)
+    print('移除道具', _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count - 1
     this.itemInstance[_id]:ThrowOutOfBag()
 end
 
 --获取满足条件的任务道具
 function ItemMgr:GetTaskItem(_npcID)
+    local npcTable
     for k1, v1 in pairs(Data.Player.bag) do
-        if string.sub(tostring(k1), 1, 1) == "5" and v1.count > 0 then
-            local npcTable = this.itemInstance[k1].config.Npc
+        if string.sub(tostring(k1), 1, 1) == '5' and v1.count > 0 then
+            npcTable = this.itemInstance[k1].config.Npc
             for k2, v2 in pairs(npcTable) do
                 if v2 == _npcID then
                     return k1
@@ -121,6 +125,11 @@ function ItemMgr:GetTaskItem(_npcID)
         end
     end
     return 0
+end
+
+--获得NPC对话文本
+function ItemMgr:GetNpcText(_id)
+    return LanguageUtil.GetText(ItemMgr.itemInstance[_id].config.NpcText)
 end
 
 ---服务器结算处理

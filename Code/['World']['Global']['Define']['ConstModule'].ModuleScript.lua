@@ -26,12 +26,19 @@ Const.MazeEventEnum = {
 }
 
 Const.MonsterEnum = {
-	NEWROUND = 1,
-	SKILLTIME = 2,
-	SHOWSKILL = 3, 
-	BEHIT = 4,
-	OVER = 5,
-	NPCBEHIT = 6
+    NEWROUND = 1,
+    SKILLTIME = 2,
+    SHOWSKILL = 3,
+    BEHIT = 4,
+    OVER = 5,
+    NPCBEHIT = 6
+}
+
+-- NPC状态
+Const.NpcState = {
+    IDLE = 1, -- 闲置
+    SEE_PLAYER = 2, -- 看见玩家
+    TALKING = 3 -- 和玩家对话
 }
 
 return Const
