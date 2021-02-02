@@ -12,6 +12,7 @@ local AnimalAreaXls = {
         Range = 25,
         AmountMax = 4,
         InitAmount = 8,
+        SpawnPoint = {Vector3(-91.231812,-5.830566,8.811942)},
         AnimalIDList = {1, 2, 3, 5, 6}
     },
     [2] = {
@@ -20,6 +21,7 @@ local AnimalAreaXls = {
         Range = 13,
         AmountMax = 2,
         InitAmount = 4,
+        SpawnPoint = {Vector3(-141.888611,1.146100,26.263166)},
         AnimalIDList = {1, 2, 3, 5, 6}
     },
     [3] = {
@@ -28,6 +30,7 @@ local AnimalAreaXls = {
         Range = 30,
         AmountMax = 2,
         InitAmount = 4,
+        SpawnPoint = {Vector3(-78.490280,22.967964,78.842651)},
         AnimalIDList = {1, 2, 3, 5, 6}
     },
     [4] = {
@@ -36,6 +39,7 @@ local AnimalAreaXls = {
         Range = 30,
         AmountMax = 3,
         InitAmount = 6,
+        SpawnPoint = {Vector3(-134.171356,18.175932,97.476051)},
         AnimalIDList = {1, 2, 3, 5, 6}
     },
     [5] = {
@@ -44,6 +48,7 @@ local AnimalAreaXls = {
         Range = 25,
         AmountMax = 2,
         InitAmount = 4,
+        SpawnPoint = {Vector3(-42.108547,1.146100,-34.628693)},
         AnimalIDList = {1, 2, 3, 5, 6}
     },
     [6] = {
@@ -52,6 +57,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-148.074799,4.103897,120.931183)},
         AnimalIDList = {4}
     },
     [7] = {
@@ -60,6 +66,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-162.690948,1.967392,24.952276)},
         AnimalIDList = {4}
     },
     [8] = {
@@ -68,6 +75,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-145.968903,3.849622,20.601957)},
         AnimalIDList = {4}
     },
     [9] = {
@@ -76,6 +84,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-124.259262,-0.133879,8.912663)},
         AnimalIDList = {4}
     },
     [10] = {
@@ -84,6 +93,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-120.020340,3.123763,-5.451871)},
         AnimalIDList = {4}
     },
     [11] = {
@@ -92,6 +102,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-60.434696,-6.796978,12.277740)},
         AnimalIDList = {4}
     },
     [12] = {
@@ -100,6 +111,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(3.408135,-5.504182,41.100723)},
         AnimalIDList = {4}
     },
     [13] = {
@@ -108,6 +120,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(104.964157,-8.014651,1.472798)},
         AnimalIDList = {4}
     },
     [14] = {
@@ -116,6 +129,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-54.611588,-1.620862,-36.291142)},
         AnimalIDList = {4}
     },
     [15] = {
@@ -124,6 +138,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-55.171082,-1.620862,-26.577339)},
         AnimalIDList = {4}
     },
     [16] = {
@@ -132,6 +147,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-55.171082,-6.587202,-50.212555)},
         AnimalIDList = {4}
     },
     [17] = {
@@ -140,6 +156,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-75.106125,-5.285405,-60.691929)},
         AnimalIDList = {4}
     },
     [18] = {
@@ -148,6 +165,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-99.240250,-5.562537,-28.492371)},
         AnimalIDList = {4}
     },
     [19] = {
@@ -156,6 +174,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-60.648998,-6.524339,-31.381584)},
         AnimalIDList = {4}
     },
     [20] = {
@@ -164,6 +183,7 @@ local AnimalAreaXls = {
         Range = 0,
         AmountMax = 1,
         InitAmount = 1,
+        SpawnPoint = {Vector3(-153.982224,-0.612609,110.591949)},
         AnimalIDList = {4}
     }
 }

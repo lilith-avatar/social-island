@@ -17,9 +17,9 @@ local AnimalXls = {
         MoveAnimationName = {'Run'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 50000000,
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [2] = {
         ID = 2,
@@ -32,9 +32,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [3] = {
         ID = 3,
@@ -47,9 +47,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [4] = {
         ID = 4,
@@ -62,9 +62,9 @@ local AnimalXls = {
         MoveAnimationName = {'Idle', 'Idle2'},
         MoveAnimationDurRange = {5, 5},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = 20
+        Weight = 20,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [5] = {
         ID = 5,
@@ -77,9 +77,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 3},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [6] = {
         ID = 6,
@@ -92,9 +92,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 2},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [7] = {
         ID = 7,
@@ -107,24 +107,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 2},
         DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = 5
-    },
-    [8] = {
-        ID = 8,
-        Name = '蜗牛',
-        ArchetypeName = 'Animal_Snail',
-        DefMoveSpeed = 0.5,
-        ScaredMoveSpeed = 1.5,
-        IdleAnimationName = {'Idel'},
-        IdleAnimationDurRange = {5, 60},
-        MoveAnimationName = {'Move'},
-        MoveAnimationDurRange = {3, 6},
-        DeadAnimationName = {'Dead'},
-        RotationPidIntensity = 40000000,
-        LinearVelocityPidIntensity = 40000000,
-        Weight = nil
+        Weight = 5,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     }
 }
 

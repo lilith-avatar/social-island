@@ -61,6 +61,7 @@ function MoleGame:GameStart()
     GuiMole:UpdateTime(this.time)
     GuiMole:UpdateScore(this.score)
     GuiMole:UpdateBoost(this.boostNum)
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "挥舞锤子把地鼠锤晕吧", 5, true)
 end
 
 ---游戏结束，重置数据

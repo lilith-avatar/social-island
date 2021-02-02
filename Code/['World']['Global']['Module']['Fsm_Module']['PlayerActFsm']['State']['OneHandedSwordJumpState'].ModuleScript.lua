@@ -9,7 +9,21 @@ end
 
 function OneHandedSwordJump:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle","SwimIdle"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle"})
+    self:IdleMonitor()
+end
+
+function OneHandedSwordJump:IdleMonitor()
+    local dir = PlayerCtrl.finalDir
+    dir.y = 0
+    if dir.Magnitude > 0 then
+        if PlayerCam:IsFreeMode() then
+            localPlayer:FaceToDir(dir, 4 * math.pi)
+        end
+        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+    else
+        localPlayer:MoveTowards(Vector2.Zero)
+    end
 end
 
 function OneHandedSwordJump:OneHandedSwordJumpOnLeaveFunc()

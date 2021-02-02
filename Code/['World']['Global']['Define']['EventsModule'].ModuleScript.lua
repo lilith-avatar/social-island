@@ -23,13 +23,15 @@ Events.ServerEvents = {
     -- 人间大炮发射
     'CannonFireEvent',
     -- 人间大炮调整方向
-    'SetCannonDirEvent', -- @param _dir
-    'LoadMDataEvent', -- @param _userId
-    'SaveMDataEvent', -- @param _userId, _playerdata
-    'StartBattleEvent', -- @param _isNpc, _playerA, _playerB
-    'PlantFlowerEvent', -- @param _userId, _flowerObj
-    'DeleteFlowerEvent', -- @param _userId, _uuid
-    'WaterEvent' --@param _userId, _pos
+    "SetCannonDirEvent", -- @param _dir
+    "LoadMDataEvent", -- @param _userId
+    "SaveMDataEvent", -- @param _userId, _playerdata
+    "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
+    "PlantFlowerEvent", -- @param _userId, _flowerObj
+    "DeleteFlowerEvent", -- @param _userId, _uuid
+    "WaterEvent", --@param _userId, _pos
+    "SPlayerHitEvent"
+
 }
 
 -- 客户端事件列表
@@ -59,7 +61,8 @@ Events.ClientEvents = {
     -- 显示小游戏的GUI
     'SetMiniGameGuiEvent', -- @param  _gameId, _selfActive, _ctrlGuiActive
     --- 状态机改变触发
-    'FsmTriggerEvent', -- @param  _state
+    "FsmTriggerEvent", -- @param  _state
+    "CPlayerHitEvent",
     -- 修改是否能控制角色
     'SetPlayerControllableEvent', -- @param _bool
     'AddScoreAndBoostEvent',
@@ -86,10 +89,11 @@ Events.ClientEvents = {
     'RemoveItemEvent',
     'CreateItemObjEvent',
     --开始扫描事件
-    'MonsterScanEvent', --@param _pos,_euler,_time
-    'LeaveMoleGameRangeEvent',
-    'LightHitEvent', --雷电打击
-    'WaterEvent' -- @Pos
+    "MonsterScanEvent", --@param _pos,_euler,_time
+    "LeaveMoleGameRangeEvent",
+    "InsertInfoEvent",
+    "LightHitEvent", --雷电打击
+    "WaterEvent" -- @Pos
 }
 
 return Events

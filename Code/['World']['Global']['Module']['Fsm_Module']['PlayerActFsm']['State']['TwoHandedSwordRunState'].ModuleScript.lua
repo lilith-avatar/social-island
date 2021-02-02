@@ -8,7 +8,7 @@ end
 
 function TwoHandedSwordRun:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle","SwimIdle", "TwoHandedSwordAttack1", "BowIdle"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Idle","SwimIdle", "TwoHandedSwordAttack1","TwoHandedSwordHit", "BowIdle"})
     self:IdleMonitor("TwoHandedSword")
     self:WalkMonitor("TwoHandedSword")
     self:JumpMonitor("TwoHandedSword")

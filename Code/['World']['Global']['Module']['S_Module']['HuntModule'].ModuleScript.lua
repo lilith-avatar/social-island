@@ -121,7 +121,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
     tempData.obj.Col.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and tempData.state ~= animalActState.DEADED then
-                if _hitObject.Name == "Arrow" then
+                if _hitObject.IsHunt and _hitObject.IsHunt.Value == true then
                     ItemPool:CreateItemObj(5006, _hitObject.Position)
                     _hitObject:Destroy()
                     this:ChangeAnimalState(tempData, animalActState.DEADED)

@@ -42,7 +42,6 @@ function FsmMgr:DataInit()
 
     this.playerActFsm:ConnectStateFunc(Config.PlayerActState, Module.Fsm_Module.PlayerActFsm.State)
     this.playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
-    this.fsmState = "Idle"
 end
 
 --- 节点事件绑定
@@ -52,7 +51,6 @@ end
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
     this.playerActFsm:ContactTrigger(_state)
-    this.fsmState = this.playerActFsm.curState.stateName
 end
 
 function FsmMgr:Update(dt)
