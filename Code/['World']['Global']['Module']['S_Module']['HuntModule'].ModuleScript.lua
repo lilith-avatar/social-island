@@ -115,7 +115,9 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
         moveAnimationName = Config.Animal[_animalID].MoveAnimationName,
         moveAnimationDurRange = Config.Animal[_animalID].MoveAnimationDurRange,
         deadAnimationName = Config.Animal[_animalID].DeadAnimationName,
-        closePlayer = nil
+        closePlayer = nil,
+        LVCtrlIntensity = Config.Animal[_animalID].LVCtrlIntensity,
+        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity
     }
 
     tempData.obj.Col.OnCollisionBegin:Connect(
@@ -232,8 +234,8 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
             Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
-        _animalData.obj.LinearVelocityController.Intensity = 8000000
-        _animalData.obj.RotationController.Intensity = 3000000000
+        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
         _animalData.obj.RotationController.TargetRotation =
             EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
@@ -250,7 +252,8 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
-        _animalData.obj.LinearVelocityController.Intensity = 8000000
+        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
         _animalData.obj.RotationController.TargetRotation =
             EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
