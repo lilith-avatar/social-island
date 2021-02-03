@@ -21,6 +21,9 @@ function OneHandedSwordAttack1:OnEnter()
             AttackHit(_hitObj)
         end
     )
+    if ItemMgr.itemInstance[ItemMgr.curWeaponID].config.Mole then
+        NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, MoleGame.rangeList)
+    end
 end
 
 function OneHandedSwordAttack1:OnUpdate(dt)
