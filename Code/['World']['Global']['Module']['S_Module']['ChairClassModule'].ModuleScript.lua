@@ -60,6 +60,7 @@ function ChairClass:Sit(_player)
     if self.type == TypeEnum.QTE then
         self:Fly()
         self.state = StateEnum.flying
+    else
     end
 end
 
@@ -80,7 +81,7 @@ end
 --********************* qte摇摇椅 *************************
 function ChairClass:Fly()
     --喷射
-    self.tweener = Tween:ShakeProperty(self.model, {"Rotation"},Config.ChairGlobalConfig.FlyingTime.Value, 0.5)
+    self.tweener = Tween:ShakeProperty(self.model, {"Rotation"}, Config.ChairGlobalConfig.FlyingTime.Value, 0.5)
     self.tweener:Play()
 end
 
@@ -114,38 +115,41 @@ function ChairClass:QteUpdate(dt)
         self:Flying(dt)
     end
     if self.state == StateEnum.qteing and self.qteDir then
-        self.model.Forward = Vector3.Slerp(self.model.Forward,self.qteDir,0.8 * dt)
-        --self.model.Forward = self.model.Forward:Slerp(self.model.Back, 0.8 * dt)
+        self.model.Forward = Vector3.Slerp(self.model.Forward, self.qteDir, 0.8 * dt)
     end
     if self.state == StateEnum.returning then
         if (self.model.Position - Config.ChairInfo[self.id].Position).Magnitude <= 3 then
-            self.model.IsStatic, self.model.LinearVelocity = true, Vector3.Zero
             self.tweener:Pause()
             self.tweener = nil
-            self.state = StateEnum.free
-            self.model.Position, self.model.Rotation =
+            self.model.IsStatic, self.model.LinearVelocitymself.model.Position, self.model.Rotation =
+                true,
+                Vector3.Zero,
                 Config.ChairInfo[self.id].Position,
                 Config.ChairInfo[self.id].Rotation
+            self.state = StateEnum.free
         end
     end
 end
 
 --********************* 普通摇摇椅 *************************
-function ChairClass:NormalShake(dt)
-    if self.Rotation >= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+function ChairClass:NormalShake()
+    if self.model.Rotation >= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+        self.model.AngularVelocity = Vector3.Zero
     end
-    if self.Rotation <= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+    if self.model.Rotation <= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+        self.model.AngularVelocity = Vector3.Zero
     end
 end
 
 function ChairClass:ChairSpecialShake()
+    self.model.AngularVelocity = Vector3.Zero
     SpecialMovement[math.random(1, #SpecialMovement)]()
 end
 
 --普通摇摇椅update函数
 function ChairClass:NormalUpdate(dt)
-    if self.state == StateEnum.free then
-        self:NormalShake(dt)
+    if self.state == StateEnum.used then
+        self:NormalShake()
     end
 end
 
