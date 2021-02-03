@@ -19,6 +19,9 @@ local TypeEnum = {
     QTE = 2
 }
 
+-- 特殊动作枚举
+local SpecialMovement = {}
+
 ---方向函数
 
 ---椅子的构造函数
@@ -76,10 +79,9 @@ end
 
 --********************* qte摇摇椅 *************************
 function ChairClass:Fly()
-    --self.state = StateEnum.flying
     --喷射
-    --self.tweener = Tween:ShakeProperty(self.model, {"Rotation"}, 100, 0.5)
-    --self.tweener:Play()
+    self.tweener = Tween:ShakeProperty(self.model, {"Rotation"},Config.ChairGlobalConfig.FlyingTime.Value, 0.5)
+    self.tweener:Play()
 end
 
 function ChairClass:Flying(dt)
@@ -104,7 +106,7 @@ function ChairClass:Return()
     self.model.LinearVelocity = 10 * (self.model.Position - self.freshcoo) --! 10 is a temp data!!!
 end
 
-function ChairClass:ChairUpdate(dt)
+function ChairClass:QteUpdate(dt)
     if self.type == TypeEnum.Normal or not self.startUpdate then
         return
     end
@@ -125,6 +127,25 @@ function ChairClass:ChairUpdate(dt)
                 Config.ChairInfo[self.id].Position,
                 Config.ChairInfo[self.id].Rotation
         end
+    end
+end
+
+--********************* 普通摇摇椅 *************************
+function ChairClass:NormalShake(dt)
+    if self.Rotation >= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+    end
+    if self.Rotation <= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+    end
+end
+
+function ChairClass:ChairSpecialShake()
+    SpecialMovement[math.random(1, #SpecialMovement)]()
+end
+
+--普通摇摇椅update函数
+function ChairClass:NormalUpdate(dt)
+    if self.state == StateEnum.free then
+        self:NormalShake(dt)
     end
 end
 
