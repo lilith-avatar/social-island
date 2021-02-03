@@ -70,14 +70,6 @@ end
 
 ---Update函数
 function GuiMole:Update(_dt)
-    if this.isCooling then
-        this.timer = this.timer + _dt
-        this.hitMask.FillAmount = 1 - this.timer / this.coolTime
-        if this.timer >= this.coolTime then
-            this.timer = 0
-            this.isCooling = false
-        end
-    end
 end
 
 return GuiMole
