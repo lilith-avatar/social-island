@@ -40,7 +40,7 @@ local PlayerActStateXls = {
         ID = 6,
         Name = 'Hit',
         NextName = 'Idle',
-        Dur = 0.1
+        Dur = 0.2
     },
     [7] = {
         ID = 7,
@@ -94,7 +94,7 @@ local PlayerActStateXls = {
         ID = 15,
         Name = 'BowHit',
         NextName = 'BowIdle',
-        Dur = 0.1
+        Dur = 0.2
     },
     [16] = {
         ID = 16,
@@ -160,7 +160,7 @@ local PlayerActStateXls = {
         ID = 26,
         Name = 'OneHandedSwordHit',
         NextName = 'OneHandedSwordIdle',
-        Dur = 0.1
+        Dur = 0.2
     },
     [27] = {
         ID = 27,
@@ -226,7 +226,7 @@ local PlayerActStateXls = {
         ID = 37,
         Name = 'TwoHandedSwordHit',
         NextName = 'TwoHandedSwordIdle',
-        Dur = 0.1
+        Dur = 0.2
     }
 }
 
