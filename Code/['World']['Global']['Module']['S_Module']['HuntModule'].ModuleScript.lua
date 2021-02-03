@@ -233,7 +233,7 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
-            Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
         _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
         _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
@@ -250,8 +250,9 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             true,
             _animalData.scaredMoveSpeed / _animalData.defMoveSpeed
         )
+        local dir = (_animalData.obj.Position - _animalData.closePlayer.Position)
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
-            (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
+            Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized * _animalData.scaredMoveSpeed
         _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
         _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity

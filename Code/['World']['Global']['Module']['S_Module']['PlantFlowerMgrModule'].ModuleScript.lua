@@ -87,8 +87,9 @@ end
 
 function PlantFlowerMgr:SetCombine()
     print('[PlantFlowerMgr] SetCombine()', #this.realFlower)
-	PlaySetCombineFX()
-    
+	invoke(function()
+		PlaySetCombineFX()
+	end,0)
 end
 
 function ReCombine()
