@@ -37,15 +37,6 @@ end
 
 ---事件绑定
 function GuiMole:EventBind()
-    this.hitButton.OnClick:Connect(
-        function()
-            if this.isCooling then
-                return
-            end
-            this:Hit()
-            this.isCooling = true
-        end
-    )
 end
 
 function GuiMole:StartMoleEventHandler()
@@ -53,9 +44,6 @@ function GuiMole:StartMoleEventHandler()
     MoleGame:GameStart()
 end
 
-function GuiMole:Hit()
-    NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, MoleGame.rangeList)
-end
 
 function GuiMole:StartGame()
     NetUtil.Fire_S('PlayerStartMoleHitEvent', localPlayer.UserId)
