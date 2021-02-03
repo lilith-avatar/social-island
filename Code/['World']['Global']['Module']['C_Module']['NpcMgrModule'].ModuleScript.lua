@@ -222,7 +222,8 @@ end
 -- 使NPC面向玩家
 function NpcFaceToPlayer(_npcId)
     local npcObj = npcs[_npcId].obj
-    npcObj.Forward = localPlayer.Position - npcObj.Position
+    local dir = localPlayer.Position - npcObj.Position
+    npcObj.Forward = Vector3(dir.x, 0, dir.z)
 end
 
 -- 使NPC回复方向
