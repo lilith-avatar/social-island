@@ -15,11 +15,13 @@ function MeleeWeapon:Attack()
     self:PlayAttackAnim()
 end
 
-function MeleeWeapon:Use()
-    WeaponBase.Use(self)
+--进入打地鼠
+function MeleeWeapon:Equip()
+    WeaponBase.Equip(self)
+    if self.config.Mole then
+        NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, 2)
+    end
 end
-
-
 
 --获取攻击数据
 function MeleeWeapon:GetAttackData()

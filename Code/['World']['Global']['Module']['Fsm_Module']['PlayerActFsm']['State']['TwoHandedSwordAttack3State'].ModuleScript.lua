@@ -21,6 +21,9 @@ function TwoHandedSwordAttack3:OnEnter()
             AttackHit(_hitObj)
         end
     )
+	if ItemMgr.itemInstance[ItemMgr.curWeaponID].config.Mole then
+        NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, MoleGame.rangeList)
+    end
 end
 
 function TwoHandedSwordAttack3:OnUpdate(dt)
