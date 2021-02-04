@@ -89,22 +89,6 @@ function ChairMgr:Update(dt)
     end
 end
 
-function ChairMgr:NormalShakeEventHandler(_chairId, _upOrDown)
-    this.NormalShake[_upOrDown](this.ChairList.Normal[_chairId].model)
-end
-
-function ChairMgr:NormalShakeUp(_chair)
-    local tweener = Tween:TweenProperty(_chair, {Rotation = EulerDegree(-20, 0, 0)}, 0.5, 1)
-    tweener:Play()
-    tweener:WaitForComplete()
-end
-
-function ChairMgr:NormalShakeDown(_chair)
-    local tweener = Tween:TweenProperty(_chair, {Rotation = EulerDegree(14, 0, 0)}, 0.5, 1)
-    tweener:Play()
-    tweener:WaitForComplete()
-end
-
 function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
     if not _chairId then
         return
@@ -113,6 +97,10 @@ function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
     this.chairSitter[_chairId] = nil
     this.ChairList[_type][_chairId]:Stand()
     player.Position = this.ChairList[_type][_chairId].model.LeavePosition.Position
+end
+
+function ChairMgr:NormalChairSpeedUpEventHandler(_chairId)
+    this.ChairList.Normal[_chairId]:ChairSpeedUp()
 end
 
 function ChairMgr:QteChairMoveEventHandler(_dir, _speed, _chairId)

@@ -26,7 +26,7 @@ function GuiChair:EventBind()
     for k, v in pairs(this.normalBtn) do
         v.OnClick:Connect(
             function()
-                this:NormalShake(k)
+                this:NormalShake()
             end
         )
     end
@@ -109,8 +109,11 @@ function GuiChair:EnterQte()
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
 end
 
-function GuiChair:NormalShake(_upOrDown)
-    NetUtil.Fire_S("NormalShakeEvent", Chair.chair, _upOrDown)
+function GuiChair:NormalShake()
+    NetUtil.Fire_S()
+end
+
+function GuiChair:NormalShakeDirEventHandler(_upOrDown)
     if _upOrDown == "up" then
         this.normalBtn.down:SetActive(true)
         this.normalBtn.up:SetActive(false)

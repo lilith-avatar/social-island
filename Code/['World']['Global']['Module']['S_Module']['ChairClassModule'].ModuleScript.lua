@@ -42,6 +42,7 @@ function ChairClass:CommonDataInit(_arch, _parent, _pos, _rot, _id)
     self.sitter = nil
     self.startUpdate = false
     self.freshcoo = _pos
+    self.freshRot = _rot
     self.qteDir = nil
     self.timer = 0
     self.id = _id
@@ -116,14 +117,13 @@ function ChairClass:QteUpdate(dt)
     end
     if self.state == StateEnum.qteing and self.qteDir then
         self.model.Forward = Vector3.Slerp(self.model.Forward, self.qteDir, 0.8 * dt)
+        self.tweener:Pause()
+        self.tweener = nil
     end
     if self.state == StateEnum.returning then
         if (self.model.Position - Config.ChairInfo[self.id].Position).Magnitude <= 3 then
-            self.tweener:Pause()
-            self.tweener = nil
             self.model.IsStatic, self.model.LinearVelocitymself.model.Position, self.model.Rotation =
                 true,
-                Vector3.Zero,
                 Config.ChairInfo[self.id].Position,
                 Config.ChairInfo[self.id].Rotation
             self.state = StateEnum.free
@@ -141,15 +141,24 @@ function ChairClass:NormalShake()
     end
 end
 
+function ChairClass:ResetRotation(dt)
+end
+
 function ChairClass:ChairSpecialShake()
     self.model.AngularVelocity = Vector3.Zero
     SpecialMovement[math.random(1, #SpecialMovement)]()
+end
+
+function ChairClass:ChairSpeedUp()
 end
 
 --普通摇摇椅update函数
 function ChairClass:NormalUpdate(dt)
     if self.state == StateEnum.used then
         self:NormalShake()
+    end
+    if self.state == StateEnum.free and self.model.Rotation ~= self.freshRot then
+        self:ResetRotation(dt)
     end
 end
 
