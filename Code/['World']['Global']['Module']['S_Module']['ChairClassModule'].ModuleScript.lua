@@ -61,7 +61,6 @@ function ChairClass:Sit(_player)
     if self.type == TypeEnum.QTE then
         self:Fly()
         self.state = StateEnum.flying
-    else
     end
 end
 
@@ -142,6 +141,7 @@ function ChairClass:NormalShake()
 end
 
 function ChairClass:ResetRotation(dt)
+    self.Rotation = EulerDegree.Lerp(self.Rotation, self.freshRot, 1 * dt)
 end
 
 function ChairClass:ChairSpecialShake()
