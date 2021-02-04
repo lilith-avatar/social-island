@@ -42,8 +42,8 @@ end
 
 --- 数据变量初始化
 function Hunt:DataInit()
-    this:InitAnimalArea()
-    this:InitAnimalData()
+    --this:InitAnimalArea()
+    --this:InitAnimalData()
 end
 
 --- 节点事件绑定
@@ -120,7 +120,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
         RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity
     }
 
-    tempData.obj.Col.OnCollisionBegin:Connect(
+    --[[tempData.obj.Col.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and tempData.state ~= animalActState.DEADED then
                 if _hitObject.IsHunt and _hitObject.IsHunt.Value == true then
@@ -131,7 +131,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
                 end
             end
         end
-    )
+    )]]
     _animalData[#_animalData + 1] = tempData
 end
 
@@ -337,7 +337,7 @@ function Hunt:AnimalMove(dt)
 end
 
 function Hunt:Update(dt)
-    this:AnimalMove(dt)
+    --this:AnimalMove(dt)
 end
 
 return Hunt

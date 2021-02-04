@@ -86,8 +86,13 @@ function PlantFlowerMgr:DeleteFlowerEventHandler(_player, _uuid)
 end
 
 function PlantFlowerMgr:SetCombine()
-    print('[PlantFlowerMgr] SetCombine()', #this.realFlower)
-	PlaySetCombineFX()
+	print('[PlantFlowerMgr] SetCombine()', #this.realFlower)
+	invoke(
+		function ()
+			PlaySetCombineFX()
+		end
+	)
+	
     
 end
 
@@ -139,5 +144,6 @@ end
 function PlantFlowerMgr:WaterEventHandler(_userId,_pos)
 	NetUtil.Broadcast('WaterEvent',_pos)
 end
+
 
 return PlantFlowerMgr
