@@ -132,16 +132,17 @@ end
 
 --********************* 普通摇摇椅 *************************
 function ChairClass:NormalShake()
-    if self.model.Rotation >= Config.ChairGlobalConfig.NormalForwardRotation.Value then
-        self.model.AngularVelocity = Vector3.Zero
+    -- TODO: 读Config数据
+    if self.model.LocalRotation.Rotation >= Config.ChairGlobalConfig.NormalMaxAngle.Value then
+        self.model.AngularVelocity = Config.ChairGlobalConfig.NormaAngularVelocity.Value
     end
-    if self.model.Rotation <= Config.ChairGlobalConfig.NormalForwardRotation.Value then
+    if self.model.LocalRotation.Rotation <= Config.ChairGlobalConfig.NormalMinAngle.Value then
         self.model.AngularVelocity = Vector3.Zero
     end
 end
 
 function ChairClass:ResetRotation(dt)
-    self.Rotation = EulerDegree.Lerp(self.Rotation, self.freshRot, 1 * dt)
+    self.model.Rotation = EulerDegree.Lerp(self.model.Rotation, self.freshRot, 1 * dt)
 end
 
 function ChairClass:ChairSpecialShake()
@@ -150,6 +151,11 @@ function ChairClass:ChairSpecialShake()
 end
 
 function ChairClass:ChairSpeedUp()
+end
+
+function ChairClass:ResetAngularVelocity()
+    -- TODO: 读Config数据
+    self.model.AngularVelocity = nil
 end
 
 --普通摇摇椅update函数
