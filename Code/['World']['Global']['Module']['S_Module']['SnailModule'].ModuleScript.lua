@@ -79,8 +79,27 @@ end
 --- 节点事件绑定
 function Snail:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 8 then
-        NetUtil.Fire_C("InteractCEvent", _player, 8)
+        if this:IsBetable(_player) then
+            NetUtil.Fire_C("InteractCEvent", _player, 8)
+        else
+            NetUtil.Fire_C("InsertInfoEvent", _player, "你不能多次投注或在比赛进行中投注", 3, true)
+        end
     end
+end
+
+--- 检查是否可以投注
+function Snail:IsBetable(_player)
+    if gameState ~= snailGameState.WAIT then
+        return false
+    end
+    for k1, v2 in pairs(snailObjPool) do
+        for k2, v2 in pairs(v1.betPlayer) do
+            if v2.player == _player then
+                return false
+            end
+        end
+    end
+    return true
 end
 
 --- 投注
