@@ -7,6 +7,13 @@ local AUTOSAVE_TIME = 20
 local AUTOSAVE_CHANGE = false
 local saveTimeDown = 0
 local SKILL_TIME = 3 --战斗的倒计时时间
+local MAX_MONSTER = 3 --最大怪物数
+local FRESH_MONSTER_TIME = 10 -- 刷新怪物时间
+local MONSTER_SCAN_TIME_MIN = 6 --怪物扫描时间最大
+local MONSTER_SCAN_TIME_MAX = 8 --怪物扫描时间最小
+local allWildMonster = {}
+local freshWildMonTimeDown = 0
+
 
 ---初始化函数
 function MonsterBattleMgr:Init()
@@ -17,6 +24,10 @@ function MonsterBattleMgr:Init()
             this:DisconnectSave()
         end
     )
+	--初始化最大数量的野外生物
+	for i=1,MAX_MONSTER,1 do
+		CreateWildMonster()
+	end
 end
 
 ---Update函数
@@ -26,6 +37,15 @@ function MonsterBattleMgr:Update(dt)
 		this:DisconnectSave()
 		saveTimeDown = 0
 		AUTOSAVE_CHANGE = false
+	end
+	if #allWildMonster < MAX_MONSTER then
+		if freshWildMonTimeDown > MAX_MONSTER then
+			CreateWildMonster()
+			freshWildMonTimeDown = 0
+			print("该刷新了")
+		else
+			freshWildMonTimeDown = freshWildMonTimeDown + dt
+		end
 	end
 end
 
@@ -76,13 +96,19 @@ end
 function MonsterBattleMgr:StartBattleEventHandler(_isNpc, _playerA, _playerB)
     if _isNpc then
         NetUtil.Fire_C('ReadyBattleEvent', _playerB, _playerA)
-    end
-    wait(1)
-	BattleRoute(_isNpc, _playerA, _playerB)
+    else
+		NetUtil.Fire_C('ReadyBattleEvent', _playerB)
+		NetUtil.Fire_C('ReadyBattleEvent',  _playerA)
+	end
+    
+	invoke(
+	function() 
+		BattleRoute(_isNpc, _playerA, _playerB)
+	end,1)
 end
 
 function BattleRoute(_isNpc, _playerA, _playerB)
-	invoke(function()
+	--invoke(function()
 	local _time = SKILL_TIME
 	local _breakFlag = false
 	local _result = 0
@@ -108,6 +134,8 @@ function BattleRoute(_isNpc, _playerA, _playerB)
 				_attack2 = GetRandomAttack(_playerB.AttackVal.Value)
                 if _isNpc then
                     NetUtil.Fire_C('MBattleEvent', _playerB, Const.MonsterEnum.NPCBEHIT, _attack2, _playerB)
+				else
+					NetUtil.Fire_C('MBattleEvent', _playerA, Const.MonsterEnum.BEHIT, _attack2, _playerB)
                 end
             elseif _result == -1 or _result == 2 then
                 _attack = GetRandomAttack(_playerA.AttackVal.Value)
@@ -116,7 +144,9 @@ function BattleRoute(_isNpc, _playerA, _playerB)
                 _attack = GetRandomAttack(_playerB.AttackVal.Value)
                 if _isNpc then
                     NetUtil.Fire_C('MBattleEvent', _playerB, Const.MonsterEnum.NPCBEHIT, _attack, _playerB)
-                end
+                else
+					NetUtil.Fire_C('MBattleEvent', _playerA, Const.MonsterEnum.BEHIT, _attack, _playerB)
+				end
             end
 				
 			wait(1)
@@ -136,45 +166,72 @@ function BattleRoute(_isNpc, _playerA, _playerB)
 			_newRound = true
         end
     end
-	end)
+	--end)
 end
 
 function GetRandomAttack(_num)
 	return math.modf(_num - math.randomFloat(0, _num*(1/3)))
 end
 
+function CreateWildMonster()
+	local _info = GetRandomPos()
+	local _monsterCol = this:SpawnMonsterInPos(_info.Pos,_info.Rot,_info)
+	invoke(function()
+		while true do
+			wait(math.random(MONSTER_SCAN_TIME_MIN,MONSTER_SCAN_TIME_MAX))
+			MonsterScan(_monsterCol,5)
+		end
+	end)
+end
+
 --在指定位置创建一个宠物
-function MonsterBattleMgr:SpawnMonsterInPos(_pos)
-	if world.NPCMonster == nil then
-        world:CreateObject('FolderObject', 'NPCMonster', world)
-    end
+function MonsterBattleMgr:SpawnMonsterInPos(_pos,_rot,_info)
 	local _collision = world:CreateObject('Sphere','MonsterRange',world.NPCMonster)
 	_collision.Size = Vector3.One*3
 	_collision.Color = Color(255,255,255,50)
 	_collision.Block = false
-	_collision.Position = localPlayer.Position + localPlayer.Forward * 5
-	this:CreateMonster(_collision, nil)
+	_collision.Position = _pos --localPlayer.Position + localPlayer.Forward * 5
+	_collision.Rotation = _rot 
+	--world:CreateObject('IntValueObject', 'PosId', _collision).Value = _info.Id
+	this:CreateMonster(_collision, nil,_info)
+	return _collision
 end
 
 
 -- 创建NPC的宠物
-function MonsterBattleMgr:CreateMonster(_npcObj, _npcInfo)
+function MonsterBattleMgr:CreateMonster(_npcObj, _npcInfo, _npcId)
+	if world.WildMonster == nil then
+        world:CreateObject('FolderObject', 'WildMonster', world)
+    end
     world:CreateObject('IntValueObject', 'HealthVal', _npcObj)
     world:CreateObject('IntValueObject', 'AttackVal', _npcObj)
     world:CreateObject('IntValueObject', 'BattleVal', _npcObj)
+	world:CreateObject('BoolValueObject', 'IsBattle', _npcObj).Value = false
+	world:CreateObject('IntValueObject','NpcId',_npcObj).Value = _npcId.Id
     local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
     local monsterObj = nil
 	if _npcInfo then
-		monsterObj = world:CreateInstance(_npcInfo.PetModel, 'Pet_' .. _npcInfo.ID, monsterFolder)
+		monsterObj = world:CreateInstance(_npcInfo.PetModel, 'Pet_' .. _npcInfo.ID, world.WildMonster)
 		monsterObj.Position = _npcObj.Position - _npcObj.Forward * 2
 	else
-		monsterObj = world:CreateInstance('Monster', 'Pet', monsterFolder)
+		monsterObj = world:CreateInstance('Monster', 'Pet', world.WildMonster)
 		monsterObj.Position = _npcObj.Position
 	end
     monsterObj.Forward = _npcObj.Forward
     monsterVal.Value = monsterObj
     MoveMonster(_npcObj, monsterVal.Value)
+	return monsterObj
 end
+
+--- 销毁结束战斗的NPC怪物
+function MonsterBattleMgr:NpcMonsterGameOverEventHandler(_npcId)
+	for k ,v in pairs(allWildMonster) do 
+		if v == _npcId then
+			table.remove(allWildMonster,k)
+		end
+	end
+end
+
 
 -- 移动宠物
 function MoveMonster(_npcobj, _monster)
@@ -205,14 +262,60 @@ function MoveMonster(_npcobj, _monster)
                 timeDown,
                 Enum.EaseCurve.BackOut
             )
+			
             while _monster and _monster.Cube do
                 twUp:Play()
                 wait(timeUp + .5)
-                twDown:Play()
-                wait(timeDown)
+				if _monster and _monster.Cube then
+					twDown:Play()
+					wait(timeDown)
+				end
             end
         end
     )
+end
+
+--获得随机出生点
+function GetRandomPos()
+	--print(table.dump(Config.MonsterFresh[1]))
+	--return Config.MonsterFresh[math.random(1,#Config.MonsterFresh)]
+	while true do
+		local _info = Config.MonsterFresh[math.random(1,#Config.MonsterFresh)]
+		local _flag = true
+		for k,v in ipairs(allWildMonster) do
+			if v == _info.Id then
+				_flag = false
+				break
+			end
+		end
+		if _flag then
+			table.insert(allWildMonster,_info.Id)
+			return _info
+		end
+	end
+end
+
+function MonsterScan(_monsterCol,_time)
+	--print("[MonsterMgr] 开始扫描")
+	if _monsterCol == nil or _monsterCol.IsBattle.Value then
+		return
+	end
+	local _monster = _monsterCol.MonsterVal.Value
+	invoke(function()
+		_monster.Cube.FX1:SetActive(true)
+		--[[
+		local Tweener =
+            Tween:TweenProperty(
+            _monster,
+            {Rotation = _monster.Rotation - EulerDegree(0,180,0)},
+            _time,
+            Enum.EaseCurve.Linear
+        )
+        Tweener:Play()
+		--]]
+		wait(_time)
+		_monster.Cube.FX1:SetActive(false)
+	end)
 end
 
 return MonsterBattleMgr

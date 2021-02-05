@@ -30,8 +30,8 @@ Events.ServerEvents = {
     "PlantFlowerEvent", -- @param _userId, _flowerObj
     "DeleteFlowerEvent", -- @param _userId, _uuid
     "WaterEvent", --@param _userId, _pos
-    "SPlayerHitEvent"
-
+    "SPlayerHitEvent",
+    "NpcMonsterGameOverEvent" --@param _NpcMonsterId
 }
 
 -- 客户端事件列表
