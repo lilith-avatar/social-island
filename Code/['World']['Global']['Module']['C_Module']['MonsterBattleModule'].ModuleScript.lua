@@ -129,8 +129,8 @@ end
 
 function MonsterBattle:OnPlayerJoinEventHandler()
     this:LoadData()
-    wait(1)
-	this.MonsterGUI:SetActive(true)
+    wait(2)
+	this.MonsterGUI.Visible = true
 	localPlayer.Local.ControlGui.Menu.PetBtn:SetActive(true)
 	
     invoke(
@@ -144,7 +144,7 @@ function MonsterBattle:OnPlayerJoinEventHandler()
 end
 
 function CheckMonsterRangeBegin(_hitObj, _hitPoint, hitNormal)
-	if _hitObj == nil then
+	if _hitObj == nil or RealMonster == nil then
 		return
 	end
     if _hitObj.Name == 'MonsterRange' then
@@ -164,6 +164,7 @@ function CheckMonsterRangeEnd(_hitObj, _hitPoint, hitNormal)
 	end
 	if _hitObj.Name == 'MonsterRange' then
 		this.MonsterGUI.BattleBtn.Visible = false
+		this.MonsterGUI.BattleBtn.OnClick:Clear()
     end	
 end
 
@@ -339,7 +340,7 @@ function MonsterBattle:ReadyBattleEventHandler()
     this.HealthGUI:SetActive(true)
 	
 	localPlayer.Local.ControlGui.Joystick:SetActive(false)
-		localPlayer.Local.ControlGui.Ctrl:SetActive(false)
+	localPlayer.Local.ControlGui.Ctrl:SetActive(false)
 end
 
 function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
@@ -380,6 +381,7 @@ function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
         this.MainPanel:SetActive(false)
         this.BattlePanel:SetActive(false)
         this.HealthGUI:SetActive(false)
+		this.MonsterGUI.Visible = true
         --localPlayer.Local.ControlGui:SetActive(true)
 		localPlayer.Local.ControlGui.Joystick:SetActive(true)
 		localPlayer.Local.ControlGui.Ctrl:SetActive(true)
@@ -423,7 +425,6 @@ function MonsterBattle:MonsterScanEventHandler(_pos,_euler,_time)
 		RealMonster.Cube.FX1:SetActive(false)
 		this.canFollow = true
 	end)
-	--EulerDegree
 end
 
 function MonsterBattle:TestScan()

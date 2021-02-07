@@ -42,8 +42,8 @@ end
 
 --- 数据变量初始化
 function Hunt:DataInit()
-    --this:InitAnimalArea()
-    --this:InitAnimalData()
+    this:InitAnimalArea()
+    this:InitAnimalData()
 end
 
 --- 节点事件绑定
@@ -120,7 +120,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
         RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity
     }
 
-    --[[tempData.obj.Col.OnCollisionBegin:Connect(
+    tempData.obj.Col.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and tempData.state ~= animalActState.DEADED then
                 if _hitObject.IsHunt and _hitObject.IsHunt.Value == true then
@@ -131,7 +131,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
                 end
             end
         end
-    )]]
+    )
     _animalData[#_animalData + 1] = tempData
 end
 
@@ -233,7 +233,7 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
-            Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
         _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
         _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
@@ -252,7 +252,7 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         local dir = (_animalData.obj.Position - _animalData.closePlayer.Position)
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
-            vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized * _animalData.scaredMoveSpeed
+            Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized * _animalData.scaredMoveSpeed
         _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
         _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
@@ -337,7 +337,7 @@ function Hunt:AnimalMove(dt)
 end
 
 function Hunt:Update(dt)
-    --this:AnimalMove(dt)
+    this:AnimalMove(dt)
 end
 
 return Hunt
