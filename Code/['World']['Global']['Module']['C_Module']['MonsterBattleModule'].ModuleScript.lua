@@ -144,7 +144,7 @@ function MonsterBattle:OnPlayerJoinEventHandler()
 end
 
 function CheckMonsterRangeBegin(_hitObj, _hitPoint, hitNormal)
-	if _hitObj == nil then
+	if _hitObj == nil or RealMonster == nil then
 		return
 	end
     if _hitObj.Name == 'MonsterRange' then

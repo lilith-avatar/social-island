@@ -176,6 +176,7 @@ end
 function CreateWildMonster()
 	local _info = GetRandomPos()
 	local _monsterCol = this:SpawnMonsterInPos(_info.Pos,_info.Rot,_info)
+	print(_monsterCol)
 	invoke(function()
 		while true do
 			wait(math.random(MONSTER_SCAN_TIME_MIN,MONSTER_SCAN_TIME_MAX))
@@ -210,17 +211,21 @@ function MonsterBattleMgr:CreateMonster(_npcObj, _npcInfo, _npcId)
 	world:CreateObject('IntValueObject','NpcId',_npcObj).Value = _npcId.Id
     local monsterVal = world:CreateObject('ObjRefValueObject', 'MonsterVal', _npcObj)
     local monsterObj = nil
-	if _npcInfo then
-		monsterObj = world:CreateInstance(_npcInfo.PetModel, 'Pet_' .. _npcInfo.ID, world.WildMonster)
-		monsterObj.Position = _npcObj.Position - _npcObj.Forward * 2
-	else
-		monsterObj = world:CreateInstance('Monster', 'Pet', world.WildMonster)
-		monsterObj.Position = _npcObj.Position
-	end
-    monsterObj.Forward = _npcObj.Forward
-    monsterVal.Value = monsterObj
-    MoveMonster(_npcObj, monsterVal.Value)
+	invoke(function()
+		if _npcInfo then
+			monsterObj = world:CreateInstance(_npcInfo.PetModel, 'Pet_' .. _npcInfo.ID, world.WildMonster)
+			monsterObj.Position = _npcObj.Position - _npcObj.Forward * 2
+		else
+			monsterObj = world:CreateInstance('Monster', 'Pet', world.WildMonster)
+			monsterObj.Position = _npcObj.Position
+		end
+	    monsterObj.Forward = _npcObj.Forward
+		monsterVal.Value = monsterObj
+		MoveMonster(_npcObj, monsterVal.Value)
 	return monsterObj
+	end,0.1)
+	
+
 end
 
 --- 销毁结束战斗的NPC怪物
