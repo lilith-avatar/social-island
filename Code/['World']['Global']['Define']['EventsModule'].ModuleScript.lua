@@ -15,6 +15,7 @@ Events.ServerEvents = {
     'PlayerStartMoleHitEvent',
     'PlayerLeaveMoleHitEvent',
     'NormalShakeEvent',
+    'SnailBetEvent',
     'PlayerLeaveChairEvent',
     'QteChairMoveEvent',
     'PlayerClickSitBtnEvent',

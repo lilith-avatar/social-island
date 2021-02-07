@@ -3,13 +3,14 @@ local JumpState = class("JumpState", PlayerActState)
 function JumpState:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer:Jump()
+	localPlayer.GravityScale = 2
     --localPlayer.Avatar:PlayAnimation("Jump01_Boy", 2, 1, 0, true, false, 1)
     localPlayer.Avatar:PlayAnimation("Jump01_Boy", 2, 1, 0, true, false, 1)
 end
 
 function JumpState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"SwimIdle"})
+    --FsmMgr.playerActFsm:TriggerMonitor({"SwimIdle"})
     self:IdleMonitor()
 end
 

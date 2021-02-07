@@ -13,6 +13,7 @@ function SwimIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
     self:MoveMonitor()
+	self:JumpMonitor()
 end
 
 function SwimIdle:OnLeave()
@@ -25,6 +26,12 @@ function SwimIdle:MoveMonitor()
     dir.y = 0
     if dir.Magnitude > 0 then
         FsmMgr.playerActFsm:Switch("Swimming")
+    end
+end
+
+function SwimIdle:JumpMonitor()
+    if FsmMgr.playerActFsm.stateTrigger.Jump then
+        FsmMgr.playerActFsm:Switch("Jump")
     end
 end
 
