@@ -92,7 +92,7 @@ function Snail:IsBetable(_player)
     if gameState ~= snailGameState.WAIT then
         return false
     end
-    for k1, v2 in pairs(snailObjPool) do
+    for k1, v1 in pairs(snailObjPool) do
         for k2, v2 in pairs(v1.betPlayer) do
             if v2.player == _player then
                 return false
