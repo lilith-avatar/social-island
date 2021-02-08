@@ -124,7 +124,6 @@ end
 
 --- 开始倒计时
 function Snail:StartRaceCD(dt)
-    print(gameState)
     if this:IsStartRace() then
         if startCD <= 0 then
             startCD = 10
