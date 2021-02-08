@@ -31,11 +31,22 @@ end
 
 function SceneInter:GrassInter(_hitObject, _Object)
     if _hitObject.ClassName == "PlayerInstance" then
-        print(_hitObject.ClassName)
-        local tweener = Tween:ShakeProperty(_Object, {"Rotation"}, 0.15, 8)
-        tweener:Play()
-        tweener:WaitForComplete()
-        tweener = nil
+		local swayTweenerl=Tween:TweenProperty(_Object,{Rotation=EulerDegree(_Object.Rotation.x,_Object.Rotation.y,_Object.Rotation.z + 20)},0.15,Enum.EaseCurve.Linear)
+		local swayTweener2=Tween:TweenProperty(_Object,{Rotation=EulerDegree(_Object.Rotation.x,_Object.Rotation.y,_Object.Rotation.z - 30)},0.3,Enum.EaseCurve.Linear)
+		local swayTweener3=Tween:TweenProperty(_Object,{Rotation=EulerDegree(_Object.Rotation.x,_Object.Rotation.y,_Object.Rotation.z)},0.15,Enum.EaseCurve.Linear)
+		swayTweenerl.OnComplete:Connect(function()
+		swayTweener2:Play()
+		swayTweenerl:Destroy()
+		end)
+		swayTweener2.OnComplete:Connect(function()
+		swayTweener3:Play()
+		swayTweener2:Destroy()
+		end)
+		swayTweener3.OnComplete:Connect(function()
+		swayTweener3:Destroy()
+		end)
+	
+		swayTweenerl:Play()
     end
 end
 
