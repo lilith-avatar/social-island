@@ -95,7 +95,8 @@ Events.ClientEvents = {
     "LeaveMoleGameRangeEvent",
     "InsertInfoEvent",
     "LightHitEvent", --雷电打击
-    "WaterEvent" -- @Pos
+    "WaterEvent", -- @Pos
+    "SwitchStoreUIEvent"
 }
 
 return Events
