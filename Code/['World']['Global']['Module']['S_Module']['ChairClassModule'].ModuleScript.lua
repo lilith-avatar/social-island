@@ -58,6 +58,7 @@ function ChairClass:Sit(_player)
     self.model.Seat:SetActive(true)
     self.model.CollisionArea:SetActive(false)
     self.model.LinearVelocity = Vector3.Zero
+    self.model.IsStatic = false
     --判断是否开始QTE
     if self.type == TypeEnum.QTE then
         self:Fly()
