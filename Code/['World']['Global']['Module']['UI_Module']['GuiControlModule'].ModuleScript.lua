@@ -85,7 +85,7 @@ function GuiControl:InitListener()
     ctrlFigure.LeaveBtn.OnDown:Connect(
         function()
             if interactID == 10 then
-                ChairUIMgr:NormalBack()
+                GuiChair:NormalBack()
                 return
             end
         end

@@ -9,6 +9,18 @@ local ChairGlobalConfigXls = {
     FlyingTime = {
         Key = 'FlyingTime',
         Value = 3.0
+    },
+    NormalAngularVelocity = {
+        Key = 'NormalAngularVelocity',
+        Value = Vector3(0.5,0,0)
+    },
+    NormalMaxAngle = {
+        Key = 'NormalMaxAngle',
+        Value = 15.0
+    },
+    NormalMinAngle = {
+        Key = 'NormalMinAngle',
+        Value = -15.0
     }
 }
 

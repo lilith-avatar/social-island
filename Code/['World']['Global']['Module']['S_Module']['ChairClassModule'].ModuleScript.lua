@@ -63,6 +63,8 @@ function ChairClass:Sit(_player)
     if self.type == TypeEnum.QTE then
         self:Fly()
         self.state = StateEnum.flying
+    else
+        self:StartShake()
     end
 end
 
@@ -137,23 +139,27 @@ function ChairClass:QteUpdate(dt)
 end
 
 --********************* 普通摇摇椅 *************************
+function ChairClass:StartShake()
+    self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value
+end
+
 function ChairClass:NormalShake()
     -- TODO: 读Config数据
-    if self.model.LocalRotation.Rotation >= Config.ChairGlobalConfig.NormalMaxAngle.Value then
-        self.model.AngularVelocity = Config.ChairGlobalConfig.NormaAngularVelocity.Value
+    if self.model.LocalRotation.x >= Config.ChairGlobalConfig.NormalMaxAngle.Value then
+        self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value * -1
     end
-    if self.model.LocalRotation.Rotation <= Config.ChairGlobalConfig.NormalMinAngle.Value then
-        self.model.AngularVelocity = Vector3.Zero
+    if self.model.LocalRotation.x <= Config.ChairGlobalConfig.NormalMinAngle.Value then
+        self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value
     end
 end
 
 function ChairClass:ResetRotation(dt)
-    self.model.Rotation = EulerDegree.Lerp(self.model.Rotation, self.freshRot, 1 * dt)
+    self.model.LocalRotation = EulerDegree.Lerp(self.model.LocalRotation, EulerDegree(0,0,0), 1 * dt)
 end
 
 function ChairClass:ChairSpecialShake()
     self.model.AngularVelocity = Vector3.Zero
-    SpecialMovement[math.random(1, #SpecialMovement)]()
+    -- SpecialMovement[math.random(1, #SpecialMovement)]()
 end
 
 function ChairClass:ChairSpeedUp()
