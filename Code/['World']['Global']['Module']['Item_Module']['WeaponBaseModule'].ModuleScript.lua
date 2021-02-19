@@ -15,10 +15,12 @@ end
 
 --放入背包
 function WeaponBase:PutIntoBag()
+	ItemBase.PutIntoBag(self)
 end
 
 --从背包里扔掉
 function WeaponBase:ThrowOutOfBag()
+	ItemBase.ThrowOutOfBag(self)
 end
 
 --使用

@@ -19,7 +19,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 24,
         LVCtrlIntensity = 500000,
-        RotCtrlIntensity = 1000000
+        RotCtrlIntensity = 1000000,
+        ItemPoolID = 1
     },
     [2] = {
         ID = 2,
@@ -34,7 +35,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 12,
         LVCtrlIntensity = 50000000,
-        RotCtrlIntensity = 200000000
+        RotCtrlIntensity = 200000000,
+        ItemPoolID = 4
     },
     [3] = {
         ID = 3,
@@ -49,7 +51,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 12,
         LVCtrlIntensity = 50000000,
-        RotCtrlIntensity = 200000000
+        RotCtrlIntensity = 200000000,
+        ItemPoolID = 3
     },
     [4] = {
         ID = 4,
@@ -64,7 +67,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 20,
         LVCtrlIntensity = 600000000,
-        RotCtrlIntensity = 600000000
+        RotCtrlIntensity = 600000000,
+        ItemPoolID = 5
     },
     [5] = {
         ID = 5,
@@ -79,7 +83,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 30,
         LVCtrlIntensity = 100000,
-        RotCtrlIntensity = 80000
+        RotCtrlIntensity = 80000,
+        ItemPoolID = 2
     },
     [6] = {
         ID = 6,
@@ -94,7 +99,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 5,
         LVCtrlIntensity = 1800000,
-        RotCtrlIntensity = 10000000
+        RotCtrlIntensity = 10000000,
+        ItemPoolID = 6
     },
     [7] = {
         ID = 7,
@@ -109,7 +115,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 10,
         LVCtrlIntensity = 640000,
-        RotCtrlIntensity = 540000
+        RotCtrlIntensity = 540000,
+        ItemPoolID = 7
     },
     [8] = {
         ID = 8,
@@ -124,7 +131,8 @@ local AnimalXls = {
         DeadAnimationName = {'Dead'},
         Weight = 45,
         LVCtrlIntensity = 1600000,
-        RotCtrlIntensity = 40000
+        RotCtrlIntensity = 40000,
+        ItemPoolID = 8
     }
 }
 

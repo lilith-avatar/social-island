@@ -13,16 +13,13 @@ end
 
 --放入背包
 function TaskItem:PutIntoBag()
-    GuiControl:InsertInfoEventHandler(LanguageUtil.GetText(Config.Item[self.id].Name), 2, false)
+    ItemBase.PutIntoBag(self)
     GuiControl:InsertInfoEventHandler(LanguageUtil.GetText(Config.Item[self.id].Des), 3, true)
-    --localPlayer.Local.InfoGui:SetActive(true)
-    --localPlayer.Local.InfoGui.ItemDes.Text = LanguageUtil.GetText(Config.Item[self.id].Des)
 end
 
 --从背包里扔掉
 function TaskItem:ThrowOutOfBag()
-    localPlayer.Local.InfoGui.ItemDes.Text = ''
-    localPlayer.Local.InfoGui:SetActive(false)
+	ItemBase.ThrowOutOfBag(self)
 end
 
 --使用
@@ -37,7 +34,7 @@ function TaskItem:GetTaskReward()
     if self.config.RewardItem and self.config.RewardItem ~= 0 then
         NetUtil.Fire_C('GetItemEvent', localPlayer, self.config.RewardItem)
     end
-    PlayerCtrl:UpdateCoinEventHandler(self.config.RewardGold)
+    NetUtil.Fire_C("UpdateCoinEvent",localPlayer,self.config.RewardGold)
     NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.id)
 end
 
