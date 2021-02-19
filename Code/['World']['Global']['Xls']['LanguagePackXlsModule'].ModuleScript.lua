@@ -491,147 +491,147 @@ local LanguagePackXls = {
     },
     Item_Des_6001 = {
         ID = 'Item_Des_6001',
-        CHS = '野猪的皮，很值钱的样子。',
+        CHS = '鹿的角，可以用作药材，活血化瘀。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6002 = {
         ID = 'Item_Des_6002',
-        CHS = '这是培养机器人的食物，但是物品系统和宠物系统还没对接。',
+        CHS = '质地很柔软的优质皮草。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6003 = {
         ID = 'Item_Des_6003',
-        CHS = '这是培养机器人的食物，但是物品系统和宠物系统还没对接。',
+        CHS = '雄鹿的分泌物，散发着芳香的气味，可以入药。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6004 = {
         ID = 'Item_Des_6004',
-        CHS = '很值钱的植物。',
+        CHS = '鹿的肉，肉质细嫩，营养丰富，适合烹煮。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6005 = {
         ID = 'Item_Des_6005',
-        CHS = '翅膀闪烁着七彩光泽。',
+        CHS = '雄山鸡尾巴上的硬羽毛，十分华丽。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6006 = {
         ID = 'Item_Des_6006',
-        CHS = '可以用来种花，但物品系统和种花还没对接。',
+        CHS = '富有营养，各种烹饪方式都能做出美味的菜肴。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6007 = {
         ID = 'Item_Des_6007',
-        CHS = '松果，可以换成钱，但物品系统还没实装。',
+        CHS = '山鸡没有消化的树果籽……',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6008 = {
         ID = 'Item_Des_6008',
-        CHS = '石头的碎屑。',
+        CHS = '黑野猪的皮，用作地毯是极好的。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6009 = {
         ID = 'Item_Des_6009',
-        CHS = '有人拿来当柴火。',
+        CHS = '野猪肉，没有什么脂肪，是烧烤不错的选择。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6010 = {
         ID = 'Item_Des_6010',
-        CHS = '一块铜矿石！',
+        CHS = '野猪的獠牙，可以做成挂饰。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6011 = {
         ID = 'Item_Des_6011',
-        CHS = '一块铁矿石！',
+        CHS = '白野猪的皮，常被用来制作衣服和皮包等物品。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6012 = {
         ID = 'Item_Des_6012',
-        CHS = '一块银矿石！',
+        CHS = '猫头鹰的爪，能有力的擒住猎物。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6013 = {
         ID = 'Item_Des_6013',
-        CHS = '一块金矿石！',
+        CHS = '猫头鹰的羽毛，可以用来作装饰。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6014 = {
         ID = 'Item_Des_6014',
-        CHS = '就像人的指纹，每个蜗牛的壳的形状都不一样。',
+        CHS = '罕见的动物药材，有解毒的功效。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6015 = {
         ID = 'Item_Des_6015',
-        CHS = '这片森林有孔雀？',
+        CHS = '针毛粗长、绒毛厚密，罕见的皮草。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6016 = {
         ID = 'Item_Des_6016',
-        CHS = '像鸡爪一样。',
+        CHS = '棕熊的肉，到底有谁会吃它呢？',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6017 = {
         ID = 'Item_Des_6017',
-        CHS = '像利齿一样。',
+        CHS = '珍贵的食材。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6018 = {
         ID = 'Item_Des_6018',
-        CHS = '又大又圆。',
+        CHS = '狼的肉，到底有谁会吃它呢？',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6019 = {
         ID = 'Item_Des_6019',
-        CHS = '吵闹的小家伙。',
+        CHS = '银色的毛皮，可以制作衣服和包。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6020 = {
         ID = 'Item_Des_6020',
-        CHS = '可怕的东西，应该没有毒吧？',
+        CHS = '狼的獠牙，可以做成挂饰。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6021 = {
         ID = 'Item_Des_6021',
-        CHS = '潮湿的地方就有它。',
+        CHS = '蜗牛的粘液，不知道有什么用。',
         CHT = '',
         EN = '',
         JP = ''
@@ -1044,147 +1044,147 @@ local LanguagePackXls = {
     },
     Item_Name_6001 = {
         ID = 'Item_Name_6001',
-        CHS = '野猪皮',
+        CHS = '鹿茸',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6002 = {
         ID = 'Item_Name_6002',
-        CHS = '机器人记忆芯片',
+        CHS = '鹿皮',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6003 = {
         ID = 'Item_Name_6003',
-        CHS = 'G8采集机器人',
+        CHS = '麝香',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6004 = {
         ID = 'Item_Name_6004',
-        CHS = '药草',
+        CHS = '鹿肉',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6005 = {
         ID = 'Item_Name_6005',
-        CHS = '蜻蜓',
+        CHS = '山鸡翎',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6006 = {
         ID = 'Item_Name_6006',
-        CHS = '花种',
+        CHS = '山鸡肉',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6007 = {
         ID = 'Item_Name_6007',
-        CHS = '松果',
+        CHS = '树果籽',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6008 = {
         ID = 'Item_Name_6008',
-        CHS = '碎石',
+        CHS = '黑野猪皮',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6009 = {
         ID = 'Item_Name_6009',
-        CHS = '树枝',
+        CHS = '野猪肉',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6010 = {
         ID = 'Item_Name_6010',
-        CHS = '铜矿石',
+        CHS = '野猪牙',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6011 = {
         ID = 'Item_Name_6011',
-        CHS = '铁矿石',
+        CHS = '白野猪皮',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6012 = {
         ID = 'Item_Name_6012',
-        CHS = '银矿石',
+        CHS = '猫头鹰爪',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6013 = {
         ID = 'Item_Name_6013',
-        CHS = '金矿石',
+        CHS = '猫头鹰的羽毛',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6014 = {
         ID = 'Item_Name_6014',
-        CHS = '蜗牛壳',
+        CHS = '熊胆',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6015 = {
         ID = 'Item_Name_6015',
-        CHS = '孔雀翎',
+        CHS = '熊皮',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6016 = {
         ID = 'Item_Name_6016',
-        CHS = '窃蛋龙足化石',
+        CHS = '熊肉',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6017 = {
         ID = 'Item_Name_6017',
-        CHS = '三角龙角化石',
+        CHS = '熊掌',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6018 = {
         ID = 'Item_Name_6018',
-        CHS = '霸王龙蛋化石',
+        CHS = '狼肉',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6019 = {
         ID = 'Item_Name_6019',
-        CHS = '蛐蛐',
+        CHS = '狼皮',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6020 = {
         ID = 'Item_Name_6020',
-        CHS = '蜘蛛',
+        CHS = '狼牙',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6021 = {
         ID = 'Item_Name_6021',
-        CHS = '鼠妇',
+        CHS = '奇怪的粘液',
         CHT = '',
         EN = '',
         JP = ''
@@ -2025,6 +2025,272 @@ local LanguagePackXls = {
     NpcText_Text_1000 = {
         ID = 'NpcText_Text_1000',
         CHS = ' ',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6022 = {
+        ID = 'Item_Name_6022',
+        CHS = '蜗牛壳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6022 = {
+        ID = 'Item_Des_6022',
+        CHS = '就像人的指纹，每个蜗牛的壳的形状都不一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6023 = {
+        ID = 'Item_Name_6023',
+        CHS = '碎石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6023 = {
+        ID = 'Item_Des_6023',
+        CHS = '石头的碎屑。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6024 = {
+        ID = 'Item_Name_6024',
+        CHS = '铜矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6024 = {
+        ID = 'Item_Des_6024',
+        CHS = '一块铜矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6025 = {
+        ID = 'Item_Name_6025',
+        CHS = '铁矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6025 = {
+        ID = 'Item_Des_6025',
+        CHS = '一块铁矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6026 = {
+        ID = 'Item_Name_6026',
+        CHS = '银矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6026 = {
+        ID = 'Item_Des_6026',
+        CHS = '一块银矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6027 = {
+        ID = 'Item_Name_6027',
+        CHS = '金矿石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6027 = {
+        ID = 'Item_Des_6027',
+        CHS = '一块金矿石！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6028 = {
+        ID = 'Item_Name_6028',
+        CHS = '蜗牛壳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6028 = {
+        ID = 'Item_Des_6028',
+        CHS = '就像人的指纹，每个蜗牛的壳的形状都不一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6029 = {
+        ID = 'Item_Name_6029',
+        CHS = '窃蛋龙足化石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6029 = {
+        ID = 'Item_Des_6029',
+        CHS = '像鸡爪一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6030 = {
+        ID = 'Item_Name_6030',
+        CHS = '三角龙角化石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6030 = {
+        ID = 'Item_Des_6030',
+        CHS = '像利齿一样。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6031 = {
+        ID = 'Item_Name_6031',
+        CHS = '霸王龙蛋化石',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6031 = {
+        ID = 'Item_Des_6031',
+        CHS = '又大又圆。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6032 = {
+        ID = 'Item_Name_6032',
+        CHS = '蛐蛐',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6032 = {
+        ID = 'Item_Des_6032',
+        CHS = '吵闹的小家伙。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6033 = {
+        ID = 'Item_Name_6033',
+        CHS = '蜘蛛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6033 = {
+        ID = 'Item_Des_6033',
+        CHS = '可怕的东西，应该没有毒吧？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6034 = {
+        ID = 'Item_Name_6034',
+        CHS = '鼠妇',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6034 = {
+        ID = 'Item_Des_6034',
+        CHS = '潮湿的地方就有它。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6035 = {
+        ID = 'Item_Name_6035',
+        CHS = '树枝',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6035 = {
+        ID = 'Item_Des_6035',
+        CHS = '有人拿来当柴火。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6036 = {
+        ID = 'Item_Name_6036',
+        CHS = '孔雀翎',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6036 = {
+        ID = 'Item_Des_6036',
+        CHS = '这片森林有孔雀？',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6037 = {
+        ID = 'Item_Name_6037',
+        CHS = '药草',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6037 = {
+        ID = 'Item_Des_6037',
+        CHS = '很值钱的植物。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6038 = {
+        ID = 'Item_Name_6038',
+        CHS = '蜻蜓',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6038 = {
+        ID = 'Item_Des_6038',
+        CHS = '翅膀闪烁着七彩光泽。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6039 = {
+        ID = 'Item_Name_6039',
+        CHS = '花种',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6039 = {
+        ID = 'Item_Des_6039',
+        CHS = '可以用来种花，但物品系统和种花还没对接。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6040 = {
+        ID = 'Item_Name_6040',
+        CHS = '松果',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6040 = {
+        ID = 'Item_Des_6040',
+        CHS = '松树掉落的果实。',
         CHT = '',
         EN = '',
         JP = ''

@@ -8,27 +8,27 @@
 local RewardItemXls = {
     [6001] = {
         ItemID = 6001,
-        RewardGold = 200
+        RewardGold = 100
     },
     [6002] = {
         ItemID = 6002,
-        RewardGold = 50
+        RewardGold = 40
     },
     [6003] = {
         ItemID = 6003,
-        RewardGold = 100
+        RewardGold = 80
     },
     [6004] = {
         ItemID = 6004,
-        RewardGold = 50
+        RewardGold = 20
     },
     [6005] = {
         ItemID = 6005,
-        RewardGold = 20
+        RewardGold = 40
     },
     [6006] = {
         ItemID = 6006,
-        RewardGold = 20
+        RewardGold = 10
     },
     [6007] = {
         ItemID = 6007,
@@ -36,58 +36,134 @@ local RewardItemXls = {
     },
     [6008] = {
         ItemID = 6008,
-        RewardGold = 5
+        RewardGold = 60
     },
     [6009] = {
         ItemID = 6009,
-        RewardGold = 5
+        RewardGold = 40
     },
     [6010] = {
         ItemID = 6010,
-        RewardGold = 40
+        RewardGold = 60
     },
     [6011] = {
         ItemID = 6011,
-        RewardGold = 20
+        RewardGold = 80
     },
     [6012] = {
         ItemID = 6012,
-        RewardGold = 60
+        RewardGold = 20
     },
     [6013] = {
         ItemID = 6013,
-        RewardGold = 80
+        RewardGold = 35
     },
     [6014] = {
         ItemID = 6014,
-        RewardGold = 20
+        RewardGold = 120
     },
     [6015] = {
         ItemID = 6015,
-        RewardGold = 40
+        RewardGold = 80
     },
     [6016] = {
         ItemID = 6016,
-        RewardGold = 100
+        RewardGold = 60
     },
     [6017] = {
         ItemID = 6017,
-        RewardGold = 120
+        RewardGold = 100
     },
     [6018] = {
         ItemID = 6018,
-        RewardGold = 120
+        RewardGold = 20
     },
     [6019] = {
         ItemID = 6019,
-        RewardGold = 20
+        RewardGold = 80
     },
     [6020] = {
         ItemID = 6020,
-        RewardGold = 5
+        RewardGold = 60
     },
     [6021] = {
         ItemID = 6021,
+        RewardGold = 20
+    },
+    [6022] = {
+        ItemID = 6022,
+        RewardGold = 20
+    },
+    [6023] = {
+        ItemID = 6023,
+        RewardGold = 5
+    },
+    [6024] = {
+        ItemID = 6024,
+        RewardGold = 40
+    },
+    [6025] = {
+        ItemID = 6025,
+        RewardGold = 20
+    },
+    [6026] = {
+        ItemID = 6026,
+        RewardGold = 60
+    },
+    [6027] = {
+        ItemID = 6027,
+        RewardGold = 80
+    },
+    [6028] = {
+        ItemID = 6028,
+        RewardGold = 20
+    },
+    [6029] = {
+        ItemID = 6029,
+        RewardGold = 100
+    },
+    [6030] = {
+        ItemID = 6030,
+        RewardGold = 120
+    },
+    [6031] = {
+        ItemID = 6031,
+        RewardGold = 120
+    },
+    [6032] = {
+        ItemID = 6032,
+        RewardGold = 20
+    },
+    [6033] = {
+        ItemID = 6033,
+        RewardGold = 5
+    },
+    [6034] = {
+        ItemID = 6034,
+        RewardGold = 5
+    },
+    [6035] = {
+        ItemID = 6035,
+        RewardGold = 5
+    },
+    [6036] = {
+        ItemID = 6036,
+        RewardGold = 40
+    },
+    [6037] = {
+        ItemID = 6037,
+        RewardGold = 50
+    },
+    [6038] = {
+        ItemID = 6038,
+        RewardGold = 20
+    },
+    [6039] = {
+        ItemID = 6039,
+        RewardGold = 20
+    },
+    [6040] = {
+        ItemID = 6040,
         RewardGold = 5
     }
 }
