@@ -8,7 +8,10 @@
 local GlobalSettingXls = {
     DefaultLanguage = "EN",
     NpcBubbleShowTime = 3.0,
-    NpcBubbleInterval = {5,8}
+    NpcBubbleInterval = {5,8},
+    MazeFlagModel = "Maze_Flag",
+    MazeFlagNum = 1.0,
+    MazePlayerMark = "Maze_Mark"
 }
 
 return GlobalSettingXls
