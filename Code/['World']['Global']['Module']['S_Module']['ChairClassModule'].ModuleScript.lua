@@ -19,10 +19,18 @@ local TypeEnum = {
     QTE = 2
 }
 
--- 特殊动作枚举
-local SpecialMovement = {}
+-- ***** 特殊动作实现 *****
+local function AroundTheWorld(_obj)
+end
 
----方向函数
+-- 特殊动作枚举
+local SpecialMovement = {
+    function(_obj)
+        AroundTheWorld(_obj)
+    end,
+    -- function(_obj)
+    -- end
+}
 
 ---椅子的构造函数
 ---@param _type string
@@ -59,6 +67,7 @@ function ChairClass:Sit(_player)
     self.model.CollisionArea:SetActive(false)
     self.model.LinearVelocity = Vector3.Zero
     self.model.IsStatic = false
+    self.normalShakeRatio = 1
     --判断是否开始QTE
     if self.type == TypeEnum.QTE then
         self:Fly()
@@ -75,6 +84,7 @@ function ChairClass:Stand()
     self.model.CollisionArea:SetActive(true)
     self.model.IsStatic = true
     self.qteDir = nil
+    self.normalShakeRatio = -1
     --判断是否结束QTE
     if self.type == TypeEnum.QTE then
         --self.model:Rotate(EulerDegree(-30, 0, 0))
@@ -93,7 +103,7 @@ end
 function ChairClass:Flying(dt)
     -- 一段时间后停下
     self.timer = self.timer + dt
-    self.model.LinearVelocity = (self.model.Forward + self.model.Up) * 30
+    self.model.LinearVelocity = (self.model.Forward + self.model.Up) * Config.ChairGlobalConfig.FlyingSpeed.Value
     if self.timer >= Config.ChairGlobalConfig.FlyingTime.Value then
         self.model.LinearVelocity = Vector3.Zero
         self.tweener:Pause()
@@ -144,13 +154,14 @@ function ChairClass:StartShake()
 end
 
 function ChairClass:NormalShake()
-    -- TODO: 读Config数据
+    -- 读Config数据
     if self.model.LocalRotation.x >= Config.ChairGlobalConfig.NormalMaxAngle.Value then
-        self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value * -1
+        self.normalShakeRatio = -1
     end
     if self.model.LocalRotation.x <= Config.ChairGlobalConfig.NormalMinAngle.Value then
-        self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value
+        self.normalShakeRatio = 1
     end
+    self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value * self.normalShakeRatio
 end
 
 function ChairClass:ResetRotation(dt)
@@ -159,15 +170,12 @@ end
 
 function ChairClass:ChairSpecialShake()
     self.model.AngularVelocity = Vector3.Zero
-    -- SpecialMovement[math.random(1, #SpecialMovement)]()
+    self.normalShakeRatio = 0
+    --SpecialMovement[math.random(1, #SpecialMovement)]()
 end
 
 function ChairClass:ChairSpeedUp()
-end
-
-function ChairClass:ResetAngularVelocity()
-    -- TODO: 读Config数据
-    self.model.AngularVelocity = nil
+    self.model.AngularVelocity = Config.ChairGlobalConfig.BoostAngularVelocity.Value * self.normalShakeRatio
 end
 
 --普通摇摇椅update函数

@@ -23,13 +23,9 @@ function GuiChair:DataInit()
 end
 
 function GuiChair:EventBind()
-    for k, v in pairs(this.normalBtn) do
-        v.OnClick:Connect(
-            function()
-                this:NormalShake()
-            end
-        )
-    end
+    this.boostBtn.OnClick:Connect(function()
+        NetUtil.Fire_S('NormalChairSpeedUpEvent',Chair.chair)
+    end)
     for k, v in pairs(this.qteBtn) do
         v.OnClick:Connect(
             function()
@@ -44,11 +40,7 @@ function GuiChair:NodeDef()
     this.sitBtn = localPlayer.Local.ControlGui.SitBtn
     this.gui = localPlayer.Local.ChairGui
     this.normalGui = this.gui.NormalPnl
-    this.normalBtn = {
-        up = this.normalGui.UpBtn,
-        down = this.normalGui.DownBtn
-    }
-    --this.normalBackBtn = this.normalGui.BackBtn
+    this.boostBtn=this.normalGui.BoostBtn
 
     this.QteGui = this.gui.QtePnl
     this.qteBtn = {
@@ -93,8 +85,7 @@ function GuiChair:EnterNormal()
     this.gui:SetActive(true)
     this.QteGui:SetActive(false)
     this.normalGui:SetActive(true)
-    this.normalBtn.up:SetActive(true)
-    this.normalBtn.down:SetActive(true)
+    this.boostBtn:SetActive(false)
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
 end
 
@@ -102,10 +93,6 @@ function GuiChair:EnterQte()
     this.gui:SetActive(true)
     this.QteGui:SetActive(true)
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
-end
-
-function GuiChair:NormalShake()
-    NetUtil.Fire_S()
 end
 
 function GuiChair:NormalShakeDirEventHandler(_upOrDown)

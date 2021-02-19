@@ -35,7 +35,8 @@ Events.ServerEvents = {
     "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
     "PlantFlowerEvent", -- @param _userId, _flowerObj
 	"DeleteFlowerEvent", -- @param _userId, _uuid
-	"WaterEvent", --@param _userId, _pos
+    "WaterEvent", --@param _userId, _pos
+    'NormalChairSpeedUpEvent',
 }
 
 -- 客户端事件列表
