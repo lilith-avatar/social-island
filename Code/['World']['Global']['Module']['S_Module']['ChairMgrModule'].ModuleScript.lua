@@ -3,10 +3,10 @@
 ---@author Yen Yuan
 local ChairMgr, this = ModuleUtil.New("ChairMgr", ServerBase)
 local dir = {
-    forward = "Forward",
-    left = "Left",
-    right = "Right",
-    back = "Back"
+    Forward = "Forward",
+    Left = "Left",
+    Right = "Right",
+    Back = "Back"
 }
 
 local playerChair = {}
@@ -36,28 +36,27 @@ end
 
 function ChairMgr:ChairCreate()
     for k, v in pairs(Config.ChairInfo) do
-        this.ChairList[v.Type][k] = {
-            model = world:CreateInstance(
-                v.Archetype,
-                k,
-                world.MiniGames.Game_10_Chair[v.Type .. "Chair"],
-                v.Position,
-                v.Rotation
-            ),
-            isSeat = false
-        }
+        this.ChairList[v.Type][k] =
+            ChairClass:new(
+            v.Type,
+            k,
+            v.Archetype,
+            world.MiniGames.Game_10_Chair[v.Type .. "Chair"],
+            v.Position,
+            v.Rotation
+        )
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
                     NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 10)
-                    NetUtil.Fire_C('ShowSitBtnEvent', _hitObject, v.Type, v.ID)
+                    NetUtil.Fire_C("ShowSitBtnEvent", _hitObject, v.Type, v.ID)
                 end
             end
         )
         this.ChairList[v.Type][k].model.CollisionArea.OnCollisionEnd:Connect(
             function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and not this.chairSitter[k] and _hitObject then
-                    NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                     playerChair[_hitObject.UserId] = nil
                 end
             end
@@ -68,9 +67,7 @@ end
 function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
     local player = world:GetPlayerByUserId(_uid)
     --让玩家坐（发事件）
-    this.ChairList[_type][_chairId].model.CollisionArea:SetActive(false)
-    this.ChairList[_type][_chairId].model.Rotation = Config.ChairInfo[_chairId].Rotation
-    this.ChairList[_type][_chairId].model.Seat:SetActive(true)
+    this.ChairList[_type][_chairId]:Sit(player)
     player.Position = this.ChairList[_type][_chairId].model.Seat.Position
     NetUtil.Fire_C(
         "PlayerSitEvent",
@@ -83,20 +80,13 @@ function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
     this.chairSitter[_chairId] = player
 end
 
-function ChairMgr:NormalShakeEventHandler(_chairId, _upOrDown)
-    this.NormalShake[_upOrDown](this.ChairList.Normal[_chairId].model)
-end
-
-function ChairMgr:NormalShakeUp(_chair)
-    local tweener = Tween:TweenProperty(_chair, {Rotation = EulerDegree(-20, 0, 0)}, 0.5, 1)
-    tweener:Play()
-    tweener:WaitForComplete()
-end
-
-function ChairMgr:NormalShakeDown(_chair)
-    local tweener = Tween:TweenProperty(_chair, {Rotation = EulerDegree(14, 0, 0)}, 0.5, 1)
-    tweener:Play()
-    tweener:WaitForComplete()
+function ChairMgr:Update(dt)
+    for k, v in pairs(this.ChairList.Normal) do
+        v:NormalUpdate(dt)
+    end
+    for k, v in pairs(this.ChairList.QTE) do
+        v:QteUpdate(dt)
+    end
 end
 
 function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
@@ -105,15 +95,16 @@ function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
     end
     local player = world:GetPlayerByUserId(_uid)
     this.chairSitter[_chairId] = nil
-    this.ChairList[_type][_chairId].model.CollisionArea:SetActive(true)
-    this.ChairList[_type][_chairId].model.Seat:SetActive(false)
+    this.ChairList[_type][_chairId]:Stand()
     player.Position = this.ChairList[_type][_chairId].model.LeavePosition.Position
-    this.ChairList[_type][_chairId].model.LinearVelocity = Vector3.Zero
+end
+
+function ChairMgr:NormalChairSpeedUpEventHandler(_chairId)
+    this.ChairList.Normal[_chairId]:ChairSpeedUp()
 end
 
 function ChairMgr:QteChairMoveEventHandler(_dir, _speed, _chairId)
-    local chair = this.ChairList.QTE[_chairId].model
-    chair.LinearVelocity = chair[dir[_dir]] * _speed
+    this.ChairList.QTE[_chairId]:SetSpeed(_dir, _speed)
 end
 
 return ChairMgr
