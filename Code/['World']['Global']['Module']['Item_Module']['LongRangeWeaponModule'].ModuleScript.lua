@@ -23,16 +23,32 @@ function LongRangeWeapon:ShootArrow()
     local arrow =
         world:CreateInstance(
         self.config.ArrowModelName,
-        config.ArrowModelName,
+        self.config.ArrowModelName,
         world,
         localPlayer.Avatar.Bone_R_Hand.Position,
         localPlayer.Rotation
     )
     arrow.Forward = dir
+    arrow.IsHunt.Value = self.config.Hunt
     arrow.LinearVelocity = arrow.Forward * 40
+    arrow.OnCollisionBegin:Connect(
+        function(_hitObj)
+            if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
+                NetUtil.Fire_S(
+                    "SPlayerHitEvent",
+                    localPlayer,
+                    _hitObj,
+                    ItemMgr.itemInstance[ItemMgr.curWeaponID]:GetAttackData()
+                )
+                arrow.OnCollisionBegin:Clear()
+                arrow:Destroy()
+            end
+        end
+    )
     invoke(
         function()
             if arrow then
+                arrow.OnCollisionBegin:Clear()
                 arrow:Destroy()
             end
         end,

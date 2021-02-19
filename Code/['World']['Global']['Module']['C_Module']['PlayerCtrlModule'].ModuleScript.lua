@@ -102,28 +102,10 @@ function PlayerCtrl:PlayerClap()
     NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
 end
 
--- 射箭逻辑
-function PlayerCtrl:PlayerArchery()
-    local dir = (localPlayer.ArrowAim.Position - localPlayer.Position)
-    dir.y = PlayerCam:TPSGetRayDir().y
-    dir = dir.Normalized
-    local arrow =
-        world:CreateInstance("Arrow_01", "Arrow", world, localPlayer.Avatar.Bone_R_Hand.Position, localPlayer.Rotation)
-    arrow.Forward = dir
-    arrow.LinearVelocity = arrow.Forward * 40
-    invoke(
-        function()
-            if arrow then
-                arrow:Destroy()
-            end
-        end,
-        3
-    )
-end
-
 --游泳检测
 function PlayerCtrl:PlayerSwim()
-    if FsmMgr.fsmState ~= "SwimIdle" and FsmMgr.fsmState ~= "Swimming" then
+    if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then
+        --print(localPlayer.Position, world.water.DeepWaterCol.Position)
         if
             localPlayer.Position.x < world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 and
                 localPlayer.Position.x > world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 and
@@ -131,7 +113,9 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.7
          then
-            FsmMgr:FsmTriggerEventHandler("SwimIdle")
+            print("游泳检测")
+            NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
+        --FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
         if
@@ -141,8 +125,8 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.7
          then
-            NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
-            FsmMgr:FsmTriggerEventHandler("Idle")
+            NetUtil.Fire_C("RemoveBuffEvent", localPlayer, 5)
+        --FsmMgr:FsmTriggerEventHandler("Idle")
         end
     end
 end
@@ -180,38 +164,66 @@ end
 -- 更新角色特效
 function PlayerCtrl:PlayerHeadEffectUpdate(_effectList)
     for k, v in pairs(localPlayer.Avatar.Bone_Head.HeadEffect:GetChildren()) do
-        if v.ActiveSelf then
+        --[[if v.ActiveSelf then
             v:SetActive(false)
-        end
+        end]]
+        v:Destroy()
     end
     for k, v in pairs(_effectList) do
-        localPlayer.Avatar.Bone_Head.HeadEffect[v]:SetActive(true)
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.Bone_Head.HeadEffect,
+            localPlayer.Avatar.Bone_Head.HeadEffect.Position
+        )
+        --localPlayer.Avatar.Bone_Head.HeadEffect[v]:SetActive(true)
     end
 end
 function PlayerCtrl:PlayerBodyEffectUpdate(_effectList)
     for k, v in pairs(localPlayer.Avatar.Bone_Pelvis.BodyEffect:GetChildren()) do
-        if v.ActiveSelf then
+        --[[if v.ActiveSelf then
             v:SetActive(false)
-        end
+        end]]
+        v:Destroy()
     end
     for k, v in pairs(_effectList) do
-        localPlayer.Avatar.Bone_Pelvis.BodyEffect[v]:SetActive(true)
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.Bone_Pelvis.BodyEffect,
+            localPlayer.Avatar.Bone_Pelvis.BodyEffect.Position
+        )
+        --localPlayer.Avatar.Bone_Pelvis.BodyEffect[v]:SetActive(true)
     end
 end
 function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
     for k, v in pairs(localPlayer.Avatar.Bone_R_Foot.FootEffect:GetChildren()) do
-        if v.ActiveSelf then
+        --[[if v.ActiveSelf then
             v:SetActive(false)
-        end
+        end]]
+        v:Destroy()
     end
     for k, v in pairs(localPlayer.Avatar.Bone_L_Foot.FootEffect:GetChildren()) do
-        if v.ActiveSelf then
+        --[[if v.ActiveSelf then
             v:SetActive(false)
-        end
+        end]]
+        v:Destroy()
     end
     for k, v in pairs(_effectList) do
-        localPlayer.Avatar.Bone_R_Foot.FootEffect[v]:SetActive(true)
-        localPlayer.Avatar.Bone_L_Foot.FootEffect[v]:SetActive(true)
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.Bone_R_Foot.FootEffect,
+            localPlayer.Avatar.Bone_R_Foot.FootEffect.Position
+        )
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.Bone_L_Foot.FootEffect,
+            localPlayer.Avatar.Bone_L_Foot.FootEffect.Position
+        )
+        --localPlayer.Avatar.Bone_R_Foot.FootEffect[v]:SetActive(true)
+        --localPlayer.Avatar.Bone_L_Foot.FootEffect[v]:SetActive(true)
     end
 end
 
@@ -231,6 +243,17 @@ function PlayerCtrl:UpdateCoinEventHandler(_num)
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end
+end
+
+-- 角色受伤
+function PlayerCtrl:CPlayerHitEventHandler(_data)
+    FsmMgr:FsmTriggerEventHandler("Hit")
+    FsmMgr:FsmTriggerEventHandler("BowHit")
+    FsmMgr:FsmTriggerEventHandler("OneHandedSwordHit")
+    FsmMgr:FsmTriggerEventHandler("TwoHandedSwordHit")
+    print("角色受伤", table.dump(_data))
+    BuffMgr:GetBuffEventHandler(_data.hitAddBuffID, _data.hitAddBuffDur)
+    BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
 end
 
 function PlayerCtrl:Update(dt)

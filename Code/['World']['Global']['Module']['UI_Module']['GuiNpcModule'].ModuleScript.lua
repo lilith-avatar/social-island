@@ -2,7 +2,7 @@
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang, Lin
-local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
+local GuiNpc, this = ModuleUtil.New("GuiNpc", ClientBase)
 
 -- GUI
 local controlGui, monsterGui, npcBtn
@@ -11,7 +11,7 @@ local npcGui, gameBtn, battleBtn, shopBtn, leaveBtn, dialogTxt
 -- Cache
 local Config = Config
 local NpcText = Config.NpcText
-local NpcInfo
+local NpcInfo = Config.NpcInfo
 
 -- Data
 local currNpcId
@@ -22,7 +22,10 @@ local taskItemID = 0
 
 --- 初始化
 function GuiNpc:Init()
-    print('[GuiNpc] Init()')
+    print("[GuiNpc] Init()")
+    -- Cache
+    ItemMgr = ItemMgr
+
     self:InitGui()
     self:InitData()
     self:InitResource()
@@ -52,7 +55,7 @@ end
 function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
-            npc.Portrait = ResourceManager.GetTexture('TestPortrait/' .. npc.PortraitRes)
+            npc.Portrait = ResourceManager.GetTexture("TestPortrait/" .. npc.PortraitRes)
         -- print('[GuiNpc] InitResource()', npc.PortraitRes)
         end
     end
@@ -63,32 +66,31 @@ function GuiNpc:InitListener()
     gameBtn.OnClick:Connect(EnterMiniGame)
     battleBtn.OnClick:Connect(StartMonsterBattle)
     shopBtn.OnClick:Connect(EnterShop)
-    leaveBtn.OnClick:Connect(LeaveNpc)
+    leaveBtn.OnClick:Connect(BeyondNpc)
 end
 
 --! GUI 功能
 
 --- 接触NPC
-function TouchNpc(_npcId, _npcObj)
+function FoundNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
-    print('[GuiNpc] TouchNpc()', _npcId)
-    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 12)
-    NetUtil.Fire_S('TouchNpcEvent', localPlayer, _npcId)
+    print("[GuiNpc] FoundNpc()", _npcId)
+    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 12)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
 
 --- 离开NPC
-function LeaveNpc()
-    print("[GuiNpc] LeaveNpc()", currNpcId)
+function BeyondNpc()
+    print("[GuiNpc] BeyondNpc()")
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+    if currNpcId then
+        NetUtil.Fire_C("LeaveNpcEvent", localPlayer, currNpcId)
+    end
     monsterGui.Visible = true
     npcGui.Visible = false
-    if currNpcId then
-        NetUtil.Fire_S('LeaveNpcEvent', localPlayer, currNpcId)
-    end
     currNpcId = nil
     currNpcObj = nil
 end
@@ -100,9 +102,10 @@ function OpenNpcGui()
     end
     print("[GuiNpc] OpenNpcGui()")
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 12)
-    NetUtil.Fire_S('StartTalkNpcEvent', localPlayer, currNpcId)
-    --monsterGui.Visible = false
+    NetUtil.Fire_C("TalkToNpcEvent", localPlayer, currNpcId)
     npcGui.Visible = true
+    gameBtn.Visible = NpcInfo[currNpcId].GameId ~= nil
+    shopBtn.Visible = NpcInfo[currNpcId].ShopId ~= nil
 
     local portrait = NpcInfo[currNpcId].Portrait
     portraitImg.Texture = portrait
@@ -112,8 +115,8 @@ function OpenNpcGui()
     if taskItemID == 0 then
         dialogTxt.Text = PickARandomDialog()
     else
-        dialogTxt.Text = LanguageUtil.GetText(ItemMgr.itemInstance[taskItemID].config.NpcText)
-        ItemMgr.itemInstance[taskItemID]:GetTaskReward()
+        dialogTxt.Text = ItemMgr:GetNpcText(taskItemID)
+        ItemMgr:RedeemTaskItemReward(taskItemID)
         taskItemID = 0
     end
 
@@ -128,21 +131,25 @@ function EnterMiniGame()
     end
 
     local gameId = NpcInfo[currNpcId].GameId
-    NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
+    NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, gameId)
     --! Test only
-    print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
+    print("[GuiNpc] EnterMiniGameEvent", localPlayer, gameId)
 end
 
 --- 打开商城
 function EnterShop()
-    print('[GuiNpc] EnterShop()')
+    print("[GuiNpc] EnterShop()")
+    if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].ShopId == nil then
+        return
+    end
     -- TODO: 商店相关逻辑
+    NetUtil.Fire_C("SwitchStoreUIEvent", localPlayer, 1, currNpcId)
 end
 
 --- 开始宠物战斗
 function StartMonsterBattle()
-    print('[GuiNpc] StartMonsterBattle()')
-    NetUtil.Fire_S('StartBattleEvent', true, currNpcObj, localPlayer)
+    print("[GuiNpc] StartMonsterBattle()")
+    NetUtil.Fire_S("StartBattleEvent", true, currNpcObj, localPlayer)
 end
 
 --- 随机选取一段对话
@@ -152,7 +159,7 @@ function PickARandomDialog()
     end
     local dialogId = table.shuffle(NpcInfo[currNpcId].DialogId)[1]
     local dialog = NpcText[dialogId].Text
-    assert(dialogId and dialog, string.format('[GuiNpc] NPC: %s, 不存在DialogId: %s', currNpcId, dialogId))
+    assert(dialogId and dialog, string.format("[GuiNpc] NPC: %s, 不存在DialogId: %s", currNpcId, dialogId))
     return LanguageUtil.GetText(dialog)
 end
 
@@ -161,9 +168,9 @@ end
 -- 进入或离开NPC碰撞区域
 function GuiNpc:TouchNpcEventHandler(_npcId, _npcObj)
     if _npcId and _npcObj then
-        TouchNpc(_npcId, _npcObj)
+        FoundNpc(_npcId, _npcObj)
     else
-        LeaveNpc()
+        BeyondNpc()
     end
 end
 

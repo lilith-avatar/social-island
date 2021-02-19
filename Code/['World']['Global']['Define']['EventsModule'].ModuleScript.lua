@@ -8,12 +8,6 @@ Events.ServerEvents = {
     -- 进入小游戏
     "EnterMiniGameEvent", -- @param _player, _gameId
     "ExitMiniGameEvent", -- @param nil
-    -- 接触NPC
-    "TouchNpcEvent", -- @param _player, _npcId
-    -- 离开NPC
-    "LeaveNpcEvent", -- @param _player, _npcId
-    -- 开始与NPC对话
-    "StartTalkNpcEvent", -- @param _player, _npcId
     -- 交互
     "InteractSEvent", -- @param _player, _id
     "MazeEvent",
@@ -21,6 +15,7 @@ Events.ServerEvents = {
     "PlayerStartMoleHitEvent",
     "PlayerLeaveMoleHitEvent",
     "NormalShakeEvent",
+    "SnailBetEvent",
     "PlayerLeaveChairEvent",
     "QteChairMoveEvent",
     "PlayerClickSitBtnEvent",
@@ -34,8 +29,10 @@ Events.ServerEvents = {
     "SaveMDataEvent", -- @param _userId, _playerdata
     "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
     "PlantFlowerEvent", -- @param _userId, _flowerObj
-	"DeleteFlowerEvent", -- @param _userId, _uuid
+    "DeleteFlowerEvent", -- @param _userId, _uuid
     "WaterEvent", --@param _userId, _pos
+    "SPlayerHitEvent",
+    "NpcMonsterGameOverEvent", --@param _NpcMonsterId
     'NormalChairSpeedUpEvent',
 }
 
@@ -45,10 +42,13 @@ Events.ClientEvents = {
     "SyncDataEvent", -- @param _playerData
     -- 数据载入结束
     "EndLoadDataEvent", -- @param nil
+    -- 接触NPC
+    "TalkToNpcEvent", -- @param _player, _npcId
+    -- 离开NPC
+    "LeaveNpcEvent", -- @param _player, _npcId
     --- 关闭通用UI事件
     "SetDefUIEvent", -- @param _bool, _nodes, _root
     --- 重置通用UI事件
-
     "ResetDefUIEvent",
     --- 进入小游戏修改UI事件
     "ChangeMiniGameUIEvent",
@@ -64,6 +64,7 @@ Events.ClientEvents = {
     "SetMiniGameGuiEvent", -- @param  _gameId, _selfActive, _ctrlGuiActive
     --- 状态机改变触发
     "FsmTriggerEvent", -- @param  _state
+    "CPlayerHitEvent",
     -- 修改是否能控制角色
     "SetPlayerControllableEvent", -- @param _bool
     "AddScoreAndBoostEvent",
@@ -88,12 +89,15 @@ Events.ClientEvents = {
     "UpdateCoinEvent",
     "GetItemEvent",
     "RemoveItemEvent",
+    "UseItemEvent",
     "CreateItemObjEvent",
     --开始扫描事件
     "MonsterScanEvent", --@param _pos,_euler,_time
     "LeaveMoleGameRangeEvent",
-	"LightHitEvent", --雷电打击
-	"WaterEvent", -- @Pos
+    "InsertInfoEvent",
+    "LightHitEvent", --雷电打击
+    "WaterEvent", -- @Pos
+    "SwitchStoreUIEvent"
 }
 
 return Events

@@ -14,6 +14,9 @@ local startPoints = {}
 -- 终点
 local endPoints = {}
 
+--- 开始倒计时
+local startCD = 10
+
 -- 蜗牛运动状态枚举
 local snailActState = {
     READY = 1,
@@ -76,8 +79,27 @@ end
 --- 节点事件绑定
 function Snail:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 8 then
-        this:StartSnailRace()
+        if this:IsBetable(_player) then
+            NetUtil.Fire_C("InteractCEvent", _player, 8)
+        else
+            NetUtil.Fire_C("InsertInfoEvent", _player, "你不能多次投注或在比赛进行中投注", 3, true)
+        end
     end
+end
+
+--- 检查是否可以投注
+function Snail:IsBetable(_player)
+    if gameState ~= snailGameState.WAIT then
+        return false
+    end
+    for k1, v1 in pairs(snailObjPool) do
+        for k2, v2 in pairs(v1.betPlayer) do
+            if v2.player == _player then
+                return false
+            end
+        end
+    end
+    return true
 end
 
 --- 投注
@@ -100,8 +122,24 @@ function Snail:IsStartRace()
     return false
 end
 
+--- 开始倒计时
+function Snail:StartRaceCD(dt)
+    if this:IsStartRace() then
+        if startCD <= 0 then
+            startCD = 10
+            this:StartSnailRace()
+        else
+            if startCD == 10 then
+                NetUtil.Broadcast("InsertInfoEvent", "蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧", 3)
+            end
+            startCD = startCD - dt
+        end
+    end
+end
+
 --- 开始比赛
 function Snail:StartSnailRace()
+    NetUtil.Broadcast("InsertInfoEvent", "蜗牛赛跑竞猜开始啦", 3)
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
 
@@ -109,7 +147,7 @@ function Snail:StartSnailRace()
         v.obj.LinearVelocityController.TargetLinearVelocity = Vector3(0, 0, v.moveData[v.moveStep].speed)
         v.state = snailActState.MOVE
     end
-    this.gameState = snailGameState.RACE
+    gameState = snailGameState.RACE
 end
 
 --- 生成移动数据
@@ -160,18 +198,18 @@ function Snail:SnailFinish(_snailObjPool)
         print("[Snail]", _snailObjPool.obj, "到达终点")
         _snailObjPool.state = snailActState.FINISH
         _snailObjPool.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-        _snailObjPool.ranking = 1
+        _snailObjPool.ranking = 0
         for k, v in pairs(snailObjPool) do
             if v.state == snailActState.FINISH then
                 _snailObjPool.ranking = _snailObjPool.ranking + 1
             end
         end
+        this:ShowRank(_snailObjPool)
+        this:GiveReward(_snailObjPool)
         if this:IsResetRace() then
             invoke(
                 function()
                     this:ResetSnailRace()
-                    --- 发奖励的临时代码
-                    this:GiveReward()
                 end,
                 2
             )
@@ -180,13 +218,35 @@ function Snail:SnailFinish(_snailObjPool)
     --_snailObjPool.obj.Position = startPoints[_snailObjPool.index].Position
 end
 
---- 发奖励的临时代码
-local coinNum
-function Snail:GiveReward()
-    for k, v in pairs(world:FindPlayers()) do
-        coinNum = math.random(1, 50)
-        NetUtil.Fire_C("UpdateCoinEvent", v, coinNum)
-        NetUtil.Fire_C("GetItemEvent", v, 5011)
+--- 显示名次
+function Snail:ShowRank(_snailObjPool)
+    _snailObjPool.obj.SurfaceGUI:SetActive(true)
+    _snailObjPool.obj.SurfaceGUI.Panel.RankText.Text = _snailObjPool.ranking
+end
+
+--- 发奖励
+function Snail:GiveReward(_snailObjPool)
+    local reward = 0
+    if _snailObjPool.ranking == 2 then
+        reward = 2
+    elseif _snailObjPool.ranking == 1 then
+        reward = 3
+    end
+    for k, v in pairs(_snailObjPool.betPlayer) do
+        NetUtil.Fire_C("UpdateCoinEvent", v.player, v.money * reward)
+        if _snailObjPool.ranking < 3 then
+            NetUtil.Fire_C(
+                "InsertInfoEvent",
+                v.player,
+                "你投注的蜗牛获得了第" .. _snailObjPool.ranking .. "名,为你赢得了" .. v.money * reward .. "金币",
+                3,
+                false
+            )
+        else
+            NetUtil.Fire_C("InsertInfoEvent", v.player, "你投注的蜗牛获得了第" .. _snailObjPool.ranking .. "名,并没有奖励", 3, false)
+        end
+
+        --NetUtil.Fire_C("GetItemEvent", v, 5011)
     end
 end
 
@@ -211,11 +271,14 @@ function Snail:ResetSnailRace()
         v.moveData = {}
         v.betPlayer = {}
         v.obj.Position = startPoints[v.index].Position
+        v.obj.SurfaceGUI:SetActive(false)
     end
+    gameState = snailGameState.WAIT
 end
 
 function Snail:Update(dt)
-    if this.gameState == snailGameState.RACE then
+    this:StartRaceCD(dt)
+    if gameState == snailGameState.RACE then
         this:SnailMove(dt)
     end
 end

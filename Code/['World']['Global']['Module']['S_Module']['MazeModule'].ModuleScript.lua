@@ -624,6 +624,7 @@ end
 -- 玩家开始迷宫
 function PlayerStartMaze(_player)
     print('[Maze] PlayerStartMaze')
+    NetUtil.Fire_C("InsertInfoEvent", _player, "在规定时间内找到迷宫的出口", 5, true)
     playerData = {}
     playerData.player = _player
     playerData.checker = 0

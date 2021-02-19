@@ -17,7 +17,9 @@ local AnimalXls = {
         MoveAnimationName = {'Run'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 24,
+        LVCtrlIntensity = 500000,
+        RotCtrlIntensity = 1000000
     },
     [2] = {
         ID = 2,
@@ -30,7 +32,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 12,
+        LVCtrlIntensity = 50000000,
+        RotCtrlIntensity = 200000000
     },
     [3] = {
         ID = 3,
@@ -43,7 +47,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 12,
+        LVCtrlIntensity = 50000000,
+        RotCtrlIntensity = 200000000
     },
     [4] = {
         ID = 4,
@@ -53,10 +59,12 @@ local AnimalXls = {
         ScaredMoveSpeed = 0.001,
         IdleAnimationName = {'Idle', 'Idle2'},
         IdleAnimationDurRange = {60, 60},
-        MoveAnimationName = {'Idle', 'Idle2'},
+        MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {5, 5},
         DeadAnimationName = {'Dead'},
-        Weight = 20
+        Weight = 20,
+        LVCtrlIntensity = 600000000,
+        RotCtrlIntensity = 600000000
     },
     [5] = {
         ID = 5,
@@ -69,7 +77,9 @@ local AnimalXls = {
         MoveAnimationName = {'Walk'},
         MoveAnimationDurRange = {1, 3},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 30,
+        LVCtrlIntensity = 100000,
+        RotCtrlIntensity = 80000
     },
     [6] = {
         ID = 6,
@@ -80,22 +90,41 @@ local AnimalXls = {
         IdleAnimationName = {'Idle', 'Idle2'},
         IdleAnimationDurRange = {5, 20},
         MoveAnimationName = {'Walk'},
-        MoveAnimationDurRange = {1, 2},
+        MoveAnimationDurRange = {1, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 5,
+        LVCtrlIntensity = 1800000,
+        RotCtrlIntensity = 10000000
     },
     [7] = {
         ID = 7,
         Name = '灰狼',
-        ArchetypeName = 'Animal_wolf',
+        ArchetypeName = 'Animal_Wolf',
         DefMoveSpeed = 3.0,
         ScaredMoveSpeed = 8.0,
         IdleAnimationName = {'Idle', 'Idle2'},
         IdleAnimationDurRange = {5, 20},
         MoveAnimationName = {'Walk'},
-        MoveAnimationDurRange = {1, 2},
+        MoveAnimationDurRange = {2, 4},
         DeadAnimationName = {'Dead'},
-        Weight = 5
+        Weight = 10,
+        LVCtrlIntensity = 640000,
+        RotCtrlIntensity = 540000
+    },
+    [8] = {
+        ID = 8,
+        Name = '蜗牛',
+        ArchetypeName = 'Animal_Snail',
+        DefMoveSpeed = 1.0,
+        ScaredMoveSpeed = 1.5,
+        IdleAnimationName = {'Idle'},
+        IdleAnimationDurRange = {5, 20},
+        MoveAnimationName = {'Move'},
+        MoveAnimationDurRange = {4, 8},
+        DeadAnimationName = {'Dead'},
+        Weight = 45,
+        LVCtrlIntensity = 1600000,
+        RotCtrlIntensity = 40000
     }
 }
 

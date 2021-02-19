@@ -716,6 +716,177 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
+    },
+    [6022] = {
+        ItemID = 6022,
+        Name = 'Item_Name_6022',
+        Des = 'Item_Des_6022',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6023] = {
+        ItemID = 6023,
+        Name = 'Item_Name_6023',
+        Des = 'Item_Des_6023',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6024] = {
+        ItemID = 6024,
+        Name = 'Item_Name_6024',
+        Des = 'Item_Des_6024',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6025] = {
+        ItemID = 6025,
+        Name = 'Item_Name_6025',
+        Des = 'Item_Des_6025',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6026] = {
+        ItemID = 6026,
+        Name = 'Item_Name_6026',
+        Des = 'Item_Des_6026',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6027] = {
+        ItemID = 6027,
+        Name = 'Item_Name_6027',
+        Des = 'Item_Des_6027',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6028] = {
+        ItemID = 6028,
+        Name = 'Item_Name_6028',
+        Des = 'Item_Des_6028',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6029] = {
+        ItemID = 6029,
+        Name = 'Item_Name_6029',
+        Des = 'Item_Des_6029',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6030] = {
+        ItemID = 6030,
+        Name = 'Item_Name_6030',
+        Des = 'Item_Des_6030',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6031] = {
+        ItemID = 6031,
+        Name = 'Item_Name_6031',
+        Des = 'Item_Des_6031',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6032] = {
+        ItemID = 6032,
+        Name = 'Item_Name_6032',
+        Des = 'Item_Des_6032',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6033] = {
+        ItemID = 6033,
+        Name = 'Item_Name_6033',
+        Des = 'Item_Des_6033',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6034] = {
+        ItemID = 6034,
+        Name = 'Item_Name_6034',
+        Des = 'Item_Des_6034',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6035] = {
+        ItemID = 6035,
+        Name = 'Item_Name_6035',
+        Des = 'Item_Des_6035',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6036] = {
+        ItemID = 6036,
+        Name = 'Item_Name_6036',
+        Des = 'Item_Des_6036',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6037] = {
+        ItemID = 6037,
+        Name = 'Item_Name_6037',
+        Des = 'Item_Des_6037',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6038] = {
+        ItemID = 6038,
+        Name = 'Item_Name_6038',
+        Des = 'Item_Des_6038',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6039] = {
+        ItemID = 6039,
+        Name = 'Item_Name_6039',
+        Des = 'Item_Des_6039',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6040] = {
+        ItemID = 6040,
+        Name = 'Item_Name_6040',
+        Des = 'Item_Des_6040',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
     }
 }
 

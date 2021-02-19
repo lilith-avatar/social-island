@@ -74,11 +74,11 @@ function Cannon:GetOnCannon(_player)
         insidePlayer.Position = barrel.InsidePoint.Position
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 4)
         NetUtil.Fire_C("SetCurCamEvent", insidePlayer, cam)
+        NetUtil.Fire_C("InsertInfoEvent", insidePlayer, "点击发射按钮射出", 5, true)
     end
 end
 
 function Cannon:InteractSEventHandler(_player, _id)
-    print("[Cannon]", _player, _id)
     if _id == 4 then
         this:GetOnCannon(_player)
     end

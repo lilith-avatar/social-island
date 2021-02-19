@@ -114,14 +114,14 @@ local InteractXls = {
         ID = 8,
         Name = 'Snail',
         IsEnterByNPC = true,
-        JoystickActive = true,
+        JoystickActive = false,
         MenuActive = true,
-        CtrlActive = true,
-        UseBtnActive = true,
-        JumpBtnActive = true,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
         LeaveBtnActive = false,
         UseBtnIcon = '',
-        OpenGui = ''
+        OpenGui = 'SnailGUI'
     },
     [9] = {
         ID = 9,
@@ -174,6 +174,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = 'NpcGui'
+    },
+    [13] = {
+        ID = 13,
+        Name = 'ScenesInteract',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

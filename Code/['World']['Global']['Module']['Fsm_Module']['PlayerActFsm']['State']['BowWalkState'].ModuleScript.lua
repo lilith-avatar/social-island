@@ -7,7 +7,7 @@ end
 
 function BowWalk:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle", "BowAttack"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Idle","BowHit", "SwimIdle", "BowAttack"})
     self:IdleMonitor("Bow")
     self:RunMonitor("Bow")
     self:JumpMonitor("Bow")
