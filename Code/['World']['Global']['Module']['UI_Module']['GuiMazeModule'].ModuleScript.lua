@@ -45,9 +45,6 @@ function GuiMaze:InitGui()
     jumpBtn = controlGui.Ctrl.JumpBtn
     useBtn = controlGui.Ctrl.UseBtn
     socialAnimBtn = controlGui.Menu.SocialAnimBtn
-    -- GUI monster
-    monsterGui = guiRoot.MonsterGUI
-    mainBtn = monsterGui.MainBtn
 end
 
 -- 进入迷宫
@@ -116,8 +113,6 @@ function EnableMazeGui()
     jumpBtn:SetActive(false)
     useBtn:SetActive(false)
     socialAnimBtn:SetActive(false)
-    -- GUI monster
-    mainBtn:SetActive(false)
     -- GUI info
     infoGui:SetActive(true)
     timerTxt:SetActive(true)
@@ -130,8 +125,6 @@ function DisableMazeGui()
     jumpBtn:SetActive(true)
     useBtn:SetActive(true)
     socialAnimBtn:SetActive(true)
-    -- GUI monster
-    mainBtn:SetActive(true)
     -- GUI info
     infoGui:SetActive(false)
     timerTxt:SetActive(false)
