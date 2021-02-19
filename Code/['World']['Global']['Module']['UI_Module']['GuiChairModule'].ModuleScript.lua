@@ -38,11 +38,6 @@ function GuiChair:EventBind()
             end
         )
     end
-    --[[this.normalBackBtn.OnClick:Connect(
-        function()
-            this:NormalBack()
-        end
-    )]]
 end
 
 function GuiChair:NodeDef()

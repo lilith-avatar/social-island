@@ -57,6 +57,7 @@ function ChairClass:Sit(_player)
     self.startUpdate = true
     self.model.Seat:SetActive(true)
     self.model.CollisionArea:SetActive(false)
+    self.model.LinearVelocity = Vector3.Zero
     --判断是否开始QTE
     if self.type == TypeEnum.QTE then
         self:Fly()
@@ -69,12 +70,13 @@ function ChairClass:Stand()
     self.state = StateEnum.free
     self.model.Seat:SetActive(false)
     self.model.CollisionArea:SetActive(true)
+    self.model.IsStatic = true
     self.qteDir = nil
     --判断是否结束QTE
     if self.type == TypeEnum.QTE then
-        self.model:Rotate(EulerDegree(-30, 0, 0))
-        self.state = StateEnum.returning
+        --self.model:Rotate(EulerDegree(-30, 0, 0))
         self:Return()
+        self.state = StateEnum.returning
     end
 end
 
@@ -91,6 +93,9 @@ function ChairClass:Flying(dt)
     self.model.LinearVelocity = (self.model.Forward + self.model.Up) * 30
     if self.timer >= Config.ChairGlobalConfig.FlyingTime.Value then
         self.model.LinearVelocity = Vector3.Zero
+        self.tweener:Pause()
+        self.tweener:Destroy()
+        self.tweener = nil
         self.state = StateEnum.qteing
         self.timer = 0
     end
@@ -103,8 +108,9 @@ function ChairClass:SetSpeed(_dir, _speed)
 end
 
 function ChairClass:Return()
+    self.model.IsStatic = false
     -- TODO: 开始返程
-    self.model.LinearVelocity = 10 * (self.model.Position - self.freshcoo) --! 10 is a temp data!!!
+    self.model.LinearVelocity = (self.freshcoo - self.model.Position).Normalized * 5
 end
 
 function ChairClass:QteUpdate(dt)
@@ -116,13 +122,12 @@ function ChairClass:QteUpdate(dt)
     end
     if self.state == StateEnum.qteing and self.qteDir then
         self.model.Forward = Vector3.Slerp(self.model.Forward, self.qteDir, 0.8 * dt)
-        self.tweener:Pause()
-        self.tweener = nil
     end
     if self.state == StateEnum.returning then
         if (self.model.Position - Config.ChairInfo[self.id].Position).Magnitude <= 3 then
-            self.model.IsStatic, self.model.LinearVelocitymself.model.Position, self.model.Rotation =
+            self.model.IsStatic, self.model.LinearVelocity,self.model.Position, self.model.Rotation =
                 true,
+                Vector3.Zero,
                 Config.ChairInfo[self.id].Position,
                 Config.ChairInfo[self.id].Rotation
             self.state = StateEnum.free
