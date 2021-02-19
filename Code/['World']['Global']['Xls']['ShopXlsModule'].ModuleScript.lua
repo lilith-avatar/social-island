@@ -7,19 +7,19 @@
 
 local ShopXls = {
     [1] = {
-        [1] = {
+        [1001] = {
             NpcId = 1,
             Index = 1,
             ItemId = 1001,
             Price = 5
         },
-        [2] = {
+        [2001] = {
             NpcId = 1,
             Index = 2,
             ItemId = 2001,
             Price = 10
         },
-        [3] = {
+        [3001] = {
             NpcId = 1,
             Index = 3,
             ItemId = 3001,

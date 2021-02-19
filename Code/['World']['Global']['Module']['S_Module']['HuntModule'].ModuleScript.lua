@@ -25,7 +25,8 @@ local animalActState = {
     IDLE = 1,
     MOVE = 2,
     SCARED = 3,
-    DEADED = 4
+    BACK = 4,
+    DEADED = 5
 }
 
 --- 初始化
@@ -258,6 +259,26 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
         _animalData.obj.RotationController.TargetRotation =
             EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
+    elseif _animalData.state == animalActState.BACK then
+        _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
+        _animalData.obj:SetActive(true)
+        _animalData.obj.AnimatedMesh:PlayAnimation(
+            _animalData.moveAnimationName[math.random(#_animalData.moveAnimationName)],
+            2,
+            1,
+            0.1,
+            true,
+            true,
+            1
+        )
+        _animalData.obj.LinearVelocityController.TargetLinearVelocity =
+            _linearVelocity or
+            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
+        _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.DEADED then
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
         _animalData.obj.RotationController.Intensity = 0
@@ -285,7 +306,7 @@ end
 
 --- 动物惊吓
 function Hunt:AnimalScared(_animalData)
-    if _animalData.state ~= animalActState.DEADED then
+    if _animalData.state ~= animalActState.DEADED and _animalData.state ~= animalActState.BACK then
         for k, v in pairs(world:FindPlayers()) do
             if (v.Position - _animalData.obj.Position).Magnitude < 6 then
                 local dis = (v.Position - _animalData.obj.Position).Magnitude
@@ -309,11 +330,11 @@ end
 --- 动物范围限制
 function Hunt:AnimalRangeLimit(_animalArea)
     for k, v in pairs(_animalArea.animalData) do
-        if v.state ~= animalActState.DEADED then
+        if v.state ~= animalActState.DEADED and v.state ~= animalActState.BACK then
             if (v.obj.Position - _animalArea.pos).Magnitude > _animalArea.range then
                 this:ChangeAnimalState(
                     v,
-                    animalActState.MOVE,
+                    animalActState.BACK,
                     (_animalArea.pos - v.obj.Position).Normalized * v.defMoveSpeed
                 )
             end
