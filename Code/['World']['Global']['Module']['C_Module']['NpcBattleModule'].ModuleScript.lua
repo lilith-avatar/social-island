@@ -27,10 +27,11 @@ function NpcBattle:ReadyBattleEventHandler(_currObj)
     if currNpcObj then
         print('NPC准备战斗')
         npcGui.Visible = false
-        currNpcObj.MonsterVal.Value.Position = currNpcObj.Position - currNpcObj.Forward * 2
+        --currNpcObj.MonsterVal.Value.Position = currNpcObj.Position - currNpcObj.Forward * 2 --往NPC后侧移动
         this.currentHealth = math.random(50, 100)
         currNpcObj.HealthVal.Value = this.currentHealth
         currNpcObj.AttackVal.Value = math.random(20, 30)
+		currNpcObj.IsBattle.Value = true
         this.HealthGUI = currNpcObj.MonsterVal.Value.Cube.HealthGui
         this.HealthGUI:SetActive(true)
         this:HealthChange()
@@ -67,12 +68,22 @@ function NpcBattle:MBattleEventHandler(_enum, _arg1, _arg2)
                 this:HealthChange()
                 local Tweener = Tween:ShakeProperty(currNpcObj.MonsterVal.Value.Cube, {'LocalPosition'}, 1, 0.1)
                 Tweener:Play()
-                wait(1)
-                this.HealthGUI.HitText.Text = ''
+					wait(1)
+				if this.HealthGUI then
+					this.HealthGUI.HitText.Text = ''
+				end
             end
         )
-    elseif _enum == Const.MonsterEnum.OVER then
+    elseif _enum == Const.MonsterEnum.OVER and this.HealthGUI then
         this.HealthGUI:SetActive(false)
+		currNpcObj.IsBattle.Value = false
+		NetUtil.Fire_S("NpcMonsterGameOverEvent",currNpcObj.NpcId.Value)
+		currNpcObj.MonsterVal.Value:Destroy()
+		currNpcObj:Destroy()
+		
+		if _arg1 then
+			print('[NpcBattle]获得奖励')
+		end
     end
 end
 
