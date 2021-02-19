@@ -174,6 +174,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = 'NpcGui'
+    },
+    [13] = {
+        ID = 13,
+        Name = 'ScenesInteract',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

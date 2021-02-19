@@ -111,6 +111,12 @@ function ItemMgr:RemoveItemEventHandler(_id)
     this.itemInstance[_id]:ThrowOutOfBag()
 end
 
+--使用道具
+function ItemMgr:UseItemEventHandler(_id)
+    print('使用道具', _id)
+    this.itemInstance[_id]:Use()
+end
+
 --获取满足条件的任务道具
 function ItemMgr:GetTaskItem(_npcID)
     local npcTable

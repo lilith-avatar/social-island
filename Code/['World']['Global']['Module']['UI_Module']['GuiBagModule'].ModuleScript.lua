@@ -136,7 +136,7 @@ end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index].id = _itemId
-	print(_index,this.slotList[_index].Name)
+    print(_index, this.slotList[_index].Name)
     -- 更换图片
     --this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
     --this.slotList[_index].IconImg.Size = this.slotList[_index].Size
@@ -165,6 +165,7 @@ function GuiBag:ClickUseBtn(_index)
     this.timer[itemId] = 0
     -- TODO: 使用物品
     -- 物品消耗判定
+    NetUtil.Fire_C("UseItemEvent", localPlayer, itemId)
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
         Data.Player.bag[itemId].count = Data.Player.bag[itemId].count - 1
