@@ -11,7 +11,8 @@ local ScenesInteractXls = {
         Name = '光剑',
         Path = 'LaserSword',
         ItemID = 1015,
-        IsGet = true
+        IsGet = true,
+        UseCount = 10
     }
 }
 

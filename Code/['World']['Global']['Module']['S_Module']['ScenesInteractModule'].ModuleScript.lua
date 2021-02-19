@@ -25,7 +25,8 @@ function ScenesInteract:NodeRef()
         interactOBJ[k] = {
             obj = world.ScenesInteract[v.Path],
             itemID = v.ItemID,
-            isGet = v.IsGet
+            isGet = v.IsGet,
+            useCount = v.UseCount
         }
     end
 end
@@ -59,16 +60,22 @@ end
 function ScenesInteract:Update(dt)
 end
 
-function ScenesInteract:InteractSEventHandler(_player,_id)
+function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 13 then
         if curInteractID[_player.UserId] then
-            if interactOBJ[curInteractID[_player.UserId]].isGet then
-                NetUtil.Fire_C("GetItemEvent",_player,interactOBJ[curInteractID[_player.UserId]].itemID)
+            if interactOBJ[curInteractID[_player.UserId]].useCount > 0 then
+                if interactOBJ[curInteractID[_player.UserId]].isGet then
+                    NetUtil.Fire_C("GetItemEvent", _player, interactOBJ[curInteractID[_player.UserId]].itemID)
+                else
+                    NetUtil.Fire_C("UseItemEvent", _player, interactOBJ[curInteractID[_player.UserId]].itemID)
+                end
+                interactOBJ[curInteractID[_player.UserId]].useCount =
+                    interactOBJ[curInteractID[_player.UserId]].useCount - 1
             else
-                NetUtil.Fire_C("UseItemEvent",_player,interactOBJ[curInteractID[_player.UserId]].itemID)
+                interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
             end
         end
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
     end
 end
 
