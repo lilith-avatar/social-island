@@ -645,7 +645,7 @@ local LanguagePackXls = {
     },
     Item_Name_1002 = {
         ID = 'Item_Name_1002',
-        CHS = '树枝',
+        CHS = '坚硬的树枝',
         CHT = '',
         EN = '',
         JP = ''
@@ -2115,168 +2115,168 @@ local LanguagePackXls = {
     },
     Item_Name_6028 = {
         ID = 'Item_Name_6028',
-        CHS = '蜗牛壳',
+        CHS = '窃蛋龙足化石',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6028 = {
         ID = 'Item_Des_6028',
-        CHS = '就像人的指纹，每个蜗牛的壳的形状都不一样。',
+        CHS = '像鸡爪一样。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6029 = {
         ID = 'Item_Name_6029',
-        CHS = '窃蛋龙足化石',
+        CHS = '三角龙角化石',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6029 = {
         ID = 'Item_Des_6029',
-        CHS = '像鸡爪一样。',
+        CHS = '像利齿一样。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6030 = {
         ID = 'Item_Name_6030',
-        CHS = '三角龙角化石',
+        CHS = '霸王龙蛋化石',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6030 = {
         ID = 'Item_Des_6030',
-        CHS = '像利齿一样。',
+        CHS = '又大又圆。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6031 = {
         ID = 'Item_Name_6031',
-        CHS = '霸王龙蛋化石',
+        CHS = '蛐蛐',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6031 = {
         ID = 'Item_Des_6031',
-        CHS = '又大又圆。',
+        CHS = '吵闹的小家伙。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6032 = {
         ID = 'Item_Name_6032',
-        CHS = '蛐蛐',
+        CHS = '蜘蛛',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6032 = {
         ID = 'Item_Des_6032',
-        CHS = '吵闹的小家伙。',
+        CHS = '可怕的东西，应该没有毒吧？',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6033 = {
         ID = 'Item_Name_6033',
-        CHS = '蜘蛛',
+        CHS = '鼠妇',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6033 = {
         ID = 'Item_Des_6033',
-        CHS = '可怕的东西，应该没有毒吧？',
+        CHS = '潮湿的地方就有它。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6034 = {
         ID = 'Item_Name_6034',
-        CHS = '鼠妇',
+        CHS = '树枝',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6034 = {
         ID = 'Item_Des_6034',
-        CHS = '潮湿的地方就有它。',
+        CHS = '有人拿来当柴火。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6035 = {
         ID = 'Item_Name_6035',
-        CHS = '树枝',
+        CHS = '孔雀翎',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6035 = {
         ID = 'Item_Des_6035',
-        CHS = '有人拿来当柴火。',
+        CHS = '这片森林有孔雀？',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6036 = {
         ID = 'Item_Name_6036',
-        CHS = '孔雀翎',
+        CHS = '药草',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6036 = {
         ID = 'Item_Des_6036',
-        CHS = '这片森林有孔雀？',
+        CHS = '很值钱的植物。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6037 = {
         ID = 'Item_Name_6037',
-        CHS = '药草',
+        CHS = '蜻蜓',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6037 = {
         ID = 'Item_Des_6037',
-        CHS = '很值钱的植物。',
+        CHS = '翅膀闪烁着七彩光泽。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6038 = {
         ID = 'Item_Name_6038',
-        CHS = '蜻蜓',
+        CHS = '花种',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6038 = {
         ID = 'Item_Des_6038',
-        CHS = '翅膀闪烁着七彩光泽。',
+        CHS = '可以用来种花，但物品系统和种花还没对接。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_6039 = {
         ID = 'Item_Name_6039',
-        CHS = '花种',
+        CHS = '松果',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_6039 = {
         ID = 'Item_Des_6039',
-        CHS = '可以用来种花，但物品系统和种花还没对接。',
+        CHS = '松树掉落的果实。',
         CHT = '',
         EN = '',
         JP = ''
@@ -2291,6 +2291,48 @@ local LanguagePackXls = {
     Item_Des_6040 = {
         ID = 'Item_Des_6040',
         CHS = '松树掉落的果实。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Name_17 = {
+        ID = 'NpcInfo_Name_17',
+        CHS = 'Z先生',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_17 = {
+        ID = 'NpcInfo_Title_17',
+        CHS = '飞碟AI',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1161 = {
+        ID = 'NpcText_Text_1161',
+        CHS = '欢迎访问。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1162 = {
+        ID = 'NpcText_Text_1162',
+        CHS = '%*&&&?/.@!@!',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1163 = {
+        ID = 'NpcText_Text_1163',
+        CHS = '任务进行中……各系统运转正常。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1164 = {
+        ID = 'NpcText_Text_1164',
+        CHS = '检测到未知生命体。',
         CHT = '',
         EN = '',
         JP = ''

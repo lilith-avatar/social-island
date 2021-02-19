@@ -878,15 +878,6 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
-    },
-    [6040] = {
-        ItemID = 6040,
-        Name = 'Item_Name_6040',
-        Des = 'Item_Des_6040',
-        Ico = '',
-        UseCD = 0.5,
-        UseSoundID = 0,
-        UseAnimName = ''
     }
 }
 
