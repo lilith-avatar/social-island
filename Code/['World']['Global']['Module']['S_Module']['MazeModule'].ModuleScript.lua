@@ -591,6 +591,7 @@ function MazeWallsGen()
         for row = 1, NUM_ROWS do
             for col = 1, NUM_COLS do
                 cell = M[row][col]
+                --* 1：路，0：墙
                 if cell[dir] == 0 then
                     pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos
                     rot = WALL_DICT[dir].rot
@@ -601,30 +602,48 @@ function MazeWallsGen()
     end
 end
 
+-- 迷宫柱子生成
 function PillarsGen()
     -- 柱子位置偏移量
     local cell, pos, rot = nil, nil, EulerDegree(0, 0, 0)
-
+    local rd = false -- 用于判定右下角是否有柱子
     for row = 1, NUM_ROWS do
         for col = 1, NUM_COLS do
             cell = M[row][col]
             --* Vector3(1, 0, 1) = Vector2(右, 上)
-            -- 右下角
-            pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(1, 0, -1) * WALL_POS_OFFSET
-            objPillar = SpawnPillar(pos, rot)
+            --* 1：路，0：墙
+
             -- 左上角
             if row == 1 and col == 1 then
                 pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(-1, 0, 1) * WALL_POS_OFFSET
                 objPillar = SpawnPillar(pos, rot)
             end
             -- 右上角
-            if row == 1 then
+            if (row == 1 and cell[RIGHT] == 0) or (row == NUM_ROWS and col == EXIT) then
                 pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(1, 0, 1) * WALL_POS_OFFSET
                 objPillar = SpawnPillar(pos, rot)
             end
             -- 左下角
-            if col == 1 then
+            if col == 1 and (cell[DOWN] == 0 or row == ENTRANCE) then
                 pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(-1, 0, -1) * WALL_POS_OFFSET
+                objPillar = SpawnPillar(pos, rot)
+            end
+            -- 右下角
+            rd =
+                (row == NUM_ROWS and col == NUM_COLS) or -- 右下边界
+                (col == NUM_COLS and cell[DOWN] == 0) or -- 右边界
+                (row == NUM_ROWS and cell[RIGHT] == 0) -- 下边界
+            if not rd and row < NUM_ROWS and col < NUM_COLS then -- 中心区域：6种情况
+                rd =
+                    (cell[DOWN] == 0 and cell[RIGHT] == 0) or -- 柱子左上为墙
+                    (cell[DOWN] == 0 and M[row + 1][col][RIGHT] == 0) or -- 柱子左下为墙
+                    (cell[RIGHT] == 0 and M[row][col + 1][DOWN] == 0) or -- 柱子右上为墙
+                    (M[row + 1][col][RIGHT] == 0 and M[row][col + 1][DOWN] == 0) or -- 柱子右下为墙
+                    (cell[RIGHT] ~= M[row + 1][col][RIGHT]) or -- 柱子上下有只有一根
+                    (cell[DOWN] ~= M[row][col + 1][DOWN]) -- 柱子左右只有一根
+            end
+            if rd then
+                pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(1, 0, -1) * WALL_POS_OFFSET
                 objPillar = SpawnPillar(pos, rot)
             end
         end
