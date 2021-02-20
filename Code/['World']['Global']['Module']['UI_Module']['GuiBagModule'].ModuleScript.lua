@@ -79,14 +79,12 @@ function GuiBag:SlotCreate()
         slot = world:CreateInstance("SlotImg", "SlotImg", this.gui.SlotPnl)
         --插入到表
         table.insert(this.slotList, slot)
+        local row = (i - 1) % this.rowNum + 1
+        local col = math.floor((i - 1) / this.rowNum) + 1
         -- 调整位置
-        slot.AnchorsX =
-            Vector2((math.fmod(i, this.rowNum) - 1) * (1 / this.rowNum), math.fmod(i, this.rowNum) * (1 / this.rowNum))
+        slot.AnchorsX = Vector2(1 / this.rowNum * row - 1 / this.rowNum + 0.1, 1 / this.rowNum * row - 1 / this.rowNum + 0.1)
         slot.AnchorsY =
-            Vector2(
-            1.1 - (math.modf(i / this.rowNum) + 1) * 1 / this.colNum,
-            1.1 - (math.modf(i / this.rowNum) + 1) * 1 / this.colNum
-        )
+            Vector2(1 - (1 / this.colNum * col - 1 / this.rowNum), 1 - (1 / this.colNum * col - 1 / this.rowNum))
         -- 绑定事件
         slot.SelectBtn.OnClick:Connect(
             function()
@@ -136,7 +134,7 @@ end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index].id = _itemId
-    print(_index, this.slotList[_index].Name)
+    
     -- 更换图片
     --this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
     --this.slotList[_index].IconImg.Size = this.slotList[_index].Size
@@ -217,7 +215,7 @@ function GuiBag:ClickChangePage(_pageIndex)
     --页面数字显示
     this.pageTxt = tostring(math.floor(_pageIndex))
     --如果第一页则不显示上一页按钮
-    if _pageIndex == 1 then
+    if _pageIndex <= 1 then
         this.prevBtn:SetActive(false)
     end
     --如果最后一页不显示下一页按钮
@@ -229,7 +227,6 @@ function GuiBag:ClickChangePage(_pageIndex)
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
     end
-    table.dump(print(this.cdMask))
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
@@ -247,12 +244,13 @@ function GuiBag:ShowItemsByPageIndex(_pageIndex)
             this.slotList[i].IconImg:SetActive(false)
         end
     end
+    this:GetMaxPageNum(#this.slotItem)
 end
 
 ---更新最大页面数
 function GuiBag:GetMaxPageNum(_itemNum)
     this.maxPage = math.ceil(_itemNum / (this.colNum * this.rowNum))
-    if this.maxPage == 0 then
+    if this.maxPage <= 0 then
         this.maxPage = 1
     end
 end
