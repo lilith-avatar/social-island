@@ -45,9 +45,6 @@ function GuiMaze:InitGui()
     jumpBtn = controlGui.Ctrl.JumpBtn
     useBtn = controlGui.Ctrl.UseBtn
     socialAnimBtn = controlGui.Menu.SocialAnimBtn
-    -- GUI monster
-    monsterGui = guiRoot.MonsterGUI
-    mainBtn = monsterGui.MainBtn
 end
 
 -- 进入迷宫
@@ -55,28 +52,18 @@ function EnterMaze(_enterPos, _playerDir, _totalTime)
     print('[GuiMaze] EnterMaze')
     -- cache player info
     origin.pos = player.Position
-    origin.charWidth = player.CharacterWidth
-    origin.avatarHeight = player.Avatar.Height
-    origin.avatarHeadSize = player.Avatar.HeadSize
-    origin.WalkSpeed = player.WalkSpeed
-    origin.JumpUpVelocity = player.JumpUpVelocity
-    origin.camera = world.CurrentCamera
+    NetUtil.Fire_C('GetBuffEvent', localPlayer, 24, -1)
     player.Position = _enterPos
     player.Forward = _playerDir
-    player.CharacterWidth = MAZE_CHARACTER_WIDTH
-    player.WalkSpeed = WALK_SPEED
-    player.JumpUpVelocity = JUMP_UP_VELOCITY
-    player.Avatar.Height = AVATAR_HEIGHT
-    player.Avatar.HeadSize = AVATAR_HEAD_SIZE
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, camMaze)
     -- time
     totalTime = _totalTime
     startTime = now()
     -- GUI
-    EnableMazeGui()
     -- start updating
     invoke(
         function()
+            EnableMazeGui()
             inMaze = true
         end,
         UPDATE_DELAY
@@ -96,11 +83,8 @@ function QuitMaze(_score, _time)
     inMaze = false
     -- resume player info
     player.Position = origin.pos
-    player.CharacterWidth = origin.charWidth
-    player.WalkSpeed = origin.WalkSpeed
-    player.JumpUpVelocity = origin.JumpUpVelocity
-    player.Avatar.Height = origin.avatarHeight
-    player.Avatar.HeadSize = origin.avatarHeadSize
+    NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 24)
+
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, origin.camera)
 
     -- GUI
@@ -116,8 +100,6 @@ function EnableMazeGui()
     jumpBtn:SetActive(false)
     useBtn:SetActive(false)
     socialAnimBtn:SetActive(false)
-    -- GUI monster
-    mainBtn:SetActive(false)
     -- GUI info
     infoGui:SetActive(true)
     timerTxt:SetActive(true)
@@ -130,8 +112,6 @@ function DisableMazeGui()
     jumpBtn:SetActive(true)
     useBtn:SetActive(true)
     socialAnimBtn:SetActive(true)
-    -- GUI monster
-    mainBtn:SetActive(true)
     -- GUI info
     infoGui:SetActive(false)
     timerTxt:SetActive(false)
