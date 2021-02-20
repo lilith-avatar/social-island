@@ -60,10 +60,10 @@ function EnterMaze(_enterPos, _playerDir, _totalTime)
     totalTime = _totalTime
     startTime = now()
     -- GUI
-    EnableMazeGui()
     -- start updating
     invoke(
         function()
+            EnableMazeGui()
             inMaze = true
         end,
         UPDATE_DELAY
