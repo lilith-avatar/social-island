@@ -8,11 +8,227 @@
 local ScenesInteractXls = {
     [1] = {
         ID = 1,
-        Name = '光剑',
-        Path = 'LaserSword',
+        Name = '能量锹',
+        Path = 'SpadeEnergy',
         ItemID = 1015,
+        IsGet = false,
+        UseCount = 1
+    },
+    [2] = {
+        ID = 2,
+        Name = '树枝',
+        Path = 'Stick',
+        ItemID = 1002,
         IsGet = true,
-        UseCount = 10
+        UseCount = 1
+    },
+    [3] = {
+        ID = 3,
+        Name = '木锤',
+        Path = 'HammerWood',
+        ItemID = 1006,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [4] = {
+        ID = 4,
+        Name = '短斧',
+        Path = 'HammerIron',
+        ItemID = 1007,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [5] = {
+        ID = 5,
+        Name = '消防斧',
+        Path = 'AxeOneHand',
+        ItemID = 1011,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [6] = {
+        ID = 6,
+        Name = '红斧',
+        Path = 'AxeWood01',
+        ItemID = 1012,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [7] = {
+        ID = 7,
+        Name = '黑斧',
+        Path = 'AxeWood02',
+        ItemID = 1013,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [8] = {
+        ID = 8,
+        Name = '犁',
+        Path = 'FarmToolFork01',
+        ItemID = 1019,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [9] = {
+        ID = 9,
+        Name = '草叉',
+        Path = 'FarmToolFork02',
+        ItemID = 1020,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [10] = {
+        ID = 10,
+        Name = '能量锄',
+        Path = 'HoesEnergy',
+        ItemID = 1023,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [11] = {
+        ID = 11,
+        Name = '撬棍',
+        Path = 'CrowbarEnergy',
+        ItemID = 1024,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [12] = {
+        ID = 12,
+        Name = '骨锤',
+        Path = 'Bones',
+        ItemID = 1008,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [13] = {
+        ID = 13,
+        Name = '迷你树',
+        Path = 'MiniTree',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [14] = {
+        ID = 14,
+        Name = '鱼竿',
+        Path = 'FishingRod',
+        ItemID = 1031,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [15] = {
+        ID = 15,
+        Name = '皮橛子',
+        Path = 'Plunger',
+        ItemID = 1022,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [16] = {
+        ID = 16,
+        Name = '平底锅',
+        Path = 'CartonPan',
+        ItemID = 1018,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [17] = {
+        ID = 17,
+        Name = '黑扇子',
+        Path = 'FanBlack',
+        ItemID = 1001,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [18] = {
+        ID = 18,
+        Name = '绿扇子',
+        Path = 'FanGreen',
+        ItemID = 1029,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [19] = {
+        ID = 19,
+        Name = '红扇子',
+        Path = 'FanRed',
+        ItemID = 1030,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [20] = {
+        ID = 20,
+        Name = '锄头',
+        Path = 'Hoes',
+        ItemID = 1005,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [21] = {
+        ID = 21,
+        Name = '能量勺',
+        Path = 'ScoopEnergy',
+        ItemID = 1026,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [22] = {
+        ID = 22,
+        Name = '能量改锥',
+        Path = 'ScrewdriverEnergy',
+        ItemID = 1025,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [23] = {
+        ID = 23,
+        Name = '红蘑菇',
+        Path = 'MushroomRed',
+        ItemID = 3010,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [24] = {
+        ID = 24,
+        Name = '黄蘑菇',
+        Path = 'MushroomYellow',
+        ItemID = 3011,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [25] = {
+        ID = 25,
+        Name = '花丛',
+        Path = 'Flowers',
+        ItemID = 3009,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [26] = {
+        ID = 26,
+        Name = '盒子',
+        Path = 'Carton',
+        ItemID = 3008,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [27] = {
+        ID = 27,
+        Name = '桶子',
+        Path = 'Basket',
+        ItemID = 3012,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [28] = {
+        ID = 28,
+        Name = '弓箭',
+        Path = 'Arch',
+        ItemID = 2002,
+        IsGet = false,
+        UseCount = 99999
     }
 }
 

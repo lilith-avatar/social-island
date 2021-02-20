@@ -2336,6 +2336,132 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    Item_Name_1029 = {
+        ID = 'Item_Name_1029',
+        CHS = '绿扇子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1029 = {
+        ID = 'Item_Des_1029',
+        CHS = '一把亚洲风格的折扇。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1030 = {
+        ID = 'Item_Name_1030',
+        CHS = '红扇子',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1030 = {
+        ID = 'Item_Des_1030',
+        CHS = '一把亚洲风格的折扇。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_1031 = {
+        ID = 'Item_Name_1031',
+        CHS = '鱼竿',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1031 = {
+        ID = 'Item_Des_1031',
+        CHS = '一把高端鱼竿。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3008 = {
+        ID = 'Item_Name_3008',
+        CHS = '包装箱',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3008 = {
+        ID = 'Item_Des_3008',
+        CHS = '你看不到我。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3009 = {
+        ID = 'Item_Name_3009',
+        CHS = '一包花粉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3009 = {
+        ID = 'Item_Des_3009',
+        CHS = '招蜂引蝶。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3010 = {
+        ID = 'Item_Name_3010',
+        CHS = '红蘑菇',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3010 = {
+        ID = 'Item_Des_3010',
+        CHS = '使人发昏。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3011 = {
+        ID = 'Item_Name_3011',
+        CHS = '黄蘑菇',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3011 = {
+        ID = 'Item_Des_3011',
+        CHS = '能让你整个人都兴奋起来。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3012 = {
+        ID = 'Item_Name_3012',
+        CHS = '木桶',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3012 = {
+        ID = 'Item_Des_3012',
+        CHS = '良好的伪装道具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3013 = {
+        ID = 'Item_Name_3013',
+        CHS = '智慧药丸',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3013 = {
+        ID = 'Item_Des_3013',
+        CHS = '让你看上去很聪明。',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 
