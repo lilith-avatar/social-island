@@ -511,8 +511,8 @@ local BuffXls = {
         HeadEffect_Overlay = '',
         BodyEffect_Overlay = '',
         FootEffect_Overlay = '',
-        WalkSpeed_Overlay = 1.0,
-        JumpUpVelocity_Overlay = 1.5,
+        WalkSpeed_Overlay = 1.5,
+        JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
@@ -540,8 +540,8 @@ local BuffXls = {
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
-        HeadEffect_Overlay = 'Butterfly',
-        BodyEffect_Overlay = '',
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = 'Butterfly',
         FootEffect_Overlay = '',
         WalkSpeed_Overlay = 1.0,
         JumpUpVelocity_Overlay = 1.0,
@@ -579,8 +579,8 @@ local BuffXls = {
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
-        AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        AnimState_Cover = 'TwoHandedSwordIdle',
+        EnableEquipable_Cover = true
     }
 }
 
