@@ -176,7 +176,6 @@ end
 function CreateWildMonster()
 	local _info = GetRandomPos()
 	local _monsterCol = this:SpawnMonsterInPos(_info.Pos,_info.Rot,_info)
-	print(_monsterCol)
 	invoke(function()
 		while true do
 			wait(math.random(MONSTER_SCAN_TIME_MIN,MONSTER_SCAN_TIME_MAX))
@@ -189,7 +188,7 @@ end
 function MonsterBattleMgr:SpawnMonsterInPos(_pos,_rot,_info)
 	local _collision = world:CreateObject('Sphere','MonsterRange',world.NPCMonster)
 	_collision.Size = Vector3.One*3
-	_collision.Color = Color(255,255,255,50)
+	_collision.Color = Color(255,255,255,0)
 	_collision.Block = false
 	_collision.Position = _pos --localPlayer.Position + localPlayer.Forward * 5
 	_collision.Rotation = _rot 
