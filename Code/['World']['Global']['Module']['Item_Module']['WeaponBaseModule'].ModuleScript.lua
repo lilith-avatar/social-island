@@ -15,10 +15,12 @@ end
 
 --放入背包
 function WeaponBase:PutIntoBag()
+	ItemBase.PutIntoBag(self)
 end
 
 --从背包里扔掉
 function WeaponBase:ThrowOutOfBag()
+	ItemBase.ThrowOutOfBag(self)
 end
 
 --使用
@@ -47,18 +49,9 @@ function WeaponBase:Equip()
         pNode.Position + self.config.Offset,
         pNode.Rotation + self.config.Angle
     )
-    --[[self.weaponObj =
-        world:CreateInstance(
-        self.config.ModelName,
-        self.config.ModelName .. "Instance",
-        self.config.ParentNode,
-        self.config.ParentNode.Positon + self.config.Offset,
-        self.config.ParentNode.Rotation + self.config.Angle
-    )]]
-    --self:PlayIdleAnim()
     print("装备")
     NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-    --NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
+    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseRemoveBuffID)
     GuiControl:UpdateTakeOffBtn()
 end
 

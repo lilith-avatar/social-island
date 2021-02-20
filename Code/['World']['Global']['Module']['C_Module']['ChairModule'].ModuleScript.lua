@@ -2,7 +2,7 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author XXX, XXXX
 local Chair, this = ModuleUtil.New('Chair', ClientBase)
-local Dir = {'forward', 'left', 'back', 'right'}
+local Dir = {'Forward', 'Left', 'Back', 'Right'}
 
 ---初始化函数
 function Chair:Init()

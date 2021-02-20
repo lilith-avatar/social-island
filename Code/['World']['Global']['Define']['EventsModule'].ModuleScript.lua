@@ -32,7 +32,8 @@ Events.ServerEvents = {
     "DeleteFlowerEvent", -- @param _userId, _uuid
     "WaterEvent", --@param _userId, _pos
     "SPlayerHitEvent",
-    "NpcMonsterGameOverEvent" --@param _NpcMonsterId
+    "NpcMonsterGameOverEvent", --@param _NpcMonsterId
+    'NormalChairSpeedUpEvent',
 }
 
 -- 客户端事件列表
@@ -96,7 +97,8 @@ Events.ClientEvents = {
     "InsertInfoEvent",
     "LightHitEvent", --雷电打击
     "WaterEvent", -- @Pos
-    "SwitchStoreUIEvent"
+    "SwitchStoreUIEvent",
+    "GetItemFromPoolEvent"
 }
 
 return Events

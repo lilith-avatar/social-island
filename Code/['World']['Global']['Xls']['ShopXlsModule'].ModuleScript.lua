@@ -7,23 +7,109 @@
 
 local ShopXls = {
     [1] = {
-        [1001] = {
+        [1018] = {
             NpcId = 1,
             Index = 1,
-            ItemId = 1001,
-            Price = 5
+            ItemId = 1018,
+            Price = 50
         },
-        [2001] = {
+        [1021] = {
             NpcId = 1,
             Index = 2,
-            ItemId = 2001,
-            Price = 10
+            ItemId = 1021,
+            Price = 150
+        }
+    },
+    [2] = {
+        [2002] = {
+            NpcId = 2,
+            Index = 1,
+            ItemId = 2002,
+            Price = 50
         },
-        [3001] = {
-            NpcId = 1,
+        [2001] = {
+            NpcId = 2,
+            Index = 2,
+            ItemId = 2001,
+            Price = 300
+        },
+        [2003] = {
+            NpcId = 2,
             Index = 3,
-            ItemId = 3001,
-            Price = 15
+            ItemId = 2003,
+            Price = 150
+        }
+    },
+    [3] = {
+        [1003] = {
+            NpcId = 3,
+            Index = 1,
+            ItemId = 1003,
+            Price = 100
+        },
+        [1004] = {
+            NpcId = 3,
+            Index = 2,
+            ItemId = 1004,
+            Price = 150
+        },
+        [1006] = {
+            NpcId = 3,
+            Index = 3,
+            ItemId = 1006,
+            Price = 200
+        },
+        [1007] = {
+            NpcId = 3,
+            Index = 4,
+            ItemId = 1007,
+            Price = 200
+        }
+    },
+    [5] = {
+        [1005] = {
+            NpcId = 5,
+            Index = 1,
+            ItemId = 1005,
+            Price = 100
+        },
+        [1019] = {
+            NpcId = 5,
+            Index = 2,
+            ItemId = 1019,
+            Price = 150
+        },
+        [1020] = {
+            NpcId = 5,
+            Index = 3,
+            ItemId = 1020,
+            Price = 150
+        }
+    },
+    [17] = {
+        [1025] = {
+            NpcId = 17,
+            Index = 1,
+            ItemId = 1025,
+            Price = 200
+        },
+        [1026] = {
+            NpcId = 17,
+            Index = 2,
+            ItemId = 1026,
+            Price = 250
+        },
+        [1014] = {
+            NpcId = 17,
+            Index = 3,
+            ItemId = 1014,
+            Price = 300
+        },
+        [1015] = {
+            NpcId = 17,
+            Index = 4,
+            ItemId = 1015,
+            Price = 500
         }
     }
 }

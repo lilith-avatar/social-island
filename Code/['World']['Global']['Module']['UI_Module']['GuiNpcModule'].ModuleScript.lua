@@ -143,6 +143,7 @@ function EnterShop()
         return
     end
     -- TODO: 商店相关逻辑
+    npcGui.Visible = false
     NetUtil.Fire_C("SwitchStoreUIEvent", localPlayer, 1, currNpcId)
 end
 

@@ -87,7 +87,7 @@ function GuiControl:InitListener()
             print("LeaveBtnClick")
             if interactID == 10 then
                 print("ChairUIMgr:NormalBack()")
-                ChairUIMgr:NormalBack()
+                GuiChair:NormalBack()
                 return
             end
         end
@@ -178,7 +178,7 @@ function GuiControl:TextFade(_text, _isFade)
         Tween:TweenProperty(
         _text,
         {Color = Color(_text.Color.r, _text.Color.g, _text.Color.b, _isFade and 0 or 255)},
-        1,
+        0.2,
         Enum.EaseCurve.Linear
     )
     textFadeTween:Play()
@@ -191,7 +191,7 @@ function GuiControl:InsertInfoEventHandler(_text, _t, _isTop)
             topTextList,
             {
                 text = _text,
-                t = _t + 2
+                t = _t + 0.4
             }
         )
     else
@@ -199,7 +199,7 @@ function GuiControl:InsertInfoEventHandler(_text, _t, _isTop)
             bottomTextList,
             {
                 text = _text,
-                t = _t + 2
+                t = _t + 0.4
             }
         )
     end
@@ -245,7 +245,7 @@ end
 
 --- 更新金币显示
 function GuiControl:UpdateCoinNum(_num)
-    this:InsertInfoEventHandler(_num >= 0 and '获得' .. _num .. '金币' or '失去' .. _num .. '金币', 0.5, true)
+    this:InsertInfoEventHandler(_num >= 0 and '获得' .. _num .. '金币' or '失去' .. _num .. '金币', 1, true)
     gui.Menu.CoinNum.Text = '金币：' .. Data.Player.coin
 end
 

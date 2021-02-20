@@ -21,16 +21,14 @@ end
 
 --使用
 function UsableItem:Use()
-    if self.useCT == 0 then
-        ItemBase.Use(self)
-        NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-        NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
-        for k, v in pairs(self:GetPlayersByRange()) do
-            NetUtil.Fire_C("GetBuffEvent", v, self.config.HitAddBuffID, self.config.HitAddBuffDur)
-            NetUtil.Fire_C("RemoveBuffEvent", v, self.config.HitRemoveBuffID)
-            self:PlayHitEffect(v.Position)
-            self:PlayHitSound(v.Position)
-        end
+    ItemBase.Use(self)
+    NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
+    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseRemoveBuffID)
+    for k, v in pairs(self:GetPlayersByRange()) do
+        NetUtil.Fire_C("GetBuffEvent", v, self.config.HitAddBuffID, self.config.HitAddBuffDur)
+        NetUtil.Fire_C("RemoveBuffEvent", v, self.config.HitRemoveBuffID)
+        self:PlayHitEffect(v.Position)
+        self:PlayHitSound(v.Position)
     end
 end
 
@@ -38,7 +36,7 @@ end
 function UsableItem:GetPlayersByRange()
     local players = {}
     for k, v in pairs(world:FindPlayers()) do
-        if self.config.Range > 0 then
+        if self.config.Range and self.config.Range > 0 then
             if (localPlayer.Position - v.Position).Magnitude <= self.config.Range then
                 if v == localPlayer and self.config.IsSelfActive then
                     players[#players + 1] = v
