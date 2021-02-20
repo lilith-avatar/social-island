@@ -30,6 +30,7 @@ function LongRangeWeapon:ShootArrow()
     )
     arrow.Forward = dir
     arrow.IsHunt.Value = self.config.Hunt
+    arrow.UserId.Value = localPlayer.UserId
     arrow.LinearVelocity = arrow.Forward * 40
     arrow.OnCollisionBegin:Connect(
         function(_hitObj)

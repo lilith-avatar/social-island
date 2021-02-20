@@ -387,7 +387,7 @@ local BuffXls = {
         JumpUpVelocity_Overlay = 0.3,
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
-        AnimState_Cover = '',
+        AnimState_Cover = 'MazeIdle',
         EnableEquipable_Cover = false
     },
     [25] = {

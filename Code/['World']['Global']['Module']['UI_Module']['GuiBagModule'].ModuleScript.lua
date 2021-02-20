@@ -166,7 +166,8 @@ function GuiBag:ClickUseBtn(_index)
     NetUtil.Fire_C("UseItemEvent", localPlayer, itemId)
     if not this.slotItem[((this.pageIndex - 1) * this.rowNum * this.colNum) + _index].isConst then
         table.remove(this.slotItem, ((this.pageIndex - 1) * this.rowNum * this.colNum) + _index)
-        Data.Player.bag[itemId].count = Data.Player.bag[itemId].count - 1
+        --Data.Player.bag[itemId].count = Data.Player.bag[itemId].count - 1
+        NetUtil.Fire_C("RemoveItemEvent", localPlayer, itemId)
     end
     -- 重新展示当前页面物品信息
     this:ClickChangePage(this.pageIndex)

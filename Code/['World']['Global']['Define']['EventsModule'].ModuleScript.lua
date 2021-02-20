@@ -97,7 +97,8 @@ Events.ClientEvents = {
     "InsertInfoEvent",
     "LightHitEvent", --雷电打击
     "WaterEvent", -- @Pos
-    "SwitchStoreUIEvent"
+    "SwitchStoreUIEvent",
+    "GetItemFromPoolEvent"
 }
 
 return Events
