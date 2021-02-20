@@ -87,7 +87,7 @@ function GuiControl:InitListener()
             print("LeaveBtnClick")
             if interactID == 10 then
                 print("ChairUIMgr:NormalBack()")
-                ChairUIMgr:NormalBack()
+                GuiChair:NormalBack()
                 return
             end
         end

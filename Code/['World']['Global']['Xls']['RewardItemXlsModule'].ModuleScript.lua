@@ -116,11 +116,11 @@ local RewardItemXls = {
     },
     [6028] = {
         ItemID = 6028,
-        RewardGold = 20
+        RewardGold = 100
     },
     [6029] = {
         ItemID = 6029,
-        RewardGold = 100
+        RewardGold = 120
     },
     [6030] = {
         ItemID = 6030,
@@ -128,11 +128,11 @@ local RewardItemXls = {
     },
     [6031] = {
         ItemID = 6031,
-        RewardGold = 120
+        RewardGold = 20
     },
     [6032] = {
         ItemID = 6032,
-        RewardGold = 20
+        RewardGold = 5
     },
     [6033] = {
         ItemID = 6033,
@@ -144,15 +144,15 @@ local RewardItemXls = {
     },
     [6035] = {
         ItemID = 6035,
-        RewardGold = 5
+        RewardGold = 40
     },
     [6036] = {
         ItemID = 6036,
-        RewardGold = 40
+        RewardGold = 50
     },
     [6037] = {
         ItemID = 6037,
-        RewardGold = 50
+        RewardGold = 20
     },
     [6038] = {
         ItemID = 6038,
@@ -160,10 +160,6 @@ local RewardItemXls = {
     },
     [6039] = {
         ItemID = 6039,
-        RewardGold = 20
-    },
-    [6040] = {
-        ItemID = 6040,
         RewardGold = 5
     }
 }

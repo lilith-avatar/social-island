@@ -39,7 +39,7 @@ function MoleGame:EventBindForStart()
             end
             this.rangeList[_hitObject.Name] = true
             if this.boostEffect then
-                GuiMole:Hit()
+                NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, MoleGame.rangeList)
             end
         end
     )

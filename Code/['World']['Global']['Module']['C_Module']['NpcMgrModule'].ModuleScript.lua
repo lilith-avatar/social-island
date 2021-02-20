@@ -119,6 +119,7 @@ function InitNpcIdleAction(_npcObj, _npcInfo)
     end
     -- 绑定idle动画序列
     for i, anim in ipairs(_npcInfo.Anim) do
+		print(_npcObj)
         local ani = _npcObj.Avatar:AddAnimationEvent(anim, 1)
         local idx = i ~= #_npcInfo.Anim and i + 1 or 1
         ani:Connect(
@@ -221,9 +222,11 @@ end
 
 -- 使NPC面向玩家
 function NpcFaceToPlayer(_npcId)
-    local npcObj = npcs[_npcId].obj
-    local dir = localPlayer.Position - npcObj.Position
-    npcObj.Forward = Vector3(dir.x, 0, dir.z)
+	if _npcId ~= 17 then
+		local npcObj = npcs[_npcId].obj
+		local dir = localPlayer.Position - npcObj.Position
+		npcObj.Forward = Vector3(dir.x, 0, dir.z)
+	end
 end
 
 -- 使NPC回复方向
