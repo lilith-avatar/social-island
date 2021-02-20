@@ -579,8 +579,8 @@ local BuffXls = {
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
-        AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        AnimState_Cover = 'TwoHandedSwordIdle',
+        EnableEquipable_Cover = true
     }
 }
 
