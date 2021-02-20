@@ -49,8 +49,9 @@ function ScenesInteract:EventBind()
         v.obj.OnCollisionEnd:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" then
+                    print("v.obj.OnCollisionEnd")
                     curInteractID[_hitObject.UserId] = nil
-                    NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
         )
