@@ -82,7 +82,7 @@ function GuiBag:SlotCreate()
         local row = (i - 1) % this.rowNum + 1
         local col = math.floor((i - 1) / this.rowNum) + 1
         -- 调整位置
-        slot.AnchorsX = Vector2(1 / this.rowNum * row - 1 / this.rowNum + 0.1, 1 / this.rowNum * row - 1 / this.rowNum + 0.1)
+        slot.AnchorsX = Vector2(1 / this.rowNum * row - 1 / this.rowNum, 1 / this.rowNum * row - 1 / this.rowNum)
         slot.AnchorsY =
             Vector2(1 - (1 / this.colNum * col - 1 / this.rowNum), 1 - (1 / this.colNum * col - 1 / this.rowNum))
         -- 绑定事件
