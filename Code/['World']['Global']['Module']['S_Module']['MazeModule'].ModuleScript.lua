@@ -46,7 +46,7 @@ local floor
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
-local CELL_SIDE = .4
+local CELL_SIDE = .54
 
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
@@ -58,7 +58,7 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 
 -- 墙体的Archetype
 local WALL_ARCH = 'Maze_Wall_Test'
-local WALL_HEIGHT = .2 -- 对应Size.Y
+local WALL_HEIGHT = .35 -- 对应Size.Y
 local WALL_LENGTH = CELL_SIDE -- 对应Size.X
 local WALL_THICKNESS = 0.04 -- 对应Size.Z
 
@@ -73,26 +73,26 @@ local WALL_POS_OFFSET = CELL_SIDE * .5
 -- 墙壁字典，根据方向确定墙壁Transform信息，用于墙壁生成
 local WALL_DICT = {}
 WALL_DICT[LEFT] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, -90, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET,
+    rot = EulerDegree(0, -180, 0),
     dir = 'L',
     symbol = '←'
 }
 WALL_DICT[UP] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, 0, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET,
+    rot = EulerDegree(0, -90, 0),
     dir = 'U',
     symbol = '↑'
 }
 WALL_DICT[RIGHT] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, 90, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET,
+    rot = EulerDegree(0, 0, 0),
     dir = 'R',
     symbol = '→'
 }
 WALL_DICT[DOWN] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, 180, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET,
+    rot = EulerDegree(0, 90, 0),
     dir = 'D',
     symbol = '↓'
 }
