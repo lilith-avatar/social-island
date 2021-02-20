@@ -79,7 +79,6 @@ function GuiBag:SlotCreate()
         slot = world:CreateInstance("SlotImg", "SlotImg", this.gui.SlotPnl)
         --插入到表
         table.insert(this.slotList, slot)
-        print((i / this.rowNum) - (math.floor(i / this.rowNum)))
         local row = (i - 1) % this.rowNum + 1
         local col = math.floor((i - 1) / this.rowNum) + 1
         -- 调整位置
@@ -135,7 +134,7 @@ end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index].id = _itemId
-    print(_index, this.slotList[_index].Name)
+    
     -- 更换图片
     --this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
     --this.slotList[_index].IconImg.Size = this.slotList[_index].Size
@@ -227,7 +226,6 @@ function GuiBag:ClickChangePage(_pageIndex)
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
     end
-    table.dump(print(this.cdMask))
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
@@ -245,12 +243,13 @@ function GuiBag:ShowItemsByPageIndex(_pageIndex)
             this.slotList[i].IconImg:SetActive(false)
         end
     end
+    this:GetMaxPageNum(#this.slotItem)
 end
 
 ---更新最大页面数
 function GuiBag:GetMaxPageNum(_itemNum)
     this.maxPage = math.ceil(_itemNum / (this.colNum * this.rowNum))
-    if this.maxPage == 0 then
+    if this.maxPage <= 0 then
         this.maxPage = 1
     end
 end
