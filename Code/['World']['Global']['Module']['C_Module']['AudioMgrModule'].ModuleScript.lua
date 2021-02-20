@@ -16,6 +16,7 @@ function AudioMgr:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
+	this:PlayBGM(2)
 end
 
 --节点引用
@@ -28,7 +29,12 @@ function AudioMgr:DataInit()
     this.EffectAudioSourceNode = PlayerCam.playerGameCam["SENode"]
 
     for k, v in pairs(Config.Sound) do
-        this:InitEffectClip(v)
+		if v.Type == "SoundEffect" then
+			this:InitEffectClip(v)
+		elseif v.Type == "BGM" then
+			this:InitBGMClip(v)
+		end
+        
     end
 
     for i = 1, 2 do
