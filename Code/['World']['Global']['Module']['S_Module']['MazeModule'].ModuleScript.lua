@@ -39,14 +39,14 @@ local entrace, exit
 -- 迷宫地板厚度
 local MAZE_FLOOR_THICKNESS = 2
 -- 迷宫地板颜色
-local MAZE_FLOOR_COLOR = Color(0xFF, 0xFF, 0xFF, 100)
+local MAZE_FLOOR_COLOR = Color(0xFF, 0xFF, 0xFF, 255)
 -- 迷宫地板Obj，根据迷宫中心和尺寸生成
 local floor
 
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
-local CELL_SIDE = .4
+local CELL_SIDE = .54
 
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
@@ -54,18 +54,26 @@ local CELL_POS_OFFSET = CELL_SIDE
 -- 迷宫左上角的Cell中心位置
 local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .5
 
---! 常量配置: Wall 墙体相关
+--! 常量配置: Wall & Pillar 墙体相关
 
 -- 墙体的Archetype
-local WALL_ARCH = 'Maze_Wall_Test'
-local WALL_HEIGHT = .2 -- 对应Size.Y
+local WALL_ARCH = 'Maze_Wall'
+local WALL_HEIGHT = .35 -- 对应Size.Y
 local WALL_LENGTH = CELL_SIDE -- 对应Size.X
 local WALL_THICKNESS = 0.04 -- 对应Size.Z
+
+local PILLAR_ARCH = 'Maze_Pillar'
+local PILLAR_HEIGHT = WALL_HEIGHT
 
 -- 墙壁对象池Hierachy根节点
 local WALL_SPACE
 -- 墙壁对象池隐藏默认位置
 local WALL_POOL_POS = Vector3.Down * 100
+
+-- 墙壁对象池Hierachy根节点
+local PILLAR_SPACE
+-- 墙壁对象池隐藏默认位置
+local PILLAR_POOL_POS = Vector3.Down * 100
 
 -- 墙壁位置偏移量
 local WALL_POS_OFFSET = CELL_SIDE * .5
@@ -73,26 +81,26 @@ local WALL_POS_OFFSET = CELL_SIDE * .5
 -- 墙壁字典，根据方向确定墙壁Transform信息，用于墙壁生成
 local WALL_DICT = {}
 WALL_DICT[LEFT] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, -90, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Left * WALL_POS_OFFSET,
+    rot = EulerDegree(0, -180, 0),
     dir = 'L',
     symbol = '←'
 }
 WALL_DICT[UP] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, 0, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Forward * WALL_POS_OFFSET,
+    rot = EulerDegree(0, -90, 0),
     dir = 'U',
     symbol = '↑'
 }
 WALL_DICT[RIGHT] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, 90, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Right * WALL_POS_OFFSET,
+    rot = EulerDegree(0, 0, 0),
     dir = 'R',
     symbol = '→'
 }
 WALL_DICT[DOWN] = {
-    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET + Vector3.Up * WALL_HEIGHT * .5,
-    rot = EulerDegree(0, 180, 0),
+    pos = CELL_LEFT_UP_POS + Vector3.Back * WALL_POS_OFFSET,
+    rot = EulerDegree(0, 90, 0),
     dir = 'D',
     symbol = '↓'
 }
@@ -132,6 +140,8 @@ local history = Stack:New()
 
 -- 墙壁对象池，墙壁对象池生成完毕
 local wallPool, wallPoolDone = {}, false
+-- 柱子对象池，柱子对象池生成完毕
+local pillarPool, pillarPoolDone = {}, false
 -- 积分点对象池，积分点对象池生成完毕
 local checkerPool, checkerPoolDone = {}, false
 
@@ -156,12 +166,14 @@ local DEBUG_ALPHA = debug and 0x10 or 0x00
 function Maze:Init()
     print('[Maze] Init()')
     InitMazeWallSpace()
+    InitPillarSpace()
     InitMazeCheckerSpace()
     InitMazeFloor()
     InitMazeEntranceAndExit()
-    invoke(InitBoundary)
-    invoke(InitCheckerPool, .2)
-    invoke(InitWallPool, 1)
+    invoke(InitBoundary) -- 空气墙
+    invoke(InitCheckerPool, .2) -- 对象池：检查点
+    invoke(InitWallPool, 1) -- 对象池：墙
+    invoke(InitPillarPool, 1) -- 对象池：柱子
     MazeHide()
     --* TEST ONLY
     -- invoke(MazeReset, 5)
@@ -173,6 +185,18 @@ function InitMazeWallSpace()
         world:CreateObject(
         'NodeObject',
         'Maze_Wall_Space',
+        MAZE_ROOT,
+        MAZE_CENTER_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5,
+        MAZE_CENTER_ROT
+    )
+end
+
+-- 初始化柱子空间
+function InitPillarSpace()
+    PILLAR_SPACE =
+        world:CreateObject(
+        'NodeObject',
+        'Maze_Pillar_Space',
         MAZE_ROOT,
         MAZE_CENTER_POS + Vector3.Up * MAZE_FLOOR_THICKNESS * .5,
         MAZE_CENTER_ROT
@@ -195,6 +219,7 @@ end
 function InitMazeFloor()
     floor = world:CreateObject('Cube', 'Maze_Floor', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
     floor.Color = MAZE_FLOOR_COLOR
+    floor.Material = Enum.MaterialType.Slate
     floor:SetActive(false)
 end
 
@@ -274,6 +299,29 @@ function InitWallPool()
     print('[Maze] InitWallPool() done 迷宫墙壁对象池初始化完毕')
 end
 
+-- 初始化对象池 - 柱子
+function InitPillarPool()
+    if pillarPoolDone then
+        return
+    end
+    assert(PILLAR_SPACE and not PILLAR_SPACE:IsNull(), '[Maze] PILLAR_SPACE 为空')
+    -- 总共需要多少柱子
+    local pillarNeeded = (NUM_ROWS + 1) * (NUM_COLS + 1)
+    print('[Maze] InitPillarPool() 需要柱子数', pillarNeeded)
+    local rot = EulerDegree(0, 0, 0)
+    local name
+    for i = 1, pillarNeeded do
+        name = string.format('%s_%04d', PILLAR_ARCH, i)
+        objPillar = world:CreateInstance(PILLAR_ARCH, name, PILLAR_SPACE, PILLAR_POOL_POS, rot)
+        pillarPool[objPillar] = true
+        if i % 5 == 0 then
+            wait()
+        end
+    end
+    pillarPoolDone = true
+    print('[Maze] InitPillarPool() done 迷宫柱子对象池初始化完毕')
+end
+
 -- 初始化对象池 - 积分点
 function InitCheckerPool()
     if checkerPoolDone then
@@ -300,7 +348,7 @@ function InitCheckerPool()
     print('[Maze] InitCheckerPool() done 迷宫积分点对象池初始化完毕')
 end
 
---! 对象池生成和回收
+--! 对象池生成和回收，墙壁
 
 -- 从对象池中拿取墙壁obj
 function SpawnWall(_pos, _rot)
@@ -333,6 +381,41 @@ function DespawnWalls()
         wallPool[obj] = true
     end
 end
+
+--! 对象池生成和回收，柱子
+
+-- 从对象池中拿取墙壁obj
+function SpawnPillar(_pos, _rot)
+    for obj, available in pairs(pillarPool) do
+        if available then
+            pillarPool[obj] = false
+            obj.LocalPosition = _pos
+            obj.LocalRotation = _rot
+            obj:SetActive(true)
+            return obj
+        end
+    end
+    error('[Maze] SpawnPillar() 柱子数量不够')
+end
+
+-- 对象池回收墙壁obj
+function DespawnPillar(_obj)
+    assert(_obj and not _obj:IsNull(), '[Maze] DespawnPillar(_obj) _obj不能为空')
+    assert(pillarPool[_obj] ~= nil, '[Maze] DespawnPillar(_obj) _obj不在对象池中')
+    assert(pillarPool[_obj] == false, '[Maze] DespawnPillar(_obj) _obj对象池状态错误')
+    _obj:SetActive(false)
+    pillarPool[_obj] = true
+end
+
+-- 回收全部墙壁obj
+function DespawnPillars()
+    for obj, _ in pairs(pillarPool) do
+        obj.Position = PILLAR_POOL_POS
+        pillarPool[obj] = true
+    end
+end
+
+--! 对象池生成和回收，积分点
 
 -- 从对象池中取出积分点obj
 function SpawnChecker(_pos, _rot)
@@ -370,7 +453,7 @@ end
 
 -- 迷宫重置
 function MazeReset()
-    if not wallPoolDone or not checkerPoolDone then
+    if not wallPoolDone or not pillarPoolDone or not checkerPoolDone then
         error('[Maze] 对象池初始化未完成，MazeReset() 不能执行')
         return
     end
@@ -388,6 +471,7 @@ function MazeReset()
     PrintNodePath()
     -- gen objs
     MazeWallsGen()
+    PillarsGen()
     MazeCheckersGen()
     invoke(GenNodePath)
     -- show maze
@@ -426,6 +510,7 @@ end
 -- 迷宫墙壁重置
 function MazeObjsReset()
     DespawnWalls()
+    DespawnPillars()
     DespawnCheckers()
 end
 
@@ -506,11 +591,60 @@ function MazeWallsGen()
         for row = 1, NUM_ROWS do
             for col = 1, NUM_COLS do
                 cell = M[row][col]
+                --* 1：路，0：墙
                 if cell[dir] == 0 then
                     pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
                 end
+            end
+        end
+    end
+end
+
+-- 迷宫柱子生成
+function PillarsGen()
+    -- 柱子位置偏移量
+    local cell, pos, rot = nil, nil, EulerDegree(0, 0, 0)
+    local rd = false -- 用于判定右下角是否有柱子
+    for row = 1, NUM_ROWS do
+        for col = 1, NUM_COLS do
+            cell = M[row][col]
+            --* Vector3(1, 0, 1) = Vector2(右, 上)
+            --* 1：路，0：墙
+
+            -- 左上角
+            if row == 1 and col == 1 then
+                pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(-1, 0, 1) * WALL_POS_OFFSET
+                objPillar = SpawnPillar(pos, rot)
+            end
+            -- 右上角
+            if (row == 1 and cell[RIGHT] == 0) or (row == NUM_ROWS and col == EXIT) then
+                pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(1, 0, 1) * WALL_POS_OFFSET
+                objPillar = SpawnPillar(pos, rot)
+            end
+            -- 左下角
+            if col == 1 and (cell[DOWN] == 0 or row == ENTRANCE) then
+                pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(-1, 0, -1) * WALL_POS_OFFSET
+                objPillar = SpawnPillar(pos, rot)
+            end
+            -- 右下角
+            rd =
+                (row == NUM_ROWS and col == NUM_COLS) or -- 右下边界
+                (col == NUM_COLS and cell[DOWN] == 0) or -- 右边界
+                (row == NUM_ROWS and cell[RIGHT] == 0) -- 下边界
+            if not rd and row < NUM_ROWS and col < NUM_COLS then -- 中心区域：6种情况
+                rd =
+                    (cell[DOWN] == 0 and cell[RIGHT] == 0) or -- 柱子左上为墙
+                    (cell[DOWN] == 0 and M[row + 1][col][RIGHT] == 0) or -- 柱子左下为墙
+                    (cell[RIGHT] == 0 and M[row][col + 1][DOWN] == 0) or -- 柱子右上为墙
+                    (M[row + 1][col][RIGHT] == 0 and M[row][col + 1][DOWN] == 0) or -- 柱子右下为墙
+                    (cell[RIGHT] ~= M[row + 1][col][RIGHT]) or -- 柱子上下有只有一根
+                    (cell[DOWN] ~= M[row][col + 1][DOWN]) -- 柱子左右只有一根
+            end
+            if rd then
+                pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3(1, 0, -1) * WALL_POS_OFFSET
+                objPillar = SpawnPillar(pos, rot)
             end
         end
     end
