@@ -258,6 +258,33 @@ local ItemXls = {
         UseSoundID = 1,
         UseAnimName = ''
     },
+    [1029] = {
+        ItemID = 1029,
+        Name = 'Item_Name_1029',
+        Des = 'Item_Des_1029',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 1,
+        UseAnimName = ''
+    },
+    [1030] = {
+        ItemID = 1030,
+        Name = 'Item_Name_1030',
+        Des = 'Item_Des_1030',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 1,
+        UseAnimName = ''
+    },
+    [1031] = {
+        ItemID = 1031,
+        Name = 'Item_Name_1031',
+        Des = 'Item_Des_1031',
+        Ico = '',
+        UseCD = 0.5,
+        UseSoundID = 1,
+        UseAnimName = ''
+    },
     [3001] = {
         ItemID = 3001,
         Name = 'Item_Name_3001',
@@ -316,6 +343,60 @@ local ItemXls = {
         ItemID = 3007,
         Name = 'Item_Name_3007',
         Des = 'Item_Des_3007',
+        Ico = '',
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [3008] = {
+        ItemID = 3008,
+        Name = 'Item_Name_3008',
+        Des = 'Item_Des_3008',
+        Ico = '',
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [3009] = {
+        ItemID = 3009,
+        Name = 'Item_Name_3009',
+        Des = 'Item_Des_3009',
+        Ico = '',
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [3010] = {
+        ItemID = 3010,
+        Name = 'Item_Name_3010',
+        Des = 'Item_Des_3010',
+        Ico = '',
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [3011] = {
+        ItemID = 3011,
+        Name = 'Item_Name_3011',
+        Des = 'Item_Des_3011',
+        Ico = '',
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [3012] = {
+        ItemID = 3012,
+        Name = 'Item_Name_3012',
+        Des = 'Item_Des_3012',
+        Ico = '',
+        UseCD = 0.0,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [3013] = {
+        ItemID = 3013,
+        Name = 'Item_Name_3013',
+        Des = 'Item_Des_3013',
         Ico = '',
         UseCD = 0.0,
         UseSoundID = 0,
