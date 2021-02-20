@@ -4,12 +4,12 @@
 -- @author Dead Ratman
 ---@module ItemMgr
 
-local ItemMgr, this = ModuleUtil.New('ItemMgr', ClientBase)
+local ItemMgr, this = ModuleUtil.New("ItemMgr", ClientBase)
 
 local coin = 0
 
 function ItemMgr:Init()
-    print('ItemMgr:Init')
+    print("ItemMgr:Init")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -32,7 +32,7 @@ function ItemMgr:DataInit()
         function()
             this:InitBagData()
             wait(.5)
-            NetUtil.Fire_C('GetItemEvent', localPlayer, 5001)
+            NetUtil.Fire_C("GetItemEvent", localPlayer, 5001)
         end
     )
 end
@@ -51,7 +51,7 @@ function ItemMgr:InitBagData()
             count = 0,
             lastestTime = 0,
             isNew = true,
-            isConst = true
+            isConst = tonumber(string.sub(tostring(k), 1, 1)) < 6
         }
     end
     Data.Player.bag = tempBagData
@@ -89,7 +89,7 @@ end
 
 --实例化物品
 function ItemMgr:InstantiateItem(_id)
-    return this['Instantiate' .. string.sub(tostring(_id), 1, 1)](self, _id)
+    return this["Instantiate" .. string.sub(tostring(_id), 1, 1)](self, _id)
 end
 
 --兑换任务奖励
@@ -99,29 +99,59 @@ end
 
 --获得道具
 function ItemMgr:GetItemEventHandler(_id)
-    print('获得道具', _id)
+    if tonumber(string.sub(tostring(_id), 1, 1)) < 6 and Data.Player.bag[_id].count > 0 then
+        print("已有道具", _id)
+        return
+    end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     this.itemInstance[_id]:PutIntoBag()
+    print("获得道具", _id)
+    return
 end
 
 --移除道具
 function ItemMgr:RemoveItemEventHandler(_id)
-    print('移除道具', _id)
+    print("移除道具", _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count - 1
     this.itemInstance[_id]:ThrowOutOfBag()
 end
 
 --使用道具
 function ItemMgr:UseItemEventHandler(_id)
-    print('使用道具', _id)
+    print("使用道具", _id)
     this.itemInstance[_id]:Use()
+end
+
+--交互掉落道具
+function ItemMgr:GetItemFromPoolEventHandler(_poolID)
+    local weightSum = 0
+    for k, v in pairs(Config.ItemPool[_poolID]) do
+        weightSum = weightSum + v.Weight
+    end
+    local randomNum = math.random(weightSum)
+    for k, v in pairs(Config.ItemPool[_poolID]) do
+        if randomNum < v.Weight then
+            if Data.Player.bag[v.ItemId].count > 0 then
+                if tonumber(string.sub(tostring(v.ItemId), 1, 1)) >= 6 then
+                    Data.Player.bag[v.ItemId].count = Data.Player.bag[v.ItemId].count + 1
+                    this.itemInstance[v.ItemId]:PutIntoBag()
+                else
+                    NetUtil.Fire_C("GetItemFromPoolEvent", localPlayer, _poolID)
+                end
+            else
+                NetUtil.Fire_C("GetItemEvent", localPlayer, v.ItemId)
+            end
+            return
+        end
+    end
+    return
 end
 
 --获取满足条件的任务道具
 function ItemMgr:GetTaskItem(_npcID)
     local npcTable
     for k1, v1 in pairs(Data.Player.bag) do
-        if string.sub(tostring(k1), 1, 1) == '5' and v1.count > 0 then
+        if string.sub(tostring(k1), 1, 1) == "5" and v1.count > 0 then
             npcTable = this.itemInstance[k1].config.Npc
             for k2, v2 in pairs(npcTable) do
                 if v2 == _npcID then

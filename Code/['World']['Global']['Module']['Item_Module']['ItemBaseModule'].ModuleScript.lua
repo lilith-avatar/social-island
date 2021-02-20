@@ -18,10 +18,12 @@ end
 
 --放入背包
 function ItemBase:PutIntoBag()
+    GuiControl:InsertInfoEventHandler('获得' ..LanguageUtil.GetText(Config.Item[self.id].Name), 2, false)
 end
 
 --从背包里扔掉
 function ItemBase:ThrowOutOfBag()
+    GuiControl:InsertInfoEventHandler('失去' ..LanguageUtil.GetText(Config.Item[self.id].Name), 2, false)
 end
 
 --销毁

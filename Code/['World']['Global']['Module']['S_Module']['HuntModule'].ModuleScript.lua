@@ -118,17 +118,23 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
         deadAnimationName = Config.Animal[_animalID].DeadAnimationName,
         closePlayer = nil,
         LVCtrlIntensity = Config.Animal[_animalID].LVCtrlIntensity,
-        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity
+        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity,
+        itemPoolID = Config.Animal[_animalID].ItemPoolID
     }
 
     tempData.obj.Col.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and tempData.state ~= animalActState.DEADED then
                 if _hitObject.IsHunt and _hitObject.IsHunt.Value == true then
-                    ItemPool:CreateItemObj(5006, _hitObject.Position)
+                    --ItemPool:CreateItemObj(5006, _hitObject.Position)
+                    NetUtil.Fire_C(
+                        "GetItemFromPoolEvent",
+                        world:GetPlayerByUserId(_hitObject.UserId.Value),
+                        tempData.itemPoolID
+                    )
                     _hitObject:Destroy()
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
-                    this:AreaSpawnCtrl()
+                    this:AreaSpawnCtrl()                  
                 end
             end
         end

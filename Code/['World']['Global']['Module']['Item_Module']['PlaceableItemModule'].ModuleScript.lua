@@ -13,10 +13,12 @@ end
 
 --放入背包
 function PlaceableItem:PutIntoBag()
+	ItemBase.PutIntoBag(self)
 end
 
 --从背包里扔掉
 function PlaceableItem:ThrowOutOfBag()
+	ItemBase.ThrowOutOfBag(self)
 end
 
 --使用
