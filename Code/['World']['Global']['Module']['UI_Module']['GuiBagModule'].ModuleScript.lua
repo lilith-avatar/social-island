@@ -136,8 +136,8 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index].id = _itemId
     
     -- 更换图片
-    --this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/" .. Config.Item[_itemId].Ico)
-    --this.slotList[_index].IconImg.Size = this.slotList[_index].Size
+    this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
+    this.slotList[_index].IconImg.Size = this.slotList[_index].MaskImg.Size
     this.slotList[_index].IconImg:SetActive(_itemId and true or false)
 
     -- 若存在cd,则将mask放入表中
