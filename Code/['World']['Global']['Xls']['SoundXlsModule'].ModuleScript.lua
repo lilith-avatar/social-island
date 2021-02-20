@@ -14,6 +14,15 @@ local SoundXls = {
         Volume = 60.0,
         Path = 'Audio/Clap',
         Info = ''
+    },
+    [2] = {
+        ID = 2,
+        Type = 'BGM',
+        Name = 'BGM',
+        IsLoop = true,
+        Volume = 200.0,
+        Path = 'Audio/Temp_BGM',
+        Info = ''
     }
 }
 
