@@ -45,6 +45,7 @@ function MonsterBattle:EventBind()
         function()
             _flag = this.MainPanel.ActiveSelf
             print(not _flag)
+			this.MonsterGUI:SetActive(true)
             this.MainPanel:SetActive(not _flag)
             if not _flag then
                 print("[MonsterBattle] 菜单刷新")

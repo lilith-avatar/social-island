@@ -137,18 +137,21 @@ function GuiStore:UpdateBuyBtnUI(_sellBtn)
         _sellBtn:SetActive(false)
     else
         --_sellBtn.GoodsImg.LockImg.Visible = true
-        _sellBtn.GoodsImg.IMGNormal.Visible = false
+        _sellBtn.GoodsImg.IMGNormal.Visible = true
         _sellBtn.PriceImg.Visible = true
         for k, v in pairs(Config.Item) do
             if v.ItemID == _sellBtn.ItemID.Value then
                 _sellBtn.PriceImg.PriceTxt.Text = Config.Shop[curNpcID][v.ItemID].Price
-                --_sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture("Local/UI/ItemIcon/" .. v.Ico)
+                _sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture("UI/ItemIcon/" .. v.Icon)
                 --_sellBtn.GoodsImg.IMGEmpty.Texture = ResourceManager.GetTexture("Local/UI/ItemIcon/" .. v.IconEmpty)
                 break
             end
         end
         for k, v in pairs(Data.Player.bag) do
-            if k == _sellBtn.ItemID.Value and v.count > 0 then
+            if
+                k == _sellBtn.ItemID.Value and v.count > 0 and
+                    tonumber(string.sub(tostring(_sellBtn.ItemID.Value), 1, 1)) < 6
+             then
                 _sellBtn.GoodsImg.ShopBtn.OnClick:Clear()
                 _sellBtn.GoodsImg.ShopBtn.Clickable = false
                 _sellBtn.GoodsImg.LockImg.Visible = true
