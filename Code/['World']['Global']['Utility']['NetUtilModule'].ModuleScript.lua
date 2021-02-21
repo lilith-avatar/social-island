@@ -36,9 +36,9 @@ end
 -- @param _player 玩家对象
 -- @param ... 事件参数
 function NetUtil.Fire_C(_eventName, _player, ...)
-	if(_player == nil) then
-		return
-	end
+    if (_player == nil) then
+        return
+    end
     ValidateArgs(FireEnum.CLIENT, _eventName, _player)
     local args = {...}
     _player.C_Event[_eventName]:Fire(table.unpack(args))
@@ -85,6 +85,7 @@ ValidateArgs =
                 _player and _player.ClassName == 'PlayerInstance',
                 string.format('[NetUtil][Fire_C]第2个参数需要是玩家对象, 错误事件: %s', _eventName)
             )
+            assert(_player.C_Event, '[NetUtil][Fire_C]第2个参数需要是玩家对象, 错误事件: %s', _eventName)
             assert(
                 _player.C_Event[_eventName],
                 string.format('[NetUtil][Fire_C] 客户端玩家不存在事件: %s, 玩家: %s', _player.Name, _eventName)

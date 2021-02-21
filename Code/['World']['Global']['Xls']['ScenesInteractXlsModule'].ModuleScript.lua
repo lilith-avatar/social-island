@@ -16,8 +16,8 @@ local ScenesInteractXls = {
     },
     [2] = {
         ID = 2,
-        Name = '树枝',
-        Path = 'Stick',
+        Name = '树枝1',
+        Path = 'Stick1',
         ItemID = 1002,
         IsGet = true,
         UseCount = 1
@@ -104,8 +104,8 @@ local ScenesInteractXls = {
     },
     [13] = {
         ID = 13,
-        Name = '迷你树',
-        Path = 'MiniTree',
+        Name = '迷你树1',
+        Path = 'MiniTree1',
         ItemID = 1028,
         IsGet = true,
         UseCount = 1
@@ -184,24 +184,24 @@ local ScenesInteractXls = {
     },
     [23] = {
         ID = 23,
-        Name = '红蘑菇',
-        Path = 'MushroomRed',
+        Name = '红蘑菇1',
+        Path = 'MushroomRed1',
         ItemID = 3010,
         IsGet = false,
-        UseCount = 99999
+        UseCount = 1
     },
     [24] = {
         ID = 24,
-        Name = '黄蘑菇',
-        Path = 'MushroomYellow',
+        Name = '黄蘑菇1',
+        Path = 'MushroomYellow1',
         ItemID = 3011,
         IsGet = false,
-        UseCount = 99999
+        UseCount = 1
     },
     [25] = {
         ID = 25,
-        Name = '花丛',
-        Path = 'Flowers',
+        Name = '花丛1',
+        Path = 'Flowers1',
         ItemID = 3009,
         IsGet = false,
         UseCount = 99999
@@ -229,6 +229,134 @@ local ScenesInteractXls = {
         ItemID = 2002,
         IsGet = false,
         UseCount = 99999
+    },
+    [29] = {
+        ID = 29,
+        Name = '花丛2',
+        Path = 'Flowers2',
+        ItemID = 3009,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [30] = {
+        ID = 30,
+        Name = '花丛3',
+        Path = 'Flowers3',
+        ItemID = 3009,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [31] = {
+        ID = 31,
+        Name = '花丛4',
+        Path = 'Flowers4',
+        ItemID = 3009,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [32] = {
+        ID = 32,
+        Name = '花丛5',
+        Path = 'Flowers5',
+        ItemID = 3009,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [33] = {
+        ID = 33,
+        Name = '迷你树2',
+        Path = 'MiniTree2',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [34] = {
+        ID = 34,
+        Name = '迷你树3',
+        Path = 'MiniTree3',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [35] = {
+        ID = 35,
+        Name = '迷你树4',
+        Path = 'MiniTree4',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [36] = {
+        ID = 36,
+        Name = '迷你树5',
+        Path = 'MiniTree5',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [37] = {
+        ID = 37,
+        Name = '迷你树6',
+        Path = 'MiniTree6',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [38] = {
+        ID = 38,
+        Name = '迷你树7',
+        Path = 'MiniTree7',
+        ItemID = 1028,
+        IsGet = true,
+        UseCount = 1
+    },
+    [39] = {
+        ID = 39,
+        Name = '红蘑菇2',
+        Path = 'MushroomRed2',
+        ItemID = 3010,
+        IsGet = false,
+        UseCount = 1
+    },
+    [40] = {
+        ID = 40,
+        Name = '红蘑菇3',
+        Path = 'MushroomRed3',
+        ItemID = 3010,
+        IsGet = false,
+        UseCount = 1
+    },
+    [41] = {
+        ID = 41,
+        Name = '黄蘑菇2',
+        Path = 'MushroomYellow2',
+        ItemID = 3011,
+        IsGet = false,
+        UseCount = 1
+    },
+    [42] = {
+        ID = 42,
+        Name = '树枝2',
+        Path = 'Stick2',
+        ItemID = 1002,
+        IsGet = true,
+        UseCount = 1
+    },
+    [43] = {
+        ID = 43,
+        Name = '树枝3',
+        Path = 'Stick3',
+        ItemID = 1002,
+        IsGet = true,
+        UseCount = 1
+    },
+    [44] = {
+        ID = 44,
+        Name = '树枝4',
+        Path = 'Stick4',
+        ItemID = 1002,
+        IsGet = true,
+        UseCount = 1
     }
 }
 

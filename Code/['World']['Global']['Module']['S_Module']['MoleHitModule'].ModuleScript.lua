@@ -52,6 +52,7 @@ end
 
 function MoleHit:DataInit()
     this.playerList = {}
+    this.rangePlayer = {}
     this.pitList = {}
     this.moleList = {}
     this.timer = 0
@@ -74,10 +75,22 @@ function MoleHit:DataInit()
             end
         end
     )
+    world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject.ClassName == 'PlayerInstance' then
+                if this.rangePlayer[_hitObject.UserId] then
+                    NetUtil.Fire_S('PlayerStartMoleHitEvent',_hitObject)
+                end
+                this.rangePlayer[_hitObject.UserId] = true
+                NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
+            end
+        end
+    )
 
     world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionEnd:Connect(
         function(_hitObject)
             if _hitObject.ClassName == 'PlayerInstance' then
+                this.rangePlayer[_hitObject.UserId] = nil
                 NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
             end
         end
@@ -102,14 +115,16 @@ end
 
 function MoleHit:InteractSEventHandler(_player, _gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C("StartMoleEvent", _player)
+        --NetUtil.Fire_C("StartMoleEvent", _player)
     end
 end
 
 function MoleHit:PlayerStartMoleHitEventHandler(_uid)
+    local player = world:GetPlayerByUserId(_uid)
     this.playerList[_uid] = {
         inGame = true
     }
+    NetUtil.Fire_C('StartMoleEvent',player)
 end
 
 function MoleHit:PlayerLeaveMoleHitEventHandler(_uid)
@@ -146,6 +161,15 @@ function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
             player = world:GetPlayerByUserId(_uid)
             this.pitList[k].mole:BeBeaten(player)
         end
+    end
+end
+
+function MoleHit:EnterMiniGameEventHandler(_player,_gameId)
+    if _gameId == 2 then
+        if this.rangePlayer[_player.UserId] then
+            NetUtil.Fire_S('PlayerStartMoleHitEvent',_player)
+        end
+        this.rangePlayer[_player.UserId] = true
     end
 end
 

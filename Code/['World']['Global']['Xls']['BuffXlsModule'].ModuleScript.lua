@@ -24,7 +24,7 @@ local BuffXls = {
     },
     [2] = {
         ID = 2,
-        BuffCoverIDList = {3, 4},
+        BuffCoverIDList = {3, 4, 35, 36, 14, 15, 16, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -40,7 +40,7 @@ local BuffXls = {
     },
     [3] = {
         ID = 3,
-        BuffCoverIDList = {2, 4},
+        BuffCoverIDList = {2, 4, 35, 36, 14, 15, 16, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -56,7 +56,7 @@ local BuffXls = {
     },
     [4] = {
         ID = 4,
-        BuffCoverIDList = {2, 3},
+        BuffCoverIDList = {2, 3, 35, 36, 14, 15, 16, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -72,7 +72,7 @@ local BuffXls = {
     },
     [5] = {
         ID = 5,
-        BuffCoverIDList = {2, 3, 4},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -216,7 +216,7 @@ local BuffXls = {
     },
     [14] = {
         ID = 14,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 15, 16, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -232,7 +232,7 @@ local BuffXls = {
     },
     [15] = {
         ID = 15,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 16, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -248,7 +248,7 @@ local BuffXls = {
     },
     [16] = {
         ID = 16,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 17, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -264,7 +264,7 @@ local BuffXls = {
     },
     [17] = {
         ID = 17,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 18, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -280,7 +280,7 @@ local BuffXls = {
     },
     [18] = {
         ID = 18,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 17, 19, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -296,7 +296,7 @@ local BuffXls = {
     },
     [19] = {
         ID = 19,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 17, 18, 29, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -312,7 +312,7 @@ local BuffXls = {
     },
     [20] = {
         ID = 20,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {21, 22, 23},
         AvatarHeight_Overlay = 1.2,
         AvatarHeadSize_Overlay = 1.2,
         AvatarWidth_Overlay = 1.0,
@@ -328,7 +328,7 @@ local BuffXls = {
     },
     [21] = {
         ID = 21,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {20, 22, 23},
         AvatarHeight_Overlay = 1.5,
         AvatarHeadSize_Overlay = 1.5,
         AvatarWidth_Overlay = 1.0,
@@ -344,7 +344,7 @@ local BuffXls = {
     },
     [22] = {
         ID = 22,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {21, 20, 23},
         AvatarHeight_Overlay = 2.0,
         AvatarHeadSize_Overlay = 2.0,
         AvatarWidth_Overlay = 1.0,
@@ -376,16 +376,16 @@ local BuffXls = {
     },
     [24] = {
         ID = 24,
-        BuffCoverIDList = {0},
-        AvatarHeight_Overlay = 0.3,
-        AvatarHeadSize_Overlay = 0.3,
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 17, 18, 19, 29, 30, 31, 20, 21, 22, 23},
+        AvatarHeight_Overlay = 0.1,
+        AvatarHeadSize_Overlay = 0.1,
         AvatarWidth_Overlay = 1.0,
         HeadEffect_Overlay = '',
         BodyEffect_Overlay = '',
         FootEffect_Overlay = '',
-        WalkSpeed_Overlay = 0.3,
-        JumpUpVelocity_Overlay = 0.3,
-        GravityScale_Overlay = 1.0,
+        WalkSpeed_Overlay = 0.11,
+        JumpUpVelocity_Overlay = 0.0,
+        GravityScale_Overlay = 0.2,
         SkinID_Cover = nil,
         AnimState_Cover = 'MazeIdle',
         EnableEquipable_Cover = false
@@ -456,7 +456,7 @@ local BuffXls = {
     },
     [29] = {
         ID = 29,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 17, 18, 19, 30, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -472,7 +472,7 @@ local BuffXls = {
     },
     [30] = {
         ID = 30,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {2, 3, 4, 35, 36, 14, 15, 16, 17, 18, 19, 29, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -568,7 +568,7 @@ local BuffXls = {
     },
     [36] = {
         ID = 36,
-        BuffCoverIDList = {35},
+        BuffCoverIDList = {2, 3, 4, 35, 14, 15, 16, 17, 18, 19, 29, 31},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -579,7 +579,7 @@ local BuffXls = {
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
-        AnimState_Cover = 'TwoHandedSwordIdle',
+        AnimState_Cover = '',
         EnableEquipable_Cover = true
     }
 }

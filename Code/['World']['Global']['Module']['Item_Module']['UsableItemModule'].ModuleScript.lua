@@ -36,7 +36,7 @@ end
 function UsableItem:GetPlayersByRange()
     local players = {}
     for k, v in pairs(world:FindPlayers()) do
-        if self.config.Range > 0 then
+        if self.config.Range and self.config.Range > 0 then
             if (localPlayer.Position - v.Position).Magnitude <= self.config.Range then
                 if v == localPlayer and self.config.IsSelfActive then
                     players[#players + 1] = v

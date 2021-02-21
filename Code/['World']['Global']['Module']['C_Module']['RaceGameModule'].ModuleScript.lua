@@ -18,7 +18,7 @@ function RaceGame:PetCheck(_dt, _tt)
 	if localPlayer.MonsterVal and localPlayer.MonsterVal.Value ~= nil then
 		withPet = true
 		totalResetTime = totalResetTime + _dt
-		if totalResetTime > (60 * 0.02) then
+		if totalResetTime > (60 * 1.5) then
 			totalResetTime = 0
 			this:RandomKey()
 			this:FreshStartPoint()
@@ -117,6 +117,11 @@ function RaceGame:GameOver()
     rewardRate = this.pointRecord / this.pointNum
     if rewardRate == 1 then
         RaceGameUIMgr:ShowGameOver('win')
+		NetUtil.Fire_C(
+            "GetItemFromPoolEvent",
+            localPlayer,
+            16
+        )
     else
         RaceGameUIMgr:ShowGameOver('lose')
     end
@@ -140,6 +145,7 @@ function RaceGame:FreshPoint(_hitObject, _hitPoint, _hitNormal)
 		invoke(function()
 			if this.pointRecord == this.pointNum then
 				RaceGame:GameOver()
+				localPlayer.WalkSpeed = 6
 			else
 				RaceGameUIMgr:GetCheckPoint(this.pointRecord, this.pointNum)
 				this.checkPoint.Position = Config.RacePoint[nowKey][this.pointRecord + 1].Pos

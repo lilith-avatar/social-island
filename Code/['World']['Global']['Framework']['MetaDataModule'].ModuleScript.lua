@@ -7,6 +7,9 @@ local MetaData = {}
 -- Localize global vars
 local FrameworkConfig = FrameworkConfig
 
+-- Debug
+local debugMode = false
+
 -- enum
 MetaData.Enum = {}
 -- 数据所属：客户端 or 服务器
@@ -37,7 +40,7 @@ local spraw = {_name = '[PlayerData][Server]'} -- server player raw data
 local cpraw = {_name = '[PlayerData][Client]'} -- client player raw data
 
 --- 打印数据同步日志
-local PrintLog = FrameworkConfig.DebugMode and function(...)
+local PrintLog = FrameworkConfig.DebugMode and debugMode and function(...)
         print('[MetaData]', ...)
     end or function()
     end
@@ -83,7 +86,7 @@ local function DataValidation(_raw, _metaId, _k, _v)
     assert(_v ~= nil, string.format('[MetaData]%s 数据value为空', _raw._name))
     assert(_raw[_metaId], string.format('[MetaData]%s metaId对应数据不存在, metaId = %s', _raw._name, _metaId))
     assert(
-        _raw[_metaId][_k]~= nil,
+        _raw[_metaId][_k] ~= nil,
         string.format('[MetaData]%s metaId不存在key的数据, metaId = %s, key = %s', _raw._name, _metaId, _k)
     )
 end
