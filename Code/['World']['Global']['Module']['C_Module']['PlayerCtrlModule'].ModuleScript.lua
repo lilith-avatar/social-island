@@ -157,7 +157,7 @@ function PlayerCtrl:PlayerAttrUpdate()
     if Data.Player.attr.AnimState ~= '' then
         NetUtil.Fire_C('FsmTriggerEvent', localPlayer, Data.Player.attr.AnimState)
     else
-        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
+
     end
     if not Data.Player.attr.EnableEquipable then
         NetUtil.Fire_C("UnequipCurWeaponEvent", localPlayer)

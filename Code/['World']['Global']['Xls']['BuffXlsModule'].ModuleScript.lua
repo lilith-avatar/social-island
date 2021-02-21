@@ -36,7 +36,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [3] = {
         ID = 3,
@@ -52,7 +52,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'BowIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [4] = {
         ID = 4,
@@ -68,7 +68,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [5] = {
         ID = 5,
@@ -228,7 +228,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [15] = {
         ID = 15,
@@ -244,7 +244,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [16] = {
         ID = 16,
@@ -260,7 +260,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [17] = {
         ID = 17,
@@ -276,7 +276,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [18] = {
         ID = 18,
@@ -292,7 +292,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [19] = {
         ID = 19,
@@ -308,7 +308,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [20] = {
         ID = 20,
@@ -388,7 +388,7 @@ local BuffXls = {
         GravityScale_Overlay = 0.2,
         SkinID_Cover = nil,
         AnimState_Cover = 'MazeIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [25] = {
         ID = 25,
@@ -468,7 +468,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [30] = {
         ID = 30,
@@ -484,7 +484,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [31] = {
         ID = 31,
@@ -500,7 +500,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [32] = {
         ID = 32,
@@ -596,7 +596,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     }
 }
 
