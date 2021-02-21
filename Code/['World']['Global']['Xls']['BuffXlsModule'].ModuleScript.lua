@@ -20,7 +20,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [2] = {
         ID = 2,
@@ -36,7 +36,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [3] = {
         ID = 3,
@@ -52,7 +52,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'BowIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [4] = {
         ID = 4,
@@ -68,7 +68,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [5] = {
         ID = 5,
@@ -84,7 +84,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'SwimIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [6] = {
         ID = 6,
@@ -100,7 +100,7 @@ local BuffXls = {
         GravityScale_Overlay = 0.7,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [7] = {
         ID = 7,
@@ -116,7 +116,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [8] = {
         ID = 8,
@@ -132,7 +132,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [9] = {
         ID = 9,
@@ -148,7 +148,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [10] = {
         ID = 10,
@@ -164,7 +164,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [11] = {
         ID = 11,
@@ -180,7 +180,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [12] = {
         ID = 12,
@@ -196,7 +196,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [13] = {
         ID = 13,
@@ -212,7 +212,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [14] = {
         ID = 14,
@@ -228,7 +228,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [15] = {
         ID = 15,
@@ -244,7 +244,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [16] = {
         ID = 16,
@@ -260,7 +260,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [17] = {
         ID = 17,
@@ -276,7 +276,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [18] = {
         ID = 18,
@@ -292,7 +292,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [19] = {
         ID = 19,
@@ -308,7 +308,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [20] = {
         ID = 20,
@@ -324,7 +324,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [21] = {
         ID = 21,
@@ -340,7 +340,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.2,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [22] = {
         ID = 22,
@@ -356,7 +356,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.5,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [23] = {
         ID = 23,
@@ -372,7 +372,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [24] = {
         ID = 24,
@@ -388,7 +388,7 @@ local BuffXls = {
         GravityScale_Overlay = 0.2,
         SkinID_Cover = nil,
         AnimState_Cover = 'MazeIdle',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [25] = {
         ID = 25,
@@ -404,7 +404,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 1,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [26] = {
         ID = 26,
@@ -420,7 +420,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 2,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [27] = {
         ID = 27,
@@ -436,7 +436,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 3,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [28] = {
         ID = 28,
@@ -452,7 +452,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 4,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [29] = {
         ID = 29,
@@ -466,9 +466,9 @@ local BuffXls = {
         WalkSpeed_Overlay = 1.0,
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
-        SkinID_Cover = 3,
+        SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [30] = {
         ID = 30,
@@ -482,9 +482,9 @@ local BuffXls = {
         WalkSpeed_Overlay = 1.0,
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
-        SkinID_Cover = 4,
+        SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [31] = {
         ID = 31,
@@ -500,7 +500,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'OneHandedSwordIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [32] = {
         ID = 32,
@@ -508,7 +508,7 @@ local BuffXls = {
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
-        HeadEffect_Overlay = '',
+        HeadEffect_Overlay = 'NinjaTrail',
         BodyEffect_Overlay = '',
         FootEffect_Overlay = '',
         WalkSpeed_Overlay = 1.5,
@@ -516,7 +516,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [33] = {
         ID = 33,
@@ -532,7 +532,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [34] = {
         ID = 34,
@@ -548,7 +548,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [35] = {
         ID = 35,
@@ -564,7 +564,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [36] = {
         ID = 36,
@@ -574,6 +574,22 @@ local BuffXls = {
         AvatarWidth_Overlay = 1.0,
         HeadEffect_Overlay = '',
         BodyEffect_Overlay = 'Cask',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = nil,
+        AnimState_Cover = '',
+        EnableEquipable_Cover = false
+    },
+    [37] = {
+        ID = 37,
+        BuffCoverIDList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
         FootEffect_Overlay = '',
         WalkSpeed_Overlay = 1.0,
         JumpUpVelocity_Overlay = 1.0,

@@ -42,7 +42,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -62,7 +62,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 4
     },
@@ -82,7 +82,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 4
     },
@@ -102,7 +102,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -122,7 +122,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -142,7 +142,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -162,7 +162,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -182,7 +182,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 4
     },
@@ -202,7 +202,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 4
     },
@@ -222,7 +222,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 4
     },
@@ -242,7 +242,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -262,7 +262,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -282,7 +282,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 29
     },
@@ -302,7 +302,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 30
     },
@@ -322,7 +322,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -342,7 +342,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -382,7 +382,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -402,7 +402,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
@@ -462,7 +462,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 15
     },
@@ -482,7 +482,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 14
     },
@@ -502,7 +502,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 16
     },
@@ -542,7 +542,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 14
     },
@@ -562,7 +562,7 @@ local MeleeWeaponXls = {
         HitRemoveBuffID = 0,
         HitEffectName = '',
         HitSoundID = '',
-        Hunt = false,
+        Hunt = true,
         Mole = false,
         UseAddBuffID = 2
     },
