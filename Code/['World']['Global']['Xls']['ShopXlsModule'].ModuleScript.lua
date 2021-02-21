@@ -18,6 +18,12 @@ local ShopXls = {
             Index = 2,
             ItemId = 1021,
             Price = 150
+        },
+        [3008] = {
+            NpcId = 1,
+            Index = 3,
+            ItemId = 3008,
+            Price = 100
         }
     },
     [2] = {
@@ -38,6 +44,12 @@ local ShopXls = {
             Index = 3,
             ItemId = 2003,
             Price = 150
+        },
+        [3012] = {
+            NpcId = 2,
+            Index = 4,
+            ItemId = 3012,
+            Price = 100
         }
     },
     [3] = {
@@ -110,6 +122,18 @@ local ShopXls = {
             Index = 4,
             ItemId = 1015,
             Price = 500
+        },
+        [3005] = {
+            NpcId = 17,
+            Index = 5,
+            ItemId = 3005,
+            Price = 150
+        },
+        [3006] = {
+            NpcId = 17,
+            Index = 6,
+            ItemId = 3006,
+            Price = 150
         }
     }
 }

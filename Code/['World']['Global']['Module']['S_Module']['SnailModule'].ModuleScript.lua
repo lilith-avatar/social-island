@@ -164,7 +164,7 @@ function Snail:InitMoveData(_snailObjPool)
     end
     local tempTime = 0
     for i = 1, #disTable do
-        tempTime = 20 + math.random(-150, 150) / 10
+        tempTime = 10 + math.random(-50, 50) / 10
         _snailObjPool.moveData[i] = {
             time = tempTime,
             speed = disTable[i] / tempTime

@@ -94,6 +94,7 @@ function GuiStore:GetItemData(_itemData)
         gui.ShopPanel.DragPanel.Panel1["ShopBtn" .. v.Index].GoodsImg.ShopBtn.OnClick:Connect(
             function()
                 this:SwithConfirmUI(1, v.ItemId)
+                this:UpdateItemInfo(v.ItemId)
             end
         )
     end
@@ -131,12 +132,25 @@ function GuiStore:BuyItem(_itemID)
     this:UpdateStoreUI()
 end
 
+--更新物品信息显示
+function GuiStore:UpdateItemInfo(_itemID)
+    if _itemID then
+        gui.ShopPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.Item[_itemID].Name)
+        gui.ShopPanel.DesTextBox.DesText.Text = LanguageUtil.GetText(Config.Item[_itemID].Des)
+        gui.PurchasePanel.PurchaseBgImg.DesText.Text = "是否购买" .. LanguageUtil.GetText(Config.Item[_itemID].Name)
+    else
+        gui.ShopPanel.NameTextBox.NameText.Text = ""
+        gui.ShopPanel.DesTextBox.DesText.Text = ""
+    end
+end
+
 --更新一个购买Btn显示
 function GuiStore:UpdateBuyBtnUI(_sellBtn)
     if _sellBtn.ItemID.Value == 0 then
         _sellBtn:SetActive(false)
     else
         --_sellBtn.GoodsImg.LockImg.Visible = true
+        _sellBtn.GoodsImg.IMGEmpty.Visible = false
         _sellBtn.GoodsImg.IMGNormal.Visible = true
         _sellBtn.PriceImg.Visible = true
         for k, v in pairs(Config.Item) do
@@ -178,6 +192,7 @@ function GuiStore:UpdateStoreUI(_isReset)
             this:UpdateBuyBtnUI(v)
         end
     end
+    this:UpdateItemInfo()
 end
 
 --开关商店显示

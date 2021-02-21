@@ -466,7 +466,7 @@ local BuffXls = {
         WalkSpeed_Overlay = 1.0,
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
-        SkinID_Cover = 3,
+        SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
         EnableEquipable_Cover = true
     },
@@ -482,7 +482,7 @@ local BuffXls = {
         WalkSpeed_Overlay = 1.0,
         JumpUpVelocity_Overlay = 1.0,
         GravityScale_Overlay = 1.0,
-        SkinID_Cover = 4,
+        SkinID_Cover = nil,
         AnimState_Cover = 'TwoHandedSwordIdle',
         EnableEquipable_Cover = true
     },
@@ -508,7 +508,7 @@ local BuffXls = {
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
-        HeadEffect_Overlay = '',
+        HeadEffect_Overlay = 'NinjaTrail',
         BodyEffect_Overlay = '',
         FootEffect_Overlay = '',
         WalkSpeed_Overlay = 1.5,
@@ -581,6 +581,22 @@ local BuffXls = {
         SkinID_Cover = nil,
         AnimState_Cover = '',
         EnableEquipable_Cover = true
+    },
+    [37] = {
+        ID = 37,
+        BuffCoverIDList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = nil,
+        AnimState_Cover = '',
+        EnableEquipable_Cover = false
     }
 }
 
