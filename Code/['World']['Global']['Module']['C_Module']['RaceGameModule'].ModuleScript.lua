@@ -117,6 +117,11 @@ function RaceGame:GameOver()
     rewardRate = this.pointRecord / this.pointNum
     if rewardRate == 1 then
         RaceGameUIMgr:ShowGameOver('win')
+		NetUtil.Fire_C(
+            "GetItemFromPoolEvent",
+            localPlayer,
+            16
+        )
     else
         RaceGameUIMgr:ShowGameOver('lose')
     end
