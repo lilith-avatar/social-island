@@ -357,6 +357,22 @@ local ScenesInteractXls = {
         ItemID = 1002,
         IsGet = true,
         UseCount = 1
+    },
+    [45] = {
+        ID = 45,
+        Name = '骷髅头',
+        Path = 'Skull',
+        ItemID = 3002,
+        IsGet = true,
+        UseCount = 99999
+    },
+    [46] = {
+        ID = 46,
+        Name = '地鼠锤',
+        Path = 'chuizi',
+        ItemID = 1032,
+        IsGet = false,
+        UseCount = 99999
     }
 }
 

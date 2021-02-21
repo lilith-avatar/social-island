@@ -61,20 +61,7 @@ function MoleHit:DataInit()
     ---对象池表
     this.molePool = {}
 
-	world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionBegin:Connect(
-        function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
-                NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
-            end
-        end
-    )
-    world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionEnd:Connect(
-        function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
-                NetUtil.Fire_C('ResetDefUIEvent', _hitObject)
-            end
-        end
-    )
+
     world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.ClassName == 'PlayerInstance' then

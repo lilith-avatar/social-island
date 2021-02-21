@@ -285,6 +285,15 @@ local ItemXls = {
         UseSoundID = 1,
         UseAnimName = ''
     },
+    [1032] = {
+        ItemID = 1032,
+        Name = 'Item_Name_1032',
+        Des = nil,
+        Icon = 'MeleeWeapon_Icon',
+        UseCD = 0.5,
+        UseSoundID = 1,
+        UseAnimName = ''
+    },
     [3001] = {
         ItemID = 3001,
         Name = 'Item_Name_3001',

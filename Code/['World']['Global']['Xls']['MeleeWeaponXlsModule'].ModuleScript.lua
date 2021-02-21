@@ -609,7 +609,7 @@ local MeleeWeaponXls = {
     [1031] = {
         ItemID = 1031,
         AttackAnimName = {'TwoHandedSwordAttack1', 'TwoHandedSwordAttack2', 'TwoHandedSwordAttack3'},
-        ModelName = '',
+        ModelName = 'G_FishingRod_01',
         AttckCD = 2.0,
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),
@@ -624,6 +624,26 @@ local MeleeWeaponXls = {
         HitSoundID = '',
         Hunt = false,
         Mole = false,
+        UseAddBuffID = 2
+    },
+    [1032] = {
+        ItemID = 1032,
+        AttackAnimName = {'TwoHandedSwordAttack1', 'TwoHandedSwordAttack2', 'TwoHandedSwordAttack3'},
+        ModelName = 'MoleHammer',
+        AttckCD = 1.0,
+        ParentNode = 'Bone_R_Hand.RHandWeaponNode',
+        Offset = Vector3(0, 0, 0),
+        Angle = EulerDegree(0, 0, 0),
+        HealthChange = 20,
+        UseAddBuffDur = -1.0,
+        UseRemoveBuffID = 0,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 0.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = '',
+        HitSoundID = '',
+        Hunt = false,
+        Mole = true,
         UseAddBuffID = 2
     }
 }
