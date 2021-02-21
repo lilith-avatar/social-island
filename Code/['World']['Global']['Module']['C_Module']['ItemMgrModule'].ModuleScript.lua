@@ -122,6 +122,13 @@ function ItemMgr:UseItemEventHandler(_id)
     this.itemInstance[_id]:Use()
 end
 
+--解除当前武器
+function ItemMgr:UnequipCurWeaponEventHandler()
+    if this.curWeaponID ~= 0 then
+        this.itemInstance[this.curWeaponID]:Unequip()
+    end
+end
+
 --交互掉落道具
 function ItemMgr:GetItemFromPoolEventHandler(_poolID)
     local weightSum = 0
