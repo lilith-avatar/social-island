@@ -72,6 +72,9 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
                 interactOBJ[curInteractID[_player.UserId]].useCount =
                     interactOBJ[curInteractID[_player.UserId]].useCount - 1
+				if interactOBJ[curInteractID[_player.UserId]].useCount == 0 then
+					interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
+				end
             else
                 interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
             end
