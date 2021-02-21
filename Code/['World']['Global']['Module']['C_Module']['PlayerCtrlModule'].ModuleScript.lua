@@ -159,6 +159,9 @@ function PlayerCtrl:PlayerAttrUpdate()
     else
         NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
     end
+    if not Data.Player.attr.EnableEquipable then
+        NetUtil.Fire_C("UnequipCurWeaponEvent", localPlayer)
+    end
 end
 
 -- 更新角色特效
