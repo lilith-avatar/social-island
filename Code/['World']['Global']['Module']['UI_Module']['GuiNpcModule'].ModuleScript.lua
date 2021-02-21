@@ -121,7 +121,7 @@ function OpenNpcGui()
     end
 
     --如果玩家没有携带宠物，则隐藏对战按钮
-    battleBtn.Visible = localPlayer.MonsterVal.Value ~= nil
+    battleBtn.Visible = false
 end
 
 --- 开始小游戏

@@ -968,6 +968,483 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
+    },
+    [6040] = {
+        ItemID = 6040,
+        Name = 'Item_Name_6040',
+        Des = 'Item_Des_6040',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6041] = {
+        ItemID = 6041,
+        Name = 'Item_Name_6041',
+        Des = 'Item_Des_6041',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6042] = {
+        ItemID = 6042,
+        Name = 'Item_Name_6042',
+        Des = 'Item_Des_6042',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6043] = {
+        ItemID = 6043,
+        Name = 'Item_Name_6043',
+        Des = 'Item_Des_6043',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6044] = {
+        ItemID = 6044,
+        Name = 'Item_Name_6044',
+        Des = 'Item_Des_6044',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6045] = {
+        ItemID = 6045,
+        Name = 'Item_Name_6045',
+        Des = 'Item_Des_6045',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6046] = {
+        ItemID = 6046,
+        Name = 'Item_Name_6046',
+        Des = 'Item_Des_6046',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6047] = {
+        ItemID = 6047,
+        Name = 'Item_Name_6047',
+        Des = 'Item_Des_6047',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6048] = {
+        ItemID = 6048,
+        Name = 'Item_Name_6048',
+        Des = 'Item_Des_6048',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6049] = {
+        ItemID = 6049,
+        Name = 'Item_Name_6049',
+        Des = 'Item_Des_6049',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6050] = {
+        ItemID = 6050,
+        Name = 'Item_Name_6050',
+        Des = 'Item_Des_6050',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6051] = {
+        ItemID = 6051,
+        Name = 'Item_Name_6051',
+        Des = 'Item_Des_6051',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6052] = {
+        ItemID = 6052,
+        Name = 'Item_Name_6052',
+        Des = 'Item_Des_6052',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6053] = {
+        ItemID = 6053,
+        Name = 'Item_Name_6053',
+        Des = 'Item_Des_6053',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6054] = {
+        ItemID = 6054,
+        Name = 'Item_Name_6054',
+        Des = 'Item_Des_6054',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6055] = {
+        ItemID = 6055,
+        Name = 'Item_Name_6055',
+        Des = 'Item_Des_6055',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6056] = {
+        ItemID = 6056,
+        Name = 'Item_Name_6056',
+        Des = 'Item_Des_6056',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6057] = {
+        ItemID = 6057,
+        Name = 'Item_Name_6057',
+        Des = 'Item_Des_6057',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6058] = {
+        ItemID = 6058,
+        Name = 'Item_Name_6058',
+        Des = 'Item_Des_6058',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6059] = {
+        ItemID = 6059,
+        Name = 'Item_Name_6059',
+        Des = 'Item_Des_6059',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6060] = {
+        ItemID = 6060,
+        Name = 'Item_Name_6060',
+        Des = 'Item_Des_6060',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6061] = {
+        ItemID = 6061,
+        Name = 'Item_Name_6061',
+        Des = 'Item_Des_6061',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6062] = {
+        ItemID = 6062,
+        Name = 'Item_Name_6062',
+        Des = 'Item_Des_6062',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6063] = {
+        ItemID = 6063,
+        Name = 'Item_Name_6063',
+        Des = 'Item_Des_6063',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6064] = {
+        ItemID = 6064,
+        Name = 'Item_Name_6064',
+        Des = 'Item_Des_6064',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6065] = {
+        ItemID = 6065,
+        Name = 'Item_Name_6065',
+        Des = 'Item_Des_6065',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6066] = {
+        ItemID = 6066,
+        Name = 'Item_Name_6066',
+        Des = 'Item_Des_6066',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6067] = {
+        ItemID = 6067,
+        Name = 'Item_Name_6067',
+        Des = 'Item_Des_6067',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6068] = {
+        ItemID = 6068,
+        Name = 'Item_Name_6068',
+        Des = 'Item_Des_6068',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6069] = {
+        ItemID = 6069,
+        Name = 'Item_Name_6069',
+        Des = 'Item_Des_6069',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6070] = {
+        ItemID = 6070,
+        Name = 'Item_Name_6070',
+        Des = 'Item_Des_6070',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6071] = {
+        ItemID = 6071,
+        Name = 'Item_Name_6071',
+        Des = 'Item_Des_6071',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6072] = {
+        ItemID = 6072,
+        Name = 'Item_Name_6072',
+        Des = 'Item_Des_6072',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6073] = {
+        ItemID = 6073,
+        Name = 'Item_Name_6073',
+        Des = 'Item_Des_6073',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6074] = {
+        ItemID = 6074,
+        Name = 'Item_Name_6074',
+        Des = 'Item_Des_6074',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6075] = {
+        ItemID = 6075,
+        Name = 'Item_Name_6075',
+        Des = 'Item_Des_6075',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6076] = {
+        ItemID = 6076,
+        Name = 'Item_Name_6076',
+        Des = 'Item_Des_6076',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6077] = {
+        ItemID = 6077,
+        Name = 'Item_Name_6077',
+        Des = 'Item_Des_6077',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6078] = {
+        ItemID = 6078,
+        Name = 'Item_Name_6078',
+        Des = 'Item_Des_6078',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6079] = {
+        ItemID = 6079,
+        Name = 'Item_Name_6079',
+        Des = 'Item_Des_6079',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6080] = {
+        ItemID = 6080,
+        Name = 'Item_Name_6080',
+        Des = 'Item_Des_6080',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6081] = {
+        ItemID = 6081,
+        Name = 'Item_Name_6081',
+        Des = 'Item_Des_6081',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6082] = {
+        ItemID = 6082,
+        Name = 'Item_Name_6082',
+        Des = 'Item_Des_6082',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6083] = {
+        ItemID = 6083,
+        Name = 'Item_Name_6083',
+        Des = 'Item_Des_6083',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6084] = {
+        ItemID = 6084,
+        Name = 'Item_Name_6084',
+        Des = 'Item_Des_6084',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6085] = {
+        ItemID = 6085,
+        Name = 'Item_Name_6085',
+        Des = 'Item_Des_6085',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6086] = {
+        ItemID = 6086,
+        Name = 'Item_Name_6086',
+        Des = 'Item_Des_6086',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6087] = {
+        ItemID = 6087,
+        Name = 'Item_Name_6087',
+        Des = 'Item_Des_6087',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6088] = {
+        ItemID = 6088,
+        Name = 'Item_Name_6088',
+        Des = 'Item_Des_6088',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6089] = {
+        ItemID = 6089,
+        Name = 'Item_Name_6089',
+        Des = 'Item_Des_6089',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6090] = {
+        ItemID = 6090,
+        Name = 'Item_Name_6090',
+        Des = 'Item_Des_6090',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6091] = {
+        ItemID = 6091,
+        Name = 'Item_Name_6091',
+        Des = 'Item_Des_6091',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
+    },
+    [6092] = {
+        ItemID = 6092,
+        Name = 'Item_Name_6092',
+        Des = 'Item_Des_6092',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = ''
     }
 }
 

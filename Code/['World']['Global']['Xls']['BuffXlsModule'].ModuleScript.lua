@@ -20,7 +20,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [2] = {
         ID = 2,
@@ -84,7 +84,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = 'SwimIdle',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [6] = {
         ID = 6,
@@ -100,7 +100,7 @@ local BuffXls = {
         GravityScale_Overlay = 0.7,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [7] = {
         ID = 7,
@@ -116,7 +116,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [8] = {
         ID = 8,
@@ -132,7 +132,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [9] = {
         ID = 9,
@@ -148,7 +148,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [10] = {
         ID = 10,
@@ -164,7 +164,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [11] = {
         ID = 11,
@@ -180,7 +180,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [12] = {
         ID = 12,
@@ -196,7 +196,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [13] = {
         ID = 13,
@@ -212,7 +212,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [14] = {
         ID = 14,
@@ -324,7 +324,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [21] = {
         ID = 21,
@@ -340,7 +340,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.2,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [22] = {
         ID = 22,
@@ -356,7 +356,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.5,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [23] = {
         ID = 23,
@@ -372,7 +372,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [24] = {
         ID = 24,
@@ -404,7 +404,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 1,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [26] = {
         ID = 26,
@@ -420,7 +420,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 2,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [27] = {
         ID = 27,
@@ -436,7 +436,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 3,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [28] = {
         ID = 28,
@@ -452,7 +452,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = 4,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [29] = {
         ID = 29,
@@ -516,7 +516,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [33] = {
         ID = 33,
@@ -532,7 +532,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [34] = {
         ID = 34,
@@ -548,7 +548,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [35] = {
         ID = 35,
@@ -564,7 +564,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = false
+        EnableEquipable_Cover = true
     },
     [36] = {
         ID = 36,
@@ -580,7 +580,7 @@ local BuffXls = {
         GravityScale_Overlay = 1.0,
         SkinID_Cover = nil,
         AnimState_Cover = '',
-        EnableEquipable_Cover = true
+        EnableEquipable_Cover = false
     },
     [37] = {
         ID = 37,

@@ -22,7 +22,7 @@ local NpcInfoXls = {
         BubbleId = {2001, 2002},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = 1,
         PortraitRes = 'Achilles'
     },
@@ -42,7 +42,7 @@ local NpcInfoXls = {
         BubbleId = {2011, 2012, 2013, 2014, 2015},
         GameId = 1,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = 2,
         PortraitRes = 'Ares'
     },
@@ -62,7 +62,7 @@ local NpcInfoXls = {
         BubbleId = {2021, 2022, 2023, 2024},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = 3,
         PortraitRes = 'Dionysus'
     },
@@ -82,7 +82,7 @@ local NpcInfoXls = {
         BubbleId = {2031, 2032, 2033},
         GameId = 3,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = 'Hermes'
     },
@@ -100,9 +100,9 @@ local NpcInfoXls = {
         EndTalkAnim = 'SocialBow',
         DialogId = {1041, 1042, 1043, 1044, 1045},
         BubbleId = {2041, 2042, 2043, 2044, 2045},
-        GameId = 7,
+        GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = 5,
         PortraitRes = ''
     },
@@ -122,7 +122,7 @@ local NpcInfoXls = {
         BubbleId = {2051, 2052, 2053, 2054},
         GameId = 8,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -142,7 +142,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -162,7 +162,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -182,7 +182,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -202,7 +202,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -222,7 +222,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -242,7 +242,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -262,7 +262,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -282,7 +282,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -302,7 +302,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -322,7 +322,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = nil,
         PortraitRes = ''
     },
@@ -342,7 +342,7 @@ local NpcInfoXls = {
         BubbleId = {1000},
         GameId = nil,
         PetBattleSwitch = false,
-        PetModel = 'Monster',
+        PetModel = '',
         ShopId = 17,
         PortraitRes = ''
     }
