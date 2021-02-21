@@ -386,6 +386,11 @@ function MonsterBattle:MBattleEventHandler(_enum, _arg1, _arg2)
         --localPlayer.Local.ControlGui:SetActive(true)
 		localPlayer.Local.ControlGui.Joystick:SetActive(true)
 		localPlayer.Local.ControlGui.Ctrl:SetActive(true)
+		NetUtil.Fire_C(
+            "GetItemFromPoolEvent",
+            localPlayer,
+            17
+        )
     end
 end
 
