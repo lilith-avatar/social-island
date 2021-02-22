@@ -113,12 +113,11 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.7
          then
-            print("游泳检测")
+            --print("游泳检测")
             NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
         --FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
-        print("Swim1")
         if
             localPlayer.Position.x > world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 or
                 localPlayer.Position.x < world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 or
@@ -126,7 +125,6 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.7
          then
-            print("Swim2")
             NetUtil.Fire_C("RemoveBuffEvent", localPlayer, 5)
             FsmMgr:FsmTriggerEventHandler("Idle")
         end
