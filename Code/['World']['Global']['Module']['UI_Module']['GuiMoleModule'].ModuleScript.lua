@@ -1,11 +1,12 @@
 ---@module GuiMole
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local GuiMole, this = ModuleUtil.New('GuiMole', ClientBase)
+local GuiMole, this = ModuleUtil.New("GuiMole", ClientBase)
+local UIActive = false
 
 ---初始化函数
 function GuiMole:Init()
-    print('[GuiMole] Init()')
+    print("[GuiMole] Init()")
     this:NodeDef()
     this:DataInit()
     this:EventBind()
@@ -13,10 +14,7 @@ end
 
 ---节点定义
 function GuiMole:NodeDef()
-    this.contrlGui = localPlayer.Local.ControlGui
     this.gui = localPlayer.Local.MoleHitGui
-    this.hitButton = this.gui.HitBtn
-    this.hitMask = this.hitButton.MaskImg
     this.timeText = this.gui.InfoPnl.TimeTxt.NumTxt
     this.scoreText = this.gui.InfoPnl.ScoreTxt.NumTxt
     this.boostText = this.gui.InfoPnl.BoostTxt.NumTxt
@@ -30,9 +28,8 @@ function GuiMole:DataInit()
 end
 
 function GuiMole:GameOver()
-    this.gui:SetActive(false)
-    this.contrlGui.Ctrl:SetActive(true)
-    --this.hitButton:SetActive(false)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+    UIActive = false
 end
 
 ---事件绑定
@@ -44,12 +41,14 @@ function GuiMole:StartMoleEventHandler()
     MoleGame:GameStart()
 end
 
-
 function GuiMole:StartGame()
-    NetUtil.Fire_S('PlayerStartMoleHitEvent', localPlayer.UserId)
-    this.gui:SetActive(true)
-    this.hitButton:SetActive(true)
-    this.contrlGui.Ctrl:SetActive(false)
+    UIActive = true
+    invoke(
+        function()
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 2)
+        end,
+        0.5
+    )
 end
 
 function GuiMole:UpdateScore(_score)
@@ -70,6 +69,9 @@ end
 
 ---Update函数
 function GuiMole:Update(_dt)
+    if this.gui.ActiveSelf == false and UIActive then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 2)
+    end
 end
 
 return GuiMole

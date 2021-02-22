@@ -65,11 +65,11 @@ function MoleHit:DataInit()
     world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.ClassName == 'PlayerInstance' then
-                if this.rangePlayer[_hitObject.UserId] then
-                    NetUtil.Fire_S('PlayerStartMoleHitEvent',_hitObject)
-                end
+                --[[if this.rangePlayer[_hitObject.UserId] then
+                    NetUtil.Fire_S('PlayerStartMoleHitEvent',_hitObject.UserId)
+                end]]
                 this.rangePlayer[_hitObject.UserId] = true
-                NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
+                --NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
             end
         end
     )
@@ -111,6 +111,7 @@ function MoleHit:PlayerStartMoleHitEventHandler(_uid)
     this.playerList[_uid] = {
         inGame = true
     }
+    print("PlayerStartMoleHitEvent")
     NetUtil.Fire_C('StartMoleEvent',player)
 end
 
@@ -154,7 +155,7 @@ end
 function MoleHit:EnterMiniGameEventHandler(_player,_gameId)
     if _gameId == 2 then
         if this.rangePlayer[_player.UserId] then
-            NetUtil.Fire_S('PlayerStartMoleHitEvent',_player)
+            NetUtil.Fire_S('PlayerStartMoleHitEvent',_player.UserId)
         end
         this.rangePlayer[_player.UserId] = true
     end
