@@ -299,7 +299,7 @@ local ItemXls = {
         Name = 'Item_Name_3001',
         Des = 'Item_Des_3001',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -308,7 +308,7 @@ local ItemXls = {
         Name = 'Item_Name_3002',
         Des = 'Item_Des_3002',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -317,7 +317,7 @@ local ItemXls = {
         Name = 'Item_Name_3003',
         Des = 'Item_Des_3003',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -326,7 +326,7 @@ local ItemXls = {
         Name = 'Item_Name_3004',
         Des = 'Item_Des_3004',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -335,7 +335,7 @@ local ItemXls = {
         Name = 'Item_Name_3005',
         Des = 'Item_Des_3005',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -344,7 +344,7 @@ local ItemXls = {
         Name = 'Item_Name_3006',
         Des = 'Item_Des_3006',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -353,7 +353,7 @@ local ItemXls = {
         Name = 'Item_Name_3007',
         Des = 'Item_Des_3007',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -362,7 +362,7 @@ local ItemXls = {
         Name = 'Item_Name_3008',
         Des = 'Item_Des_3008',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -371,7 +371,7 @@ local ItemXls = {
         Name = 'Item_Name_3009',
         Des = 'Item_Des_3009',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -380,7 +380,7 @@ local ItemXls = {
         Name = 'Item_Name_3010',
         Des = 'Item_Des_3010',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -389,7 +389,7 @@ local ItemXls = {
         Name = 'Item_Name_3011',
         Des = 'Item_Des_3011',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -398,7 +398,7 @@ local ItemXls = {
         Name = 'Item_Name_3012',
         Des = 'Item_Des_3012',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -407,7 +407,7 @@ local ItemXls = {
         Name = 'Item_Name_3013',
         Des = 'Item_Des_3013',
         Icon = 'UsableItem_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -416,7 +416,7 @@ local ItemXls = {
         Name = 'Item_Name_2001',
         Des = 'Item_Des_2001',
         Icon = 'LongRangeWeapon_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -425,7 +425,7 @@ local ItemXls = {
         Name = 'Item_Name_2002',
         Des = 'Item_Des_2002',
         Icon = 'LongRangeWeapon_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -434,7 +434,7 @@ local ItemXls = {
         Name = 'Item_Name_2003',
         Des = 'Item_Des_2003',
         Icon = 'LongRangeWeapon_Icon',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },
@@ -443,7 +443,7 @@ local ItemXls = {
         Name = 'Item_Name_4001',
         Des = 'Item_Des_4001',
         Icon = '',
-        UseCD = 0.0,
+        UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = ''
     },

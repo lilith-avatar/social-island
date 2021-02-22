@@ -8,7 +8,7 @@
 local MoleGlobalConfigXls = {
     PlayerGameTime = {
         Key = 'PlayerGameTime',
-        Value = 120.0
+        Value = 30.0
     },
     BoostNeed = {
         Key = 'BoostNeed',

@@ -645,6 +645,26 @@ local MeleeWeaponXls = {
         Hunt = false,
         Mole = true,
         UseAddBuffID = 2
+    },
+    [1033] = {
+        ItemID = 1033,
+        AttackAnimName = {'OneHandedSwordAttack1', 'OneHandedSwordAttack2'},
+        ModelName = 'Fireworks',
+        AttckCD = 2.0,
+        ParentNode = 'Bone_R_Hand.RHandWeaponNode',
+        Offset = Vector3(0, 0, 0),
+        Angle = EulerDegree(0, 0, 0),
+        HealthChange = 20,
+        UseAddBuffDur = -1.0,
+        UseRemoveBuffID = 0,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 0.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = '',
+        HitSoundID = '',
+        Hunt = false,
+        Mole = false,
+        UseAddBuffID = 4
     }
 }
 

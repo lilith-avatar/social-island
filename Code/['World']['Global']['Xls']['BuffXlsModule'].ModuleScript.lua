@@ -552,7 +552,7 @@ local BuffXls = {
     },
     [35] = {
         ID = 35,
-        BuffCoverIDList = {36},
+        BuffCoverIDList = {36, 38},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -568,7 +568,7 @@ local BuffXls = {
     },
     [36] = {
         ID = 36,
-        BuffCoverIDList = {2, 3, 4, 35, 14, 15, 16, 17, 18, 19, 29, 31},
+        BuffCoverIDList = {2, 3, 4, 35, 14, 15, 16, 17, 18, 19, 29, 31, 38},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -584,7 +584,7 @@ local BuffXls = {
     },
     [37] = {
         ID = 37,
-        BuffCoverIDList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36},
+        BuffCoverIDList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -597,6 +597,22 @@ local BuffXls = {
         SkinID_Cover = nil,
         AnimState_Cover = '',
         EnableEquipable_Cover = false
+    },
+    [38] = {
+        ID = 38,
+        BuffCoverIDList = {35, 36},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = nil,
+        JumpUpVelocity_Overlay = nil,
+        GravityScale_Overlay = nil,
+        SkinID_Cover = nil,
+        AnimState_Cover = '',
+        EnableEquipable_Cover = nil
     }
 }
 
