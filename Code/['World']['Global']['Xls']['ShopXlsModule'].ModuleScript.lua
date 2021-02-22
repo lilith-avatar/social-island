@@ -37,7 +37,7 @@ local ShopXls = {
             NpcId = 2,
             Index = 2,
             ItemId = 2001,
-            Price = 300
+            Price = 10000
         },
         [2003] = {
             NpcId = 2,
