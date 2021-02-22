@@ -24,7 +24,6 @@ local inMaze = false
 -- Time
 local startTime, totalTime, now = 0, 0, Timer.GetTime
 local hour, minute, second, milliseconds = 0, 0, 0, 0
-local UPDATE_DELAY = 0.4 --用于让玩家看见总时间
 
 function GuiMaze:Init()
     print('[GuiMaze] Init()')
@@ -40,15 +39,10 @@ function GuiMaze:InitGui()
     -- GUI info
     infoGui = guiRoot.MazeGui
     timerTxt = infoGui.TimerTxt
-    -- GUI control
-    controlGui = guiRoot.ControlGui
-    jumpBtn = controlGui.Ctrl.JumpBtn
-    useBtn = controlGui.Ctrl.UseBtn
-    socialAnimBtn = controlGui.Menu.SocialAnimBtn
 end
 
 -- 进入迷宫
-function EnterMaze(_enterPos, _playerDir, _totalTime)
+function EnterMaze(_enterPos, _playerDir, _totalTime, _waitTime)
     print('[GuiMaze] EnterMaze')
     -- cache player info
     origin.pos = player.Position
@@ -56,17 +50,19 @@ function EnterMaze(_enterPos, _playerDir, _totalTime)
     player.Position = _enterPos
     player.Forward = _playerDir
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, camMaze)
-    -- time
-    totalTime = _totalTime
-    startTime = now()
-    -- GUI
-    -- start updating
+
     invoke(
         function()
+            -- GUI
             EnableMazeGui()
+            -- time
+            totalTime = _totalTime
+            startTime = now()
+
+            -- start updating
             inMaze = true
         end,
-        UPDATE_DELAY
+        _waitTime
     )
 end
 
@@ -96,10 +92,6 @@ end
 
 -- 开启迷宫GUI模式
 function EnableMazeGui()
-    -- GUI control
-    jumpBtn:SetActive(false)
-    useBtn:SetActive(false)
-    socialAnimBtn:SetActive(false)
     -- GUI info
     infoGui:SetActive(true)
     timerTxt:SetActive(true)
@@ -108,14 +100,10 @@ end
 
 -- 关闭迷宫GUI模式
 function DisableMazeGui()
-    -- GUI control
-    jumpBtn:SetActive(true)
-    useBtn:SetActive(true)
-    socialAnimBtn:SetActive(true)
     -- GUI info
     infoGui:SetActive(false)
     timerTxt:SetActive(false)
-    timerTxt.Text = ''
+    timerTxt.Text = FormatTimeBySec(totalTime)
 end
 
 -- 时间格式工具:秒
@@ -133,7 +121,7 @@ function GuiMaze:Update(_dt)
     if not inMaze then
         return
     end
-    timerTxt.Text = FormatTimeBySec(totalTime - (now() - startTime))
+    timerTxt.Text = FormatTimeBySec(math.max(totalTime - (now() - startTime), 0))
 end
 
 --! Event handlers 事件处理
@@ -145,7 +133,8 @@ function GuiMaze:ClientMazeEventHandler(_eventEnum, ...)
         local enterPos = args[1]
         local playerDir = args[2]
         local totalTime = args[3]
-        EnterMaze(enterPos, playerDir, totalTime)
+        local waitTime = args[4]
+        EnterMaze(enterPos, playerDir, totalTime, waitTime)
     elseif _eventEnum == Const.MazeEventEnum.FINISH and #args > 1 then
         print(table.dump(args))
         local score = args[1]
