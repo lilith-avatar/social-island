@@ -34,7 +34,9 @@ end
 
 function OneHandedSwordAttack3:OnLeave()
     PlayerActState.OnLeave(self)
-    ItemMgr.itemInstance[ItemMgr.curWeaponID].weaponObj.Col.OnCollisionBegin:Clear()
+    if ItemMgr.itemInstance[ItemMgr.curWeaponID].weaponObj.Col then
+        ItemMgr.itemInstance[ItemMgr.curWeaponID].weaponObj.Col.OnCollisionBegin:Clear()
+    end
 end
 
 return OneHandedSwordAttack3
