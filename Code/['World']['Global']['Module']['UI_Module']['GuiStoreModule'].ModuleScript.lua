@@ -41,6 +41,7 @@ function GuiStore:EventBind()
     gui.ShopPanel.CloseImg.CloseBtn.OnClick:Connect(
         function()
             NetUtil.Fire_C("SwitchStoreUIEvent", localPlayer, 2)
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
         end
     )
     gui.PurchasePanel.PurchaseBgImg.LaterBtn.OnClick:Connect(
