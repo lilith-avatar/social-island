@@ -66,6 +66,8 @@ end
 
 function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
     local player = world:GetPlayerByUserId(_uid)
+    -- 消除玩家武器buff
+    NetUtil.Fire_C("GetBuffEvent", player, 37, 1)
     --让玩家坐（发事件）
     this.ChairList[_type][_chairId]:Sit(player)
     player.Position = this.ChairList[_type][_chairId].model.Seat.Position

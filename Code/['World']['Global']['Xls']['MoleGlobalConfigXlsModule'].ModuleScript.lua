@@ -25,6 +25,10 @@ local MoleGlobalConfigXls = {
     RefreshTime = {
         Key = 'RefreshTime',
         Value = 6.0
+    },
+    ScoreBonus = {
+        Key = 'ScoreBonus',
+        Value = {[0]=0,[10]=1,[20]=5,[30]=10,[40]=20,[50]=40,[60]=80,[10000]=100}
     }
 }
 

@@ -61,24 +61,23 @@ function MoleHit:DataInit()
     ---对象池表
     this.molePool = {}
 
-
     world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
+            if _hitObject.ClassName == "PlayerInstance" then
                 --[[if this.rangePlayer[_hitObject.UserId] then
                     NetUtil.Fire_S('PlayerStartMoleHitEvent',_hitObject.UserId)
                 end]]
                 this.rangePlayer[_hitObject.UserId] = true
-                --NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
+            --NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
             end
         end
     )
 
     world.MiniGames.Game_02_WhackAMole.GameRange.OnCollisionEnd:Connect(
         function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
+            if _hitObject.ClassName == "PlayerInstance" then
                 this.rangePlayer[_hitObject.UserId] = nil
-                NetUtil.Fire_C('LeaveMoleGameRangeEvent', _hitObject)
+                NetUtil.Fire_C("LeaveMoleGameRangeEvent", _hitObject)
             end
         end
     )
@@ -102,7 +101,7 @@ end
 
 function MoleHit:InteractSEventHandler(_player, _gameId)
     if _gameId == 2 then
-        --NetUtil.Fire_C("StartMoleEvent", _player)
+    --NetUtil.Fire_C("StartMoleEvent", _player)
     end
 end
 
@@ -112,7 +111,7 @@ function MoleHit:PlayerStartMoleHitEventHandler(_uid)
         inGame = true
     }
     print("PlayerStartMoleHitEvent")
-    NetUtil.Fire_C('StartMoleEvent',player)
+    NetUtil.Fire_C("StartMoleEvent", player)
 end
 
 function MoleHit:PlayerLeaveMoleHitEventHandler(_uid)
@@ -148,14 +147,22 @@ function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
         if this.pitList[k] and this.pitList[k].mole and not this.pitList[k].mole:IsDestroy() then
             player = world:GetPlayerByUserId(_uid)
             this.pitList[k].mole:BeBeaten(player)
+            local effect = world:CreateInstance("MoleBeatEffect", "Effect", this.pitList[k].model)
+            effect.Position = this.pitList[k].model.Position
+            invoke(
+                function()
+                    effect:Destroy()
+                end,
+                0.7
+            )
         end
     end
 end
 
-function MoleHit:EnterMiniGameEventHandler(_player,_gameId)
+function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 2 then
         if this.rangePlayer[_player.UserId] then
-            NetUtil.Fire_S('PlayerStartMoleHitEvent',_player.UserId)
+            NetUtil.Fire_S("PlayerStartMoleHitEvent", _player.UserId)
         end
         this.rangePlayer[_player.UserId] = true
     end

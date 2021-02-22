@@ -68,9 +68,20 @@ end
 function MoleGame:GameOver()
     this.hitRange.OnCollisionBegin:Clear()
     this.hitRange.OnCollisionEnd:Clear()
-    this:DataInit()
+    -- 结算
+    NetUtil.Fire_C('UpdateCoinEvent',localPlayer,this:GetScoreBonus(this.score))
     NetUtil.Fire_S('PlayerLeaveMoleHitEvent', localPlayer.UserId)
-    --Todo:传送到指定地点
+    this:DataInit()
+    
+end
+
+function MoleGame:GetScoreBonus(_score)
+    for k,v in ipairs(Config.MoleGlobalConfig.ScoreBonus.Value) do
+        if _score <= k then
+            print('你通过打地鼠获得了'..v..'块钱') --! test
+            return v
+        end
+    end
 end
 
 ---Update函数
