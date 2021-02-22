@@ -666,6 +666,7 @@ end
 function MazeShow()
     print('[Maze] MazeShow')
     WALL_SPACE:SetActive(true)
+    PILLAR_SPACE:SetActive(true)
     CHECKER_SPACE:SetActive(true)
     floor:SetActive(true)
 end
@@ -674,6 +675,7 @@ end
 function MazeHide()
     print('[Maze] MazeHide')
     WALL_SPACE:SetActive(false)
+    PILLAR_SPACE:SetActive(false)
     CHECKER_SPACE:SetActive(false)
     floor:SetActive(false)
 end
