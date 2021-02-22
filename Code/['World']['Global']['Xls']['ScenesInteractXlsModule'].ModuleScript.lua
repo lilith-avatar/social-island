@@ -11,7 +11,7 @@ local ScenesInteractXls = {
         Name = '能量锹',
         Path = 'SpadeEnergy',
         ItemID = 1015,
-        IsGet = false,
+        IsGet = true,
         UseCount = 1
     },
     [2] = {
@@ -91,7 +91,7 @@ local ScenesInteractXls = {
         Name = '撬棍',
         Path = 'CrowbarEnergy',
         ItemID = 1024,
-        IsGet = false,
+        IsGet = true,
         UseCount = 99999
     },
     [12] = {
