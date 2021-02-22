@@ -39,7 +39,7 @@ local entrace, exit
 -- 迷宫地板厚度
 local MAZE_FLOOR_THICKNESS = 2
 -- 迷宫地板颜色
-local MAZE_FLOOR_COLOR = Color(0xFF, 0xFF, 0xFF, 255)
+local MAZE_FLOOR_COLOR = Color(0x9E, 0x9E, 0x9E, 255)
 -- 迷宫地板Obj，根据迷宫中心和尺寸生成
 local floor
 
@@ -219,7 +219,6 @@ end
 function InitMazeFloor()
     floor = world:CreateObject('Cube', 'Maze_Floor', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
     floor.Color = MAZE_FLOOR_COLOR
-    floor.Material = Enum.MaterialType.Slate
     floor:SetActive(false)
 end
 
@@ -667,6 +666,7 @@ end
 function MazeShow()
     print('[Maze] MazeShow')
     WALL_SPACE:SetActive(true)
+    PILLAR_SPACE:SetActive(true)
     CHECKER_SPACE:SetActive(true)
     floor:SetActive(true)
 end
@@ -675,6 +675,7 @@ end
 function MazeHide()
     print('[Maze] MazeHide')
     WALL_SPACE:SetActive(false)
+    PILLAR_SPACE:SetActive(false)
     CHECKER_SPACE:SetActive(false)
     floor:SetActive(false)
 end
