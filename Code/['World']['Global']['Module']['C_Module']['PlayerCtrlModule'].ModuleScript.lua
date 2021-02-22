@@ -2,7 +2,7 @@
 --- @module Player Ctrl Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local PlayerCtrl, this = ModuleUtil.New('PlayerCtrl', ClientBase)
+local PlayerCtrl, this = ModuleUtil.New("PlayerCtrl", ClientBase)
 
 --声明变量
 local isDead = false
@@ -26,7 +26,7 @@ local moveRightAxis = 0
 
 --- 初始化
 function PlayerCtrl:Init()
-    print('[PlayerCtrl] Init()')
+    print("[PlayerCtrl] Init()")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -91,20 +91,20 @@ end
 
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
-    FsmMgr:FsmTriggerEventHandler('Jump')
+    FsmMgr:FsmTriggerEventHandler("Jump")
 end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerClap()
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 9)
-    localPlayer.Avatar:PlayAnimation('SocialApplause', 9, 1, 0, true, false, 1)
+    localPlayer.Avatar:PlayAnimation("SocialApplause", 9, 1, 0, true, false, 1)
     --拍掌音效
-    NetUtil.Fire_C('PlayEffectEvent', localPlayer, 1)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
 end
 
 --游泳检测
 function PlayerCtrl:PlayerSwim()
-    if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
+    if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then
         --print(localPlayer.Position, world.water.DeepWaterCol.Position)
         if
             localPlayer.Position.x < world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 and
@@ -113,11 +113,12 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.7
          then
-            print('游泳检测')
-            NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
+            print("游泳检测")
+            NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
         --FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
+        print("Swim1")
         if
             localPlayer.Position.x > world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 or
                 localPlayer.Position.x < world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 or
@@ -125,8 +126,9 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.7
          then
-            NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
-        --FsmMgr:FsmTriggerEventHandler("Idle")
+            print("Swim2")
+            NetUtil.Fire_C("RemoveBuffEvent", localPlayer, 5)
+            FsmMgr:FsmTriggerEventHandler("Idle")
         end
     end
 end
@@ -154,10 +156,9 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
-    if Data.Player.attr.AnimState ~= '' then
-        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, Data.Player.attr.AnimState)
+    if Data.Player.attr.AnimState ~= "" then
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
     else
-
     end
     if not Data.Player.attr.EnableEquipable then
         NetUtil.Fire_C("UnequipCurWeaponEvent", localPlayer)
@@ -233,7 +234,7 @@ end
 -- 更新角色服装
 function PlayerCtrl:PlayerSkinUpdate(_skinID)
     for k, v in pairs(Config.Skin[_skinID]) do
-        if localPlayer.Avatar[k] and v ~= '' then
+        if localPlayer.Avatar[k] and v ~= "" then
             localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
         --print(k, v)
         end
@@ -250,11 +251,11 @@ end
 
 -- 角色受伤
 function PlayerCtrl:CPlayerHitEventHandler(_data)
-    FsmMgr:FsmTriggerEventHandler('Hit')
-    FsmMgr:FsmTriggerEventHandler('BowHit')
-    FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
-    FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
-    print('角色受伤', table.dump(_data))
+    FsmMgr:FsmTriggerEventHandler("Hit")
+    FsmMgr:FsmTriggerEventHandler("BowHit")
+    FsmMgr:FsmTriggerEventHandler("OneHandedSwordHit")
+    FsmMgr:FsmTriggerEventHandler("TwoHandedSwordHit")
+    print("角色受伤", table.dump(_data))
     BuffMgr:GetBuffEventHandler(_data.hitAddBuffID, _data.hitAddBuffDur)
     BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
 end
