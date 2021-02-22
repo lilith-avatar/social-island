@@ -58,6 +58,7 @@ function BuffMgr:GetBuffEventHandler(_buffID, _dur)
         BuffDataList[_buffID] = {
             curTime = _dur
         }
+		print(_buffID)
         this:RemoveCoverBuff(Config.Buff[_buffID].BuffCoverIDList)
     end
     buffDataTable = table.deepcopy(defPlayerData)
