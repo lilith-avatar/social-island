@@ -38,7 +38,7 @@ end
 function GuiCannon:EventBind()
     cannonGui.Figure.FireBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("CannonFireEvent", forceBarFillAmount)
+            NetUtil.Fire_S("CannonFireEvent", localPlayer, forceBarFillAmount)
             invoke(
                 function()
                     localPlayer.Local.Independent.Cannon_Circle:SetActive(false)
@@ -49,22 +49,22 @@ function GuiCannon:EventBind()
     )
     cannonGui.Figure.UpBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Up")
+            NetUtil.Fire_S("SetCannonDirEvent", localPlayer, "Up")
         end
     )
     cannonGui.Figure.DownBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Down")
+            NetUtil.Fire_S("SetCannonDirEvent", localPlayer, "Down")
         end
     )
     cannonGui.Figure.RightBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Right")
+            NetUtil.Fire_S("SetCannonDirEvent", localPlayer, "Right")
         end
     )
     cannonGui.Figure.LeftBtn.OnDown:Connect(
         function()
-            NetUtil.Fire_S("SetCannonDirEvent", "Left")
+            NetUtil.Fire_S("SetCannonDirEvent", localPlayer, "Left")
         end
     )
 end

@@ -17,6 +17,9 @@ local endPoints = {}
 --- 开始倒计时
 local startCD = 10
 
+--- 赛道长度
+local dis = 0
+
 -- 蜗牛运动状态枚举
 local snailActState = {
     READY = 1,
@@ -61,6 +64,7 @@ end
 
 --- 数据变量初始化
 function Snail:DataInit()
+    dis = (endPoints[1].Position - startPoints[1].Position).Magnitude
 end
 
 --- 节点事件绑定
@@ -144,7 +148,7 @@ function Snail:StartSnailRace()
         this:InitMoveData(v)
 
         v.moveStep = 1
-        v.obj.LinearVelocityController.TargetLinearVelocity = Vector3(0, 0, v.moveData[v.moveStep].speed)
+        v.obj.LinearVelocityController.TargetLinearVelocity = v.obj.Forward * v.moveData[v.moveStep].speed
         v.state = snailActState.MOVE
     end
     gameState = snailGameState.RACE
@@ -155,10 +159,10 @@ function Snail:InitMoveData(_snailObjPool)
     local disTable = {}
     local add = 0
     for i = 1, 4 do
-        disTable[i] = math.random(0, math.floor(10 * (8 - add))) / 10
+        disTable[i] = math.random(0, math.floor(10 * (dis - add))) / 10
         add = add + disTable[i]
-        if add > 7.6 or i == 4 then
-            disTable[i + 1] = 8 - add
+        if add > dis - 0.4 or i == 4 then
+            disTable[i + 1] = dis - add
             break
         end
     end
@@ -183,7 +187,7 @@ function Snail:SnailMove(dt)
                     this:SnailFinish(v)
                 else
                     --print(v.obj, "改变速度", v.moveData[v.moveStep].speed)
-                    v.obj.LinearVelocityController.TargetLinearVelocity = Vector3(0, 0, v.moveData[v.moveStep].speed)
+                    v.obj.LinearVelocityController.TargetLinearVelocity = v.obj.Forward * v.moveData[v.moveStep].speed
                 end
             else
                 v.moveData[v.moveStep].time = v.moveData[v.moveStep].time - dt
