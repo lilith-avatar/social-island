@@ -64,6 +64,14 @@ function MoleHit:RefreashMole(_type)
     -- 遍历对应坑位
     for k, v in pairs(this.pitList[_type]) do
         this.molePool[_type]:Create(v, _type)
+        -- 绑定碰撞事件
+        v.OnCollisionBegin:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" then
+                    print("111111111111111111111111111111111111")
+                end
+            end
+        )
         --!Test
         --world:CreateInstance('Test1','Test',v,v.Position)
     end
