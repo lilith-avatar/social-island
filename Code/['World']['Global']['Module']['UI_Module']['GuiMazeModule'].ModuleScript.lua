@@ -14,6 +14,11 @@ local AVATAR_HEIGHT = 0.1
 local AVATAR_HEAD_SIZE = 0.1
 local WALK_SPEED = .7
 local JUMP_UP_VELOCITY = 0
+local MARK_ARCH = 'Maze_Mark'
+local FLAG_ARCH = 'Maze_Flag'
+
+-- 玩家头顶的标记
+local mark
 
 -- 缓存玩家进入迷宫前的参数
 local origin = {}
@@ -96,6 +101,13 @@ function EnableMazeGui()
     infoGui:SetActive(true)
     timerTxt:SetActive(true)
     timerTxt.Text = FormatTimeBySec(totalTime)
+    -- head mark
+    if not mark then
+        mark = world:CreateInstance(MARK_ARCH, 'Mark', localPlayer)
+        mark.LocalPosition = Vector3(0, 2.4, 0)
+        mark.LocalRotation = EulerDegree(180, 0, 0)
+    end
+    mark:SetActive(true)
 end
 
 -- 关闭迷宫GUI模式
@@ -104,6 +116,8 @@ function DisableMazeGui()
     infoGui:SetActive(false)
     timerTxt:SetActive(false)
     timerTxt.Text = FormatTimeBySec(totalTime)
+    -- head mark
+    mark:SetActive(false)
 end
 
 -- 时间格式工具:秒
