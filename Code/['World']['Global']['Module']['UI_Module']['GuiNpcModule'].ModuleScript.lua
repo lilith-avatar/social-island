@@ -40,7 +40,6 @@ function GuiNpc:InitGui()
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
     gameBtn = npcGui.GameBtn
-    battleBtn = npcGui.BattleBtn
     shopBtn = npcGui.ShopBtn
     leaveBtn = npcGui.LeaveBtn
     dialogTxt = npcGui.DialogTxt
@@ -64,7 +63,6 @@ end
 --- 绑定事件
 function GuiNpc:InitListener()
     gameBtn.OnClick:Connect(EnterMiniGame)
-    battleBtn.OnClick:Connect(StartMonsterBattle)
     shopBtn.OnClick:Connect(EnterShop)
     leaveBtn.OnClick:Connect(BeyondNpc)
 end
@@ -147,11 +145,6 @@ function EnterShop()
     NetUtil.Fire_C("SwitchStoreUIEvent", localPlayer, 1, currNpcId)
 end
 
---- 开始宠物战斗
-function StartMonsterBattle()
-    print("[GuiNpc] StartMonsterBattle()")
-    NetUtil.Fire_S("StartBattleEvent", true, currNpcObj, localPlayer)
-end
 
 --- 随机选取一段对话
 function PickARandomDialog()
