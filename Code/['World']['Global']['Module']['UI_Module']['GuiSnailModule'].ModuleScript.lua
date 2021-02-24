@@ -65,13 +65,15 @@ end
 
 -- 下注
 function GuiSnail:BetMoney(_num)
-    if Data.Player.coin >= _num then
+    NetUtil.Fire_S("SnailBetEvent", localPlayer, snailIndex, _num)
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你成功给" .. snailIndex .. "号蜗牛投注" .. _num, 3, true)
+    --[[if Data.Player.coin >= _num then
         NetUtil.Fire_S("SnailBetEvent", localPlayer, snailIndex, _num)
         NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * _num)
         NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你成功给" .. snailIndex .. "号蜗牛投注" .. _num, 3, true)
     else
         NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你没钱啦", 3, true)
-    end
+    end]]
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 

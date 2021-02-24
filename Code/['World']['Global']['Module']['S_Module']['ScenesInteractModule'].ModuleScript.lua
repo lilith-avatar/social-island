@@ -8,6 +8,9 @@ local ScenesInteract, this = ModuleUtil.New("ScenesInteract", ServerBase)
 --交互物体
 local interactOBJ = {}
 
+--弹跳物体
+local bounceOBJ = {}
+
 --正在交互的ID
 local curInteractID = {}
 
@@ -27,6 +30,16 @@ function ScenesInteract:NodeRef()
             itemID = v.ItemID,
             isGet = v.IsGet,
             useCount = v.UseCount
+        }
+    end
+    for k, v in pairs(world.BounceInteract:GetChildren()) do
+        bounceOBJ[v.Name] = {
+            obj = v,
+            originScale = v.Scale,
+            tweener1 = nil,
+            tweener2 = nil,
+            tweener3 = nil,
+            isbouncing = false
         }
     end
 end
@@ -56,6 +69,43 @@ function ScenesInteract:EventBind()
             end
         )
     end
+    for k, v in pairs(bounceOBJ) do
+        v.obj.OnCollisionBegin:Connect(
+            function(_hitObject)
+                print(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" then
+                    this:ElasticDeformation(v, _hitObject)
+                end
+            end
+        )
+    end
+end
+
+--弹跳
+function ScenesInteract:ElasticDeformation(_bounce, _player)
+    if _bounce.isbouncing == false then
+        _bounce.isbouncing = true
+        _bounce.tweener1 =
+            Tween:TweenProperty(_bounce.obj, {Scale = 0.8 * _bounce.originScale}, 0.1, Enum.EaseCurve.Linear)
+        _bounce.tweener2 =
+            Tween:TweenProperty(_bounce.obj, {Scale = 1.2 * _bounce.originScale}, 0.1, Enum.EaseCurve.Linear)
+        _bounce.tweener3 = Tween:TweenProperty(_bounce.obj, {Scale = _bounce.originScale}, 0.2, Enum.EaseCurve.Linear)
+        invoke(
+            function()
+                _bounce.tweener1:Play()
+                wait(0.1)
+                _player.LinearVelocity = Vector3(0, 20, 0)
+                _bounce.tweener1:Destroy()
+                _bounce.tweener2:Play()
+                wait(0.1)
+                _bounce.tweener3:Play()
+                _bounce.tweener2:Destroy()
+                wait(0.2)
+                _bounce.isbouncing = false
+                _bounce.tweener3:Destroy()
+            end
+        )
+    end
 end
 
 function ScenesInteract:Update(dt)
@@ -72,9 +122,9 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
                 interactOBJ[curInteractID[_player.UserId]].useCount =
                     interactOBJ[curInteractID[_player.UserId]].useCount - 1
-				if interactOBJ[curInteractID[_player.UserId]].useCount == 0 then
-					interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
-				end
+                if interactOBJ[curInteractID[_player.UserId]].useCount == 0 then
+                    interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
+                end
             else
                 interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
             end
