@@ -5,12 +5,21 @@ local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
 local totalWeights = 0
 
 local function SelectPit(_pitList, _num)
+    local tmpPits = table.deepcopy(_pitList)
+    local returnList = {}
+    for i = 1, _num do
+        local randomIndex = math.random(1, #tmpPits)
+        table.insert(returnList, tmpPits[randomIndex])
+        table.remove(tmpPits, randomIndex)
+    end
+    return returnList
 end
 
 ---初始化函数
 function MoleHit:Init()
     print("[MoleHit] Init()")
     this:DataInit()
+    this:NodeDef()
     this:RefreashMole("ufo")
     this:RefreashMole("maze")
 end
@@ -33,6 +42,13 @@ function MoleHit:DataInit()
     }
 end
 
+function MoleHit:NodeDef()
+    this.pitFolder = {
+        ufo = world.MiniGames.Game_02_WhackAMole.Pits.ufo:GetChildren(),
+        maze = world.MiniGames.Game_02_WhackAMole.Pits.maze:GetChildren()
+    }
+end
+
 function MoleHit:PoolInit()
     for k, v in pairs(Config.MoleConfig) do
         this.molePool[k] = MolePool:new(v.Archetype, 10, v.ID)
@@ -40,9 +56,12 @@ function MoleHit:PoolInit()
 end
 
 function MoleHit:RefreashMole(_type)
+    this.pitList[_type] = SelectPit(this.pitFolder[_type], this.hitNum[_type])
     -- 遍历对应坑位
     for k, v in pairs(this.pitList[_type]) do
-        this.molePool[_type]:Create()
+        --this.molePool[_type]:Create()
+        --!Test
+        world:CreateInstance('Test1','Test',v,v.Position)
     end
 end
 
@@ -52,28 +71,31 @@ function MoleHit:InteractSEventHandler(_player, _gameId)
 end
 
 --- 玩家击中地鼠事件
-function MoleHit:PlayerHitEventHandler(_uid,_type, _pit)
-    this:HitMoleAction(_uid,_type, _pit)
+function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
+    this:HitMoleAction(_uid, _type, _pit)
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
     -- TODO： 广播事件
     --NetUtil.Broadcast('',this.hitTime[_type])
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
-        this.startUpdate,this.hitTime[_type] = true,0
+        this.startUpdate, this.hitTime[_type] = true, 0
         this.RefreshList[_type] = {
             timer = 0
         }
-        --开启对应彩蛋
+    --开启对应彩蛋
     end
 end
 
-function MoleHit:HitMoleAction(_uid,_type, _pit)
+function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
-    local effect = world:CreateInstance('HitMoleEffect','Effect',_pit,_pit.Position,_pit.Rotation)
-    invoke(function()
-        effect:Destroy()
-    end, 1)
+    local effect = world:CreateInstance("HitMoleEffect", "Effect", _pit, _pit.Position, _pit.Rotation)
+    invoke(
+        function()
+            effect:Destroy()
+        end,
+        1
+    )
     -- 摧毁地鼠
     this.pitList[_type][_pit]:Destroy()
 end
