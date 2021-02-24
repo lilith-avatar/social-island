@@ -24,7 +24,7 @@ function MolePool:Destroy(_obj)
     end
 end
 
-function MolePool:Create(_parent, _name, _uuid)
+function MolePool:Create(_parent, _name)
     local mole
     if self.pool[1] then
         mole = self.pool[1]:Reset(nil, _parent)
@@ -35,24 +35,23 @@ function MolePool:Create(_parent, _name, _uuid)
             wait()
         )
     else
-        mole = MoleClass:new(_uuid, self.objId, _name, _parent)
+        mole = MoleClass:new(self.objId, _name, _parent)
     end
     return mole
 end
 
 --*************** 地鼠对象 ***********************
-function MoleClass:initialize(_uuid, _moleId, _name, _parent)
+function MoleClass:initialize(_moleId, _name, _parent)
     self:CreateModel(_moleId, _name, _parent)
-    self:DataReset(_uuid)
 end
 
-function MoleClass:DataReset(_uuid)
-    self.uuid = _uuid
+function MoleClass:DataReset(_moleId)
+    self.id = _moleId
+    self.type = Config.MoleConfig[_moleId].Type
 end
 
-function MoleClass:Reset(_uuid, _moleId, _parent)
+function MoleClass:Reset(_moleId, _parent)
     self:CreateModel(_moleId, nil, _parent)
-    self:DataReset(_uuid)
 end
 
 function MoleClass:Destroy(_isRealDestroy)

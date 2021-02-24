@@ -19,6 +19,7 @@ function MoleHit:Init()
     print("[MoleHit] Init()")
     this:DataInit()
     this:NodeDef()
+    this:PoolInit()
     this:RefreashMole("ufo")
     this:RefreashMole("maze")
 end
@@ -26,6 +27,10 @@ end
 function MoleHit:DataInit()
     this.startUpdate = false
     this.RefreshList = {}
+    this.molePool = {
+        ufo = {},
+        maze = {}
+    }
     this.pitList = {
         ufo = {},
         maze = {}
@@ -50,7 +55,7 @@ end
 
 function MoleHit:PoolInit()
     for k, v in pairs(Config.MoleConfig) do
-        this.molePool[k] = MolePool:new(v.Archetype, 10, v.ID)
+        this.molePool[v.Type] = MolePool:new(v.Archetype, 20, v.ID)
     end
 end
 
@@ -58,9 +63,9 @@ function MoleHit:RefreashMole(_type)
     this.pitList[_type] = SelectPit(this.pitFolder[_type], this.hitNum[_type])
     -- 遍历对应坑位
     for k, v in pairs(this.pitList[_type]) do
-        --this.molePool[_type]:Create()
+        this.molePool[_type]:Create(v, _type)
         --!Test
-        world:CreateInstance('Test1','Test',v,v.Position)
+        --world:CreateInstance('Test1','Test',v,v.Position)
     end
 end
 
