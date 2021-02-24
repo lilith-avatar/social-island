@@ -2,7 +2,6 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
-local totalWeights = 0
 
 local function SelectPit(_pitList, _num)
     local tmpPits = table.deepcopy(_pitList)
