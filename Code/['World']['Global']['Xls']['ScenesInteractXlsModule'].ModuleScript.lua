@@ -217,7 +217,7 @@ local ScenesInteractXls = {
     [27] = {
         ID = 27,
         Name = '弓箭',
-        Path = 'Arch',
+        Path = 'Arch1',
         ItemID = 2002,
         IsGet = false,
         UseCount = 99999
@@ -363,6 +363,14 @@ local ScenesInteractXls = {
         Name = '地鼠锤',
         Path = 'chuizi',
         ItemID = 1032,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [46] = {
+        ID = 46,
+        Name = '弓箭2',
+        Path = 'Arch2',
+        ItemID = 2002,
         IsGet = false,
         UseCount = 99999
     }
