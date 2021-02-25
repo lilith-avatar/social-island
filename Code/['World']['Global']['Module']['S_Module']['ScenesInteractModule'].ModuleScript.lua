@@ -14,6 +14,9 @@ local bounceOBJ = {}
 --望远镜
 local telescopeOBJ = {}
 
+--座位
+local seatOBJ = {}
+
 --正在交互的ID
 local curInteractID = {}
 
@@ -49,6 +52,12 @@ function ScenesInteract:NodeRef()
         telescopeOBJ[v.Name] = {
             obj = v,
             isUsing = false
+        }
+    end
+    for k, v in pairs(world.SeatInteract:GetChildren()) do
+        seatOBJ[v.Name] = {
+            obj = v,
+            player = nil
         }
     end
 end
@@ -94,6 +103,7 @@ function ScenesInteract:EventBind()
         v.obj.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and v.isUsing == false then
+                    v.isUsing = true
                     NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 14)
                 end
             end
@@ -101,6 +111,25 @@ function ScenesInteract:EventBind()
         v.obj.OnCollisionEnd:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" then
+                    v.isUsing = false
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
+                end
+            end
+        )
+    end
+    for k, v in pairs(seatOBJ) do
+        v.obj.OnCollisionBegin:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and v.player == nil then
+                    v.player = _hitObject
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 15)
+                end
+            end
+        )
+        v.obj.OnCollisionEnd:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" then
+                    v.player = nil
                     NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
@@ -157,6 +186,28 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+    end
+    if _id == 15 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 15)
+        for k, v in pairs(seatOBJ) do
+            if v.player == _player then
+                v.obj:Sit(v.player)
+                v.player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
+            end
+        end
+    end
+end
+
+function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
+    if _id == 15 then
+        for k, v in pairs(seatOBJ) do
+            if v.player == _player then
+                v.obj:Leave(v.player)
+                v.player = nil
+                PlayerCtrl:PlayerJump()
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+            end
+        end
     end
 end
 

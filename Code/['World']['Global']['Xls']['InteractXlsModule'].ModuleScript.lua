@@ -200,6 +200,19 @@ local InteractXls = {
         LeaveBtnActive = true,
         UseBtnIcon = '',
         OpenGui = 'TelescopeGUI'
+    },
+    [15] = {
+        ID = 15,
+        Name = 'SeatInteract',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

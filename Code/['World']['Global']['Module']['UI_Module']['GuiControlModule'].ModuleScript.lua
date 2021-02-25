@@ -275,7 +275,9 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
             v:SetActive(false)
         end
     end
-    localPlayer.Local[config.OpenGui]:SetActive(true)
+    if localPlayer.Local[config.OpenGui] then
+        localPlayer.Local[config.OpenGui]:SetActive(true)
+    end
     if _id == 0 then
         interactID = 0
         this:ResetDefUIEventHandler()
