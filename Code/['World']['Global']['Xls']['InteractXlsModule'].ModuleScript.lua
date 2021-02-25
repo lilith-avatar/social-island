@@ -213,6 +213,19 @@ local InteractXls = {
         LeaveBtnActive = true,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [16] = {
+        ID = 16,
+        Name = 'BonfireInteract',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

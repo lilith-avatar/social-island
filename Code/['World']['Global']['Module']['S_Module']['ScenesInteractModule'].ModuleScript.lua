@@ -17,6 +17,9 @@ local telescopeOBJ = {}
 --座位
 local seatOBJ = {}
 
+--篝火
+local bonfireOBJ = {}
+
 --正在交互的ID
 local curInteractID = {}
 
@@ -56,6 +59,12 @@ function ScenesInteract:NodeRef()
     end
     for k, v in pairs(world.SeatInteract:GetChildren()) do
         seatOBJ[v.Name] = {
+            obj = v,
+            player = nil
+        }
+    end
+    for k, v in pairs(world.BonfireInteract:GetChildren()) do
+        bonfireOBJ[v.Name] = {
             obj = v,
             player = nil
         }
@@ -135,6 +144,25 @@ function ScenesInteract:EventBind()
             end
         )
     end
+
+    for k, v in pairs(bonfireOBJ) do
+        v.obj.OnCollisionBegin:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and v.player == nil then
+                    v.player = _hitObject
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 16)
+                end
+            end
+        )
+        v.obj.OnCollisionEnd:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" then
+                    v.player = nil
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
+                end
+            end
+        )
+    end
 end
 
 --弹跳
@@ -195,6 +223,21 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v.player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
             end
         end
+    end
+    if _id == 16 then
+        for k, v in pairs(bonfireOBJ) do
+            if v.player == _player then
+                if v.obj.On.ActiveSelf then
+                    v.obj.On:SetActive(false)
+                    v.obj.Off:SetActive(true)
+                else
+                    v.obj.On:SetActive(true)
+                    v.obj.Off:SetActive(false)
+                end
+            end
+        end
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 16)
     end
 end
 
