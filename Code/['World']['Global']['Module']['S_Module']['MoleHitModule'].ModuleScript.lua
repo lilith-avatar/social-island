@@ -68,7 +68,12 @@ function MoleHit:RefreashMole(_type)
         v.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and _hitObject then
-                    NetUtil.Fire_C("GetPriceEvent", _hitObject, Config.MoleConfig[this.molePool[_type].objId].MoneyNum)
+                    NetUtil.Fire_C(
+                        "GetPriceEvent",
+                        _hitObject,
+                        Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
+                        _type
+                    )
                     NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 2)
                 end
             end
@@ -92,18 +97,21 @@ end
 
 --- 玩家击中地鼠事件
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
-    this:HitMoleAction(_uid, _type, _pit)
+    --this:HitMoleAction(_uid, _type, _pit)
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
     -- TODO： 广播事件
     --NetUtil.Broadcast('',this.hitTime[_type])
+    --! only Test
+    print(string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])))
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
         this.RefreshList[_type] = {
             timer = 0
         }
-    --开启对应彩蛋
+        --开启对应彩蛋
+        print(string.format('开启 %s 彩蛋', _type))
     end
 end
 

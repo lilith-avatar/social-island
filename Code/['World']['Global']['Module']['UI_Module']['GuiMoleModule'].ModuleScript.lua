@@ -27,16 +27,23 @@ function GuiMole:EventBind()
     end)
     this.pay.OnClick:Connect(function()
         -- TODO: 进行支付
+        this:Pay()
         NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
     end)
 end
 
 ---数据初始化
 function GuiMole:DataInit()
+    this.curMoleType = nil
 end
 
-function GuiMole:GetPriceEventHandler(_price)
+function GuiMole:Pay()
+    NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,nil)
+end
+
+function GuiMole:GetPriceEventHandler(_price,_type)
     this.des.Text = string.format('需要支付 %s 来开启', _price)
+    this.curMoleType = _type
 end
 
 function GuiMole:InteractCEventHandler(_gameId)
