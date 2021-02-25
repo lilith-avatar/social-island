@@ -35,15 +35,17 @@ end
 ---数据初始化
 function GuiMole:DataInit()
     this.curMoleType = nil
+    this.curPit = nil
 end
 
 function GuiMole:Pay()
-    NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,nil)
+    NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,this.curPit)
 end
 
-function GuiMole:GetPriceEventHandler(_price,_type)
+function GuiMole:GetPriceEventHandler(_price,_type,_pit)
     this.des.Text = string.format('需要支付 %s 来开启', _price)
     this.curMoleType = _type
+    this.curPit = _pit
 end
 
 function GuiMole:InteractCEventHandler(_gameId)

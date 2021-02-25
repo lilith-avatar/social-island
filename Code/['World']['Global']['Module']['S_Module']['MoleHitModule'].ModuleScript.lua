@@ -72,7 +72,8 @@ function MoleHit:RefreashMole(_type)
                         "GetPriceEvent",
                         _hitObject,
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
-                        _type
+                        _type,
+                        v
                     )
                     NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 2)
                 end
@@ -97,7 +98,8 @@ end
 
 --- 玩家击中地鼠事件
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
-    --this:HitMoleAction(_uid, _type, _pit)
+    this:HitMoleAction(_uid, _type, _pit)
+    -- 抽奖
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
     -- TODO： 广播事件
@@ -111,21 +113,27 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
             timer = 0
         }
         --开启对应彩蛋
-        print(string.format('开启 %s 彩蛋', _type))
+        print(string.format("开启 %s 彩蛋", _type))
     end
 end
 
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
-    local effect = world:CreateInstance("HitMoleEffect", "Effect", _pit, _pit.Position, _pit.Rotation)
+    _pit.Effect:SetActive(true)
+    local tweener = Tween:ShakeProperty(_pit[_type],{'Rotation'},0.8,30)
+    tweener:Play()
     invoke(
         function()
-            effect:Destroy()
+            -- 摧毁地鼠
+            this.molePool[_type]:Destroy(_pit[_type])
+            -- 关闭特效
+            _pit.Effect:SetActive(false)
         end,
         1
     )
-    -- 摧毁地鼠
-    this.pitList[_type][_pit]:Destroy()
+    --解除绑定
+    _pit.OnCollisionBegin:Clear()
+    _pit.OnCollisionEnd:Clear()
 end
 
 function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
