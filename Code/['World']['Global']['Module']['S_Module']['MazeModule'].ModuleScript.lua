@@ -11,6 +11,8 @@ local debug, PrintMazeData, PrintNodePath, GenNodePath = false
 
 -- 游戏时长(秒)
 local TOTAL_TIME = 60
+local PRE_WAIT_TIME = 1 --迷宫开始前，玩家等待时间
+local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 
 --! 常量配置: Maze 迷宫相关
 
@@ -771,9 +773,10 @@ function PlayerStartMaze(_player)
         Const.MazeEventEnum.JOIN,
         entrace.Position,
         floor.Right,
-        TOTAL_TIME
+        TOTAL_TIME,
+        PRE_WAIT_TIME
     )
-    timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME)
+    timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME + PRE_WAIT_TIME + POST_WAIT_TIME)
     startTime = now()
 end
 

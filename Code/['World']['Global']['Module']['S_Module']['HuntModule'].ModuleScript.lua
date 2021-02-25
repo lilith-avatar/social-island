@@ -68,7 +68,8 @@ function Hunt:InitAnimalArea()
             range = v.Range,
             amountMax = v.AmountMax,
             initAmount = v.InitAmount,
-            animalData = {}
+            animalData = {},
+			SpawnPoint = v.SpawnPoint
         }
     end
 end
@@ -83,14 +84,14 @@ function Hunt:InitAnimalData()
         local animalAmount = 0
         for _, animalID in pairs(Config.AnimalArea[areaID].AnimalIDList) do
             for i = 1, math.floor(Config.Animal[animalID].Weight / Config.Animal[animalID].Weight) * area.initAmount do
-                this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range)
+                this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range, area.SpawnPoint[math.random(1,#area.SpawnPoint)])
                 animalAmount = animalAmount + 1
             end
         end
         if animalAmount < area.amountMax then
             for i = 1, area.amountMax - animalAmount do
                 local id = Config.AnimalArea[areaID].AnimalIDList[math.random(#Config.AnimalArea[areaID].AnimalIDList)]
-                this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range)
+                this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range, area.SpawnPoint[math.random(1,#area.SpawnPoint)])
             end
         end
     end
@@ -98,13 +99,13 @@ function Hunt:InitAnimalData()
 end
 
 --- 实例化动物
-function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
+function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPoint)
     local tempData = {
         obj = world:CreateInstance(
             Config.Animal[_animalID].ArchetypeName,
             Config.Animal[_animalID].ArchetypeName .. #_animalData + 1,
             _parent,
-            _pos + Vector3(0.6 * math.random(-1 * _range, _range), 0.2, 0.6 * math.random(-1 * _range, _range)),
+            _SpawnPoint,
             EulerDegree(0, 0, 0)
         ),
         state = animalActState.IDLE,
