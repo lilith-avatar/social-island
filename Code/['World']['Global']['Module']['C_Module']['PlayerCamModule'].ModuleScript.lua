@@ -31,6 +31,9 @@ function PlayerCam:DataInit()
     -- TPS相机
     this.tpsCam = localPlayer.Local.Independent.TPSCam
 
+    -- FPS相机
+    this.fpsCam = localPlayer.Local.Independent.FPSCam
+
     -- 迷宫中的相机
     this.mazeCam = localPlayer.Local.Independent.MazeCam
 end
