@@ -187,6 +187,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [14] = {
+        ID = 14,
+        Name = 'TelescopeInteract',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = 'TelescopeGUI'
     }
 }
 

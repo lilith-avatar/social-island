@@ -10,6 +10,7 @@ Events.ServerEvents = {
     "ExitMiniGameEvent", -- @param nil
     -- 交互
     "InteractSEvent", -- @param _player, _id
+    "LeaveInteractSEvent", -- @param _player, _id
     "MazeEvent",
     "PlayerHitEvent",
     "PlayerStartMoleHitEvent",
@@ -49,6 +50,7 @@ Events.ClientEvents = {
     "OpenDynamicEvent", -- @param _type, _id
     -- 交互
     "InteractCEvent", -- @param _id
+    "LeaveInteractCEvent", -- @param _player, _id
     -- NPC事件
     "TouchNpcEvent", -- @param _npcId, _npcObj
     -- 修改玩家当前相机

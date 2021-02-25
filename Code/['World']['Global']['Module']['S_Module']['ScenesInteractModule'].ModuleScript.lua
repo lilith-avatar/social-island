@@ -11,6 +11,9 @@ local interactOBJ = {}
 --弹跳物体
 local bounceOBJ = {}
 
+--望远镜
+local telescopeOBJ = {}
+
 --正在交互的ID
 local curInteractID = {}
 
@@ -42,6 +45,12 @@ function ScenesInteract:NodeRef()
             isbouncing = false
         }
     end
+    for k, v in pairs(world.TelescopeInteract:GetChildren()) do
+        telescopeOBJ[v.Name] = {
+            obj = v,
+            isUsing = false
+        }
+    end
 end
 
 --- 数据变量初始化
@@ -69,12 +78,30 @@ function ScenesInteract:EventBind()
             end
         )
     end
+
     for k, v in pairs(bounceOBJ) do
         v.obj.OnCollisionBegin:Connect(
             function(_hitObject)
                 print(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" then
                     this:ElasticDeformation(v, _hitObject)
+                end
+            end
+        )
+    end
+
+    for k, v in pairs(telescopeOBJ) do
+        v.obj.OnCollisionBegin:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and v.isUsing == false then
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 14)
+                end
+            end
+        )
+        v.obj.OnCollisionEnd:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" then
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
         )
