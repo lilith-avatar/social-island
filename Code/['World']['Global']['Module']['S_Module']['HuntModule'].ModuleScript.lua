@@ -85,7 +85,7 @@ function Hunt:InitAnimalData()
 		local spawnPoint ={}
         for _, animalID in pairs(Config.AnimalArea[areaID].AnimalIDList) do
             for i = 1, math.floor(Config.Animal[animalID].Weight / Config.Animal[animalID].Weight) * area.initAmount do
-				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)
+				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)]
                 this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range, spawnPoint[1],spawnPoint[2])
                 animalAmount = animalAmount + 1
             end
@@ -93,6 +93,7 @@ function Hunt:InitAnimalData()
         if animalAmount < area.amountMax then
             for i = 1, area.amountMax - animalAmount do
                 local id = Config.AnimalArea[areaID].AnimalIDList[math.random(#Config.AnimalArea[areaID].AnimalIDList)]
+				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)]
                 this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range, spawnPoint[1],spawnPoint[2])
             end
         end
