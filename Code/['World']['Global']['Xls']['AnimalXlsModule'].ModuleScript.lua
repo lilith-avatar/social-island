@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//GameHunting.xlsx
+--- source file: .//GameHunting.xlsm
 
 local AnimalXls = {
     [1] = {
@@ -644,6 +644,22 @@ local AnimalXls = {
         Weight = 45,
         LVCtrlIntensity = 1600000,
         RotCtrlIntensity = 40000,
+        ItemPoolID = 8
+    },
+    [41] = {
+        ID = 41,
+        Name = '靶子',
+        ArchetypeName = 'Animal_Target',
+        DefMoveSpeed = 0.001,
+        ScaredMoveSpeed = 0.001,
+        IdleAnimationName = {'Idle'},
+        IdleAnimationDurRange = {5, 5},
+        MoveAnimationName = {'Move'},
+        MoveAnimationDurRange = {1, 23},
+        DeadAnimationName = {'Dead'},
+        Weight = 15,
+        LVCtrlIntensity = 0,
+        RotCtrlIntensity = 0,
         ItemPoolID = 8
     }
 }
