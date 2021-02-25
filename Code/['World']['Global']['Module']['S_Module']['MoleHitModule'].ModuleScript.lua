@@ -67,8 +67,16 @@ function MoleHit:RefreashMole(_type)
         -- 绑定碰撞事件
         v.OnCollisionBegin:Connect(
             function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    print("111111111111111111111111111111111111")
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                    NetUtil.Fire_C("GetPriceEvent", _hitObject, Config.MoleConfig[this.molePool[_type].objId].MoneyNum)
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 2)
+                end
+            end
+        )
+        v.OnCollisionEnd:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                    NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
                 end
             end
         )
