@@ -85,7 +85,8 @@ Events.ClientEvents = {
     "InsertInfoEvent",
     "SwitchStoreUIEvent",
     "GetItemFromPoolEvent",
-    "UnequipCurWeaponEvent"
+    "UnequipCurWeaponEvent",
+    'GetPriceEvent'
 }
 
 return Events
