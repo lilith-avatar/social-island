@@ -48,7 +48,8 @@ function GuiMole:Pay()
         NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * this.curPrice)
         NetUtil.Fire_S("PlayerHitEvent", localPlayer.UserId, this.curMoleType, this.curPit)
     else
-        print('金钱不足')
+        --print('金钱不足')
+        NetUtil.Fire_C("InsertInfoEvent", localPlayer, "金钱不足", 2, true)
     end
 end
 
