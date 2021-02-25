@@ -2,76 +2,67 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
 local GuiMole, this = ModuleUtil.New("GuiMole", ClientBase)
-local UIActive = false
 
 ---初始化函数
 function GuiMole:Init()
     print("[GuiMole] Init()")
-    this:NodeDef()
     this:DataInit()
+    this:NodeDef()
     this:EventBind()
 end
 
 ---节点定义
 function GuiMole:NodeDef()
-    this.gui = localPlayer.Local.MoleHitGui
-    this.timeText = this.gui.InfoPnl.TimeTxt.NumTxt
-    this.scoreText = this.gui.InfoPnl.ScoreTxt.NumTxt
-    this.boostText = this.gui.InfoPnl.BoostTxt.NumTxt
-end
-
----数据初始化
-function GuiMole:DataInit()
-    this.isCooling = false
-    this.coolTime = 1
-    this.timer = 0
-end
-
-function GuiMole:GameOver()
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-    UIActive = false
+    this.payRoot = localPlayer.Local.PayGui
+    this.priceRoot = this.payRoot.PricePay
+    this.des = this.priceRoot.PayBG.DesText
+    this.cancel = this.priceRoot.PayBG.CancelBtn
+    this.pay = this.priceRoot.PayBG.PayBtn
 end
 
 ---事件绑定
 function GuiMole:EventBind()
+    this.cancel.OnClick:Connect(function()
+        NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
+    end)
+    this.pay.OnClick:Connect(function()
+        -- TODO: 进行支付
+        this:Pay()
+        NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
+    end)
 end
 
-function GuiMole:StartMoleEventHandler()
-    this:StartGame()
-    MoleGame:GameStart()
+---数据初始化
+function GuiMole:DataInit()
+    this.curMoleType = nil
+    this.curPit = nil
 end
 
-function GuiMole:StartGame()
-    UIActive = true
-    invoke(
-        function()
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 2)
-        end,
-        0.5
-    )
+function GuiMole:Pay()
+    NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,this.curPit)
 end
 
-function GuiMole:UpdateScore(_score)
-    this.scoreText.Text = math.floor(tonumber(_score))
+function GuiMole:GetPriceEventHandler(_price,_type,_pit)
+    this.des.Text = string.format('需要支付 %s 来开启', _price)
+    this.curMoleType = _type
+    this.curPit = _pit
 end
 
-function GuiMole:UpdateBoost(_boostNum)
-    this.boostText.Text = math.floor(tonumber(_boostNum))
+function GuiMole:InteractCEventHandler(_gameId)
+    print(_gameId)
+    if _gameId == 2 then
+        this.payRoot:SetActive(true)
+        this.priceRoot:SetActive(true)
+    end
 end
 
-function GuiMole:UpdateTime(_time)
-    this.timeText.Text = math.floor(tonumber(_time))
-end
-
----强化过程表现
-function GuiMole:Boosting()
+function GuiMole:ResetDefUIEventHandler()
+    this.payRoot:SetActive(false)
+    this.priceRoot:SetActive(false)
 end
 
 ---Update函数
 function GuiMole:Update(_dt)
-    if this.gui.ActiveSelf == false and UIActive then
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 2)
-    end
 end
 
 return GuiMole

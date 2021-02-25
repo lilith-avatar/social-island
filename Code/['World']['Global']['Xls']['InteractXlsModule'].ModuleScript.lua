@@ -187,6 +187,45 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [14] = {
+        ID = 14,
+        Name = 'TelescopeInteract',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = 'TelescopeGUI'
+    },
+    [15] = {
+        ID = 15,
+        Name = 'SeatInteract',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = ''
+    },
+    [16] = {
+        ID = 16,
+        Name = 'BonfireInteract',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

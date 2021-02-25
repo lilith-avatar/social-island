@@ -6,29 +6,17 @@
 --- source file: .//GameMole.xlsx
 
 local MoleGlobalConfigXls = {
-    PlayerGameTime = {
-        Key = 'PlayerGameTime',
-        Value = 30.0
-    },
-    BoostNeed = {
-        Key = 'BoostNeed',
-        Value = 100.0
-    },
-    BoostTime = {
-        Key = 'BoostTime',
+    UFOPitNum = {
+        Key = 'UFOPitNum',
         Value = 10.0
     },
-    PlayerNumEffect = {
-        Key = 'PlayerNumEffect',
-        Value = {0,3,5,7,9,11,13}
+    MazePitNum = {
+        Key = 'MazePitNum',
+        Value = 10.0
     },
     RefreshTime = {
         Key = 'RefreshTime',
-        Value = 6.0
-    },
-    ScoreBonus = {
-        Key = 'ScoreBonus',
-        Value = {[0]=0,[10]=1,[20]=5,[30]=10,[40]=20,[50]=40,[60]=80,[10000]=100}
+        Value = 10000.0
     }
 }
 
