@@ -26,7 +26,8 @@ function GuiMole:EventBind()
         NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
     end)
     this.pay.OnClick:Connect(function()
-        -- TODO: 进行支付
+        -- TODO: 进行支付 
+        -- ! Test 现在没有进行判断
         this:Pay()
         NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
     end)
