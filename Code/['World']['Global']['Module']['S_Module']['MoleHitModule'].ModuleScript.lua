@@ -63,7 +63,7 @@ function MoleHit:RefreashMole(_type)
     this.pitList[_type] = SelectPit(this.pitFolder[_type], this.hitNum[_type])
     -- 遍历对应坑位
     for k, v in pairs(this.pitList[_type]) do
-        this.molePool[_type]:Create(v, _type)
+        v.Mole:SetActive(true)
         -- 绑定碰撞事件
         v.OnCollisionBegin:Connect(
             function(_hitObject)
@@ -130,7 +130,7 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
     invoke(
         function()
             -- 摧毁地鼠
-            this.molePool[_type]:Destroy(_pit[_type])
+            _pit.Mole:SetActive(false)
             -- 关闭特效
             _pit.Effect:SetActive(false)
         end,
