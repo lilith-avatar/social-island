@@ -63,13 +63,13 @@ function MoleHit:RefreashMole(_type)
     this.pitList[_type] = SelectPit(this.pitFolder[_type], this.hitNum[_type])
     -- 遍历对应坑位
     for k, v in pairs(this.pitList[_type]) do
-        this.molePool[_type]:Create(v, _type)
+        v.Mole:SetActive(true)
         -- 绑定碰撞事件
         v.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and _hitObject then
                     NetUtil.Fire_C(
-                        "GetPriceEvent",
+                        "GetMolePriceEvent",
                         _hitObject,
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
@@ -82,12 +82,10 @@ function MoleHit:RefreashMole(_type)
         v.OnCollisionEnd:Connect(
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and _hitObject then
-                    NetUtil.Fire_C("ResetDefUIEvent", _hitObject)
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
         )
-        --!Test
-        --world:CreateInstance('Test1','Test',v,v.Position)
     end
 end
 
@@ -102,10 +100,13 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     -- 抽奖
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
-    -- TODO： 广播事件
-    --NetUtil.Broadcast('',this.hitTime[_type])
     --! only Test
-    print(string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])))
+    NetUtil.Broadcast(
+        "InsertInfoEvent",
+        string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])),
+        2,
+        true
+    )
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
@@ -120,12 +121,12 @@ end
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
-    local tweener = Tween:ShakeProperty(_pit[_type],{'Rotation'},0.8,30)
+    local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
     tweener:Play()
     invoke(
         function()
             -- 摧毁地鼠
-            this.molePool[_type]:Destroy(_pit[_type])
+            _pit.Mole:SetActive(false)
             -- 关闭特效
             _pit.Effect:SetActive(false)
         end,

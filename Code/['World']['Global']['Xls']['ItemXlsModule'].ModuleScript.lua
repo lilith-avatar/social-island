@@ -13,7 +13,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1002] = {
         ItemID = 1002,
@@ -22,7 +23,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1003] = {
         ItemID = 1003,
@@ -31,7 +33,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1004] = {
         ItemID = 1004,
@@ -40,7 +43,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1005] = {
         ItemID = 1005,
@@ -49,7 +53,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1006] = {
         ItemID = 1006,
@@ -58,7 +63,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1007] = {
         ItemID = 1007,
@@ -67,7 +73,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1008] = {
         ItemID = 1008,
@@ -76,7 +83,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1009] = {
         ItemID = 1009,
@@ -85,7 +93,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1010] = {
         ItemID = 1010,
@@ -94,7 +103,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1011] = {
         ItemID = 1011,
@@ -103,7 +113,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1012] = {
         ItemID = 1012,
@@ -112,7 +123,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1013] = {
         ItemID = 1013,
@@ -121,7 +133,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1014] = {
         ItemID = 1014,
@@ -130,7 +143,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1015] = {
         ItemID = 1015,
@@ -139,7 +153,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1016] = {
         ItemID = 1016,
@@ -148,7 +163,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1017] = {
         ItemID = 1017,
@@ -157,7 +173,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1018] = {
         ItemID = 1018,
@@ -166,7 +183,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1019] = {
         ItemID = 1019,
@@ -175,7 +193,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1020] = {
         ItemID = 1020,
@@ -184,7 +203,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1021] = {
         ItemID = 1021,
@@ -193,7 +213,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1022] = {
         ItemID = 1022,
@@ -202,7 +223,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1023] = {
         ItemID = 1023,
@@ -211,7 +233,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1024] = {
         ItemID = 1024,
@@ -220,7 +243,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1025] = {
         ItemID = 1025,
@@ -229,7 +253,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1026] = {
         ItemID = 1026,
@@ -238,7 +263,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1027] = {
         ItemID = 1027,
@@ -247,7 +273,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1028] = {
         ItemID = 1028,
@@ -256,7 +283,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1029] = {
         ItemID = 1029,
@@ -265,7 +293,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1030] = {
         ItemID = 1030,
@@ -274,7 +303,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1031] = {
         ItemID = 1031,
@@ -283,7 +313,8 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [1032] = {
         ItemID = 1032,
@@ -292,7 +323,18 @@ local ItemXls = {
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
+    },
+    [1033] = {
+        ItemID = 1033,
+        Name = 'Item_Name_1033',
+        Des = 'Item_Des_1033',
+        Icon = 'MeleeWeapon_Icon',
+        UseCD = 0.5,
+        UseSoundID = 1,
+        UseAnimName = '',
+        Useable = true
     },
     [3001] = {
         ItemID = 3001,
@@ -301,7 +343,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3002] = {
         ItemID = 3002,
@@ -310,7 +353,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3003] = {
         ItemID = 3003,
@@ -319,7 +363,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3004] = {
         ItemID = 3004,
@@ -328,7 +373,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3005] = {
         ItemID = 3005,
@@ -337,7 +383,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3006] = {
         ItemID = 3006,
@@ -346,7 +393,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3007] = {
         ItemID = 3007,
@@ -355,7 +403,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3008] = {
         ItemID = 3008,
@@ -364,7 +413,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3009] = {
         ItemID = 3009,
@@ -373,7 +423,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3010] = {
         ItemID = 3010,
@@ -382,7 +433,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3011] = {
         ItemID = 3011,
@@ -391,7 +443,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3012] = {
         ItemID = 3012,
@@ -400,7 +453,8 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [3013] = {
         ItemID = 3013,
@@ -409,43 +463,148 @@ local ItemXls = {
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
+    },
+    [3014] = {
+        ItemID = 3014,
+        Name = 'Item_Name_3014',
+        Des = 'Item_Des_3014',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3015] = {
+        ItemID = 3015,
+        Name = 'Item_Name_3015',
+        Des = 'Item_Des_3015',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3016] = {
+        ItemID = 3016,
+        Name = 'Item_Name_3016',
+        Des = 'Item_Des_3016',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3017] = {
+        ItemID = 3017,
+        Name = 'Item_Name_3017',
+        Des = 'Item_Des_3017',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3018] = {
+        ItemID = 3018,
+        Name = 'Item_Name_3018',
+        Des = 'Item_Des_3018',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3019] = {
+        ItemID = 3019,
+        Name = 'Item_Name_3019',
+        Des = 'Item_Des_3019',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3020] = {
+        ItemID = 3020,
+        Name = 'Item_Name_3020',
+        Des = 'Item_Des_3020',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3021] = {
+        ItemID = 3021,
+        Name = 'Item_Name_3021',
+        Des = 'Item_Des_3021',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3022] = {
+        ItemID = 3022,
+        Name = 'Item_Name_3022',
+        Des = 'Item_Des_3022',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
+    [3023] = {
+        ItemID = 3023,
+        Name = 'Item_Name_3023',
+        Des = 'Item_Des_3023',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
     },
     [2001] = {
         ItemID = 2001,
         Name = 'Item_Name_2001',
         Des = 'Item_Des_2001',
         Icon = 'LongRangeWeapon_Icon',
-        UseCD = 0.5,
+        UseCD = 0.0,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [2002] = {
         ItemID = 2002,
         Name = 'Item_Name_2002',
         Des = 'Item_Des_2002',
         Icon = 'LongRangeWeapon_Icon',
-        UseCD = 0.5,
+        UseCD = 0.0,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [2003] = {
         ItemID = 2003,
         Name = 'Item_Name_2003',
         Des = 'Item_Des_2003',
         Icon = 'LongRangeWeapon_Icon',
-        UseCD = 0.5,
+        UseCD = 0.0,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [4001] = {
         ItemID = 4001,
         Name = 'Item_Name_4001',
         Des = 'Item_Des_4001',
         Icon = '',
-        UseCD = 0.5,
+        UseCD = 0.0,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [5001] = {
         ItemID = 5001,
@@ -454,7 +613,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5002] = {
         ItemID = 5002,
@@ -463,7 +623,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5003] = {
         ItemID = 5003,
@@ -472,7 +633,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5004] = {
         ItemID = 5004,
@@ -481,7 +643,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5005] = {
         ItemID = 5005,
@@ -490,7 +653,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5006] = {
         ItemID = 5006,
@@ -499,7 +663,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5007] = {
         ItemID = 5007,
@@ -508,7 +673,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5008] = {
         ItemID = 5008,
@@ -517,7 +683,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5009] = {
         ItemID = 5009,
@@ -526,7 +693,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5010] = {
         ItemID = 5010,
@@ -535,7 +703,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5011] = {
         ItemID = 5011,
@@ -544,7 +713,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5012] = {
         ItemID = 5012,
@@ -553,7 +723,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5013] = {
         ItemID = 5013,
@@ -562,7 +733,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5014] = {
         ItemID = 5014,
@@ -571,7 +743,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5015] = {
         ItemID = 5015,
@@ -580,7 +753,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5016] = {
         ItemID = 5016,
@@ -589,7 +763,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5017] = {
         ItemID = 5017,
@@ -598,7 +773,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5018] = {
         ItemID = 5018,
@@ -607,7 +783,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5019] = {
         ItemID = 5019,
@@ -616,7 +793,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [5020] = {
         ItemID = 5020,
@@ -625,7 +803,8 @@ local ItemXls = {
         Icon = 'TaskItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = false
     },
     [6001] = {
         ItemID = 6001,
@@ -634,7 +813,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6002] = {
         ItemID = 6002,
@@ -643,7 +823,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6003] = {
         ItemID = 6003,
@@ -652,7 +833,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6004] = {
         ItemID = 6004,
@@ -661,7 +843,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6005] = {
         ItemID = 6005,
@@ -670,7 +853,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6006] = {
         ItemID = 6006,
@@ -679,7 +863,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6007] = {
         ItemID = 6007,
@@ -688,7 +873,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6008] = {
         ItemID = 6008,
@@ -697,7 +883,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6009] = {
         ItemID = 6009,
@@ -706,7 +893,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6010] = {
         ItemID = 6010,
@@ -715,7 +903,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6011] = {
         ItemID = 6011,
@@ -724,7 +913,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6012] = {
         ItemID = 6012,
@@ -733,7 +923,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6013] = {
         ItemID = 6013,
@@ -742,7 +933,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6014] = {
         ItemID = 6014,
@@ -751,7 +943,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6015] = {
         ItemID = 6015,
@@ -760,7 +953,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6016] = {
         ItemID = 6016,
@@ -769,7 +963,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6017] = {
         ItemID = 6017,
@@ -778,7 +973,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6018] = {
         ItemID = 6018,
@@ -787,7 +983,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6019] = {
         ItemID = 6019,
@@ -796,7 +993,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6020] = {
         ItemID = 6020,
@@ -805,7 +1003,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6021] = {
         ItemID = 6021,
@@ -814,7 +1013,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6022] = {
         ItemID = 6022,
@@ -823,7 +1023,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6023] = {
         ItemID = 6023,
@@ -832,7 +1033,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6024] = {
         ItemID = 6024,
@@ -841,7 +1043,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6025] = {
         ItemID = 6025,
@@ -850,7 +1053,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6026] = {
         ItemID = 6026,
@@ -859,7 +1063,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6027] = {
         ItemID = 6027,
@@ -868,7 +1073,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6028] = {
         ItemID = 6028,
@@ -877,7 +1083,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6029] = {
         ItemID = 6029,
@@ -886,7 +1093,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6030] = {
         ItemID = 6030,
@@ -895,7 +1103,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6031] = {
         ItemID = 6031,
@@ -904,7 +1113,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6032] = {
         ItemID = 6032,
@@ -913,7 +1123,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6033] = {
         ItemID = 6033,
@@ -922,7 +1133,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6034] = {
         ItemID = 6034,
@@ -931,7 +1143,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6035] = {
         ItemID = 6035,
@@ -940,7 +1153,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6036] = {
         ItemID = 6036,
@@ -949,7 +1163,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6037] = {
         ItemID = 6037,
@@ -958,7 +1173,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6038] = {
         ItemID = 6038,
@@ -967,7 +1183,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6039] = {
         ItemID = 6039,
@@ -976,7 +1193,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6040] = {
         ItemID = 6040,
@@ -985,7 +1203,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6041] = {
         ItemID = 6041,
@@ -994,7 +1213,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6042] = {
         ItemID = 6042,
@@ -1003,7 +1223,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6043] = {
         ItemID = 6043,
@@ -1012,7 +1233,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6044] = {
         ItemID = 6044,
@@ -1021,7 +1243,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6045] = {
         ItemID = 6045,
@@ -1030,7 +1253,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6046] = {
         ItemID = 6046,
@@ -1039,7 +1263,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6047] = {
         ItemID = 6047,
@@ -1048,7 +1273,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6048] = {
         ItemID = 6048,
@@ -1057,7 +1283,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6049] = {
         ItemID = 6049,
@@ -1066,7 +1293,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6050] = {
         ItemID = 6050,
@@ -1075,7 +1303,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6051] = {
         ItemID = 6051,
@@ -1084,7 +1313,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6052] = {
         ItemID = 6052,
@@ -1093,7 +1323,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6053] = {
         ItemID = 6053,
@@ -1102,7 +1333,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6054] = {
         ItemID = 6054,
@@ -1111,7 +1343,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6055] = {
         ItemID = 6055,
@@ -1120,7 +1353,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6056] = {
         ItemID = 6056,
@@ -1129,7 +1363,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6057] = {
         ItemID = 6057,
@@ -1138,7 +1373,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6058] = {
         ItemID = 6058,
@@ -1147,7 +1383,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6059] = {
         ItemID = 6059,
@@ -1156,7 +1393,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6060] = {
         ItemID = 6060,
@@ -1165,7 +1403,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6061] = {
         ItemID = 6061,
@@ -1174,7 +1413,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6062] = {
         ItemID = 6062,
@@ -1183,7 +1423,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6063] = {
         ItemID = 6063,
@@ -1192,7 +1433,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6064] = {
         ItemID = 6064,
@@ -1201,7 +1443,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6065] = {
         ItemID = 6065,
@@ -1210,7 +1453,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6066] = {
         ItemID = 6066,
@@ -1219,7 +1463,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6067] = {
         ItemID = 6067,
@@ -1228,7 +1473,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6068] = {
         ItemID = 6068,
@@ -1237,7 +1483,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6069] = {
         ItemID = 6069,
@@ -1246,7 +1493,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6070] = {
         ItemID = 6070,
@@ -1255,7 +1503,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6071] = {
         ItemID = 6071,
@@ -1264,7 +1513,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6072] = {
         ItemID = 6072,
@@ -1273,7 +1523,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6073] = {
         ItemID = 6073,
@@ -1282,7 +1533,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6074] = {
         ItemID = 6074,
@@ -1291,7 +1543,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6075] = {
         ItemID = 6075,
@@ -1300,7 +1553,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6076] = {
         ItemID = 6076,
@@ -1309,7 +1563,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6077] = {
         ItemID = 6077,
@@ -1318,7 +1573,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6078] = {
         ItemID = 6078,
@@ -1327,7 +1583,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6079] = {
         ItemID = 6079,
@@ -1336,7 +1593,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6080] = {
         ItemID = 6080,
@@ -1345,7 +1603,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6081] = {
         ItemID = 6081,
@@ -1354,7 +1613,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6082] = {
         ItemID = 6082,
@@ -1363,7 +1623,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6083] = {
         ItemID = 6083,
@@ -1372,7 +1633,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6084] = {
         ItemID = 6084,
@@ -1381,7 +1643,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6085] = {
         ItemID = 6085,
@@ -1390,7 +1653,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6086] = {
         ItemID = 6086,
@@ -1399,7 +1663,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6087] = {
         ItemID = 6087,
@@ -1408,7 +1673,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6088] = {
         ItemID = 6088,
@@ -1417,7 +1683,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6089] = {
         ItemID = 6089,
@@ -1426,7 +1693,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6090] = {
         ItemID = 6090,
@@ -1435,7 +1703,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6091] = {
         ItemID = 6091,
@@ -1444,7 +1713,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     },
     [6092] = {
         ItemID = 6092,
@@ -1453,7 +1723,8 @@ local ItemXls = {
         Icon = 'RewardItem_Icon',
         UseCD = 0.5,
         UseSoundID = 0,
-        UseAnimName = ''
+        UseAnimName = '',
+        Useable = true
     }
 }
 

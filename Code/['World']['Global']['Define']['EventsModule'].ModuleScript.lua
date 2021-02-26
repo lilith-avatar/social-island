@@ -27,7 +27,8 @@ Events.ServerEvents = {
     "LoadMDataEvent", -- @param _userId
     "SaveMDataEvent", -- @param _userId, _playerdata
     "SPlayerHitEvent",
-    "NormalChairSpeedUpEvent"
+    "NormalChairSpeedUpEvent",
+    "PurchaseSEvent"
 }
 
 -- 客户端事件列表
@@ -86,7 +87,10 @@ Events.ClientEvents = {
     "SwitchStoreUIEvent",
     "GetItemFromPoolEvent",
     "UnequipCurWeaponEvent",
-    'GetPriceEvent'
+    "GetMolePriceEvent",
+    "SliderPurchaseEvent",
+    "PurchaseConfirmEvent",
+    "PurchaseCEvent"
 }
 
 return Events
