@@ -38,7 +38,9 @@ function ScenesInteract:NodeRef()
             obj = world.ScenesInteract[v.Path],
             itemID = v.ItemID,
             isGet = v.IsGet,
-            useCount = v.UseCount
+            useCount = v.UseCount,
+            resetTime = v.ResetTime,
+            resetCD = 0
         }
     end
     for k, v in pairs(world.BounceInteract:GetChildren()) do
@@ -203,6 +205,25 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
             end
         end
     end
+end
+
+--重置交互物体
+function ScenesInteract:ResetSIOBJ(dt)
+    for k, v in pairs(interactOBJ) do
+        if v.useCount == 0 and v.resetTime > 0 then
+            if v.resetCD < v.resetTime then
+                v.resetCD = v.resetCD + dt
+            else
+                v.resetCD = 0
+                v.useCount = world.ScenesInteract[v.itemID].UseCount
+                v.obj:SetActive(true)
+            end
+        end
+    end
+end
+
+function ScenesInteract:Update(dt)
+    this:ResetSIOBJ(dt)
 end
 
 return ScenesInteract
