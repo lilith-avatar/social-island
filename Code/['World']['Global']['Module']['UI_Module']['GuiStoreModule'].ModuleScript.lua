@@ -8,15 +8,9 @@ local GuiStore, this = ModuleUtil.New("GuiStore", ClientBase)
 
 local gui
 
-local oneLineNum = 4 ---每行的元素数量
-local itemColumnSpacing = 0.02 --- 列间距
-local itemRowSpacing = 0.1 ---行间距
-local columnSpacing = 0.04 ---左右边缘的距离
-local rowSpacing = 0.04 ---上下的距离 0.04
-local oneItemWidth = (0.94 - (oneLineNum - 1) * itemColumnSpacing - 2 * columnSpacing) / oneLineNum
-local oneItemHeight = 0.4
-
 local curNpcID
+
+local chosenItemID = 0
 
 function GuiStore:Init()
     print("GuiStore:Init")
@@ -33,7 +27,6 @@ end
 --数据变量声明
 function GuiStore:DataInit()
     curNpcID = 0
-    this:InstanceStore(40)
 end
 
 --节点事件绑定
@@ -49,56 +42,32 @@ function GuiStore:EventBind()
             this:SwithConfirmUI(2, nil)
         end
     )
-end
-
---初始化一个商店购买Btn
-function GuiStore:InstanceBuyBtn(_index, _anchorsX, _anchorsY)
-    local parentNode = gui.ShopPanel.DragPanel.Panel1
-    local tempBtn =
-        world:CreateInstance("ShopBgImg", "ShopBtn" .. _index, parentNode, Vector3(0, 0, 0), EulerDegree(0, 0, 0))
-    tempBtn.AnchorsX = _anchorsX
-    tempBtn.AnchorsY = _anchorsY
-    tempBtn.Offset = Vector2.Zero
-    tempBtn.Size = Vector2.Zero
-    tempBtn.ItemID.Value = 0
-end
-
---初始化商店
-function GuiStore:InstanceStore(_itemNum)
-    local index = 1
-    for i = 1, _itemNum do
-        local x = index % oneLineNum
-        local y = math.floor(index / oneLineNum) + 1
-        if x == 0 then
-            x = oneLineNum
-            y = y - 1
+    gui.ShopPanel.BuyBtn.OnClick:Connect(
+        function()
+            this:OnClickBuyBtn()
         end
-        local anchorsX =
-            Vector2(
-            (x - 1) * (oneItemWidth + itemColumnSpacing) + columnSpacing,
-            (x - 1) * (oneItemWidth + itemColumnSpacing) + columnSpacing + oneItemWidth
-        )
-        local anchorsY =
-            Vector2(
-            1 - ((y - 1) * (oneItemHeight + itemRowSpacing) + rowSpacing + oneItemHeight),
-            1 - ((y - 1) * (oneItemHeight + itemRowSpacing) + rowSpacing)
-        )
-        index = index + 1
-        this:InstanceBuyBtn(i, anchorsX, anchorsY)
-    end
+    )
 end
 
 --获取商店出售物品data
 function GuiStore:GetItemData(_itemData)
     for k, v in pairs(_itemData) do
-        gui.ShopPanel.DragPanel.Panel1["ShopBtn" .. v.Index].ItemID.Value = v.ItemId
-        gui.ShopPanel.DragPanel.Panel1["ShopBtn" .. v.Index].GoodsImg.ShopBtn.OnClick:Connect(
+        gui.ShopPanel.DragPanel.Panel1["ShopBgImg" .. v.Index].ItemID.Value = v.ItemId
+        gui.ShopPanel.DragPanel.Panel1["ShopBgImg" .. v.Index].GoodsImg.ShopBtn.OnClick:Connect(
             function()
-                this:SwithConfirmUI(1, v.ItemId)
+                chosenItemID = v.ItemId
+                this:UpdateStoreUI(false)
                 this:UpdateItemInfo(v.ItemId)
+                this:UpdateBuyBtn()
             end
         )
     end
+end
+
+--点击购买Btn
+function GuiStore:OnClickBuyBtn()
+    gui.PurchasePanel.PurchaseBgImg.DesText.Text = "是否购买" .. LanguageUtil.GetText(Config.Item[chosenItemID].Name)
+    this:SwithConfirmUI(1, chosenItemID)
 end
 
 --开关确认支付面板
@@ -138,40 +107,50 @@ function GuiStore:UpdateItemInfo(_itemID)
     if _itemID then
         gui.ShopPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.Item[_itemID].Name)
         gui.ShopPanel.DesTextBox.DesText.Text = LanguageUtil.GetText(Config.Item[_itemID].Des)
-        gui.PurchasePanel.PurchaseBgImg.DesText.Text = "是否购买" .. LanguageUtil.GetText(Config.Item[_itemID].Name)
     else
         gui.ShopPanel.NameTextBox.NameText.Text = ""
         gui.ShopPanel.DesTextBox.DesText.Text = ""
     end
 end
 
---更新一个购买Btn显示
+--更新购买按钮显示
+function GuiStore:UpdateBuyBtn()
+    gui.ShopPanel.BuyBtn.Locked:SetActive(false)
+    for k, v in pairs(Data.Player.bag) do
+        if k == chosenItemID and v.count > 0 and tonumber(string.sub(tostring(chosenItemID), 1, 1)) < 6 then
+            gui.ShopPanel.BuyBtn.Locked:SetActive(true)
+            break
+        end
+    end
+end
+
+--更新一个物品Btn显示
 function GuiStore:UpdateBuyBtnUI(_sellBtn)
+    _sellBtn:SetActive(true)
     if _sellBtn.ItemID.Value == 0 then
         _sellBtn:SetActive(false)
     else
-        --_sellBtn.GoodsImg.LockImg.Visible = true
-        _sellBtn.GoodsImg.IMGEmpty.Visible = false
-        _sellBtn.GoodsImg.IMGNormal.Visible = true
-        _sellBtn.PriceImg.Visible = true
+        --Icon和价格显示
         for k, v in pairs(Config.Item) do
             if v.ItemID == _sellBtn.ItemID.Value then
                 _sellBtn.PriceImg.PriceTxt.Text = Config.Shop[curNpcID][v.ItemID].Price
                 _sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture("UI/ItemIcon/" .. v.Icon)
-                --_sellBtn.GoodsImg.IMGEmpty.Texture = ResourceManager.GetTexture("Local/UI/ItemIcon/" .. v.IconEmpty)
                 break
             end
         end
+        --选择框显示
+        if chosenItemID == _sellBtn.ItemID.Value then
+            _sellBtn.GoodsImg.Chosen:SetActive(true)
+        else
+            _sellBtn.GoodsImg.Chosen:SetActive(false)
+        end
+        --锁定显示
         for k, v in pairs(Data.Player.bag) do
             if
                 k == _sellBtn.ItemID.Value and v.count > 0 and
                     tonumber(string.sub(tostring(_sellBtn.ItemID.Value), 1, 1)) < 6
              then
-                _sellBtn.GoodsImg.ShopBtn.OnClick:Clear()
-                _sellBtn.GoodsImg.ShopBtn.Clickable = false
                 _sellBtn.GoodsImg.LockImg.Visible = true
-                _sellBtn.GoodsImg.IMGNormal.Visible = false
-                _sellBtn.PriceImg.Visible = false
                 break
             end
         end

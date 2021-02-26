@@ -373,6 +373,110 @@ local ScenesInteractXls = {
         ItemID = 2002,
         IsGet = false,
         UseCount = 99999
+    },
+    [47] = {
+        ID = 47,
+        Name = '救生圈1',
+        Path = 'LifeRing1',
+        ItemID = 3014,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [48] = {
+        ID = 48,
+        Name = '救生圈2',
+        Path = 'LifeRing2',
+        ItemID = 3014,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [49] = {
+        ID = 49,
+        Name = '救生圈3',
+        Path = 'LifeRing3',
+        ItemID = 3014,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [50] = {
+        ID = 50,
+        Name = '面具',
+        Path = 'Totems',
+        ItemID = 3015,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [51] = {
+        ID = 51,
+        Name = '气球2',
+        Path = 'Balloon2',
+        ItemID = 3020,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [52] = {
+        ID = 52,
+        Name = '气球5',
+        Path = 'Balloon5',
+        ItemID = 3017,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [53] = {
+        ID = 53,
+        Name = '气球4',
+        Path = 'Balloon4',
+        ItemID = 3019,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [54] = {
+        ID = 54,
+        Name = '气球3',
+        Path = 'Balloon3',
+        ItemID = 3018,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [55] = {
+        ID = 55,
+        Name = '气球1',
+        Path = 'Balloon1',
+        ItemID = 3016,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [56] = {
+        ID = 56,
+        Name = '南瓜头',
+        Path = 'Pumpkin',
+        ItemID = 3022,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [57] = {
+        ID = 57,
+        Name = '降落伞',
+        Path = 'Glider1',
+        ItemID = 3021,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [58] = {
+        ID = 58,
+        Name = '降落伞',
+        Path = 'Glider2',
+        ItemID = 3021,
+        IsGet = false,
+        UseCount = 99999
+    },
+    [59] = {
+        ID = 59,
+        Name = '降落伞',
+        Path = 'Glider3',
+        ItemID = 3021,
+        IsGet = false,
+        UseCount = 99999
     }
 }
 

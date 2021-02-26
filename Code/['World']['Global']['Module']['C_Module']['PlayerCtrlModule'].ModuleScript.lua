@@ -176,7 +176,8 @@ function PlayerCtrl:PlayerHeadEffectUpdate(_effectList)
             v,
             v,
             localPlayer.Avatar.Bone_Head.HeadEffect,
-            localPlayer.Avatar.Bone_Head.HeadEffect.Position
+            localPlayer.Avatar.Bone_Head.HeadEffect.Position,
+			localPlayer.Avatar.Bone_Head.HeadEffect.Rotation
         )
         --localPlayer.Avatar.Bone_Head.HeadEffect[v]:SetActive(true)
     end
@@ -193,7 +194,8 @@ function PlayerCtrl:PlayerBodyEffectUpdate(_effectList)
             v,
             v,
             localPlayer.Avatar.Bone_Pelvis.BodyEffect,
-            localPlayer.Avatar.Bone_Pelvis.BodyEffect.Position
+            localPlayer.Avatar.Bone_Pelvis.BodyEffect.Position,
+			localPlayer.Avatar.Bone_Pelvis.BodyEffect.Rotation
         )
         --localPlayer.Avatar.Bone_Pelvis.BodyEffect[v]:SetActive(true)
     end
@@ -216,13 +218,15 @@ function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
             v,
             v,
             localPlayer.Avatar.Bone_R_Foot.FootEffect,
-            localPlayer.Avatar.Bone_R_Foot.FootEffect.Position
+            localPlayer.Avatar.Bone_R_Foot.FootEffect.Position,
+			localPlayer.Avatar.Bone_R_Foot.FootEffect.Rotation
         )
         world:CreateInstance(
             v,
             v,
             localPlayer.Avatar.Bone_L_Foot.FootEffect,
-            localPlayer.Avatar.Bone_L_Foot.FootEffect.Position
+            localPlayer.Avatar.Bone_L_Foot.FootEffect.Position,
+			localPlayer.Avatar.Bone_L_Foot.FootEffect.Rotation
         )
         --localPlayer.Avatar.Bone_R_Foot.FootEffect[v]:SetActive(true)
         --localPlayer.Avatar.Bone_L_Foot.FootEffect[v]:SetActive(true)
