@@ -103,6 +103,7 @@ end
 function GuiPurchase:OnClickPurchaseConfirmBtn()
     NetUtil.Fire_C("PurchaseCEvent", localPlayer, purchaseCoin, interactID)
     NetUtil.Fire_S("PurchaseSEvent", localPlayer, purchaseCoin, interactID)
+    NetUtil.Fire_C('UpdateCoinEvent',-1 * purchaseCoin)
     this:OnClickPurchaseLaterBtn()
     purchaseCoin = 0
     sliderMin = 0
