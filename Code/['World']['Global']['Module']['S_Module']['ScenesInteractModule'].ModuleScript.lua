@@ -93,6 +93,7 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
                 _bounce.tweener2:Destroy()
                 wait(0.2)
                 _bounce.isbouncing = false
+                _bounce.obj.BounceInteractUID.Value = ""
                 _bounce.tweener3:Destroy()
             end
         )
@@ -181,7 +182,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     end
     if _id == 17 then
         for k, v in pairs(bounceOBJ) do
-            if v.BounceInteractUID.Value == _player.UserId then
+            if v.obj.BounceInteractUID.Value == _player.UserId then
                 this:ElasticDeformation(v, _player)
             end
         end
@@ -200,7 +201,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         for k, v in pairs(seatOBJ) do
             if v.SeatInteractUID.Value == _player.UserId then
                 v:Leave(_player)
-                PlayerCtrl:PlayerJump()
+                NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
