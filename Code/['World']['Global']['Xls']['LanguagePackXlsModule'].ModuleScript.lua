@@ -3288,6 +3288,160 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    Item_Name_1033 = {
+        ID = 'Item_Name_1033',
+        CHS = '手持烟花',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_1033 = {
+        ID = 'Item_Des_1033',
+        CHS = '庆典必不可少的道具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3014 = {
+        ID = 'Item_Name_3014',
+        CHS = '救生圈',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3014 = {
+        ID = 'Item_Des_3014',
+        CHS = '游泳初学者必备道具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3015 = {
+        ID = 'Item_Name_3015',
+        CHS = '图腾面具',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3015 = {
+        ID = 'Item_Des_3015',
+        CHS = '原始部落庆典时常用的面具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3016 = {
+        ID = 'Item_Name_3016',
+        CHS = '气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3016 = {
+        ID = 'Item_Des_3016',
+        CHS = '粉红的气球组。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3017 = {
+        ID = 'Item_Name_3017',
+        CHS = '气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3017 = {
+        ID = 'Item_Des_3017',
+        CHS = '粉色和蓝色交杂的气球组。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3018 = {
+        ID = 'Item_Name_3018',
+        CHS = '气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3018 = {
+        ID = 'Item_Des_3018',
+        CHS = '紫色的气球组。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3019 = {
+        ID = 'Item_Name_3019',
+        CHS = '气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3019 = {
+        ID = 'Item_Des_3019',
+        CHS = '蓝色和黄色交杂的气球组。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3020 = {
+        ID = 'Item_Name_3020',
+        CHS = '气球',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3020 = {
+        ID = 'Item_Des_3020',
+        CHS = '蓝色的气球组。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3021 = {
+        ID = 'Item_Name_3021',
+        CHS = '降落伞',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3021 = {
+        ID = 'Item_Des_3021',
+        CHS = '高空降落时必备道具。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3022 = {
+        ID = 'Item_Name_3022',
+        CHS = '南瓜头',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3022 = {
+        ID = 'Item_Des_3022',
+        CHS = '用南瓜制作成的头盔。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3023 = {
+        ID = 'Item_Name_3023',
+        CHS = '灌木丛',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3023 = {
+        ID = 'Item_Des_3023',
+        CHS = '丛林迷彩。',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 
