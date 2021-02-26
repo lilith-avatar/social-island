@@ -67,7 +67,9 @@ end
 function MoleClass:CreateModel(_moleId, _name, _parent)
     if self.model then
         self.model.Parent = _parent
-        self.model.Position, self.model.Rotation = _parent.Position, _parent.Rotation
+        self.model.Position, self.model.Rotation =
+            Vector3(_parent.Position.x, _parent.Position.y - 2, _parent.Position.x),
+            _parent.Rotation
         self.model:SetActive(true)
     else
         self.model =
