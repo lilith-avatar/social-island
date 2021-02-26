@@ -82,16 +82,19 @@ function Hunt:InitAnimalData()
             weightSum = weightSum + Config.Animal[animalID].Weight
         end
         local animalAmount = 0
+		local spawnPoint ={}
         for _, animalID in pairs(Config.AnimalArea[areaID].AnimalIDList) do
             for i = 1, math.floor(Config.Animal[animalID].Weight / Config.Animal[animalID].Weight) * area.initAmount do
-                this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range, area.SpawnPoint[math.random(1,#area.SpawnPoint)])
+				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)]
+                this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range, spawnPoint[1],spawnPoint[2])
                 animalAmount = animalAmount + 1
             end
         end
         if animalAmount < area.amountMax then
             for i = 1, area.amountMax - animalAmount do
                 local id = Config.AnimalArea[areaID].AnimalIDList[math.random(#Config.AnimalArea[areaID].AnimalIDList)]
-                this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range, area.SpawnPoint[math.random(1,#area.SpawnPoint)])
+				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)]
+                this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range, spawnPoint[1],spawnPoint[2])
             end
         end
     end
@@ -99,14 +102,14 @@ function Hunt:InitAnimalData()
 end
 
 --- 实例化动物
-function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPoint)
+function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPos,_SpawnRot)
     local tempData = {
         obj = world:CreateInstance(
             Config.Animal[_animalID].ArchetypeName,
             Config.Animal[_animalID].ArchetypeName .. #_animalData + 1,
             _parent,
-            _SpawnPoint,
-            EulerDegree(0, 0, 0)
+            _SpawnPos,
+            _SpawnRot
         ),
         state = animalActState.IDLE,
         stateTime = 1,
