@@ -20,8 +20,8 @@ local seatOBJ = {}
 --篝火
 local bonfireOBJ = {}
 
---正在交互的ID
-local curInteractID = {}
+--草
+local grassOBJ = {}
 
 --- 初始化
 function ScenesInteract:Init()
@@ -38,7 +38,9 @@ function ScenesInteract:NodeRef()
             obj = world.ScenesInteract[v.Path],
             itemID = v.ItemID,
             isGet = v.IsGet,
-            useCount = v.UseCount
+            useCount = v.UseCount,
+            resetTime = v.ResetTime,
+            resetCD = 0
         }
     end
     for k, v in pairs(world.BounceInteract:GetChildren()) do
@@ -51,23 +53,14 @@ function ScenesInteract:NodeRef()
             isbouncing = false
         }
     end
-    for k, v in pairs(world.TelescopeInteract:GetChildren()) do
-        telescopeOBJ[v.Name] = {
-            obj = v,
-            isUsing = false
-        }
-    end
     for k, v in pairs(world.SeatInteract:GetChildren()) do
-        seatOBJ[v.Name] = {
-            obj = v,
-            player = nil
-        }
+        seatOBJ[v.Name] = v
     end
     for k, v in pairs(world.BonfireInteract:GetChildren()) do
-        bonfireOBJ[v.Name] = {
-            obj = v,
-            player = nil
-        }
+        bonfireOBJ[v.Name] = v
+    end
+    for k, v in pairs(world.GrassInteract:GetChildren()) do
+        table.insert(grassOBJ, v)
     end
 end
 
@@ -77,92 +70,6 @@ end
 
 --- 节点事件绑定
 function ScenesInteract:EventBind()
-    for k, v in pairs(interactOBJ) do
-        v.obj.OnCollisionBegin:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    curInteractID[_hitObject.UserId] = k
-                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 13)
-                end
-            end
-        )
-        v.obj.OnCollisionEnd:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    print("v.obj.OnCollisionEnd")
-                    curInteractID[_hitObject.UserId] = nil
-                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
-                end
-            end
-        )
-    end
-
-    for k, v in pairs(bounceOBJ) do
-        v.obj.OnCollisionBegin:Connect(
-            function(_hitObject)
-                print(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    this:ElasticDeformation(v, _hitObject)
-                end
-            end
-        )
-    end
-
-    for k, v in pairs(telescopeOBJ) do
-        v.obj.OnCollisionBegin:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and v.isUsing == false then
-                    v.isUsing = true
-                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 14)
-                end
-            end
-        )
-        v.obj.OnCollisionEnd:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    v.isUsing = false
-                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
-                end
-            end
-        )
-    end
-    for k, v in pairs(seatOBJ) do
-        v.obj.OnCollisionBegin:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and v.player == nil then
-                    v.player = _hitObject
-                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 15)
-                end
-            end
-        )
-        v.obj.OnCollisionEnd:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    v.player = nil
-                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
-                end
-            end
-        )
-    end
-
-    for k, v in pairs(bonfireOBJ) do
-        v.obj.OnCollisionBegin:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and v.player == nil then
-                    v.player = _hitObject
-                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 16)
-                end
-            end
-        )
-        v.obj.OnCollisionEnd:Connect(
-            function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" then
-                    v.player = nil
-                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
-                end
-            end
-        )
-    end
 end
 
 --弹跳
@@ -186,31 +93,65 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
                 _bounce.tweener2:Destroy()
                 wait(0.2)
                 _bounce.isbouncing = false
+                _bounce.obj.BounceInteractUID.Value = ""
                 _bounce.tweener3:Destroy()
             end
         )
     end
 end
 
-function ScenesInteract:Update(dt)
+--草动
+function ScenesInteract:GrassInter(_object)
+    local swayTweenerl = this:GrassSwayTween(_object, 20, 0.15)
+    local swayTweener2 = this:GrassSwayTween(_object, -30, 0.3)
+    local swayTweener3 = this:GrassSwayTween(_object, 0, 0.15)
+    swayTweenerl.OnComplete:Connect(
+        function()
+            swayTweener2:Play()
+            swayTweenerl:Destroy()
+        end
+    )
+    swayTweener2.OnComplete:Connect(
+        function()
+            swayTweener3:Play()
+            swayTweener2:Destroy()
+        end
+    )
+    swayTweener3.OnComplete:Connect(
+        function()
+            swayTweener3:Destroy()
+        end
+    )
+
+    swayTweenerl:Play()
+end
+
+function ScenesInteract:GrassSwayTween(_obj, _property, _duration)
+    return Tween:TweenProperty(
+        _obj,
+        {Rotation = EulerDegree(_obj.Rotation.x, _obj.Rotation.y, _obj.Rotation.z + _property)},
+        _duration,
+        Enum.EaseCurve.Linear
+    )
 end
 
 function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 13 then
-        if curInteractID[_player.UserId] then
-            if interactOBJ[curInteractID[_player.UserId]].useCount > 0 then
-                if interactOBJ[curInteractID[_player.UserId]].isGet then
-                    NetUtil.Fire_C("GetItemEvent", _player, interactOBJ[curInteractID[_player.UserId]].itemID)
+        for k, v in pairs(interactOBJ) do
+            if v.obj.ScenesInteractUID.Value == _player.UserId then
+                if v.useCount > 0 then
+                    if v.isGet then
+                        NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
+                    else
+                        NetUtil.Fire_C("UseItemEvent", _player, v.itemID)
+                    end
+                    v.useCount = v.useCount - 1
+                    if v.useCount == 0 then
+                        v.obj:SetActive(false)
+                    end
                 else
-                    NetUtil.Fire_C("UseItemEvent", _player, interactOBJ[curInteractID[_player.UserId]].itemID)
+                    v.obj:SetActive(false)
                 end
-                interactOBJ[curInteractID[_player.UserId]].useCount =
-                    interactOBJ[curInteractID[_player.UserId]].useCount - 1
-                if interactOBJ[curInteractID[_player.UserId]].useCount == 0 then
-                    interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
-                end
-            else
-                interactOBJ[curInteractID[_player.UserId]].obj:SetActive(false)
             end
         end
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
@@ -218,40 +159,72 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 15 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 15)
         for k, v in pairs(seatOBJ) do
-            if v.player == _player then
-                v.obj:Sit(v.player)
-                v.player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
+            if v.SeatInteractUID.Value == _player.UserId then
+                v:Sit(_player)
+                _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
             end
         end
     end
     if _id == 16 then
         for k, v in pairs(bonfireOBJ) do
-            if v.player == _player then
-                if v.obj.On.ActiveSelf then
-                    v.obj.On:SetActive(false)
-                    v.obj.Off:SetActive(true)
+            if v.BonfireInteractUID.Value == _player.UserId then
+                if v.On.ActiveSelf then
+                    v.On:SetActive(false)
+                    v.Off:SetActive(true)
                 else
-                    v.obj.On:SetActive(true)
-                    v.obj.Off:SetActive(false)
+                    v.On:SetActive(true)
+                    v.Off:SetActive(false)
                 end
             end
         end
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
         NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 16)
     end
+    if _id == 17 then
+        for k, v in pairs(bounceOBJ) do
+            if v.obj.BounceInteractUID.Value == _player.UserId then
+                this:ElasticDeformation(v, _player)
+            end
+        end
+    end
+    if _id == 18 then
+        for k, v in pairs(grassOBJ) do
+            if v.GrassInteractUID.Value == _player.UserId then
+                this:GrassInter(v)
+            end
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     if _id == 15 then
         for k, v in pairs(seatOBJ) do
-            if v.player == _player then
-                v.obj:Leave(v.player)
-                v.player = nil
-                PlayerCtrl:PlayerJump()
+            if v.SeatInteractUID.Value == _player.UserId then
+                v:Leave(_player)
+                NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
     end
+end
+
+--重置交互物体
+function ScenesInteract:ResetSIOBJ(dt)
+    for k, v in pairs(interactOBJ) do
+        if v.useCount == 0 and v.resetTime > 0 then
+            if v.resetCD < v.resetTime then
+                v.resetCD = v.resetCD + dt
+            else
+                v.resetCD = 0
+                v.useCount = world.ScenesInteract[v.itemID].UseCount
+                v.obj:SetActive(true)
+            end
+        end
+    end
+end
+
+function ScenesInteract:Update(dt)
+    this:ResetSIOBJ(dt)
 end
 
 return ScenesInteract

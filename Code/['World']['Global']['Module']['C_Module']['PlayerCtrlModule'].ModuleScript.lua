@@ -61,6 +61,16 @@ function PlayerCtrl:EventBind()
             end
         end
     )
+    localPlayer.OnCollisionBegin:Connect(
+        function(_hitObject)
+            PlayerCtrl:OnScenesInteractCol(_hitObject, true)
+        end
+    )
+    localPlayer.OnCollisionEnd:Connect(
+        function(_hitObject)
+            PlayerCtrl:OnScenesInteractCol(_hitObject, false)
+        end
+    )
 end
 
 --获取按键盘时的移动方向最终取值
@@ -177,7 +187,7 @@ function PlayerCtrl:PlayerHeadEffectUpdate(_effectList)
             v,
             localPlayer.Avatar.Bone_Head.HeadEffect,
             localPlayer.Avatar.Bone_Head.HeadEffect.Position,
-			localPlayer.Avatar.Bone_Head.HeadEffect.Rotation
+            localPlayer.Avatar.Bone_Head.HeadEffect.Rotation
         )
         --localPlayer.Avatar.Bone_Head.HeadEffect[v]:SetActive(true)
     end
@@ -195,7 +205,7 @@ function PlayerCtrl:PlayerBodyEffectUpdate(_effectList)
             v,
             localPlayer.Avatar.Bone_Pelvis.BodyEffect,
             localPlayer.Avatar.Bone_Pelvis.BodyEffect.Position,
-			localPlayer.Avatar.Bone_Pelvis.BodyEffect.Rotation
+            localPlayer.Avatar.Bone_Pelvis.BodyEffect.Rotation
         )
         --localPlayer.Avatar.Bone_Pelvis.BodyEffect[v]:SetActive(true)
     end
@@ -219,14 +229,14 @@ function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
             v,
             localPlayer.Avatar.Bone_R_Foot.FootEffect,
             localPlayer.Avatar.Bone_R_Foot.FootEffect.Position,
-			localPlayer.Avatar.Bone_R_Foot.FootEffect.Rotation
+            localPlayer.Avatar.Bone_R_Foot.FootEffect.Rotation
         )
         world:CreateInstance(
             v,
             v,
             localPlayer.Avatar.Bone_L_Foot.FootEffect,
             localPlayer.Avatar.Bone_L_Foot.FootEffect.Position,
-			localPlayer.Avatar.Bone_L_Foot.FootEffect.Rotation
+            localPlayer.Avatar.Bone_L_Foot.FootEffect.Rotation
         )
         --localPlayer.Avatar.Bone_R_Foot.FootEffect[v]:SetActive(true)
         --localPlayer.Avatar.Bone_L_Foot.FootEffect[v]:SetActive(true)
@@ -260,6 +270,62 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     print("角色受伤", table.dump(_data))
     BuffMgr:GetBuffEventHandler(_data.hitAddBuffID, _data.hitAddBuffDur)
     BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
+end
+
+-- 碰到场景交互
+function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
+    if _hitObject then
+        if _hitObject.ScenesInteractUID then
+            if _isBegin then
+                _hitObject.ScenesInteractUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 13)
+            else
+                _hitObject.ScenesInteractUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.TelescopeInteractUID then
+            if _isBegin and _hitObject.TelescopeInteractUID.Value == "" then
+                _hitObject.TelescopeInteractUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 14)
+            else
+                _hitObject.TelescopeInteractUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.SeatInteractUID then
+            if _isBegin and _hitObject.SeatInteractUID.Value == "" then
+                _hitObject.SeatInteractUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 15)
+            else
+                _hitObject.SeatInteractUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.BonfireInteractUID then
+            if _isBegin and _hitObject.BonfireInteractUID.Value == "" then
+                _hitObject.BonfireInteractUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 16)
+            else
+                _hitObject.BonfireInteractUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.BounceInteractUID then
+            if _isBegin then
+                _hitObject.BounceInteractUID.Value = localPlayer.UserId
+                NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
+            end
+        end
+        if _hitObject.GrassInteractUID then
+            if _isBegin and _hitObject.GrassInteractUID.Value == "" then
+                _hitObject.GrassInteractUID.Value = localPlayer.UserId
+                NetUtil.Fire_S("InteractSEvent", localPlayer, 18)
+            else
+                _hitObject.GrassInteractUID.Value = ""
+            end
+        end
+    end
 end
 
 function PlayerCtrl:Update(dt)
