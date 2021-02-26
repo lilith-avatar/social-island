@@ -36,25 +36,25 @@ end
 function GuiBag:Init()
     this:NodeDef()
     this:DataInit()
-    this:SlotCreate()
-    this:EventBind()
+    --this:EventBind()
+    this:SlotBind()
 end
 
 function GuiBag:NodeDef()
     this.root = localPlayer.Local.BagGui
-    this.gui = this.root.BagPnl
-    this.slotList = {}
+    this.gui = this.root.BagPanel
+    this.slotList = this.gui.DragPanel.SlotPanel:GetChildren()
 
     --* Button------------
     this.useBtn = this.gui.UseBtn
     this.nextBtn = this.gui.NextBtn
     this.prevBtn = this.gui.PrevBtn
-    this.backBtn = this.gui.BackBtn
+    this.closeBtn = this.gui.CloseImg.CloseBtn
 
     --* Text--------------
-    this.nameTxt = this.gui.NameTxt
-    this.descTxt = this.gui.DescTxt
-    this.pageTxt = this.gui.pageTxt
+    this.nameTxt = this.gui.NameTextBox.NameText
+    this.descTxt = this.gui.DesTextBox.DesText
+    this.pageTxt = this.gui.DragPanel.PageText
 end
 
 function GuiBag:DataInit()
@@ -66,31 +66,14 @@ function GuiBag:DataInit()
     --* 背包物品显示参数-------------
     this.rowNum = 5
     this.colNum = 3
-
-    --* 计时器---------------
-    this.timer = {}
-    this.cdMask = {}
 end
 
---单元格生成
-local slot
-function GuiBag:SlotCreate()
-    for i = 1, this.rowNum * this.colNum do
-        slot = world:CreateInstance("SlotImg", "SlotImg", this.gui.SlotPnl)
-        --插入到表
-        table.insert(this.slotList, slot)
-        local row = (i - 1) % this.rowNum + 1
-        local col = math.floor((i - 1) / this.rowNum) + 1
-        -- 调整位置
-        slot.AnchorsX = Vector2(1 / this.rowNum * row - 1 / this.rowNum, 1 / this.rowNum * row - 1 / this.rowNum)
-        slot.AnchorsY =
-            Vector2(1 - (1 / this.colNum * col - 1 / this.rowNum), 1 - (1 / this.colNum * col - 1 / this.rowNum))
-        -- 绑定事件
-        slot.SelectBtn.OnClick:Connect(
-            function()
-                this:SelectItem(i)
-            end
-        )
+--单元格按键事件绑定
+function GuiBag:SlotBind()
+    for k,v in pairs(this.slotList) do
+        v.ItemImg.SelectBtn.OnClick:Connect(function()
+            this:SelectItem(k)
+        end)
     end
 end
 
@@ -181,16 +164,10 @@ function GuiBag:SelectItem(_index)
         this:ClearSelect()
         this.selectIndex = _index
         -- 进行名字和描述的更换,并高亮该物品
-        this:ChangeNameAndDesc(this.slotItem[_index].id)
-        -- TODO: 高亮
-        this.slotList[_index].Image = ResourceManager.GetTexture("UI/")
-        --开启使用按钮
-        this.useBtn:SetActive(true)
-    -- 红点系统前端表现
-    -- if this.slotItem[_index].isNew and this.slotItem[_index] then
-    --     --消除红点
-    --     this.slotList[_index].RedDotImg:SetActive(false)
-    -- end
+        this:ChangeNameAndDesc(this.slotItem[_index].ItemID.Value)
+        this.slotItem[_index].ItemImg.Chosen:SetActive(true)
+        --判断是否开启使用按钮
+        --this.useBtn:SetActive(true)
     end
 end
 
@@ -257,18 +234,6 @@ end
 
 ---计时器进行冷却计时
 function GuiBag:Update(dt)
-    for k, v in pairs(this.timer) do
-        this.timer[k] = this.timer[k] + dt
-        if this.cdMask[k] then
-            -- CD表现
-            for _, n in pairs(this.cdMask[k]) do
-                n.FillAmount = 1 - this.timer[k] / Config.Item[k].UseCD
-            end
-        end
-        if this.timer[k] >= Config.Item[k].UseCD then
-            this.timer[k] = nil
-        end
-    end
 end
 
 return GuiBag
