@@ -134,7 +134,7 @@ end
 
 function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotItem[_index].id = _itemId
-    
+
     -- 更换图片
     this.slotList[_index].IconImg.Texture = ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
     this.slotList[_index].IconImg.Size = this.slotList[_index].MaskImg.Size

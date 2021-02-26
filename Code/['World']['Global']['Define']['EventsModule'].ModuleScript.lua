@@ -87,7 +87,7 @@ Events.ClientEvents = {
     "SwitchStoreUIEvent",
     "GetItemFromPoolEvent",
     "UnequipCurWeaponEvent",
-    "GetPriceEvent",
+    "GetMolePriceEvent",
     "SliderPurchaseEvent",
     "PurchaseConfirmEvent",
     "PurchaseCEvent"

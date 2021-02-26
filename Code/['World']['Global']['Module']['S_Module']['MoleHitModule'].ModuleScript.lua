@@ -69,7 +69,7 @@ function MoleHit:RefreashMole(_type)
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and _hitObject then
                     NetUtil.Fire_C(
-                        "GetPriceEvent",
+                        "GetMolePriceEvent",
                         _hitObject,
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
@@ -86,8 +86,6 @@ function MoleHit:RefreashMole(_type)
                 end
             end
         )
-        --!Test
-        --world:CreateInstance('Test1','Test',v,v.Position)
     end
 end
 
@@ -102,10 +100,13 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     -- 抽奖
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
-    -- TODO： 广播事件
-    --NetUtil.Broadcast('',this.hitTime[_type])
     --! only Test
-    print(string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])))
+    NetUtil.Broadcast(
+        "InsertInfoEvent",
+        string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])),
+        2,
+        true
+    )
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
@@ -120,7 +121,7 @@ end
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
-    local tweener = Tween:ShakeProperty(_pit.Mole,{'Rotation'},0.8,30)
+    local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
     tweener:Play()
     invoke(
         function()

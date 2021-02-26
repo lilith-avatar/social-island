@@ -22,43 +22,48 @@ end
 
 ---事件绑定
 function GuiMole:EventBind()
-    this.cancel.OnClick:Connect(function()
-        NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
-    end)
-    this.pay.OnClick:Connect(function()
-        -- TODO: 进行支付
-        this:Pay()
-        NetUtil.Fire_C('ResetDefUIEvent',localPlayer)
-    end)
+    this.cancel.OnClick:Connect(
+        function()
+            NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
+        end
+    )
+    this.pay.OnClick:Connect(
+        function()
+            -- 进行支付
+            this:Pay()
+            NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
+        end
+    )
 end
 
 ---数据初始化
 function GuiMole:DataInit()
+    this.desText = ''
     this.curMoleType = nil
     this.curPit = nil
+    this.curPrice = 0
 end
 
-function GuiMole:Pay()
-    NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,this.curPit)
+function GuiMole:PurchaseCEventHandler(_coin,_id)
+    if _id == 2 then
+        NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,this.curPit)
+    end
 end
 
-function GuiMole:GetPriceEventHandler(_price,_type,_pit)
-    this.des.Text = string.format('需要支付 %s 来开启', _price)
+function GuiMole:GetMolePriceEventHandler(_price,_type,_pit)
+    this.curPrice = _price
     this.curMoleType = _type
     this.curPit = _pit
+    this.curPrice = _price
 end
 
 function GuiMole:InteractCEventHandler(_gameId)
-    print(_gameId)
     if _gameId == 2 then
-        this.payRoot:SetActive(true)
-        this.priceRoot:SetActive(true)
+        NetUtil.Fire_C('PurchaseConfirmEvent',localPlayer,this.curPrice,2,string.format('需要支付 %s 来开启', this.curPrice))
     end
 end
 
 function GuiMole:ResetDefUIEventHandler()
-    this.payRoot:SetActive(false)
-    this.priceRoot:SetActive(false)
 end
 
 ---Update函数
