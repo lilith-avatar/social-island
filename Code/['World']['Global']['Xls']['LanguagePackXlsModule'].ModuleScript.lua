@@ -2745,21 +2745,21 @@ local LanguagePackXls = {
     },
     NpcText_Text_1002 = {
         ID = 'NpcText_Text_1002',
-        CHS = '我在布置这个望远镜，有了它我就能看到飞碟的细节了。',
+        CHS = '这个森林的生态真是太有趣了。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1003 = {
         ID = 'NpcText_Text_1003',
-        CHS = '探索未知的东西真的太有趣了，不是吗？',
+        CHS = '大自然总会给你一些馈赠。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1004 = {
         ID = 'NpcText_Text_1004',
-        CHS = '听说山上有奇怪的石头，不知道是不是和外星人有关系。',
+        CHS = '听说这片森林有奇怪的蜗牛，我猜和外星人出没的谣言有关系。',
         CHT = '',
         EN = '',
         JP = ''
@@ -2773,7 +2773,7 @@ local LanguagePackXls = {
     },
     NpcText_Text_1006 = {
         ID = 'NpcText_Text_1006',
-        CHS = '刚刚有两个猎人过来找我，他们很热情，关于传说的事情你也许可以问问他们。',
+        CHS = '嘘，别把昆虫吓跑了。',
         CHT = '',
         EN = '',
         JP = ''
@@ -2787,70 +2787,70 @@ local LanguagePackXls = {
     },
     NpcText_Text_1012 = {
         ID = 'NpcText_Text_1012',
-        CHS = '奇怪的东西？除了飞碟和你们，我什么都没看到过。',
+        CHS = '你想和我交朋友？不……不是不行。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1013 = {
         ID = 'NpcText_Text_1013',
-        CHS = '我对外星人不感兴趣，你如果想学打猎，我倒是可以教你。',
+        CHS = '如果打到了好的猎物，一定要拿给我看看！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1014 = {
         ID = 'NpcText_Text_1014',
-        CHS = '你想和我交朋友？不……不是不行。',
+        CHS = '你好！陌生人！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1015 = {
         ID = 'NpcText_Text_1015',
-        CHS = '如果打到了好的猎物，一定要拿给我看看！',
+        CHS = '想看看我做的弓箭吗？',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1021 = {
         ID = 'NpcText_Text_1021',
-        CHS = '哦？外来者！欢迎！',
+        CHS = '你好。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1022 = {
         ID = 'NpcText_Text_1022',
-        CHS = '试试我新搭的热气球，它能让你离飞碟近一点！',
+        CHS = '试试我新搭的热气球！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1023 = {
         ID = 'NpcText_Text_1023',
-        CHS = '你们见过Johnny了吗？他是我哥哥。',
+        CHS = '你如果需要工具的话我可以卖给你。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1024 = {
         ID = 'NpcText_Text_1024',
-        CHS = '别看Johnny一副不开心的样子，你们来了他其实很欢迎的。',
+        CHS = '注意安全，不要从天上跳下来。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1025 = {
         ID = 'NpcText_Text_1025',
-        CHS = '我想我们可以交朋友，如果发现了什么记得告诉我啊！',
+        CHS = '你说能不能从热气球上找到外星人！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1026 = {
         ID = 'NpcText_Text_1026',
-        CHS = '我可不止会做热气球，想看看我的作品嘛？',
+        CHS = '热气球准乘两人。',
         CHT = '',
         EN = '',
         JP = ''
@@ -2885,35 +2885,35 @@ local LanguagePackXls = {
     },
     NpcText_Text_1041 = {
         ID = 'NpcText_Text_1041',
-        CHS = '倪好朋友，我有一些花种，你想种花嘛？',
+        CHS = '需要一些狂欢道具吗？',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1042 = {
         ID = 'NpcText_Text_1042',
-        CHS = '不要盯着我看。',
+        CHS = '尽情舞蹈吧！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1043 = {
         ID = 'NpcText_Text_1043',
-        CHS = '皮肤奇怪？我只是晒黑了。',
+        CHS = '要神奇的药丸嘛？',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1044 = {
         ID = 'NpcText_Text_1044',
-        CHS = '快去种花呀，快去种花呀。',
+        CHS = '你好。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1045 = {
         ID = 'NpcText_Text_1045',
-        CHS = '%*&&&?/.@!@!',
+        CHS = '化妆舞会正在筹备中，敬请期待。',
         CHT = '',
         EN = '',
         JP = ''
@@ -2927,7 +2927,7 @@ local LanguagePackXls = {
     },
     NpcText_Text_1052 = {
         ID = 'NpcText_Text_1052',
-        CHS = '%*&&&?/.@!@!',
+        CHS = '来一次激动人心的动物比赛吧！',
         CHT = '',
         EN = '',
         JP = ''
@@ -2976,21 +2976,21 @@ local LanguagePackXls = {
     },
     NpcText_Text_1072 = {
         ID = 'NpcText_Text_1072',
-        CHS = '不知道外星人什么时候会出现。',
+        CHS = '听说这里有外星人出没哦。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1081 = {
         ID = 'NpcText_Text_1081',
-        CHS = 'WOW！外星人的大炮！',
+        CHS = '这个岛真适合露营。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_1082 = {
         ID = 'NpcText_Text_1082',
-        CHS = '这个地方真是太酷了！',
+        CHS = '这个岛会不会是外星人的杰作呢。',
         CHT = '',
         EN = '',
         JP = ''
@@ -3123,21 +3123,21 @@ local LanguagePackXls = {
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
-        CHS = '又是一次激动人心的探险！',
+        CHS = '奇怪，这片森林好像没有四星瓢虫。',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2002 = {
         ID = 'NpcText_Text_2002',
-        CHS = '发现神奇的东西记得和我分享啊！',
+        CHS = '红蘑菇……黄蘑姑……紫蘑菇……',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2011 = {
         ID = 'NpcText_Text_2011',
-        CHS = '不要只关注飞碟，大自然的馈赠同样可贵。',
+        CHS = '瞄准，屏息，射击。',
         CHT = '',
         EN = '',
         JP = ''
@@ -3179,7 +3179,7 @@ local LanguagePackXls = {
     },
     NpcText_Text_2022 = {
         ID = 'NpcText_Text_2022',
-        CHS = '怎么才能让热气球接近飞碟呢！',
+        CHS = '有序排队，注意安全！',
         CHT = '',
         EN = '',
         JP = ''
@@ -3193,7 +3193,7 @@ local LanguagePackXls = {
     },
     NpcText_Text_2024 = {
         ID = 'NpcText_Text_2024',
-        CHS = '大家要保护大自然哦！',
+        CHS = '热气球就要来了！还有人想体验热气球吗？',
         CHT = '',
         EN = '',
         JP = ''
@@ -3256,21 +3256,21 @@ local LanguagePackXls = {
     },
     NpcText_Text_2051 = {
         ID = 'NpcText_Text_2051',
-        CHS = '瞧一瞧看一看，大蜗牛赛跑咯！',
+        CHS = '瞧一瞧看一看！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2052 = {
         ID = 'NpcText_Text_2052',
-        CHS = '我的宝贝们真是可爱，尤其是它们的孢子……我是说壳。',
+        CHS = '买定离手！',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcText_Text_2053 = {
         ID = 'NpcText_Text_2053',
-        CHS = '%*&&&?/.@!@!',
+        CHS = '赛跑活动正在进行中，快带着你的宠物参加吧！',
         CHT = '',
         EN = '',
         JP = ''
