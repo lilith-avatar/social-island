@@ -64,8 +64,8 @@ function GuiBag:DataInit()
     this.selectIndex = nil
 
     --* 背包物品显示参数-------------
-    this.rowNum = 10
-    this.colNum = 5
+    this.rowNum = 5
+    this.colNum = 3
 
     --* 计时器---------------
     this.timer = {}
