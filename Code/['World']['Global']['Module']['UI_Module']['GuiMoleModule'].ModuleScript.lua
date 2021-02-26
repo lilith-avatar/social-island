@@ -50,7 +50,7 @@ function GuiMole:PurchaseCEventHandler(_coin,_id)
     end
 end
 
-function GuiMole:GetPriceEventHandler(_price,_type,_pit)
+function GuiMole:GetMolePriceEventHandler(_price,_type,_pit)
     this.curPrice = _price
     this.curMoleType = _type
     this.curPit = _pit

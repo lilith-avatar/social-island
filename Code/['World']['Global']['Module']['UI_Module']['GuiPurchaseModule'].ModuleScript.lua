@@ -60,7 +60,7 @@ function GuiPurchase:PurchaseConfirmEventHandler(_coinNUm, _interactID, _text)
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
     confirmPanel:SetActive(true)
     confirmPanel.PriceText.Text = _coinNUm
-    confirmPanel.PlayerCoinText.Text = Data.Player.coin
+    confirmPanel.PlayerCoinText.Text = '/'..Data.Player.coin
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
         function()
             this:OnClickPurchaseConfirmBtn()
