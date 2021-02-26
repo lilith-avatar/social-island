@@ -86,8 +86,6 @@ function MoleHit:RefreashMole(_type)
                 end
             end
         )
-        --!Test
-        --world:CreateInstance('Test1','Test',v,v.Position)
     end
 end
 
@@ -102,8 +100,6 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     -- 抽奖
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
-    -- TODO： 广播事件
-    --NetUtil.Broadcast('',this.hitTime[_type])
     --! only Test
     NetUtil.Broadcast(
         "InsertInfoEvent",
