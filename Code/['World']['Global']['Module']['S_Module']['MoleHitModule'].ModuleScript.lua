@@ -95,7 +95,7 @@ function MoleHit:InteractSEventHandler(_player, _gameId)
 end
 
 --- 玩家击中地鼠事件
-function MoleHit:MoleDestroy(_uid, _type, _pit)
+function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     this:HitMoleAction(_uid, _type, _pit)
     -- 抽奖
     -- 增加数量
@@ -121,7 +121,7 @@ end
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
-    local tweener = Tween:ShakeProperty(_pit[_type], {"Rotation"}, 0.8, 30)
+    local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
     tweener:Play()
     invoke(
         function()
