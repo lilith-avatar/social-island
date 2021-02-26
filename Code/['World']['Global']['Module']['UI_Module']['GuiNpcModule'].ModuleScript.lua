@@ -117,9 +117,6 @@ function OpenNpcGui()
         ItemMgr:RedeemTaskItemReward(taskItemID)
         taskItemID = 0
     end
-
-    --如果玩家没有携带宠物，则隐藏对战按钮
-    battleBtn.Visible = false
 end
 
 --- 开始小游戏
