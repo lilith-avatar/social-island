@@ -69,7 +69,7 @@ function MoleHit:RefreashMole(_type)
             function(_hitObject)
                 if _hitObject.ClassName == "PlayerInstance" and _hitObject then
                     NetUtil.Fire_C(
-                        "GetPriceEvent",
+                        "GetMolePriceEvent",
                         _hitObject,
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
@@ -95,7 +95,7 @@ function MoleHit:InteractSEventHandler(_player, _gameId)
 end
 
 --- 玩家击中地鼠事件
-function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
+function MoleHit:MoleDestroy(_uid, _type, _pit)
     this:HitMoleAction(_uid, _type, _pit)
     -- 抽奖
     -- 增加数量
