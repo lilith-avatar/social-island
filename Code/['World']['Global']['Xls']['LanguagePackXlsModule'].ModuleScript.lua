@@ -2493,14 +2493,14 @@ local LanguagePackXls = {
     },
     NpcInfo_Name_1 = {
         ID = 'NpcInfo_Name_1',
-        CHS = '马克·波罗',
+        CHS = '里尔',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Title_1 = {
         ID = 'NpcInfo_Title_1',
-        CHS = '探险领队',
+        CHS = '昆虫学家',
         CHT = '',
         EN = '',
         JP = ''
@@ -2514,7 +2514,7 @@ local LanguagePackXls = {
     },
     NpcInfo_Title_2 = {
         ID = 'NpcInfo_Title_2',
-        CHS = '原住民',
+        CHS = '神箭手',
         CHT = '',
         EN = '',
         JP = ''
@@ -2528,7 +2528,7 @@ local LanguagePackXls = {
     },
     NpcInfo_Title_3 = {
         ID = 'NpcInfo_Title_3',
-        CHS = '原住民',
+        CHS = '热气球技师',
         CHT = '',
         EN = '',
         JP = ''
@@ -2556,7 +2556,7 @@ local LanguagePackXls = {
     },
     NpcInfo_Title_5 = {
         ID = 'NpcInfo_Title_5',
-        CHS = '花农',
+        CHS = '庆典师',
         CHT = '',
         EN = '',
         JP = ''
@@ -2570,21 +2570,21 @@ local LanguagePackXls = {
     },
     NpcInfo_Title_6 = {
         ID = 'NpcInfo_Title_6',
-        CHS = '蜗牛饲养者',
+        CHS = '动物赛跑管理员',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_7 = {
         ID = 'NpcInfo_Name_7',
-        CHS = '学生',
+        CHS = '情侣',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_8 = {
         ID = 'NpcInfo_Name_8',
-        CHS = '学生',
+        CHS = '情侣',
         CHT = '',
         EN = '',
         JP = ''
@@ -2598,42 +2598,42 @@ local LanguagePackXls = {
     },
     NpcInfo_Name_10 = {
         ID = 'NpcInfo_Name_10',
-        CHS = '探险家',
+        CHS = '外星人爱好者',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_11 = {
         ID = 'NpcInfo_Name_11',
-        CHS = '外星人爱好者',
+        CHS = '探险家',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_12 = {
         ID = 'NpcInfo_Name_12',
-        CHS = '探险家',
+        CHS = 'Z先生',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_13 = {
         ID = 'NpcInfo_Name_13',
-        CHS = '探险家',
+        CHS = '鲍勃',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_14 = {
         ID = 'NpcInfo_Name_14',
-        CHS = '学生',
+        CHS = '马克·波罗',
         CHT = '',
         EN = '',
         JP = ''
     },
     NpcInfo_Name_15 = {
         ID = 'NpcInfo_Name_15',
-        CHS = '外星人爱好者',
+        CHS = '托尼',
         CHT = '',
         EN = '',
         JP = ''
@@ -3439,6 +3439,90 @@ local LanguagePackXls = {
     Item_Des_3023 = {
         ID = 'Item_Des_3023',
         CHS = '丛林迷彩。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_7 = {
+        ID = 'NpcInfo_Title_7',
+        CHS = '情侣',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_8 = {
+        ID = 'NpcInfo_Title_8',
+        CHS = '情侣',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_12 = {
+        ID = 'NpcInfo_Title_12',
+        CHS = '飞碟AI',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_13 = {
+        ID = 'NpcInfo_Title_13',
+        CHS = '营地安全员',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_14 = {
+        ID = 'NpcInfo_Title_14',
+        CHS = '导游',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcInfo_Title_15 = {
+        ID = 'NpcInfo_Title_15',
+        CHS = '探险家',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1171 = {
+        ID = 'NpcText_Text_1171',
+        CHS = '野外很危险，出去记得带一些防身的家伙。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1172 = {
+        ID = 'NpcText_Text_1172',
+        CHS = '武器也很危险，小心不要打到营地里的朋友们。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1181 = {
+        ID = 'NpcText_Text_1181',
+        CHS = '我们已经到站了，这片森林人迹罕至，大家可以尽情亲近大自然！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1182 = {
+        ID = 'NpcText_Text_1182',
+        CHS = '听说有人在这里观测到UFO出没，探索森林的时候务必注意安全。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1191 = {
+        ID = 'NpcText_Text_1191',
+        CHS = '大自然的风光真是太好了！',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    NpcText_Text_1192 = {
+        ID = 'NpcText_Text_1192',
+        CHS = '绿水青山，就像你的理财一样美丽。',
         CHT = '',
         EN = '',
         JP = ''
