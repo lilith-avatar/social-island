@@ -226,6 +226,30 @@ local NpcTextXls = {
         ID = 1164,
         Text = 'NpcText_Text_1164'
     },
+    [1171] = {
+        ID = 1171,
+        Text = 'NpcText_Text_1171'
+    },
+    [1172] = {
+        ID = 1172,
+        Text = 'NpcText_Text_1172'
+    },
+    [1181] = {
+        ID = 1181,
+        Text = 'NpcText_Text_1181'
+    },
+    [1182] = {
+        ID = 1182,
+        Text = 'NpcText_Text_1182'
+    },
+    [1191] = {
+        ID = 1191,
+        Text = 'NpcText_Text_1191'
+    },
+    [1192] = {
+        ID = 1192,
+        Text = 'NpcText_Text_1192'
+    },
     [2001] = {
         ID = 2001,
         Text = 'NpcText_Text_2001'
