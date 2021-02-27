@@ -147,8 +147,10 @@ function GuiBag:SelectItem(_index)
         -- 进行名字和描述的更换,并高亮该物品
         this:ChangeNameAndDesc(this.slotList[_index].ItemID.Value)
         this.slotList[_index].ItemImg.Chosen:SetActive(true)
-    --判断是否开启使用按钮
-    --this.useBtn:SetActive(true)
+        --判断是否开启使用按钮
+        if Config.Item[this.slotList[_index].ItemID.Value].Useable then
+            this.useBtn:SetActive(true)
+        end
     end
 end
 
@@ -161,10 +163,6 @@ function GuiBag:ClearSelect()
         this.slotList[this.selectIndex].ItemImg.Chosen:SetActive(false)
         --this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("UI/Btn_Left")
         this.selectIndex = nil
-        --清除描述
-        this.nameTxt.Text = " "
-        this.descTxt.Text = " "
-        this.useBtn:SetActive(false)
     end
 end
 
