@@ -18,6 +18,8 @@ function GuiBag:NodeDef()
     --* Button------------
     this.useBtn = this.gui.UseBtn
     this.closeBtn = this.gui.CloseImg.CloseBtn
+    this.prevBtn = this.gui.DragPanel.PreBtn
+    this.nextBtn = this.gui.DragPanel.NextBtn
 
     --* Text--------------
     this.nameTxt = this.gui.NameTextBox.NameText
@@ -46,6 +48,16 @@ function GuiBag:EventBind()
             this:ClickUseBtn(this.selectIndex)
         end
     )
+    this.prevBtn.OnClick:Connect(
+        function()
+            this:ClickChangePage(this.pageIndex - 1)
+        end
+    )
+    this.nextBtn.OnClick:Connect(
+        function()
+            this:ClickChangePage(this.pageIndex + 1)
+        end
+    )
     --单元格按键事件绑定
     for k, v in pairs(this.slotList) do
         v.ItemImg.SelectBtn.OnClick:Connect(
@@ -57,6 +69,8 @@ function GuiBag:EventBind()
 end
 
 function GuiBag:TransItemTable()
+    --先清空表
+    this.slotItem = {}
     for k,v in pairs(Data.Player.bag) do
         if v.count == 0 then
             goto Continue
@@ -107,7 +121,6 @@ function GuiBag:ClickUseBtn(_index)
         return
     end
     local itemId = this.slotList[_index].ItemID.Value
-    this.cdMask[itemId] = {this.slotList[_index].MaskImg}
     -- 使用物品
     NetUtil.Fire_C("UseItemEvent", localPlayer, itemId)
     -- 物品消耗判定
@@ -146,7 +159,7 @@ function GuiBag:ClearSelect()
     this.useBtn:SetActive(false)
     if this.selectIndex then
         this.slotList[this.selectIndex].ItemImg.Chosen:SetActive(false)
-        this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("UI/Btn_Left")
+        --this.slotList[this.selectIndex].Image = ResourceManager.GetTexture("UI/Btn_Left")
         this.selectIndex = nil
         --清除描述
         this.nameTxt.Text = " "
@@ -162,20 +175,21 @@ function GuiBag:ClickChangePage(_pageIndex)
 end
 
 function GuiBag:RefreshPageBar(_pageIndex)
+    this.pageIndex = _pageIndex
     --页面数字显示
-    this.pageTxt = tostring(math.floor(_pageIndex))
+    this.pageTxt.Text = tostring(math.floor(_pageIndex))
     --如果第一页则不显示上一页按钮
     if _pageIndex <= 1 then
-        --this.prevBtn:SetActive(false)
+        this.prevBtn:SetActive(false)
     end
     --如果最后一页不显示下一页按钮
     if _pageIndex == this.maxPage then
-        --this.nextBtn:SetActive(false)
+        this.nextBtn:SetActive(false)
     end
     --其他情况打开全部按钮
     if _pageIndex ~= 1 and _pageIndex ~= this.maxPage then
-        --this.prevBtn:SetActive(true)
-        --this.nextBtn:SetActive(true)
+        this.prevBtn:SetActive(true)
+        this.nextBtn:SetActive(true)
     end
 end
 
