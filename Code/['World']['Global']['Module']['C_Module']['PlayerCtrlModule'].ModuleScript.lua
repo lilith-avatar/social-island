@@ -325,6 +325,14 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 _hitObject.GrassInteractUID.Value = ""
             end
         end
+        if _hitObject.Parent.AnimalID then
+            if _isBegin then
+                Catch:TouchPrey(_hitObject.Parent, true)
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 19)
+            else
+                --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
     end
 end
 

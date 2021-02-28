@@ -239,6 +239,32 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [18] = {
+        ID = 18,
+        Name = 'GrassInteract',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
+    },
+    [19] = {
+        ID = 19,
+        Name = 'CaughtAnimal',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = true,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

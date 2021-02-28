@@ -130,28 +130,32 @@ function ItemMgr:UnequipCurWeaponEventHandler()
 end
 
 --交互掉落道具
-function ItemMgr:GetItemFromPoolEventHandler(_poolID)
-    local weightSum = 0
-    for k, v in pairs(Config.ItemPool[_poolID]) do
-        weightSum = weightSum + v.Weight
-    end
-    local randomNum = math.random(weightSum)
-    for k, v in pairs(Config.ItemPool[_poolID]) do
-        if randomNum < v.Weight then
-            if Data.Player.bag[v.ItemId].count > 0 then
-                if tonumber(string.sub(tostring(v.ItemId), 1, 1)) >= 6 then
-                    Data.Player.bag[v.ItemId].count = Data.Player.bag[v.ItemId].count + 1
-                    this.itemInstance[v.ItemId]:PutIntoBag()
+function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin)
+    if _poolID ~= 0 then
+        local weightSum = 0
+        for k, v in pairs(Config.ItemPool[_poolID]) do
+            weightSum = weightSum + v.Weight
+        end
+        local randomNum = math.random(weightSum)
+        for k, v in pairs(Config.ItemPool[_poolID]) do
+            if randomNum < v.Weight then
+                if Data.Player.bag[v.ItemId].count > 0 then
+                    if tonumber(string.sub(tostring(v.ItemId), 1, 1)) >= 6 then
+                        Data.Player.bag[v.ItemId].count = Data.Player.bag[v.ItemId].count + 1
+                        this.itemInstance[v.ItemId]:PutIntoBag()
+                    else
+                        NetUtil.Fire_C("GetItemFromPoolEvent", localPlayer, _poolID)
+                    end
                 else
-                    NetUtil.Fire_C("GetItemFromPoolEvent", localPlayer, _poolID)
+                    NetUtil.Fire_C("GetItemEvent", localPlayer, v.ItemId)
                 end
-            else
-                NetUtil.Fire_C("GetItemEvent", localPlayer, v.ItemId)
+                break
             end
-            return
         end
     end
-    return
+    if _coin and _coin ~= 0 then
+        NetUtil.Fire_C("UpdateCoinEvent", localPlayer, _coin)
+    end
 end
 
 --获取满足条件的任务道具

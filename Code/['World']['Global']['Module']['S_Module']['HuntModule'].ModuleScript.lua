@@ -69,7 +69,7 @@ function Hunt:InitAnimalArea()
             amountMax = v.AmountMax,
             initAmount = v.InitAmount,
             animalData = {},
-			SpawnPoint = v.SpawnPoint
+            SpawnPoint = v.SpawnPoint
         }
     end
 end
@@ -82,19 +82,37 @@ function Hunt:InitAnimalData()
             weightSum = weightSum + Config.Animal[animalID].Weight
         end
         local animalAmount = 0
-		local spawnPoint ={}
+        local spawnPoint = {}
         for _, animalID in pairs(Config.AnimalArea[areaID].AnimalIDList) do
-            for i = 1, math.floor(Config.Animal[animalID].Weight / Config.Animal[animalID].Weight) * area.initAmount do
-				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)]
-                this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range, spawnPoint[1],spawnPoint[2])
+            print(animalID)
+            print(Config.Animal[animalID].Weight / weightSum, area.initAmount)
+            for i = 1, math.ceil(Config.Animal[animalID].Weight / weightSum * area.initAmount) do
+                spawnPoint = area.SpawnPoint[math.random(1, #area.SpawnPoint)]
+                this:InstanceAnimal(
+                    area.animalData,
+                    animalID,
+                    rootNode.Animal,
+                    area.pos,
+                    area.range,
+                    spawnPoint[1],
+                    spawnPoint[2]
+                )
                 animalAmount = animalAmount + 1
             end
         end
         if animalAmount < area.amountMax then
             for i = 1, area.amountMax - animalAmount do
                 local id = Config.AnimalArea[areaID].AnimalIDList[math.random(#Config.AnimalArea[areaID].AnimalIDList)]
-				spawnPoint = area.SpawnPoint[math.random(1,#area.SpawnPoint)]
-                this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range, spawnPoint[1],spawnPoint[2])
+                spawnPoint = area.SpawnPoint[math.random(1, #area.SpawnPoint)]
+                this:InstanceAnimal(
+                    area.animalData,
+                    id,
+                    rootNode.Animal,
+                    area.pos,
+                    area.range,
+                    spawnPoint[1],
+                    spawnPoint[2]
+                )
             end
         end
     end
@@ -102,7 +120,7 @@ function Hunt:InitAnimalData()
 end
 
 --- 实例化动物
-function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPos,_SpawnRot)
+function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPos, _SpawnRot)
     local tempData = {
         obj = world:CreateInstance(
             Config.Animal[_animalID].ArchetypeName,
@@ -122,27 +140,33 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
         deadAnimationName = Config.Animal[_animalID].DeadAnimationName,
         closePlayer = nil,
         LVCtrlIntensity = Config.Animal[_animalID].LVCtrlIntensity,
-        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity,
-        itemPoolID = Config.Animal[_animalID].ItemPoolID
+        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity
     }
+    tempData.obj.AnimalID.Value = _animalID
 
-    tempData.obj.Col.OnCollisionBegin:Connect(
-        function(_hitObject)
-            if _hitObject and tempData.state ~= animalActState.DEADED then
-                if _hitObject.IsHunt and _hitObject.IsHunt.Value == true then
-                    --ItemPool:CreateItemObj(5006, _hitObject.Position)
-                    NetUtil.Fire_C(
-                        "GetItemFromPoolEvent",
-                        world:GetPlayerByUserId(_hitObject.UserId.Value),
-                        tempData.itemPoolID
-                    )
-                    _hitObject:Destroy()
+    if tempData.obj.AnimalDeadEvent then
+        tempData.obj.AnimalDeadEvent:Connect(
+            function()
+                if tempData.state ~= animalActState.DEADED then
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
-                    this:AreaSpawnCtrl()                  
+                    this:AreaSpawnCtrl()
                 end
             end
-        end
-    )
+        )
+    end
+
+    if tempData.obj.AnimalCaughtEvent then
+        tempData.obj.AnimalCaughtEvent:Connect(
+            function()
+                if tempData.state ~= animalActState.DEADED then
+                    tempData.obj:SetActive(false)
+                    this:ChangeAnimalState(tempData, animalActState.DEADED)
+                    this:AreaSpawnCtrl()
+                end
+            end
+        )
+    end
+
     _animalData[#_animalData + 1] = tempData
 end
 

@@ -29,8 +29,6 @@ function LongRangeWeapon:ShootArrow()
         localPlayer.Rotation
     )
     arrow.Forward = dir
-    arrow.IsHunt.Value = self.config.Hunt
-    arrow.UserId.Value = localPlayer.UserId
     arrow.LinearVelocity = arrow.Forward * 40
     arrow.OnCollisionBegin:Connect(
         function(_hitObj)
@@ -43,6 +41,16 @@ function LongRangeWeapon:ShootArrow()
                 )
                 arrow.OnCollisionBegin:Clear()
                 arrow:Destroy()
+            else
+                if _hitObj.AnimalID and self.config.Hunt then
+                    NetUtil.Fire_C(
+                        "GetItemFromPoolEvent",
+                        localPlayer,
+                        Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
+                        math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
+                    )
+                    _hitObj.AnimalDeadEvent:Fire()
+                end
             end
         end
     )
