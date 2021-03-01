@@ -12,7 +12,9 @@ end
 function BowIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     localPlayer:MoveTowards(Vector2.Zero)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle","BowHit", "BowAttack", "TwoHandedSwordIdle", "OneHandedSwordIdle"})
+    FsmMgr.playerActFsm:TriggerMonitor(
+        {"Idle", "SwimIdle", "BowHit", "BowAttack", "TwoHandedSwordIdle", "OneHandedSwordIdle"}
+    )
     self:MoveMonitor("Bow")
     self:JumpMonitor("Bow")
 end

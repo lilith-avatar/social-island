@@ -10,7 +10,7 @@ function Swimming:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
     self:IdleMonitor()
-	self:JumpMonitor()
+    self:JumpMonitor()
 end
 
 function Swimming:OnLeave()
@@ -21,22 +21,54 @@ end
 function Swimming:IdleMonitor()
     local dir = PlayerCtrl.finalDir
     dir.y = 0
-    if dir.Magnitude > 0 then
-        if PlayerCam:IsFreeMode() then
-            localPlayer:FaceToDir(dir, 4 * math.pi)
+    if localPlayer.Position.y > -15.7 then
+        if dir.Magnitude > 0 then
+            if PlayerCam:IsFreeMode() then
+                localPlayer:FaceToDir(dir, 4 * math.pi)
+            end
+            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+            localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, 0, localPlayer.LinearVelocity.z)
+            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        else
+            FsmMgr.playerActFsm:Switch("SwimIdle")
         end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-        localPlayer.LinearVelocity =
-            Vector3(localPlayer.LinearVelocity.x, PlayerCam.playerGameCam.Forward.y * 5, localPlayer.LinearVelocity.z)
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
     else
-        FsmMgr.playerActFsm:Switch("SwimIdle")
+        if dir.Magnitude > 0 then
+            if PlayerCam:IsFreeMode() then
+                localPlayer:FaceToDir(dir, 4 * math.pi)
+            end
+            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+            localPlayer.LinearVelocity =
+                Vector3(
+                localPlayer.LinearVelocity.x,
+                PlayerCam.playerGameCam.Forward.y * 7,
+                localPlayer.LinearVelocity.z
+            )
+            if localPlayer.State == 1 and PlayerCam.playerGameCam.Forward.y > 0 then
+                localPlayer.Position = localPlayer.Position + Vector3(0, 0.1, 0)
+            end
+            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        else
+            FsmMgr.playerActFsm:Switch("SwimIdle")
+        end
     end
 end
 
 function Swimming:JumpMonitor()
     if FsmMgr.playerActFsm.stateTrigger.Jump then
-        FsmMgr.playerActFsm:Switch("Jump")
+        if localPlayer.Position.y > -15.7 then
+            FsmMgr.playerActFsm:Switch("Jump")
+        else
+            localPlayer.Position = localPlayer.Position + Vector3(0, 0.3, 0)
+            localPlayer.LinearVelocity = localPlayer.LinearVelocity + Vector3(0, 5, 0)
+            FsmMgr.playerActFsm:ResetTrigger()
+            invoke(
+                function()
+                    localPlayer.LinearVelocity = Vector3.Zero
+                end,
+                0.3
+            )
+        end
     end
 end
 
