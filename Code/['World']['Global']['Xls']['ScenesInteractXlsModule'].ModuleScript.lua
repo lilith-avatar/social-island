@@ -13,7 +13,7 @@ local ScenesInteractXls = {
         ItemID = 1015,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [2] = {
         ID = 2,
@@ -22,7 +22,7 @@ local ScenesInteractXls = {
         ItemID = 1002,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [3] = {
         ID = 3,
@@ -30,8 +30,8 @@ local ScenesInteractXls = {
         Path = 'HammerWood',
         ItemID = 1006,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [4] = {
         ID = 4,
@@ -39,8 +39,8 @@ local ScenesInteractXls = {
         Path = 'HammerIron',
         ItemID = 1007,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [5] = {
         ID = 5,
@@ -48,8 +48,8 @@ local ScenesInteractXls = {
         Path = 'AxeOneHand',
         ItemID = 1011,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [6] = {
         ID = 6,
@@ -57,8 +57,8 @@ local ScenesInteractXls = {
         Path = 'AxeWood01',
         ItemID = 1012,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [7] = {
         ID = 7,
@@ -66,8 +66,8 @@ local ScenesInteractXls = {
         Path = 'AxeWood02',
         ItemID = 1013,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [8] = {
         ID = 8,
@@ -75,8 +75,8 @@ local ScenesInteractXls = {
         Path = 'FarmToolFork01',
         ItemID = 1019,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [9] = {
         ID = 9,
@@ -84,8 +84,8 @@ local ScenesInteractXls = {
         Path = 'FarmToolFork02',
         ItemID = 1020,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [10] = {
         ID = 10,
@@ -93,8 +93,8 @@ local ScenesInteractXls = {
         Path = 'HoesEnergy',
         ItemID = 1023,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [11] = {
         ID = 11,
@@ -102,8 +102,8 @@ local ScenesInteractXls = {
         Path = 'CrowbarEnergy',
         ItemID = 1024,
         IsGet = true,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [12] = {
         ID = 12,
@@ -111,8 +111,8 @@ local ScenesInteractXls = {
         Path = 'Bones',
         ItemID = 1008,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [13] = {
         ID = 13,
@@ -121,7 +121,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [14] = {
         ID = 14,
@@ -129,8 +129,8 @@ local ScenesInteractXls = {
         Path = 'Plunger',
         ItemID = 1022,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [15] = {
         ID = 15,
@@ -138,8 +138,8 @@ local ScenesInteractXls = {
         Path = 'CartonPan',
         ItemID = 1018,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [16] = {
         ID = 16,
@@ -147,8 +147,8 @@ local ScenesInteractXls = {
         Path = 'FanBlack',
         ItemID = 1001,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [17] = {
         ID = 17,
@@ -156,8 +156,8 @@ local ScenesInteractXls = {
         Path = 'FanGreen',
         ItemID = 1029,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [18] = {
         ID = 18,
@@ -165,8 +165,8 @@ local ScenesInteractXls = {
         Path = 'FanRed',
         ItemID = 1030,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [19] = {
         ID = 19,
@@ -174,8 +174,8 @@ local ScenesInteractXls = {
         Path = 'Hoes',
         ItemID = 1005,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [20] = {
         ID = 20,
@@ -183,8 +183,8 @@ local ScenesInteractXls = {
         Path = 'ScoopEnergy',
         ItemID = 1026,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [21] = {
         ID = 21,
@@ -192,8 +192,8 @@ local ScenesInteractXls = {
         Path = 'ScrewdriverEnergy',
         ItemID = 1025,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [22] = {
         ID = 22,
@@ -202,7 +202,7 @@ local ScenesInteractXls = {
         ItemID = 3010,
         IsGet = false,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [23] = {
         ID = 23,
@@ -211,7 +211,7 @@ local ScenesInteractXls = {
         ItemID = 3011,
         IsGet = false,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [24] = {
         ID = 24,
@@ -228,8 +228,8 @@ local ScenesInteractXls = {
         Path = 'Carton',
         ItemID = 3008,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [26] = {
         ID = 26,
@@ -292,7 +292,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [33] = {
         ID = 33,
@@ -301,7 +301,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [34] = {
         ID = 34,
@@ -310,7 +310,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [35] = {
         ID = 35,
@@ -319,7 +319,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [36] = {
         ID = 36,
@@ -328,7 +328,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [37] = {
         ID = 37,
@@ -337,7 +337,7 @@ local ScenesInteractXls = {
         ItemID = 1028,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [38] = {
         ID = 38,
@@ -346,7 +346,7 @@ local ScenesInteractXls = {
         ItemID = 3010,
         IsGet = false,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [39] = {
         ID = 39,
@@ -355,7 +355,7 @@ local ScenesInteractXls = {
         ItemID = 3010,
         IsGet = false,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [40] = {
         ID = 40,
@@ -364,7 +364,7 @@ local ScenesInteractXls = {
         ItemID = 3011,
         IsGet = false,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [41] = {
         ID = 41,
@@ -373,7 +373,7 @@ local ScenesInteractXls = {
         ItemID = 1002,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [42] = {
         ID = 42,
@@ -382,7 +382,7 @@ local ScenesInteractXls = {
         ItemID = 1002,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [43] = {
         ID = 43,
@@ -391,7 +391,7 @@ local ScenesInteractXls = {
         ItemID = 1002,
         IsGet = true,
         UseCount = 1,
-        ResetTime = -1
+        ResetTime = 30
     },
     [44] = {
         ID = 44,
@@ -399,8 +399,8 @@ local ScenesInteractXls = {
         Path = 'Skull',
         ItemID = 3002,
         IsGet = true,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [45] = {
         ID = 45,
@@ -408,8 +408,8 @@ local ScenesInteractXls = {
         Path = 'chuizi',
         ItemID = 1032,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [46] = {
         ID = 46,
@@ -426,8 +426,8 @@ local ScenesInteractXls = {
         Path = 'LifeRing1',
         ItemID = 3014,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [48] = {
         ID = 48,
@@ -435,8 +435,8 @@ local ScenesInteractXls = {
         Path = 'LifeRing2',
         ItemID = 3014,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [49] = {
         ID = 49,
@@ -444,8 +444,8 @@ local ScenesInteractXls = {
         Path = 'LifeRing3',
         ItemID = 3014,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [50] = {
         ID = 50,
@@ -453,8 +453,8 @@ local ScenesInteractXls = {
         Path = 'Totems',
         ItemID = 3015,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [51] = {
         ID = 51,
@@ -462,8 +462,8 @@ local ScenesInteractXls = {
         Path = 'Balloon2',
         ItemID = 3020,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [52] = {
         ID = 52,
@@ -471,8 +471,8 @@ local ScenesInteractXls = {
         Path = 'Balloon5',
         ItemID = 3017,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [53] = {
         ID = 53,
@@ -480,8 +480,8 @@ local ScenesInteractXls = {
         Path = 'Balloon4',
         ItemID = 3019,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [54] = {
         ID = 54,
@@ -489,8 +489,8 @@ local ScenesInteractXls = {
         Path = 'Balloon3',
         ItemID = 3018,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [55] = {
         ID = 55,
@@ -498,8 +498,8 @@ local ScenesInteractXls = {
         Path = 'Balloon1',
         ItemID = 3016,
         IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
+        UseCount = 1,
+        ResetTime = 30
     },
     [56] = {
         ID = 56,
@@ -536,6 +536,15 @@ local ScenesInteractXls = {
         IsGet = false,
         UseCount = 99999,
         ResetTime = -1
+    },
+    [60] = {
+        ID = 60,
+        Name = '珍珠',
+        Path = 'Shell',
+        ItemID = 3024,
+        IsGet = false,
+        UseCount = 1,
+        ResetTime = 30
     }
 }
 
