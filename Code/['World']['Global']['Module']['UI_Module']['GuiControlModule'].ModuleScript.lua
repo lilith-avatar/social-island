@@ -48,12 +48,7 @@ function GuiControl:InitListener()
     -- GUI
     touchScreen.OnTouched:Connect(
         function(touchInfo)
-            PlayerCam:CountTouch(touchInfo)
-        end
-    )
-    touchScreen.OnPanStay:Connect(
-        function(pos, panDistance, deltaDistance, panSpeed)
-            PlayerCam:CameraMove(pos, panDistance, deltaDistance, panSpeed)
+            PlayerCam:CameraMove(touchInfo)
         end
     )
     touchScreen.OnPinchStay:Connect(
@@ -72,6 +67,20 @@ function GuiControl:InitListener()
         function()
             if ItemMgr.curWeaponID ~= 0 then
                 ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+                return
+            end
+            if
+                FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
+                    FsmMgr.playerActFsm.curState.stateName == "Swimming"
+             then
+                localPlayer.LinearVelocity = localPlayer.LinearVelocity + Vector3(0, -5, 0)
+                FsmMgr.playerActFsm:ResetTrigger()
+                invoke(
+                    function()
+                        localPlayer.LinearVelocity = Vector3.Zero
+                    end,
+                    0.3
+                )
                 return
             end
             PlayerCtrl:PlayerClap()

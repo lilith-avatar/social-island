@@ -7,13 +7,14 @@ function SwimIdle:OnEnter()
     localPlayer.LinearVelocity = Vector3(0, 0.01, 0)
     --localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar.Position = localPlayer.Position + Vector3(0, 0.8, 0)
 end
 
 function SwimIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
     self:MoveMonitor()
-	self:JumpMonitor()
+    self:JumpMonitor()
 end
 
 function SwimIdle:OnLeave()
@@ -31,7 +32,19 @@ end
 
 function SwimIdle:JumpMonitor()
     if FsmMgr.playerActFsm.stateTrigger.Jump then
-        FsmMgr.playerActFsm:Switch("Jump")
+        if localPlayer.Position.y > -15.7 then
+            FsmMgr.playerActFsm:Switch("Jump")
+        else
+            localPlayer.Position = localPlayer.Position + Vector3(0, 0.3, 0)
+            localPlayer.LinearVelocity = localPlayer.LinearVelocity + Vector3(0, 5, 0)
+            FsmMgr.playerActFsm:ResetTrigger()
+            invoke(
+                function()
+                    localPlayer.LinearVelocity = Vector3.Zero
+                end,
+                0.3
+            )
+        end
     end
 end
 
