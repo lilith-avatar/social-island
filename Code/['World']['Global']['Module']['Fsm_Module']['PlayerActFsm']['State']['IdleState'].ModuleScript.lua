@@ -6,6 +6,7 @@ function IdleState:OnEnter()
     localPlayer.Local.BowAimGUI:SetActive(false)
     localPlayer:MoveTowards(Vector2.Zero)
     localPlayer.GravityScale = 2
+    localPlayer.Avatar.Position = localPlayer.Position
     --localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
 end

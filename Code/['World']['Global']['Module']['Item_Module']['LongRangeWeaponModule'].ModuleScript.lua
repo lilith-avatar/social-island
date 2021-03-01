@@ -17,7 +17,7 @@ end
 
 --发射弓箭
 function LongRangeWeapon:ShootArrow()
-    local dir = (localPlayer.ArrowAim.Position - localPlayer.Position)
+    local dir = localPlayer.ArrowAim.Position - localPlayer.Position
     dir.y = PlayerCam:TPSGetRayDir().y
     dir = dir.Normalized
     local arrow =
