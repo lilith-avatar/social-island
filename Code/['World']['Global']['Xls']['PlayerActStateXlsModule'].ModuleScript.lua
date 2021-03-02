@@ -110,144 +110,150 @@ local PlayerActStateXls = {
     },
     [18] = {
         ID = 18,
+        Name = 'BowChargeIdle',
+        NextName = 'BowChargeIdle',
+        Dur = 0.0
+    },
+    [19] = {
+        ID = 19,
         Name = 'BowAttack',
         NextName = 'BowIdle',
         Dur = 0.5
     },
-    [19] = {
-        ID = 19,
+    [20] = {
+        ID = 20,
         Name = 'BowHit',
         NextName = 'BowIdle',
         Dur = 0.2
     },
-    [20] = {
-        ID = 20,
+    [21] = {
+        ID = 21,
         Name = 'OneHandedSwordIdle',
         NextName = 'OneHandedSwordIdle',
         Dur = 0.0
     },
-    [21] = {
-        ID = 21,
+    [22] = {
+        ID = 22,
         Name = 'OneHandedSwordWalk',
         NextName = 'OneHandedSwordWalk',
         Dur = 0.0
     },
-    [22] = {
-        ID = 22,
+    [23] = {
+        ID = 23,
         Name = 'OneHandedSwordRun',
         NextName = 'OneHandedSwordRun',
         Dur = 0.0
     },
-    [23] = {
-        ID = 23,
+    [24] = {
+        ID = 24,
         Name = 'OneHandedSwordJump',
         NextName = 'OneHandedSwordIdle',
         Dur = 0.5
     },
-    [24] = {
-        ID = 24,
+    [25] = {
+        ID = 25,
         Name = 'OneHandedSwordAttack1',
         NextName = 'OneHandedSwordAfterAttack1',
         Dur = 0.4
     },
-    [25] = {
-        ID = 25,
+    [26] = {
+        ID = 26,
         Name = 'OneHandedSwordAfterAttack1',
         NextName = 'OneHandedSwordIdle',
         Dur = 0.5
     },
-    [26] = {
-        ID = 26,
+    [27] = {
+        ID = 27,
         Name = 'OneHandedSwordAttack2',
         NextName = 'OneHandedSwordAfterAttack2',
         Dur = 0.4
     },
-    [27] = {
-        ID = 27,
+    [28] = {
+        ID = 28,
         Name = 'OneHandedSwordAfterAttack2',
         NextName = 'OneHandedSwordIdle',
         Dur = 0.5
     },
-    [28] = {
-        ID = 28,
+    [29] = {
+        ID = 29,
         Name = 'OneHandedSwordAttack3',
         NextName = 'OneHandedSwordAfterAttack3',
         Dur = 0.4
     },
-    [29] = {
-        ID = 29,
-        Name = 'OneHandedSwordAfterAttack3',
-        NextName = 'OneHandedSwordIdle',
-        Dur = 0.2
-    },
     [30] = {
         ID = 30,
-        Name = 'OneHandedSwordHit',
+        Name = 'OneHandedSwordAfterAttack3',
         NextName = 'OneHandedSwordIdle',
         Dur = 0.2
     },
     [31] = {
         ID = 31,
+        Name = 'OneHandedSwordHit',
+        NextName = 'OneHandedSwordIdle',
+        Dur = 0.2
+    },
+    [32] = {
+        ID = 32,
         Name = 'TwoHandedSwordIdle',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.0
     },
-    [32] = {
-        ID = 32,
+    [33] = {
+        ID = 33,
         Name = 'TwoHandedSwordWalk',
         NextName = 'TwoHandedSwordWalk',
         Dur = 0.0
     },
-    [33] = {
-        ID = 33,
+    [34] = {
+        ID = 34,
         Name = 'TwoHandedSwordRun',
         NextName = 'TwoHandedSwordRun',
         Dur = 0.0
     },
-    [34] = {
-        ID = 34,
+    [35] = {
+        ID = 35,
         Name = 'TwoHandedSwordJump',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.6
     },
-    [35] = {
-        ID = 35,
+    [36] = {
+        ID = 36,
         Name = 'TwoHandedSwordAttack1',
         NextName = 'TwoHandedSwordAfterAttack1',
         Dur = 0.4
     },
-    [36] = {
-        ID = 36,
+    [37] = {
+        ID = 37,
         Name = 'TwoHandedSwordAfterAttack1',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.5
     },
-    [37] = {
-        ID = 37,
+    [38] = {
+        ID = 38,
         Name = 'TwoHandedSwordAttack2',
         NextName = 'TwoHandedSwordAfterAttack2',
         Dur = 0.4
     },
-    [38] = {
-        ID = 38,
+    [39] = {
+        ID = 39,
         Name = 'TwoHandedSwordAfterAttack2',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.5
     },
-    [39] = {
-        ID = 39,
+    [40] = {
+        ID = 40,
         Name = 'TwoHandedSwordAttack3',
         NextName = 'TwoHandedSwordAfterAttack3',
         Dur = 0.4
     },
-    [40] = {
-        ID = 40,
+    [41] = {
+        ID = 41,
         Name = 'TwoHandedSwordAfterAttack3',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.2
     },
-    [41] = {
-        ID = 41,
+    [42] = {
+        ID = 42,
         Name = 'TwoHandedSwordHit',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.2
