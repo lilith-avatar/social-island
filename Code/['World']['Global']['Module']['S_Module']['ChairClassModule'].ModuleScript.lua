@@ -18,13 +18,13 @@ local TypeEnum = {
 ---@param _type string
 ---@param _pos Vector3
 --- @param _rot EulerDegree
-function ChairClass:initialize(_type, _id, _arch, _parent, _pos, _rot)
+function ChairClass:initialize()
 end
 
-function ChairClass:CommonDataInit(_arch, _parent, _pos, _rot, _id)
+function ChairClass:CommonDataInit()
 end
 
-function ChairClass:Sit(_player)
+function ChairClass:Sit()
 end
 
 function ChairClass:Stand()
@@ -34,16 +34,16 @@ end
 function ChairClass:Fly()
 end
 
-function ChairClass:Flying(dt)
+function ChairClass:Flying()
 end
 
-function ChairClass:SetSpeed(_dir, _speed)
+function ChairClass:SetSpeed()
 end
 
 function ChairClass:Return()
 end
 
-function ChairClass:QteUpdate(dt)
+function ChairClass:QteUpdate()
 end
 
 return ChairClass

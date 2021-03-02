@@ -6,29 +6,9 @@
 --- source file: .//GameChair.xlsx
 
 local ChairGlobalConfigXls = {
-    FlyingTime = {
-        Key = 'FlyingTime',
-        Value = 3.0
-    },
-    FlyingSpeed = {
-        Key = 'FlyingSpeed',
-        Value = 5.0
-    },
-    NormalAngularVelocity = {
-        Key = 'NormalAngularVelocity',
-        Value = Vector3(0.5,0,0)
-    },
-    NormalMaxAngle = {
-        Key = 'NormalMaxAngle',
-        Value = 15.0
-    },
-    NormalMinAngle = {
-        Key = 'NormalMinAngle',
-        Value = -15.0
-    },
-    BoostAngularVelocity = {
-        Key = 'BoostAngularVelocity',
-        Value = Vector3(1,0,0)
+    SpiritDecayRate = {
+        Key = 'SpiritDecayRate',
+        Value = {[15]=0.12,[10]=0.1,[5]=0.08,[0]=0.05}
     }
 }
 
