@@ -29,7 +29,8 @@ Events.ServerEvents = {
     "SPlayerHitEvent",
     "NormalChairSpeedUpEvent",
     "PurchaseSEvent",
-    'PlayerSitEvent'
+    'PlayerSitEvent',
+    'JetOverEvent'
 }
 
 -- 客户端事件列表
@@ -92,7 +93,8 @@ Events.ClientEvents = {
     "SliderPurchaseEvent",
     "PurchaseConfirmEvent",
     "PurchaseCEvent",
-    'ChangeChairIdEvent'
+    'ChangeChairIdEvent',
+    'StartJetEvent'
 }
 
 return Events

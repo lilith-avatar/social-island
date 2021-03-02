@@ -62,8 +62,13 @@ end
 
 function GuiChair:InteractCEventHandler(_gameId)
     if _gameId == 10 then
-        NetUtil.Fire_S("PlayerSitEvent", localPlayer,this.chairId)
+        NetUtil.Fire_S("PlayerSitEvent", localPlayer, this.chairId)
     end
+end
+
+function GuiChair:StartJetEventHandler()
+    this.gui:SetActive(true)
+    this.startUpdate = true
 end
 
 function GuiChair:ChangeChairIdEventHandler(_chairId)
@@ -76,7 +81,7 @@ function GuiChair:Update(_dt)
         this.timer = this.timer + _dt
         this.spirit.FillAmount = this.spirit.FillAmount - this.spiritDecayRate * _dt
         if this.spirit.FillAmount <= 0 then
-            print("游戏结束")
+            NetUtil.Fire_S("JetOverEvent", localPlayer, this.chairId, this.timer)
             this.startUpdate = false
             this.timer = 0
             this.spirit.FillAmount = 1

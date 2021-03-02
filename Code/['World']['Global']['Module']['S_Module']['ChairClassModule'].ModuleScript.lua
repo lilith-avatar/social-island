@@ -61,32 +61,39 @@ end
 ---@param _player PlayerInstance
 function ChairClass:Sit(_player)
     self.owner = _player
+    self.model.Seat:SetActive(true)
+    _player.Position = self.model.Seat.Position
     -- 开始喷射
     self:Fly()
 end
 
 function ChairClass:Stand()
     self:DataReset()
+    self.model.Seat:SetActive(false)
 end
 
 function ChairClass:Fly()
     self.state = StateEnum.flying
     self.model.IsStatic = false
+    self.model.Chair.Effect:SetActive(true)
     self.model.LinearVelocity =
         (self.model.Up + self.model.Forward).Normalized * Config.ChairGlobalConfig.FlyingVelocity.Value
 end
 
 function ChairClass:Return()
-    self.state = StateEnum.Returning
+    self.state = StateEnum.returning
     self.model.LinearVelocity = Vector3.Zero
     self.model.AngularVelocity = Vector3.Zero
 end
 
 function ChairClass:Update(dt)
-    if not self.owner and self.state ~= StateEnum.free then
+    if not self.owner and self.state and self.state ~= StateEnum.free then
         self:Stand()
+        return
     end
-    self[self.state .. "Update"](self, dt)
+    if self.state then
+        self[self.state .. "Update"](self, dt)
+    end
 end
 
 --***** 各状态update函数 *****
@@ -99,6 +106,7 @@ function ChairClass:FlyingUpdate(dt)
         self.timer = 0
         self.model.LinearVelocity = Vector3.Zero
         self.state = StateEnum.jeting
+        NetUtil.Fire_C('StartJetEvent',self.owner)
     end
 end
 
@@ -127,6 +135,7 @@ function ChairClass:ReturningUpdate(dt)
         self.model.LinearVelocity = Vector3.Zero
         self.model.AngularVelocity = Vector3.Zero
         self.model.IsStatic = true
+        self.model.Chair.Effect:SetActive(false)
         self.state = StateEnum.free
     end
 end

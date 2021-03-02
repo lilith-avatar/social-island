@@ -15,17 +15,23 @@ function ChairMgr:DataInit()
 end
 
 function ChairMgr:ChairCreate()
-    for k,v in pairs(Config.ChairInfo) do
-        this.chairList[k] = ChairClass:new(v.Archetype, k, world.MiniGames.Game_10_Chair.JetChair, v.Position, v.Rotation)
+    for k, v in pairs(Config.ChairInfo) do
+        this.chairList[k] =
+            ChairClass:new(v.Archetype, k, world.MiniGames.Game_10_Chair.JetChair, v.Position, v.Rotation)
     end
 end
 
-function ChairMgr:PlayerSitEventHandler(_player,_chairId)
+function ChairMgr:PlayerSitEventHandler(_player, _chairId)
     this.chairList[_chairId]:Sit(_player)
 end
 
+function ChairMgr:JetOverEventHandler(_player, _chairId, _time)
+    this.chairList[_chairId]:Stand()
+    -- TODO: 结算
+end
+
 function ChairMgr:Update(dt)
-    for k,v in pairs(this.chairList) do
+    for k, v in pairs(this.chairList) do
         v:Update(dt)
     end
 end
