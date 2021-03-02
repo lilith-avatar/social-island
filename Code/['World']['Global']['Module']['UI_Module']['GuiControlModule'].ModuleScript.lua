@@ -74,10 +74,14 @@ function GuiControl:InitListener()
                     FsmMgr.playerActFsm.curState.stateName == "Swimming"
              then
                 localPlayer.LinearVelocity = localPlayer.LinearVelocity + Vector3(0, -5, 0)
-                FsmMgr.playerActFsm:ResetTrigger()
                 invoke(
                     function()
-                        localPlayer.LinearVelocity = Vector3.Zero
+                        localPlayer.LinearVelocity =
+                            Vector3(
+                            localPlayer.LinearVelocity.x,
+                            localPlayer.LinearVelocity,
+                            localPlayer.LinearVelocity.z
+                        )
                     end,
                     0.3
                 )
