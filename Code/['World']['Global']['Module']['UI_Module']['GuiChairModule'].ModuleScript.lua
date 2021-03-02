@@ -10,10 +10,10 @@ function GuiChair:Init()
     this:DataInit()
     this:EventBind()
     print(table.dump(Config.ChairGlobalConfig.SpiritDecayRate.Value))
-    --! test
+    --[[! test
     invoke(function()
         this.startUpdate = true
-    end, 5)
+    end, 5)]]
 end
 
 function GuiChair:DataInit()
@@ -36,6 +36,7 @@ function GuiChair:NodeDef()
     this.spirit = this.gui.SpiritPanel.SlotImg.SpiritImg
     this.leftBtn = this.gui.ButtonPanel.LeftBtn
     this.rightBtn = this.gui.ButtonPanel.RightBtn
+    this.timeText = this.gui.TimePanel.TimeBG.TimeText
 end
 
 function GuiChair:InteractCEventHandler(_id)
@@ -67,7 +68,10 @@ function GuiChair:Update(_dt)
         if this.spirit.FillAmount <= 0 then
             print('游戏结束')
             this.startUpdate = false
+            this.timer = 0
+            this.spirit.FillAmount = 1
         end
+        this.timeText.Text = math.floor(this.timer)
     end
 end
 
