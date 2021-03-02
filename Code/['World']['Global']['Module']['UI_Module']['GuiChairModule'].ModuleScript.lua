@@ -82,6 +82,7 @@ function GuiChair:Update(_dt)
         this.spirit.FillAmount = this.spirit.FillAmount - this.spiritDecayRate * _dt
         if this.spirit.FillAmount <= 0 then
             NetUtil.Fire_S("JetOverEvent", localPlayer, this.chairId, this.timer)
+            this.gui:SetActive(false)
             this.startUpdate = false
             this.timer = 0
             this.spirit.FillAmount = 1

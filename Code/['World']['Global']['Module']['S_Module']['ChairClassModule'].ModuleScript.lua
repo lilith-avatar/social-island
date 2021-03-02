@@ -19,24 +19,24 @@ local StateEnum = {
 function ChairClass:initialize(_archetype, _name, _parent, _pos, _rot)
     --- @type MeshObject
     self.model = world:CreateInstance(_archetype, _name, _parent, _pos, _rot)
-    self:DataInit(_name)
-    self:DataReset(_pos, _rot)
+    self:DataInit(_name, _pos, _rot)
+    self:DataReset()
     self:CollisionBind()
 end
 
-function ChairClass:DataInit(_id)
+function ChairClass:DataInit(_id, _pos, _rot)
     self.id = _id
+    -- * 记录原始位置和角度
+    self.oriPos = _pos
+    self.oriRot = _rot
 end
 
-function ChairClass:DataReset(_pos, _rot)
+function ChairClass:DataReset()
     self.state = StateEnum.free --当前状态
     ---@type PlayerInstance
     self.owner = nil --所属者
     -- * 计时
     self.timer = 0
-    -- * 记录原始位置和角度
-    self.oriPos = _pos
-    self.oriRot = _rot
 end
 
 function ChairClass:CollisionBind()
@@ -70,6 +70,7 @@ end
 function ChairClass:Stand()
     self:DataReset()
     self.model.Seat:SetActive(false)
+    self:Return()
 end
 
 function ChairClass:Fly()
@@ -82,7 +83,8 @@ end
 
 function ChairClass:Return()
     self.state = StateEnum.returning
-    self.model.LinearVelocity = Vector3.Zero
+    self.model.LinearVelocity =
+        (self.oriPos - self.model.Position).Normalized * Config.ChairGlobalConfig.ReturningVelocity.Value
     self.model.AngularVelocity = Vector3.Zero
 end
 
@@ -106,7 +108,7 @@ function ChairClass:FlyingUpdate(dt)
         self.timer = 0
         self.model.LinearVelocity = Vector3.Zero
         self.state = StateEnum.jeting
-        NetUtil.Fire_C('StartJetEvent',self.owner)
+        NetUtil.Fire_C("StartJetEvent", self.owner)
     end
 end
 
