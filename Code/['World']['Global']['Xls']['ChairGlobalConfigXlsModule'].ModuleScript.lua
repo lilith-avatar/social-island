@@ -12,7 +12,31 @@ local ChairGlobalConfigXls = {
     },
     SpiritIncrease = {
         Key = 'SpiritIncrease',
-        Value = 0.01
+        Value = 0.015
+    },
+    FlyingTime = {
+        Key = 'FlyingTime',
+        Value = 1.0
+    },
+    FlyingVelocity = {
+        Key = 'FlyingVelocity',
+        Value = 10.0
+    },
+    ReturningVelocity = {
+        Key = 'ReturningVelocity',
+        Value = 5.0
+    },
+    BaseAngularVelocity = {
+        Key = 'BaseAngularVelocity',
+        Value = {x=10,y=10,z=10}
+    },
+    RatioRandomRange = {
+        Key = 'RatioRandomRange',
+        Value = 15.0
+    },
+    JetingDuration = {
+        Key = 'JetingDuration',
+        Value = 1.0
     }
 }
 

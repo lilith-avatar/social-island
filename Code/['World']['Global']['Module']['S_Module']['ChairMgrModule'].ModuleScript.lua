@@ -3,8 +3,6 @@
 ---@author Yen Yuan
 local ChairMgr, this = ModuleUtil.New("ChairMgr", ServerBase)
 
-local playerChair = {}
-
 ---初始化函数
 function ChairMgr:Init()
     print("[ChairMgr] Init()")
@@ -13,24 +11,23 @@ function ChairMgr:Init()
 end
 
 function ChairMgr:DataInit()
+    this.chairList = {}
 end
 
 function ChairMgr:ChairCreate()
+    for k,v in pairs(Config.ChairInfo) do
+        this.chairList[k] = ChairClass:new(v.Archetype, k, world.MiniGames.Game_10_Chair.JetChair, v.Position, v.Rotation)
+    end
 end
 
-function ChairMgr:PlayerClickSitBtnEventHandler(_uid, _type, _chairId)
+function ChairMgr:PlayerSitEventHandler(_player,_chairId)
+    this.chairList[_chairId]:Sit(_player)
 end
 
 function ChairMgr:Update(dt)
-end
-
-function ChairMgr:PlayerLeaveChairEventHandler(_type, _chairId, _uid)
-end
-
-function ChairMgr:NormalChairSpeedUpEventHandler(_chairId)
-end
-
-function ChairMgr:QteChairMoveEventHandler(_dir, _speed, _chairId)
+    for k,v in pairs(this.chairList) do
+        v:Update(dt)
+    end
 end
 
 return ChairMgr

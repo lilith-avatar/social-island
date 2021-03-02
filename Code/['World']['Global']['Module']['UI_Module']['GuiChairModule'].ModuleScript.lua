@@ -20,15 +20,20 @@ function GuiChair:DataInit()
     this.startUpdate = false
     this.timer = 0
     this.spiritDecayRate = 0
+    this.chairId = nil
 end
 
 function GuiChair:EventBind()
-    this.leftBtn.OnClick:Connect(function()
-        this:ClickMoveBtn('Left')
-    end)
-    this.rightBtn.OnClick:Connect(function()
-        this:ClickMoveBtn('Right')
-    end)
+    this.leftBtn.OnClick:Connect(
+        function()
+            this:ClickMoveBtn("Left")
+        end
+    )
+    this.rightBtn.OnClick:Connect(
+        function()
+            this:ClickMoveBtn("Right")
+        end
+    )
 end
 
 function GuiChair:NodeDef()
@@ -39,11 +44,6 @@ function GuiChair:NodeDef()
     this.timeText = this.gui.TimePanel.TimeBG.TimeText
 end
 
-function GuiChair:InteractCEventHandler(_id)
-    if _id == 10 then
-    end
-end
-
 function GuiChair:ClickMoveBtn(_dir)
     if this.spirit.FillAmount < 1 then
         this.spirit.FillAmount = this.spirit.FillAmount + Config.ChairGlobalConfig.SpiritIncrease.Value
@@ -52,12 +52,22 @@ end
 
 function GuiChair:GetDecayRate(_totalTime)
     local tmp = 0
-    for k,v in pairs(Config.ChairGlobalConfig.SpiritDecayRate.Value) do
+    for k, v in pairs(Config.ChairGlobalConfig.SpiritDecayRate.Value) do
         if _totalTime >= k then
             tmp = v
         end
     end
     this.spiritDecayRate = tmp
+end
+
+function GuiChair:InteractCEventHandler(_gameId)
+    if _gameId == 10 then
+        NetUtil.Fire_S("PlayerSitEvent", localPlayer,this.chairId)
+    end
+end
+
+function GuiChair:ChangeChairIdEventHandler(_chairId)
+    this.chairId = _chairId
 end
 
 function GuiChair:Update(_dt)
@@ -66,7 +76,7 @@ function GuiChair:Update(_dt)
         this.timer = this.timer + _dt
         this.spirit.FillAmount = this.spirit.FillAmount - this.spiritDecayRate * _dt
         if this.spirit.FillAmount <= 0 then
-            print('游戏结束')
+            print("游戏结束")
             this.startUpdate = false
             this.timer = 0
             this.spirit.FillAmount = 1
