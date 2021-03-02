@@ -20,7 +20,6 @@ end
 
 function BowChargeIdle:OnLeave()
     PlayerActState.OnLeave(self)
-    localPlayer.AnimationMode = Enum.AnimationMode.None
 end
 
 return BowChargeIdle
