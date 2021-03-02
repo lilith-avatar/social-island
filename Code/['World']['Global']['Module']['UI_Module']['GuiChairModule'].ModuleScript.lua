@@ -10,6 +10,10 @@ function GuiChair:Init()
     this:DataInit()
     this:EventBind()
     print(table.dump(Config.ChairGlobalConfig.SpiritDecayRate.Value))
+    --! test
+    invoke(function()
+        this.startUpdate = true
+    end, 5)
 end
 
 function GuiChair:DataInit()
@@ -19,15 +23,29 @@ function GuiChair:DataInit()
 end
 
 function GuiChair:EventBind()
+    this.leftBtn.OnClick:Connect(function()
+        this:ClickMoveBtn('Left')
+    end)
+    this.rightBtn.OnClick:Connect(function()
+        this:ClickMoveBtn('Right')
+    end)
 end
 
 function GuiChair:NodeDef()
     this.gui = localPlayer.Local.ChairGui
     this.spirit = this.gui.SpiritPanel.SlotImg.SpiritImg
+    this.leftBtn = this.gui.ButtonPanel.LeftBtn
+    this.rightBtn = this.gui.ButtonPanel.RightBtn
 end
 
 function GuiChair:InteractCEventHandler(_id)
     if _id == 10 then
+    end
+end
+
+function GuiChair:ClickMoveBtn(_dir)
+    if this.spirit.FillAmount < 1 then
+        this.spirit.FillAmount = this.spirit.FillAmount + Config.ChairGlobalConfig.SpiritIncrease.Value
     end
 end
 
