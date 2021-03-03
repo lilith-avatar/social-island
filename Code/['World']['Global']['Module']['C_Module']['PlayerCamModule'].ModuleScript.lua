@@ -36,6 +36,8 @@ function PlayerCam:DataInit()
 
     -- 迷宫中的相机
     this.mazeCam = localPlayer.Local.Independent.MazeCam
+
+    this.chairCam = localPlayer.Local.Independent.ChairCam
 end
 
 --- 节点事件绑定

@@ -61,7 +61,9 @@ end
 ---@param _player PlayerInstance
 function ChairClass:Sit(_player)
     self.owner = _player
+    self.model.Seat:Sit(_player)
     self.model.Seat:SetActive(true)
+    self.owner.CollisionGroup = 15
     _player.Position = self.model.Seat.Position
     -- 开始喷射
     self:Fly()
@@ -70,8 +72,8 @@ end
 function ChairClass:Stand()
     if self.owner then
         self.model.Seat:Leave(self.owner)
+        self.owner.CollisionGroup = 1
         NetUtil.Fire_C("FsmTriggerEvent", self.owner, "Jump")
-        self.owner.Position = self.model.LeavePosition.Position
     end
     self.model.Seat:SetActive(false)
     self:Return()
@@ -87,8 +89,7 @@ end
 
 function ChairClass:Return()
     self.state = StateEnum.returning
-    self.model.LinearVelocity =
-        (self.oriPos - self.model.Position).Normalized * Config.ChairGlobalConfig.ReturningVelocity.Value
+    self.model.Block = false
     self.model.AngularVelocity = Vector3.Zero
 end
 
@@ -116,27 +117,68 @@ function ChairClass:FlyingUpdate(dt)
     end
 end
 
+local randomLv = {x = 0, y = 0, z = 0}
+function ChairClass:ChangeLine()
+    randomLv.x, randomLv.y, randomLv.z =
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.x *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.y *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.z *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1
+    self.model.LinearVelocity = Vector3(randomLv.x, randomLv.y, randomLv.z)
+end
+
 local randomAv = {x = 0, y = 0, z = 0}
+function ChairClass:ChangAngular()
+    randomAv.x, randomAv.y, randomAv.z =
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.x *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.y *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.z *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1
+    self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
+end
+
 function ChairClass:JetingUpdate(dt)
     self.timer = self.timer + dt
     if self.timer >= Config.ChairGlobalConfig.JetingDuration.Value then
-        randomAv.x, randomAv.y, randomAv.z =
-            Config.ChairGlobalConfig.BaseAngularVelocity.Value.x *
-                math.random(1, Config.ChairGlobalConfig.RatioRandomRange.Value) *
-                0.1,
-            Config.ChairGlobalConfig.BaseAngularVelocity.Value.y *
-                math.random(1, Config.ChairGlobalConfig.RatioRandomRange.Value) *
-                0.1,
-            Config.ChairGlobalConfig.BaseAngularVelocity.Value.z *
-                math.random(1, Config.ChairGlobalConfig.RatioRandomRange.Value) *
-                0.1
         self.timer = 0
-        self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
+        local randomFunc = math.random(1, 2) == 1 and self:ChangeLine() or self:ChangAngular()
+    --self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
     end
 end
 
 function ChairClass:ReturningUpdate(dt)
+    self.model.LinearVelocity =
+        (self.oriPos - self.model.Position).Normalized * Config.ChairGlobalConfig.ReturningVelocity.Value
     if (self.model.Position - self.oriPos).Magnitude <= 1 then
+        self.model.Block = true
         self.model.Position, self.model.Rotation = self.oriPos, self.oriRot
         self.model.LinearVelocity = Vector3.Zero
         self.model.AngularVelocity = Vector3.Zero

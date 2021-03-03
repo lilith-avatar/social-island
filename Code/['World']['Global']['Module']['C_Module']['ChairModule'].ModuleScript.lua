@@ -83,34 +83,9 @@ function Chair:QteSit(_chairId, _pos, _rot)
 end
 
 function Chair:Update(_dt)
-    if this.startUpdate then
-        this.timer = this.timer + _dt
-        if this.timer >= 1 then
-            this.qteTotalTime = this.qteTotalTime + 1
-            this.qteTimer = this.qteTimer + 1
-            this.keepTime = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).ButtonKeepTime
-            this.qteDuration = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).QteDuration
-            GuiChair:ShowQteButton(this.keepTime)
-            GuiChair:ChangeTotalTime(this.qteTotalTime)
-            if this.qteTimer >= this.qteDuration then
-                --跟移动方向一样
-                GuiChair:GetQteForward(
-                    Dir[math.random(1, 4)],
-                    this:ChangeKeepTimeByTotalTime(this.qteTotalTime).BullSpeed
-                )
-                this.qteTimer = 0
-            end
-            this.timer = 0
-        end
-    end
 end
 
 function Chair:ChangeKeepTimeByTotalTime(_totalTime)
-    for i = #Config.RideConfig, 1, -1 do
-        if _totalTime >= Config.RideConfig[i].Time then
-            return Config.RideConfig[i]
-        end
-    end
 end
 
 return Chair

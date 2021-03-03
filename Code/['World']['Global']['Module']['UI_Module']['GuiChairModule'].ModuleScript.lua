@@ -9,11 +9,6 @@ function GuiChair:Init()
     this:NodeDef()
     this:DataInit()
     this:EventBind()
-    print(table.dump(Config.ChairGlobalConfig.SpiritDecayRate.Value))
-    --[[! test
-    invoke(function()
-        this.startUpdate = true
-    end, 5)]]
 end
 
 function GuiChair:DataInit()
@@ -62,7 +57,10 @@ end
 
 function GuiChair:InteractCEventHandler(_gameId)
     if _gameId == 10 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, _gameId)
         NetUtil.Fire_S("PlayerSitEvent", localPlayer, this.chairId)
+        localPlayer.Local.Independent.ChairCam.Position = Vector3(5.57, 2.693132, -18.319471)
+        NetUtil.Fire_C("SetCurCamEvent", localPlayer, PlayerCam.chairCam, localPlayer)
     end
 end
 

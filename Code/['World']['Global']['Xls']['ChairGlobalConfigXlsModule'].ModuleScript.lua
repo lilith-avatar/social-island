@@ -20,7 +20,7 @@ local ChairGlobalConfigXls = {
     },
     FlyingVelocity = {
         Key = 'FlyingVelocity',
-        Value = 10.0
+        Value = 20.0
     },
     ReturningVelocity = {
         Key = 'ReturningVelocity',
@@ -37,6 +37,10 @@ local ChairGlobalConfigXls = {
     JetingDuration = {
         Key = 'JetingDuration',
         Value = 1.0
+    },
+    BaseLinearVelocity = {
+        Key = 'BaseLinearVelocity',
+        Value = {x=5,y=0,z=5}
     }
 }
 
