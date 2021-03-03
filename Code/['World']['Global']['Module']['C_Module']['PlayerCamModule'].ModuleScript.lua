@@ -60,8 +60,6 @@ function PlayerCam:CameraMove(touchInfo)
         if this:IsFreeMode() then
             this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
-            --print((localPlayer.Right * touchInfo[1].DeltaPosition.x).Normalized)
-            --localPlayer:FaceToDir((localPlayer.Right * touchInfo[1].DeltaPosition.x).Normalized, 4 * math.pi)
             this.curCamera.LookAt:Rotate(0, touchInfo[1].DeltaPosition.x * 0.2, 0)
             this.curCamera:CameraMove(Vector2(0, touchInfo[1].DeltaPosition.y))
         end
@@ -77,7 +75,7 @@ end
 
 --- TPS相机射线检测目标
 function PlayerCam:TPSGetRayDir()
-        return this.tpsCam.Forward * 40
+        return this.tpsCam.Forward
 end
 
 -- 修改玩家当前相机

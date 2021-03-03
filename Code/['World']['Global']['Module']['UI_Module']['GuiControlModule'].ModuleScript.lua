@@ -73,17 +73,31 @@ function GuiControl:InitListener()
                 FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
                     FsmMgr.playerActFsm.curState.stateName == "Swimming"
              then
-                localPlayer.LinearVelocity = localPlayer.LinearVelocity + Vector3(0, -5, 0)
-                FsmMgr.playerActFsm:ResetTrigger()
-                invoke(
-                    function()
-                        localPlayer.LinearVelocity = Vector3.Zero
-                    end,
-                    0.3
-                )
                 return
             end
             PlayerCtrl:PlayerClap()
+        end
+    )
+    ctrlFigure.UseBtn.OnEnter:Connect(
+        function()
+            if
+                FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
+                    FsmMgr.playerActFsm.curState.stateName == "Swimming"
+             then
+                localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, -3, localPlayer.LinearVelocity.z)
+                return
+            end
+        end
+    )
+    ctrlFigure.UseBtn.OnLeave:Connect(
+        function()
+            if
+                FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
+                    FsmMgr.playerActFsm.curState.stateName == "Swimming"
+             then
+                localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, 0, localPlayer.LinearVelocity.z)
+                return
+            end
         end
     )
     ctrlFigure.TakeOffBtn.OnDown:Connect(
