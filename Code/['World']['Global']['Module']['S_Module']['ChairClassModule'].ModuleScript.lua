@@ -62,6 +62,7 @@ end
 function ChairClass:Sit(_player)
     self.owner = _player
     self.model.Seat:Sit(_player)
+    self.owner.Avatar:PlayAnimation('SitIdle',2,1,0,true,true,1)
     self.model.Seat:SetActive(true)
     self.owner.CollisionGroup = 15
     _player.Position = self.model.Seat.Position

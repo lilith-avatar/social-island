@@ -8,11 +8,11 @@
 local ChairGlobalConfigXls = {
     SpiritDecayRate = {
         Key = 'SpiritDecayRate',
-        Value = {[23]=0.2,[20]=0.18,[15]=0.12,[10]=0.1,[5]=0.08,[0]=0.05}
+        Value = {[20]=0.4,[15]=0.3,[10]=0.25,[0]=0.2}
     },
     SpiritIncrease = {
         Key = 'SpiritIncrease',
-        Value = 0.015
+        Value = 0.03
     },
     FlyingTime = {
         Key = 'FlyingTime',
