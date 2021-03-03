@@ -34,16 +34,6 @@ function SwimIdle:JumpMonitor()
     if FsmMgr.playerActFsm.stateTrigger.Jump then
         if localPlayer.Position.y > -15.7 then
             FsmMgr.playerActFsm:Switch("Jump")
-        else
-            localPlayer.Position = localPlayer.Position + Vector3(0, 0.3, 0)
-            localPlayer.LinearVelocity = localPlayer.LinearVelocity + Vector3(0, 5, 0)
-            FsmMgr.playerActFsm:ResetTrigger()
-            invoke(
-                function()
-                    localPlayer.LinearVelocity = Vector3.Zero
-                end,
-                0.3
-            )
         end
     end
 end

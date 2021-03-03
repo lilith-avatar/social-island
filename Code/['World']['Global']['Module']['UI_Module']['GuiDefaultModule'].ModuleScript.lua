@@ -1,7 +1,7 @@
 --- 玩家默认UI
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
-local GuiDefault, this = ModuleUtil.New('GuiDefault', ClientBase)
+local GuiDefault, this = ModuleUtil.New("GuiDefault", ClientBase)
 
 -- 获取本地玩家
 local player
@@ -10,7 +10,7 @@ local player
 local nameGUI
 
 function GuiDefault:Init()
-    print('[GuiDefault] Init()')
+    print("[GuiDefault] Init()")
     -- 获取本地玩家
     player = localPlayer
     self:InitNameGui()
@@ -22,6 +22,12 @@ function GuiDefault:InitNameGui()
     nameGUI = player.NameGui
     nameGUI.NameBarTxt1.Text = player.Name
     nameGUI.NameBarTxt2.Text = player.Name
+    NotReplicate(
+        function()
+            nameGUI.NameBarTxt1.Alpha = 0
+            nameGUI.NameBarTxt2.Alpha = 0
+        end
+    )
 end
 
 -- 初始化事件
