@@ -375,22 +375,31 @@ function SetMetaData(_data, _path)
             local mt = getmetatable(_t)
             local newpath = mt._path .. '.' .. _k
             print('__newindex,', '_k =', _k, ', _v =', _v, ', _path = ', mt._path, ', newpath = ', newpath)
+            if type(_data[newpath]) == 'table' then
+                -- 如果现有数据是个table,删除所有子数据
+                for k, _ in pairs(_data[newpath]) do
+                    _data[newpath][k] = nil
+                end
+            end
             if type(_v) == 'table' then
+                -- 若新数据是table，建立一个mt
                 _data[newpath] = SetMetaData(_data, newpath)
                 for k, v in pairs(_v) do
                     _data[newpath][k] = v
                 end
             else
+                -- 一般数据，直接赋值
                 _data[newpath] = _v
             end
+            -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
         end,
         __pairs = function()
-            -- 参考 https://www.lua.org/pil/7.3.html
-            -- return next, _t, nil, 其中next需要重构
-            -- 建立一个return table
+            -- pairs()需要返回三个参数：next, _t, nil，https://www.lua.org/pil/7.3.html
+            -- 新建rt(return table)，从rt中进行
             local rt, key, i = {}
             for k, v in pairs(_data) do
                 i = string.find(k, _path .. '.')
+                -- 筛选出当前直接层级的path，剪裁后作为rt的key
                 if i == 1 and #_path < #k then
                     key = string.sub(k, #_path + 2, #k)
                     if not string.find(key, '%.') then
@@ -409,11 +418,17 @@ end
 --[[
     ! Test ONLY
     print('=====================================')
-    Test.a = 12 Test.b = 33 Test.c = {12, 34, 5}
+    Test.a = 12 Test.b = 33 Test.c = {12, 34, 5} Test.d = {m = 333, n = 444}
     print('=====================================')
     for k, v in pairs(Test) do print(k, v) end
     print('=====================================')
     for k, v in pairs(Test.c) do print(k, v) end
+    print('=====================================')
+    print(table.dump(Test)) print(table.dump(TestData)) 
+    print('=====================================')
+    TestData['Test.q'] = 234
+    TestData['Test.p'] = {} TestData['Test.p.p1'] = 12 
+    print('=====================================')
     print('=====================================')
 ]]
 function NewServerGlobal(_t, _k, _v)
