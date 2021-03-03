@@ -68,7 +68,6 @@ function ChairClass:Sit(_player)
 end
 
 function ChairClass:Stand()
-    self:DataReset()
     self.model.Seat:SetActive(false)
     self:Return()
 end
@@ -132,10 +131,11 @@ function ChairClass:JetingUpdate(dt)
 end
 
 function ChairClass:ReturningUpdate(dt)
-    if (self.model.Position - self.oriPos).Magnitude <= 3 then
+    if (self.model.Position - self.oriPos).Magnitude <= 1 then
         self.model.Position, self.model.Rotation = self.oriPos, self.oriRot
         self.model.LinearVelocity = Vector3.Zero
         self.model.AngularVelocity = Vector3.Zero
+        self:DataReset()
         self.model.IsStatic = true
         self.model.Chair.Effect:SetActive(false)
         self.state = StateEnum.free
