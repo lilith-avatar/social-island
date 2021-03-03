@@ -3540,6 +3540,48 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    Item_Name_3025 = {
+        ID = 'Item_Name_3025',
+        CHS = '小型陷阱',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3025 = {
+        ID = 'Item_Des_3025',
+        CHS = '可以困住动物，但是难以对付中大型动物',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3026 = {
+        ID = 'Item_Name_3026',
+        CHS = '中型陷阱',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3026 = {
+        ID = 'Item_Des_3026',
+        CHS = '可以困住动物，但是难以对付大型动物',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_3027 = {
+        ID = 'Item_Name_3027',
+        CHS = '大型陷阱',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3027 = {
+        ID = 'Item_Des_3027',
+        CHS = '可以困住动物，用于对付各种动物',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 
