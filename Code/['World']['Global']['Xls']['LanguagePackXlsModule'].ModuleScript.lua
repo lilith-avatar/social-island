@@ -3526,6 +3526,20 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    Item_Name_3024 = {
+        ID = 'Item_Name_3024',
+        CHS = '魔法贝壳',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_3024 = {
+        ID = 'Item_Des_3024',
+        CHS = '你就是美人鱼。',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 

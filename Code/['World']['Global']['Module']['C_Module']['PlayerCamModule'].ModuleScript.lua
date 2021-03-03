@@ -59,19 +59,14 @@ function PlayerCam:IsFreeMode()
         this.curCamera.CameraMode == Enum.CameraMode.Custom
 end
 
--- 检测触屏的手指数
-function PlayerCam:CountTouch(container)
-    touchNumber = #container
-end
-
 -- 滑屏转向
-function PlayerCam:CameraMove(_pos, _dis, _deltapos, _speed)
-    if touchNumber == 1 then
+function PlayerCam:CameraMove(touchInfo)
+    if #touchInfo == 1 then
         if this:IsFreeMode() then
-            this.curCamera:CameraMove(_deltapos)
+            this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
-            localPlayer:RotateAround(localPlayer.Position, Vector3.Up, _deltapos.x)
-            this.curCamera:CameraMove(Vector2(0, _deltapos.y))
+            this.curCamera.LookAt:Rotate(0, touchInfo[1].DeltaPosition.x * 0.2, 0)
+            this.curCamera:CameraMove(Vector2(0, touchInfo[1].DeltaPosition.y))
         end
     end
 end
@@ -85,12 +80,7 @@ end
 
 --- TPS相机射线检测目标
 function PlayerCam:TPSGetRayDir()
-    local hitResult = Physics:Raycast(this.tpsCam.Position, this.tpsCam.Forward * 50, true)
-    if hitResult.Hitobject then
-        return hitResult.Hitobject.Position
-    else
-        return this.tpsCam.Forward * 20
-    end
+        return this.tpsCam.Forward
 end
 
 -- 修改玩家当前相机

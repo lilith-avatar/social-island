@@ -566,6 +566,16 @@ local ItemXls = {
         UseAnimName = '',
         Useable = true
     },
+    [3024] = {
+        ItemID = 3024,
+        Name = 'Item_Name_3024',
+        Des = 'Item_Des_3024',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 0,
+        UseAnimName = '',
+        Useable = true
+    },
     [2001] = {
         ItemID = 2001,
         Name = 'Item_Name_2001',

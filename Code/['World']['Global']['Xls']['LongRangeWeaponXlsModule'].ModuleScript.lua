@@ -8,7 +8,7 @@
 local LongRangeWeaponXls = {
     [2001] = {
         ItemID = 2001,
-        AttackAnimName = {'BowAttack'},
+        AttackAnimName = {'BowChargeIdle'},
         ModelName = 'M_Arrow',
         ArrowModelName = 'Arrow_01',
         AttckCD = 1.0,
@@ -30,7 +30,7 @@ local LongRangeWeaponXls = {
     },
     [2002] = {
         ItemID = 2002,
-        AttackAnimName = {'BowAttack'},
+        AttackAnimName = {'BowChargeIdle'},
         ModelName = 'G_Arch_Wood_01',
         ArrowModelName = 'G_Arrow_Wood_01',
         AttckCD = 1.0,
@@ -52,7 +52,7 @@ local LongRangeWeaponXls = {
     },
     [2003] = {
         ItemID = 2003,
-        AttackAnimName = {'BowAttack'},
+        AttackAnimName = {'BowChargeIdle'},
         ModelName = 'G_Slingshot_Yellow_01',
         ArrowModelName = 'M_Slingshot',
         AttckCD = 1.0,
