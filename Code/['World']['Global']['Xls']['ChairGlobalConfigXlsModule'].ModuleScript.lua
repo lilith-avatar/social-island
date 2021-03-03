@@ -28,7 +28,7 @@ local ChairGlobalConfigXls = {
     },
     BaseAngularVelocity = {
         Key = 'BaseAngularVelocity',
-        Value = {x=10,y=10,z=10}
+        Value = {x=5,y=5,z=5}
     },
     RatioRandomRange = {
         Key = 'RatioRandomRange',

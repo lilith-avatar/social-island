@@ -68,6 +68,11 @@ function ChairClass:Sit(_player)
 end
 
 function ChairClass:Stand()
+    if self.owner then
+        self.model.Seat:Leave(self.owner)
+        NetUtil.Fire_C("FsmTriggerEvent", self.owner, "Jump")
+        self.owner.Position = self.model.LeavePosition.Position
+    end
     self.model.Seat:SetActive(false)
     self:Return()
 end
