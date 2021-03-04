@@ -197,6 +197,9 @@ return MetaData
 Data.Global.a = 11
 Data.Global.b = {22, 33}
 Data.Global.c = {c1 = {44, 55}, c2 = 66}
+Data.Global.c.c3 = {c4 = 77}
+Data.Global.d = {'88', Vector3(9,9,9)}
 print(table.dump(Data.Global))
 print(table.dump(MetaData.Get(Data.Global)))
+
 ]]
