@@ -44,8 +44,10 @@ function InitDataDefines()
         Data.Global[k] = v
     end
 
-    -- TODO: 客户端玩家数据
-    Data.Player = {}
+    --* 客户端玩家数据
+    local uid = localPlayer.UserId
+    local path = MetaData.Enum.PLAYER .. uid
+    Data.Player = Data.Player or MetaData.New(rawDataPlayer, path, uid)
     -- 默认赋值
     for k, v in pairs(Data.Default.Player) do
         Data.Player[k] = v
@@ -66,11 +68,15 @@ function DataSyncS2CEventHandler(_path, _value)
     end
 
     PrintLog(string.format('收到 _path = %s, _value = %s', _path, table.dump(_value)))
+    local uid = localPlayer.UserId
+
+    --* 收到服务器数据
     if string.startswith(_path, MetaData.Enum.GLOBAL) then
-        --* 收到服务器数据
-        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.CLIENT, _value, false)
-    elseif string.startswith(_path, MetaData.Enum.PLAYER) then
-        -- TODO: Player数据
+        --* Data.Global 全局数据
+        MetaData.Set(rawDataGlobal, _path, _value, uid, false)
+    elseif string.startswith(_path, MetaData.Enum.PLAYER .. uid) then
+        --* Data.Player 玩家数据
+        MetaData.Set(rawDataPlayer, _path, _value, uid, false)
     else
         error(
             string.format(

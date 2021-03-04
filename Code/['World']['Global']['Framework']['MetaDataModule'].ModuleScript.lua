@@ -12,9 +12,6 @@ local debugMode = false
 
 -- enum
 MetaData.Enum = {}
--- 数据所属：客户端 or 服务器
-MetaData.Enum.SERVER = 1
-MetaData.Enum.CLIENT = 2
 -- 数据类型：全局 or 玩家
 MetaData.Enum.GLOBAL = 'Global'
 MetaData.Enum.PLAYER = 'Player'
@@ -38,14 +35,14 @@ MetaData.Sync = false
 --- 新建一个MetaData的proxy，用于数据同步
 -- @param _data 真实数据
 -- @param _path 当前节点索引路径
--- @param _host 服务器或客户端，使用枚举MetaData.Host
+-- @param _uid UserId
 -- @return proxy 代理table，没有data，元表内包含方法和path
-function NewData(_data, _path, _host)
+function NewData(_data, _path, _uid)
     local proxy = {}
     local mt = {
-        _path = _path,
-        _host = _host,
         _data = _data,
+        _path = _path,
+        _uid = _uid,
         __index = function(_t, _k)
             local mt = getmetatable(_t)
             local newpath = mt._path .. '.' .. _k
@@ -57,7 +54,7 @@ function NewData(_data, _path, _host)
 
             local newpath = mt._path .. '.' .. _k
             PrintLog('__newindex,', '_k =', _k, ', _v =', _v, ', _path = ', mt._path, ', newpath = ', newpath)
-            SetData(_data, newpath, _host, _v, true)
+            SetData(_data, newpath, _v, _uid, true)
         end,
         __pairs = function()
             -- pairs()需要返回三个参数：next, _t, nil
@@ -98,14 +95,14 @@ end
 --- 设置原始数据
 -- @param _data 真实数据的存储位置
 -- @param _path 当前节点索引路径
--- @param _host 服务器或客户端，使用枚举MetaData.Host
 -- @param _value 传入的数据
+-- @param _uid UserId
 -- @param _sync true:同步数据
-function SetData(_data, _path, _host, _value, _sync)
+function SetData(_data, _path, _value, _uid, _sync)
     --* 数据同步
     -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
     if _sync and MetaData.Sync then
-        SyncData(_path, _host, _value)
+        SyncData(_path, _value, _uid)
     end
 
     --* 检查现有数据
@@ -119,7 +116,7 @@ function SetData(_data, _path, _host, _value, _sync)
     --* 检查新数据
     if type(_value) == 'table' then
         -- 若新数据是table，建立一个mt
-        _data[_path] = NewData(_data, _path, _host)
+        _data[_path] = NewData(_data, _path, _uid)
         for k, v in pairs(_value) do
             _data[_path][k] = v
         end
@@ -131,18 +128,29 @@ end
 
 --- 数据同步
 -- @param _path 当前节点索引路径
--- @param _host 服务器或客户端，使用枚举MetaData.Host
 -- @param _value 传入的数据
-function SyncData(_path, _host, _value)
-    -- 数据校验
-    SyncValidation(_path, _host, _value)
-
-    if _host == MetaData.Enum.SERVER then
-        -- 服务器 => 客户端
+-- @param _uid UserId
+function SyncData(_path, _value, _uid)
+    if localPlayer == nil and string.isnilorempty(_uid) then
+        -- 服务器 => 客户端，Global 全局数据
         NetUtil.Broadcast('DataSyncS2CEvent', _path, _value)
-    elseif _host == MetaData.Enum.CLIENT then
+    elseif localPlayer == nil then
+        -- 服务器 => 客户端，Player 玩家数据
+        local player = world:GetPlayerByUserId(_uid)
+        assert(player, string.format('[MetaData] 玩家不存在 uid = %s', _uid))
+        NetUtil.Fire_C('DataSyncS2CEvent', player, _path, _value)
+    elseif localPlayer and localPlayer.UserId == _uid then
         -- 客户端 => 服务器
         NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, _path, _value)
+    else
+        error(
+            string.format(
+                '[MetaData] SyncData() uid错误, path = %s, value = %s, uid = %s',
+                _uid,
+                _path,
+                table.dump(_value)
+            )
+        )
     end
 end
 
@@ -162,28 +170,6 @@ end
 
 --! 辅助方法
 
---- 同步数据校验
-function SyncValidation(_path, _host, _value)
-    assert(
-        _host == MetaData.Enum.SERVER or _host == MetaData.Enum.CLIENT,
-        string.format(
-            '[MetaData] SyncData() host错误, path = %s, host = %s, value = %s',
-            _path,
-            _host,
-            table.dump(_value)
-        )
-    )
-    assert(
-        _host ~= MetaData.Enum.CLIENT or localPlayer,
-        string.format(
-            '[MetaData] SyncData() localPlayer不存在, path = %s, host = %s, value = %s',
-            _path,
-            _host,
-            table.dump(_value)
-        )
-    )
-end
-
 --- 打印数据同步日志
 PrintLog = FrameworkConfig.DebugMode and debugMode and function(...)
         print('[MetaData]', ...)
@@ -202,4 +188,7 @@ Data.Global.d = {'88', Vector3(9,9,9)}
 print(table.dump(Data.Global))
 print(table.dump(MetaData.Get(Data.Global)))
 
+print(table.dump(Data.Player))
+
+print(table.dump(Data.Players))
 ]]
