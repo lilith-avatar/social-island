@@ -39,8 +39,17 @@ end
 function InitDataDefines()
     --* 客户端全局数据
     Data.Global = Data.Global or MetaData.New(rawDataGlobal, MetaData.Enum.GLOBAL, MetaData.Enum.CLIENT)
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Global) do
+        Data.Global[k] = v
+    end
+
     -- TODO: 客户端玩家数据
     Data.Player = {}
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Player) do
+        Data.Player[k] = v
+    end
 end
 
 --- 开始同步

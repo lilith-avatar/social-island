@@ -51,6 +51,11 @@ end
 function InitDefines()
     --* 服务器全局数据
     Data.Global = Data.Global or MetaData.New(rawDataGlobal, MetaData.Enum.GLOBAL, MetaData.Enum.SERVER)
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Global) do
+        Data.Global[k] = v
+    end
+
     -- TODO: 服务器玩家数据
     Data.Players = {}
 end
@@ -91,6 +96,13 @@ function OnPlayerJoinEventHandler(_player)
     --* 服务器端创建Data.Player
     local uid = _player.UserId
     Data.Players[uid] = {}
+    Data.Players[_player] = Data.Players[uid]
+
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Player) do
+        -- TODO: 用MetaData.Set
+        Data.Players[uid][k] = v
+    end
 
     --TODO: 获取长期存储,成功后向客户端同步
 end
@@ -102,7 +114,7 @@ function OnPlayerLeaveEventHandler(_player, _uid)
     --TODO: 保存长期存储
 
     --* 删除玩家端数据
-    -- Data.Players[_uid] = nil
+    Data.Players[_uid] = nil
 end
 
 return ServerDataSync
