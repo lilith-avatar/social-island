@@ -792,98 +792,98 @@ local LanguagePackXls = {
     },
     Item_Name_5001 = {
         ID = 'Item_Name_5001',
-        CHS = '探险巴士车票',
+        CHS = '《野营活动指南》',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5001 = {
         ID = 'Item_Des_5001',
-        CHS = '探险前记得和Learze告别。',
+        CHS = '跟导游打个招呼吧。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5002 = {
         ID = 'Item_Name_5002',
-        CHS = '探险巴士车票',
+        CHS = '《丛林安全指南》',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5002 = {
         ID = 'Item_Des_5002',
-        CHS = '去和河对面的原住民打个招呼吧。',
+        CHS = '跟安全员鲍勃了解丛林探险的注意事项。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5003 = {
         ID = 'Item_Name_5003',
-        CHS = '探险巴士车票',
+        CHS = '《热气球游览须知》',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5003 = {
         ID = 'Item_Des_5003',
-        CHS = '和另一个原住民打招呼。',
+        CHS = '跟热气球技师询问怎么乘坐热气球，他在河对岸的山上。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5004 = {
         ID = 'Item_Name_5004',
-        CHS = '探险巴士车票',
+        CHS = '《派对魅力》',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5004 = {
         ID = 'Item_Des_5004',
-        CHS = '找到湖边的怪人。',
+        CHS = '跟庆典师了解如何提升自己的魅力。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5005 = {
         ID = 'Item_Name_5005',
-        CHS = '探险巴士车票',
+        CHS = '《动物赛跑报名表》',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5005 = {
         ID = 'Item_Des_5005',
-        CHS = '找到另一个怪人.',
+        CHS = '了解营地内的动物赛跑。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5006 = {
         ID = 'Item_Name_5006',
-        CHS = '有奇怪标记的鹿皮',
+        CHS = '《飞碟图鉴》',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5006 = {
         ID = 'Item_Des_5006',
-        CHS = '好像外星人的头，Learze应该会对这个感兴趣。',
+        CHS = '这个图鉴记载了有人在这片森林里发现飞碟的传说。',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Name_5007 = {
         ID = 'Item_Name_5007',
-        CHS = '有奇怪标记的鹿皮',
+        CHS = '野猪王的獠牙',
         CHT = '',
         EN = '',
         JP = ''
     },
     Item_Des_5007 = {
         ID = 'Item_Des_5007',
-        CHS = '问问Johnny有没有见过这样的鹿皮。',
+        CHS = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
         CHT = '',
         EN = '',
         JP = ''
@@ -2360,49 +2360,49 @@ local LanguagePackXls = {
     },
     TaskItem_NpcText_5001 = {
         ID = 'TaskItem_NpcText_5001',
-        CHS = '我是Learze，本次探险的领队，有新奇的发现记得分享给我呀！河对岸好像有原住民，去和他们打个招呼吧！',
+        CHS = '你好，野营活动已经开始了，尽情狂欢吧！但是拿着器械的时候务必注意安全，不要伤害到营地里的人。',
         CHT = '',
         EN = '',
         JP = ''
     },
     TaskItem_NpcText_5002 = {
         ID = 'TaskItem_NpcText_5002',
-        CHS = '外来人？我是Johnny，一个猎人，如果你只对UFO感兴趣，我们就没什么可说的了。',
+        CHS = '安全事项？如果你要离开营地，记得在营地里挑选一个趁手的家伙以备不时之需，我这里也有一些，要看看吗？',
         CHT = '',
         EN = '',
         JP = ''
     },
     TaskItem_NpcText_5003 = {
         ID = 'TaskItem_NpcText_5003',
-        CHS = '你好，我是Zander，Johnny的弟弟，欢迎你们来这片森林，奇怪的事情？在UFO来之前有两个奇怪的人在湖边定居了，你可以去看看。',
+        CHS = '你好，我架设了用于游览的热气球，会不时在这里停靠，乘坐是免费的哦，要不要试一试？',
         CHT = '',
         EN = '',
         JP = ''
     },
     TaskItem_NpcText_5004 = {
         ID = 'TaskItem_NpcText_5004',
-        CHS = '你好，我是Jake，一个人类，和你们一样，唔……',
+        CHS = '提升魅力的秘诀？当然是好好打扮自己！我布置了一些装饰物在营地里，你也可以从我这里选一些你喜欢的饰品。',
         CHT = '',
         EN = '',
         JP = ''
     },
     TaskItem_NpcText_5005 = {
         ID = 'TaskItem_NpcText_5005',
-        CHS = '我叫Neytiri，有人说我和Jake奇怪？讨厌，我们只是晒的比较黑而已，就这么说我们。',
+        CHS = '哦？你要了解动物赛跑嘛？没有比赛进行的时候随时可以进行投注，如果要参赛，记得带上自己的动物。',
         CHT = '',
         EN = '',
         JP = ''
     },
     TaskItem_NpcText_5006 = {
         ID = 'TaskItem_NpcText_5006',
-        CHS = '哦？这块皮真神奇。这头鹿可能是外星人采集的样本！你可以去问问Johny有没有发现这样的现象。',
+        CHS = '检测到——异星——生命体征——',
         CHT = '',
         EN = '',
         JP = ''
     },
     TaskItem_NpcText_5007 = {
         ID = 'TaskItem_NpcText_5007',
-        CHS = '奇怪的鹿皮？我也有一些，或许拼起来之后能发现一些秘密，你如果看到更多也可以拿给我！',
+        CHS = '恭喜你，在我们这里每个成年的猎人都要猎杀野猪王证明自己，你已经是一个出色的猎人了，这是我新做的弓，这把弓或许能帮你更进一步！',
         CHT = '',
         EN = '',
         JP = ''

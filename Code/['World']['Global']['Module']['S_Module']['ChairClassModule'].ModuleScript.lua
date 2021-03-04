@@ -9,7 +9,8 @@ local StateEnum = {
     free = "Free", --空闲
     flying = "Flying", --喷射过程
     jeting = "Jeting", --游戏过程中
-    returning = "Returning" --返程中
+    returning = "Returning", --返程中
+    trojan = "Trojan"
 }
 
 ---椅子的构造函数
@@ -62,7 +63,7 @@ end
 function ChairClass:Sit(_player)
     self.owner = _player
     self.model.Seat:Sit(_player)
-    self.owner.Avatar:PlayAnimation('SitIdle',2,1,0,true,true,1)
+    self.owner.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
     self.model.Seat:SetActive(true)
     self.owner.CollisionGroup = 15
     _player.Position = self.model.Seat.Position
@@ -121,58 +122,23 @@ end
 local randomLv = {x = 0, y = 0, z = 0}
 function ChairClass:ChangeLine()
     randomLv.x, randomLv.y, randomLv.z =
-        Config.ChairGlobalConfig.BaseLinearVelocity.Value.x *
-            math.random(
-                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
-                Config.ChairGlobalConfig.RatioRandomRange.Value
-            ) *
-            0.1,
-        Config.ChairGlobalConfig.BaseLinearVelocity.Value.y *
-            math.random(
-                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
-                Config.ChairGlobalConfig.RatioRandomRange.Value
-            ) *
-            0.1,
-        Config.ChairGlobalConfig.BaseLinearVelocity.Value.z *
-            math.random(
-                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
-                Config.ChairGlobalConfig.RatioRandomRange.Value
-            ) *
-            0.1
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.x * world.MiniGames.Game_10_Chair.Balance.Value * 2,
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.y * world.MiniGames.Game_10_Chair.Balance.Value * 2,
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.z * world.MiniGames.Game_10_Chair.Balance.Value * 2
     self.model.LinearVelocity = Vector3(randomLv.x, randomLv.y, randomLv.z)
 end
 
 local randomAv = {x = 0, y = 0, z = 0}
 function ChairClass:ChangAngular()
     randomAv.x, randomAv.y, randomAv.z =
-        Config.ChairGlobalConfig.BaseAngularVelocity.Value.x *
-            math.random(
-                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
-                Config.ChairGlobalConfig.RatioRandomRange.Value
-            ) *
-            0.1,
-        Config.ChairGlobalConfig.BaseAngularVelocity.Value.y *
-            math.random(
-                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
-                Config.ChairGlobalConfig.RatioRandomRange.Value
-            ) *
-            0.1,
-        Config.ChairGlobalConfig.BaseAngularVelocity.Value.z *
-            math.random(
-                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
-                Config.ChairGlobalConfig.RatioRandomRange.Value
-            ) *
-            0.1
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.x * world.MiniGames.Game_10_Chair.Balance.Value * 2,
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.y * world.MiniGames.Game_10_Chair.Balance.Value * 2,
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.z * world.MiniGames.Game_10_Chair.Balance.Value * 2
     self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
 end
 
 function ChairClass:JetingUpdate(dt)
-    self.timer = self.timer + dt
-    if self.timer >= Config.ChairGlobalConfig.JetingDuration.Value then
-        self.timer = 0
-        local randomFunc = math.random(1, 2) == 1 and self:ChangeLine() or self:ChangAngular()
-    --self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
-    end
+    local randomFunc = math.random(1, 2) == 1 and self:ChangeLine() or self:ChangAngular()
 end
 
 function ChairClass:ReturningUpdate(dt)
@@ -188,6 +154,11 @@ function ChairClass:ReturningUpdate(dt)
         self.model.Chair.Effect:SetActive(false)
         self.state = StateEnum.free
     end
+end
+
+--***** 木马Update函数 *****
+function ChairClass:TrojanUpdate(dt)
+    
 end
 
 return ChairClass

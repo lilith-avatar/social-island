@@ -265,6 +265,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [20] = {
+        ID = 20,
+        Name = 'Trojan',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 
