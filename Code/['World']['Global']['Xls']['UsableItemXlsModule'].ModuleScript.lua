@@ -350,6 +350,21 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 38
+    },
+    [3024] = {
+        ItemID = 3024,
+        Range = nil,
+        HealthChange = nil,
+        UseAddBuffDur = 60.0,
+        UseRemoveBuffID = nil,
+        HitAddBuffID = nil,
+        HitAddBuffDur = nil,
+        HitRemoveBuffID = nil,
+        HitEffectName = '',
+        HitSound = '',
+        Hunt = nil,
+        Mole = nil,
+        UseAddBuffID = 48
     }
 }
 

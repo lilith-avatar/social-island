@@ -17,8 +17,11 @@ end
 
 --发射弓箭
 function LongRangeWeapon:ShootArrow()
-    local dir = (localPlayer.ArrowAim.Position - localPlayer.Position)
-    dir.y = PlayerCam:TPSGetRayDir().y
+    localPlayer.Local.ControlGui.Joystick:SetActive(true)
+    local dir = localPlayer.ArrowAim.Position - localPlayer.Position
+    local a = PlayerCam:TPSGetRayDir().y > -0.2 and 1 or 0.3
+    a = PlayerCam:TPSGetRayDir().y > 0.2 and 1.5 or 1
+    dir.y = (PlayerCam:TPSGetRayDir().y * 20 + GuiBowAim.chargeForce * 5 * a)
     dir = dir.Normalized
     local arrow =
         world:CreateInstance(

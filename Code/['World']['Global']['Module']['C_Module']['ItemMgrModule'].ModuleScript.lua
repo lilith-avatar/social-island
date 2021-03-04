@@ -33,6 +33,11 @@ function ItemMgr:DataInit()
             this:InitBagData()
             wait(.5)
             NetUtil.Fire_C("GetItemEvent", localPlayer, 5001)
+			NetUtil.Fire_C("GetItemEvent", localPlayer, 5002)
+			NetUtil.Fire_C("GetItemEvent", localPlayer, 5003)
+			NetUtil.Fire_C("GetItemEvent", localPlayer, 5004)
+			NetUtil.Fire_C("GetItemEvent", localPlayer, 5005)
+			NetUtil.Fire_C("GetItemEvent", localPlayer, 5006)
         end
     )
 end

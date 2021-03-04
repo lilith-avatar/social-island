@@ -6,34 +6,6 @@
 --- source file: .//GameChair.xlsx
 
 local ChairInfoXls = {
-    C1 = {
-        ID = 'C1',
-        Archetype = 'Chair_Normal',
-        Type = 'Normal',
-        Position = Vector3(-52.7432, -9.6295, -22.4228),
-        Rotation = EulerDegree(0, 88.9984, 0)
-    },
-    C2 = {
-        ID = 'C2',
-        Archetype = 'Chair_Normal',
-        Type = 'Normal',
-        Position = Vector3(-52.7432, -9.6295, -24.8162),
-        Rotation = EulerDegree(0, 88.9984, 0)
-    },
-    C3 = {
-        ID = 'C3',
-        Archetype = 'Chair_Normal',
-        Type = 'Normal',
-        Position = Vector3(-50.1541, -10.1058, -58.1613),
-        Rotation = EulerDegree(0, 8.993, 0)
-    },
-    C4 = {
-        ID = 'C4',
-        Archetype = 'Chair_Normal',
-        Type = 'Normal',
-        Position = Vector3(-47.0222, -10.1058, -41.7292),
-        Rotation = EulerDegree(0, -175.506, 0)
-    },
     C5 = {
         ID = 'C5',
         Archetype = 'Chair_QTE',

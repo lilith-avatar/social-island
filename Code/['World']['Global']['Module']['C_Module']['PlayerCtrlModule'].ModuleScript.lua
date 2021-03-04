@@ -121,7 +121,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.x > world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 and
                 localPlayer.Position.z < world.water.DeepWaterCol.Position.z + world.water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.z > world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 and
-                localPlayer.Position.y < -15.7
+                localPlayer.Position.y < -15.4
          then
             --print("游泳检测")
             NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
@@ -133,7 +133,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.x < world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 or
                 localPlayer.Position.z > world.water.DeepWaterCol.Position.z + world.water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
-                localPlayer.Position.y > -15.7
+                localPlayer.Position.y > -15.4
          then
             NetUtil.Fire_C("RemoveBuffEvent", localPlayer, 5)
             FsmMgr:FsmTriggerEventHandler("Idle")
@@ -331,6 +331,15 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 19)
             else
                 --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.Parent.TrojanUID then
+            if _isBegin and _hitObject.Parent.TrojanUID.Value == "" then
+                _hitObject.Parent.TrojanUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 20)
+            else
+                _hitObject.Parent.TrojanUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end
     end

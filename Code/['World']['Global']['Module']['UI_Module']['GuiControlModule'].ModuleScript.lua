@@ -48,12 +48,7 @@ function GuiControl:InitListener()
     -- GUI
     touchScreen.OnTouched:Connect(
         function(touchInfo)
-            PlayerCam:CountTouch(touchInfo)
-        end
-    )
-    touchScreen.OnPanStay:Connect(
-        function(pos, panDistance, deltaDistance, panSpeed)
-            PlayerCam:CameraMove(pos, panDistance, deltaDistance, panSpeed)
+            PlayerCam:CameraMove(touchInfo)
         end
     )
     touchScreen.OnPinchStay:Connect(
@@ -74,7 +69,35 @@ function GuiControl:InitListener()
                 ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
                 return
             end
+            if
+                FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
+                    FsmMgr.playerActFsm.curState.stateName == "Swimming"
+             then
+                return
+            end
             PlayerCtrl:PlayerClap()
+        end
+    )
+    ctrlFigure.UseBtn.OnEnter:Connect(
+        function()
+            if
+                FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
+                    FsmMgr.playerActFsm.curState.stateName == "Swimming"
+             then
+                localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, -3, localPlayer.LinearVelocity.z)
+                return
+            end
+        end
+    )
+    ctrlFigure.UseBtn.OnLeave:Connect(
+        function()
+            if
+                FsmMgr.playerActFsm.curState.stateName == "SwimIdle" or
+                    FsmMgr.playerActFsm.curState.stateName == "Swimming"
+             then
+                localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, 0, localPlayer.LinearVelocity.z)
+                return
+            end
         end
     )
     ctrlFigure.TakeOffBtn.OnDown:Connect(

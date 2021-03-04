@@ -3,8 +3,10 @@
 ---@author Yen Yuan
 local GuiChair, this = ModuleUtil.New("GuiChair", ClientBase)
 
-local type = ""
-local chairId = 0
+local BalanceRatio = {
+    Left = -1,
+    Right = 1
+}
 
 ---初始化函数
 function GuiChair:Init()
@@ -15,149 +17,103 @@ function GuiChair:Init()
 end
 
 function GuiChair:DataInit()
-    this.normalState = nil
-    this.dirQte = nil
     this.startUpdate = false
     this.timer = 0
-    this.buttonKeepTime = 0
+    this.spiritDecayRate = 0
+    this.chairId = nil
+
+    this.balanceDir = nil
 end
 
 function GuiChair:EventBind()
-    this.boostBtn.OnClick:Connect(function()
-        NetUtil.Fire_S('NormalChairSpeedUpEvent',Chair.chair)
-    end)
-    for k, v in pairs(this.qteBtn) do
-        v.OnClick:Connect(
-            function()
-                this:QteButtonClick(k)
-                v:SetActive(false)
-            end
-        )
-    end
+    this.leftBtn.OnClick:Connect(
+        function()
+            this:ClickMoveBtn("Left")
+        end
+    )
+    this.rightBtn.OnClick:Connect(
+        function()
+            this:ClickMoveBtn("Right")
+        end
+    )
 end
 
 function GuiChair:NodeDef()
-    this.sitBtn = localPlayer.Local.ControlGui.SitBtn
     this.gui = localPlayer.Local.ChairGui
-    this.normalGui = this.gui.NormalPnl
-    this.boostBtn=this.normalGui.BoostBtn
-
-    this.QteGui = this.gui.QtePnl
-    this.qteBtn = {
-        Forward = this.QteGui.ForwardBtn,
-        Left = this.QteGui.LeftBtn,
-        Back = this.QteGui.BackBtn,
-        Right = this.QteGui.RightBtn
+    this.spirit = {
+        Left = this.gui.SpiritPanel.SlotImg.LeftImg,
+        Right = this.gui.SpiritPanel.SlotImg.RightImg
     }
-    this.qteTotalTime = this.QteGui.TimeTxt.NumTxt
+    --this.gui.SpiritPanel.SlotImg.SpiritImg
+    this.leftBtn = this.gui.ButtonPanel.LeftBtn
+    this.rightBtn = this.gui.ButtonPanel.RightBtn
+    this.timeText = this.gui.TimePanel.TimeBG.TimeText
+
+    -- * Value Object
+    this.balance = world.MiniGames.Game_10_Chair.Balance
 end
 
-function GuiChair:ClickSitBtn(_type, _chairId)
-    NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, _type, _chairId)
-    this.sitBtn:SetActive(false)
-end
-
-
-function GuiChair:InteractCEventHandler(_id)
-    if _id == 10 then
-        NetUtil.Fire_S("PlayerClickSitBtnEvent", localPlayer.UserId, type, chairId)
-    end
-end
-
-function GuiChair:ShowSitBtnEventHandler(_type, _chairId)
-    --[[this.sitBtn.OnClick:Clear()
-    this.sitBtn.OnClick:Connect(
-        function()
-            this:ClickSitBtn(_type, _chairId)
-        end
-    )
-    this.sitBtn:SetActive(true)]]
-    type = _type
-    chairId = _chairId
-end
-
-function GuiChair:HideSitBtnEventHandler()
-    this.sitBtn:SetActive(false)
-end
-
-function GuiChair:EnterNormal()
-    this.startUpdate = false
-    this.gui:SetActive(true)
-    this.QteGui:SetActive(false)
-    this.normalGui:SetActive(true)
-    this.boostBtn:SetActive(false)
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
-end
-
-function GuiChair:EnterQte()
-    this.gui:SetActive(true)
-    this.QteGui:SetActive(true)
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 10)
-end
-
-function GuiChair:NormalShakeDirEventHandler(_upOrDown)
-    if _upOrDown == "up" then
-        this.normalBtn.down:SetActive(true)
-        this.normalBtn.up:SetActive(false)
+function GuiChair:ClickMoveBtn(_dir)
+    if this.balanceDir ~= _dir then
+        this.spirit[this.balanceDir].FillAmount =
+            this.spirit[this.balanceDir].FillAmount - Config.ChairGlobalConfig.SpiritIncrease.Value
     else
-        this.normalBtn.down:SetActive(false)
-        this.normalBtn.up:SetActive(true)
+        this.spirit[this.balanceDir].FillAmount =
+            this.spirit[this.balanceDir].FillAmount + Config.ChairGlobalConfig.SpiritIncrease.Value
+    end
+    if this.spirit[this.balanceDir].FillAmount <= 0 then
+        local delta = math.abs(this.spirit[this.balanceDir].FillAmount)
+        this.spirit[this.balanceDir].FillAmount = 0
+        this.balanceDir = _dir
+        this.spirit[this.balanceDir].FillAmount = this.spirit[this.balanceDir].FillAmount + delta
+    end
+    this.balance.Value = this.spirit[this.balanceDir].FillAmount * BalanceRatio[this.balanceDir]
+end
+
+function GuiChair:GetDecayRate(_totalTime)
+    local tmp = 0
+    for k, v in pairs(Config.ChairGlobalConfig.SpiritDecayRate.Value) do
+        if _totalTime >= k then
+            tmp = v
+        end
+    end
+    this.spiritDecayRate = tmp
+    return this.balance.Value > 0 and "Right" or "Left"
+end
+
+function GuiChair:InteractCEventHandler(_gameId)
+    if _gameId == 10 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, _gameId)
+        NetUtil.Fire_S("PlayerSitEvent", localPlayer, this.chairId)
+        localPlayer.Local.Independent.ChairCam.Position = Vector3(5.57, 2.693132, -18.319471)
+        NetUtil.Fire_C("SetCurCamEvent", localPlayer, PlayerCam.chairCam, localPlayer)
     end
 end
 
-function GuiChair:NormalBack()
-    this.normalGui:SetActive(false)
-    this.QteGui:SetActive(false)
-    this.gui:SetActive(false)
-    this.qteTotalTime.Text = 0
-    Chair:PlayerLeaveSit()
-    localPlayer:Jump()
-    NetUtil.Fire_S("PlayerLeaveChairEvent", Chair.chairType, Chair.chair, localPlayer.UserId)
-    print("NormalBack")
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-end
-
-function GuiChair:GetQteForward(_dir, _speed)
-    for _, v in pairs(this.qteBtn) do
-        v:SetActive(false)
-    end
-    if not _dir then
-        return
-    end
-    this.qteBtn[_dir]:SetActive(true)
-    this.dirQte = _dir
+function GuiChair:StartJetEventHandler()
+    this.gui:SetActive(true)
     this.startUpdate = true
-    NetUtil.Fire_S("QteChairMoveEvent", _dir, _speed, Chair.chair)
+    this.spirit["Left"].FillAmount = 0
+    this.spirit["Right"].FillAmount = 0
 end
 
-function GuiChair:QteButtonClick(_dir)
-    --判断是否正确按钮
-    if _dir ~= this.dirQte then
-        --把玩家甩出去
-        this:NormalBack()
-    end
-
-    this.startUpdate = false
-    this.timer = 0
-end
-
-function GuiChair:ShowQteButton(_keepTime)
-    this.buttonKeepTime = _keepTime
-end
-
-function GuiChair:ChangeTotalTime(_total)
-    this.qteTotalTime.Text = tostring(math.floor(_total))
+function GuiChair:ChangeChairIdEventHandler(_chairId)
+    this.chairId = _chairId
 end
 
 function GuiChair:Update(_dt)
-    if this.startUpdate and this.buttonKeepTime ~= 0 then
+    if this.startUpdate then
+        this.balanceDir = this:GetDecayRate(this.timer)
         this.timer = this.timer + _dt
-        if this.timer >= this.buttonKeepTime then
-            this.GetQteForward()
-            this:NormalBack() --! Only Test
+        this.spirit[this.balanceDir].FillAmount = this.spirit[this.balanceDir].FillAmount + this.spiritDecayRate * _dt
+        if this.spirit[this.balanceDir].FillAmount >= 1 then
+            NetUtil.Fire_S("JetOverEvent", localPlayer, this.chairId, this.timer)
+            this.gui:SetActive(false)
             this.startUpdate = false
-            this.timer = 0
+            this.timer, this.spirit["Left"].FillAmount, this.spirit["Right"].FillAmount = 0, 0, 0
         end
+        this.balance.Value = this.spirit[this.balanceDir].FillAmount * BalanceRatio[this.balanceDir]
+        this.timeText.Text = math.floor(this.timer)
     end
 end
 

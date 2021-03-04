@@ -34,12 +34,6 @@ local ItemPoolXls = {
         [5] = {
             PoolId = 1,
             InnerId = 5,
-            ItemId = 5006,
-            Weight = 400
-        },
-        [6] = {
-            PoolId = 1,
-            InnerId = 6,
             ItemId = 6092,
             Weight = 1000
         }
@@ -92,7 +86,7 @@ local ItemPoolXls = {
         [4] = {
             PoolId = 3,
             InnerId = 4,
-            ItemId = 5009,
+            ItemId = 5007,
             Weight = 400
         },
         [5] = {
@@ -124,7 +118,7 @@ local ItemPoolXls = {
         [4] = {
             PoolId = 4,
             InnerId = 4,
-            ItemId = 5009,
+            ItemId = 5007,
             Weight = 400
         },
         [5] = {
@@ -150,12 +144,6 @@ local ItemPoolXls = {
         [3] = {
             PoolId = 5,
             InnerId = 3,
-            ItemId = 5018,
-            Weight = 1000
-        },
-        [4] = {
-            PoolId = 5,
-            InnerId = 4,
             ItemId = 6092,
             Weight = 1000
         }
@@ -223,12 +211,6 @@ local ItemPoolXls = {
             PoolId = 8,
             InnerId = 2,
             ItemId = 6022,
-            Weight = 1000
-        },
-        [3] = {
-            PoolId = 8,
-            InnerId = 3,
-            ItemId = 5010,
             Weight = 1000
         }
     },
@@ -394,72 +376,66 @@ local ItemPoolXls = {
         [4] = {
             PoolId = 10,
             InnerId = 4,
-            ItemId = 5016,
-            Weight = 500
+            ItemId = 6040,
+            Weight = 1000
         },
         [5] = {
             PoolId = 10,
             InnerId = 5,
-            ItemId = 6040,
+            ItemId = 6042,
             Weight = 1000
         },
         [6] = {
             PoolId = 10,
             InnerId = 6,
-            ItemId = 6042,
+            ItemId = 6049,
             Weight = 1000
         },
         [7] = {
             PoolId = 10,
             InnerId = 7,
-            ItemId = 6049,
-            Weight = 1000
+            ItemId = 6052,
+            Weight = 300
         },
         [8] = {
             PoolId = 10,
             InnerId = 8,
-            ItemId = 6052,
-            Weight = 300
+            ItemId = 6054,
+            Weight = 200
         },
         [9] = {
             PoolId = 10,
             InnerId = 9,
-            ItemId = 6054,
-            Weight = 200
+            ItemId = 6057,
+            Weight = 100
         },
         [10] = {
             PoolId = 10,
             InnerId = 10,
-            ItemId = 6057,
-            Weight = 100
+            ItemId = 6065,
+            Weight = 500
         },
         [11] = {
             PoolId = 10,
             InnerId = 11,
-            ItemId = 6065,
+            ItemId = 6069,
             Weight = 500
         },
         [12] = {
             PoolId = 10,
             InnerId = 12,
-            ItemId = 6069,
+            ItemId = 6079,
             Weight = 500
         },
         [13] = {
             PoolId = 10,
             InnerId = 13,
-            ItemId = 6079,
-            Weight = 500
+            ItemId = 6080,
+            Weight = 300
         },
         [14] = {
             PoolId = 10,
             InnerId = 14,
-            ItemId = 6080,
-            Weight = 300
-        },
-        [15] = {
-            PoolId = 10,
-            InnerId = 15,
             ItemId = 6084,
             Weight = 500
         }
@@ -775,90 +751,6 @@ local ItemPoolXls = {
             PoolId = 11,
             InnerId = 52,
             ItemId = 6091,
-            Weight = 1000
-        }
-    },
-    [12] = {
-        [1] = {
-            PoolId = 12,
-            InnerId = 1,
-            ItemId = 1000,
-            Weight = 1000
-        }
-    },
-    [13] = {
-        [1] = {
-            PoolId = 13,
-            InnerId = 1,
-            ItemId = 1000,
-            Weight = 1000
-        }
-    },
-    [14] = {
-        [1] = {
-            PoolId = 14,
-            InnerId = 1,
-            ItemId = 1000,
-            Weight = 1000
-        }
-    },
-    [15] = {
-        [1] = {
-            PoolId = 15,
-            InnerId = 1,
-            ItemId = 1000,
-            Weight = 1000
-        }
-    },
-    [16] = {
-        [1] = {
-            PoolId = 16,
-            InnerId = 1,
-            ItemId = 5012,
-            Weight = 1000
-        },
-        [2] = {
-            PoolId = 16,
-            InnerId = 2,
-            ItemId = 5013,
-            Weight = 1000
-        },
-        [3] = {
-            PoolId = 16,
-            InnerId = 3,
-            ItemId = 5014,
-            Weight = 1000
-        },
-        [4] = {
-            PoolId = 16,
-            InnerId = 4,
-            ItemId = 5015,
-            Weight = 1000
-        },
-        [5] = {
-            PoolId = 16,
-            InnerId = 5,
-            ItemId = 3003,
-            Weight = 100
-        },
-        [6] = {
-            PoolId = 16,
-            InnerId = 6,
-            ItemId = 3004,
-            Weight = 100
-        }
-    },
-    [17] = {
-        [1] = {
-            PoolId = 17,
-            InnerId = 1,
-            ItemId = 5017,
-            Weight = 1000
-        },
-        [2] = {
-            PoolId = 17,
-            InnerId = 2,
-            ItemId = 5019,
             Weight = 1000
         }
     }
