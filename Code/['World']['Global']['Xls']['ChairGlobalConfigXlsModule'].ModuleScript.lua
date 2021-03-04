@@ -12,7 +12,7 @@ local ChairGlobalConfigXls = {
     },
     SpiritIncrease = {
         Key = 'SpiritIncrease',
-        Value = 0.03
+        Value = 0.1
     },
     FlyingTime = {
         Key = 'FlyingTime',
