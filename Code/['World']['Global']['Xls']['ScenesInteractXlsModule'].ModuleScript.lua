@@ -512,39 +512,21 @@ local ScenesInteractXls = {
     },
     [57] = {
         ID = 57,
-        Name = '降落伞',
-        Path = 'Glider1',
-        ItemID = 3021,
-        IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
-    },
-    [58] = {
-        ID = 58,
-        Name = '降落伞',
-        Path = 'Glider2',
-        ItemID = 3021,
-        IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
-    },
-    [59] = {
-        ID = 59,
-        Name = '降落伞',
-        Path = 'Glider3',
-        ItemID = 3021,
-        IsGet = false,
-        UseCount = 99999,
-        ResetTime = -1
-    },
-    [60] = {
-        ID = 60,
         Name = '珍珠',
         Path = 'Shell',
         ItemID = 3024,
         IsGet = false,
         UseCount = 1,
         ResetTime = 30
+    },
+    [58] = {
+        ID = 58,
+        Name = '救生圈4',
+        Path = 'LifeRing4',
+        ItemID = nil,
+        IsGet = nil,
+        UseCount = nil,
+        ResetTime = nil
     }
 }
 
