@@ -56,10 +56,10 @@ function DataSyncS2CEventHandler(_path, _value)
         return
     end
 
-    PrintLog(string.format('收到 player = %s, _path = %s, _value = %s', localPlayer, _path, table.dump(_value)))
+    PrintLog(string.format('收到 _path = %s, _value = %s', _path, table.dump(_value)))
     if string.startswith(_path, MetaData.Enum.GLOBAL) then
         --* 收到服务器数据
-        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.CLIENT, _value)
+        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.CLIENT, _value, false)
     elseif string.startswith(_path, MetaData.Enum.PLAYER) then
         -- TODO: Player数据
     else
