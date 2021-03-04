@@ -9,7 +9,8 @@ local StateEnum = {
     free = "Free", --空闲
     flying = "Flying", --喷射过程
     jeting = "Jeting", --游戏过程中
-    returning = "Returning" --返程中
+    returning = "Returning", --返程中
+    trojan = "Trojan"
 }
 
 ---椅子的构造函数
@@ -153,6 +154,11 @@ function ChairClass:ReturningUpdate(dt)
         self.model.Chair.Effect:SetActive(false)
         self.state = StateEnum.free
     end
+end
+
+--***** 木马Update函数 *****
+function ChairClass:TrojanUpdate(dt)
+    
 end
 
 return ChairClass
