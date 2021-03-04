@@ -12,4 +12,7 @@ local Data = {}
 -- 1. Data.Global
 -- 2. Data.Players
 
+--! 这个Module为空
+--! 数据定义在：ClientDataSyncModule、ServerDataSyncModule
+
 return Data

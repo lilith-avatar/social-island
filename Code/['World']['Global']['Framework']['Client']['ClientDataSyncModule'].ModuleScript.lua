@@ -7,6 +7,10 @@ local ClientDataSync = {}
 -- Localize global vars
 local FrameworkConfig, MetaData = FrameworkConfig, MetaData
 
+-- 客户端私有数据
+local rawDataGlobal = {}
+local rawDataPlayer = {}
+
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
         print('[DataSync][Client]', ...)
@@ -19,7 +23,7 @@ local PrintLog = FrameworkConfig.DebugMode and function(...)
 function ClientDataSync.Init()
     print('[DataSync][Client] Init()')
     InitEventsAndListeners()
-    InitDefines()
+    InitDataDefines()
 end
 
 --- 初始化事件和绑定Handler
@@ -32,43 +36,48 @@ function InitEventsAndListeners()
 end
 
 --- 校验数据定义
-function InitDefines()
-    -- 定义数据所属
-    MetaData.Host = MetaData.Enum.CLIENT
-    -- 定义客户端的两个数据
-    Data.Global = {}
+function InitDataDefines()
+    --* 客户端全局数据
+    Data.Global = Data.Global or MetaData.New(rawDataGlobal, MetaData.Enum.GLOBAL, MetaData.Enum.CLIENT)
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Global) do
+        Data.Global[k] = v
+    end
+
+    -- TODO: 客户端玩家数据
     Data.Player = {}
-    -- 生成数据
-    MetaData.CreateDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData, localPlayer.UserId)
-    MetaData.CreateDataTable(DataScheme.Player, Data.Player, MetaData.NewPlayerData, localPlayer.UserId)
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Player) do
+        Data.Player[k] = v
+    end
+end
+
+--- 开始同步
+function ClientDataSync.Start()
+    MetaData.Sync = true
 end
 
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncS2CEventHandler(_type, _metaId, _key, _data)
-    PrintLog(
-        string.format(
-            '收到 player = %s, type = %s, metaId = %s, key = %s, data = %s',
-            localPlayer,
-            _type,
-            _metaId,
-            _key,
-            _data
-        )
-    )
-    if _type == MetaData.Enum.GLOBAL then
-        MetaData.SetClientGlobalData(_metaId, _key, _data)
-    elseif _type == MetaData.Enum.PLAYER then
-        MetaData.SetClientPlayerData(_metaId, _key, _data)
+function DataSyncS2CEventHandler(_path, _value)
+    if not MetaData.Sync then
+        return
+    end
+
+    PrintLog(string.format('收到 _path = %s, _value = %s', _path, table.dump(_value)))
+    if string.startswith(_path, MetaData.Enum.GLOBAL) then
+        --* 收到服务器数据
+        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.CLIENT, _value, false)
+    elseif string.startswith(_path, MetaData.Enum.PLAYER) then
+        -- TODO: Player数据
     else
         error(
             string.format(
-                '[DataSync][Client]  MetaData 数据类型错误 type = %s, metaId = %s, key = %s, data = %s',
-                _type,
-                _metaId,
-                _key,
-                table.dump(_data)
+                '[DataSync][Server] _path错误 _player = %s, _path = %s, _value = %s',
+                localPlayer,
+                _path,
+                table.dump(_value)
             )
         )
     end
