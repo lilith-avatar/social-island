@@ -349,6 +349,7 @@ function MetaData.DeleleServerPlayerData(_uid)
 end
 
 _G.TestData = {}
+_G.TestData2 = {}
 
 function MetaData.InitServerData()
     InitServerDataGlobal()
@@ -356,12 +357,15 @@ function MetaData.InitServerData()
 end
 
 function InitServerDataGlobal()
-    _G.Test = SetMetaData(TestData, 'Test')
+    _G.Test = NewData(TestData, 'Test')
+    _G.Test2 = NewData(TestData2, 'Test2')
 end
 
+--- 新建一个MetaData的proxy，用于数据同步
 -- @param _data 真实数据
--- @param _path 索引路径
-function SetMetaData(_data, _path)
+-- @param _path 当前节点索引路径
+-- @return proxy 代理table，没有data，元表内包含方法和path
+function NewData(_data, _path)
     local proxy = {}
     local mt = {
         _path = _path,
@@ -373,47 +377,72 @@ function SetMetaData(_data, _path)
         end,
         __newindex = function(_t, _k, _v)
             local mt = getmetatable(_t)
+
             local newpath = mt._path .. '.' .. _k
             print('__newindex,', '_k =', _k, ', _v =', _v, ', _path = ', mt._path, ', newpath = ', newpath)
-            if type(_data[newpath]) == 'table' then
-                -- 如果现有数据是个table,删除所有子数据
-                for k, _ in pairs(_data[newpath]) do
-                    _data[newpath][k] = nil
-                end
-            end
-            if type(_v) == 'table' then
-                -- 若新数据是table，建立一个mt
-                _data[newpath] = SetMetaData(_data, newpath)
-                for k, v in pairs(_v) do
-                    _data[newpath][k] = v
-                end
-            else
-                -- 一般数据，直接赋值
-                _data[newpath] = _v
-            end
-            -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
+            SetData(_data, newpath, _v)
         end,
         __pairs = function()
-            -- pairs()需要返回三个参数：next, _t, nil，https://www.lua.org/pil/7.3.html
-            -- 新建rt(return table)，从rt中进行
-            local rt, key, i = {}
-            for k, v in pairs(_data) do
-                i = string.find(k, _path .. '.')
-                -- 筛选出当前直接层级的path，剪裁后作为rt的key
-                if i == 1 and #_path < #k then
-                    key = string.sub(k, #_path + 2, #k)
-                    if not string.find(key, '%.') then
-                        key = tonumber(key) or key
-                        rt[key] = v
-                    end
-                end
-            end
-            return next, rt, nil
+            -- pairs()需要返回三个参数：next, _t, nil
+            -- https://www.lua.org/pil/7.3.html
+            -- 得到rd(raw data)，从rd中进行遍历
+            local rd = GetData(_data, _path)
+            return next, rd, nil
         end
     }
     setmetatable(proxy, mt)
     return proxy
 end
+
+--- 获得原始数据
+-- @param _data 真实数据的存储位置
+-- @param _path 当前节点索引路径
+-- @return rawData 纯数据table，不包含元表
+function GetData(_data, _path)
+    local rawData, key, i = {}
+    for k, v in pairs(_data) do
+        i = string.find(k, _path .. '.')
+        -- 筛选出当前直接层级的path，剪裁后作为rawData的key
+        if i == 1 and #_path < #k then
+            key = string.sub(k, #_path + 2, #k)
+            if not string.find(key, '%.') then
+                key = tonumber(key) or key
+                rawData[key] = v
+            end
+        end
+    end
+    return rawData
+end
+
+--- 设置原始数据
+-- @param _data 真实数据的存储位置
+-- @param _path 当前节点索引路径
+-- @param _value 传入的数据
+function SetData(_data, _path, _value)
+    --* 检查现有数据
+    if type(_data[_path]) == 'table' then
+        -- 如果现有数据是个table,删除所有子数据
+        for k, _ in pairs(_data[_path]) do
+            _data[_path][k] = nil
+        end
+    end
+
+    --* 检查新数据
+    if type(_value) == 'table' then
+        -- 若新数据是table，建立一个mt
+        _data[_path] = NewData(_data, _path)
+        for k, v in pairs(_value) do
+            _data[_path][k] = v
+        end
+    else
+        -- 一般数据，直接赋值
+        _data[_path] = _value
+    end
+
+    -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
+end
+
+MetaData.SetData = SetData
 
 --[[
     ! Test ONLY
@@ -429,6 +458,9 @@ end
     TestData['Test.q'] = 234
     TestData['Test.p'] = {} TestData['Test.p.p1'] = 12 
     print('=====================================')
+    MetaData.SetData(TestData2, 'Test2', {a = 11, b = {c = 22, d = 33}, e = {'e1', 'e2'}})
+    print('=====================================')
+    print(table.dump(Test2)) print(table.dump(TestData2)) 
     print('=====================================')
 ]]
 function NewServerGlobal(_t, _k, _v)
