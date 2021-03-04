@@ -14,9 +14,6 @@ function GuiChair:Init()
     this:NodeDef()
     this:DataInit()
     this:EventBind()
-    invoke(function()
-        this.startUpdate = true
-    end, 8)
 end
 
 function GuiChair:DataInit()
@@ -58,9 +55,11 @@ end
 
 function GuiChair:ClickMoveBtn(_dir)
     if this.balanceDir ~= _dir then
-        this.spirit[this.balanceDir].FillAmount = this.spirit[this.balanceDir].FillAmount - Config.ChairGlobalConfig.SpiritIncrease.Value
+        this.spirit[this.balanceDir].FillAmount =
+            this.spirit[this.balanceDir].FillAmount - Config.ChairGlobalConfig.SpiritIncrease.Value
     else
-        this.spirit[this.balanceDir].FillAmount = this.spirit[this.balanceDir].FillAmount + Config.ChairGlobalConfig.SpiritIncrease.Value
+        this.spirit[this.balanceDir].FillAmount =
+            this.spirit[this.balanceDir].FillAmount + Config.ChairGlobalConfig.SpiritIncrease.Value
     end
     if this.spirit[this.balanceDir].FillAmount <= 0 then
         local delta = math.abs(this.spirit[this.balanceDir].FillAmount)
@@ -94,6 +93,8 @@ end
 function GuiChair:StartJetEventHandler()
     this.gui:SetActive(true)
     this.startUpdate = true
+    this.spirit["Left"].FillAmount = 0
+    this.spirit["Right"].FillAmount = 0
 end
 
 function GuiChair:ChangeChairIdEventHandler(_chairId)
@@ -104,14 +105,12 @@ function GuiChair:Update(_dt)
     if this.startUpdate then
         this.balanceDir = this:GetDecayRate(this.timer)
         this.timer = this.timer + _dt
-        print(this.balanceDir)
         this.spirit[this.balanceDir].FillAmount = this.spirit[this.balanceDir].FillAmount + this.spiritDecayRate * _dt
         if this.spirit[this.balanceDir].FillAmount >= 1 then
-            --NetUtil.Fire_S("JetOverEvent", localPlayer, this.chairId, this.timer)
+            NetUtil.Fire_S("JetOverEvent", localPlayer, this.chairId, this.timer)
+            this.gui:SetActive(false)
             this.startUpdate = false
-            this.timer = 0
-            this.spirit['Left'].FillAmount = 0
-            this.spirit['Right'].FillAmount = 0
+            this.timer, this.spirit["Left"].FillAmount, this.spirit["Right"].FillAmount = 0, 0, 0
         end
         this.balance.Value = this.spirit[this.balanceDir].FillAmount * BalanceRatio[this.balanceDir]
         this.timeText.Text = math.floor(this.timer)
