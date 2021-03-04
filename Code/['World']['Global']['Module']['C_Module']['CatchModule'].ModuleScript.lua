@@ -46,7 +46,7 @@ function Catch:InstanceTrap(_ItemID)
     local trap = world:CreateInstance(archetTypeName, "trap", world, localPlayer.Position, localPlayer.Rotation)
     trap.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject.Parent.AnimalID then
+            if _hitObject.Parent.AnimalID and _hitObject.Parent.AnimalCaughtEvent then
                 this:TrapAnimal(trap.Rate.Value, trap, _hitObject.Parent)
             end
         end
@@ -76,38 +76,40 @@ end
 
 --困住动物
 function Catch:TrapAnimal(_rate, _trap, _animal)
-    _animal.AnimalTrappedEvent:Fire(_rate)
-    _trap.OnCollisionBegin:Clear()
+    if _animal.AnimalTrappedEvent then
+        _animal.AnimalTrappedEvent:Fire(_rate)
+        _trap.OnCollisionBegin:Clear()
 
-    invoke(
-        function()
-            if _animal.IsCaught.Value then
-                NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你的陷阱成功困住了动物", 2, false)
-                _trap:SetParentTo(_animal, Vector3(0, -0.5, 0), EulerDegree(0, 0, 0))
-                _trap.Open:SetActive(false)
-                _trap.Close:SetActive(true)
-            else
-                NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物挣脱了你的陷阱", 2, false)
-                local tweener = Tween:ShakeProperty(_trap, {"Rotation"}, 0.5, 5)
-                tweener:Play()
-                local effect =
-                    world:CreateInstance(
-                    "AnimalEscape",
-                    "AnimalEscape",
-                    _animal,
-                    _animal.Position + Vector3(0, -0.5, 0)
-                )
-                _animal.LinearVelocityController.TargetLinearVelocity =
-                    _animal.LinearVelocityController.TargetLinearVelocity + _animal.Forward * 5
-                wait(0.5)
-                tweener:Destroy()
-                _trap:Destroy()
-                wait(1)
-                effect:Destroy()
-            end
-        end,
-        0.1
-    )
+        invoke(
+            function()
+                if _animal.IsCaught.Value then
+                    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你的陷阱成功困住了动物", 2, false)
+                    _trap:SetParentTo(_animal, Vector3(0, -0.5, 0), EulerDegree(0, 0, 0))
+                    _trap.Open:SetActive(false)
+                    _trap.Close:SetActive(true)
+                else
+                    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物挣脱了你的陷阱", 2, false)
+                    local tweener = Tween:ShakeProperty(_trap, {"Rotation"}, 0.5, 5)
+                    tweener:Play()
+                    local effect =
+                        world:CreateInstance(
+                        "AnimalEscape",
+                        "AnimalEscape",
+                        _animal,
+                        _animal.Position + Vector3(0, -0.5, 0)
+                    )
+                    _animal.LinearVelocityController.TargetLinearVelocity =
+                        _animal.LinearVelocityController.TargetLinearVelocity + _animal.Forward * 5
+                    wait(0.5)
+                    tweener:Destroy()
+                    _trap:Destroy()
+                    wait(1)
+                    effect:Destroy()
+                end
+            end,
+            0.5
+        )
+    end
 end
 
 --判断是否捕捉
@@ -116,6 +118,7 @@ function Catch:IsCatch()
         if prey.IsCaught.Value then
             NetUtil.Fire_C("InsertInfoEvent", localPlayer, "捕捉动物成功", 2, false)
             NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            Pet:OpenNamedPetUI(prey.AnimalID.Value)
             prey.AnimalCaughtEvent:Fire()
             local effect = world:CreateInstance("CaughtSuccess", "CaughtSuccess", world, prey.Col.Position)
             invoke(
