@@ -7,6 +7,10 @@ local ServerDataSync = {}
 -- Localize global vars
 local FrameworkConfig, MetaData = FrameworkConfig, MetaData
 
+-- 服务器端私有数据
+local rawDataGlobal = {}
+local rawDataPlayers = {}
+
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
         print('[DataSync][Server]', ...)
@@ -45,42 +49,34 @@ end
 
 --- 校验数据定义
 function InitDefines()
-    -- 定义数据所属
-    MetaData.Host = MetaData.Enum.SERVER
-    -- 定义服务器的两个数据
-    Data.Global = {}
+    --* 服务器全局数据
+    Data.Global = Data.Global or MetaData.New(rawDataGlobal, MetaData.Enum.GLOBAL, MetaData.Enum.SERVER)
+    -- TODO: 服务器玩家数据
     Data.Players = {}
-    -- 生成数据
-    MetaData.CreateDataTable(DataScheme.Global, Data.Global, MetaData.NewGlobalData)
+end
+
+--- 开始同步
+function ServerDataSync.Start()
+    MetaData.Sync = true
 end
 
 --! Event handler
 
 --- 数据同步事件Handler
-function DataSyncC2SEventHandler(_player, _type, _metaId, _key, _data)
-    PrintLog(
-        string.format(
-            '收到 player = %s, type = %s, metaId = %s, key = %s, data = %s',
-            _player,
-            _type,
-            _metaId,
-            _key,
-            table.dump(_data)
-        )
-    )
-    if _type == MetaData.Enum.GLOBAL then
+function DataSyncC2SEventHandler(_player, _path, _value)
+    PrintLog(string.format('收到 player = %s, _path = %s, _value = %s', _player, _path, table.dump(_value)))
+
+    if string.startswith(_path, MetaData.Enum.GLOBAL) then
         --* 收到客户端改变数据的时候需要同步给其他玩家
-        MetaData.SetServerGlobalData(_metaId, _key, _data, true)
-    elseif _type == MetaData.Enum.PLAYER then
-        local uid = _player.UserId
-        MetaData.SetServerPlayerData(uid, _metaId, _key, _data)
+        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.SERVER, _value, true)
+    elseif string.startswith(_path, MetaData.Enum.PLAYER) then
+        -- TODO: Player数据
     else
         error(
             string.format(
-                '[DataSync][Server]  MetaData 数据类型错误 type = %s, metaId = %s, key = %s, data = %s',
-                _type,
-                _metaId,
-                _key,
+                '[DataSync][Server] _path错误 _player = %s, _path = %s, _value = %s',
+                _player,
+                _path,
                 table.dump(_data)
             )
         )
@@ -89,17 +85,14 @@ end
 
 --- 新玩家加入事件Handler
 function OnPlayerJoinEventHandler(_player)
-    --* 服务器端创建PlayerData
+    --* 向客户端同步Data.Global
+    NetUtil.Fire_C('DataSyncS2CEvent', _player, MetaData.Enum.GLOBAL, MetaData.Get(Data.Global))
+
+    --* 服务器端创建Data.Player
     local uid = _player.UserId
     Data.Players[uid] = {}
-    MetaData.CreateDataTable(DataScheme.Player, Data.Players[uid], MetaData.NewPlayerData, uid)
 
     --TODO: 获取长期存储,成功后向客户端同步
-
-    --* 向客户端同步GlobalData
-    for k, v in pairs(Data.Global) do
-        Data.Global[k] = v
-    end
 end
 
 --- 玩家离开事件Handler
@@ -109,8 +102,7 @@ function OnPlayerLeaveEventHandler(_player, _uid)
     --TODO: 保存长期存储
 
     --* 删除玩家端数据
-    Data.Players[_uid] = nil
-    MetaData.DeleleServerPlayerData(_uid)
+    -- Data.Players[_uid] = nil
 end
 
 return ServerDataSync
