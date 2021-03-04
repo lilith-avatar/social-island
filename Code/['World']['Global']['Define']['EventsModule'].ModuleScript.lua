@@ -28,7 +28,9 @@ Events.ServerEvents = {
     "SaveMDataEvent", -- @param _userId, _playerdata
     "SPlayerHitEvent",
     "NormalChairSpeedUpEvent",
-    "PurchaseSEvent"
+    "PurchaseSEvent",
+    'PlayerSitEvent',
+    'JetOverEvent'
 }
 
 -- 客户端事件列表
@@ -90,7 +92,9 @@ Events.ClientEvents = {
     "GetMolePriceEvent",
     "SliderPurchaseEvent",
     "PurchaseConfirmEvent",
-    "PurchaseCEvent"
+    "PurchaseCEvent",
+    'ChangeChairIdEvent',
+    'StartJetEvent'
 }
 
 return Events

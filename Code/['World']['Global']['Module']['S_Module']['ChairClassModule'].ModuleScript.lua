@@ -6,185 +6,187 @@ local Config = Config
 
 -- 状态枚举
 local StateEnum = {
-    free = 1,
-    used = 2,
-    flying = 3,
-    qteing = 4,
-    returning = 5
-}
-
--- 类型枚举
-local TypeEnum = {
-    Normal = 1,
-    QTE = 2
-}
-
--- ***** 特殊动作实现 *****
-local function AroundTheWorld(_obj)
-end
-
--- 特殊动作枚举
-local SpecialMovement = {
-    function(_obj)
-        AroundTheWorld(_obj)
-    end,
-    -- function(_obj)
-    -- end
+    free = "Free", --空闲
+    flying = "Flying", --喷射过程
+    jeting = "Jeting", --游戏过程中
+    returning = "Returning" --返程中
 }
 
 ---椅子的构造函数
 ---@param _type string
 ---@param _pos Vector3
 --- @param _rot EulerDegree
-function ChairClass:initialize(_type, _id, _arch, _parent, _pos, _rot)
-    if not _id then
-        return
-    end
-    self.type = TypeEnum[_type]
-    self:CommonDataInit(_arch, _parent, _pos, _rot, _id)
+function ChairClass:initialize(_archetype, _name, _parent, _pos, _rot)
+    --- @type MeshObject
+    self.model = world:CreateInstance(_archetype, _name, _parent, _pos, _rot)
+    self:DataInit(_name, _pos, _rot)
+    self:DataReset()
+    self:CollisionBind()
 end
 
-function ChairClass:CommonDataInit(_arch, _parent, _pos, _rot, _id)
-    self.model = world:CreateInstance(_arch, _arch, _parent, _pos, _rot)
-    self.state = StateEnum.free
-    self.sitter = nil
-    self.startUpdate = false
-    self.freshcoo = _pos
-    self.freshRot = _rot
-    self.qteDir = nil
-    self.timer = 0
+function ChairClass:DataInit(_id, _pos, _rot)
     self.id = _id
+    -- * 记录原始位置和角度
+    self.oriPos = _pos
+    self.oriRot = _rot
 end
 
+function ChairClass:DataReset()
+    self.state = StateEnum.free --当前状态
+    ---@type PlayerInstance
+    self.owner = nil --所属者
+    -- * 计时
+    self.timer = 0
+end
+
+function ChairClass:CollisionBind()
+    self.model.CollisionArea.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject and _hitObject.ClassName == "PlayerInstance" and not self.owner then
+                NetUtil.Fire_C("ChangeChairIdEvent", _hitObject, self.id)
+                NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 10)
+            end
+        end
+    )
+    self.model.CollisionArea.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
+            end
+        end
+    )
+end
+
+---玩家坐下
+---@param _player PlayerInstance
 function ChairClass:Sit(_player)
-    if self.sitter or self.state ~= StateEnum.free then
-        return
-    end
-    self.sitter = _player
-    self.state = StateEnum.used
-    self.startUpdate = true
+    self.owner = _player
+    self.model.Seat:Sit(_player)
+    self.owner.Avatar:PlayAnimation('SitIdle',2,1,0,true,true,1)
     self.model.Seat:SetActive(true)
-    self.model.CollisionArea:SetActive(false)
-    self.model.LinearVelocity = Vector3.Zero
-    self.model.IsStatic = false
-    self.normalShakeRatio = 1
-    --判断是否开始QTE
-    if self.type == TypeEnum.QTE then
-        self:Fly()
-        self.state = StateEnum.flying
-    else
-        self:StartShake()
-    end
+    self.owner.CollisionGroup = 15
+    _player.Position = self.model.Seat.Position
+    -- 开始喷射
+    self:Fly()
 end
 
 function ChairClass:Stand()
-    self.sitter = nil
-    self.state = StateEnum.free
+    if self.owner then
+        self.model.Seat:Leave(self.owner)
+        self.owner.CollisionGroup = 1
+        NetUtil.Fire_C("FsmTriggerEvent", self.owner, "Jump")
+    end
     self.model.Seat:SetActive(false)
-    self.model.CollisionArea:SetActive(true)
-    self.model.IsStatic = true
-    self.qteDir = nil
-    self.normalShakeRatio = -1
-    --判断是否结束QTE
-    if self.type == TypeEnum.QTE then
-        --self.model:Rotate(EulerDegree(-30, 0, 0))
-        self:Return()
-        self.state = StateEnum.returning
-    end
+    self:Return()
 end
 
---********************* qte摇摇椅 *************************
 function ChairClass:Fly()
-    --喷射
-    self.tweener = Tween:ShakeProperty(self.model, {"Rotation"}, Config.ChairGlobalConfig.FlyingTime.Value, 0.5)
-    self.tweener:Play()
-end
-
-function ChairClass:Flying(dt)
-    -- 一段时间后停下
-    self.timer = self.timer + dt
-    self.model.LinearVelocity = (self.model.Forward + self.model.Up) * Config.ChairGlobalConfig.FlyingSpeed.Value
-    if self.timer >= Config.ChairGlobalConfig.FlyingTime.Value then
-        self.model.LinearVelocity = Vector3.Zero
-        self.tweener:Pause()
-        self.tweener:Destroy()
-        self.tweener = nil
-        self.state = StateEnum.qteing
-        self.timer = 0
-    end
-end
-
-function ChairClass:SetSpeed(_dir, _speed)
-    print(_dir)
-    self.qteDir = self.model[_dir]
-    self.model.LinearVelocity = self.model[_dir] * _speed
+    self.state = StateEnum.flying
+    self.model.IsStatic = false
+    self.model.Chair.Effect:SetActive(true)
+    self.model.LinearVelocity =
+        (self.model.Up + self.model.Forward).Normalized * Config.ChairGlobalConfig.FlyingVelocity.Value
 end
 
 function ChairClass:Return()
-    self.model.IsStatic = false
-    -- TODO: 开始返程
-    self.model.LinearVelocity = (self.freshcoo - self.model.Position).Normalized * 5
+    self.state = StateEnum.returning
+    self.model.Block = false
+    self.model.AngularVelocity = Vector3.Zero
 end
 
-function ChairClass:QteUpdate(dt)
-    if self.type == TypeEnum.Normal or not self.startUpdate then
+function ChairClass:Update(dt)
+    if not self.owner and self.state and self.state ~= StateEnum.free then
+        self:Stand()
         return
     end
-    if self.state == StateEnum.flying then
-        self:Flying(dt)
-    end
-    if self.state == StateEnum.qteing and self.qteDir then
-        self.model.Forward = Vector3.Slerp(self.model.Forward, self.qteDir, 0.8 * dt)
-    end
-    if self.state == StateEnum.returning then
-        if (self.model.Position - Config.ChairInfo[self.id].Position).Magnitude <= 3 then
-            self.model.IsStatic, self.model.LinearVelocity,self.model.Position, self.model.Rotation =
-                true,
-                Vector3.Zero,
-                Config.ChairInfo[self.id].Position,
-                Config.ChairInfo[self.id].Rotation
-            self.state = StateEnum.free
-        end
+    if self.state then
+        self[self.state .. "Update"](self, dt)
     end
 end
 
---********************* 普通摇摇椅 *************************
-function ChairClass:StartShake()
-    self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value
+--***** 各状态update函数 *****
+function ChairClass:FreeUpdate(dt)
 end
 
-function ChairClass:NormalShake()
-    -- 读Config数据
-    if self.model.LocalRotation.x >= Config.ChairGlobalConfig.NormalMaxAngle.Value then
-        self.normalShakeRatio = -1
+function ChairClass:FlyingUpdate(dt)
+    self.timer = self.timer + dt
+    if self.timer >= Config.ChairGlobalConfig.FlyingTime.Value then
+        self.timer = 0
+        self.model.LinearVelocity = Vector3.Zero
+        self.state = StateEnum.jeting
+        NetUtil.Fire_C("StartJetEvent", self.owner)
     end
-    if self.model.LocalRotation.x <= Config.ChairGlobalConfig.NormalMinAngle.Value then
-        self.normalShakeRatio = 1
+end
+
+local randomLv = {x = 0, y = 0, z = 0}
+function ChairClass:ChangeLine()
+    randomLv.x, randomLv.y, randomLv.z =
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.x *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.y *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseLinearVelocity.Value.z *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1
+    self.model.LinearVelocity = Vector3(randomLv.x, randomLv.y, randomLv.z)
+end
+
+local randomAv = {x = 0, y = 0, z = 0}
+function ChairClass:ChangAngular()
+    randomAv.x, randomAv.y, randomAv.z =
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.x *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.y *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1,
+        Config.ChairGlobalConfig.BaseAngularVelocity.Value.z *
+            math.random(
+                -1 * Config.ChairGlobalConfig.RatioRandomRange.Value,
+                Config.ChairGlobalConfig.RatioRandomRange.Value
+            ) *
+            0.1
+    self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
+end
+
+function ChairClass:JetingUpdate(dt)
+    self.timer = self.timer + dt
+    if self.timer >= Config.ChairGlobalConfig.JetingDuration.Value then
+        self.timer = 0
+        local randomFunc = math.random(1, 2) == 1 and self:ChangeLine() or self:ChangAngular()
+    --self.model.AngularVelocity = Vector3(randomAv.x, randomAv.y, randomAv.z)
     end
-    self.model.AngularVelocity = Config.ChairGlobalConfig.NormalAngularVelocity.Value * self.normalShakeRatio
 end
 
-function ChairClass:ResetRotation(dt)
-    self.model.LocalRotation = EulerDegree.Lerp(self.model.LocalRotation, EulerDegree(0,0,0), 1 * dt)
-end
-
-function ChairClass:ChairSpecialShake()
-    self.model.AngularVelocity = Vector3.Zero
-    self.normalShakeRatio = 0
-    --SpecialMovement[math.random(1, #SpecialMovement)]()
-end
-
-function ChairClass:ChairSpeedUp()
-    self.model.AngularVelocity = Config.ChairGlobalConfig.BoostAngularVelocity.Value * self.normalShakeRatio
-end
-
---普通摇摇椅update函数
-function ChairClass:NormalUpdate(dt)
-    if self.state == StateEnum.used then
-        self:NormalShake()
-    end
-    if self.state == StateEnum.free and self.model.Rotation ~= self.freshRot then
-        self:ResetRotation(dt)
+function ChairClass:ReturningUpdate(dt)
+    self.model.LinearVelocity =
+        (self.oriPos - self.model.Position).Normalized * Config.ChairGlobalConfig.ReturningVelocity.Value
+    if (self.model.Position - self.oriPos).Magnitude <= 1 then
+        self.model.Block = true
+        self.model.Position, self.model.Rotation = self.oriPos, self.oriRot
+        self.model.LinearVelocity = Vector3.Zero
+        self.model.AngularVelocity = Vector3.Zero
+        self:DataReset()
+        self.model.IsStatic = true
+        self.model.Chair.Effect:SetActive(false)
+        self.state = StateEnum.free
     end
 end
 
