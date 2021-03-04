@@ -12,7 +12,7 @@ local ChairGlobalConfigXls = {
     },
     SpiritIncrease = {
         Key = 'SpiritIncrease',
-        Value = 0.03
+        Value = 0.1
     },
     FlyingTime = {
         Key = 'FlyingTime',
@@ -28,7 +28,7 @@ local ChairGlobalConfigXls = {
     },
     BaseAngularVelocity = {
         Key = 'BaseAngularVelocity',
-        Value = {x=5,y=5,z=5}
+        Value = {x=0.5,y=5,z=5}
     },
     RatioRandomRange = {
         Key = 'RatioRandomRange',
