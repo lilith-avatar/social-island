@@ -79,6 +79,7 @@ end
 
 --- 初始化数据同步
 function InitDataSync()
+    assert(ServerDataSync, '[Server][DataSync] 找不到ServerDataSync,请联系张远程')
     ServerDataSync.Init()
 end
 
@@ -140,6 +141,9 @@ function StartUpdate()
     if FrameworkConfig.HeartbeatStart then
         invoke(ServerHeartbeat.Start)
     end
+
+    -- 开启数据同步
+    ServerDataSync.Start()
 
     local dt = 0 -- delta time 每帧时间
     local tt = 0 -- total time 游戏总时间
