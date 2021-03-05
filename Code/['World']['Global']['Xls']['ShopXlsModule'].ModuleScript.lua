@@ -56,6 +56,24 @@ local ShopXls = {
             Index = 3,
             ItemId = 2001,
             Price = 10000
+        },
+        [3025] = {
+            NpcId = 2,
+            Index = 4,
+            ItemId = 3025,
+            Price = 200
+        },
+        [3026] = {
+            NpcId = 2,
+            Index = 5,
+            ItemId = 3026,
+            Price = 1000
+        },
+        [3027] = {
+            NpcId = 2,
+            Index = 6,
+            ItemId = 3027,
+            Price = 8000
         }
     },
     [3] = {

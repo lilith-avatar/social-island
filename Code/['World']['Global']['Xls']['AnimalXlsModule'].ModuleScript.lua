@@ -22,7 +22,7 @@ local AnimalXls = {
         RotCtrlIntensity = 1000000,
         ItemPoolID = 1,
         DropCoin = 62,
-        CaughtRate = 0.008
+        CaughtRate = 0.1
     },
     [2] = {
         ID = 2,
@@ -40,7 +40,7 @@ local AnimalXls = {
         RotCtrlIntensity = 200000000,
         ItemPoolID = 4,
         DropCoin = 50,
-        CaughtRate = 0.01
+        CaughtRate = 0.2
     },
     [3] = {
         ID = 3,
@@ -58,7 +58,7 @@ local AnimalXls = {
         RotCtrlIntensity = 200000000,
         ItemPoolID = 3,
         DropCoin = 100,
-        CaughtRate = 0.005
+        CaughtRate = 0.05
     },
     [4] = {
         ID = 4,
@@ -76,7 +76,7 @@ local AnimalXls = {
         RotCtrlIntensity = 240000,
         ItemPoolID = 5,
         DropCoin = 125,
-        CaughtRate = 0.004
+        CaughtRate = 0.04
     },
     [5] = {
         ID = 5,
@@ -94,7 +94,7 @@ local AnimalXls = {
         RotCtrlIntensity = 80000,
         ItemPoolID = 2,
         DropCoin = 33,
-        CaughtRate = 0.015
+        CaughtRate = 0.2
     },
     [6] = {
         ID = 6,
@@ -112,7 +112,7 @@ local AnimalXls = {
         RotCtrlIntensity = 10000000,
         ItemPoolID = 6,
         DropCoin = 166,
-        CaughtRate = 0.003
+        CaughtRate = 0.0
     },
     [7] = {
         ID = 7,
@@ -130,7 +130,7 @@ local AnimalXls = {
         RotCtrlIntensity = 540000,
         ItemPoolID = 7,
         DropCoin = 83,
-        CaughtRate = 0.006
+        CaughtRate = 0.02
     },
     [8] = {
         ID = 8,
@@ -148,7 +148,7 @@ local AnimalXls = {
         RotCtrlIntensity = 40000,
         ItemPoolID = 8,
         DropCoin = 16,
-        CaughtRate = 0.03
+        CaughtRate = 0.3
     }
 }
 
