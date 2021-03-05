@@ -34,7 +34,6 @@ end
 function GuiGuitar:StringInit()
     for i = 1, 6 do
         local data = {
-            pitch = Config.GuitarPitch[i].Pitch[0],
             pitchFret = 0,
             backFret = {}
         }
@@ -68,7 +67,12 @@ end
 
 function GuiGuitar:PlayString(_string)
     -- TODO: 播放对应弦的音效
-    NetUtil.Fire_C('PlayEffectEvent',localPlayer.Position)
+    NetUtil.Fire_C(
+        "PlayEffectEvent",
+        localPlayer,
+        Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret],
+        localPlayer.Position
+    )
 end
 
 --- 按弦
@@ -95,9 +99,9 @@ end
 --- 松弦
 function GuiGuitar:RealseFret(_string, _fret)
     if this.stringPitch[_string].pitchFret == _fret then
+        --TODO： 停止音效
         this.stringPitch[_string].pitchFret = this.stringPitch[_string].backFret[1]
         table.remove(this.stringPitch[_string].backFret, 1)
-        --TODO： 停止音效
     else
         for k, v in pairs(this.stringPitch[_string].backFret) do
             if v == _fret then
