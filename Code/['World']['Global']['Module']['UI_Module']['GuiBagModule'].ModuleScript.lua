@@ -112,7 +112,7 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
         ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
     -- 显示数量
     this.slotList[_index].ItemNumBg.NumText.Text = Data.Player.bag[_itemId].count
-    this.slotList[_index].ItemNumBg:SetActive(Data.Player.bag[_itemId].count ~= 1 and true or false)
+    this.slotList[_index].ItemNumBg:SetActive(Data.Player.bag[_itemId].count ~= 1)
     this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
