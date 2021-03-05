@@ -68,8 +68,6 @@ end
 
 function GuiGuitar:PlayString(_string)
     --播放对应弦的音效
-    --! test
-    print(_string)
 end
 
 --- 按弦
