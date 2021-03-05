@@ -333,6 +333,15 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end
+        if _hitObject.Parent.TrojanUID then
+            if _isBegin and _hitObject.Parent.TrojanUID.Value == "" then
+                _hitObject.Parent.TrojanUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 20)
+            else
+                _hitObject.Parent.TrojanUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
     end
 end
 
