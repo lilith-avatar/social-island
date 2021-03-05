@@ -38,12 +38,12 @@ function InitEventsAndListeners()
 
     -- 玩家加入事件
     local onPlayerJoinEvent = world.S_Event.OnPlayerJoinEvent
-    assert(onPlayerJoinEvent, string.format('[DataSync][Server] %s不存在', onPlayerJoinEvent))
+    assert(onPlayerJoinEvent, '[DataSync][Server] 不存在 OnPlayerJoinEvent')
     onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
 
     -- 玩家离开事件
     local onPlayerLeaveEvent = world.S_Event.OnPlayerLeaveEvent
-    assert(onPlayerLeaveEvent, string.format('[DataSync][Server] %s不存在', onPlayerLeaveEvent))
+    assert(onPlayerLeaveEvent, '[DataSync][Server] 不存在 OnPlayerLeaveEvent')
     onPlayerLeaveEvent:Connect(OnPlayerLeaveEventHandler)
 end
 
@@ -93,10 +93,10 @@ function DataSyncC2SEventHandler(_player, _path, _value)
     local uid = _player.UserId
 
     if string.startswith(_path, MetaData.Enum.GLOBAL) then
-        --* 收到客户端改变数据的时候需要同步给其他玩家
+        --* Data.Global：收到客户端改变数据的时候需要同步给其他玩家
         MetaData.Set(rawDataGlobal, _path, _value, nil, true)
     elseif string.startswith(_path, MetaData.Enum.PLAYER .. uid) then
-        -- TODO: Player数据
+        --* Data.Players
         MetaData.Set(rawDataPlayers[uid], _path, _value, uid, false)
     else
         error(
