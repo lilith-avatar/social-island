@@ -51,7 +51,6 @@ function NewData(_data, _path, _uid)
         end,
         __newindex = function(_t, _k, _v)
             local mt = getmetatable(_t)
-
             local newpath = mt._path .. '.' .. _k
             PrintLog('__newindex,', '_k =', _k, ', _v =', _v, ', _path = ', mt._path, ', newpath = ', newpath)
             SetData(_data, newpath, _v, _uid, true)
@@ -105,11 +104,15 @@ function SetData(_data, _path, _value, _uid, _sync)
         SyncData(_path, _value, _uid)
     end
 
+    local newpath
+
     --* 检查现有数据
     if type(_data[_path]) == 'table' then
         -- 如果现有数据是个table,删除所有子数据
         for k, _ in pairs(_data[_path]) do
-            _data[_path][k] = nil
+            -- 同等于 _data[_path][k] = nil，但是不同步
+            newpath = _path .. '.' .. k
+            SetData(_data, newpath, nil, _uid, false)
         end
     end
 
@@ -118,7 +121,9 @@ function SetData(_data, _path, _value, _uid, _sync)
         -- 若新数据是table，建立一个mt
         _data[_path] = NewData(_data, _path, _uid)
         for k, v in pairs(_value) do
-            _data[_path][k] = v
+            -- 同等于 _data[_path][k] = v，但是不同步
+            newpath = _path .. '.' .. k
+            SetData(_data, newpath, v, _uid, false)
         end
     else
         -- 一般数据，直接赋值
