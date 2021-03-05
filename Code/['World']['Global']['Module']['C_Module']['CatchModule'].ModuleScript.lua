@@ -128,16 +128,8 @@ function Catch:IsCatch()
                 1
             )
         else
-            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物逃跑了，尝试用陷阱把它困住再捕捉吧", 2, false)
+            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "尝试用陷阱把动物困住再捕捉吧", 2, false)
             NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-            prey.AnimalCaughtEvent:Fire()
-            local effect = world:CreateInstance("CaughtFailed", "CaughtFailed", world, prey.Col.Position)
-            invoke(
-                function()
-                    effect:Destroy()
-                end,
-                1
-            )
         end
     else
         NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物离你太远了", 2, false)
