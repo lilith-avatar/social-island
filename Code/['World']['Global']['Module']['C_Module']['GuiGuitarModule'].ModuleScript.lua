@@ -15,6 +15,9 @@ function GuiGuitar:DataInit()
 end
 
 function GuiGuitar:NodeDef()
+    this.gui = localPlayer.Local.GuitarGui
+    this.fret = {}
+    this.string = {}
 end
 
 function GuiGuitar:EventBind()
