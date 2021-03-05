@@ -7,8 +7,10 @@ local MetaData = {}
 -- Localize global vars
 local FrameworkConfig = FrameworkConfig
 
--- Debug
+--* 开关：Debug模式，开启后会打印日志
 local debugMode = false
+--* 开关：数据校验
+local valid = true
 
 -- enum
 MetaData.Enum = {}
@@ -98,6 +100,9 @@ end
 -- @param _uid UserId
 -- @param _sync true:同步数据
 function SetData(_data, _path, _value, _uid, _sync)
+    --* 数据校验
+    Validators(SetData)(_data, _path, _value, _uid, _sync)
+
     --* 数据同步
     -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
     if _sync and MetaData.Sync then
@@ -180,6 +185,41 @@ PrintLog = FrameworkConfig.DebugMode and debugMode and function(...)
         print('[MetaData]', ...)
     end or function()
     end
+
+-- 数据校验
+function Validators(func)
+    if not valid then
+        return function()
+        end
+    end
+
+    if func == SetData then
+        return function(_data, _path, _value, _uid, _sync)
+            assert(
+                _data,
+                string.format(
+                    '[MetaData] data为空 data = %s, path = %s, uid = %s, sync = %s, value = %s',
+                    _data,
+                    _path,
+                    _uid,
+                    _sync,
+                    table.dump(_value)
+                )
+            )
+            assert(
+                not string.isnilorempty(_path),
+                string.format(
+                    '[MetaData] path为空 data = %s, path = %s, uid = %s, sync = %s, value = %s',
+                    _data,
+                    _path,
+                    _uid,
+                    _sync,
+                    table.dump(_value)
+                )
+            )
+        end
+    end
+end
 
 return MetaData
 
