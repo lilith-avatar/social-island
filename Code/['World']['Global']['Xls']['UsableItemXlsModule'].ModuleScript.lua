@@ -20,7 +20,7 @@ local UsableItemXls = {
         Hunt = false,
         Mole = true,
         UseAddBuffID = 0,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3002] = {
@@ -37,7 +37,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 25,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3003] = {
@@ -54,7 +54,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 26,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3004] = {
@@ -71,7 +71,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 6,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3005] = {
@@ -88,7 +88,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 27,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3006] = {
@@ -105,7 +105,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 28,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3007] = {
@@ -122,7 +122,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 13,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3008] = {
@@ -139,7 +139,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 35,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3009] = {
@@ -156,7 +156,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 34,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3010] = {
@@ -173,7 +173,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 33,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3011] = {
@@ -190,7 +190,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 32,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3012] = {
@@ -207,7 +207,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 36,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3013] = {
@@ -224,7 +224,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 23,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3014] = {
@@ -241,7 +241,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 42,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3015] = {
@@ -258,7 +258,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 41,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3016] = {
@@ -275,7 +275,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 43,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3017] = {
@@ -292,7 +292,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 47,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3018] = {
@@ -309,7 +309,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 45,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3019] = {
@@ -326,7 +326,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 46,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3020] = {
@@ -343,7 +343,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 44,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3021] = {
@@ -360,7 +360,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 40,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3022] = {
@@ -377,7 +377,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 39,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3023] = {
@@ -394,7 +394,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 38,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3024] = {
@@ -411,7 +411,7 @@ local UsableItemXls = {
         Hunt = nil,
         Mole = nil,
         UseAddBuffID = 48,
-        IsSelfActive = true,
+        IsSelfActive = false,
         IsConsume = false
     },
     [3025] = {
@@ -429,7 +429,7 @@ local UsableItemXls = {
         Mole = nil,
         UseAddBuffID = nil,
         IsSelfActive = false,
-        IsConsume = false
+        IsConsume = true
     },
     [3026] = {
         ItemID = 3026,
@@ -446,7 +446,7 @@ local UsableItemXls = {
         Mole = nil,
         UseAddBuffID = nil,
         IsSelfActive = false,
-        IsConsume = false
+        IsConsume = true
     },
     [3027] = {
         ItemID = 3027,
@@ -463,7 +463,7 @@ local UsableItemXls = {
         Mole = nil,
         UseAddBuffID = nil,
         IsSelfActive = false,
-        IsConsume = false
+        IsConsume = true
     }
 }
 

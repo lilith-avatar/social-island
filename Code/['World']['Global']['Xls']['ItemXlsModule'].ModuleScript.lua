@@ -582,8 +582,8 @@ local ItemXls = {
         Des = 'Item_Des_3025',
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
-        UseSoundID = 0,
-        UseAnimName = '',
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
         Useable = true
     },
     [3026] = {
@@ -592,8 +592,8 @@ local ItemXls = {
         Des = 'Item_Des_3026',
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
-        UseSoundID = 0,
-        UseAnimName = '',
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
         Useable = true
     },
     [3027] = {
@@ -602,8 +602,8 @@ local ItemXls = {
         Des = 'Item_Des_3027',
         Icon = 'UsableItem_Icon',
         UseCD = 0.5,
-        UseSoundID = 0,
-        UseAnimName = '',
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
         Useable = true
     },
     [2001] = {
