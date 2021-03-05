@@ -8,48 +8,48 @@
 local AnimalAreaXls = {
     [1] = {
         ID = 1,
-        Pos = Vector3(91.231300, -5.830500, 8.811900),
-        Range = 25.0,
+        Pos = Vector3(-81.5127,  -10.5675,  6.452),
+        Range = 20.0,
         AmountMax = 5,
-        InitAmount = 20,
-        SpawnPoint = {{Vector3(97.194099,-13.039500,12.987900),EulerDegree(0,0,0)},{Vector3(107.983803,-13.039500,12.987900),EulerDegree(0,0,0)},{Vector3(87.392601,-13.039500,28.084202),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 4, 5, 6, 7, 8}
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-69.2967, -9.6418, -0.3599),EulerDegree(0,0,0)},{Vector3(-86.3368, -9.3078, 5.2147),EulerDegree(0,0,0)},{Vector3(-75.5884, -11.7212, 19.907),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [2] = {
         ID = 2,
-        Pos = Vector3(-141.916702, 1.146000, 26.263000),
-        Range = 13.0,
-        AmountMax = 3,
-        InitAmount = 20,
-        SpawnPoint = {{Vector3(-135.006897,-2.405700,26.263000),EulerDegree(0,0,0)},{Vector3(-139.241608,-1.845700,31.291901),EulerDegree(0,0,0)},{Vector3(-152.406509,-0.975700,25.132101),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 4, 5, 6, 7, 8}
+        Pos = Vector3(-150.712,  0.0288,  31.3397),
+        Range = 14.0,
+        AmountMax = 4,
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-139.337, -0.5933, 27.4511),EulerDegree(0,0,0)},{Vector3(-155.536, 0.0181, 30.1025),EulerDegree(0,0,0)},{Vector3(-145.672, -0.5402, 41.8904),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [3] = {
         ID = 3,
-        Pos = Vector3(-68.851181, 15.354900, 85.938202),
-        Range = 25.0,
+        Pos = Vector3(-118.971,  -11.1233,  57.0341),
+        Range = 15.0,
         AmountMax = 4,
-        InitAmount = 20,
-        SpawnPoint = {{Vector3(-57.9146, 2.7465, 59.2698),EulerDegree(0,0,0)},{Vector3(-58.601181,4.993800,69.924698),EulerDegree(0,0,0)},{Vector3(-53.503479,11.700900,86.452003),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 4, 5, 6, 7, 8}
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-109.427, -12.438, 48.974),EulerDegree(0,0,0)},{Vector3(-123.796, -11.1341, 55.7969),EulerDegree(0,0,0)},{Vector3(-113.932, -9.9013, 67.5848),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [4] = {
         ID = 4,
-        Pos = Vector3(-134.171204, 7.798200, 97.470001),
-        Range = 30.0,
+        Pos = Vector3(-135.933,  -4.2691,  103.874),
+        Range = 20.0,
         AmountMax = 5,
-        InitAmount = 20,
-        SpawnPoint = {{Vector3(-130.210999,-4.350300,97.470001),EulerDegree(0,0,0)},{Vector3(-125.626701,-5.050300,85.143204),EulerDegree(0,0,0)},{Vector3(-139.915710,-2.350300,114.949203),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 4, 5, 6, 7, 8}
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-126.389, -4.7444, 95.8139),EulerDegree(0,0,0)},{Vector3(-147.123, -3.2229, 105.165),EulerDegree(0,0,0)},{Vector3(-130.893, -3.0471, 114.425),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [5] = {
         ID = 5,
-        Pos = Vector3(-94.942108, 1.146000, 19.880098),
-        Range = 25.0,
+        Pos = Vector3(-63.0859,  11.7845,  91.3673),
+        Range = 15.0,
         AmountMax = 4,
-        InitAmount = 20,
-        SpawnPoint = {{Vector3(-83.424911,-11.558600,23.395599),EulerDegree(0,0,0)},{Vector3(-88, -12.3868, 38.5798),EulerDegree(0,0,0)},{Vector3(-100, -9.8118,8.4),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 4, 5, 6, 7, 8}
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-52.3308, 11.8838, 82.138),EulerDegree(0,0,0)},{Vector3(-72.649, 12.8307, 93.966),EulerDegree(0,0,0)},{Vector3(-58.9191, 13.0065, 96.0717),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     }
 }
 

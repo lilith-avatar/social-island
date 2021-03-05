@@ -9,7 +9,7 @@ local TaskItemXls = {
     [5001] = {
         ItemID = 5001,
         Npc = {14},
-        RewardItem = 0,
+        RewardItem = 3025,
         RewardGold = 50,
         NpcText = 'TaskItem_NpcText_5001'
     },
