@@ -22,13 +22,24 @@ end
 --使用
 function UsableItem:Use()
     ItemBase.Use(self)
-    NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseRemoveBuffID)
+    if self.config.UseAddBuffID then
+        NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
+    end
+    if self.config.UseRemoveBuffID then
+        NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseRemoveBuffID)
+    end
     for k, v in pairs(self:GetPlayersByRange()) do
-        NetUtil.Fire_C("GetBuffEvent", v, self.config.HitAddBuffID, self.config.HitAddBuffDur)
-        NetUtil.Fire_C("RemoveBuffEvent", v, self.config.HitRemoveBuffID)
+        if self.config.HitAddBuffID then
+            NetUtil.Fire_C("GetBuffEvent", v, self.config.HitAddBuffID, self.config.HitAddBuffDur)
+        end
+        if self.config.HitRemoveBuffID then
+            NetUtil.Fire_C("RemoveBuffEvent", v, self.config.HitRemoveBuffID)
+        end
         self:PlayHitEffect(v.Position)
         self:PlayHitSound(v.Position)
+    end
+    if self.config.IsConsume then
+        NetUtil.Fire_C("RemoveItemEvent", localPlayer, self.id)
     end
 end
 

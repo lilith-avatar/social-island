@@ -26,7 +26,8 @@ local animalActState = {
     MOVE = 2,
     SCARED = 3,
     BACK = 4,
-    DEADED = 5
+    DEADED = 5,
+    TRAPPED = 6
 }
 
 --- 初始化
@@ -84,8 +85,6 @@ function Hunt:InitAnimalData()
         local animalAmount = 0
         local spawnPoint = {}
         for _, animalID in pairs(Config.AnimalArea[areaID].AnimalIDList) do
-            print(animalID)
-            print(Config.Animal[animalID].Weight / weightSum, area.initAmount)
             for i = 1, math.ceil(Config.Animal[animalID].Weight / weightSum * area.initAmount) do
                 spawnPoint = area.SpawnPoint[math.random(1, #area.SpawnPoint)]
                 this:InstanceAnimal(
@@ -140,7 +139,8 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
         deadAnimationName = Config.Animal[_animalID].DeadAnimationName,
         closePlayer = nil,
         LVCtrlIntensity = Config.Animal[_animalID].LVCtrlIntensity,
-        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity
+        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity,
+        caughtRate = Config.Animal[_animalID].CaughtRate
     }
     tempData.obj.AnimalID.Value = _animalID
 
@@ -150,6 +150,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
                 if tempData.state ~= animalActState.DEADED then
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
                     this:AreaSpawnCtrl()
+                    tempData.obj.IsCaught.Value = false
                 end
             end
         )
@@ -158,10 +159,24 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
     if tempData.obj.AnimalCaughtEvent then
         tempData.obj.AnimalCaughtEvent:Connect(
             function()
+                tempData.obj:SetActive(false)
+                this:ChangeAnimalState(tempData, animalActState.DEADED)
+                this:AreaSpawnCtrl()
+                tempData.obj.trap:Destroy()
+                tempData.obj.IsCaught.Value = false
+            end
+        )
+    end
+
+    if tempData.obj.AnimalTrappedEvent then
+        tempData.obj.AnimalTrappedEvent:Connect(
+            function(_rate)
                 if tempData.state ~= animalActState.DEADED then
-                    tempData.obj:SetActive(false)
-                    this:ChangeAnimalState(tempData, animalActState.DEADED)
-                    this:AreaSpawnCtrl()
+                    local num = math.random(1000)
+                    if num < 1000 * (tempData.caughtRate + _rate) then
+                        this:ChangeAnimalState(tempData, animalActState.TRAPPED)
+                        tempData.obj.IsCaught.Value = true
+                    end
                 end
             end
         )
@@ -318,6 +333,8 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         _animalData.obj.RotationController.Intensity = 0
         _animalData.obj.LinearVelocityController.Intensity = 0
         _animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.BloodEffect:SetActive(true)
+        _animalData.obj.IsStatic = false
         if #_animalData.deadAnimationName > 0 then
             _animalData.obj.AnimatedMesh:PlayAnimation(
                 _animalData.deadAnimationName[math.random(#_animalData.deadAnimationName)],
@@ -325,22 +342,35 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
                 1,
                 0.1,
                 true,
-                true,
+                false,
                 1
             )
         end
         invoke(
             function()
+                _animalData.obj.BloodEffect:SetActive(false)
+                wait(2)
                 _animalData.obj:SetActive(false)
             end,
             1
         )
+    elseif _animalData.state == animalActState.TRAPPED then
+        _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.IsStatic = true
+        _animalData.obj.BloodEffect:SetActive(true)
+        _animalData.obj.AnimatedMesh:PlayAnimation(_animalData.idleAnimationName[1], 2, 1, 0.1, true, true, 1)
     end
 end
 
 --- 动物惊吓
 function Hunt:AnimalScared(_animalData)
-    if _animalData.state ~= animalActState.DEADED and _animalData.state ~= animalActState.BACK then
+    if
+        _animalData.state ~= animalActState.DEADED and _animalData.state ~= animalActState.BACK and
+            _animalData.state ~= animalActState.TRAPPED
+     then
         for k, v in pairs(world:FindPlayers()) do
             if (v.Position - _animalData.obj.Position).Magnitude < 6 then
                 local dis = (v.Position - _animalData.obj.Position).Magnitude
@@ -382,7 +412,7 @@ function Hunt:AnimalMove(dt)
         for k2, v2 in pairs(v1.animalData) do
             if v2.stateTime > 0 then
                 v2.stateTime = v2.stateTime - dt
-            elseif v2.state ~= animalActState.DEADED then
+            elseif v2.state ~= animalActState.DEADED and v2.state ~= animalActState.TRAPPED then
                 this:ChangeAnimalState(v2, v2.state % 2 + 1)
             end
             this:AnimalScared(v2)
