@@ -67,7 +67,8 @@ function GuiGuitar:EventBind()
 end
 
 function GuiGuitar:PlayString(_string)
-    --播放对应弦的音效
+    -- TODO: 播放对应弦的音效
+    NetUtil.Fire_C('PlayEffectEvent',localPlayer.Position)
 end
 
 --- 按弦
@@ -96,7 +97,7 @@ function GuiGuitar:RealseFret(_string, _fret)
     if this.stringPitch[_string].pitchFret == _fret then
         this.stringPitch[_string].pitchFret = this.stringPitch[_string].backFret[1]
         table.remove(this.stringPitch[_string].backFret, 1)
-        --print(table.dump(this.stringPitch[_string].backFret))
+        --TODO： 停止音效
     else
         for k, v in pairs(this.stringPitch[_string].backFret) do
             if v == _fret then
