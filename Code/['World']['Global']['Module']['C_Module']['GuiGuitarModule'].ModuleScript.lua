@@ -31,9 +31,11 @@ function GuiGuitar:NodeDef()
     this.fret = this.gui.FretPanel:GetChildren()
     this.string = this.gui.StringPanel:GetChildren()
     this.practiceBtn = this.gui.PracticeBtn
+    this.closeBtn = this.gui.CloseBtn
 end
 
 function GuiGuitar:StringInit()
+    this.stringPitch = {}
     for i = 1, 6 do
         local data = {
             pitchFret = 0,
@@ -70,6 +72,10 @@ function GuiGuitar:EventBind()
             this:ChangeMode()
         end
     )
+    this.closeBtn.OnClick:Connect(function()
+        this:StringInit()
+        this:HideGui()
+    end)
 end
 
 function GuiGuitar:PlayString(_string)
@@ -115,6 +121,11 @@ function GuiGuitar:RealseFret(_string, _fret)
             end
         end
     end
+end
+
+function GuiGuitar:HideGui()
+    this.gui:SetActive(false)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent',localPlayer)
 end
 
 return GuiGuitar

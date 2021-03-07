@@ -233,6 +233,9 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
+    if _id == 21 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 20)
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -256,6 +259,10 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                 v.Forward = this.TrojanList[v.Name].originForward
                 this.TrojanList[v.Name] = nil
             end
+        end
+    end
+    if _id == 21 then
+        for k, v in pairs(trojanObj) do
         end
     end
 end
