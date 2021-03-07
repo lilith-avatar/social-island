@@ -599,6 +599,276 @@ local SoundXls = {
         Volume = 60.0,
         Path = 'Audio/',
         Info = '迷宫内BGM'
+    },
+    [67] = {
+        ID = 67,
+        Type = 'SoundEffect',
+        Name = 'E3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/E3',
+        Info = '吉他音'
+    },
+    [68] = {
+        ID = 68,
+        Type = 'SoundEffect',
+        Name = 'F3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/F3',
+        Info = ''
+    },
+    [69] = {
+        ID = 69,
+        Type = 'SoundEffect',
+        Name = 'F#3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/F#3',
+        Info = ''
+    },
+    [70] = {
+        ID = 70,
+        Type = 'SoundEffect',
+        Name = 'G3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/G3',
+        Info = ''
+    },
+    [71] = {
+        ID = 71,
+        Type = 'SoundEffect',
+        Name = 'G#3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/G#3',
+        Info = ''
+    },
+    [72] = {
+        ID = 72,
+        Type = 'SoundEffect',
+        Name = 'A3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/A3',
+        Info = ''
+    },
+    [73] = {
+        ID = 73,
+        Type = 'SoundEffect',
+        Name = 'A#3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/A#3',
+        Info = ''
+    },
+    [74] = {
+        ID = 74,
+        Type = 'SoundEffect',
+        Name = 'B3',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/B3',
+        Info = ''
+    },
+    [75] = {
+        ID = 75,
+        Type = 'SoundEffect',
+        Name = 'C4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/C4',
+        Info = ''
+    },
+    [76] = {
+        ID = 76,
+        Type = 'SoundEffect',
+        Name = 'C#4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/C#4',
+        Info = ''
+    },
+    [77] = {
+        ID = 77,
+        Type = 'SoundEffect',
+        Name = 'D4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/D4',
+        Info = ''
+    },
+    [78] = {
+        ID = 78,
+        Type = 'SoundEffect',
+        Name = 'D#4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/D#4',
+        Info = ''
+    },
+    [79] = {
+        ID = 79,
+        Type = 'SoundEffect',
+        Name = 'E4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/E4',
+        Info = ''
+    },
+    [80] = {
+        ID = 80,
+        Type = 'SoundEffect',
+        Name = 'F4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/F4',
+        Info = ''
+    },
+    [81] = {
+        ID = 81,
+        Type = 'SoundEffect',
+        Name = 'F#4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/F#4',
+        Info = ''
+    },
+    [82] = {
+        ID = 82,
+        Type = 'SoundEffect',
+        Name = 'G4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/G4',
+        Info = ''
+    },
+    [83] = {
+        ID = 83,
+        Type = 'SoundEffect',
+        Name = 'G#4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/G#4',
+        Info = ''
+    },
+    [84] = {
+        ID = 84,
+        Type = 'SoundEffect',
+        Name = 'A4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/A4',
+        Info = ''
+    },
+    [85] = {
+        ID = 85,
+        Type = 'SoundEffect',
+        Name = 'A#4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/A#4',
+        Info = ''
+    },
+    [86] = {
+        ID = 86,
+        Type = 'SoundEffect',
+        Name = 'B4',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/B4',
+        Info = ''
+    },
+    [87] = {
+        ID = 87,
+        Type = 'SoundEffect',
+        Name = 'C5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/C5',
+        Info = ''
+    },
+    [88] = {
+        ID = 88,
+        Type = 'SoundEffect',
+        Name = 'C#5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/C#5',
+        Info = ''
+    },
+    [89] = {
+        ID = 89,
+        Type = 'SoundEffect',
+        Name = 'D5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/D5',
+        Info = ''
+    },
+    [90] = {
+        ID = 90,
+        Type = 'SoundEffect',
+        Name = 'D#5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/D#5',
+        Info = ''
+    },
+    [91] = {
+        ID = 91,
+        Type = 'SoundEffect',
+        Name = 'E5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/E5',
+        Info = ''
+    },
+    [92] = {
+        ID = 92,
+        Type = 'SoundEffect',
+        Name = 'F5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/F5',
+        Info = ''
+    },
+    [93] = {
+        ID = 93,
+        Type = 'SoundEffect',
+        Name = 'F#5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/F#5',
+        Info = ''
+    },
+    [94] = {
+        ID = 94,
+        Type = 'SoundEffect',
+        Name = 'G5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/G5',
+        Info = ''
+    },
+    [95] = {
+        ID = 95,
+        Type = 'SoundEffect',
+        Name = 'G#5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/G#5',
+        Info = ''
+    },
+    [96] = {
+        ID = 96,
+        Type = 'SoundEffect',
+        Name = 'A5',
+        IsLoop = false,
+        Volume = 60.0,
+        Path = 'Audio/A5',
+        Info = ''
     }
 }
 
