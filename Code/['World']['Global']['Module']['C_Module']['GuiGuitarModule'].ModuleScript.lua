@@ -23,12 +23,14 @@ end
 function GuiGuitar:DataInit()
     this.stringAudio = {}
     this.stringPitch = {}
+    this.practiceMode = false
 end
 
 function GuiGuitar:NodeDef()
     this.gui = localPlayer.Local.GuitarGui
     this.fret = this.gui.FretPanel:GetChildren()
     this.string = this.gui.StringPanel:GetChildren()
+    this.practiceBtn = this.gui.PracticeBtn
 end
 
 function GuiGuitar:StringInit()
@@ -63,16 +65,27 @@ function GuiGuitar:EventBind()
             )
         end
     end
+    this.practiceBtn.OnClick:Connect(
+        function()
+            this:ChangeMode()
+        end
+    )
 end
 
 function GuiGuitar:PlayString(_string)
+    local playPos = not this.practiceMode and localPlayer.Position or nil
     -- TODO: 播放对应弦的音效
     NetUtil.Fire_C(
         "PlayEffectEvent",
         localPlayer,
         Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret],
-        localPlayer.Position
+        playPos
     )
+end
+
+function GuiGuitar:ChangeMode()
+    this.practiceMode = not this.practiceMode
+    this.practiceBtn.Color = this.practiceMode and Color(85, 85, 127) or Color(255, 255, 255)
 end
 
 --- 按弦
@@ -87,13 +100,6 @@ function GuiGuitar:PressFret(_string, _fret)
         table.insert(this.stringPitch[_string].backFret, _fret)
     end
     SortBackFret(this.stringPitch[_string].backFret)
-    --! test
-    print(
-        "正按着的弦：" ..
-            _string ..
-                "，正按着的品：" ..
-                    this.stringPitch[_string].pitchFret .. " " .. table.dump(this.stringPitch[_string].backFret)
-    )
 end
 
 --- 松弦
@@ -109,13 +115,6 @@ function GuiGuitar:RealseFret(_string, _fret)
             end
         end
     end
-    --! test
-    print(
-        "正按着的弦：" ..
-            _string ..
-                "，正按着的品：" ..
-                    this.stringPitch[_string].pitchFret .. " " .. table.dump(this.stringPitch[_string].backFret)
-    )
 end
 
 return GuiGuitar
