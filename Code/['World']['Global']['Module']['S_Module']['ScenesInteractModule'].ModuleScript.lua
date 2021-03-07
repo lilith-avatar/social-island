@@ -134,7 +134,6 @@ function ScenesInteract:GrassInter(_object)
 
     swayTweenerl:Play()
 end
-
 function ScenesInteract:GrassSwayTween(_obj, _property, _duration)
     return Tween:TweenProperty(
         _obj,
