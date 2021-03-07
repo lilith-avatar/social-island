@@ -118,7 +118,7 @@ local PlayerActStateXls = {
         ID = 19,
         Name = 'BowAttack',
         NextName = 'BowIdle',
-        Dur = 0.5
+        Dur = 0.35
     },
     [20] = {
         ID = 20,

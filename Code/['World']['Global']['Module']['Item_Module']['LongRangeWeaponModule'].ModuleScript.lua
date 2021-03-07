@@ -15,14 +15,23 @@ function LongRangeWeapon:Attack()
     self:PlayAttackAnim()
 end
 
+--装备
+function LongRangeWeapon:Equip()
+    WeaponBase.Equip(self)
+    GuiBowAim.gui:SetActive(true)
+    GuiBowAim.touchGui:SetActive(true)
+end
+
+--取下装备
+function LongRangeWeapon:Unequip()
+    WeaponBase.Unequip(self)
+    GuiBowAim.gui:SetActive(false)
+    GuiBowAim.touchGui:SetActive(false)
+end
+
 --发射弓箭
-function LongRangeWeapon:ShootArrow()
-    localPlayer.Local.ControlGui.Joystick:SetActive(true)
-    local dir = localPlayer.ArrowAim.Position - localPlayer.Position
-    local a = PlayerCam:TPSGetRayDir().y > -0.2 and 1 or 0.3
-    a = PlayerCam:TPSGetRayDir().y > 0.2 and 1.5 or 1
-    dir.y = (PlayerCam:TPSGetRayDir().y * 20 + GuiBowAim.chargeForce * 5 * a)
-    dir = dir.Normalized
+function LongRangeWeapon:ShootArrow(_force)
+    local endPos = PlayerCam:TPSGetRayDir()
     local arrow =
         world:CreateInstance(
         self.config.ArrowModelName,
@@ -31,28 +40,31 @@ function LongRangeWeapon:ShootArrow()
         localPlayer.Avatar.Bone_R_Hand.Position,
         localPlayer.Rotation
     )
-    arrow.Forward = dir
+    --world:CreateInstance("TestSphere", "TestSphere", world, endPos)
+    arrow.Forward = endPos - arrow.Position
     arrow.LinearVelocity = arrow.Forward * 40
     arrow.OnCollisionBegin:Connect(
         function(_hitObj)
-            if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
-                NetUtil.Fire_S(
-                    "SPlayerHitEvent",
-                    localPlayer,
-                    _hitObj,
-                    ItemMgr.itemInstance[ItemMgr.curWeaponID]:GetAttackData()
-                )
-                arrow.OnCollisionBegin:Clear()
-                arrow:Destroy()
-            else
-                if _hitObj.AnimalID and self.config.Hunt then
-                    NetUtil.Fire_C(
-                        "GetItemFromPoolEvent",
+            if _hitObj then
+                if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
+                    NetUtil.Fire_S(
+                        "SPlayerHitEvent",
                         localPlayer,
-                        Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
-                        math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
+                        _hitObj,
+                        ItemMgr.itemInstance[ItemMgr.curWeaponID]:GetAttackData()
                     )
-                    _hitObj.AnimalDeadEvent:Fire()
+                    arrow.OnCollisionBegin:Clear()
+                    arrow:Destroy()
+                else
+                    if _hitObj.AnimalID and self.config.Hunt then
+                        NetUtil.Fire_C(
+                            "GetItemFromPoolEvent",
+                            localPlayer,
+                            Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
+                            math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
+                        )
+                        _hitObj.AnimalDeadEvent:Fire()
+                    end
                 end
             end
         end
@@ -60,11 +72,13 @@ function LongRangeWeapon:ShootArrow()
     invoke(
         function()
             if arrow then
+                wait(_force)
+                arrow.GravityEnable = true
+                wait(3 - _force)
                 arrow.OnCollisionBegin:Clear()
                 arrow:Destroy()
             end
-        end,
-        3
+        end
     )
     return arrow
 end

@@ -77,7 +77,18 @@ end
 
 --- TPS相机射线检测目标
 function PlayerCam:TPSGetRayDir()
-        return this.tpsCam.Forward
+    local hitResult = Physics:RaycastAll(this.tpsCam.Position, this.tpsCam.Position + this.tpsCam.Forward * 100, true)
+    for i, v in ipairs(hitResult:GetHitPosAll()) do --获取所有碰到的物体
+        if
+            (v - localPlayer.Position).Magnitude > 4 and
+                Vector3.Angle(localPlayer.Forward, (v - localPlayer.Position)) < 90 and
+                hitResult:GetHitObjAll()[i].Name ~= "water"
+         then
+            --print(hitResult:GetHitObjAll()[i])
+            return v
+        end
+    end
+    return this.tpsCam.Position + this.tpsCam.Forward * 100
 end
 
 -- 修改玩家当前相机
