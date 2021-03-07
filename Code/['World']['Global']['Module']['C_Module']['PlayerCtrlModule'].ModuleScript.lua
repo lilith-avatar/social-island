@@ -342,12 +342,12 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end
-        if _hitObject.Parent.GuitarUID then
-            if _isBegin and _hitObject.Parent.GuitarUID.Value == "" then
-                _hitObject.Parent.GuitarUID.Value = localPlayer.UserId
+        if _hitObject.GuitarUID then
+            if _isBegin and _hitObject.GuitarUID.Value == "" then
+                _hitObject.GuitarUID.Value = localPlayer.UserId
                 NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 21)
             else
-                _hitObject.Parent.GuitarUID.Value = ""
+                _hitObject.GuitarUID.Value = ""
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end

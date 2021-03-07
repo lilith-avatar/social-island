@@ -26,6 +26,8 @@ local grassOBJ = {}
 --木马
 local trojanObj = {}
 
+local guitarOBJ = {}
+
 --- 初始化
 function ScenesInteract:Init()
     print("[ScenesInteract] Init()")
@@ -68,7 +70,9 @@ function ScenesInteract:NodeRef()
     end
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
-        print(v.Name, v.Up)
+    end
+    for k,v in pairs(world.Guitar:GetChildren()) do
+        guitarOBJ[v.Name] = v
     end
 end
 
@@ -233,7 +237,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         end
     end
     if _id == 21 then
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 20)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 21)
     end
 end
 
@@ -261,6 +265,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         end
     end
     if _id == 21 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
         for k, v in pairs(trojanObj) do
         end
     end
