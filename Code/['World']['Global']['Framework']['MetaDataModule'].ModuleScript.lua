@@ -75,23 +75,45 @@ end
 -- @param _path 当前节点索引路径
 -- @return rawData 纯数据table，不包含元表
 function GetData(_data, _path)
-    local rawData, key, i = {}
-    for k, v in pairs(_data) do
-        i = string.find(k, _path .. '.')
-        -- 筛选出当前直接层级的path，剪裁后作为rawData的key
-        if i == 1 and #_path < #k then
-            key = string.sub(k, #_path + 2, #k)
-            if not string.find(key, '%.') then
-                key = tonumber(key) or key
-                if type(v) == 'table' then
-                    rawData[key] = GetData(_data, k)
-                else
-                    rawData[key] = v
+    local rawData = {}
+    GetDataAux(_data, _path, rawData)
+    return rawData
+end
+
+--- GetData的辅助函数
+-- @param _data 真实数据的存储位置
+-- @param _path 当前节点索引路径
+-- @param _rawData 纯数据table，不包含元表
+function GetDataAux(_data, _path, _rawData)
+    local key, i
+    local q, elem = Queue:New(), {}
+    elem.path = _path
+    elem.rd = _rawData
+    q:Enqueue(elem)
+    while not q:IsEmpty() do
+        elem = q:Dequeue()
+        for k, v in pairs(_data) do
+            i = string.find(k, elem.path .. '.')
+            -- 筛选出当前直接层级的path，剪裁后作为rawData的key
+            if i == 1 and #elem.path < #k then
+                key = string.sub(k, #elem.path + 2, #k)
+                if not string.find(key, '%.') then
+                    key = tonumber(key) or key
+                    if type(v) == 'table' then
+                        elem.rd[key] = {}
+                        q:Enqueue(
+                            {
+                                path = k,
+                                rd = elem.rd[key]
+                            }
+                        )
+                    else
+                        elem.rd[key] = v
+                    end
                 end
             end
         end
     end
-    return rawData
 end
 
 --- 设置原始数据
