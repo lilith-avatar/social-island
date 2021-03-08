@@ -229,7 +229,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,14,_player.Position)
+                NetUtil.Fire_C('PlayEffectEvent',_player,15,_player.Position)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
