@@ -187,6 +187,8 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             if v.SeatInteractUID.Value == _player.UserId then
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
+                -- 音效
+                NetUtil.Fire_C('PlayEffectEvent',_player,14,_player.Position)
             end
         end
     end
@@ -226,6 +228,8 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v.Seat:Sit(_player)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
+                -- 音效
+                NetUtil.Fire_C('PlayEffectEvent',_player,14,_player.Position)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
