@@ -265,7 +265,7 @@ end
 
 --- 更新金币显示
 function GuiControl:UpdateCoinNum(_num)
-    this:InsertInfoEventHandler(_num >= 0 and "获得" .. _num .. "金币" or "失去" .. _num .. "金币", 1, true)
+    NetUtil.Fire_C("ShowGetCoinNumEvent", localPlayer, _num)
     gui.Menu.CoinNum.Text = "金币：" .. Data.Player.coin
 end
 

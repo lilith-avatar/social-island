@@ -61,6 +61,12 @@ function LongRangeWeapon:ShootArrow(_force)
                             "GetItemFromPoolEvent",
                             localPlayer,
                             Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
+                            0
+                        )
+                        NetUtil.Fire_S(
+                            "SpawnCoinEvent",
+                            "P",
+                            _hitObj.Position + Vector3(0, 1, 0),
                             math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
                         )
                         _hitObj.AnimalDeadEvent:Fire()
