@@ -10,7 +10,6 @@ local StateEnum = {
     flying = "Flying", --喷射过程
     jeting = "Jeting", --游戏过程中
     returning = "Returning", --返程中
-    trojan = "Trojan"
 }
 
 local ErrorStageEnum = {
@@ -186,10 +185,6 @@ function ChairClass:ReturningUpdate(dt)
         self.model.Chair.Effect:SetActive(false)
         self.state = StateEnum.free
     end
-end
-
---***** 木马Update函数 *****
-function ChairClass:TrojanUpdate(dt)
 end
 
 return ChairClass
