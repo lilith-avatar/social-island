@@ -13,6 +13,12 @@ local StateEnum = {
     trojan = "Trojan"
 }
 
+local ErrorStageEnum = {
+    light = 'Light',
+    medium = 'Medium',
+    serious = 'Serious'
+}
+
 ---椅子的构造函数
 ---@param _type string
 ---@param _pos Vector3
@@ -38,6 +44,7 @@ function ChairClass:DataReset()
     self.owner = nil --所属者
     -- * 计时
     self.timer = 0
+    self.errorStage = ErrorStageEnum.light
 end
 
 function ChairClass:CollisionBind()
@@ -139,7 +146,31 @@ function ChairClass:ChangAngular()
 end
 
 function ChairClass:JetingUpdate(dt)
-    local randomFunc = math.random(1, 2) == 1 and self:ChangeLine() or self:ChangAngular()
+    self.errorStage = self:ErrorStageJudge()
+    self[self.errorStage..'Error'](self,dt)
+    self:ChangeLine()
+end
+
+-- ***** 晃动的表现及判断 *****
+function ChairClass:ErrorStageJudge()
+    if math.abs(world.MiniGames.Game_10_Chair.Balance.Value) <= 0.3 then
+        return ErrorStageEnum.light
+    elseif math.abs(world.MiniGames.Game_10_Chair.Balance.Value) <= 0.6 then
+        return ErrorStageEnum.medium
+    else
+        return ErrorStageEnum.serious
+    end
+    
+end
+
+function ChairClass:LightError(dt)
+end
+
+function ChairClass:MediumError(dt)
+end
+
+function ChairClass:SeriousError(dt)
+    self:ChangAngular()
 end
 
 function ChairClass:ReturningUpdate(dt)
@@ -159,7 +190,6 @@ end
 
 --***** 木马Update函数 *****
 function ChairClass:TrojanUpdate(dt)
-    
 end
 
 return ChairClass
