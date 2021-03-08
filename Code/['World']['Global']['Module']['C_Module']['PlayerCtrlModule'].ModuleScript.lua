@@ -325,7 +325,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 _hitObject.GrassInteractUID.Value = ""
             end
         end
-        if _hitObject.Parent.AnimalID then
+        if _hitObject.Parent.AnimalCaughtEvent then
             if _isBegin then
                 Catch:TouchPrey(_hitObject.Parent, true)
                 NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 19)
@@ -339,6 +339,15 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 20)
             else
                 _hitObject.Parent.TrojanUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.GuitarUID then
+            if _isBegin and _hitObject.GuitarUID.Value == "" then
+                _hitObject.GuitarUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 21)
+            else
+                _hitObject.GuitarUID.Value = ""
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end

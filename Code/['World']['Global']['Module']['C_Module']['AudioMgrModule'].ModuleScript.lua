@@ -218,7 +218,7 @@ function AudioMgr:PlayEffectEventHandler(_id, _pos)
             end
         end
         if PlayTable == nil then
-            PlayTable = this:InitEffect3DSource(table.nums(EffectAudioSources) + 1)
+            PlayTable = this:InitEffectSource(table.nums(EffectAudioSources) + 1)
         end
         PlayTable.SourceRight.Loop = EffectClips[_id].isLoop
         PlayTable.SourceRight.Volume = EffectClips[_id].volume

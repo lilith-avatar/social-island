@@ -278,6 +278,19 @@ local InteractXls = {
         LeaveBtnActive = true,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [21] = {
+        ID = 21,
+        Name = 'Guitar',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = 'GuitarGui'
     }
 }
 

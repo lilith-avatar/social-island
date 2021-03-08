@@ -26,6 +26,8 @@ local grassOBJ = {}
 --木马
 local trojanObj = {}
 
+local guitarOBJ = {}
+
 --- 初始化
 function ScenesInteract:Init()
     print("[ScenesInteract] Init()")
@@ -42,6 +44,7 @@ function ScenesInteract:NodeRef()
             itemID = v.ItemID,
             isGet = v.IsGet,
             useCount = v.UseCount,
+            useCountMax = v.UseCount,
             resetTime = v.ResetTime,
             resetCD = 0
         }
@@ -67,7 +70,9 @@ function ScenesInteract:NodeRef()
     end
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
-        print(v.Name,v.Up)
+    end
+    for k,v in pairs(world.Guitar:GetChildren()) do
+        guitarOBJ[v.Name] = v
     end
 end
 
@@ -133,7 +138,6 @@ function ScenesInteract:GrassInter(_object)
 
     swayTweenerl:Play()
 end
-
 function ScenesInteract:GrassSwayTween(_obj, _property, _duration)
     return Tween:TweenProperty(
         _obj,
@@ -220,7 +224,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(trojanObj) do
             if v.TrojanUID.Value == _player.UserId then
                 v.Seat:Sit(_player)
-                _player.Avatar:PlayAnimation('HTRide',3,1,0,true,true,1)
+                _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 this.TrojanList[v.Name] = {
                     model = v,
@@ -231,6 +235,9 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 }
             end
         end
+    end
+    if _id == 21 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 21)
     end
 end
 
@@ -248,13 +255,18 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         for k, v in pairs(trojanObj) do
             if v.TrojanUID.Value == _player.UserId then
                 v.Seat:Leave(_player)
-                _player.Avatar:StopAnimation('HTRide',3)
-                _player.Avatar:StopAnimation('SitIdle',2)
+                _player.Avatar:StopAnimation("HTRide", 3)
+                _player.Avatar:StopAnimation("SitIdle", 2)
                 NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
                 v.Forward = this.TrojanList[v.Name].originForward
                 this.TrojanList[v.Name] = nil
             end
+        end
+    end
+    if _id == 21 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        for k, v in pairs(trojanObj) do
         end
     end
 end
@@ -267,7 +279,7 @@ function ScenesInteract:ResetSIOBJ(dt)
                 v.resetCD = v.resetCD + dt
             else
                 v.resetCD = 0
-                v.useCount = world.ScenesInteract[v.itemID].UseCount
+                v.useCount = v.useCountMax
                 v.obj:SetActive(true)
             end
         end

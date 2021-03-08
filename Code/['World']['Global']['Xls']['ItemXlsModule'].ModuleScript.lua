@@ -576,6 +576,36 @@ local ItemXls = {
         UseAnimName = 'HTGoodsDisappear',
         Useable = true
     },
+    [3025] = {
+        ItemID = 3025,
+        Name = 'Item_Name_3025',
+        Des = 'Item_Des_3025',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3026] = {
+        ItemID = 3026,
+        Name = 'Item_Name_3026',
+        Des = 'Item_Des_3026',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3027] = {
+        ItemID = 3027,
+        Name = 'Item_Name_3027',
+        Des = 'Item_Des_3027',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
     [2001] = {
         ItemID = 2001,
         Name = 'Item_Name_2001',

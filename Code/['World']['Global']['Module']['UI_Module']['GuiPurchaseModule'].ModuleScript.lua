@@ -60,7 +60,7 @@ function GuiPurchase:PurchaseConfirmEventHandler(_coinNUm, _interactID, _text)
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
     confirmPanel:SetActive(true)
     confirmPanel.PriceText.Text = _coinNUm
-    confirmPanel.PlayerCoinText.Text = '/'..Data.Player.coin
+    confirmPanel.PlayerCoinText.Text = "/" .. Data.Player.coin
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
         function()
             this:OnClickPurchaseConfirmBtn()
@@ -103,7 +103,7 @@ end
 function GuiPurchase:OnClickPurchaseConfirmBtn()
     NetUtil.Fire_C("PurchaseCEvent", localPlayer, purchaseCoin, interactID)
     NetUtil.Fire_S("PurchaseSEvent", localPlayer, purchaseCoin, interactID)
-    NetUtil.Fire_C('UpdateCoinEvent',-1 * purchaseCoin)
+    NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * purchaseCoin)
     this:OnClickPurchaseLaterBtn()
     purchaseCoin = 0
     sliderMin = 0
