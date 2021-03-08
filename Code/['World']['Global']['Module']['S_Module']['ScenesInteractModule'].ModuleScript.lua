@@ -71,7 +71,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
     end
-    for k,v in pairs(world.Guitar:GetChildren()) do
+    for k, v in pairs(world.Guitar:GetChildren()) do
         guitarOBJ[v.Name] = v
     end
 end
@@ -151,12 +151,11 @@ function ScenesInteract:TrojanShake(dt)
     for k, v in pairs(this.TrojanList) do
         v.timer = v.timer + dt
         v.totalTimer = v.totalTimer + dt
-        if v.timer >= 10 then
-            -- TODO: 给钱
-            print("给一个金币")
+        if v.timer >= 1 then
+            NetUtil.Fire_C('UpdateCoinEvent',v.player,1)
             v.timer = 0
         end
-        v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
+        v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer * 2) * 0.3
     end
 end
 
@@ -188,7 +187,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,14,_player.Position)
+                NetUtil.Fire_C("PlayEffectEvent", _player, 14, _player.Position)
             end
         end
     end
@@ -229,13 +228,14 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,15,_player.Position)
+                NetUtil.Fire_C("PlayEffectEvent", _player, 15, _player.Position)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
                     totalTimer = 0,
                     originForward = v.Forward,
-                    dirRatio = 1
+                    dirRatio = 1,
+                    player = _player
                 }
             end
         end
