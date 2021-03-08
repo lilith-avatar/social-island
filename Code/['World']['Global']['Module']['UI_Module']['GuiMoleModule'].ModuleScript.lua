@@ -60,6 +60,7 @@ end
 function GuiMole:InteractCEventHandler(_gameId)
     if _gameId == 2 then
         NetUtil.Fire_C('PurchaseConfirmEvent',localPlayer,this.curPrice,2,string.format('需要支付 %s 来开启', this.curPrice))
+        NetUtil.Fire_C('PlayEffectEvent',localPlayer,3)
     end
 end
 
