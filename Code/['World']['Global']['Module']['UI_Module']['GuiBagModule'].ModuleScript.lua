@@ -71,17 +71,15 @@ end
 function GuiBag:TransItemTable()
     --先清空表
     this.slotItem = {}
-    for k,v in pairs(Data.Player.bag) do
-        if v.count == 0 then
-            goto Continue
+    for k, v in pairs(Data.Player.bag) do
+        if v.count ~= 0 then
+            local data = {
+                num = v.count,
+                id = k,
+                cd = 0
+            }
+            table.insert(this.slotItem, data)
         end
-        local data = {
-            num = v.count,
-            id = k,
-            cd = 0
-        }
-        table.insert(this.slotItem, data)
-        ::Continue::
     end
 end
 
@@ -103,7 +101,7 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     if not _itemId then
         this.slotList[_index]:SetActive(false)
-        this.slotList[_index].ItemID.Value = ''
+        this.slotList[_index].ItemID.Value = ""
         return
     end
     this.slotList[_index].ItemID.Value = _itemId
