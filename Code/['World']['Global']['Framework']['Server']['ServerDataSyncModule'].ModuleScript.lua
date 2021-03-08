@@ -82,14 +82,19 @@ end
 
 --- 开始同步
 function ServerDataSync.Start()
-    MetaData.Sync = true
+    -- MetaData.ServerSync = true
 end
 
 --! Event handler
 
 --- 数据同步事件Handler
 function DataSyncC2SEventHandler(_player, _path, _value)
+    if not MetaData.ServerSync then
+        return
+    end
+
     PrintLog(string.format('收到 player = %s, _path = %s, _value = %s', _player, _path, table.dump(_value)))
+
     local uid = _player.UserId
 
     if string.startswith(_path, MetaData.Enum.GLOBAL) then

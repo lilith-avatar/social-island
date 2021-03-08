@@ -70,11 +70,12 @@ end
 
 --- 数据同步事件Handler
 function DataSyncS2CEventHandler(_path, _value)
-    if not MetaData.Sync then
+    if not MetaData.ClientSync then
         return
     end
 
     PrintLog(string.format('收到 _path = %s, _value = %s', _path, table.dump(_value)))
+
     local uid = localPlayer.UserId
 
     --* 收到服务器数据

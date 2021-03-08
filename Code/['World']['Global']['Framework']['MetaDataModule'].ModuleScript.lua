@@ -19,7 +19,8 @@ MetaData.Enum.GLOBAL = 'Global'
 MetaData.Enum.PLAYER = 'Player'
 
 -- 是否进行同步，数据初始化之后在开启同步
-MetaData.Sync = false
+MetaData.ServerSync = false
+MetaData.ClientSync = false
 
 --! 说明：两种双向同步机制
 --* 1. Data.Global
@@ -100,39 +101,45 @@ end
 -- @param _uid UserId
 -- @param _sync true:同步数据
 function SetData(_data, _path, _value, _uid, _sync)
-    --* 数据校验
-    Validators(SetData)(_data, _path, _value, _uid, _sync)
-
-    --* 数据同步
-    -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
-    if _sync and MetaData.Sync then
+    --* 数据同步:赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
+    if _sync and (MetaData.ServerSync or MetaData.ClientSync) then
         SyncData(_path, _value, _uid)
     end
 
-    local newpath
+    local args, newpath = {}
 
-    --* 检查现有数据
-    if type(_data[_path]) == 'table' then
-        -- 如果现有数据是个table,删除所有子数据
-        for k, _ in pairs(_data[_path]) do
-            -- 同等于 _data[_path][k] = nil，但是不同步
-            newpath = _path .. '.' .. k
-            SetData(_data, newpath, nil, _uid, false)
-        end
-    end
+    local q = Queue:New()
+    q:Enqueue({_data, _path, _value, _uid, _sync})
 
-    --* 检查新数据
-    if type(_value) == 'table' then
-        -- 若新数据是table，建立一个mt
-        _data[_path] = NewData(_data, _path, _uid)
-        for k, v in pairs(_value) do
-            -- 同等于 _data[_path][k] = v，但是不同步
-            newpath = _path .. '.' .. k
-            SetData(_data, newpath, v, _uid, false)
+    while not q:IsEmpty() do
+        _data, _path, _value, _uid, _sync = table.unpack(q:Dequeue())
+
+        --* 数据校验
+        Validators(SetData)(_data, _path, _value, _uid, _sync)
+
+        --* 检查现有数据
+        if type(_data[_path]) == 'table' then
+            -- 如果现有数据是个table,删除所有子数据
+            for k, _ in pairs(_data[_path]) do
+                -- 同等于 _data[_path][k] = nil，但是不同步
+                newpath = _path .. '.' .. k
+                q:Enqueue({_data, newpath, nil, _uid, false})
+            end
         end
-    else
-        -- 一般数据，直接赋值
-        _data[_path] = _value
+
+        --* 检查新数据
+        if type(_value) == 'table' then
+            -- 若新数据是table，建立一个mt
+            _data[_path] = NewData(_data, _path, _uid)
+            for k, v in pairs(_value) do
+                -- 同等于 _data[_path][k] = v，但是不同步
+                newpath = _path .. '.' .. k
+                q:Enqueue({_data, newpath, v, _uid, false})
+            end
+        else
+            -- 一般数据，直接赋值
+            _data[_path] = _value
+        end
     end
 end
 
@@ -141,30 +148,21 @@ end
 -- @param _value 传入的数据
 -- @param _uid UserId
 function SyncData(_path, _value, _uid)
-    if localPlayer == nil and string.isnilorempty(_uid) then
+    if localPlayer == nil and string.isnilorempty(_uid) and MetaData.ServerSync then
         -- 服务器 => 客户端，Global 全局数据
         NetUtil.Broadcast('DataSyncS2CEvent', _path, _value)
-    elseif localPlayer == nil then
+    elseif localPlayer == nil and MetaData.ServerSync then
         -- 服务器 => 客户端，Player 玩家数据
         local player = world:GetPlayerByUserId(_uid)
         assert(player, string.format('[MetaData] 玩家不存在 uid = %s', _uid))
         PrintLog(string.format('[Server] 发出 player = %s, _path = %s, _value = %s', _player, _path, table.dump(_value)))
         NetUtil.Fire_C('DataSyncS2CEvent', player, _path, _value)
-    elseif localPlayer and localPlayer.UserId == _uid then
+    elseif localPlayer and localPlayer.UserId == _uid and MetaData.ClientSync then
         -- 客户端 => 服务器
         PrintLog(
             string.format('[Client] 发出 player = %s, _path = %s, _value = %s', localPlayer, _path, table.dump(_value))
         )
         NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, _path, _value)
-    else
-        error(
-            string.format(
-                '[MetaData] SyncData() uid错误, path = %s, value = %s, uid = %s',
-                _uid,
-                _path,
-                table.dump(_value)
-            )
-        )
     end
 end
 
