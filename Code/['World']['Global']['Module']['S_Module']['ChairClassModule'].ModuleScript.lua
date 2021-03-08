@@ -87,6 +87,7 @@ function ChairClass:Fly()
     self.model.Chair.Effect:SetActive(true)
     self.model.LinearVelocity =
         (self.model.Up + self.model.Forward).Normalized * Config.ChairGlobalConfig.FlyingVelocity.Value
+    NetUtil.Fire_C('PlayEffectEvent',self.owner,59,self.owner.Position)
 end
 
 function ChairClass:Return()
