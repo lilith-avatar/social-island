@@ -315,6 +315,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
+                NetUtil.Fire_C('PlayEffectEvent',localPlayer,22,localPlayer.Position)
             end
         end
         if _hitObject.GrassInteractUID then
@@ -339,6 +340,15 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 20)
             else
                 _hitObject.Parent.TrojanUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.GuitarUID then
+            if _isBegin and _hitObject.GuitarUID.Value == "" then
+                _hitObject.GuitarUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 21)
+            else
+                _hitObject.GuitarUID.Value = ""
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end

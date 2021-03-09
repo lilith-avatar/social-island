@@ -142,9 +142,6 @@ function StartUpdate()
         invoke(ClientHeartbeat.Start)
     end
 
-    -- 开启数据同步
-    ClientDataSync.Start()
-
     local dt = 0 -- delta time 每帧时间
     local tt = 0 -- total time 游戏总时间
     local now = Timer.GetTimeMillisecond --时间函数缓存

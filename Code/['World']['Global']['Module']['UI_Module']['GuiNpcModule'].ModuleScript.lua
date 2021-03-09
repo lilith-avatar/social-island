@@ -101,6 +101,8 @@ function OpenNpcGui()
     print("[GuiNpc] OpenNpcGui()")
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 12)
     NetUtil.Fire_C("TalkToNpcEvent", localPlayer, currNpcId)
+    -- 音效
+    NetUtil.Fire_C('PlayEffectEvent',localPlayer,3)
     npcGui.Visible = true
     gameBtn.Visible = NpcInfo[currNpcId].GameId ~= nil
     shopBtn.Visible = NpcInfo[currNpcId].ShopId ~= nil
