@@ -43,6 +43,7 @@ function ChairClass:DataReset()
     self.owner = nil --所属者
     -- * 计时
     self.timer = 0
+    self.springTimer = 0
     self.errorStage = ErrorStageEnum.light
 end
 
@@ -163,6 +164,15 @@ function ChairClass:ErrorStageJudge()
 end
 
 function ChairClass:LightError(dt)
+    self.springTimer = self.springTimer + dt
+    if self.springTimer <= 0.5 then
+        self.model.Rotation = self.model.Rotation + EulerDegree(0,0,30) * dt * world.MiniGames.Game_10_Chair.Balance.Value
+    else
+        self.model.Rotation = self.model.Rotation - EulerDegree(0,0,20) * dt * world.MiniGames.Game_10_Chair.Balance.Value
+        if self.springTimer <= 0.55 then
+            self.springTimer = 0
+        end
+    end
 end
 
 function ChairClass:MediumError(dt)
