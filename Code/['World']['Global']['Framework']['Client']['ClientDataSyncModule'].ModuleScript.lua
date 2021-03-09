@@ -31,8 +31,15 @@ function InitEventsAndListeners()
     if localPlayer.C_Event == nil then
         world:CreateObject('FolderObject', 'S_Event', localPlayer)
     end
+
+    -- 数据同步事件
     world:CreateObject('CustomEvent', 'DataSyncS2CEvent', localPlayer.C_Event)
     localPlayer.C_Event.DataSyncS2CEvent:Connect(DataSyncS2CEventHandler)
+
+    -- 玩家加入事件
+    local onPlayerJoinEvent = localPlayer.C_Event.OnPlayerJoinEvent
+    assert(onPlayerJoinEvent, '[DataSync][Client] OnPlayerJoinEvent不存在')
+    onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
 end
 
 --- 校验数据定义
@@ -44,8 +51,10 @@ function InitDataDefines()
         Data.Global[k] = v
     end
 
-    -- TODO: 客户端玩家数据
-    Data.Player = {}
+    --* 客户端玩家数据
+    local uid = localPlayer.UserId
+    local path = MetaData.Enum.PLAYER .. uid
+    Data.Player = Data.Player or MetaData.New(rawDataPlayer, path, uid)
     -- 默认赋值
     for k, v in pairs(Data.Default.Player) do
         Data.Player[k] = v
@@ -61,16 +70,21 @@ end
 
 --- 数据同步事件Handler
 function DataSyncS2CEventHandler(_path, _value)
-    if not MetaData.Sync then
+    if not MetaData.ClientSync then
         return
     end
 
     PrintLog(string.format('收到 _path = %s, _value = %s', _path, table.dump(_value)))
+
+    local uid = localPlayer.UserId
+
+    --* 收到服务器数据
     if string.startswith(_path, MetaData.Enum.GLOBAL) then
-        --* 收到服务器数据
-        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.CLIENT, _value, false)
-    elseif string.startswith(_path, MetaData.Enum.PLAYER) then
-        -- TODO: Player数据
+        --* Data.Global 全局数据
+        MetaData.Set(rawDataGlobal, _path, _value, uid, false)
+    elseif string.startswith(_path, MetaData.Enum.PLAYER .. uid) then
+        --* Data.Player 玩家数据
+        MetaData.Set(rawDataPlayer, _path, _value, uid, false)
     else
         error(
             string.format(
@@ -81,6 +95,12 @@ function DataSyncS2CEventHandler(_path, _value)
             )
         )
     end
+end
+
+--- 新玩家加入事件Handler
+function OnPlayerJoinEventHandler(_player)
+    -- 心跳连接服务器成功后，开启客户端数据同步
+    ClientDataSync.Start()
 end
 
 return ClientDataSync

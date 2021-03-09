@@ -41,7 +41,7 @@ function ObjPoolUtil:Spawn(_position, _rotation)
     else
         realObj = self.pool[1]
         self.pool[1].Position = _position
-        self.pool[1].Rotation = _rotation
+        self.pool[1].Rotation = _rotation or EulerDegree(0, 0, 0)
         self.pool[1]:SetActive(true)
         table.remove(self.pool, 1)
         return realObj

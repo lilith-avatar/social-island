@@ -9,12 +9,6 @@ end
 function BowChargeIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     localPlayer:MoveTowards(Vector2.Zero)
-    if not GuiBowAim.gui.ActiveSelf then
-        GuiBowAim.gui:SetActive(true)
-    end
-    if not localPlayer.Local.ControlGui.Joystick.ActiveSelf then
-        localPlayer.Local.ControlGui.Joystick:SetActive(false)
-    end
     FsmMgr.playerActFsm:TriggerMonitor({"Idle", "BowHit", "SwimIdle", "BowAttack"})
 end
 
