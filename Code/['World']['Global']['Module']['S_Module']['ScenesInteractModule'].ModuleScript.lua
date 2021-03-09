@@ -71,7 +71,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
     end
-    for k,v in pairs(world.Guitar:GetChildren()) do
+    for k, v in pairs(world.Guitar:GetChildren()) do
         guitarOBJ[v.Name] = v
     end
 end
@@ -151,9 +151,10 @@ function ScenesInteract:TrojanShake(dt)
     for k, v in pairs(this.TrojanList) do
         v.timer = v.timer + dt
         v.totalTimer = v.totalTimer + dt
-        if v.timer >= 10 then
+        if v.timer >= 1 then
             -- TODO: 给钱
-            print("给一个金币")
+            --print("给一个金币")
+            NetUtil.Fire_C("UpdateCoinEvent", localPlayer, 1)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
@@ -188,7 +189,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,14,_player.Position)
+                NetUtil.Fire_C("PlayEffectEvent", _player, 14, _player.Position)
             end
         end
     end
@@ -229,7 +230,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,15,_player.Position)
+                NetUtil.Fire_C("PlayEffectEvent", _player, 15, _player.Position, v.Name)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
@@ -263,6 +264,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                 _player.Avatar:StopAnimation("SitIdle", 2)
                 NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+                NetUtil.Fire_C("StopEffectEvent", _player, v.Name)
                 v.Forward = this.TrojanList[v.Name].originForward
                 this.TrojanList[v.Name] = nil
             end

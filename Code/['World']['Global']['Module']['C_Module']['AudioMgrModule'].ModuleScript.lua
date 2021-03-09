@@ -16,7 +16,7 @@ function AudioMgr:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
-	this:PlayBGM(2)
+    this:PlayBGM(2)
 end
 
 --节点引用
@@ -29,12 +29,11 @@ function AudioMgr:DataInit()
     this.EffectAudioSourceNode = PlayerCam.playerGameCam["SENode"]
 
     for k, v in pairs(Config.Sound) do
-		if v.Type == "SoundEffect" then
-			this:InitEffectClip(v)
-		elseif v.Type == "BGM" then
-			this:InitBGMClip(v)
-		end
-        
+        if v.Type == "SoundEffect" then
+            this:InitEffectClip(v)
+        elseif v.Type == "BGM" then
+            this:InitBGMClip(v)
+        end
     end
 
     for i = 1, 2 do
@@ -156,6 +155,12 @@ function AudioMgr:PlayBGM(_id)
     return PlayTable.Index
 end
 
+--停止播放BGM
+function AudioMgr:StopBGM(_index)
+    BGMAudioSources[_index].Source:Stop()
+    ReleaeseSource(2, 3)
+end
+
 --计算播放音量和延迟
 function AudioMgr:SimulateData(_pos)
     _pos = _pos or localPlayer.Position + localPlayer.Forward
@@ -203,7 +208,7 @@ function AudioMgr:SimulatePlay(_playTable, _data)
 end
 
 --播放3Deffect
-function AudioMgr:PlayEffectEventHandler(_id, _pos)
+function AudioMgr:PlayEffectEventHandler(_id, _pos, _playerIndex)
     print("播放3Deffect,id:", _id)
     if _id ~= 0 then
         this.EffectAudioSourceNode.Position = _pos or PlayerCam.playerGameCam.Position
@@ -226,10 +231,22 @@ function AudioMgr:PlayEffectEventHandler(_id, _pos)
         PlayTable.SourceLeft.Loop = EffectClips[_id].isLoop
         PlayTable.SourceLeft.Volume = EffectClips[_id].volume
         PlayTable.SourceLeft.SoundClip = EffectClips[_id].clip
+        PlayTable.Index = _playerIndex
         this:SimulatePlay(PlayTable, this:SimulateData(_pos))
         ReleaeseSource(2, 3)
-        return PlayTable.Index
     end
+end
+
+--停止播放Effect
+function AudioMgr:StopEffectEventHandler(_index)
+    for k, v in pairs(EffectAudioSources) do
+        if v.Index == _index then
+            v.SourceRight:Stop()
+            v.SourceLeft:Stop()
+            break
+        end
+    end
+    ReleaeseSource(2, 3)
 end
 
 return AudioMgr
