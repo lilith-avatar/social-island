@@ -3,64 +3,53 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//GameHunting.xlsx
+--- source file: .//GameHunting.xlsm
 
 local AnimalAreaXls = {
     [1] = {
         ID = 1,
-        Pos = Vector3(-36.478359, -7.336892, -2.477649),
-        Range = 9,
-        AmountMax = 3,
-        InitAmount = 6,
-        AnimalIDList = {1}
+        Pos = Vector3(-81.5127,  -10.5675,  6.452),
+        Range = 20.0,
+        AmountMax = 5,
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-69.2967, -9.6418, -0.3599),EulerDegree(0,0,0)},{Vector3(-86.3368, -9.3078, 5.2147),EulerDegree(0,0,0)},{Vector3(-75.5884, -11.7212, 19.907),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [2] = {
         ID = 2,
-        Pos = Vector3(-149.639267, 1.146443, 28.819593),
-        Range = 7,
-        AmountMax = 2,
-        InitAmount = 4,
-        AnimalIDList = {1}
+        Pos = Vector3(-150.712,  0.0288,  31.3397),
+        Range = 14.0,
+        AmountMax = 4,
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-139.337, -0.5933, 27.4511),EulerDegree(0,0,0)},{Vector3(-155.536, 0.0181, 30.1025),EulerDegree(0,0,0)},{Vector3(-145.672, -0.5402, 41.8904),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [3] = {
         ID = 3,
-        Pos = Vector3(-159.163116, 1.899924, 44.346809),
-        Range = 7,
-        AmountMax = 2,
-        InitAmount = 4,
-        AnimalIDList = {1}
+        Pos = Vector3(-118.971,  -11.1233,  57.0341),
+        Range = 15.0,
+        AmountMax = 4,
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-109.427, -12.438, 48.974),EulerDegree(0,0,0)},{Vector3(-123.796, -11.1341, 55.7969),EulerDegree(0,0,0)},{Vector3(-113.932, -9.9013, 67.5848),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [4] = {
         ID = 4,
-        Pos = Vector3(-144.763931, 1.541382, 110.011375),
-        Range = 7,
-        AmountMax = 3,
-        InitAmount = 6,
-        AnimalIDList = {1}
+        Pos = Vector3(-135.933,  -4.2691,  103.874),
+        Range = 20.0,
+        AmountMax = 5,
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-126.389, -4.7444, 95.8139),EulerDegree(0,0,0)},{Vector3(-147.123, -3.2229, 105.165),EulerDegree(0,0,0)},{Vector3(-130.893, -3.0471, 114.425),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [5] = {
         ID = 5,
-        Pos = Vector3(-123.801033, -0.049904, 102.514153),
-        Range = 11,
-        AmountMax = 2,
-        InitAmount = 4,
-        AnimalIDList = {1}
-    },
-    [6] = {
-        ID = 6,
-        Pos = Vector3(-110.724907, -2.885939, 24.118423),
-        Range = 9,
-        AmountMax = 3,
-        InitAmount = 6,
-        AnimalIDList = {1}
-    },
-    [7] = {
-        ID = 7,
-        Pos = Vector3(-65.938820, 15.370251, 95.961533),
-        Range = 9,
-        AmountMax = 2,
-        InitAmount = 6,
-        AnimalIDList = {1}
+        Pos = Vector3(-63.0859,  11.7845,  91.3673),
+        Range = 15.0,
+        AmountMax = 4,
+        InitAmount = 10,
+        SpawnPoint = {{Vector3(-52.3308, 11.8838, 82.138),EulerDegree(0,0,0)},{Vector3(-72.649, 12.8307, 93.966),EulerDegree(0,0,0)},{Vector3(-58.9191, 13.0065, 96.0717),EulerDegree(0,0,0)}},
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     }
 }
 

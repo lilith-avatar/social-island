@@ -18,15 +18,16 @@ end
 
 --放入背包
 function ItemBase:PutIntoBag()
+    GuiControl:InsertInfoEventHandler('获得' ..LanguageUtil.GetText(Config.Item[self.id].Name), 2, false)
 end
 
 --从背包里扔掉
 function ItemBase:ThrowOutOfBag()
+    GuiControl:InsertInfoEventHandler('失去' ..LanguageUtil.GetText(Config.Item[self.id].Name), 2, false)
 end
 
 --销毁
 function ItemBase:DestroyItem()
-    
 end
 
 --使用
@@ -45,7 +46,7 @@ end
 
 --播放使用音效
 function ItemBase:PlayUseSound()
-    NetUtil.Fire_C("PlayEffectEvent", self.useSoundID)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.useSoundID)
 end
 
 --播放使用动作

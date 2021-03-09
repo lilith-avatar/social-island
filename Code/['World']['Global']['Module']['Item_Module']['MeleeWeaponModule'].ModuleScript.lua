@@ -2,10 +2,10 @@
 -- @module MeleeWeapon
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local MeleeWeapon = class("MeleeWeapon", ItemBase)
+local MeleeWeapon = class("MeleeWeapon", WeaponBase)
 
 function MeleeWeapon:initialize(_data, _config)
-    ItemBase.initialize(self, _data, _config)
+    WeaponBase.initialize(self, _data, _config)
     print("MeleeWeapon:initialize()")
 end
 
@@ -13,7 +13,14 @@ end
 function MeleeWeapon:Attack()
     self.attackCT = self.config.AttackCD
     self:PlayAttackAnim()
-    self:PlayAttackSound()
+end
+
+--进入打地鼠
+function MeleeWeapon:Equip()
+    WeaponBase.Equip(self)
+    if self.config.Mole then
+        NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, 2)
+    end
 end
 
 --获取攻击数据

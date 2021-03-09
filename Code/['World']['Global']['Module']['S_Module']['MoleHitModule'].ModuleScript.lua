@@ -1,164 +1,155 @@
 ---@module MoleHit
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleHit, this = ModuleUtil.New('MoleHit', ServerBase)
-local totalWeights = 0
+local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
 
----得到总权重
-local function GetTotalWeights(_moleConfig)
-    for _, v in pairs(_moleConfig) do
-        totalWeights = totalWeights + v.Weight
+local function SelectPit(_pitList, _num)
+    local tmpPits = table.deepcopy(_pitList)
+    local returnList = {}
+    for i = 1, _num do
+        local randomIndex = math.random(1, #tmpPits)
+        table.insert(returnList, tmpPits[randomIndex])
+        table.remove(tmpPits, randomIndex)
     end
-end
-
----随机权重排序
-local function RandomSortByWeights(_moleConfig)
-    local tmpWeightTab = {}
-    for _, v in pairs(_moleConfig) do
-        local data = {
-            id = v.ID,
-            weight = v.Weight + math.random(0, totalWeights)
-        }
-        table.insert(tmpWeightTab, data)
-    end
-    --进行排序
-    table.sort(
-        tmpWeightTab,
-        function(a, b)
-            if a and b then
-                return (a.weight > b.weight)
-            end
-        end
-    )
-    return tmpWeightTab
-end
-
-local function TransformTable(_table)
-    local final = {}
-    for k, v in pairs(_table) do
-        table.insert(final, v)
-    end
-    return final
+    return returnList
 end
 
 ---初始化函数
 function MoleHit:Init()
-    print('[MoleHit] Init()')
+    print("[MoleHit] Init()")
     this:DataInit()
-    this:PitListInit()
+    this:NodeDef()
     this:PoolInit()
-    GetTotalWeights(Config.MoleConfig)
+    this:RefreashMole("ufo")
+    this:RefreashMole("maze")
 end
 
 function MoleHit:DataInit()
-    this.playerList = {}
-    this.pitList = {}
-    this.timer = 0
-    this.refreshTime = Config.MoleGlobalConfig.RefreshTime --! Only Test
-    this.refreshList = Config.MoleGlobalConfig.PlayerNumEffect
-    ---对象池表
-    this.molePool = {}
+    this.startUpdate = false
+    this.RefreshList = {}
+    this.molePool = {
+        ufo = {},
+        maze = {}
+    }
+    this.pitList = {
+        ufo = {},
+        maze = {}
+    }
+    this.hitTime = {
+        ufo = 0,
+        maze = 0
+    }
+    -- 读表
+    this.hitNum = {
+        ufo = Config.MoleGlobalConfig.UFOPitNum.Value,
+        maze = Config.MoleGlobalConfig.MazePitNum.Value
+    }
+end
 
-	world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionBegin:Connect(
-        function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
-                NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
-            end
-        end
-    )
-    world.MiniGames.Game_02_WhackAMole.chuizi.OnCollisionEnd:Connect(
-        function(_hitObject)
-            if _hitObject.ClassName == 'PlayerInstance' then
-                NetUtil.Fire_C('ResetDefUIEvent', _hitObject)
-            end
-        end
-    )
+function MoleHit:NodeDef()
+    this.pitFolder = {
+        ufo = world.MiniGames.Game_02_WhackAMole.Pits.ufo:GetChildren(),
+        maze = world.MiniGames.Game_02_WhackAMole.Pits.maze:GetChildren()
+    }
 end
 
 function MoleHit:PoolInit()
     for k, v in pairs(Config.MoleConfig) do
-        this.molePool[k] = MolePool:new(v.Archetype, 10)
+        this.molePool[v.Type] = MolePool:new(v.Archetype, 20, v.ID)
     end
 end
 
---绑定坑位
-function MoleHit:PitListInit()
-    for k, v in pairs(world.MiniGames.Game_02_WhackAMole.Pits:GetChildren()) do
-        this.pitList[v.Name] = {
-            model = v,
-            mole = nil
-        }
+function MoleHit:RefreashMole(_type)
+    this.pitList[_type] = SelectPit(this.pitFolder[_type], this.hitNum[_type])
+    -- 遍历对应坑位
+    for k, v in pairs(this.pitList[_type]) do
+        v.Mole:SetActive(true)
+        -- 绑定碰撞事件
+        v.OnCollisionBegin:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                    NetUtil.Fire_C(
+                        "GetMolePriceEvent",
+                        _hitObject,
+                        Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
+                        _type,
+                        v
+                    )
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 2)
+                end
+            end
+        )
+        v.OnCollisionEnd:Connect(
+            function(_hitObject)
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
+                end
+            end
+        )
     end
 end
 
 function MoleHit:InteractSEventHandler(_player, _gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C('StartMoleEvent', _player)
     end
 end
 
-function MoleHit:PlayerStartMoleHitEventHandler(_uid)
-    this.playerList[_uid] = {
-        inGame = true
-    }
+--- 玩家击中地鼠事件
+function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
+    this:HitMoleAction(_uid, _type, _pit)
+    -- 抽奖
+    -- 增加数量
+    this.hitTime[_type] = this.hitTime[_type] + 1
+    --! only Test
+    NetUtil.Broadcast(
+        "InsertInfoEvent",
+        string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])),
+        2,
+        true
+    )
+    -- 判断是否达到彩蛋条件
+    if this.hitTime[_type] >= this.hitNum[_type] then
+        this.startUpdate, this.hitTime[_type] = true, 0
+        this.RefreshList[_type] = {
+            timer = 0
+        }
+        --开启对应彩蛋
+        print(string.format("开启 %s 彩蛋", _type))
+    end
 end
 
-function MoleHit:PlayerLeaveMoleHitEventHandler(_uid)
-    this.playerList[_uid] = nil
+function MoleHit:HitMoleAction(_uid, _type, _pit)
+    -- 打击表现
+    _pit.Effect:SetActive(true)
+    local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
+    tweener:Play()
+    invoke(
+        function()
+            -- 摧毁地鼠
+            _pit.Mole:SetActive(false)
+            -- 关闭特效
+            _pit.Effect:SetActive(false)
+        end,
+        1
+    )
+    --解除绑定
+    _pit.OnCollisionBegin:Clear()
+    _pit.OnCollisionEnd:Clear()
 end
 
----根据玩家人数刷地鼠
-function MoleHit:RefreshMole(_playerNum)
-    local tmpTable = TransformTable(this.pitList)
-    local tmpRandomTab, pitIndex, mole
+function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
+    if _gameId == 2 then
+    end
+end
 
-    for i = 1, Config.MoleGlobalConfig.PlayerNumEffect.Value[_playerNum] do
-        pitIndex, tmpRandomTab = math.random(1, #tmpTable), RandomSortByWeights(Config.MoleConfig)
-        --删除该坑仍保留的地鼠
-        for k, v in pairs(tmpTable[pitIndex].model:GetChildren()) do
-            if v.ActiveSelf then
-                v:Destroy()
+function MoleHit:Update(dt)
+    if this.startUpdate then
+        for k, v in pairs(this.RefreshList) do
+            v.timer = v.timer + dt
+            if v.timer >= Config.MoleGlobalConfig.RefreshTime.Value then
+                this:RefreashMole(k)
+                this.RefreshList[k] = nil
             end
-        end
-        mole = this.molePool[tmpRandomTab[1].id]:Create(tmpTable[pitIndex].model, tmpRandomTab[1].id)
-        this.pitList[tmpTable[pitIndex].model.Name].mole = mole
-        invoke(
-            function()
-                if mole then
-                    this.molePool[tmpRandomTab[1].id]:Destroy(mole)
-                end
-            end,
-            Config.MoleConfig[tmpRandomTab[1].id].KeepTime + Config.MoleConfig[tmpRandomTab[1].id].DisapearTime
-        )
-        table.remove(tmpTable, pitIndex)
-    end
-end
-
-local player
-function MoleHit:PlayerHitEventHandler(_uid, _hitPit)
-    for k, _ in pairs(_hitPit) do
-        if this.pitList[k] and this.pitList[k].mole then
-            player = world:GetPlayerByUserId(_uid)
-            NetUtil.Fire_C(
-                'AddScoreAndBoostEvent',
-                player,
-                Config.MoleConfig[this.pitList[k].mole.Name].Type,
-                Config.MoleConfig[this.pitList[k].mole.Name].Reward,
-                Config.MoleConfig[this.pitList[k].mole.Name].BoostReward
-            )
-            this.molePool[this.pitList[k].mole.Name]:Destroy(this.pitList[k].mole)
-            this.pitList[k].mole = nil
-        end
-    end
-end
-
----Update函数
-function MoleHit:Update(dt, tt)
-    if table.nums(this.playerList) ~= 0 then
-        this.timer = this.timer + dt
-        if this.timer >= this.refreshTime.Value then
-            this.timer = 0
-            MoleHit:RefreshMole(table.nums(this.playerList) + 1)
         end
     end
 end

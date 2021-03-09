@@ -2,14 +2,11 @@
 --- @module Player Cam Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local PlayerCam, this = ModuleUtil.New('PlayerCam', ClientBase)
-
--- 触屏的手指数
-local touchNumber = 0
+local PlayerCam, this = ModuleUtil.New("PlayerCam", ClientBase)
 
 --- 初始化
 function PlayerCam:Init()
-    print('[PlayerCam] Init()')
+    print("[PlayerCam] Init()")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -31,8 +28,13 @@ function PlayerCam:DataInit()
     -- TPS相机
     this.tpsCam = localPlayer.Local.Independent.TPSCam
 
+    -- FPS相机
+    this.fpsCam = localPlayer.Local.Independent.FPSCam
+
     -- 迷宫中的相机
     this.mazeCam = localPlayer.Local.Independent.MazeCam
+
+    this.chairCam = localPlayer.Local.Independent.ChairCam
 end
 
 --- 节点事件绑定
@@ -54,19 +56,14 @@ function PlayerCam:IsFreeMode()
         this.curCamera.CameraMode == Enum.CameraMode.Custom
 end
 
--- 检测触屏的手指数
-function PlayerCam:CountTouch(container)
-    touchNumber = #container
-end
-
 -- 滑屏转向
-function PlayerCam:CameraMove(_pos, _dis, _deltapos, _speed)
-    if touchNumber == 1 then
+function PlayerCam:CameraMove(touchInfo)
+    if #touchInfo == 1 then
         if this:IsFreeMode() then
-            this.curCamera:CameraMove(_deltapos)
+            this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
-            localPlayer:RotateAround(localPlayer.Position, Vector3.Up, _deltapos.x)
-            this.curCamera:CameraMove(Vector2(0, _deltapos.y))
+            this.curCamera.LookAt:Rotate(0, touchInfo[1].DeltaPosition.x * 0.2, 0)
+            this.curCamera:CameraMove(Vector2(0, touchInfo[1].DeltaPosition.y))
         end
     end
 end
@@ -80,12 +77,7 @@ end
 
 --- TPS相机射线检测目标
 function PlayerCam:TPSGetRayDir()
-    local hitResult = Physics:Raycast(this.tpsCam.Position, this.tpsCam.Forward * 50, true)
-    if hitResult.Hitobject then
-        return hitResult.Hitobject.Position
-    else
-        return this.tpsCam.Forward * 20
-    end
+        return this.tpsCam.Forward
 end
 
 -- 修改玩家当前相机

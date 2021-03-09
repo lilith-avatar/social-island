@@ -209,6 +209,142 @@ local NpcTextXls = {
     [1152] = {
         ID = 1152,
         Text = 'NpcText_Text_1152'
+    },
+    [1161] = {
+        ID = 1161,
+        Text = 'NpcText_Text_1161'
+    },
+    [1162] = {
+        ID = 1162,
+        Text = 'NpcText_Text_1162'
+    },
+    [1163] = {
+        ID = 1163,
+        Text = 'NpcText_Text_1163'
+    },
+    [1164] = {
+        ID = 1164,
+        Text = 'NpcText_Text_1164'
+    },
+    [1171] = {
+        ID = 1171,
+        Text = 'NpcText_Text_1171'
+    },
+    [1172] = {
+        ID = 1172,
+        Text = 'NpcText_Text_1172'
+    },
+    [1181] = {
+        ID = 1181,
+        Text = 'NpcText_Text_1181'
+    },
+    [1182] = {
+        ID = 1182,
+        Text = 'NpcText_Text_1182'
+    },
+    [1191] = {
+        ID = 1191,
+        Text = 'NpcText_Text_1191'
+    },
+    [1192] = {
+        ID = 1192,
+        Text = 'NpcText_Text_1192'
+    },
+    [2001] = {
+        ID = 2001,
+        Text = 'NpcText_Text_2001'
+    },
+    [2002] = {
+        ID = 2002,
+        Text = 'NpcText_Text_2002'
+    },
+    [2011] = {
+        ID = 2011,
+        Text = 'NpcText_Text_2011'
+    },
+    [2012] = {
+        ID = 2012,
+        Text = 'NpcText_Text_2012'
+    },
+    [2013] = {
+        ID = 2013,
+        Text = 'NpcText_Text_2013'
+    },
+    [2014] = {
+        ID = 2014,
+        Text = 'NpcText_Text_2014'
+    },
+    [2015] = {
+        ID = 2015,
+        Text = 'NpcText_Text_2015'
+    },
+    [2021] = {
+        ID = 2021,
+        Text = 'NpcText_Text_2021'
+    },
+    [2022] = {
+        ID = 2022,
+        Text = 'NpcText_Text_2022'
+    },
+    [2023] = {
+        ID = 2023,
+        Text = 'NpcText_Text_2023'
+    },
+    [2024] = {
+        ID = 2024,
+        Text = 'NpcText_Text_2024'
+    },
+    [2031] = {
+        ID = 2031,
+        Text = 'NpcText_Text_2031'
+    },
+    [2032] = {
+        ID = 2032,
+        Text = 'NpcText_Text_2032'
+    },
+    [2033] = {
+        ID = 2033,
+        Text = 'NpcText_Text_2033'
+    },
+    [2041] = {
+        ID = 2041,
+        Text = 'NpcText_Text_2041'
+    },
+    [2042] = {
+        ID = 2042,
+        Text = 'NpcText_Text_2042'
+    },
+    [2043] = {
+        ID = 2043,
+        Text = 'NpcText_Text_2043'
+    },
+    [2044] = {
+        ID = 2044,
+        Text = 'NpcText_Text_2044'
+    },
+    [2045] = {
+        ID = 2045,
+        Text = 'NpcText_Text_2045'
+    },
+    [2051] = {
+        ID = 2051,
+        Text = 'NpcText_Text_2051'
+    },
+    [2052] = {
+        ID = 2052,
+        Text = 'NpcText_Text_2052'
+    },
+    [2053] = {
+        ID = 2053,
+        Text = 'NpcText_Text_2053'
+    },
+    [2054] = {
+        ID = 2054,
+        Text = 'NpcText_Text_2054'
+    },
+    [1000] = {
+        ID = 1000,
+        Text = 'NpcText_Text_1000'
     }
 }
 

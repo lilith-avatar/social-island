@@ -53,6 +53,7 @@ end
 
 --- 初始化数据同步
 function InitDataSync()
+    assert(ClientDataSync, '[Server][DataSync] 找不到ClientDataSync,请联系张远程')
     ClientDataSync.Init()
 end
 

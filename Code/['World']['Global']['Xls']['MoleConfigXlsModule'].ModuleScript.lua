@@ -9,74 +9,16 @@ local MoleConfigXls = {
     M1 = {
         ID = 'M1',
         Archetype = 'Test1',
-        Type = 'Score',
-        HitNum = 1,
-        Reward = 5,
-        BoostReward = 5,
-        AppearTime = 1.0,
-        KeepTime = 3.0,
-        DisapearTime = 1.0,
-        Weight = 100
+        Type = 'ufo',
+        MoneyNum = 20,
+        RewardPool = 1
     },
     M2 = {
         ID = 'M2',
         Archetype = 'Test2',
-        Type = 'Score',
-        HitNum = 1,
-        Reward = 10,
-        BoostReward = 10,
-        AppearTime = 1.0,
-        KeepTime = 3.0,
-        DisapearTime = 1.0,
-        Weight = 50
-    },
-    M3 = {
-        ID = 'M3',
-        Archetype = 'Test3',
-        Type = 'Score',
-        HitNum = 2,
-        Reward = 20,
-        BoostReward = 20,
-        AppearTime = 0.5,
-        KeepTime = 1.0,
-        DisapearTime = 0.5,
-        Weight = 30
-    },
-    M4 = {
-        ID = 'M4',
-        Archetype = 'Test4',
-        Type = 'Time',
-        HitNum = 1,
-        Reward = 1,
-        BoostReward = 5,
-        AppearTime = 1.0,
-        KeepTime = 3.0,
-        DisapearTime = 1.0,
-        Weight = 80
-    },
-    M5 = {
-        ID = 'M5',
-        Archetype = 'Test5',
-        Type = 'Time',
-        HitNum = 1,
-        Reward = 3,
-        BoostReward = 5,
-        AppearTime = 1.0,
-        KeepTime = 3.0,
-        DisapearTime = 1.0,
-        Weight = 50
-    },
-    M6 = {
-        ID = 'M6',
-        Archetype = 'Test6',
-        Type = 'Time',
-        HitNum = 2,
-        Reward = 5,
-        BoostReward = 5,
-        AppearTime = 0.5,
-        KeepTime = 1.0,
-        DisapearTime = 0.5,
-        Weight = 30
+        Type = 'maze',
+        MoneyNum = 30,
+        RewardPool = 1
     }
 }
 

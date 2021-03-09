@@ -15,48 +15,60 @@ end
 
 --放入背包
 function WeaponBase:PutIntoBag()
+	ItemBase.PutIntoBag(self)
 end
 
 --从背包里扔掉
 function WeaponBase:ThrowOutOfBag()
+	ItemBase.ThrowOutOfBag(self)
 end
 
 --使用
 function WeaponBase:Use()
     if self.useCT == 0 then
-        ItemBase.Use(self)
-        self:Equip()
     end
+    print("使用", self.id)
+    if ItemMgr.curWeaponID ~= 0 then
+        ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
+    end
+    NetUtil.Fire_C('PlayEffectEvent',localPlayer,25,localPlayer.Position)
+    ItemMgr.curWeaponID = self.id
+    ItemBase.Use(self)
+    self:Equip()
 end
 
 --装备
 function WeaponBase:Equip()
+    local node1, node2 = string.match(self.config.ParentNode, "([%w_]+).([%w_]+)")
+    print(node1, node1)
+    local pNode = localPlayer.Avatar[node1][node2]
     self.weaponObj =
         world:CreateInstance(
         self.config.ModelName,
         self.config.ModelName .. "Instance",
-        self.config.ParentNode,
-        self.config.ParentNode.Positon + self.config.Offset,
-        self.config.ParentNode.Rotation + self.config.Angle
+        pNode,
+        pNode.Position + self.config.Offset,
+        pNode.Rotation + self.config.Angle
     )
-    --self:PlayIdleAnim()
+    print("装备")
     NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
+    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseRemoveBuffID)
+    GuiControl:UpdateTakeOffBtn()
 end
 
 --取下装备
 function WeaponBase:Unequip()
     NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
-    for k, v in pairs(self.config.UseAddBuff) do
-        NetUtil.Fire_C("RemoveBuffEvent", localPlayer, v)
-    end
+    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
+    self.weaponObj:Destroy()
+    ItemMgr.curWeaponID = 0
+    GuiControl:UpdateTakeOffBtn()
 end
 
 --攻击
 function WeaponBase:Attack()
     self.attackCT = self.config.AttackCD
     self:PlayAttackAnim()
-    self:PlayAttackSound()
 end
 
 --获取攻击数据
@@ -71,12 +83,12 @@ end
 
 --播放攻击音效
 function WeaponBase:PlayAttackSound()
-    NetUtil.Fire_C("PlayEffectEvent", self.config.AttackSoundID)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.config.AttackSoundID)
 end
 
 --播放命中音效
 function WeaponBase:PlayHitSound(_pos)
-    NetUtil.Fire_C("PlayEffectEvent", self.config.HitSoundID, _pos)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.config.HitSoundID, _pos)
 end
 
 --播放命中特效
@@ -98,7 +110,9 @@ end
 
 --切换到攻击动作
 function WeaponBase:PlayAttackAnim()
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, self.config.Anim .. "Attack1")
+    for k, v in pairs(self.config.AttackAnimName) do
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, v)
+    end
 end
 
 --CD消退

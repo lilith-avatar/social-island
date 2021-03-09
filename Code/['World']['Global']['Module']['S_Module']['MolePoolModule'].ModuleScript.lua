@@ -2,44 +2,92 @@
 ---@module MolePool
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MolePool = class('MolePool')
+local MolePool = class("MolePool")
+local MoleClass = class("Mole")
 
+--**************** 对象池方法 ********************
 ---初始化函数
-function MolePool:initialize(_objName, poolSize)
+function MolePool:initialize(_objName, poolSize, _objId)
     self.pool = {}
     self.maxSize = poolSize
     self.objName = _objName
-    print('[MolePool] initialize()', _objName, poolSize)
+    self.objId = _objId
+    print("[MolePool] initialize()", _objName, poolSize)
 end
 
 function MolePool:Destroy(_obj)
     if #self.pool == self.maxSize then
-        _obj:Destroy()
+        _obj:Destroy(true)
     else
         table.insert(self.pool, _obj)
-        _obj:SetActive(false)
+        _obj:Destroy(false)
     end
 end
 
 function MolePool:Create(_parent, _name)
     local mole
     if self.pool[1] then
-        self.pool[1].Parent = _parent
-        self.pool[1].Position, self.pool[1].Rotation = _parent.Position, _parent.Rotation
-        self.pool[1]:SetActive(true)
-        mole = table.deepcopy(self.pool[1])
+        mole = self.pool[1]:Reset(nil, _parent)
         invoke(
             function()
                 table.remove(self.pool, 1)
             end,
             wait()
         )
-        return mole
     else
-        mole = world:CreateInstance(self.objName, _name, _parent)
-        mole.Position, mole.Rotation = _parent.Position, _parent.Rotation
-        mole:SetActive(true)
-        return mole
+        mole = MoleClass:new(self.objId, _name, _parent)
+    end
+    return mole
+end
+
+--*************** 地鼠对象 ***********************
+function MoleClass:initialize(_moleId, _name, _parent)
+    self:CreateModel(_moleId, _name, _parent)
+end
+
+function MoleClass:DataReset(_moleId)
+    self.id = _moleId
+    self.type = Config.MoleConfig[_moleId].Type
+end
+
+function MoleClass:Reset(_moleId, _parent)
+    self:CreateModel(_moleId, nil, _parent)
+end
+
+function MoleClass:Destroy(_isRealDestroy)
+    self.state = MoleStateEnum.Destroy
+    if _isRealDestroy then
+        self.model:Destroy()
+        self = nil
+    else
+        self.model:SetActive(false)
+    end
+end
+
+function MoleClass:CreateModel(_moleId, _name, _parent)
+    if self.model then
+        self.model.Parent = _parent
+        self.model.Position, self.model.Rotation =
+            Vector3(_parent.Position.x, _parent.Position.y - 2, _parent.Position.x),
+            _parent.Rotation
+        self.model:SetActive(true)
+    else
+        self.model =
+            world:CreateInstance(
+            Config.MoleConfig[_moleId].Archetype,
+            _name,
+            _parent,
+            _parent.Position,
+            _parent.Rotation
+        )
+    end
+end
+
+function MoleClass:IsDestroy()
+    if self.state == MoleStateEnum.Destroy then
+        return true
+    else
+        return false
     end
 end
 

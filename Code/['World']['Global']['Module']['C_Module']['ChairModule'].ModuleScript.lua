@@ -2,7 +2,7 @@
 ---@copyright Lilith Games, Avatar Team
 ---@author XXX, XXXX
 local Chair, this = ModuleUtil.New('Chair', ClientBase)
-local Dir = {'forward', 'left', 'back', 'right'}
+local Dir = {'Forward', 'Left', 'Back', 'Right'}
 
 ---初始化函数
 function Chair:Init()
@@ -60,7 +60,8 @@ function Chair:NormalSit(_chairId, _pos, _rot)
     this.chairType = 'Normal'
     this.startUpdate = false
     --ui控制
-    ChairUIMgr:EnterNormal()
+    GuiChair:EnterNormal()
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "摇起来！！！", 5, true)
 end
 
 function Chair:DestroyChair()
@@ -77,38 +78,14 @@ function Chair:QteSit(_chairId, _pos, _rot)
     this.chairType = 'QTE'
     this.startUpdate = true
     --ui控制
-    ChairUIMgr:EnterQte()
+    GuiChair:EnterQte()
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "快速点击按钮让自己不掉下去", 5, true)
 end
 
 function Chair:Update(_dt)
-    if this.startUpdate then
-        this.timer = this.timer + _dt
-        if this.timer >= 1 then
-            this.qteTotalTime = this.qteTotalTime + 1
-            this.qteTimer = this.qteTimer + 1
-            this.keepTime = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).ButtonKeepTime
-            this.qteDuration = this:ChangeKeepTimeByTotalTime(this.qteTotalTime).QteDuration
-            ChairUIMgr:ShowQteButton(this.keepTime)
-            ChairUIMgr:ChangeTotalTime(this.qteTotalTime)
-            if this.qteTimer >= this.qteDuration then
-                --跟移动方向一样
-                ChairUIMgr:GetQteForward(
-                    Dir[math.random(1, 4)],
-                    this:ChangeKeepTimeByTotalTime(this.qteTotalTime).BullSpeed
-                )
-                this.qteTimer = 0
-            end
-            this.timer = 0
-        end
-    end
 end
 
 function Chair:ChangeKeepTimeByTotalTime(_totalTime)
-    for i = #Config.RideConfig, 1, -1 do
-        if _totalTime >= Config.RideConfig[i].Time then
-            return Config.RideConfig[i]
-        end
-    end
 end
 
 return Chair

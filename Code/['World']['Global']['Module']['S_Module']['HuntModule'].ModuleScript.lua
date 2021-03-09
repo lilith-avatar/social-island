@@ -25,7 +25,9 @@ local animalActState = {
     IDLE = 1,
     MOVE = 2,
     SCARED = 3,
-    DEADED = 4
+    BACK = 4,
+    DEADED = 5,
+    TRAPPED = 6
 }
 
 --- 初始化
@@ -54,8 +56,8 @@ end
 function Hunt:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 1 then
         print("进入狩猎")
-        NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
-        NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
+    --NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
+    --NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
     end
 end
 
@@ -67,7 +69,8 @@ function Hunt:InitAnimalArea()
             range = v.Range,
             amountMax = v.AmountMax,
             initAmount = v.InitAmount,
-            animalData = {}
+            animalData = {},
+            SpawnPoint = v.SpawnPoint
         }
     end
 end
@@ -80,16 +83,35 @@ function Hunt:InitAnimalData()
             weightSum = weightSum + Config.Animal[animalID].Weight
         end
         local animalAmount = 0
+        local spawnPoint = {}
         for _, animalID in pairs(Config.AnimalArea[areaID].AnimalIDList) do
-            for i = 1, math.floor(Config.Animal[animalID].Weight / Config.Animal[animalID].Weight) * area.initAmount do
-                this:InstanceAnimal(area.animalData, animalID, rootNode.Animal, area.pos, area.range)
+            for i = 1, math.ceil(Config.Animal[animalID].Weight / weightSum * area.initAmount) do
+                spawnPoint = area.SpawnPoint[math.random(1, #area.SpawnPoint)]
+                this:InstanceAnimal(
+                    area.animalData,
+                    animalID,
+                    rootNode.Animal,
+                    area.pos,
+                    area.range,
+                    spawnPoint[1],
+                    spawnPoint[2]
+                )
                 animalAmount = animalAmount + 1
             end
         end
         if animalAmount < area.amountMax then
             for i = 1, area.amountMax - animalAmount do
                 local id = Config.AnimalArea[areaID].AnimalIDList[math.random(#Config.AnimalArea[areaID].AnimalIDList)]
-                this:InstanceAnimal(area.animalData, id, rootNode.Animal, area.pos, area.range)
+                spawnPoint = area.SpawnPoint[math.random(1, #area.SpawnPoint)]
+                this:InstanceAnimal(
+                    area.animalData,
+                    id,
+                    rootNode.Animal,
+                    area.pos,
+                    area.range,
+                    spawnPoint[1],
+                    spawnPoint[2]
+                )
             end
         end
     end
@@ -97,14 +119,14 @@ function Hunt:InitAnimalData()
 end
 
 --- 实例化动物
-function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
+function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPos, _SpawnRot)
     local tempData = {
         obj = world:CreateInstance(
             Config.Animal[_animalID].ArchetypeName,
             Config.Animal[_animalID].ArchetypeName .. #_animalData + 1,
             _parent,
-			_pos + Vector3(0.6 *math.random(-1 * _range, _range), 0.2,0.6 * math.random(-1 * _range, _range)),
-            EulerDegree(0, 0, 0)
+            _SpawnPos,
+            _SpawnRot
         ),
         state = animalActState.IDLE,
         stateTime = 1,
@@ -115,22 +137,51 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range)
         moveAnimationName = Config.Animal[_animalID].MoveAnimationName,
         moveAnimationDurRange = Config.Animal[_animalID].MoveAnimationDurRange,
         deadAnimationName = Config.Animal[_animalID].DeadAnimationName,
-        closePlayer = nil
+        closePlayer = nil,
+        LVCtrlIntensity = Config.Animal[_animalID].LVCtrlIntensity,
+        RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity,
+        caughtRate = Config.Animal[_animalID].CaughtRate
     }
+    tempData.obj.AnimalID.Value = _animalID
 
-    tempData.obj.Col.OnCollisionBegin:Connect(
-        function(_hitObject)
-            if _hitObject and tempData.state ~= animalActState.DEADED then
-                if _hitObject.Name == "Arrow" then
-                    ItemPool:CreateItemObj(5006, _hitObject.Position)
-                    _hitObject:Destroy()
+    if tempData.obj.AnimalDeadEvent then
+        tempData.obj.AnimalDeadEvent:Connect(
+            function()
+                if tempData.state ~= animalActState.DEADED then
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
                     this:AreaSpawnCtrl()
-					
+                    tempData.obj.IsCaught.Value = false
                 end
             end
-        end
-    )
+        )
+    end
+
+    if tempData.obj.AnimalCaughtEvent then
+        tempData.obj.AnimalCaughtEvent:Connect(
+            function()
+                tempData.obj:SetActive(false)
+                this:ChangeAnimalState(tempData, animalActState.DEADED)
+                this:AreaSpawnCtrl()
+                tempData.obj.trap:Destroy()
+                tempData.obj.IsCaught.Value = false
+            end
+        )
+    end
+
+    if tempData.obj.AnimalTrappedEvent then
+        tempData.obj.AnimalTrappedEvent:Connect(
+            function(_rate)
+                if tempData.state ~= animalActState.DEADED then
+                    local num = math.random(1000)
+                    if num < 1000 * (tempData.caughtRate + _rate) then
+                        this:ChangeAnimalState(tempData, animalActState.TRAPPED)
+                        tempData.obj.IsCaught.Value = true
+                    end
+                end
+            end
+        )
+    end
+
     _animalData[#_animalData + 1] = tempData
 end
 
@@ -174,9 +225,9 @@ end
 --- 杀死区域中一定数量动物
 function Hunt:KillAreaAnimal(_animalArea, _num)
     local count = _num
-    for k, v in pairs(_animalArea.animalData) do
-        if count > 0 then
-            if v.state ~= animalActState.DEADED then
+    while count > 0 do
+        for k, v in pairs(_animalArea.animalData) do
+            if v.state ~= animalActState.DEADED and math.random(3) > 2 then
                 this:ChangeAnimalState(v, animalActState.DEADED)
                 count = count - 1
             end
@@ -187,11 +238,13 @@ end
 --- 复活区域中一定数量动物
 function Hunt:ResetAreaAnimal(_animalArea, _num)
     local count = _num
-    for k, v in pairs(_animalArea.animalData) do
-        if count > 0 then
-            if v.state == animalActState.DEADED then
-                this:ChangeAnimalState(v, animalActState.IDLE)
-                count = count - 1
+    while count > 0 do
+        for k, v in pairs(_animalArea.animalData) do
+            if count > 0 then
+                if v.state == animalActState.DEADED and math.random(3) > 2 then
+                    this:ChangeAnimalState(v, animalActState.IDLE)
+                    count = count - 1
+                end
             end
         end
     end
@@ -213,10 +266,9 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             1
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-		_animalData.obj.LinearVelocityController.Intensity = 0
-		_animalData.obj.RotationController.Intensity = 0
-		_animalData.obj.LinearVelocity = Vector3.Zero
-		
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
     elseif _animalData.state == animalActState.MOVE then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj:SetActive(true)
@@ -231,11 +283,12 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
             _linearVelocity or
-            Vector3(math.random(-10, 10), 0, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
-		_animalData.obj.LinearVelocityController.Intensity = 2000000
-		_animalData.obj.RotationController.Intensity = 1000000
+            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.SCARED then
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -245,19 +298,43 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             0.1,
             true,
             true,
-            1.4
+            _animalData.scaredMoveSpeed / _animalData.defMoveSpeed
+        )
+        local dir = (_animalData.obj.Position - _animalData.closePlayer.Position)
+        _animalData.obj.LinearVelocityController.TargetLinearVelocity =
+            Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized * _animalData.scaredMoveSpeed
+        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
+        _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
+    elseif _animalData.state == animalActState.BACK then
+        _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
+        _animalData.obj:SetActive(true)
+        _animalData.obj.AnimatedMesh:PlayAnimation(
+            _animalData.moveAnimationName[math.random(#_animalData.moveAnimationName)],
+            2,
+            1,
+            0.1,
+            true,
+            true,
+            1
         )
         _animalData.obj.LinearVelocityController.TargetLinearVelocity =
-            (_animalData.obj.Position - _animalData.closePlayer.Position).Normalized * _animalData.scaredMoveSpeed
-		_animalData.obj.LinearVelocityController.Intensity = 2000000
+            _linearVelocity or
+            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
         _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation = EulerDegree(0,_animalData.obj.RotationController.Rotation.y,0)
+        _animalData.obj.RotationController.TargetRotation =
+            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
     elseif _animalData.state == animalActState.DEADED then
-		
         _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-		_animalData.obj.RotationController.Intensity = 0
-		_animalData.obj.LinearVelocityController.Intensity = 0
-		_animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.BloodEffect:SetActive(true)
+        _animalData.obj.IsStatic = false
         if #_animalData.deadAnimationName > 0 then
             _animalData.obj.AnimatedMesh:PlayAnimation(
                 _animalData.deadAnimationName[math.random(#_animalData.deadAnimationName)],
@@ -265,23 +342,35 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
                 1,
                 0.1,
                 true,
-                true,
+                false,
                 1
             )
-		
         end
         invoke(
             function()
+                _animalData.obj.BloodEffect:SetActive(false)
+                wait(2)
                 _animalData.obj:SetActive(false)
             end,
             1
         )
+    elseif _animalData.state == animalActState.TRAPPED then
+        _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
+        _animalData.obj.RotationController.Intensity = 0
+        _animalData.obj.LinearVelocityController.Intensity = 0
+        _animalData.obj.LinearVelocity = Vector3.Zero
+        _animalData.obj.IsStatic = true
+        _animalData.obj.BloodEffect:SetActive(true)
+        _animalData.obj.AnimatedMesh:PlayAnimation(_animalData.idleAnimationName[1], 2, 1, 0.1, true, true, 1)
     end
 end
 
 --- 动物惊吓
 function Hunt:AnimalScared(_animalData)
-    if _animalData.state ~= animalActState.DEADED then
+    if
+        _animalData.state ~= animalActState.DEADED and _animalData.state ~= animalActState.BACK and
+            _animalData.state ~= animalActState.TRAPPED
+     then
         for k, v in pairs(world:FindPlayers()) do
             if (v.Position - _animalData.obj.Position).Magnitude < 6 then
                 local dis = (v.Position - _animalData.obj.Position).Magnitude
@@ -305,11 +394,11 @@ end
 --- 动物范围限制
 function Hunt:AnimalRangeLimit(_animalArea)
     for k, v in pairs(_animalArea.animalData) do
-        if v.state ~= animalActState.DEADED then
+        if v.state ~= animalActState.DEADED and v.state ~= animalActState.BACK then
             if (v.obj.Position - _animalArea.pos).Magnitude > _animalArea.range then
                 this:ChangeAnimalState(
                     v,
-                    animalActState.MOVE,
+                    animalActState.BACK,
                     (_animalArea.pos - v.obj.Position).Normalized * v.defMoveSpeed
                 )
             end
@@ -323,7 +412,7 @@ function Hunt:AnimalMove(dt)
         for k2, v2 in pairs(v1.animalData) do
             if v2.stateTime > 0 then
                 v2.stateTime = v2.stateTime - dt
-            elseif v2.state ~= animalActState.DEADED then
+            elseif v2.state ~= animalActState.DEADED and v2.state ~= animalActState.TRAPPED then
                 this:ChangeAnimalState(v2, v2.state % 2 + 1)
             end
             this:AnimalScared(v2)

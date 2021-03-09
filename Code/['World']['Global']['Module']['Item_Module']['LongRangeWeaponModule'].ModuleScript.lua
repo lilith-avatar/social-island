@@ -2,10 +2,10 @@
 -- @module LongRangeWeapon
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local LongRangeWeapon = class("LongRangeWeapon", ItemBase)
+local LongRangeWeapon = class("LongRangeWeapon", WeaponBase)
 
 function LongRangeWeapon:initialize(_data, _config)
-    ItemBase.initialize(self, _data, _config)
+    WeaponBase.initialize(self, _data, _config)
     print("LongRangeWeapon:initialize()")
 end
 
@@ -13,27 +13,54 @@ end
 function LongRangeWeapon:Attack()
     self.attackCT = self.config.AttackCD
     self:PlayAttackAnim()
-    self:PlayAttackSound()
 end
 
 --发射弓箭
 function LongRangeWeapon:ShootArrow()
-    local dir = (localPlayer.ArrowAim.Position - localPlayer.Position)
-    dir.y = PlayerCam:TPSGetRayDir().y
+    localPlayer.Local.ControlGui.Joystick:SetActive(true)
+    local dir = localPlayer.ArrowAim.Position - localPlayer.Position
+    local a = PlayerCam:TPSGetRayDir().y > -0.2 and 1 or 0.3
+    a = PlayerCam:TPSGetRayDir().y > 0.2 and 1.5 or 1
+    dir.y = (PlayerCam:TPSGetRayDir().y * 20 + GuiBowAim.chargeForce * 5 * a)
     dir = dir.Normalized
     local arrow =
         world:CreateInstance(
         self.config.ArrowModelName,
-        "Arrow",
+        self.config.ArrowModelName,
         world,
         localPlayer.Avatar.Bone_R_Hand.Position,
         localPlayer.Rotation
     )
     arrow.Forward = dir
     arrow.LinearVelocity = arrow.Forward * 40
+    arrow.OnCollisionBegin:Connect(
+        function(_hitObj)
+            if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
+                NetUtil.Fire_S(
+                    "SPlayerHitEvent",
+                    localPlayer,
+                    _hitObj,
+                    ItemMgr.itemInstance[ItemMgr.curWeaponID]:GetAttackData()
+                )
+                arrow.OnCollisionBegin:Clear()
+                arrow:Destroy()
+            else
+                if _hitObj.AnimalID and self.config.Hunt then
+                    NetUtil.Fire_C(
+                        "GetItemFromPoolEvent",
+                        localPlayer,
+                        Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
+                        math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
+                    )
+                    _hitObj.AnimalDeadEvent:Fire()
+                end
+            end
+        end
+    )
     invoke(
         function()
             if arrow then
+                arrow.OnCollisionBegin:Clear()
                 arrow:Destroy()
             end
         end,

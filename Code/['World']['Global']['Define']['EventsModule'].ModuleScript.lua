@@ -10,24 +10,27 @@ Events.ServerEvents = {
     "ExitMiniGameEvent", -- @param nil
     -- 交互
     "InteractSEvent", -- @param _player, _id
+    "LeaveInteractSEvent", -- @param _player, _id
     "MazeEvent",
     "PlayerHitEvent",
     "PlayerStartMoleHitEvent",
     "PlayerLeaveMoleHitEvent",
     "NormalShakeEvent",
+    "SnailBetEvent",
     "PlayerLeaveChairEvent",
     "QteChairMoveEvent",
     "PlayerClickSitBtnEvent",
-    "RaceGameStartEvent",
-    "RaceGameOverEvent",
     -- 人间大炮发射
     "CannonFireEvent",
     -- 人间大炮调整方向
     "SetCannonDirEvent", -- @param _dir
     "LoadMDataEvent", -- @param _userId
     "SaveMDataEvent", -- @param _userId, _playerdata
-    "StartBattleEvent", -- @param _isNpc, _playerA, _playerB
-    "PlantFlowerEvent" -- @param _userId, _flowerObj
+    "SPlayerHitEvent",
+    "NormalChairSpeedUpEvent",
+    "PurchaseSEvent",
+    'PlayerSitEvent',
+    'JetOverEvent'
 }
 
 -- 客户端事件列表
@@ -36,22 +39,30 @@ Events.ClientEvents = {
     "SyncDataEvent", -- @param _playerData
     -- 数据载入结束
     "EndLoadDataEvent", -- @param nil
+    -- 接触NPC
+    "TalkToNpcEvent", -- @param _player, _npcId
+    -- 离开NPC
+    "LeaveNpcEvent", -- @param _player, _npcId
     --- 关闭通用UI事件
     "SetDefUIEvent", -- @param _bool, _nodes, _root
     --- 重置通用UI事件
     "ResetDefUIEvent",
+    --- 进入小游戏修改UI事件
+    "ChangeMiniGameUIEvent",
     --- 打开动态交互事件
     "OpenDynamicEvent", -- @param _type, _id
     -- 交互
     "InteractCEvent", -- @param _id
+    "LeaveInteractCEvent", -- @param _player, _id
     -- NPC事件
-    "TouchNpcEvent", -- @param _npcId
+    "TouchNpcEvent", -- @param _npcId, _npcObj
     -- 修改玩家当前相机
     "SetCurCamEvent", -- @param _cam
     -- 显示小游戏的GUI
     "SetMiniGameGuiEvent", -- @param  _gameId, _selfActive, _ctrlGuiActive
     --- 状态机改变触发
     "FsmTriggerEvent", -- @param  _state
+    "CPlayerHitEvent",
     -- 修改是否能控制角色
     "SetPlayerControllableEvent", -- @param _bool
     "AddScoreAndBoostEvent",
@@ -64,19 +75,26 @@ Events.ClientEvents = {
     "ClientInitRaceEvent",
     -- 播放音效
     "PlayEffectEvent", -- @param _id, _pos
-    "LoadMDataBackEvent",
-    --准备战斗
-    "ReadyBattleEvent",
-    --宠物战斗事件
-    "MBattleEvent", --@param _enum,_arg1,_arg2
     --获得Buff
     "GetBuffEvent", --@param _buffID, _dur
     --移除Buff
     "RemoveBuffEvent", --@param _buffID
-    "GetCoinEvent",
+    "UpdateCoinEvent",
+    "GetItemEvent",
+    "RemoveItemEvent",
+    "UseItemEvent",
     "CreateItemObjEvent",
-    --开始扫描事件
-    "MonsterScanEvent" --@param _pos,_euler,_time
+    "LeaveMoleGameRangeEvent",
+    "InsertInfoEvent",
+    "SwitchStoreUIEvent",
+    "GetItemFromPoolEvent",
+    "UnequipCurWeaponEvent",
+    "GetMolePriceEvent",
+    "SliderPurchaseEvent",
+    "PurchaseConfirmEvent",
+    "PurchaseCEvent",
+    'ChangeChairIdEvent',
+    'StartJetEvent'
 }
 
 return Events
