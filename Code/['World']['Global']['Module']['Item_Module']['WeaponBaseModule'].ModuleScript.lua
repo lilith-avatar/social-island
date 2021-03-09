@@ -31,6 +31,7 @@ function WeaponBase:Use()
     if ItemMgr.curWeaponID ~= 0 then
         ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
     end
+    NetUtil.Fire_C('PlayEffectEvent',localPlayer,25,localPlayer.Position)
     ItemMgr.curWeaponID = self.id
     ItemBase.Use(self)
     self:Equip()

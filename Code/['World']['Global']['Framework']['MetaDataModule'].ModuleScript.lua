@@ -7,20 +7,20 @@ local MetaData = {}
 -- Localize global vars
 local FrameworkConfig = FrameworkConfig
 
--- Debug
+--* 开关：Debug模式，开启后会打印日志
 local debugMode = false
+--* 开关：数据校验
+local valid = true
 
 -- enum
 MetaData.Enum = {}
--- 数据所属：客户端 or 服务器
-MetaData.Enum.SERVER = 1
-MetaData.Enum.CLIENT = 2
 -- 数据类型：全局 or 玩家
 MetaData.Enum.GLOBAL = 'Global'
 MetaData.Enum.PLAYER = 'Player'
 
 -- 是否进行同步，数据初始化之后在开启同步
-MetaData.Sync = false
+MetaData.ServerSync = false
+MetaData.ClientSync = false
 
 --! 说明：两种双向同步机制
 --* 1. Data.Global
@@ -38,14 +38,14 @@ MetaData.Sync = false
 --- 新建一个MetaData的proxy，用于数据同步
 -- @param _data 真实数据
 -- @param _path 当前节点索引路径
--- @param _host 服务器或客户端，使用枚举MetaData.Host
+-- @param _uid UserId
 -- @return proxy 代理table，没有data，元表内包含方法和path
-function NewData(_data, _path, _host)
+function NewData(_data, _path, _uid)
     local proxy = {}
     local mt = {
-        _path = _path,
-        _host = _host,
         _data = _data,
+        _path = _path,
+        _uid = _uid,
         __index = function(_t, _k)
             local mt = getmetatable(_t)
             local newpath = mt._path .. '.' .. _k
@@ -54,10 +54,9 @@ function NewData(_data, _path, _host)
         end,
         __newindex = function(_t, _k, _v)
             local mt = getmetatable(_t)
-
             local newpath = mt._path .. '.' .. _k
             PrintLog('__newindex,', '_k =', _k, ', _v =', _v, ', _path = ', mt._path, ', newpath = ', newpath)
-            SetData(_data, newpath, _host, _v, true)
+            SetData(_data, newpath, _v, _uid, true)
         end,
         __pairs = function()
             -- pairs()需要返回三个参数：next, _t, nil
@@ -76,72 +75,115 @@ end
 -- @param _path 当前节点索引路径
 -- @return rawData 纯数据table，不包含元表
 function GetData(_data, _path)
-    local rawData, key, i = {}
-    for k, v in pairs(_data) do
-        i = string.find(k, _path .. '.')
-        -- 筛选出当前直接层级的path，剪裁后作为rawData的key
-        if i == 1 and #_path < #k then
-            key = string.sub(k, #_path + 2, #k)
-            if not string.find(key, '%.') then
-                key = tonumber(key) or key
-                if type(v) == 'table' then
-                    rawData[key] = GetData(_data, k)
-                else
-                    rawData[key] = v
+    local rawData = {}
+    GetDataAux(_data, _path, rawData)
+    return rawData
+end
+
+--- GetData的辅助函数
+-- @param _data 真实数据的存储位置
+-- @param _path 当前节点索引路径
+-- @param _rawData 纯数据table，不包含元表
+function GetDataAux(_data, _path, _rawData)
+    local key, i
+    local q, elem = Queue:New(), {}
+    elem.path = _path
+    elem.rd = _rawData
+    q:Enqueue(elem)
+    while not q:IsEmpty() do
+        elem = q:Dequeue()
+        for k, v in pairs(_data) do
+            i = string.find(k, elem.path .. '.')
+            -- 筛选出当前直接层级的path，剪裁后作为rawData的key
+            if i == 1 and #elem.path < #k then
+                key = string.sub(k, #elem.path + 2, #k)
+                if not string.find(key, '%.') then
+                    key = tonumber(key) or key
+                    if type(v) == 'table' then
+                        elem.rd[key] = {}
+                        q:Enqueue(
+                            {
+                                path = k,
+                                rd = elem.rd[key]
+                            }
+                        )
+                    else
+                        elem.rd[key] = v
+                    end
                 end
             end
         end
     end
-    return rawData
 end
 
 --- 设置原始数据
 -- @param _data 真实数据的存储位置
 -- @param _path 当前节点索引路径
--- @param _host 服务器或客户端，使用枚举MetaData.Host
 -- @param _value 传入的数据
+-- @param _uid UserId
 -- @param _sync true:同步数据
-function SetData(_data, _path, _host, _value, _sync)
-    --* 数据同步
-    -- TODO: 赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
-    if _sync and MetaData.Sync then
-        SyncData(_path, _host, _value)
+function SetData(_data, _path, _value, _uid, _sync)
+    --* 数据同步:赋值的时候只要同步一次就可以的，存下newpath和_v，对方收到后赋值即可
+    if _sync and (MetaData.ServerSync or MetaData.ClientSync) then
+        SyncData(_path, _value, _uid)
     end
 
-    --* 检查现有数据
-    if type(_data[_path]) == 'table' then
-        -- 如果现有数据是个table,删除所有子数据
-        for k, _ in pairs(_data[_path]) do
-            _data[_path][k] = nil
-        end
-    end
+    local args, newpath = {}
 
-    --* 检查新数据
-    if type(_value) == 'table' then
-        -- 若新数据是table，建立一个mt
-        _data[_path] = NewData(_data, _path, _host)
-        for k, v in pairs(_value) do
-            _data[_path][k] = v
+    local q = Queue:New()
+    q:Enqueue({_data, _path, _value, _uid, _sync})
+
+    while not q:IsEmpty() do
+        _data, _path, _value, _uid, _sync = table.unpack(q:Dequeue())
+
+        --* 数据校验
+        Validators(SetData)(_data, _path, _value, _uid, _sync)
+
+        --* 检查现有数据
+        if type(_data[_path]) == 'table' then
+            -- 如果现有数据是个table,删除所有子数据
+            for k, _ in pairs(_data[_path]) do
+                -- 同等于 _data[_path][k] = nil，但是不同步
+                newpath = _path .. '.' .. k
+                q:Enqueue({_data, newpath, nil, _uid, false})
+            end
         end
-    else
-        -- 一般数据，直接赋值
-        _data[_path] = _value
+
+        --* 检查新数据
+        if type(_value) == 'table' then
+            -- 若新数据是table，建立一个mt
+            _data[_path] = NewData(_data, _path, _uid)
+            for k, v in pairs(_value) do
+                -- 同等于 _data[_path][k] = v，但是不同步
+                newpath = _path .. '.' .. k
+                q:Enqueue({_data, newpath, v, _uid, false})
+            end
+        else
+            -- 一般数据，直接赋值
+            _data[_path] = _value
+        end
     end
 end
 
 --- 数据同步
 -- @param _path 当前节点索引路径
--- @param _host 服务器或客户端，使用枚举MetaData.Host
 -- @param _value 传入的数据
-function SyncData(_path, _host, _value)
-    -- 数据校验
-    SyncValidation(_path, _host, _value)
-
-    if _host == MetaData.Enum.SERVER then
-        -- 服务器 => 客户端
+-- @param _uid UserId
+function SyncData(_path, _value, _uid)
+    if localPlayer == nil and string.isnilorempty(_uid) and MetaData.ServerSync then
+        -- 服务器 => 客户端，Global 全局数据
         NetUtil.Broadcast('DataSyncS2CEvent', _path, _value)
-    elseif _host == MetaData.Enum.CLIENT then
+    elseif localPlayer == nil and MetaData.ServerSync then
+        -- 服务器 => 客户端，Player 玩家数据
+        local player = world:GetPlayerByUserId(_uid)
+        assert(player, string.format('[MetaData] 玩家不存在 uid = %s', _uid))
+        PrintLog(string.format('[Server] 发出 player = %s, _path = %s, _value = %s', _player, _path, table.dump(_value)))
+        NetUtil.Fire_C('DataSyncS2CEvent', player, _path, _value)
+    elseif localPlayer and localPlayer.UserId == _uid and MetaData.ClientSync then
         -- 客户端 => 服务器
+        PrintLog(
+            string.format('[Client] 发出 player = %s, _path = %s, _value = %s', localPlayer, _path, table.dump(_value))
+        )
         NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, _path, _value)
     end
 end
@@ -162,33 +204,46 @@ end
 
 --! 辅助方法
 
---- 同步数据校验
-function SyncValidation(_path, _host, _value)
-    assert(
-        _host == MetaData.Enum.SERVER or _host == MetaData.Enum.CLIENT,
-        string.format(
-            '[MetaData] SyncData() host错误, path = %s, host = %s, value = %s',
-            _path,
-            _host,
-            table.dump(_value)
-        )
-    )
-    assert(
-        _host ~= MetaData.Enum.CLIENT or localPlayer,
-        string.format(
-            '[MetaData] SyncData() localPlayer不存在, path = %s, host = %s, value = %s',
-            _path,
-            _host,
-            table.dump(_value)
-        )
-    )
-end
-
 --- 打印数据同步日志
 PrintLog = FrameworkConfig.DebugMode and debugMode and function(...)
         print('[MetaData]', ...)
     end or function()
     end
+
+-- 数据校验
+function Validators(func)
+    if not valid then
+        return function()
+        end
+    end
+
+    if func == SetData then
+        return function(_data, _path, _value, _uid, _sync)
+            assert(
+                _data,
+                string.format(
+                    '[MetaData] data为空 data = %s, path = %s, uid = %s, sync = %s, value = %s',
+                    _data,
+                    _path,
+                    _uid,
+                    _sync,
+                    table.dump(_value)
+                )
+            )
+            assert(
+                not string.isnilorempty(_path),
+                string.format(
+                    '[MetaData] path为空 data = %s, path = %s, uid = %s, sync = %s, value = %s',
+                    _data,
+                    _path,
+                    _uid,
+                    _sync,
+                    table.dump(_value)
+                )
+            )
+        end
+    end
+end
 
 return MetaData
 
@@ -202,4 +257,7 @@ Data.Global.d = {'88', Vector3(9,9,9)}
 print(table.dump(Data.Global))
 print(table.dump(MetaData.Get(Data.Global)))
 
+print(table.dump(Data.Player))
+
+print(table.dump(Data.Players))
 ]]

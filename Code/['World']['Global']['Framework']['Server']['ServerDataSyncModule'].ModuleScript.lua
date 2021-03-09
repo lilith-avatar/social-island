@@ -38,44 +38,71 @@ function InitEventsAndListeners()
 
     -- 玩家加入事件
     local onPlayerJoinEvent = world.S_Event.OnPlayerJoinEvent
-    assert(onPlayerJoinEvent, string.format('[DataSync][Server] %s不存在', onPlayerJoinEvent))
+    assert(onPlayerJoinEvent, '[DataSync][Server] 不存在 OnPlayerJoinEvent')
     onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
 
     -- 玩家离开事件
     local onPlayerLeaveEvent = world.S_Event.OnPlayerLeaveEvent
-    assert(onPlayerLeaveEvent, string.format('[DataSync][Server] %s不存在', onPlayerLeaveEvent))
+    assert(onPlayerLeaveEvent, '[DataSync][Server] 不存在 OnPlayerLeaveEvent')
     onPlayerLeaveEvent:Connect(OnPlayerLeaveEventHandler)
 end
 
 --- 校验数据定义
 function InitDefines()
     --* 服务器全局数据
-    Data.Global = Data.Global or MetaData.New(rawDataGlobal, MetaData.Enum.GLOBAL, MetaData.Enum.SERVER)
+    InitDataGlobal()
+
+    --* 服务器玩家数据, key是uid
+    Data.Players = {}
+end
+
+--- 初始化Data.Global
+function InitDataGlobal()
+    --* 服务器全局数据
+    Data.Global = Data.Global or MetaData.New(rawDataGlobal, MetaData.Enum.GLOBAL, nil)
     -- 默认赋值
     for k, v in pairs(Data.Default.Global) do
         Data.Global[k] = v
     end
+end
 
-    -- TODO: 服务器玩家数据
-    Data.Players = {}
+--- 初始化Data.Players中对应玩家数据
+function InitDataPlayer(_player)
+    --* 服务器端创建Data.Player
+    local uid = _player.UserId
+    local path = MetaData.Enum.PLAYER .. uid
+    rawDataPlayers[uid] = {}
+    Data.Players[uid] = MetaData.New(rawDataPlayers[uid], path, uid)
+
+    -- 默认赋值
+    for k, v in pairs(Data.Default.Player) do
+        Data.Players[uid][k] = v
+    end
 end
 
 --- 开始同步
 function ServerDataSync.Start()
-    MetaData.Sync = true
+    -- MetaData.ServerSync = true
 end
 
 --! Event handler
 
 --- 数据同步事件Handler
 function DataSyncC2SEventHandler(_player, _path, _value)
+    if not MetaData.ServerSync then
+        return
+    end
+
     PrintLog(string.format('收到 player = %s, _path = %s, _value = %s', _player, _path, table.dump(_value)))
 
+    local uid = _player.UserId
+
     if string.startswith(_path, MetaData.Enum.GLOBAL) then
-        --* 收到客户端改变数据的时候需要同步给其他玩家
-        MetaData.Set(rawDataGlobal, _path, MetaData.Enum.SERVER, _value, true)
-    elseif string.startswith(_path, MetaData.Enum.PLAYER) then
-        -- TODO: Player数据
+        --* Data.Global：收到客户端改变数据的时候需要同步给其他玩家
+        MetaData.Set(rawDataGlobal, _path, _value, nil, true)
+    elseif string.startswith(_path, MetaData.Enum.PLAYER .. uid) then
+        --* Data.Players
+        MetaData.Set(rawDataPlayers[uid], _path, _value, uid, false)
     else
         error(
             string.format(
@@ -90,28 +117,23 @@ end
 
 --- 新玩家加入事件Handler
 function OnPlayerJoinEventHandler(_player)
+    print('[DataSync][Server] OnPlayerJoinEventHandler', _player, _player.UserId)
     --* 向客户端同步Data.Global
     NetUtil.Fire_C('DataSyncS2CEvent', _player, MetaData.Enum.GLOBAL, MetaData.Get(Data.Global))
 
-    --* 服务器端创建Data.Player
     local uid = _player.UserId
-    Data.Players[uid] = {}
-    Data.Players[_player] = Data.Players[uid]
-
-    -- 默认赋值
-    for k, v in pairs(Data.Default.Player) do
-        -- TODO: 用MetaData.Set
-        Data.Players[uid][k] = v
-    end
+    InitDataPlayer(_player)
 
     --TODO: 获取长期存储,成功后向客户端同步
 end
 
 --- 玩家离开事件Handler
 function OnPlayerLeaveEventHandler(_player, _uid)
+    print('[DataSync][Server] OnPlayerLeaveEventHandler', _player, _uid)
     assert(not string.isnilorempty(_uid), '[ServerDataSync] OnPlayerLeaveEventHandler() uid不存在')
 
-    --TODO: 保存长期存储
+    --TODO: 保存长期存储：rawDataPlayers[_uid] 保存成功后删掉
+    rawDataPlayers[_uid] = nil
 
     --* 删除玩家端数据
     Data.Players[_uid] = nil

@@ -315,6 +315,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
+                NetUtil.Fire_C('PlayEffectEvent',localPlayer,22,localPlayer.Position)
             end
         end
         if _hitObject.GrassInteractUID then
