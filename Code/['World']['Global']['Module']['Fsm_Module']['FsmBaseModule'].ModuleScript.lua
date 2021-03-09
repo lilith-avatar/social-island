@@ -25,7 +25,6 @@ function FsmBase:AddState(_state)
     self.stateTrigger[_state.stateName] = false
     self.stateTriggerFunc[_state.stateName] = function()
         if self.stateTrigger[_state.stateName] then
-            print("stateTriggerFunc", _state.stateName)
             self:Switch(_state.stateName)
         end
     end

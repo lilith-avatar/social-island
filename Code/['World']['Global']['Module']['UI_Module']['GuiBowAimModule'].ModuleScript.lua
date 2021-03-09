@@ -16,8 +16,9 @@ end
 
 --节点引用
 function GuiBowAim:NodeRef()
-    this.gui = localPlayer.Local.BowAimGUI
-    this.aimStick = this.gui.AimStick
+    this.gui = localPlayer.Local.SpecialBottomUI.BowAimGUI
+    this.touchGui = localPlayer.Local.SpecialTopUI.BowAimGUI
+    this.aimStick = this.touchGui.AimStick
     this.chargeForce = 0
 end
 
@@ -29,7 +30,6 @@ end
 function GuiBowAim:EventBind()
     this.aimStick.OnEnter:Connect(
         function()
-            localPlayer.Local.ControlGui.Joystick:SetActive(false)
             ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
         end
     )
@@ -67,18 +67,20 @@ end
 function GuiBowAim:Charge(dt)
     if isCharge then
         if this.chargeForce < 1 then
-            this.chargeForce = this.chargeForce + dt
+            this.chargeForce = this.chargeForce + dt * 2
         else
             this.chargeForce = 1
         end
     else
         if this.chargeForce > 0 then
-            this.chargeForce = this.chargeForce - dt
+            this.chargeForce = this.chargeForce - dt * 2
         else
             this.chargeForce = 0
         end
     end
-    this.gui.Panel.ChargeBar.FillAmount = this.chargeForce
+    this.gui.Panel.ChargeDown.Offset = Vector2(0, this.chargeForce * 80)
+    this.gui.Panel.ChargeRight.Offset = Vector2(this.chargeForce * -80, 0)
+    this.gui.Panel.ChargeLeft.Offset = Vector2(this.chargeForce * 80, 0)
 end
 
 --玩家上半身角度移动

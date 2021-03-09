@@ -38,7 +38,7 @@ end
 
 --- 节点引用
 function Pet:NodeRef()
-    gui = localPlayer.Local.SpecialUI.PetNamedGUI
+    gui = localPlayer.Local.SpecialTopUI.PetNamedGUI
 end
 
 --- 数据变量初始化

@@ -352,6 +352,16 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end
+        if _hitObject.CoinUID then
+            if _isBegin then
+                if _hitObject.CoinUID.Value == localPlayer.UserId or _hitObject.CoinUID.Value == "" then
+                    _hitObject.CoinUID.Value = localPlayer.UserId
+                    _hitObject.GetCoinEvent:Fire()
+                end
+            else
+                _hitObject.CoinUID.Value = ""
+            end
+        end
     end
 end
 

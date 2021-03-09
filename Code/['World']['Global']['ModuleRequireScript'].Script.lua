@@ -19,6 +19,7 @@ LinkedList = Utility.LinkedListModule
 ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
 CloudLogUtil = require(Utility.CloudLogUtilModule)
+ObjPoolUtil = require(Utility.ObjPoolUtilModule)
 
 -- Init Utilities
 TimeUtil.Init()
