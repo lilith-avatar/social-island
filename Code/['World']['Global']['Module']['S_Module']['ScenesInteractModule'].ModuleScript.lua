@@ -39,15 +39,18 @@ end
 --- 节点引用
 function ScenesInteract:NodeRef()
     for k, v in pairs(Config.ScenesInteract) do
-        interactOBJ[k] = {
-            obj = world.ScenesInteract[v.Path],
-            itemID = v.ItemID,
-            isGet = v.IsGet,
-            useCount = v.UseCount,
-            useCountMax = v.UseCount,
-            resetTime = v.ResetTime,
-            resetCD = 0
-        }
+        if v.IsPre then
+            interactOBJ[k] = {
+                obj = world.ScenesInteract[v.Path],
+                itemID = v.ItemID,
+                isGet = v.IsGet,
+                rewardCoin = v.RewardCoin,
+                useCount = v.UseCount,
+                useCountMax = v.UseCount,
+                resetTime = v.ResetTime,
+                resetCD = 0
+            }
+        end
     end
     for k, v in pairs(world.BounceInteract:GetChildren()) do
         bounceOBJ[v.Name] = {
@@ -83,6 +86,24 @@ end
 
 --- 节点事件绑定
 function ScenesInteract:EventBind()
+end
+
+--- 实例化场景交互
+function ScenesInteract:InstanceInteractOBJ(_id, _pos)
+    local config = Config.ScenesInteract[_id]
+    print("实例化场景交互", config.Path)
+    if config.IsPre == false then
+        interactOBJ[_id] = {
+            obj = world:CreateInstance(config.Path, config.Path, world.ScenesInteract, _pos),
+            itemID = config.ItemID,
+            isGet = config.IsGet,
+            rewardCoin = config.RewardCoin,
+            useCount = config.UseCount,
+            useCountMax = config.UseCount,
+            resetTime = config.ResetTime,
+            resetCD = 0
+        }
+    end
 end
 
 --弹跳
@@ -166,11 +187,14 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(interactOBJ) do
             if v.obj.ScenesInteractUID.Value == _player.UserId then
                 if v.useCount > 0 then
-                    if v.isGet then
-                        NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
-                    else
-                        NetUtil.Fire_C("UseItemEvent", _player, v.itemID)
+                    if v.itemID ~= nil then
+                        if v.isGet then
+                            NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
+                        else
+                            NetUtil.Fire_C("UseItemEvent", _player, v.itemID)
+                        end
                     end
+                    NetUtil.Fire_S("SpawnCoinEvent", "P", v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
                     v.useCount = v.useCount - 1
                     if v.useCount == 0 then
                         v.obj:SetActive(false)

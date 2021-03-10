@@ -51,11 +51,14 @@ function CoinMgr:InitCoinPool(_amount)
 end
 
 --- 刷新一个金币
-function CoinMgr:SpawnCoin(_type, _pos)
-    local coinOBJ = coinPool[_type]:Spawn(_pos)
+function CoinMgr:SpawnCoin(_pool, _pos)
+    local coinOBJ = coinPool[_pool]:Spawn(_pos)
+    if string.sub(_pool, 1, 1) == "P" then
+        coinOBJ.LinearVelocity = Vector3(math.random(-5, 5), 5, math.random(-5, 5))
+    end
     coinOBJ.GetCoinEvent:Connect(
         function()
-            this:GetCoin(_type, coinOBJ)
+            this:GetCoin(_pool, coinOBJ)
         end
     )
 end
