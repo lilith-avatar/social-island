@@ -14,9 +14,10 @@ Data.Default.Global = {}
 
 -- 玩家数据，初始化定义
 Data.Default.Player = {
+    -- 玩家ID, 框架默认
+    uid = '',
     -- 玩家属性
     attr = {
-        uid = '',
         AvatarHeight = 1,
         AvatarHeadSize = 1,
         AvatarWidth = 1,

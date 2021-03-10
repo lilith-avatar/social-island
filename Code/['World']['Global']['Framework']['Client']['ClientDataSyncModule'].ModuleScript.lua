@@ -63,6 +63,7 @@ end
 
 --- 开始同步
 function ClientDataSync.Start()
+    print('[DataSync][Client] 客户端数据同步开始')
     MetaData.Sync = true
 end
 
@@ -88,7 +89,7 @@ function DataSyncS2CEventHandler(_path, _value)
     else
         error(
             string.format(
-                '[DataSync][Server] _path错误 _player = %s, _path = %s, _value = %s',
+                '[DataSync][Client] _path错误 _player = %s, _path = %s, _value = %s',
                 localPlayer,
                 _path,
                 table.dump(_value)
