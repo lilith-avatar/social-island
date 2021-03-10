@@ -267,6 +267,386 @@ local PeriodCoinXls = {
             CoinType = 'N100',
             Num = 1
         }
+    },
+    [4] = {
+        [1] = {
+            Fid = 4,
+            Pid = 1,
+            Pos = Vector3(-75.995804, 75.707085, -10.714348),
+            Rot = EulerDegree(0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [2] = {
+            Fid = 4,
+            Pid = 2,
+            Pos = Vector3(-94.295120, 74.039223, -15.766949),
+            Rot = EulerDegree(0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [3] = {
+            Fid = 4,
+            Pid = 3,
+            Pos = Vector3(-85.058029, 75.866356, -30.108248),
+            Rot = EulerDegree(0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [4] = {
+            Fid = 4,
+            Pid = 4,
+            Pos = Vector3(-61.725952, 75.707085, -14.371435),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [5] = {
+            Fid = 4,
+            Pid = 5,
+            Pos = Vector3(-101.626274, 74.039223, -15.766949),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [6] = {
+            Fid = 4,
+            Pid = 6,
+            Pos = Vector3(-86.617989, 73.975868, -11.200914),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [7] = {
+            Fid = 4,
+            Pid = 7,
+            Pos = Vector3(-122.352135, 65.989723, 17.271353),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [8] = {
+            Fid = 4,
+            Pid = 8,
+            Pos = Vector3(-89.902306, 72.177177, 69.772621),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [9] = {
+            Fid = 4,
+            Pid = 9,
+            Pos = Vector3(-89.902306, 72.177177, 79.121078),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [10] = {
+            Fid = 4,
+            Pid = 10,
+            Pos = Vector3(-86.562134, 75.866356, -21.947836),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [11] = {
+            Fid = 4,
+            Pid = 11,
+            Pos = Vector3(-92.230850, 75.781837, -27.170578),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [12] = {
+            Fid = 4,
+            Pid = 12,
+            Pos = Vector3(-71.991333, 74.457436, -15.146814),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [13] = {
+            Fid = 4,
+            Pid = 13,
+            Pos = Vector3(-95.975334, 71.300926, 66.048798),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [14] = {
+            Fid = 4,
+            Pid = 14,
+            Pos = Vector3(-93.055618, 72.566238, 70.994698),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [15] = {
+            Fid = 4,
+            Pid = 15,
+            Pos = Vector3(-123.257614, 66.562798, 21.947720),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [16] = {
+            Fid = 4,
+            Pid = 16,
+            Pos = Vector3(-90.151733, 72.674492, 73.450691),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [17] = {
+            Fid = 4,
+            Pid = 17,
+            Pos = Vector3(-124.071983, 65.685333, 30.068110),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [18] = {
+            Fid = 4,
+            Pid = 18,
+            Pos = Vector3(-101.899521, 73.397194, -27.170578),
+            Rot = EulerDegree(0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [19] = {
+            Fid = 4,
+            Pid = 19,
+            Pos = Vector3(-79.150345, 75.866356, -20.670727),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [20] = {
+            Fid = 4,
+            Pid = 20,
+            Pos = Vector3(-98.403267, 70.518883, 61.451832),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [21] = {
+            Fid = 4,
+            Pid = 21,
+            Pos = Vector3(-91.922539, 72.963898, 76.028976),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [22] = {
+            Fid = 4,
+            Pid = 22,
+            Pos = Vector3(-126.018311, 66.673218, 19.658134),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [23] = {
+            Fid = 4,
+            Pid = 23,
+            Pos = Vector3(-86.355049, 71.592667, 71.998413),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        },
+        [24] = {
+            Fid = 4,
+            Pid = 24,
+            Pos = Vector3(-123.002930, 67.011017, 26.733995),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 8
+        }
+    },
+    [5] = {
+        [1] = {
+            Fid = 5,
+            Pid = 1,
+            Pos = Vector3(-174.361862, -0.272245, 28.211317),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [2] = {
+            Fid = 5,
+            Pid = 2,
+            Pos = Vector3(-165.123047, 7.030109, 41.096771),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [3] = {
+            Fid = 5,
+            Pid = 3,
+            Pos = Vector3(-158.747757, -9.839782, 80.649750),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [4] = {
+            Fid = 5,
+            Pid = 4,
+            Pos = Vector3(-50.438534, 11.487173, 102.109352),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [5] = {
+            Fid = 5,
+            Pid = 5,
+            Pos = Vector3(-16.314404, 22.338280, 114.121002),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [6] = {
+            Fid = 5,
+            Pid = 6,
+            Pos = Vector3(-71.511200, -13.277767, 35.110680),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [7] = {
+            Fid = 5,
+            Pid = 7,
+            Pos = Vector3(-92.142342, 13.476738, 100.198692),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [8] = {
+            Fid = 5,
+            Pid = 8,
+            Pos = Vector3(-41.650955, -11.374971, 61.922855),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [9] = {
+            Fid = 5,
+            Pid = 9,
+            Pos = Vector3(-33.549911, -10.197646, 71.607407),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [10] = {
+            Fid = 5,
+            Pid = 10,
+            Pos = Vector3(-170.068283, 1.890959, 129.027512),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [11] = {
+            Fid = 5,
+            Pid = 11,
+            Pos = Vector3(-67.071266, 1.890959, -67.892540),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [12] = {
+            Fid = 5,
+            Pid = 12,
+            Pos = Vector3(14.593680, -7.350087, -14.253241),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [13] = {
+            Fid = 5,
+            Pid = 13,
+            Pos = Vector3(3.676531, -4.964070, 41.167370),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [14] = {
+            Fid = 5,
+            Pid = 14,
+            Pos = Vector3(-94.316284, -7.475637, 67.543129),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [15] = {
+            Fid = 5,
+            Pid = 15,
+            Pos = Vector3(-120.996834, -13.666782, 40.716202),
+            Rot = EulerDegree(-0.000000, 16.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [16] = {
+            Fid = 5,
+            Pid = 16,
+            Pos = Vector3(-141.380661, -0.364467, 34.703995),
+            Rot = EulerDegree(-0.000000, 300.500000, 0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [17] = {
+            Fid = 5,
+            Pid = 17,
+            Pos = Vector3(-100.896606, -4.275764, -27.357367),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [18] = {
+            Fid = 5,
+            Pid = 18,
+            Pos = Vector3(-65.991493, -5.738024, -27.696426),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [19] = {
+            Fid = 5,
+            Pid = 19,
+            Pos = Vector3(-53.598759, -4.942509, -30.008411),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [20] = {
+            Fid = 5,
+            Pid = 20,
+            Pos = Vector3(-31.637678, -8.492792, -32.477882),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [21] = {
+            Fid = 5,
+            Pid = 21,
+            Pos = Vector3(-27.037695, -13.670100, 7.896946),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [22] = {
+            Fid = 5,
+            Pid = 22,
+            Pos = Vector3(-160.642502, 1.360978, 33.000542),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        },
+        [23] = {
+            Fid = 5,
+            Pid = 23,
+            Pos = Vector3(-167.997589, 5.643238, 26.011068),
+            Rot = EulerDegree(-0.000000, -59.499973, -0.000000),
+            CoinType = 'Random',
+            Num = 4
+        }
     }
 }
 
