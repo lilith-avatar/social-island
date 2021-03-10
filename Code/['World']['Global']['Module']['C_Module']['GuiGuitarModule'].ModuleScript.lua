@@ -89,6 +89,8 @@ function GuiGuitar:PlayString(_string)
     )
     --震动
     --this.string[_string].StringImg
+    local Tweener = Tween:ShakeProperty(this.string[_string].StringImg,{'Offset'},0.5,1)
+    Tweener:Play()
 end
 
 function GuiGuitar:ChangeMode()
@@ -113,7 +115,6 @@ end
 --- 松弦
 function GuiGuitar:RealseFret(_string, _fret)
     if this.stringPitch[_string].pitchFret == _fret then
-        --TODO： 停止音效
         this.stringPitch[_string].pitchFret = this.stringPitch[_string].backFret[1]
         table.remove(this.stringPitch[_string].backFret, 1)
     else
