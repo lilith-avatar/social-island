@@ -61,6 +61,7 @@ function CoinMgr:SpawnCoin(_pool, _pos)
             this:GetCoin(_pool, coinOBJ)
         end
     )
+	return coinOBJ
 end
 
 --- 获得金币
