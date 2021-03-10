@@ -200,6 +200,7 @@ MetaData.Set = SetData
 --- 从proxy中生成一个纯数据表格
 MetaData.Get = function(_proxy)
     local mt = getmetatable(_proxy)
+    assert(mt, string.format('[MetaData] metatable为空，proxy = %s', table.dump(_proxy)))
     return GetData(mt._data, mt._path)
 end
 

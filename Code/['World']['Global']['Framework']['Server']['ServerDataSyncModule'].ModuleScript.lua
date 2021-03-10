@@ -32,6 +32,7 @@ function ServerDataSync.Init()
     print('[DataSync][Server] Init()')
     InitEventsAndListeners()
     InitDefines()
+    sheet = DataStore:GetSheet('PlayerData')
 end
 
 --- 初始化事件和绑定Handler
@@ -93,6 +94,7 @@ end
 
 --- 开始同步
 function ServerDataSync.Start()
+    print('[DataSync][Server] 服务器数据同步开启')
     MetaData.ServerSync = true
 
     -- 启动定时器
@@ -158,6 +160,8 @@ end
 --- @param _delete string 保存成功后是否删除缓存数据
 function SaveGameDataAsync(_uid, _delete)
     assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
+    assert(not string.isnilorempty(_uid), '[DataSync][Server] uid不存在或为空')
+    assert(Data.Players[_uid], string.format('[DataSync][Server] Data.Players[_uid]不存在 uid = %s', _uid))
     local newData = MetaData.Get(Data.Players[_uid])
     assert(newData, string.format('[DataSync][Server] 玩家数据不存在, uid = %s', _uid))
     assert(newData.uid == _uid, string.format('[DataSync][Server] uid校验不通过, uid = %s', _uid))
