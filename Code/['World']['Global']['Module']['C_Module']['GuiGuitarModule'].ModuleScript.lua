@@ -89,7 +89,7 @@ function GuiGuitar:PlayString(_string)
     )
     --震动
     --this.string[_string].StringImg
-    local Tweener = Tween:ShakeProperty(this.string[_string].StringImg,{'Offset'},0.5,1)
+    local Tweener = Tween:ShakeProperty(this.string[_string].StringImg,{'Offset'},0.5,2)
     Tweener:Play()
 end
 
