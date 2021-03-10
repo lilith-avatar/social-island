@@ -39,15 +39,18 @@ end
 --- 节点引用
 function ScenesInteract:NodeRef()
     for k, v in pairs(Config.ScenesInteract) do
-        interactOBJ[k] = {
-            obj = world.ScenesInteract[v.Path],
-            itemID = v.ItemID,
-            isGet = v.IsGet,
-            useCount = v.UseCount,
-            useCountMax = v.UseCount,
-            resetTime = v.ResetTime,
-            resetCD = 0
-        }
+        if v.IsPre then
+            interactOBJ[k] = {
+                obj = world.ScenesInteract[v.Path],
+                itemID = v.ItemID,
+                isGet = v.IsGet,
+                rewardCoin = v.RewardCoin,
+                useCount = v.UseCount,
+                useCountMax = v.UseCount,
+                resetTime = v.ResetTime,
+                resetCD = 0
+            }
+        end
     end
     for k, v in pairs(world.BounceInteract:GetChildren()) do
         bounceOBJ[v.Name] = {
@@ -71,7 +74,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
     end
-    for k,v in pairs(world.Guitar:GetChildren()) do
+    for k, v in pairs(world.Guitar:GetChildren()) do
         guitarOBJ[v.Name] = v
     end
 end
@@ -83,6 +86,24 @@ end
 
 --- 节点事件绑定
 function ScenesInteract:EventBind()
+end
+
+--- 实例化场景交互
+function ScenesInteract:InstanceInteractOBJ(_id, _pos)
+    local config = Config.ScenesInteract[_id]
+    print("实例化场景交互", config.Path)
+    if config.IsPre == false then
+        interactOBJ[_id] = {
+            obj = world:CreateInstance(config.Path, config.Path, world.ScenesInteract, _pos),
+            itemID = config.ItemID,
+            isGet = config.IsGet,
+            rewardCoin = config.RewardCoin,
+            useCount = config.UseCount,
+            useCountMax = config.UseCount,
+            resetTime = config.ResetTime,
+            resetCD = 0
+        }
+    end
 end
 
 --弹跳
@@ -151,9 +172,10 @@ function ScenesInteract:TrojanShake(dt)
     for k, v in pairs(this.TrojanList) do
         v.timer = v.timer + dt
         v.totalTimer = v.totalTimer + dt
-        if v.timer >= 10 then
+        if v.timer >= 1 then
             -- TODO: 给钱
-            print("给一个金币")
+            --print("给一个金币")
+            NetUtil.Fire_C("UpdateCoinEvent", localPlayer, 1)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
@@ -165,11 +187,14 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(interactOBJ) do
             if v.obj.ScenesInteractUID.Value == _player.UserId then
                 if v.useCount > 0 then
-                    if v.isGet then
-                        NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
-                    else
-                        NetUtil.Fire_C("UseItemEvent", _player, v.itemID)
+                    if v.itemID ~= nil then
+                        if v.isGet then
+                            NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
+                        else
+                            NetUtil.Fire_C("UseItemEvent", _player, v.itemID)
+                        end
                     end
+                    NetUtil.Fire_S("SpawnCoinEvent", "P", v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
                     v.useCount = v.useCount - 1
                     if v.useCount == 0 then
                         v.obj:SetActive(false)
@@ -188,7 +213,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,14,_player.Position)
+                NetUtil.Fire_C("PlayEffectEvent", _player, 14, _player.Position)
             end
         end
     end
@@ -229,7 +254,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C('PlayEffectEvent',_player,15,_player.Position)
+                NetUtil.Fire_C("PlayEffectEvent", _player, 15, _player.Position, v.Name)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
@@ -263,6 +288,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                 _player.Avatar:StopAnimation("SitIdle", 2)
                 NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+                NetUtil.Fire_C("StopEffectEvent", _player, v.Name)
                 v.Forward = this.TrojanList[v.Name].originForward
                 this.TrojanList[v.Name] = nil
             end

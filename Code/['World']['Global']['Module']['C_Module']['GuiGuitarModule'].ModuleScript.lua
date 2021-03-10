@@ -55,12 +55,12 @@ function GuiGuitar:EventBind()
     end
     for k, v in ipairs(this.fret) do
         for m, n in ipairs(v:GetChildren()) do
-            n.OnDown:Connect(
+            n.OnEnter:Connect(
                 function()
                     this:PressFret(m, k)
                 end
             )
-            n.OnUp:Connect(
+            n.OnLeave:Connect(
                 function()
                     this:RealseFret(m, k)
                 end
@@ -80,13 +80,17 @@ end
 
 function GuiGuitar:PlayString(_string)
     local playPos = not this.practiceMode and localPlayer.Position or nil
-    -- TODO: 播放对应弦的音效
+    -- 播放对应弦的音效
     NetUtil.Fire_C(
         "PlayEffectEvent",
         localPlayer,
         Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret],
         playPos
     )
+    --震动
+    --this.string[_string].StringImg
+    local Tweener = Tween:ShakeProperty(this.string[_string].StringImg,{'Offset'},0.5,2)
+    Tweener:Play()
 end
 
 function GuiGuitar:ChangeMode()
@@ -111,7 +115,6 @@ end
 --- 松弦
 function GuiGuitar:RealseFret(_string, _fret)
     if this.stringPitch[_string].pitchFret == _fret then
-        --TODO： 停止音效
         this.stringPitch[_string].pitchFret = this.stringPitch[_string].backFret[1]
         table.remove(this.stringPitch[_string].backFret, 1)
     else
