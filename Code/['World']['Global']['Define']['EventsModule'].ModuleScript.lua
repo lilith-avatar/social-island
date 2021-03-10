@@ -76,6 +76,7 @@ Events.ClientEvents = {
     "ClientInitRaceEvent",
     -- 播放音效
     "PlayEffectEvent", -- @param _id, _pos
+    "StopEffectEvent",
     --获得Buff
     "GetBuffEvent", --@param _buffID, _dur
     --移除Buff

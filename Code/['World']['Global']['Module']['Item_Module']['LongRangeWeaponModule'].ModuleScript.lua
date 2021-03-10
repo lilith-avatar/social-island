@@ -55,36 +55,40 @@ function LongRangeWeapon:ShootArrow(_force)
                     )
                     arrow.OnCollisionBegin:Clear()
                     arrow:Destroy()
-                else
-                    if _hitObj.AnimalID and self.config.Hunt then
-                        NetUtil.Fire_C(
-                            "GetItemFromPoolEvent",
-                            localPlayer,
-                            Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
-                            0
-                        )
-                        NetUtil.Fire_S(
-                            "SpawnCoinEvent",
-                            "P",
-                            _hitObj.Position + Vector3(0, 1, 0),
-                            math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
-                        )
-                        _hitObj.AnimalDeadEvent:Fire()
-                    end
+                elseif _hitObj.AnimalID and self.config.Hunt then
+                    NetUtil.Fire_C(
+                        "GetItemFromPoolEvent",
+                        localPlayer,
+                        Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
+                        0
+                    )
+                    NetUtil.Fire_S(
+                        "SpawnCoinEvent",
+                        "P",
+                        _hitObj.Position + Vector3(0, 1, 0),
+                        math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
+                    )
+                    _hitObj.AnimalDeadEvent:Fire()
+                elseif _hitObj.Name == "ArrowTargetCol" then
+                    _hitObj.Parent.ArrowTargetEvent:Fire(_hitObj.Position)
+                    arrow:Destroy()
                 end
             end
         end
     )
     invoke(
         function()
+            wait(_force)
             if arrow then
-                wait(_force)
                 arrow.GravityEnable = true
                 wait(3 - _force)
+            end
+            if arrow then
                 arrow.OnCollisionBegin:Clear()
                 arrow:Destroy()
             end
-        end
+        end,
+        .1
     )
     return arrow
 end
