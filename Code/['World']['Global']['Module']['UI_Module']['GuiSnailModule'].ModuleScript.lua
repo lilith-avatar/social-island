@@ -31,28 +31,17 @@ function GuiSnail:EventBind()
     for k, v in pairs(snailBtn) do
         v.OnDown:Connect(
             function()
-                snailIndex = k
-                gui.SnailPanel:SetActive(false)
-                gui.BetPanel:SetActive(true)
-                NetUtil.Fire_C("InsertInfoEvent", localPlayer, "选择投注的金币数量", 1, false)
+                if Data.Player.coin >= 1 then
+                    snailIndex = k
+                    gui.SnailPanel:SetActive(false)
+                    NetUtil.Fire_C("SliderPurchaseEvent", localPlayer, 8, "请选择投注数量")
+                else
+                    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你没钱啦", 3, true)
+                    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                end
             end
         )
     end
-    betBtn[1].OnDown:Connect(
-        function()
-            this:BetMoney(50)
-        end
-    )
-    betBtn[2].OnDown:Connect(
-        function()
-            this:BetMoney(100)
-        end
-    )
-    betBtn[3].OnDown:Connect(
-        function()
-            this:BetMoney(300)
-        end
-    )
     gui.BetPanel.LeaveBtn.OnDown:Connect(
         function()
             NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
@@ -63,21 +52,23 @@ end
 function GuiSnail:Update(dt)
 end
 
+--确认支付事件
+function GuiSnail:PurchaseCEventHandler(_purchaseCoin, _interactID)
+    if _interactID == 8 then
+        this:BetMoney(_purchaseCoin)
+    end
+end
+
 -- 下注
 function GuiSnail:BetMoney(_num)
-    if Data.Player.coin >= _num then
-        NetUtil.Fire_S("SnailBetEvent", localPlayer, snailIndex, _num)
-        NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * _num)
-        NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你成功给" .. snailIndex .. "号蜗牛投注" .. _num, 3, true)
-    else
-        NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你没钱啦", 3, true)
-    end
+    NetUtil.Fire_S("SnailBetEvent", localPlayer, snailIndex, _num)
+    --NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * _num)
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你成功给" .. snailIndex .. "号蜗牛投注" .. _num, 3, true)
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 
 function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then
-        print("GuiSnail:InteractCEventHandler")
         NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 8)
         NetUtil.Fire_C("InsertInfoEvent", localPlayer, "选择一个颜色的蜗牛", 1, false)
         gui:SetActive(true)

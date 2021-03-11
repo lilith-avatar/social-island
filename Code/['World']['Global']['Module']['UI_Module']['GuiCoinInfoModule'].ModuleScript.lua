@@ -59,7 +59,9 @@ end
 
 --显示获得金币
 function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
-    remainingCoinNum = remainingCoinNum + _num
+    if _num > 0 then
+        remainingCoinNum = remainingCoinNum + _num
+    end
 end
 
 function GuiCoinInfo:Update(dt)

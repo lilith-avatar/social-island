@@ -255,7 +255,7 @@ end
 
 -- 更新金币
 function PlayerCtrl:UpdateCoinEventHandler(_num)
-    if _num then
+    if _num ~= 0 then
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end
@@ -315,7 +315,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
-                NetUtil.Fire_C('PlayEffectEvent',localPlayer,22,localPlayer.Position)
+                NetUtil.Fire_C("PlayEffectEvent", localPlayer, 22, localPlayer.Position)
             end
         end
         if _hitObject.GrassInteractUID then
