@@ -141,6 +141,7 @@ function SetData(_data, _path, _value, _uid, _sync)
 
         --* 检查现有数据
         if type(_data[_path]) == 'table' then
+            -- TODO: 这里可以优化，不必要每次都删除
             -- 如果现有数据是个table,删除所有子数据
             for k, _ in pairs(_data[_path]) do
                 -- 同等于 _data[_path][k] = nil，但是不同步
@@ -199,6 +200,7 @@ MetaData.Set = SetData
 --- 从proxy中生成一个纯数据表格
 MetaData.Get = function(_proxy)
     local mt = getmetatable(_proxy)
+    assert(mt, string.format('[MetaData] metatable为空，proxy = %s', table.dump(_proxy)))
     return GetData(mt._data, mt._path)
 end
 
