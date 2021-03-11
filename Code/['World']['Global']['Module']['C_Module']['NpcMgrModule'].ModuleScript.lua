@@ -222,7 +222,7 @@ end
 
 -- 使NPC面向玩家
 function NpcFaceToPlayer(_npcId)
-	if _npcId ~= 17 then
+	if _npcId ~= 12 then
 		local npcObj = npcs[_npcId].obj
 		local dir = localPlayer.Position - npcObj.Position
 		npcObj.Forward = Vector3(dir.x, 0, dir.z)
