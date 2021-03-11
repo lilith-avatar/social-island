@@ -149,6 +149,7 @@ function Snail:StartSnailRace()
 
         v.moveStep = 1
         v.obj.LinearVelocityController.TargetLinearVelocity = v.obj.Forward * v.moveData[v.moveStep].speed
+        this:ChangeEffect(v, v.moveData[v.moveStep].speed)
         v.state = snailActState.MOVE
     end
     gameState = snailGameState.RACE
@@ -199,10 +200,11 @@ end
 
 --- 改变特效
 function Snail:ChangeEffect(_snailObjPool, _speed)
+    _snailObjPool.obj.AnimatedMesh:PlayAnimation("Walk", 2, 1, 0.1, true, true, _speed * 3)
     for i = 1, 3 do
         _snailObjPool.obj["Speed" .. i .. "Effect"]:SetActive(false)
     end
-    if _speed > 1.5 then
+    if _speed > 1 then
         _snailObjPool.obj.Speed1Effect:SetActive(true)
     elseif _speed > 0.04 then
         _snailObjPool.obj.Speed2Effect:SetActive(true)
@@ -213,6 +215,7 @@ end
 
 --- 蜗牛到达终点
 function Snail:SnailFinish(_snailObjPool)
+    _snailObjPool.obj.AnimatedMesh:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
     for i = 1, 3 do
         _snailObjPool.obj["Speed" .. i .. "Effect"]:SetActive(false)
     end
@@ -233,7 +236,6 @@ function Snail:SnailFinish(_snailObjPool)
             invoke(
                 function()
                     this:ResetSnailRace()
-                    _snailObjPool.obj.FinishEffect:SetActive(false)
                 end,
                 2
             )
@@ -294,8 +296,18 @@ function Snail:ResetSnailRace()
         v.moveStep = 0
         v.moveData = {}
         v.betPlayer = {}
-        v.obj.Position = startPoints[v.index].Position
         v.obj.SurfaceGUI:SetActive(false)
+        v.obj.FinishEffect:SetActive(false)
+        v.obj.ReturnEffect:SetActive(true)
+        v.obj.AnimatedMesh:SetActive(false)
+        invoke(
+            function()
+                v.obj.Position = startPoints[v.index].Position
+                v.obj.AnimatedMesh:SetActive(true)
+                v.obj.ReturnEffect:SetActive(false)
+            end,
+            1.5
+        )
     end
     gameState = snailGameState.WAIT
 end
