@@ -107,8 +107,14 @@ function GuiNoticeInfo:RollInfoUI(dt)
             tmpUI.Join.OnClick:Clear()
             tmpUI.Join.OnClick:Connect(
                 function()
-                    print(table.dump(tempData))
                     localPlayer.Position = tempData.pos
+                end
+            )
+            tmpUI.Close.OnClick:Clear()
+            tmpUI.Close.OnClick:Connect(
+                function()
+                    this:PopUpNotice(tmpUI, false)
+                    tempData.t = 0.5
                 end
             )
             this:PopUpNotice(tmpUI, true)
