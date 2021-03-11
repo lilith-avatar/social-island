@@ -125,7 +125,7 @@ function GuiBag:ClickUseBtn(_index)
     -- 使用物品
     NetUtil.Fire_C("UseItemEvent", localPlayer, itemId)
     -- 物品消耗判定
-    --this:ConsumeItem(_index)
+    this:ConsumeItem(_index)
     -- 重新展示当前页面物品信息
     this:ClickChangePage(this.pageIndex)
     -- 清除选择
@@ -133,7 +133,7 @@ function GuiBag:ClickUseBtn(_index)
 end
 
 function GuiBag:ConsumeItem(_index)
-    if Data.Player.bag[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].isConst then
+    if Config.UsableItem[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].IsConsume then
         this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
             this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
         if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then
