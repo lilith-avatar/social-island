@@ -26,6 +26,13 @@ local ArrowTargetXls = {
         HitEffect = 'ArrowTartgetHitEffect',
         RewardCoin = 0,
         ResetTime = 300.0
+    },
+    [4] = {
+        ID = 4,
+        Name = '树靶子',
+        HitEffect = 'ArrowTartgetHitEffect',
+        RewardCoin = 3,
+        ResetTime = 7.0
     }
 }
 
