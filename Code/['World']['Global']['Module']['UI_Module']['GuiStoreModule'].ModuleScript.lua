@@ -37,11 +37,6 @@ function GuiStore:EventBind()
             NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
         end
     )
-    gui.PurchasePanel.PurchaseBgImg.LaterBtn.OnClick:Connect(
-        function()
-            this:SwithConfirmUI(2, nil)
-        end
-    )
     gui.ShopPanel.BuyBtn.OnClick:Connect(
         function()
             this:OnClickBuyBtn()
@@ -66,38 +61,28 @@ end
 
 --点击购买Btn
 function GuiStore:OnClickBuyBtn()
-    gui.PurchasePanel.PurchaseBgImg.DesText.Text = "是否购买" .. LanguageUtil.GetText(Config.Item[chosenItemID].Name)
-    this:SwithConfirmUI(1, chosenItemID)
+    if chosenItemID ~= 0 then
+        NetUtil.Fire_C(
+            "PurchaseConfirmEvent",
+            localPlayer,
+            Config.Shop[curNpcID][chosenItemID].Price,
+            99,
+            "是否购买" .. LanguageUtil.GetText(Config.Item[chosenItemID].Name)
+        )
+    end
 end
 
---开关确认支付面板
-function GuiStore:SwithConfirmUI(_switch, _itemID)
-    if _switch == 1 then
-        gui.PurchasePanel.PurchaseBgImg.PriceFigure.ScoreText.Text = Data.Player.coin
-        gui.PurchasePanel.PurchaseBgImg.PriceFigure.PriceText.Text = "/" .. Config.Shop[curNpcID][_itemID].Price
-        if Data.Player.coin >= Config.Shop[curNpcID][_itemID].Price then
-            gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.LockImg.Visible = false
-            gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
-                function()
-                    this:BuyItem(_itemID)
-                end
-            )
-        else
-            gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.LockImg.Visible = true
-            gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
-        end
-        gui.PurchasePanel.Visible = true
-    elseif _switch == 2 then
-        gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
-        gui.PurchasePanel.Visible = false
+--确认支付事件
+function GuiStore:PurchaseCEventHandler(_purchaseCoin, _interactID)
+    if _interactID == 99 then
+        this:BuyItem(chosenItemID)
     end
 end
 
 --购买一个物品
 function GuiStore:BuyItem(_itemID)
-    Data.Player.coin = Data.Player.coin - Config.Shop[curNpcID][_itemID].Price
+    --Data.Player.coin = Data.Player.coin - Config.Shop[curNpcID][_itemID].Price
     NetUtil.Fire_C("GetItemEvent", localPlayer, _itemID)
-    this:SwithConfirmUI(2)
     wait(0.1)
     this:UpdateStoreUI()
 end

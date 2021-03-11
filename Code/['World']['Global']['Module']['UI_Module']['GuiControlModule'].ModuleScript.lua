@@ -18,8 +18,6 @@ local textFadeTween = nil
 
 -- 底部文字处理队列
 local bottomTextList = {}
--- 顶部文字处理队列
-local topTextList = {}
 
 function GuiControl:Init()
     print("[GuiControl] Init()")
@@ -34,7 +32,7 @@ function GuiControl:InitGui()
     touchScreen = gui.TouchFig
 
     dynamicFigure = gui.Dynamic
-    infoFigure = gui.Info
+    infoFigure = localPlayer.Local.SpecialTopUI.NoticeInfoGUI.Info.PlayerInfoBG
     menuFigure = gui.Menu
     ctrlFigure = gui.Ctrl
 
@@ -205,61 +203,37 @@ function GuiControl:TextFade(_text, _isFade)
 end
 
 --- 插入info文字
-function GuiControl:InsertInfoEventHandler(_text, _t, _isTop)
-    if _isTop then
-        table.insert(
-            topTextList,
-            {
-                text = _text,
-                t = _t + 0.4
-            }
-        )
-    else
-        table.insert(
-            bottomTextList,
-            {
-                text = _text,
-                t = _t + 0.4
-            }
-        )
-    end
+function GuiControl:InsertInfoEventHandler(_text, _t)
+    table.insert(
+        bottomTextList,
+        {
+            text = _text,
+            t = _t + 0.4
+        }
+    )
 end
 
 --- 显示文字
 function GuiControl:ShowInfo(dt)
-    if #topTextList > 0 then
-        if infoFigure.TopInfoBG.InfoText.Text ~= topTextList[1].text then
-            infoFigure.TopInfoBG.InfoText.Text = topTextList[1].text
-            this:TextFade(infoFigure.TopInfoBG.InfoText, false)
-        end
-        topTextList[1].t = topTextList[1].t - dt
-        if topTextList[1].t <= 1 and infoFigure.TopInfoBG.InfoText.Color.a == 255 then
-            this:TextFade(infoFigure.TopInfoBG.InfoText, true)
-            invoke(
-                function()
-                    table.remove(topTextList, 1)
-                    infoFigure.TopInfoBG.InfoText.Text = ""
-                end,
-                1
-            )
-        end
-    end
     if #bottomTextList > 0 then
-        if infoFigure.BottomInfoBG.InfoText.Text ~= bottomTextList[1].text then
-            infoFigure.BottomInfoBG.InfoText.Text = bottomTextList[1].text
-            this:TextFade(infoFigure.BottomInfoBG.InfoText, false)
+        infoFigure:SetActive(true)
+        if infoFigure.BG.Info.Text ~= bottomTextList[1].text then
+            infoFigure.BG.Info.Text = bottomTextList[1].text
+            this:TextFade(infoFigure.BG.Info, false)
         end
         bottomTextList[1].t = bottomTextList[1].t - dt
-        if bottomTextList[1].t <= 1 and infoFigure.BottomInfoBG.InfoText.Color.a == 255 then
-            this:TextFade(infoFigure.BottomInfoBG.InfoText, true)
+        if bottomTextList[1].t <= 1 and infoFigure.BG.Info.Color.a == 255 then
+            this:TextFade(infoFigure.BG.Info, true)
             invoke(
                 function()
                     table.remove(bottomTextList, 1)
-                    infoFigure.BottomInfoBG.InfoText.Text = ""
+                    infoFigure.BG.Info.Text = ""
                 end,
                 1
             )
         end
+    else
+        infoFigure:SetActive(false)
     end
 end
 

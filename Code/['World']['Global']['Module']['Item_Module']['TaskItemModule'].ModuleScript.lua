@@ -14,7 +14,6 @@ end
 --放入背包
 function TaskItem:PutIntoBag()
     ItemBase.PutIntoBag(self)
-    GuiControl:InsertInfoEventHandler(LanguageUtil.GetText(Config.Item[self.id].Des), 3, true)
 end
 
 --从背包里扔掉
