@@ -121,7 +121,7 @@ local player
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     player = world:GetPlayerByUserId(_uid)
     this:HitMoleAction(_uid, _type, _pit)
-    -- 抽奖
+    -- 抽奖 
     local coinNum =
         Config.MoleGlobalConfig.DropCoinRange.Value[
         SortDropCoinByWeight(Config.MoleGlobalConfig.DropCoinRange.Value).index
@@ -142,7 +142,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         this.RefreshList[_type] = {
             timer = 0
         }
-        --开启对应彩蛋
+        -- TODO: 开启对应彩蛋
         print(string.format("开启 %s 彩蛋", _type))
     end
 end

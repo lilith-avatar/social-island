@@ -25,6 +25,7 @@ function GuiBag:NodeDef()
     this.nameTxt = this.gui.NameTextBox.NameText
     this.descTxt = this.gui.DesTextBox.DesText
     this.pageTxt = this.gui.DragPanel.PageText
+    this.coinTxt = this.gui.CoinInfo.CoinNum
 end
 
 function GuiBag:DataInit()
@@ -94,6 +95,8 @@ function GuiBag:ShowBagUI()
     this:ClickChangePage(1)
     -- 根据长度获取最大页数
     this:GetMaxPageNum(#this.slotItem)
+    -- 显示金钱
+    this.coinTxt.Text = math.floor(Data.Player.coin)
 end
 
 function GuiBag:HideBagUI()
