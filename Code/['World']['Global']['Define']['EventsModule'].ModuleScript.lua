@@ -88,6 +88,7 @@ Events.ClientEvents = {
     "CreateItemObjEvent",
     "LeaveMoleGameRangeEvent",
     "InsertInfoEvent",
+    "ShowNoticeInfoEvent",
     "SwitchStoreUIEvent",
     "GetItemFromPoolEvent",
     "UnequipCurWeaponEvent",

@@ -134,7 +134,7 @@ function Snail:StartRaceCD(dt)
             this:StartSnailRace()
         else
             if startCD == 10 then
-                NetUtil.Broadcast("InsertInfoEvent", "蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧", 3)
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧", 10, Vector3(-30.1, -11.3, -29.7))
             end
             startCD = startCD - dt
         end
@@ -143,7 +143,7 @@ end
 
 --- 开始比赛
 function Snail:StartSnailRace()
-    NetUtil.Broadcast("InsertInfoEvent", "蜗牛赛跑竞猜开始啦", 3)
+    NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜开始啦", 10, Vector3(-30.1, -11.3, -29.7))
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
 
@@ -188,6 +188,7 @@ function Snail:SnailMove(dt)
                 else
                     --print(v.obj, "改变速度", v.moveData[v.moveStep].speed)
                     v.obj.LinearVelocityController.TargetLinearVelocity = v.obj.Forward * v.moveData[v.moveStep].speed
+                    this:ChangeEffect(v, v.moveData[v.moveStep].speed)
                 end
             else
                 v.moveData[v.moveStep].time = v.moveData[v.moveStep].time - dt
@@ -196,8 +197,26 @@ function Snail:SnailMove(dt)
     end
 end
 
+--- 改变特效
+function Snail:ChangeEffect(_snailObjPool, _speed)
+    for i = 1, 3 do
+        _snailObjPool.obj["Speed" .. i .. "Effect"]:SetActive(false)
+    end
+    if _speed > 1.5 then
+        _snailObjPool.obj.Speed1Effect:SetActive(true)
+    elseif _speed > 0.04 then
+        _snailObjPool.obj.Speed2Effect:SetActive(true)
+    else
+        _snailObjPool.obj.Speed3Effect:SetActive(true)
+    end
+end
+
 --- 蜗牛到达终点
 function Snail:SnailFinish(_snailObjPool)
+    for i = 1, 3 do
+        _snailObjPool.obj["Speed" .. i .. "Effect"]:SetActive(false)
+    end
+    _snailObjPool.obj.FinishEffect:SetActive(true)
     if _snailObjPool.state == snailActState.MOVE then
         print("[Snail]", _snailObjPool.obj, "到达终点")
         _snailObjPool.state = snailActState.FINISH
@@ -214,6 +233,7 @@ function Snail:SnailFinish(_snailObjPool)
             invoke(
                 function()
                     this:ResetSnailRace()
+                    _snailObjPool.obj.FinishEffect:SetActive(false)
                 end,
                 2
             )

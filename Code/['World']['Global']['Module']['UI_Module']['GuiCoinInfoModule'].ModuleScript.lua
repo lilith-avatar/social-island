@@ -45,8 +45,8 @@ function GuiCoinInfo:RollInfoUI()
             v.CoinNum.Alpha = v.CoinNum.Alpha - 0.01
         else
             v.Offset = Vector2(0, -125)
-            v.CoinNum.Alpha = 1
             v:SetActive(false)
+            v.CoinNum.Alpha = 1
             curCoinInfoPanel = v
             if remainingCoinNum > 0 then
                 curCoinInfoPanel:SetActive(true)
@@ -59,7 +59,9 @@ end
 
 --显示获得金币
 function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
-    remainingCoinNum = remainingCoinNum + _num
+    if _num > 0 then
+        remainingCoinNum = remainingCoinNum + _num
+    end
 end
 
 function GuiCoinInfo:Update(dt)

@@ -114,6 +114,7 @@ function ItemMgr:GetItemEventHandler(_id)
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     this.itemInstance[_id]:PutIntoBag()
+    GuiNoticeInfo:ShowGetItem(_id)
     print("[ItemMgr] 获得道具", _id)
     return
 end
