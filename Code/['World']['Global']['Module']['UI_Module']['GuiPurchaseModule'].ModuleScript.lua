@@ -63,6 +63,7 @@ function GuiPurchase:PurchaseConfirmEventHandler(_coinNUm, _interactID, _text)
     confirmPanel:SetActive(true)
     confirmPanel.PriceText.Text = _coinNUm
     confirmPanel.PlayerCoinText.Text = "/" .. Data.Player.coin
+    gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
         function()
             this:OnClickPurchaseConfirmBtn()
@@ -84,6 +85,7 @@ function GuiPurchase:SliderPurchaseEventHandler(_interactID, _text, _min, _max)
     purchaseCoin = math.floor((sliderMax - sliderMin) * (100 - scrollPanel.Slider.ScrollScale) / 100 + sliderMin)
     scrollPanel.Slider.CurText.Text = purchaseCoin
     scrollPanel:SetActive(true)
+    gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
         function()
             scrollPanel:SetActive(false)

@@ -134,7 +134,7 @@ function Snail:StartRaceCD(dt)
             this:StartSnailRace()
         else
             if startCD == 10 then
-                NetUtil.Broadcast("InsertInfoEvent", "蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧", 3)
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧", 10, Vector3(-30.1, -11.3, -29.7))
             end
             startCD = startCD - dt
         end
@@ -143,7 +143,7 @@ end
 
 --- 开始比赛
 function Snail:StartSnailRace()
-    NetUtil.Broadcast("InsertInfoEvent", "蜗牛赛跑竞猜开始啦", 3)
+    NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜开始啦", 10, Vector3(-30.1, -11.3, -29.7))
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
 

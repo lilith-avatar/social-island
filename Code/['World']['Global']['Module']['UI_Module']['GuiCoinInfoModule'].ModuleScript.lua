@@ -45,8 +45,8 @@ function GuiCoinInfo:RollInfoUI()
             v.CoinNum.Alpha = v.CoinNum.Alpha - 0.01
         else
             v.Offset = Vector2(0, -125)
-            v.CoinNum.Alpha = 1
             v:SetActive(false)
+            v.CoinNum.Alpha = 1
             curCoinInfoPanel = v
             if remainingCoinNum > 0 then
                 curCoinInfoPanel:SetActive(true)
