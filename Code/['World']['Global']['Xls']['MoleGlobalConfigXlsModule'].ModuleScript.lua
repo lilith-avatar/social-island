@@ -17,6 +17,10 @@ local MoleGlobalConfigXls = {
     RefreshTime = {
         Key = 'RefreshTime',
         Value = 10000.0
+    },
+    DropCoinRange = {
+        Key = 'DropCoinRange',
+        Value = {{num=10,weight=10},{num=15,weight=30},{num=20,weight=30},{num=30,weight=50},{num=50,weight=30},{num=100,weight=20},{num=300,weight=10},{num=600,weight=5},{num=1000,weight=1}}
     }
 }
 
