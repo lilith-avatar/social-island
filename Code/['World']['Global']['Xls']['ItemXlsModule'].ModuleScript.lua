@@ -606,6 +606,126 @@ local ItemXls = {
         UseAnimName = 'HTGoodsDisappear',
         Useable = true
     },
+    [3028] = {
+        ItemID = 3028,
+        Name = 'Item_Name_3028',
+        Des = 'Item_Des_3028',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3029] = {
+        ItemID = 3029,
+        Name = 'Item_Name_3029',
+        Des = 'Item_Des_3029',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3030] = {
+        ItemID = 3030,
+        Name = 'Item_Name_3030',
+        Des = 'Item_Des_3030',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3031] = {
+        ItemID = 3031,
+        Name = 'Item_Name_3031',
+        Des = 'Item_Des_3031',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3032] = {
+        ItemID = 3032,
+        Name = 'Item_Name_3032',
+        Des = 'Item_Des_3032',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3033] = {
+        ItemID = 3033,
+        Name = 'Item_Name_3033',
+        Des = 'Item_Des_3033',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3034] = {
+        ItemID = 3034,
+        Name = 'Item_Name_3034',
+        Des = 'Item_Des_3034',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 26,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3035] = {
+        ItemID = 3035,
+        Name = 'Item_Name_3035',
+        Des = 'Item_Des_3035',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 25,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3036] = {
+        ItemID = 3036,
+        Name = 'Item_Name_3036',
+        Des = 'Item_Des_3036',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 25,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3037] = {
+        ItemID = 3037,
+        Name = 'Item_Name_3037',
+        Des = 'Item_Des_3037',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 25,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3038] = {
+        ItemID = 3038,
+        Name = 'Item_Name_3038',
+        Des = 'Item_Des_3038',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 25,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
+    [3039] = {
+        ItemID = 3039,
+        Name = 'Item_Name_3039',
+        Des = 'Item_Des_3039',
+        Icon = 'UsableItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 25,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true
+    },
     [2001] = {
         ItemID = 2001,
         Name = 'Item_Name_2001',

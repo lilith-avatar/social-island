@@ -14,6 +14,28 @@ local function SelectPit(_pitList, _num)
     return returnList
 end
 
+local tmpRange, totalWeight
+local function SortDropCoinByWeight(_DropCoinRange)
+    tmpRange, totalWeight = {}, 0
+    for k, v in pairs(_DropCoinRange) do
+        totalWeight = totalWeight + v.weight
+    end
+    for k, v in pairs(_DropCoinRange) do
+        local data = {
+            index = k,
+            weight = v.weight + math.random(0, totalWeight)
+        }
+        table.insert(tmpRange, data)
+    end
+    table.sort(
+        tmpRange,
+        function(t1, t2)
+            return t1.weight > t2.weight
+        end
+    )
+    return tmpRange[1]
+end
+
 ---初始化函数
 function MoleHit:Init()
     print("[MoleHit] Init()")
@@ -94,10 +116,17 @@ function MoleHit:InteractSEventHandler(_player, _gameId)
     end
 end
 
+local player
 --- 玩家击中地鼠事件
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
+    player = world:GetPlayerByUserId(_uid)
     this:HitMoleAction(_uid, _type, _pit)
-    -- 抽奖
+    -- 抽奖 
+    local coinNum =
+        Config.MoleGlobalConfig.DropCoinRange.Value[
+        SortDropCoinByWeight(Config.MoleGlobalConfig.DropCoinRange.Value).index
+    ].num
+    NetUtil.Fire_S("SpawnCoinEvent", "P", _pit.Position + Vector3.Up, math.floor(coinNum))
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
     --! only Test
@@ -113,7 +142,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         this.RefreshList[_type] = {
             timer = 0
         }
-        --开启对应彩蛋
+        -- TODO: 开启对应彩蛋
         print(string.format("开启 %s 彩蛋", _type))
     end
 end

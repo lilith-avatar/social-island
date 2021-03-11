@@ -637,11 +637,11 @@ local ScenesInteractXls = {
         ID = 58,
         Name = '救生圈4',
         Path = 'LifeRing4',
-        ItemID = nil,
+        ItemID = 3014,
         IsGet = false,
-        RewardCoin = nil,
-        UseCount = nil,
-        ResetTime = nil,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 30,
         IsPre = true
     },
     [59] = {
@@ -665,6 +665,226 @@ local ScenesInteractXls = {
         UseCount = 1,
         ResetTime = -1,
         IsPre = false
+    },
+    [61] = {
+        ID = 61,
+        Name = '红食物1',
+        Path = 'RedFood1',
+        ItemID = 3028,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [62] = {
+        ID = 62,
+        Name = '橙食物1',
+        Path = 'OrangeFood1',
+        ItemID = 3029,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [63] = {
+        ID = 63,
+        Name = '黄食物1',
+        Path = 'YellowFood1',
+        ItemID = 3030,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [64] = {
+        ID = 64,
+        Name = '绿食物1',
+        Path = 'GreenFood1',
+        ItemID = 3031,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [65] = {
+        ID = 65,
+        Name = '绿食物2',
+        Path = 'GreenFood2',
+        ItemID = 3031,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [66] = {
+        ID = 66,
+        Name = '蓝食物',
+        Path = 'BlueFood',
+        ItemID = 3032,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [67] = {
+        ID = 67,
+        Name = '青食物',
+        Path = 'CyanFood',
+        ItemID = 3033,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [68] = {
+        ID = 68,
+        Name = '紫食物',
+        Path = 'PerpleFood',
+        ItemID = 3034,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [69] = {
+        ID = 69,
+        Name = '黄食物1',
+        Path = 'YellowFood2',
+        ItemID = 3030,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [70] = {
+        ID = 70,
+        Name = '蓝食物',
+        Path = 'BlueFood2',
+        ItemID = 3032,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [71] = {
+        ID = 71,
+        Name = '绿食物',
+        Path = 'GreenFood3',
+        ItemID = 3031,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [72] = {
+        ID = 72,
+        Name = '青食物',
+        Path = 'CyanFood2',
+        ItemID = 3033,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [73] = {
+        ID = 73,
+        Name = '青食物',
+        Path = 'CyanFood3',
+        ItemID = 3033,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [74] = {
+        ID = 74,
+        Name = '橙食物1',
+        Path = 'OrangeFood2',
+        ItemID = 3029,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [75] = {
+        ID = 75,
+        Name = '红食物1',
+        Path = 'RedFood2',
+        ItemID = 3028,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [76] = {
+        ID = 76,
+        Name = '草堆1',
+        Path = 'HaymowMedium',
+        ItemID = 3035,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 30,
+        IsPre = true
+    },
+    [77] = {
+        ID = 77,
+        Name = '草堆2',
+        Path = 'HaymowBig',
+        ItemID = 3036,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 30,
+        IsPre = true
+    },
+    [78] = {
+        ID = 78,
+        Name = '水桶',
+        Path = 'Pail',
+        ItemID = 3037,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 30,
+        IsPre = true
+    },
+    [79] = {
+        ID = 79,
+        Name = '油漆桶红',
+        Path = 'OildrumRed',
+        ItemID = 3038,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 30,
+        IsPre = true
+    },
+    [80] = {
+        ID = 80,
+        Name = '油漆桶绿',
+        Path = 'OildrumGreen',
+        ItemID = 3039,
+        IsGet = false,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 30,
+        IsPre = true
     }
 }
 

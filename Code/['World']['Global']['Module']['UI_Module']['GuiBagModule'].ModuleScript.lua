@@ -25,6 +25,7 @@ function GuiBag:NodeDef()
     this.nameTxt = this.gui.NameTextBox.NameText
     this.descTxt = this.gui.DesTextBox.DesText
     this.pageTxt = this.gui.DragPanel.PageText
+    this.coinTxt = this.gui.CoinInfo.CoinNum
 end
 
 function GuiBag:DataInit()
@@ -71,17 +72,15 @@ end
 function GuiBag:TransItemTable()
     --先清空表
     this.slotItem = {}
-    for k,v in pairs(Data.Player.bag) do
-        if v.count == 0 then
-            goto Continue
+    for k, v in pairs(Data.Player.bag) do
+        if v.count ~= 0 then
+            local data = {
+                num = v.count,
+                id = k,
+                cd = 0
+            }
+            table.insert(this.slotItem, data)
         end
-        local data = {
-            num = v.count,
-            id = k,
-            cd = 0
-        }
-        table.insert(this.slotItem, data)
-        ::Continue::
     end
 end
 
@@ -94,6 +93,8 @@ function GuiBag:ShowBagUI()
     this:ClickChangePage(1)
     -- 根据长度获取最大页数
     this:GetMaxPageNum(#this.slotItem)
+    -- 显示金钱
+    this.coinTxt.Text = math.floor(Data.Player.coin)
 end
 
 function GuiBag:HideBagUI()
@@ -103,7 +104,7 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     if not _itemId then
         this.slotList[_index]:SetActive(false)
-        this.slotList[_index].ItemID.Value = ''
+        this.slotList[_index].ItemID.Value = ""
         return
     end
     this.slotList[_index].ItemID.Value = _itemId
@@ -133,10 +134,12 @@ function GuiBag:ClickUseBtn(_index)
 end
 
 function GuiBag:ConsumeItem(_index)
-    this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
-        this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
-    if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then
-        table.remove(this.slotItem, (this.pageIndex - 1) * this.pageSize + _index)
+    if Config.UsableItem[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].IsConsume then
+        this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
+            this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
+        if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then
+            table.remove(this.slotItem, (this.pageIndex - 1) * this.pageSize + _index)
+        end
     end
 end
 

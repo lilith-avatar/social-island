@@ -296,8 +296,6 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     end
     if _id == 21 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
-        for k, v in pairs(trojanObj) do
-        end
     end
 end
 

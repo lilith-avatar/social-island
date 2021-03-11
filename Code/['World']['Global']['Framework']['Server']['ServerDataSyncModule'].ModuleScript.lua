@@ -5,11 +5,19 @@
 local ServerDataSync = {}
 
 -- Localize global vars
-local FrameworkConfig, MetaData = FrameworkConfig, MetaData
+local FrameworkConfig, MetaData, DataStore = FrameworkConfig, MetaData, DataStore
 
 -- 服务器端私有数据
 local rawDataGlobal = {}
 local rawDataPlayers = {}
+
+-- 玩家数据定时保存时间间隔（秒）
+local AUTO_SAVE_TIME = 60
+-- 重新读取游戏数据时间间隔（秒）
+local RELOAD_TIME = 1
+
+-- 玩家数据表格
+local sheet
 
 --- 打印数据同步日志
 local PrintLog = FrameworkConfig.DebugMode and function(...)
@@ -24,6 +32,7 @@ function ServerDataSync.Init()
     print('[DataSync][Server] Init()')
     InitEventsAndListeners()
     InitDefines()
+    sheet = DataStore:GetSheet('PlayerData')
 end
 
 --- 初始化事件和绑定Handler
@@ -67,22 +76,144 @@ function InitDataGlobal()
 end
 
 --- 初始化Data.Players中对应玩家数据
-function InitDataPlayer(_player)
+function InitDataPlayer(_uid)
+    assert(not string.isnilorempty(_uid))
     --* 服务器端创建Data.Player
-    local uid = _player.UserId
-    local path = MetaData.Enum.PLAYER .. uid
-    rawDataPlayers[uid] = {}
-    Data.Players[uid] = MetaData.New(rawDataPlayers[uid], path, uid)
+    local path = MetaData.Enum.PLAYER .. _uid
+    rawDataPlayers[_uid] = {}
+    Data.Players[_uid] = MetaData.New(rawDataPlayers[_uid], path, _uid)
 
     -- 默认赋值
     for k, v in pairs(Data.Default.Player) do
-        Data.Players[uid][k] = v
+        Data.Players[_uid][k] = v
     end
+
+    -- 设置uid
+    Data.Players[_uid].uid = _uid
 end
 
 --- 开始同步
 function ServerDataSync.Start()
-    -- MetaData.ServerSync = true
+    print('[DataSync][Server] 服务器数据同步开启')
+    MetaData.ServerSync = true
+
+    -- 启动定时器
+    TimeUtil.SetInterval(SaveAllGameDataAsync, AUTO_SAVE_TIME)
+end
+
+--! 长期存储：读取
+
+--- 下载玩家的游戏数据
+--- @param _uid string 玩家ID
+function LoadGameDataAsync(_uid)
+    assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
+    sheet:GetValue(
+        _uid,
+        function(_val, _msg)
+            LoadGameDataAsyncCb(_val, _msg, _uid)
+        end
+    )
+end
+
+--- 下载玩家的游戏数据回调
+--- @param _val table 数据
+--- @param _msg int 消息码
+--- @param _uid string 玩家ID
+function LoadGameDataAsyncCb(_val, _msg, _uid)
+    local player = world:GetPlayerByUserId(_uid)
+    assert(player, string.format('[DataSync][Server] 玩家不存在, uid = %s', _uid))
+    if _msg == 0 or _msg == 101 then
+        print('[DataSync][Server] 获取玩家数据成功', player.Name)
+        if _val then
+            --若以前的数据存在，更新
+            local data = _val
+            assert(data.uid == _uid, string.format('[DataSync][Server] uid校验不通过, uid = %s', _uid))
+            --若已在此服务器的数据总表存在，则更新数据
+            Data.Players[_uid] = data
+        else
+            -- TODO: 数据兼容的处理
+        end
+        return
+    end
+    print(
+        string.format(
+            '[DataSync][Server] 获取玩家数据失败，%s秒后重试, uid = %s, player = %s, msg = %s',
+            RELOAD_TIME,
+            _uid,
+            player.Name,
+            _msg
+        )
+    )
+    --若失败，则1秒后重新再读取一次
+    invoke(
+        function()
+            LoadGameDataAsync(_uid)
+        end,
+        RELOAD_TIME
+    )
+end
+
+--! 长期存储：保存
+
+--- 上传玩家的游戏数据
+--- @param _userId string 玩家ID
+--- @param _delete string 保存成功后是否删除缓存数据
+function SaveGameDataAsync(_uid, _delete)
+    assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
+    assert(not string.isnilorempty(_uid), '[DataSync][Server] uid不存在或为空')
+    assert(Data.Players[_uid], string.format('[DataSync][Server] Data.Players[_uid]不存在 uid = %s', _uid))
+    local newData = MetaData.Get(Data.Players[_uid])
+    assert(newData, string.format('[DataSync][Server] 玩家数据不存在, uid = %s', _uid))
+    assert(newData.uid == _uid, string.format('[DataSync][Server] uid校验不通过, uid = %s', _uid))
+    sheet:SetValue(
+        _uid,
+        newData,
+        function(_val, _msg)
+            SaveGameDataAsyncCb(_val, _msg, _uid, _delete)
+        end
+    )
+end
+
+--- 上传玩家的游戏数据回调
+--- @param _val table 数据
+--- @param _msg int 消息码
+--- @param _uid string 玩家ID
+function SaveGameDataAsyncCb(_val, _msg, _uid, _delete)
+    -- 保存成功
+    if _msg == 0 then
+        print('[DataSync][Server] 保存玩家数据成功', _uid)
+        if _delete == true then
+            print('[DataSync][Server] 删除服务器玩家数据', _uid)
+            rawDataPlayers[_uid] = nil
+            --* 删除玩家端数据
+            Data.Players[_uid] = nil
+        end
+        return
+    end
+
+    -- 保存失败
+    print(string.format('[DataSync][Server] 保存玩家数据失败，%s秒后重试, uid = %s, msg = %s', RELOAD_TIME, _uid, _msg))
+    --若失败，则1秒后重新再读取一次
+    invoke(
+        function()
+            SaveGameDataAsync(_uid, _delete)
+        end,
+        RELOAD_TIME
+    )
+end
+
+--- 存储全部玩家数据
+function SaveAllGameDataAsync()
+    if not MetaData.ServerSync then
+        print('[DataSync][Server] ServerSync未开始')
+        return
+    end
+
+    for uid, data in pairs(Data.Players) do
+        if not string.isnilorempty(uid) and data then
+            SaveGameDataAsync(uid, false)
+        end
+    end
 end
 
 --! Event handler
@@ -122,9 +253,10 @@ function OnPlayerJoinEventHandler(_player)
     NetUtil.Fire_C('DataSyncS2CEvent', _player, MetaData.Enum.GLOBAL, MetaData.Get(Data.Global))
 
     local uid = _player.UserId
-    InitDataPlayer(_player)
+    InitDataPlayer(uid)
 
-    --TODO: 获取长期存储,成功后向客户端同步
+    --* 获取长期存储,成功后向客户端同步
+    LoadGameDataAsync(uid)
 end
 
 --- 玩家离开事件Handler
@@ -132,11 +264,8 @@ function OnPlayerLeaveEventHandler(_player, _uid)
     print('[DataSync][Server] OnPlayerLeaveEventHandler', _player, _uid)
     assert(not string.isnilorempty(_uid), '[ServerDataSync] OnPlayerLeaveEventHandler() uid不存在')
 
-    --TODO: 保存长期存储：rawDataPlayers[_uid] 保存成功后删掉
-    rawDataPlayers[_uid] = nil
-
-    --* 删除玩家端数据
-    Data.Players[_uid] = nil
+    --* 保存长期存储：rawDataPlayers[_uid] 保存成功后删掉
+    SaveGameDataAsync(uid, true)
 end
 
 return ServerDataSync
