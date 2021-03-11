@@ -73,16 +73,14 @@ function GuiBag:TransItemTable()
     --先清空表
     this.slotItem = {}
     for k, v in pairs(Data.Player.bag) do
-        if v.count == 0 then
-            goto Continue
+        if v.count ~= 0 then
+            local data = {
+                num = v.count,
+                id = k,
+                cd = 0
+            }
+            table.insert(this.slotItem, data)
         end
-        local data = {
-            num = v.count,
-            id = k,
-            cd = 0
-        }
-        table.insert(this.slotItem, data)
-        ::Continue::
     end
 end
 
