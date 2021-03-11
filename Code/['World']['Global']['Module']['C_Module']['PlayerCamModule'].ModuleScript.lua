@@ -4,6 +4,9 @@
 --- @author Dead Ratman
 local PlayerCam, this = ModuleUtil.New("PlayerCam", ClientBase)
 
+--滤镜开关
+local filterSwitch = false
+
 --- 初始化
 function PlayerCam:Init()
     print("[PlayerCam] Init()")
@@ -91,11 +94,54 @@ function PlayerCam:TPSGetRayDir()
     return this.tpsCam.Position + this.tpsCam.Forward * 100
 end
 
+---开关游泳滤镜
+function PlayerCam:SwitchSwimFilter(_switch)
+    filterSwitch = _switch
+    if _switch then
+        this.playerGameCam.WaterEffect:SetActive(true)
+        this.playerGameCam.WaterVignette:SetActive(true)
+        this.playerGameCam.WaterGaussionBlur:SetActive(true)
+        this.playerGameCam.WaterAmbientOcclusion:SetActive(true)
+        this.playerGameCam.WaterGrain:SetActive(true)
+        this.playerGameCam.WaterColorGrading:SetActive(true)
+    else
+        this.playerGameCam.WaterEffect:SetActive(false)
+        this.playerGameCam.WaterVignette:SetActive(false)
+        this.playerGameCam.WaterGaussionBlur:SetActive(false)
+        this.playerGameCam.WaterAmbientOcclusion:SetActive(false)
+        this.playerGameCam.WaterGrain:SetActive(false)
+        this.playerGameCam.WaterColorGrading:SetActive(false)
+    end
+end
+
+---游泳滤镜检测
+function PlayerCam:UpdateSwimFilter()
+    if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then
+        if filterSwitch == true then
+            this:SwitchSwimFilter(false)
+        end
+    else
+        if localPlayer.Position.y - this.playerGameCam.Forward.y < -16 then
+            if filterSwitch == false then
+                this:SwitchSwimFilter(true)
+            end
+        else
+            if filterSwitch == true then
+                this:SwitchSwimFilter(false)
+            end
+        end
+    end
+end
+
 -- 修改玩家当前相机
 function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
     this.curCamera = _cam or this.playerGameCam
     this.curCamera.LookAt = _lookAt or localPlayer
     world.CurrentCamera = this.curCamera
+end
+
+function PlayerCam:Update(dt)
+    this:UpdateSwimFilter()
 end
 
 return PlayerCam
