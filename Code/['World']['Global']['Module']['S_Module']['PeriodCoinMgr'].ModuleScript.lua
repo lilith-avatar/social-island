@@ -55,6 +55,7 @@ function PeriodCoinMgr:Update(dt)
 		this:CheckCoin(this.mashroomLowValue,1,Config.PeriodCoin[1].CoinType)
 		this:CheckCoin(this.cloud,4,Config.PeriodCoin[4].CoinType)
 		this:CheckCoin(this.sceneCoin,5,Config.PeriodCoin[5].CoinType)
+		this:CheckCoin(this.lutus,6,Config.PeriodCoin[6].CoinType)
 		this.tt=0
 	end
 	--
@@ -139,9 +140,9 @@ function PeriodCoinMgr:InitCreat()
 		this:FreshCoin(this.sceneCoin,5,PosId)
 	end
 		--- 场景彩蛋金币
-	for i=0,this.lutus,1 do
-		local PosId = this:RandomPos(this.sceneCoin,5)
-		this:FreshCoin(this.sceneCoin,5,PosId)
+	for i=0,this.lutusNum,1 do
+		local PosId = this:RandomPos(this.lutus,6)
+		this:FreshCoin(this.lutus,6,PosId)
 	end
 	--[[ 湖上荷叶金币区
 	if #this.lotusHighValue < this.lotusLowValueNum then
