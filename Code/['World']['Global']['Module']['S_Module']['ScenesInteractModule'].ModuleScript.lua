@@ -26,7 +26,11 @@ local grassOBJ = {}
 --木马
 local trojanObj = {}
 
+--吉他
 local guitarOBJ = {}
+
+--帐篷
+local tentOBJ = {}
 
 --- 初始化
 function ScenesInteract:Init()
@@ -77,11 +81,15 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Guitar:GetChildren()) do
         guitarOBJ[v.Name] = v
     end
+    for k,v in pairs(world.Tent:GetChildren()) do
+        tentOBJ[v.Name] = v
+    end
 end
 
 --- 数据变量初始化
 function ScenesInteract:DataInit()
     this.TrojanList = {}
+    this.TentList = {}
 end
 
 --- 节点事件绑定
@@ -173,12 +181,23 @@ function ScenesInteract:TrojanShake(dt)
         v.timer = v.timer + dt
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
-            -- TODO: 给钱
-            --print("给一个金币")
+            -- 给钱
             NetUtil.Fire_C("UpdateCoinEvent", localPlayer, 1)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
+    end
+end
+
+function ScenesInteract:TentShake(dt)
+    for k,v in pairs(this.TentList) do
+        v.timer = v.timer + dt
+        if v.num == 1 then
+            --单人摇
+        end
+        if v.num == 2 then
+            --多人摇
+        end
     end
 end
 
@@ -268,6 +287,14 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 21 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 21)
     end
+    if _id == 22 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 22)
+        for k, v in pairs(tentOBJ) do
+            if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
+                _player.Avatar:SetActive(false)
+            end
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -296,6 +323,10 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     end
     if _id == 21 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+    end
+    if _id == 22 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        _player.Avatar:SetActive(true)
     end
 end
 

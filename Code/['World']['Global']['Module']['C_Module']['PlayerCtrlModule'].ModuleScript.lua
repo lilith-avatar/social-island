@@ -362,6 +362,26 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 _hitObject.CoinUID.Value = ""
             end
         end
+        if _hitObject.TentUID1 then
+            if _isBegin then
+                if _hitObject.TentUID1.Value == localPlayer.UserId or _hitObject.TentUID1.Value == "" then
+                    _hitObject.TentUID1.Value = localPlayer.UserId
+                    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 22)
+                    return
+                end
+                if _hitObject.TentUID2.Value == localPlayer.UserId or _hitObject.TentUID2.Value == "" then
+                    _hitObject.TentUID2.Value = localPlayer.UserId
+                    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 22)
+                    return
+                end
+            else
+                if _hitObject.TentUID1.Value == localPlayer.UserId then
+                    _hitObject.TentUID1.Value = ""
+                elseif _hitObject.TentUID2.Value == localPlayer.UserId then
+                    _hitObject.TentUID2.Value = ""
+                end
+            end
+        end
     end
 end
 
