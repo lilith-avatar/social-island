@@ -36,7 +36,7 @@ end
 
 --- 数据变量初始化
 function ArrowTarget:DataInit()
-    for i = 1, 3 do
+    for i = 1, 4 do
         HitReactionFunc[i] = function(_target)
             this["HitReaction" .. i](self, _target)
         end
