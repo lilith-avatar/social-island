@@ -100,6 +100,7 @@ function GuiPurchase:OnClickPurchaseLaterBtn()
     scrollPanel:SetActive(false)
     gui:SetActive(false)
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
+	NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
     interactID = 0
     purchaseCoin = 0
 end
