@@ -12,7 +12,7 @@ local PeriodCoinXls = {
             Pid = 1,
             Pos = Vector3(74.915634, 2.580454, 20.371872),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [2] = {
@@ -20,7 +20,7 @@ local PeriodCoinXls = {
             Pid = 2,
             Pos = Vector3(33.326153, -11.240738, 20.306084),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [3] = {
@@ -28,7 +28,7 @@ local PeriodCoinXls = {
             Pid = 3,
             Pos = Vector3(67.916039, -0.884123, 26.424288),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [4] = {
@@ -36,7 +36,7 @@ local PeriodCoinXls = {
             Pid = 4,
             Pos = Vector3(41.773041, -2.821258, 41.738747),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [5] = {
@@ -44,7 +44,7 @@ local PeriodCoinXls = {
             Pid = 5,
             Pos = Vector3(50.923164, -4.263489, 31.364449),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [6] = {
@@ -52,7 +52,7 @@ local PeriodCoinXls = {
             Pid = 6,
             Pos = Vector3(86.431480, 5.445843, 6.654531),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [7] = {
@@ -60,7 +60,7 @@ local PeriodCoinXls = {
             Pid = 7,
             Pos = Vector3(87.031624, 3.817593, 15.022520),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [8] = {
@@ -68,7 +68,7 @@ local PeriodCoinXls = {
             Pid = 8,
             Pos = Vector3(92.245323, 6.261104, 5.794095),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [9] = {
@@ -76,7 +76,7 @@ local PeriodCoinXls = {
             Pid = 9,
             Pos = Vector3(94.446808, 1.857781, 0.976482),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [10] = {
@@ -84,7 +84,7 @@ local PeriodCoinXls = {
             Pid = 10,
             Pos = Vector3(104.062538, 0.390348, -0.094970),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [11] = {
@@ -92,7 +92,7 @@ local PeriodCoinXls = {
             Pid = 11,
             Pos = Vector3(117.619705, 0.390348, -1.272205),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [12] = {
@@ -100,7 +100,7 @@ local PeriodCoinXls = {
             Pid = 12,
             Pos = Vector3(108.024521, -1.121371, 1.728619),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [13] = {
@@ -108,7 +108,7 @@ local PeriodCoinXls = {
             Pid = 13,
             Pos = Vector3(109.842949, -1.678864, 7.723686),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [14] = {
@@ -116,7 +116,7 @@ local PeriodCoinXls = {
             Pid = 14,
             Pos = Vector3(108.808334, 0.174450, 23.158825),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [15] = {
@@ -124,7 +124,7 @@ local PeriodCoinXls = {
             Pid = 15,
             Pos = Vector3(102.859222, -0.330254, 28.751358),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [16] = {
@@ -132,7 +132,7 @@ local PeriodCoinXls = {
             Pid = 16,
             Pos = Vector3(96.377281, -13.394413, -2.742851),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [17] = {
@@ -140,7 +140,7 @@ local PeriodCoinXls = {
             Pid = 17,
             Pos = Vector3(111.855721, -11.858931, 1.103946),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [18] = {
@@ -148,7 +148,7 @@ local PeriodCoinXls = {
             Pid = 18,
             Pos = Vector3(119.797791, -11.858931, 6.629025),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [19] = {
@@ -156,7 +156,7 @@ local PeriodCoinXls = {
             Pid = 19,
             Pos = Vector3(118.469055, -11.858931, 27.595881),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [20] = {
@@ -164,7 +164,7 @@ local PeriodCoinXls = {
             Pid = 20,
             Pos = Vector3(98.371643, 2.498068, -3.443573),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [21] = {
@@ -172,7 +172,7 @@ local PeriodCoinXls = {
             Pid = 21,
             Pos = Vector3(77.111618, 9.729330, 13.990946),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [22] = {
@@ -180,7 +180,7 @@ local PeriodCoinXls = {
             Pid = 22,
             Pos = Vector3(113.689781, -7.341907, 18.366402),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [23] = {
@@ -188,7 +188,7 @@ local PeriodCoinXls = {
             Pid = 23,
             Pos = Vector3(109.013725, -10.108538, 30.050188),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         },
         [24] = {
@@ -196,7 +196,7 @@ local PeriodCoinXls = {
             Pid = 24,
             Pos = Vector3(103.228912, -6.612459, -5.170008),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N1',
+            CoinType = 'N10',
             Num = 5
         }
     },
@@ -206,7 +206,7 @@ local PeriodCoinXls = {
             Pid = 1,
             Pos = Vector3(67.017838, 11.112020, 8.108672),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N10',
+            CoinType = 'N100',
             Num = 2
         },
         [2] = {
@@ -214,7 +214,7 @@ local PeriodCoinXls = {
             Pid = 2,
             Pos = Vector3(94.366653, 6.261104, 9.657903),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N10',
+            CoinType = 'N100',
             Num = 2
         },
         [3] = {
@@ -222,7 +222,7 @@ local PeriodCoinXls = {
             Pid = 3,
             Pos = Vector3(104.158463, 4.013039, 13.290792),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N10',
+            CoinType = 'N100',
             Num = 2
         },
         [4] = {
@@ -230,7 +230,7 @@ local PeriodCoinXls = {
             Pid = 4,
             Pos = Vector3(102.606606, 4.013039, 17.019085),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N10',
+            CoinType = 'N100',
             Num = 2
         }
     },
@@ -240,7 +240,7 @@ local PeriodCoinXls = {
             Pid = 1,
             Pos = Vector3(110.392220, 10.540485, 33.607792),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N100',
+            CoinType = 'N1000',
             Num = 1
         },
         [2] = {
@@ -248,7 +248,7 @@ local PeriodCoinXls = {
             Pid = 2,
             Pos = Vector3(116.962860, 5.457071, 19.313404),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N100',
+            CoinType = 'N1000',
             Num = 1
         },
         [3] = {
@@ -256,7 +256,7 @@ local PeriodCoinXls = {
             Pid = 3,
             Pos = Vector3(126.199936, 8.288073, -19.070547),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N100',
+            CoinType = 'N1000',
             Num = 1
         },
         [4] = {
@@ -264,7 +264,7 @@ local PeriodCoinXls = {
             Pid = 4,
             Pos = Vector3(109.358475, 6.155745, -4.881255),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
-            CoinType = 'N100',
+            CoinType = 'N1000',
             Num = 1
         }
     },
