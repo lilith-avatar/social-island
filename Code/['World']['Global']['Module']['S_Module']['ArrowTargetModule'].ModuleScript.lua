@@ -104,6 +104,11 @@ function ArrowTarget:HitReaction3(_target)
     _target.resetCD = 0
 end
 
+function ArrowTarget:HitReaction4(_target)
+    _target.obj:SetActive(false)
+    _target.resetCD = 0
+end
+
 ---宝箱飞行
 function ArrowTarget:FlyChestMove()
     for k, v in pairs(arrowTargetOBJ[3]) do
