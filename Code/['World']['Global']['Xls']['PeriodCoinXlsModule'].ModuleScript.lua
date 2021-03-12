@@ -647,6 +647,136 @@ local PeriodCoinXls = {
             CoinType = 'Random',
             Num = 4
         }
+    },
+    [6] = {
+        [1] = {
+            Fid = 6,
+            Pid = 1,
+            Pos = Vector3(-4.254529, -11.977487, 70.578964),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [2] = {
+            Fid = 6,
+            Pid = 2,
+            Pos = Vector3(-12.861933, -11.977487, 78.591591),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [3] = {
+            Fid = 6,
+            Pid = 3,
+            Pos = Vector3(-21.551977, -11.977487, 72.823395),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [4] = {
+            Fid = 6,
+            Pid = 4,
+            Pos = Vector3(-26.354151, -11.977487, 68.834404),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [5] = {
+            Fid = 6,
+            Pid = 5,
+            Pos = Vector3(-17.370836, -11.977487, 68.565910),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [6] = {
+            Fid = 6,
+            Pid = 6,
+            Pos = Vector3(-11.538547, -11.977487, 64.458862),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [7] = {
+            Fid = 6,
+            Pid = 7,
+            Pos = Vector3(3.298235, -11.977487, 65.301636),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [8] = {
+            Fid = 6,
+            Pid = 8,
+            Pos = Vector3(10.920105, -11.977487, 63.870041),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [9] = {
+            Fid = 6,
+            Pid = 9,
+            Pos = Vector3(6.549878, -11.977487, 56.317451),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [10] = {
+            Fid = 6,
+            Pid = 10,
+            Pos = Vector3(2.599062, -11.977487, 49.431786),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [11] = {
+            Fid = 6,
+            Pid = 11,
+            Pos = Vector3(-4.589310, -11.977487, 55.711395),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [12] = {
+            Fid = 6,
+            Pid = 12,
+            Pos = Vector3(-12.152050, -11.977487, 55.878799),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [13] = {
+            Fid = 6,
+            Pid = 13,
+            Pos = Vector3(-27.026766, -11.977487, 57.024117),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [14] = {
+            Fid = 6,
+            Pid = 14,
+            Pos = Vector3(-22.519972, -11.977487, 62.424625),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [15] = {
+            Fid = 6,
+            Pid = 15,
+            Pos = Vector3(-20.187588, -11.977487, 53.478458),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        },
+        [16] = {
+            Fid = 6,
+            Pid = 16,
+            Pos = Vector3(-33.060844, -11.977487, 53.225269),
+            Rot = EulerDegree(0.000000, 0.000000, 0.000000),
+            CoinType = 'Random',
+            Num = 1
+        }
     }
 }
 

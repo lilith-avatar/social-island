@@ -26,12 +26,13 @@ function PeriodCoinMgr:DataInit()
 	--this.lotusHighValue = {}
 	this.cloud ={}
 	this.sceneCoin = {}
-	
+	this.lutus = {}
 	this.mashroomHighValueNum = Config.PeriodCoin[3][1].Num
 	this.mashroomMidValueNum = Config.PeriodCoin[2][1].Num
 	this.mashroomLowValueNum = Config.PeriodCoin[1][1].Num
 	this.cloudNum = Config.PeriodCoin[4][1].Num
 	this.sceneCoinNum = Config.PeriodCoin[5][1].Num
+	this.lutusNum = Config.PeriodCoin[6][1].Num
 	--this.lotusLowValueNum = 0
 	--this.lotusMidValueNum = 0 
 	--this.lotusHighValueNum = 0 
@@ -134,6 +135,11 @@ function PeriodCoinMgr:InitCreat()
 	end
 	--- 场景彩蛋金币
 	for i=0,this.sceneCoinNum,1 do
+		local PosId = this:RandomPos(this.sceneCoin,5)
+		this:FreshCoin(this.sceneCoin,5,PosId)
+	end
+		--- 场景彩蛋金币
+	for i=0,this.lutus,1 do
 		local PosId = this:RandomPos(this.sceneCoin,5)
 		this:FreshCoin(this.sceneCoin,5,PosId)
 	end
