@@ -343,6 +343,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                 this.TentList[v.Name].num = this.TentList[v.Name].num - 1
                 if this.TentList[v.Name].num == 0 then
                     this.TentList[v.Name] = nil
+                    v.Effect:SetActive(false)
                 end
             end
         end
