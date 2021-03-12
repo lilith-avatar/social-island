@@ -98,7 +98,9 @@ function PeriodCoinMgr:FreshCoin(_table,_fId,_posId)
 		table.insert(_table,CoinInfo)
 	else
 		RadIndex = math.random(0,10)
-		if RadIndex > 8 then
+		if RadIndex > 9.5 then
+			Coin = CoinMgr:SpawnCoin("N1000",Config.PeriodCoin[_fId][_posId].Pos)
+		elseif RadIndex > 8 then
 			Coin = CoinMgr:SpawnCoin("N100",Config.PeriodCoin[_fId][_posId].Pos)
 		elseif RadIndex > 5 then
 			Coin = CoinMgr:SpawnCoin("N10",Config.PeriodCoin[_fId][_posId].Pos)
