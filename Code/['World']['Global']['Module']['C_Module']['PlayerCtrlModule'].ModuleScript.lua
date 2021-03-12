@@ -375,6 +375,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                     return
                 end
             else
+				NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
                 if _hitObject.TentUID1.Value == localPlayer.UserId then
                     _hitObject.TentUID1.Value = ""
                 elseif _hitObject.TentUID2.Value == localPlayer.UserId then
