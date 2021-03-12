@@ -191,12 +191,16 @@ end
 
 function ScenesInteract:TentShake(dt)
     for k,v in pairs(this.TentList) do
-        v.timer = v.timer + dt
+        --v.timer = v.timer + dt
         if v.num == 1 then
-            --单人摇
+            v.model.Effect:SetActive(true)
+            v.model.Effect.Sleep:SetActive(true)
+            v.model.Effect.MakeLove:SetActive(false)
         end
-        if v.num == 2 then
-            --多人摇
+        if v.num >= 2 then
+            v.model.Effect:SetActive(true)
+            v.model.Effect.Sleep:SetActive(false)
+            v.model.Effect.MakeLove:SetActive(true)
         end
     end
 end
@@ -292,6 +296,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(tentOBJ) do
             if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
                 _player.Avatar:SetActive(false)
+                if not this.TentList[v.Name] then
+                    this.TentList[v.Name] = {
+                        model = v,
+                        num = 0
+                    }
+                end
+                this.TentList[v.Name].num = this.TentList[v.Name].num + 1
             end
         end
     end
@@ -327,6 +338,14 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     if _id == 22 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
         _player.Avatar:SetActive(true)
+        for k, v in pairs(tentOBJ) do
+            if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
+                this.TentList[v.Name].num = this.TentList[v.Name].num - 1
+                if this.TentList[v.Name].num == 0 then
+                    this.TentList[v.Name] = nil
+                end
+            end
+        end
     end
 end
 
@@ -348,6 +367,7 @@ end
 function ScenesInteract:Update(dt)
     this:ResetSIOBJ(dt)
     this:TrojanShake(dt)
+    this:TentShake(dt)
 end
 
 return ScenesInteract
