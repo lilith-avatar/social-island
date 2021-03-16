@@ -119,6 +119,10 @@ function MoleHit:RefreashMole(_type)
     end
 end
 
+-- 日夜交替
+function MoleHit:DayAndNightChange(_dayOrNight)
+end
+
 function MoleHit:InteractSEventHandler(_player, _gameId)
     if _gameId == 2 then
     end
