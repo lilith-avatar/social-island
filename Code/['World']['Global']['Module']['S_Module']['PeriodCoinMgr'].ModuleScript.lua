@@ -26,12 +26,13 @@ function PeriodCoinMgr:DataInit()
 	--this.lotusHighValue = {}
 	this.cloud ={}
 	this.sceneCoin = {}
-	
+	this.lutus = {}
 	this.mashroomHighValueNum = Config.PeriodCoin[3][1].Num
 	this.mashroomMidValueNum = Config.PeriodCoin[2][1].Num
 	this.mashroomLowValueNum = Config.PeriodCoin[1][1].Num
 	this.cloudNum = Config.PeriodCoin[4][1].Num
 	this.sceneCoinNum = Config.PeriodCoin[5][1].Num
+	this.lutusNum = Config.PeriodCoin[6][1].Num
 	--this.lotusLowValueNum = 0
 	--this.lotusMidValueNum = 0 
 	--this.lotusHighValueNum = 0 
@@ -54,6 +55,7 @@ function PeriodCoinMgr:Update(dt)
 		this:CheckCoin(this.mashroomLowValue,1,Config.PeriodCoin[1].CoinType)
 		this:CheckCoin(this.cloud,4,Config.PeriodCoin[4].CoinType)
 		this:CheckCoin(this.sceneCoin,5,Config.PeriodCoin[5].CoinType)
+		this:CheckCoin(this.lutus,6,Config.PeriodCoin[6].CoinType)
 		this.tt=0
 	end
 	--
@@ -98,7 +100,9 @@ function PeriodCoinMgr:FreshCoin(_table,_fId,_posId)
 		table.insert(_table,CoinInfo)
 	else
 		RadIndex = math.random(0,10)
-		if RadIndex > 8 then
+		if RadIndex > 9.5 then
+			Coin = CoinMgr:SpawnCoin("N1000",Config.PeriodCoin[_fId][_posId].Pos)
+		elseif RadIndex > 8 then
 			Coin = CoinMgr:SpawnCoin("N100",Config.PeriodCoin[_fId][_posId].Pos)
 		elseif RadIndex > 5 then
 			Coin = CoinMgr:SpawnCoin("N10",Config.PeriodCoin[_fId][_posId].Pos)
@@ -134,6 +138,11 @@ function PeriodCoinMgr:InitCreat()
 	for i=0,this.sceneCoinNum,1 do
 		local PosId = this:RandomPos(this.sceneCoin,5)
 		this:FreshCoin(this.sceneCoin,5,PosId)
+	end
+		--- 场景彩蛋金币
+	for i=0,this.lutusNum,1 do
+		local PosId = this:RandomPos(this.lutus,6)
+		this:FreshCoin(this.lutus,6,PosId)
 	end
 	--[[ 湖上荷叶金币区
 	if #this.lotusHighValue < this.lotusLowValueNum then

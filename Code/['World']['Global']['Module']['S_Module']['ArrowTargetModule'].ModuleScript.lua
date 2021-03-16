@@ -36,7 +36,7 @@ end
 
 --- 数据变量初始化
 function ArrowTarget:DataInit()
-    for i = 1, 3 do
+    for i = 1, 4 do
         HitReactionFunc[i] = function(_target)
             this["HitReaction" .. i](self, _target)
         end
@@ -101,6 +101,11 @@ end
 function ArrowTarget:HitReaction3(_target)
     _target.obj:SetActive(false)
     ScenesInteract:InstanceInteractOBJ(60, _target.obj.Position)
+    _target.resetCD = 0
+end
+
+function ArrowTarget:HitReaction4(_target)
+    _target.obj:SetActive(false)
     _target.resetCD = 0
 end
 

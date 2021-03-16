@@ -66,6 +66,14 @@ function MoleHit:DataInit()
         ufo = Config.MoleGlobalConfig.UFOPitNum.Value,
         maze = Config.MoleGlobalConfig.MazePitNum.Value
     }
+    this.bonusScene = {
+        ufo = function()
+            UFOMgr:ActiveUFO()
+        end,
+        maze = function ()
+            NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
+        end
+    }
 end
 
 function MoleHit:NodeDef()
@@ -121,7 +129,7 @@ local player
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     player = world:GetPlayerByUserId(_uid)
     this:HitMoleAction(_uid, _type, _pit)
-    -- 抽奖 
+    -- 抽奖
     local coinNum =
         Config.MoleGlobalConfig.DropCoinRange.Value[
         SortDropCoinByWeight(Config.MoleGlobalConfig.DropCoinRange.Value).index
@@ -129,7 +137,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     NetUtil.Fire_S("SpawnCoinEvent", "P", _pit.Position + Vector3.Up, math.floor(coinNum))
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
-    --! only Test
+    -- 发送全局通知
     NetUtil.Broadcast(
         "InsertInfoEvent",
         string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])),
@@ -142,8 +150,8 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         this.RefreshList[_type] = {
             timer = 0
         }
-        -- TODO: 开启对应彩蛋
-        print(string.format("开启 %s 彩蛋", _type))
+        -- 开启对应彩蛋
+        this.bonusScene[_type]()
     end
 end
 

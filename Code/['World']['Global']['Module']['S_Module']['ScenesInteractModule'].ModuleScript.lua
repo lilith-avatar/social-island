@@ -26,7 +26,11 @@ local grassOBJ = {}
 --木马
 local trojanObj = {}
 
+--吉他
 local guitarOBJ = {}
+
+--帐篷
+local tentOBJ = {}
 
 --- 初始化
 function ScenesInteract:Init()
@@ -77,11 +81,15 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Guitar:GetChildren()) do
         guitarOBJ[v.Name] = v
     end
+    for k, v in pairs(world.Tent:GetChildren()) do
+        tentOBJ[v.Name] = v
+    end
 end
 
 --- 数据变量初始化
 function ScenesInteract:DataInit()
     this.TrojanList = {}
+    this.TentList = {}
 end
 
 --- 节点事件绑定
@@ -173,12 +181,37 @@ function ScenesInteract:TrojanShake(dt)
         v.timer = v.timer + dt
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
-            -- TODO: 给钱
-            --print("给一个金币")
+            -- 给钱
             NetUtil.Fire_C("UpdateCoinEvent", localPlayer, 1)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
+    end
+end
+
+function ScenesInteract:TentShake(dt)
+    for k, v in pairs(this.TentList) do
+        if v.num >= 2 then
+            v.timer = v.timer + dt
+            if v.timer >= 1 then
+                local tweener = Tween:ShakeProperty(v.model, {"Rotation"}, 0.5, 1)
+                tweener:Play()
+                v.timer = 0
+            end
+        end
+    end
+end
+
+function ScenesInteract:TentNumEffect(_num, _model)
+    if _num == 1 then
+        _model.Effect:SetActive(true)
+        _model.Effect.Sleep:SetActive(true)
+        _model.Effect.MakeLove:SetActive(false)
+    end
+    if _num >= 2 then
+        _model.Effect:SetActive(true)
+        _model.Effect.Sleep:SetActive(false)
+        _model.Effect.MakeLove:SetActive(true)
     end
 end
 
@@ -268,6 +301,23 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 21 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 21)
     end
+    if _id == 22 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 22)
+        for k, v in pairs(tentOBJ) do
+            if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
+                _player.Avatar:SetActive(false)
+                if not this.TentList[v.Name] then
+                    this.TentList[v.Name] = {
+                        model = v,
+                        num = 0,
+                        timer = 0
+                    }
+                end
+                this.TentList[v.Name].num = this.TentList[v.Name].num + 1
+                this:TentNumEffect(this.TentList[v.Name].num, v)
+            end
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -297,6 +347,20 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     if _id == 21 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
     end
+    if _id == 22 then
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        _player.Avatar:SetActive(true)
+        for k, v in pairs(tentOBJ) do
+            if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
+                this.TentList[v.Name].num = this.TentList[v.Name].num - 1
+                this:TentNumEffect(this.TentList[v.Name].num, v)
+                if this.TentList[v.Name].num == 0 then
+                    this.TentList[v.Name] = nil
+                    v.Effect:SetActive(false)
+                end
+            end
+        end
+    end
 end
 
 --重置交互物体
@@ -317,6 +381,7 @@ end
 function ScenesInteract:Update(dt)
     this:ResetSIOBJ(dt)
     this:TrojanShake(dt)
+    this:TentShake(dt)
 end
 
 return ScenesInteract

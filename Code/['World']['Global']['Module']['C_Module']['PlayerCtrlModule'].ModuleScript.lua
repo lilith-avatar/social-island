@@ -24,8 +24,6 @@ local moveBackAxis = 0
 local moveLeftAxis = 0
 local moveRightAxis = 0
 
-local isOnWater = false
-
 --- 初始化
 function PlayerCtrl:Init()
     print("[PlayerCtrl] Init()")
@@ -66,27 +64,11 @@ function PlayerCtrl:EventBind()
     localPlayer.OnCollisionBegin:Connect(
         function(_hitObject)
             PlayerCtrl:OnScenesInteractCol(_hitObject, true)
-            if _hitObject.Name == "SallowWaterCol" then
-                isOnWater = true
-            end
         end
     )
     localPlayer.OnCollisionEnd:Connect(
         function(_hitObject)
             PlayerCtrl:OnScenesInteractCol(_hitObject, false)
-            if _hitObject.Name == "SallowWaterCol" then
-                isOnWater = false
-            end
-        end
-    )
-    localPlayer.Avatar.Bone_R_Foot.FootStep.OnCollisionEnd:Connect(
-        function(_hitObject, _hitPoint)
-            PlayerCtrl:FeetStepEffect("R", _hitObject, _hitPoint)
-        end
-    )
-    localPlayer.Avatar.Bone_L_Foot.FootStep.OnCollisionEnd:Connect(
-        function(_hitObject, _hitPoint)
-            PlayerCtrl:FeetStepEffect("L", _hitObject, _hitPoint)
         end
     )
 end
@@ -130,53 +112,27 @@ function PlayerCtrl:PlayerClap()
     NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
 end
 
---脚步声
-function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
-    if
-        _hitPoint.y < localPlayer.Position.y + 0.1 and FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and
-            FsmMgr.playerActFsm.curState.stateName ~= "Swimming"
-     then
-        if isOnWater then
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 19)
-        else
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 17)
-        end
-        localPlayer.Avatar["Bone_" .. _dir .. "_Foot"].FootStep.OnCollisionEnd:Clear()
-        invoke(
-            function()
-                localPlayer.Avatar["Bone_" .. _dir .. "_Foot"].FootStep.OnCollisionEnd:Connect(
-                    function(_hitObject, _hitPoint)
-                        this:FeetStepEffect(_dir, _hitObject, _hitPoint)
-                    end
-                )
-            end,
-            0.5
-        )
-    end
-end
-
 --游泳检测
 function PlayerCtrl:PlayerSwim()
     if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then
         --print(localPlayer.Position, world.water.DeepWaterCol.Position)
         if
-            localPlayer.Position.x < world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 and
-                localPlayer.Position.x > world.Water.DeepWaterCol.Position.x - world.Water.DeepWaterCol.Size.x / 2 and
-                localPlayer.Position.z < world.Water.DeepWaterCol.Position.z + world.Water.DeepWaterCol.Size.z / 2 and
-                localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
+            localPlayer.Position.x < world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 and
+                localPlayer.Position.x > world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 and
+                localPlayer.Position.z < world.water.DeepWaterCol.Position.z + world.water.DeepWaterCol.Size.z / 2 and
+                localPlayer.Position.z > world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.4
          then
             --print("游泳检测")
             NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 20)
         --FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
         if
-            localPlayer.Position.x > world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 or
-                localPlayer.Position.x < world.Water.DeepWaterCol.Position.x - world.Water.DeepWaterCol.Size.x / 2 or
-                localPlayer.Position.z > world.Water.DeepWaterCol.Position.z + world.Water.DeepWaterCol.Size.z / 2 or
-                localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
+            localPlayer.Position.x > world.water.DeepWaterCol.Position.x + world.water.DeepWaterCol.Size.x / 2 or
+                localPlayer.Position.x < world.water.DeepWaterCol.Position.x - world.water.DeepWaterCol.Size.x / 2 or
+                localPlayer.Position.z > world.water.DeepWaterCol.Position.z + world.water.DeepWaterCol.Size.z / 2 or
+                localPlayer.Position.z < world.water.DeepWaterCol.Position.z - world.water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
             NetUtil.Fire_C("RemoveBuffEvent", localPlayer, 5)
@@ -419,7 +375,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                     return
                 end
             else
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+				NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
                 if _hitObject.TentUID1.Value == localPlayer.UserId then
                     _hitObject.TentUID1.Value = ""
                 elseif _hitObject.TentUID2.Value == localPlayer.UserId then

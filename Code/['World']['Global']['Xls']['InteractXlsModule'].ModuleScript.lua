@@ -291,6 +291,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = 'GuitarGui'
+    },
+    [22] = {
+        ID = 22,
+        Name = 'Tent',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 

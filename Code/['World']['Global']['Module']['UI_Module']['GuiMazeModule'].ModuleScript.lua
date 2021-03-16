@@ -51,7 +51,7 @@ function EnterMaze(_enterPos, _playerDir, _totalTime, _waitTime)
     print('[GuiMaze] EnterMaze')
     -- cache player info
     origin.pos = player.Position
-    NetUtil.Fire_C('GetBuffEvent', localPlayer, 24, -1)
+    -- NetUtil.Fire_C('GetBuffEvent', localPlayer, 24, -1)
     player.Position = _enterPos
     player.Forward = _playerDir
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, camMaze)
@@ -84,7 +84,7 @@ function QuitMaze(_score, _time)
     inMaze = false
     -- resume player info
     player.Position = origin.pos
-    NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 24)
+    -- NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 24)
 
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, origin.camera)
 

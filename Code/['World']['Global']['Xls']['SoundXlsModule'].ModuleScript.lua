@@ -20,7 +20,7 @@ local SoundXls = {
         Type = 'BGM',
         Name = 'BGM',
         IsLoop = false,
-        Volume = 30.0,
+        Volume = 45.0,
         Path = 'Audio/Temp_BGM',
         Info = ''
     },
@@ -128,7 +128,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'Sit',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 35.0,
         Path = 'Audio/Sit',
         Info = '坐下的音效'
     },
@@ -137,7 +137,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'DOORS_WOOD_GATE_OPEN_2',
         IsLoop = true,
-        Volume = 60.0,
+        Volume = 20.0,
         Path = 'Audio/DOORS_WOOD_GATE_OPEN_2',
         Info = '摇木马的咯吱声'
     },

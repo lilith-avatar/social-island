@@ -54,7 +54,7 @@ function ObjPoolUtil:Despawn(_obj)
     if _obj == nil then
         error('[ObjPoolUtil] 传入对象为空')
     elseif #self.pool > self.maxCount then
-        error(string.format('[ObjPoolUtil] %s对象池已满，该对象会永久销毁', self.obj))
+        print(string.format('[ObjPoolUtil] %s对象池已满，该对象会永久销毁', self.obj))
         _obj:Destroy()
     else
         table.insert(self.pool, _obj)
