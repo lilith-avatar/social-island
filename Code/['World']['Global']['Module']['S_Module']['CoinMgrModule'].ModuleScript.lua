@@ -55,17 +55,19 @@ function CoinMgr:SpawnCoin(_pool, _pos)
     local coinOBJ = coinPool[_pool]:Spawn(_pos)
     if string.sub(_pool, 1, 1) == "P" then
         coinOBJ.LinearVelocity = Vector3(math.random(-5, 5), 5, math.random(-5, 5))
+        coinOBJ.Rotation = EulerDegree(90, math.random(0, 180), 0)
     end
     coinOBJ.GetCoinEvent:Connect(
         function()
             this:GetCoin(_pool, coinOBJ)
         end
     )
-	return coinOBJ
+    return coinOBJ
 end
 
 --- 获得金币
 function CoinMgr:GetCoin(_pool, _coinOBJ)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 4)
     coinPool[_pool]:Despawn(_coinOBJ)
     NetUtil.Fire_C("UpdateCoinEvent", world:GetPlayerByUserId(_coinOBJ.CoinUID.Value), _coinOBJ.CoinNum.Value)
     _coinOBJ.CoinUID.Value = ""
