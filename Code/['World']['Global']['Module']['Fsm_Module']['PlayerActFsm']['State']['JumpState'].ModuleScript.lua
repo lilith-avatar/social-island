@@ -21,7 +21,7 @@ function JumpState:IdleMonitor()
         if PlayerCam:IsFreeMode() then
             localPlayer:FaceToDir(dir, 4 * math.pi)
         end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        localPlayer:MoveTowards(Vector2(dir.x, dir.z))
     else
         localPlayer:MoveTowards(Vector2.Zero)
     end
