@@ -50,6 +50,10 @@ function MoleClass:DataReset(_moleId)
     self.type = Config.MoleConfig[_moleId].Type
 end
 
+function MoleClass:SetActive(_active)
+    self.model:SetActive(_active)
+end
+
 function MoleClass:Reset(_moleId, _parent)
     self:CreateModel(_moleId, nil, _parent)
 end
