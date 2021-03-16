@@ -13,14 +13,12 @@ end
 function MeleeWeapon:Attack()
     self.attackCT = self.config.AttackCD
     self:PlayAttackAnim()
+    self:PlayAttackSound()
 end
 
 --进入打地鼠
 function MeleeWeapon:Equip()
     WeaponBase.Equip(self)
-    if self.config.Mole then
-        NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, 2)
-    end
 end
 
 --获取攻击数据

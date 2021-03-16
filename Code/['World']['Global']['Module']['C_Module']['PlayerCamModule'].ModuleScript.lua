@@ -85,7 +85,7 @@ function PlayerCam:TPSGetRayDir()
         if
             (v - localPlayer.Position).Magnitude > 4 and
                 Vector3.Angle(localPlayer.Forward, (v - localPlayer.Position)) < 90 and
-                hitResult:GetHitObjAll()[i].Name ~= "water"
+                hitResult:GetHitObjAll()[i].Parent.Name ~= "Water"
          then
             --print(hitResult:GetHitObjAll()[i])
             return v
