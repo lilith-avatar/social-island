@@ -144,6 +144,7 @@ end
 --- 开始比赛
 function Snail:StartSnailRace()
     NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜开始啦", 10, Vector3(-30.1, -11.3, -29.7))
+    NetUtil.Broadcast("PlayEffectEvent", 10, startPoints[1].Position)
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
 
@@ -228,6 +229,11 @@ function Snail:SnailFinish(_snailObjPool)
         for k, v in pairs(snailObjPool) do
             if v.state == snailActState.FINISH then
                 _snailObjPool.ranking = _snailObjPool.ranking + 1
+                if _snailObjPool.ranking == 1 then
+                    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 38)
+                elseif _snailObjPool.ranking == 2 then
+                    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 39)
+                end
             end
         end
         this:ShowRank(_snailObjPool)
@@ -268,8 +274,10 @@ function Snail:GiveReward(_snailObjPool)
                 3,
                 false
             )
+            NetUtil.Fire_C("PlayEffectEvent", v.player, 11)
         else
             NetUtil.Fire_C("InsertInfoEvent", v.player, "你投注的蜗牛获得了第" .. _snailObjPool.ranking .. "名,并没有奖励", 3, false)
+            NetUtil.Fire_C("PlayEffectEvent", v.player, 12)
         end
 
         --NetUtil.Fire_C("GetItemEvent", v, 5011)

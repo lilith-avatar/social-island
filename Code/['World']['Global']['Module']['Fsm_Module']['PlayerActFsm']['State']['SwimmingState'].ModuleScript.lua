@@ -1,6 +1,9 @@
 local Swimming = class("Swimming", PlayerActState)
 
+local timer = 0
+
 function Swimming:OnEnter()
+    timer = 0
     PlayerActState.OnEnter(self)
     --localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
@@ -11,6 +14,12 @@ function Swimming:OnUpdate(dt)
     FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
     self:IdleMonitor()
     self:JumpMonitor()
+    if timer < 1 then
+        timer = timer + dt
+    else
+        NetUtil.Fire_C("PlayEffectEvent", localPlayer, 21)
+        timer = 0
+    end
 end
 
 function Swimming:OnLeave()
