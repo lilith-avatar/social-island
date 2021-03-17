@@ -13,7 +13,7 @@ local AnimalAreaXls = {
         AmountMax = 5,
         InitAmount = 10,
         SpawnPoint = {{Vector3(-69.2967, -9.6418, -0.3599),EulerDegree(0,0,0)},{Vector3(-86.3368, -9.3078, 5.2147),EulerDegree(0,0,0)},{Vector3(-75.5884, -11.7212, 19.907),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 5, 6, 7}
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [2] = {
         ID = 2,
@@ -22,7 +22,7 @@ local AnimalAreaXls = {
         AmountMax = 4,
         InitAmount = 10,
         SpawnPoint = {{Vector3(-139.337, -0.5933, 27.4511),EulerDegree(0,0,0)},{Vector3(-155.536, 0.0181, 30.1025),EulerDegree(0,0,0)},{Vector3(-145.672, -0.5402, 41.8904),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 5, 6, 7}
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [3] = {
         ID = 3,
@@ -31,7 +31,7 @@ local AnimalAreaXls = {
         AmountMax = 4,
         InitAmount = 10,
         SpawnPoint = {{Vector3(-109.427, -12.438, 48.974),EulerDegree(0,0,0)},{Vector3(-123.796, -11.1341, 55.7969),EulerDegree(0,0,0)},{Vector3(-113.932, -9.9013, 67.5848),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 5, 6, 7}
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [4] = {
         ID = 4,
@@ -40,7 +40,7 @@ local AnimalAreaXls = {
         AmountMax = 5,
         InitAmount = 10,
         SpawnPoint = {{Vector3(-126.389, -4.7444, 95.8139),EulerDegree(0,0,0)},{Vector3(-147.123, -3.2229, 105.165),EulerDegree(0,0,0)},{Vector3(-130.893, -3.0471, 114.425),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 5, 6, 7}
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     },
     [5] = {
         ID = 5,
@@ -49,7 +49,7 @@ local AnimalAreaXls = {
         AmountMax = 4,
         InitAmount = 10,
         SpawnPoint = {{Vector3(-52.3308, 11.8838, 82.138),EulerDegree(0,0,0)},{Vector3(-72.649, 12.8307, 93.966),EulerDegree(0,0,0)},{Vector3(-58.9191, 13.0065, 96.0717),EulerDegree(0,0,0)}},
-        AnimalIDList = {1, 2, 3, 5, 6, 7}
+        AnimalIDList = {1, 2, 3, 5, 6, 7, 8}
     }
 }
 

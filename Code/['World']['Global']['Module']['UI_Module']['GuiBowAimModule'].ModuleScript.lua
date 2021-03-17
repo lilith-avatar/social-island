@@ -31,11 +31,11 @@ function GuiBowAim:EventBind()
     this.aimStick.OnEnter:Connect(
         function()
             ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+            isCharge = true
         end
     )
     this.aimStick.OnLongPressStay:Connect(
         function()
-            isCharge = true
             --this:AimAngle(deltaDistance)
         end
     )
@@ -73,7 +73,7 @@ function GuiBowAim:Charge(dt)
         end
     else
         if this.chargeForce > 0 then
-            this.chargeForce = this.chargeForce - dt * 2
+            this.chargeForce = this.chargeForce - dt * 5
         else
             this.chargeForce = 0
         end
@@ -81,6 +81,7 @@ function GuiBowAim:Charge(dt)
     this.gui.Panel.ChargeDown.Offset = Vector2(0, this.chargeForce * 80)
     this.gui.Panel.ChargeRight.Offset = Vector2(this.chargeForce * -80, 0)
     this.gui.Panel.ChargeLeft.Offset = Vector2(this.chargeForce * 80, 0)
+    
 end
 
 --玩家上半身角度移动

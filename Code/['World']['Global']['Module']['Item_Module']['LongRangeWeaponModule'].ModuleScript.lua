@@ -41,6 +41,7 @@ function LongRangeWeapon:ShootArrow(_force)
         localPlayer.Rotation
     )
     --world:CreateInstance("TestSphere", "TestSphere", world, endPos)
+    self:PlayAttackSound()
     arrow.Forward = endPos - arrow.Position
     arrow.LinearVelocity = arrow.Forward * 40
     arrow.OnCollisionBegin:Connect(
@@ -54,8 +55,10 @@ function LongRangeWeapon:ShootArrow(_force)
                         ItemMgr.itemInstance[ItemMgr.curWeaponID]:GetAttackData()
                     )
                     arrow.OnCollisionBegin:Clear()
+                    self:PlayHitSound(_hitObj.Position)
                     arrow:Destroy()
                 elseif _hitObj.AnimalID and self.config.Hunt then
+                    self:PlayHitSound(_hitObj.Position)
                     NetUtil.Fire_C(
                         "GetItemFromPoolEvent",
                         localPlayer,
@@ -70,6 +73,7 @@ function LongRangeWeapon:ShootArrow(_force)
                     )
                     _hitObj.AnimalDeadEvent:Fire()
                 elseif _hitObj.Name == "ArrowTargetCol" then
+                    self:PlayHitSound(_hitObj.Position)
                     _hitObj.Parent.ArrowTargetEvent:Fire(_hitObj.Position)
                     arrow:Destroy()
                 end

@@ -18,7 +18,7 @@ function PlayerActState:IdleMonitor(_nextStateTypeName)
         if PlayerCam:IsFreeMode() then
             localPlayer:FaceToDir(dir, 4 * math.pi)
         end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        localPlayer:MoveTowards(Vector2(dir.x, dir.z))
     else
         FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Idle")
     end
@@ -37,7 +37,7 @@ end
 ---监听奔跑
 function PlayerActState:RunMonitor(_nextStateTypeName)
     _nextStateTypeName = _nextStateTypeName or ""
-    if localPlayer.LinearVelocity.Magnitude >= localPlayer.WalkSpeed * 0.99 then
+    if PlayerCtrl.finalDir.Magnitude >= 0.6 then
         FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Run")
     end
 end
@@ -45,7 +45,7 @@ end
 ---监听行走
 function PlayerActState:WalkMonitor(_nextStateTypeName)
     _nextStateTypeName = _nextStateTypeName or ""
-    if localPlayer.LinearVelocity.Magnitude < localPlayer.WalkSpeed * 0.99 then
+    if PlayerCtrl.finalDir.Magnitude < 0.6 then
         FsmMgr.playerActFsm:Switch(_nextStateTypeName .. "Walk")
     end
 end

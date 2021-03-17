@@ -1,16 +1,41 @@
 local BowRun = class("BowRun", PlayerActState)
 
+local dirStateEnum = {
+    Forward = 1,
+    Back = 2,
+    Right = 3,
+    Left = 4
+}
+
+local curDirState = 0
+
+local function Turn(_dir)
+    if _dir ~= curDirState then
+        curDirState = _dir
+        if _dir == dirStateEnum.Forward then
+            localPlayer.Avatar:PlayAnimation("BowRun", 2, 1, 0.1, true, true, 1)
+        elseif _dir == dirStateEnum.Right then
+            localPlayer.Avatar:PlayAnimation("BowRunRight", 2, 1, 0.1, true, true, 1)
+        elseif _dir == dirStateEnum.Left then
+            localPlayer.Avatar:PlayAnimation("BowRunLeft", 2, 1, 0.1, true, true, 1)
+        elseif _dir == dirStateEnum.Back then
+            localPlayer.Avatar:PlayAnimation("BowRunBack", 2, 1, 0.1, true, true, 1)
+        end
+    end
+end
+
 function BowRun:OnEnter()
     PlayerActState.OnEnter(self)
     local dir = PlayerCtrl.finalDir
-    if Vector3.Angle(dir, localPlayer.Forward) < 60 then
-        localPlayer.Avatar:PlayAnimation("BowRun", 2, 1, 0.1, true, true, 1)
-    elseif Vector3.Angle(dir, localPlayer.Right) < 30 then
-        localPlayer.Avatar:PlayAnimation("BowRunRight", 2, 1, 0.1, true, true, 1)
-    elseif Vector3.Angle(dir, localPlayer.Left) < 30 then
-        localPlayer.Avatar:PlayAnimation("BowRunLeft", 2, 1, 0.1, true, true, 1)
+    curDirState = 0
+    if Vector3.Angle(dir, localPlayer.Forward) < 30 then
+        Turn(dirStateEnum.Forward)
+    elseif Vector3.Angle(dir, localPlayer.Right) < 75 then
+        Turn(dirStateEnum.Right)
+    elseif Vector3.Angle(dir, localPlayer.Left) < 75 then
+        Turn(dirStateEnum.Left)
     else
-        localPlayer.Avatar:PlayAnimation("BowRunBack", 2, 1, 0.1, true, true, 1)
+        Turn(dirStateEnum.Back)
     end
 end
 
@@ -31,18 +56,18 @@ function BowRun:IdleMonitor()
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then
-        if localPlayer.LinearVelocity.Magnitude > 0 and Vector3.Angle(dir, localPlayer.LinearVelocity) > 30 then
-            if Vector3.Angle(dir, localPlayer.Forward) < 60 then
-                localPlayer.Avatar:PlayAnimation("BowRun", 2, 1, 0.1, true, true, 1)
-            elseif Vector3.Angle(dir, localPlayer.Right) < 30 then
-                localPlayer.Avatar:PlayAnimation("BowRunRight", 2, 1, 0.1, true, true, 1)
-            elseif Vector3.Angle(dir, localPlayer.Left) < 30 then
-                localPlayer.Avatar:PlayAnimation("BowRunLeft", 2, 1, 0.1, true, true, 1)
+        if localPlayer.LinearVelocity.Magnitude > 0 then
+            if Vector3.Angle(dir, localPlayer.Forward) < 30 then
+                Turn(dirStateEnum.Forward)
+            elseif Vector3.Angle(dir, localPlayer.Right) < 75 then
+                Turn(dirStateEnum.Right)
+            elseif Vector3.Angle(dir, localPlayer.Left) < 75 then
+                Turn(dirStateEnum.Left)
             else
-                localPlayer.Avatar:PlayAnimation("BowRunBack", 2, 1, 0.1, true, true, 1)
+                Turn(dirStateEnum.Back)
             end
         end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        localPlayer:MoveTowards(Vector2(dir.x, dir.z))
     else
         FsmMgr.playerActFsm:Switch("BowIdle")
     end
