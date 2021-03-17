@@ -11,6 +11,8 @@ function GuiBubleGun:Init()
 end
 
 function GuiBubleGun:DataInit()
+    this.timer = 0
+    this.startUpdate = false
 end
 
 function GuiBubleGun:NodeDef()
@@ -29,13 +31,15 @@ end
 
 function GuiBubleGun:EventBind()
     this.AttackBtn.OnClick:Connect(function()
-        print('发射')
+        this.AttackBtn.Clickable = false
+        NetUtil.Fire_S('CreateBubleEvent',localPlayer)
     end)
 end
 
 function GuiBubleGun:InteractCEventHandler(_gameId)
     if _gameId == 24 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 24)
+        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BubleGunIdle")
     end
 end
 
@@ -46,7 +50,13 @@ function GuiBubleGun:LeaveInteractCEventHandler(_gameId)
 end
 
 ---Update函数
-function GuiBubleGun:Update()
+function GuiBubleGun:Update(dt)
+    if this.startUpdate then
+        this.timer = this.timer + dt
+        if this.timer >= 1 then
+            this.AttackBtn.Clickable = true
+        end
+    end
 end
 
 return GuiBubleGun

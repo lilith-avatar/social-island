@@ -43,10 +43,22 @@ function Buble:InteractSEventHandler(_player, _gameId)
     end
 end
 
-function Buble:LeaveInteractSEventHandler(_player,_gameId)
+function Buble:LeaveInteractSEventHandler(_player, _gameId)
     if _gameId == 24 then
         this.bublePlayer[_player.UserId] = nil
     end
+end
+
+function Buble:CreateBubleEventHandler(_player)
+    local buble = world:CreateInstance("Buble", "Buble",world.Buble,_player.Position + _player.Forward * 2)
+    buble.OnCollisionBegin:Connect(function(_hitObject)
+        if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+            -- todo: 人被困住
+            print(_hitObject.Name..'被困住了')
+            buble:Destroy()
+        end
+    end)
+    buble.LinearVelocity = _player.Forward * 5
 end
 
 return Buble

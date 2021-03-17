@@ -2,16 +2,16 @@ local BubleGunIdle = class('BubleGunIdle',PlayerActState)
 
 function BubleGunIdle:OnEnter()
     PlayerActState.OnEnter(self)
-    PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
+    --PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
     localPlayer:MoveTowards(Vector2.Zero)
-    localPlayer.Avatar:PlayAnimation("BowEquipIdle", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("PistolIdle", 2, 1, 0.1, true, true, 1)
 end
 
 function BubleGunIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     localPlayer:MoveTowards(Vector2.Zero)
     FsmMgr.playerActFsm:TriggerMonitor(
-        {"Idle", "SwimIdle", "BubleGunAttack", "BowChargeIdle", "TwoHandedSwordIdle", "OneHandedSwordIdle",'BubleGunHit'}
+        {"Idle", "SwimIdle", "OneHandedSwordIdle"}
     )
     self:MoveMonitor('BubleGun')
     self:JumpMonitor('BubleGun')
