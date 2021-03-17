@@ -140,7 +140,9 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
         closePlayer = nil,
         LVCtrlIntensity = Config.Animal[_animalID].LVCtrlIntensity,
         RotCtrlIntensity = Config.Animal[_animalID].RotCtrlIntensity,
-        caughtRate = Config.Animal[_animalID].CaughtRate
+        caughtRate = Config.Animal[_animalID].CaughtRate,
+        hitAEID = Config.Animal[_animalID].HitAEID,
+        deadAEID = Config.Animal[_animalID].DeadAEID
     }
     tempData.obj.AnimalID.Value = _animalID
 
@@ -150,6 +152,8 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
                 if tempData.state ~= animalActState.DEADED then
                     this:ChangeAnimalState(tempData, animalActState.DEADED)
                     this:AreaSpawnCtrl()
+                    NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
+                    NetUtil.Fire_S("SPlayEffectEvent", tempData.deadAEID, tempData.obj.Position)
                     tempData.obj.IsCaught.Value = false
                 end
             end
@@ -175,6 +179,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
                     local num = math.random(1000)
                     if num < 1000 * (tempData.caughtRate + _rate) then
                         this:ChangeAnimalState(tempData, animalActState.TRAPPED)
+                        NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
                         tempData.obj.IsCaught.Value = true
                     end
                 end

@@ -71,7 +71,7 @@ function MoleHit:DataInit()
             UFOMgr:ActiveUFO()
         end,
         maze = function ()
-            print('迷宫彩蛋')
+            NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
         end
     }
 end
@@ -137,7 +137,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     NetUtil.Fire_S("SpawnCoinEvent", "P", _pit.Position + Vector3.Up, math.floor(coinNum))
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
-    --! only Test
+    -- 发送全局通知
     NetUtil.Broadcast(
         "InsertInfoEvent",
         string.format("%s进度:%s / %s", _type, this.hitTime[_type], math.floor(this.hitNum[_type])),

@@ -207,7 +207,7 @@ function AudioMgr:SimulatePlay(_playTable, _data)
     _playTable.SourceLeft:Play()
 end
 
---播放3Deffect
+--播放3Deffect  NetUtil.Fire_C("PlayEffectEvent", localPlayer, 4)
 function AudioMgr:PlayEffectEventHandler(_id, _pos, _playerIndex)
     print("播放3Deffect,id:", _id)
     if _id ~= 0 then
@@ -231,7 +231,7 @@ function AudioMgr:PlayEffectEventHandler(_id, _pos, _playerIndex)
         PlayTable.SourceLeft.Loop = EffectClips[_id].isLoop
         PlayTable.SourceLeft.Volume = EffectClips[_id].volume
         PlayTable.SourceLeft.SoundClip = EffectClips[_id].clip
-        PlayTable.Index = _playerIndex
+        PlayTable.Index = _playerIndex or PlayTable.Index
         this:SimulatePlay(PlayTable, this:SimulateData(_pos))
         ReleaeseSource(2, 3)
     end
