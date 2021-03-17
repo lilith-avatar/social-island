@@ -123,11 +123,6 @@ end
 function MoleHit:DayAndNightChange(_dayOrNight)
 end
 
-function MoleHit:InteractSEventHandler(_player, _gameId)
-    if _gameId == 2 then
-    end
-end
-
 local player
 --- 玩家击中地鼠事件
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
@@ -176,11 +171,6 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
     --解除绑定
     _pit.OnCollisionBegin:Clear()
     _pit.OnCollisionEnd:Clear()
-end
-
-function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
-    if _gameId == 2 then
-    end
 end
 
 function MoleHit:Update(dt)

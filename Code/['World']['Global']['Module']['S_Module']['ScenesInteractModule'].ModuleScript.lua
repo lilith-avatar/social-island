@@ -32,6 +32,9 @@ local guitarOBJ = {}
 --帐篷
 local tentOBJ = {}
 
+--炸弹
+local bombOBJ = {}
+
 --- 初始化
 function ScenesInteract:Init()
     print("[ScenesInteract] Init()")
@@ -83,6 +86,9 @@ function ScenesInteract:NodeRef()
     end
     for k, v in pairs(world.Tent:GetChildren()) do
         tentOBJ[v.Name] = v
+    end
+    for k,v in pairs(world.Bomb:GetChildren())do
+        bombOBJ[v.Name] = v
     end
 end
 
@@ -318,6 +324,16 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
+    if _id == 23 then
+        for k, v in pairs(bombOBJ) do
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 23)
+            if v.BombUID.Value == _player.UserId then
+                _player.LinearVelocity =
+                (v.Position - _player.Position).Normalized * 10
+                NetUtil.Fire_C("FsmTriggerEvent", v.insidePlayer, "Fly")
+            end
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -358,6 +374,13 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                     this.TentList[v.Name] = nil
                     v.Effect:SetActive(false)
                 end
+            end
+        end
+    end
+    if _id == 23 then
+        for k, v in pairs(bombOBJ) do
+            if v.BombUID.Value == _player.UserId then
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
     end

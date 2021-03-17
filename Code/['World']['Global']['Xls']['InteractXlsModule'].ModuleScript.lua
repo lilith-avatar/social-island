@@ -304,6 +304,19 @@ local InteractXls = {
         LeaveBtnActive = true,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [23] = {
+        ID = 23,
+        Name = 'Bomb',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 
