@@ -40,7 +40,8 @@ function Buble:Update(dt)
         v.timer = v.timer + dt
         if v.timer >= 3 then
             --脱离泡泡
-            print(_hitObject.Name..'脱离泡泡状态了')
+            print(v.player.Name..'脱离泡泡状态了')
+            NetUtil.Fire_C
             v = nil
         end
     end
@@ -64,7 +65,9 @@ function Buble:CreateBubleEventHandler(_player)
         if _hitObject and _hitObject.ClassName == "PlayerInstance" and not this.vertigoPlayer[_hitObject.UserId] then
             -- todo: 人被困住
             print(_hitObject.Name..'被困住了')
+            NetUtil.Fire_C("FsmTriggerEvent", _hitObject, "BubleGunVertigo")
             this.vertigoPlayer[_hitObject.UserId] = {
+                player = _hitObject,
                 timer = 0
             }
         end
@@ -75,7 +78,7 @@ function Buble:CreateBubleEventHandler(_player)
             buble:Destroy()
         end
     end, 2)
-    --buble.LinearVelocity = _player.Forward * 5
+    buble.LinearVelocity = _player.Forward * 5
 end
 
 return Buble

@@ -32,6 +32,7 @@ end
 function GuiBubleGun:EventBind()
     this.AttackBtn.OnClick:Connect(function()
         this.AttackBtn.Clickable = false
+        this.startUpdate = true
         NetUtil.Fire_S('CreateBubleEvent',localPlayer)
     end)
 end
@@ -54,7 +55,9 @@ function GuiBubleGun:Update(dt)
     if this.startUpdate then
         this.timer = this.timer + dt
         if this.timer >= 1 then
+            this.startUpdate = false
             this.AttackBtn.Clickable = true
+            this.timer = 0
         end
     end
 end

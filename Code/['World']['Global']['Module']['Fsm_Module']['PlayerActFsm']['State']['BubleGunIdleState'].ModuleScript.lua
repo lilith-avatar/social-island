@@ -11,7 +11,7 @@ function BubleGunIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     localPlayer:MoveTowards(Vector2.Zero)
     FsmMgr.playerActFsm:TriggerMonitor(
-        {"Idle", "SwimIdle", "OneHandedSwordIdle"}
+        {"Idle", "SwimIdle", "OneHandedSwordIdle",'BubleGunVertigo'}
     )
     self:MoveMonitor('BubleGun')
     self:JumpMonitor('BubleGun')
