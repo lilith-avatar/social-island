@@ -114,6 +114,12 @@ function PlayerCam:SwitchSwimFilter(_switch)
     end
 end
 
+---TPS相机缩放
+function PlayerCam:TPSCamZoom(_force)
+    this.tpsCam.FieldOfView = 60 - 10 * _force
+    this.tpsCam.Distance = 3 - 1 * _force
+end
+
 ---游泳滤镜检测
 function PlayerCam:UpdateSwimFilter()
     if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then

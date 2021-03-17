@@ -113,7 +113,6 @@ function GetMoveDir()
     vertical = GuiControl.joystick.Vertical
     if horizontal ~= 0 or vertical ~= 0 then
         this.finalDir = rightDir * horizontal + forwardDir * vertical
-        print(this.finalDir.Magnitude)
     else
         GetKeyValue()
         this.finalDir = forwardDir * (moveForwardAxis + moveBackAxis) - rightDir * (moveLeftAxis + moveRightAxis)

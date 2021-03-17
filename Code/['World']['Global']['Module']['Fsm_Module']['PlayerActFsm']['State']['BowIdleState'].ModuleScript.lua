@@ -5,7 +5,7 @@ function BowIdle:OnEnter()
     PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
     localPlayer:MoveTowards(Vector2.Zero)
     --localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("BowEquipIdle", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation("BowEquipIdle", 2, 1, 0.2, true, true, 1)
 
 end
 
