@@ -31,8 +31,7 @@ Events.ServerEvents = {
     "PurchaseSEvent",
     "PlayerSitEvent",
     "JetOverEvent",
-    "SpawnCoinEvent",
-    "SPlayEffectEvent"
+    "SpawnCoinEvent"
 }
 
 -- 客户端事件列表

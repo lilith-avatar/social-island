@@ -63,7 +63,7 @@ end
 
 --- 开始同步
 function ClientDataSync.Start()
-    print('[DataSync][Client] 客户端数据同步开启')
+    print('[DataSync][Client] 客户端数据同步开始')
     MetaData.Sync = true
 end
 

@@ -84,7 +84,6 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
             function()
                 if _animal.IsCaught.Value then
                     NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你的陷阱成功困住了动物", 2, false)
-                    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 43)
                     _trap:SetParentTo(_animal, Vector3(0, -0.5, 0), EulerDegree(0, 0, 0))
                     _trap.Open:SetActive(false)
                     _trap.Close:SetActive(true)
@@ -103,7 +102,6 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
                         _animal.LinearVelocityController.TargetLinearVelocity + _animal.Forward * 5
                     wait(0.5)
                     tweener:Destroy()
-                    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 44)
                     _trap:Destroy()
                     wait(1)
                     effect:Destroy()
@@ -119,7 +117,6 @@ function Catch:IsCatch()
     if prey then
         if prey.IsCaught.Value then
             NetUtil.Fire_C("InsertInfoEvent", localPlayer, "捕捉动物成功", 2, false)
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 13)
             NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             Pet:OpenNamedPetUI(prey.AnimalID.Value)
             prey.AnimalCaughtEvent:Fire()

@@ -81,7 +81,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Guitar:GetChildren()) do
         guitarOBJ[v.Name] = v
     end
-    for k, v in pairs(world.Tent:GetChildren()) do
+    for k,v in pairs(world.Tent:GetChildren()) do
         tentOBJ[v.Name] = v
     end
 end
@@ -190,28 +190,18 @@ function ScenesInteract:TrojanShake(dt)
 end
 
 function ScenesInteract:TentShake(dt)
-    for k, v in pairs(this.TentList) do
-        if v.num >= 2 then
-            v.timer = v.timer + dt
-            if v.timer >= 1 then
-                local tweener = Tween:ShakeProperty(v.model, {"Rotation"}, 0.5, 1)
-                tweener:Play()
-                v.timer = 0
-            end
+    for k,v in pairs(this.TentList) do
+        --v.timer = v.timer + dt
+        if v.num == 1 then
+            v.model.Effect:SetActive(true)
+            v.model.Effect.Sleep:SetActive(true)
+            v.model.Effect.MakeLove:SetActive(false)
         end
-    end
-end
-
-function ScenesInteract:TentNumEffect(_num, _model)
-    if _num == 1 then
-        _model.Effect:SetActive(true)
-        _model.Effect.Sleep:SetActive(true)
-        _model.Effect.MakeLove:SetActive(false)
-    end
-    if _num >= 2 then
-        _model.Effect:SetActive(true)
-        _model.Effect.Sleep:SetActive(false)
-        _model.Effect.MakeLove:SetActive(true)
+        if v.num >= 2 then
+            v.model.Effect:SetActive(true)
+            v.model.Effect.Sleep:SetActive(false)
+            v.model.Effect.MakeLove:SetActive(true)
+        end
     end
 end
 
@@ -309,12 +299,10 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 if not this.TentList[v.Name] then
                     this.TentList[v.Name] = {
                         model = v,
-                        num = 0,
-                        timer = 0
+                        num = 0
                     }
                 end
                 this.TentList[v.Name].num = this.TentList[v.Name].num + 1
-                this:TentNumEffect(this.TentList[v.Name].num, v)
             end
         end
     end
@@ -353,7 +341,6 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         for k, v in pairs(tentOBJ) do
             if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
                 this.TentList[v.Name].num = this.TentList[v.Name].num - 1
-                this:TentNumEffect(this.TentList[v.Name].num, v)
                 if this.TentList[v.Name].num == 0 then
                     this.TentList[v.Name] = nil
                     v.Effect:SetActive(false)

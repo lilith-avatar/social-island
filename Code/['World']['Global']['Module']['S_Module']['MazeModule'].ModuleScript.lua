@@ -10,24 +10,21 @@ local debug, PrintMazeData, PrintNodePath, GenNodePath = false
 --! 常量配置: 玩家相关
 
 -- 游戏时长(秒)
-local TOTAL_TIME = 90
+local TOTAL_TIME = 60
 local PRE_WAIT_TIME = 1 --迷宫开始前，玩家等待时间
 local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 32, 32
+local NUM_ROWS, NUM_COLS = 15, 15
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
 
 -- 迷宫中心位置
-local MAZE_CENTER_POS = Vector3(-10, 40, 0)
+local MAZE_CENTER_POS = Vector3(103, -14.8175, 14)
 local MAZE_CENTER_ROT = EulerDegree(0, 0, 0)
-
--- 迷宫大小缩放
-local MAZE_SCALE = 6
 
 -- 迷宫Cell里面的常量，包括方向和访问，用于M
 local LEFT, UP, RIGHT, DOWN, VISITED = 1, 2, 3, 4, 5
@@ -44,15 +41,14 @@ local entrace, exit
 -- 迷宫地板厚度
 local MAZE_FLOOR_THICKNESS = 2
 -- 迷宫地板颜色
--- local MAZE_FLOOR_COLOR = Color(0x9E, 0x9E, 0x9E, 255)
-local MAZE_FLOOR_COLOR = Color(0x9E, 0x9E, 0x9E, 00)
+local MAZE_FLOOR_COLOR = Color(0x9E, 0x9E, 0x9E, 255)
 -- 迷宫地板Obj，根据迷宫中心和尺寸生成
 local floor
 
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
-local CELL_SIDE = .54 * MAZE_SCALE
+local CELL_SIDE = .54
 
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
@@ -64,12 +60,9 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 
 -- 墙体的Archetype
 local WALL_ARCH = 'Maze_Wall'
--- 对应Size.Y
-local WALL_HEIGHT = .35 * MAZE_SCALE
--- 对应Size.X
-local WALL_LENGTH = CELL_SIDE
--- 对应Size.Z
-local WALL_THICKNESS = 0.04 * MAZE_SCALE
+local WALL_HEIGHT = .35 -- 对应Size.Y
+local WALL_LENGTH = CELL_SIDE -- 对应Size.X
+local WALL_THICKNESS = 0.04 -- 对应Size.Z
 
 local PILLAR_ARCH = 'Maze_Pillar'
 local PILLAR_HEIGHT = WALL_HEIGHT
@@ -291,14 +284,13 @@ function InitWallPool()
     -- 外墙数 = NUM_ROWS * 2 + NUM_COLS * 2
     -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
     -- 出入口 = -2
-    local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
+    local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1) * 2 - 2
     print('[Maze] InitWallPool() 需要墙数', wallNeeded)
     local rot = EulerDegree(0, 0, 0)
     local name
     for i = 1, wallNeeded do
         name = string.format('%s_%04d', WALL_ARCH, i)
         objWall = world:CreateInstance(WALL_ARCH, name, WALL_SPACE, WALL_POOL_POS, rot)
-        objWall.Scale = MAZE_SCALE
         wallPool[objWall] = true
         if i % 5 == 0 then
             wait()
@@ -322,7 +314,6 @@ function InitPillarPool()
     for i = 1, pillarNeeded do
         name = string.format('%s_%04d', PILLAR_ARCH, i)
         objPillar = world:CreateInstance(PILLAR_ARCH, name, PILLAR_SPACE, PILLAR_POOL_POS, rot)
-        objPillar.Scale = MAZE_SCALE
         pillarPool[objPillar] = true
         if i % 5 == 0 then
             wait()
@@ -343,7 +334,7 @@ function InitCheckerPool()
     for i = 1, TOTAL_CHECKER do
         name = string.format('Check_Point_%04d', i)
         local objChecker = world:CreateObject('Sphere', name, CHECKER_SPACE, CHECKER_POOL_POS, rot)
-        objChecker.Size = Vector3.One * 0.5 * CELL_SIDE * MAZE_SCALE
+        objChecker.Size = Vector3.One * 0.5 * CELL_SIDE
         objChecker.Block = false
         objChecker.Color = Color(0x00, 0x00, 0xFF, DEBUG_ALPHA * 3)
         objChecker.OnCollisionBegin:Connect(
@@ -588,8 +579,8 @@ function MazeDataGen()
     end
 
     -- Open the walls at the start and finish
-    -- M[ENTRANCE][1][LEFT] = 1
-    -- M[EXIT][NUM_COLS][RIGHT] = 1
+    M[ENTRANCE][1][LEFT] = 1
+    M[EXIT][NUM_COLS][RIGHT] = 1
 end
 
 -- 迷宫墙体生成
@@ -872,7 +863,7 @@ end
 function Maze:EnterMiniGameEventHandler(_player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE and not playerData then
         print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
-        if not wallPoolDone or not pillarPoolDone or not checkerPoolDone then
+        if not wallPoolDone or not checkerPoolDone then
             -- TODO: 反馈给NPC对话，说明此原因
             print('[Maze] EnterMiniGameEventHandler 迷宫初始化未完成，请等待')
         elseif playerData then
@@ -955,9 +946,3 @@ GenNodePath =
     end
 
 return Maze
-
---! TEST ONLY below
---* 测试迷宫生成
---[[
-    NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
-]]

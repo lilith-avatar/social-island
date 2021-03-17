@@ -63,7 +63,6 @@ end
 function GuiSnail:BetMoney(_num)
     NetUtil.Fire_S("SnailBetEvent", localPlayer, snailIndex, _num)
     --NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * _num)
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 8)
     NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你成功给" .. snailIndex .. "号蜗牛投注" .. _num, 3, true)
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
