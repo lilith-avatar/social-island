@@ -257,6 +257,42 @@ local PlayerActStateXls = {
         Name = 'TwoHandedSwordHit',
         NextName = 'TwoHandedSwordIdle',
         Dur = 0.2
+    },
+    [43] = {
+        ID = 43,
+        Name = 'BubleGunIdle',
+        NextName = 'BubleGunIdle',
+        Dur = 0.0
+    },
+    [44] = {
+        ID = 44,
+        Name = 'BubleGunRun',
+        NextName = 'BubleGunRun',
+        Dur = 0.0
+    },
+    [45] = {
+        ID = 45,
+        Name = 'BubleGunWalk',
+        NextName = 'BubleGunWalk',
+        Dur = 0.0
+    },
+    [46] = {
+        ID = 46,
+        Name = 'BubleGunJump',
+        NextName = 'BubleGunIdle',
+        Dur = 0.6
+    },
+    [47] = {
+        ID = 47,
+        Name = 'BubleGunAttack',
+        NextName = 'BubleGunIdle',
+        Dur = 0.3
+    },
+    [48] = {
+        ID = 48,
+        Name = 'BubleGunVertigo',
+        NextName = 'BubleGunIdle',
+        Dur = 2.0
     }
 }
 

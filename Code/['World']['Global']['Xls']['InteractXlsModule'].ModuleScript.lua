@@ -317,6 +317,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [24] = {
+        ID = 24,
+        Name = 'BubleGun',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = true,
+        LeaveBtnActive = true,
+        UseBtnIcon = '',
+        OpenGui = 'BubleGunGui'
     }
 }
 
