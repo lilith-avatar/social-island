@@ -346,6 +346,20 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
 end
 
+-- 角色重置
+function PlayerCtrl:PlayerReset()
+    BuffMgr:BuffClear()
+    for k, v in pairs(Config.Interact) do
+        NetUtil.Fire_S("LeaveInteractSEvent", localPlayer, k)
+        NetUtil.Fire_C("LeaveInteractCEvent", localPlayer, k)
+    end
+    localPlayer.LinearVelocity = Vector3.Zero
+    localPlayer.Position = world.SpawnLocations.StartPortal00.Position
+    if ItemMgr.curWeaponID ~= 0 then
+        ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
+    end
+end
+
 -- 碰到场景交互
 function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
     if _hitObject then
