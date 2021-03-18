@@ -1,6 +1,6 @@
 ---@module Buble
 ---@copyright Lilith Games, Avatar Team
----@author XXX, XXXX
+---@author Yen Yuan
 local Buble, this = ModuleUtil.New("Buble", ServerBase)
 
 ---初始化函数
@@ -39,9 +39,6 @@ function Buble:Update(dt)
     for k,v in pairs(this.vertigoPlayer) do
         v.timer = v.timer + dt
         if v.timer >= 3 then
-            --脱离泡泡
-            print(v.player.Name..'脱离泡泡状态了')
-            NetUtil.Fire_C
             v = nil
         end
     end
@@ -63,8 +60,7 @@ function Buble:CreateBubleEventHandler(_player)
     local buble = world:CreateInstance("Buble", "Buble",world.Buble,_player.Avatar.Bone_Head.Position + _player.Forward * 2)
     buble.OnCollisionBegin:Connect(function(_hitObject)
         if _hitObject and _hitObject.ClassName == "PlayerInstance" and not this.vertigoPlayer[_hitObject.UserId] then
-            -- todo: 人被困住
-            print(_hitObject.Name..'被困住了')
+            -- 人被困住
             NetUtil.Fire_C("FsmTriggerEvent", _hitObject, "BubleGunVertigo")
             this.vertigoPlayer[_hitObject.UserId] = {
                 player = _hitObject,

@@ -291,7 +291,7 @@ local PlayerActStateXls = {
     [48] = {
         ID = 48,
         Name = 'BubleGunVertigo',
-        NextName = 'BubleGunIdle',
+        NextName = 'Idle',
         Dur = 2.0
     }
 }
