@@ -13,8 +13,10 @@ function BubleGunIdle:OnUpdate(dt)
     FsmMgr.playerActFsm:TriggerMonitor(
         {"Idle", "SwimIdle", "OneHandedSwordIdle",'BubleGunVertigo'}
     )
-    self:MoveMonitor('BubleGun')
-    self:JumpMonitor('BubleGun')
+    --self:MoveMonitor('BubleGun')
+    self:MoveMonitor()
+    --self:JumpMonitor('BubleGun')
+    self:JumpMonitor()
 end
 
 function BubleGunIdle:OnLeave()

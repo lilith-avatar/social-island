@@ -35,6 +35,9 @@ local tentOBJ = {}
 --炸弹
 local bombOBJ = {}
 
+--收音机
+local radioOBJ = {}
+
 --- 初始化
 function ScenesInteract:Init()
     print("[ScenesInteract] Init()")
@@ -96,6 +99,11 @@ end
 function ScenesInteract:DataInit()
     this.TrojanList = {}
     this.TentList = {}
+    this.RadioData = {
+        songIndex = 1,
+        songList = {},
+        curSong = nil
+    }
 end
 
 --- 节点事件绑定
@@ -334,6 +342,17 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
+    if _id == 24 then
+        for k,v in pairs(radioOBJ) do
+            NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 24)
+            if v.RadioUID.Value == _player.UserId then
+                this.RadioData.songIndex = math.floor((this.RadioData + 1)/#this.RadioData.songList)
+                -- todo: 先停止当前音乐，再播放
+                if this.RadioData.curSong then
+                end
+            end
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -380,6 +399,13 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     if _id == 23 then
         for k, v in pairs(bombOBJ) do
             if v.BombUID.Value == _player.UserId then
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+            end
+        end
+    end
+    if _id == 24 then
+        for k, v in pairs(radioOBJ) do
+            if v.RadioUID.Value == _player.UserId then
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end

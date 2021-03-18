@@ -320,16 +320,16 @@ local InteractXls = {
     },
     [24] = {
         ID = 24,
-        Name = 'BubleGun',
+        Name = 'Radio',
         IsEnterByNPC = false,
         JoystickActive = true,
         MenuActive = true,
         CtrlActive = true,
-        UseBtnActive = false,
+        UseBtnActive = true,
         JumpBtnActive = true,
-        LeaveBtnActive = true,
+        LeaveBtnActive = false,
         UseBtnIcon = '',
-        OpenGui = 'BubleGunGui'
+        OpenGui = ''
     }
 }
 
