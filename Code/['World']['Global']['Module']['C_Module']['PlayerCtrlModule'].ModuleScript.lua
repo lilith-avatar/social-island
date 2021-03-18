@@ -62,10 +62,40 @@ function PlayerCtrl:EventBind()
             end
         end
     )
-    localPlayer.OnCollisionBegin:Connect(
+    localPlayer.PlayerCol.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject then
                 PlayerCtrl:OnScenesInteractCol(_hitObject, true)
+            end
+        end
+    )
+    localPlayer.PlayerCol.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject then
+                PlayerCtrl:OnScenesInteractCol(_hitObject, false)
+            end
+        end
+    )
+    localPlayer.CoinCol.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject and _hitObject.CoinUID then
+                if _hitObject.CoinUID.Value == localPlayer.UserId or _hitObject.CoinUID.Value == "" then
+                    _hitObject.CoinUID.Value = localPlayer.UserId
+                    _hitObject.GetCoinEvent:Fire()
+                end
+            end
+        end
+    )
+    localPlayer.CoinCol.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject and _hitObject.CoinUID then
+                _hitObject.CoinUID.Value = ""
+            end
+        end
+    )
+    localPlayer.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject then
                 if _hitObject.Name == "SallowWaterCol" then
                     isOnWater = true
                 end
@@ -75,7 +105,6 @@ function PlayerCtrl:EventBind()
     localPlayer.OnCollisionEnd:Connect(
         function(_hitObject)
             if _hitObject then
-                PlayerCtrl:OnScenesInteractCol(_hitObject, false)
                 if _hitObject.Name == "SallowWaterCol" then
                     isOnWater = false
                 end
@@ -395,16 +424,6 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             else
                 _hitObject.GuitarUID.Value = ""
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-            end
-        end
-        if _hitObject.CoinUID then
-            if _isBegin then
-                if _hitObject.CoinUID.Value == localPlayer.UserId or _hitObject.CoinUID.Value == "" then
-                    _hitObject.CoinUID.Value = localPlayer.UserId
-                    _hitObject.GetCoinEvent:Fire()
-                end
-            else
-                _hitObject.CoinUID.Value = ""
             end
         end
         if _hitObject.TentUID1 then

@@ -67,11 +67,23 @@ end
 
 --- 获得金币
 function CoinMgr:GetCoin(_pool, _coinOBJ)
+    _coinOBJ.Block = false
     NetUtil.Fire_C("PlayEffectEvent", localPlayer, 4)
-    coinPool[_pool]:Despawn(_coinOBJ)
     NetUtil.Fire_C("UpdateCoinEvent", world:GetPlayerByUserId(_coinOBJ.CoinUID.Value), _coinOBJ.CoinNum.Value)
-    _coinOBJ.CoinUID.Value = ""
-    _coinOBJ.GetCoinEvent:Clear()
+    invoke(
+        function()
+            _coinOBJ.LinearVelocity =
+                (world:GetPlayerByUserId(_coinOBJ.CoinUID.Value).Position + Vector3(0, 1, 0) - _coinOBJ.Position).Normalized *
+                10
+            wait(0.12)
+            if string.sub(_pool, 1, 1) == "P" then
+                _coinOBJ.Block = true
+            end
+            coinPool[_pool]:Despawn(_coinOBJ)
+            _coinOBJ.CoinUID.Value = ""
+            _coinOBJ.GetCoinEvent:Clear()
+        end
+    )
 end
 
 --- 刷新一堆金币

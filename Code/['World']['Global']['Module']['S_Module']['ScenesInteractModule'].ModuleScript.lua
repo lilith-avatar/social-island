@@ -96,12 +96,25 @@ end
 function ScenesInteract:EventBind()
 end
 
---- 实例化场景交互
+--- 实例化场景交互 ScenesInteract:InstanceInteractOBJ(60, Vector3(-62.0279, 0, -35.9028))
 function ScenesInteract:InstanceInteractOBJ(_id, _pos)
     local config = Config.ScenesInteract[_id]
     print("实例化场景交互", config.Path)
     if config.IsPre == false then
-        interactOBJ[_id] = {
+        table.insert(
+            interactOBJ,
+            {
+                obj = world:CreateInstance(config.Path, config.Path, world.ScenesInteract, _pos),
+                itemID = config.ItemID,
+                isGet = config.IsGet,
+                rewardCoin = config.RewardCoin,
+                useCount = config.UseCount,
+                useCountMax = config.UseCount,
+                resetTime = config.ResetTime,
+                resetCD = 0
+            }
+        )
+        --[[interactOBJ[_id] = {
             obj = world:CreateInstance(config.Path, config.Path, world.ScenesInteract, _pos),
             itemID = config.ItemID,
             isGet = config.IsGet,
@@ -110,7 +123,7 @@ function ScenesInteract:InstanceInteractOBJ(_id, _pos)
             useCountMax = config.UseCount,
             resetTime = config.ResetTime,
             resetCD = 0
-        }
+        }]]
     end
 end
 

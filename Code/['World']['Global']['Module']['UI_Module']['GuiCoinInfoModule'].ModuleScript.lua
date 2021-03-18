@@ -61,6 +61,9 @@ end
 function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
     if _num > 0 then
         remainingCoinNum = remainingCoinNum + _num
+        for k, v in pairs(localPlayer.Effect.GetCoinEffect:GetChildren()) do
+            v:Emit(math.floor(tonumber(v.Name)))
+        end
     end
 end
 
