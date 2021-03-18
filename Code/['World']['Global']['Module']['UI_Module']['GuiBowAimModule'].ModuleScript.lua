@@ -17,7 +17,7 @@ end
 --节点引用
 function GuiBowAim:NodeRef()
     this.gui = localPlayer.Local.SpecialBottomUI.BowAimGUI
-    this.fireBtn = localPlayer.Local.ControlGui.Ctrl.UseBtn
+    this.touchGui = localPlayer.Local.SpecialTopUI.BowAimGUI.AimStick
     this.chargeForce = 0
 end
 
@@ -27,26 +27,29 @@ end
 
 --节点事件绑定
 function GuiBowAim:EventBind()
-    this.fireBtn.OnDown:Connect(
+    this.touchGui.OnEnter:Connect(
         function()
             if ItemMgr.curWeaponID ~= 0 then
+                ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+                this.touchGui.Size = Vector2(1800, 1500)
                 isCharge = true
                 return
             end
         end
     )
-    this.fireBtn.OnMove:Connect(
-        function()
+    this.touchGui.OnTouched:Connect(
+        function(touchInfo)
             if isCharge then
-                print("OnMove")
+                PlayerCam:CameraMove(touchInfo)
             end
         end
     )
-    this.fireBtn.OnUp:Connect(
+    this.touchGui.OnLeave:Connect(
         function()
             if ItemMgr.curWeaponID ~= 0 then
-                isCharge = false
                 NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowAttack")
+                this.touchGui.Size = Vector2(300, 300)
+                isCharge = false
             end
         end
     )
