@@ -356,8 +356,9 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 -- 先停止当前音乐，再播放
                 if this.RadioData.curSong then
                     NetUtil.Fire_C("StopEffectEvent", _player, 'radio')
+                else
+                    v.Model.On:SetActive(true)
                 end
-                print(this.RadioData.songIndex)
                 NetUtil.Fire_C("PlayEffectEvent", _player, this.RadioData.songList[this.RadioData.songIndex], v.Position,'radio')
                 this.RadioData.curSong = true
             end

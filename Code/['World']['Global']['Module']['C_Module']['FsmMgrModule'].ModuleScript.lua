@@ -51,7 +51,6 @@ end
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
     this.playerActFsm:ContactTrigger(_state)
-    print(_state)
 end
 
 function FsmMgr:Update(dt)
