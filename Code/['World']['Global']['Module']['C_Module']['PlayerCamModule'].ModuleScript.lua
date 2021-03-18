@@ -128,7 +128,7 @@ function PlayerCam:UpdateSwimFilter()
             this:SwitchSwimFilter(false)
         end
     else
-        if localPlayer.Position.y - this.playerGameCam.Forward.y < -16 then
+        if this.playerGameCam.Position.y < -14.5 then
             if filterSwitch == false then
                 this:SwitchSwimFilter(true)
             end
