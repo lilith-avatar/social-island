@@ -39,8 +39,8 @@ end
 
 function GuiBubleGun:InteractCEventHandler(_gameId)
     if _gameId == 24 then
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 24)
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BubleGunIdle")
+        --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 24)
+        --NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BubleGunIdle")
     end
 end
 

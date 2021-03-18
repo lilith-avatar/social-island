@@ -93,6 +93,9 @@ function ScenesInteract:NodeRef()
     for k,v in pairs(world.Bomb:GetChildren())do
         bombOBJ[v.Name] = v
     end
+    for k,v in pairs(world.Radio:GetChildren())do
+        radioOBJ[v.Name] = v
+    end
 end
 
 --- 数据变量初始化
@@ -100,8 +103,8 @@ function ScenesInteract:DataInit()
     this.TrojanList = {}
     this.TentList = {}
     this.RadioData = {
-        songIndex = 1,
-        songList = {},
+        songIndex = 0,
+        songList = {97,98,99},
         curSong = nil
     }
 end
@@ -346,10 +349,17 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k,v in pairs(radioOBJ) do
             NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 24)
             if v.RadioUID.Value == _player.UserId then
-                this.RadioData.songIndex = math.floor((this.RadioData + 1)/#this.RadioData.songList)
-                -- todo: 先停止当前音乐，再播放
-                if this.RadioData.curSong then
+                this.RadioData.songIndex = this.RadioData.songIndex + 1
+                if this.RadioData.songIndex > #this.RadioData.songList then
+                    this.RadioData.songIndex = 1
                 end
+                -- 先停止当前音乐，再播放
+                if this.RadioData.curSong then
+                    NetUtil.Fire_C("StopEffectEvent", _player, 'radio')
+                end
+                print(this.RadioData.songIndex)
+                NetUtil.Fire_C("PlayEffectEvent", _player, this.RadioData.songList[this.RadioData.songIndex], v.Position,'radio')
+                this.RadioData.curSong = true
             end
         end
     end
