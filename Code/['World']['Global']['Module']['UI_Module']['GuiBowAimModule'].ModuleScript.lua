@@ -17,8 +17,7 @@ end
 --节点引用
 function GuiBowAim:NodeRef()
     this.gui = localPlayer.Local.SpecialBottomUI.BowAimGUI
-    this.touchGui = localPlayer.Local.SpecialTopUI.BowAimGUI
-    this.aimStick = this.touchGui.AimStick
+    this.touchGui = localPlayer.Local.SpecialTopUI.BowAimGUI.AimStick
     this.chargeForce = 0
 end
 
@@ -28,21 +27,30 @@ end
 
 --节点事件绑定
 function GuiBowAim:EventBind()
-    this.aimStick.OnEnter:Connect(
+    this.touchGui.OnEnter:Connect(
         function()
-            ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
-            isCharge = true
+            if ItemMgr.curWeaponID ~= 0 then
+                ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+                this.touchGui.Size = Vector2(1800, 1500)
+                isCharge = true
+                return
+            end
         end
     )
-    this.aimStick.OnLongPressStay:Connect(
-        function()
-            --this:AimAngle(deltaDistance)
+    this.touchGui.OnTouched:Connect(
+        function(touchInfo)
+            if isCharge then
+                PlayerCam:CameraMove(touchInfo)
+            end
         end
     )
-    this.aimStick.OnLeave:Connect(
+    this.touchGui.OnLeave:Connect(
         function()
-            isCharge = false
-            NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowAttack")
+            if ItemMgr.curWeaponID ~= 0 then
+                NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowAttack")
+                this.touchGui.Size = Vector2(300, 300)
+                isCharge = false
+            end
         end
     )
 end
@@ -81,7 +89,6 @@ function GuiBowAim:Charge(dt)
     this.gui.Panel.ChargeDown.Offset = Vector2(0, this.chargeForce * 80)
     this.gui.Panel.ChargeRight.Offset = Vector2(this.chargeForce * -80, 0)
     this.gui.Panel.ChargeLeft.Offset = Vector2(this.chargeForce * 80, 0)
-    
 end
 
 --玩家上半身角度移动

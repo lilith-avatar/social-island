@@ -49,6 +49,7 @@ function GuiControl:InitListener()
             PlayerCam:CameraMove(touchInfo)
         end
     )
+    
     touchScreen.OnPinchStay:Connect(
         function(pos1, pos2, deltaSize, pinchSpeed)
             PlayerCam:CameraZoom(pos1, pos2, deltaSize, pinchSpeed)
