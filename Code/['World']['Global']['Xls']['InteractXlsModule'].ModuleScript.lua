@@ -304,6 +304,45 @@ local InteractXls = {
         LeaveBtnActive = true,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [23] = {
+        ID = 23,
+        Name = 'Bomb',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
+    },
+    [24] = {
+        ID = 24,
+        Name = 'Radio',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
+    },
+    [25] = {
+        ID = 25,
+        Name = 'Buble',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 
