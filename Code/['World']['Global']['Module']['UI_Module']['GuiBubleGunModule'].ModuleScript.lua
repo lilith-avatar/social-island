@@ -16,7 +16,7 @@ function GuiBubleGun:DataInit()
 end
 
 function GuiBubleGun:NodeDef()
-    this.gui = localPlayer.Local.SpecialTopUI.BubleGunGui
+    this.gui = localPlayer.Local.SpecialTopUI.BubleGunGui.Ctrl
     this.AttackBtn = this.gui.AttackBtn
     this.exitBtn = this.gui.LeaveBtn
 end
