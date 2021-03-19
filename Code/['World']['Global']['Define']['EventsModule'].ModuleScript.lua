@@ -32,7 +32,8 @@ Events.ServerEvents = {
     "PlayerSitEvent",
     "JetOverEvent",
     "SpawnCoinEvent",
-    'CreateBubleEvent'
+    'CreateBubleEvent',
+    "SPlayEffectEvent"
 }
 
 -- 客户端事件列表

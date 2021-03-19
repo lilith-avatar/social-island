@@ -85,7 +85,7 @@ function PlayerCam:TPSGetRayDir()
         if
             (v - localPlayer.Position).Magnitude > 4 and
                 Vector3.Angle(localPlayer.Forward, (v - localPlayer.Position)) < 90 and
-                hitResult:GetHitObjAll()[i].Name ~= "water"
+                hitResult:GetHitObjAll()[i].Parent.Name ~= "Water"
          then
             --print(hitResult:GetHitObjAll()[i])
             return v
@@ -112,6 +112,12 @@ function PlayerCam:SwitchSwimFilter(_switch)
         this.playerGameCam.WaterGrain:SetActive(false)
         this.playerGameCam.WaterColorGrading:SetActive(false)
     end
+end
+
+---TPS相机缩放
+function PlayerCam:TPSCamZoom(_force)
+    this.tpsCam.FieldOfView = 60 - 10 * _force
+    this.tpsCam.Distance = 3 - 1 * _force
 end
 
 ---游泳滤镜检测

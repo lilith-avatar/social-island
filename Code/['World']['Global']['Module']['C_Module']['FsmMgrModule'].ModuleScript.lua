@@ -42,6 +42,11 @@ function FsmMgr:DataInit()
 
     this.playerActFsm:ConnectStateFunc(Config.PlayerActState, Module.Fsm_Module.PlayerActFsm.State)
     this.playerActFsm:SetDefaultState(playerActStateEnum.IDLE)
+    world.OnRenderStepped:Connect(
+        function(dt)
+            this.playerActFsm:Update(dt)
+        end
+    )
 end
 
 --- 节点事件绑定
@@ -54,7 +59,7 @@ function FsmMgr:FsmTriggerEventHandler(_state)
 end
 
 function FsmMgr:Update(dt)
-    this.playerActFsm:Update(dt)
+    --this.playerActFsm:Update(dt)
     --print(this.playerActFsm.curState.stateName)
     --print(this.playerActFsm.stateTrigger.BowAttack)
 end

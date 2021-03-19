@@ -965,6 +965,54 @@ local BuffXls = {
         SkinID_Cover = nil,
         AnimState_Cover = '',
         EnableEquipable_Cover = true
+    },
+    [61] = {
+        ID = 61,
+        BuffCoverIDList = {0},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = nil,
+        AnimState_Cover = '',
+        EnableEquipable_Cover = true
+    },
+    [62] = {
+        ID = 62,
+        BuffCoverIDList = {0},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = nil,
+        AnimState_Cover = '',
+        EnableEquipable_Cover = true
+    },
+    [63] = {
+        ID = 63,
+        BuffCoverIDList = {0},
+        AvatarHeight_Overlay = 1.0,
+        AvatarHeadSize_Overlay = 1.0,
+        AvatarWidth_Overlay = 1.0,
+        HeadEffect_Overlay = '',
+        BodyEffect_Overlay = '',
+        FootEffect_Overlay = '',
+        WalkSpeed_Overlay = 1.0,
+        JumpUpVelocity_Overlay = 1.0,
+        GravityScale_Overlay = 1.0,
+        SkinID_Cover = nil,
+        AnimState_Cover = '',
+        EnableEquipable_Cover = true
     }
 }
 

@@ -8,3 +8,7 @@
 * 顾问：夏慧，张小金，张圣林，曹东野，杨林，林炜舜
 * PM：周任翔，张宇，陈昊
 
+![screenshot_01](https://user-images.githubusercontent.com/64057282/111729128-557c6b80-88a9-11eb-987e-80f280d8eaae.png)
+![screenshot_03](https://user-images.githubusercontent.com/64057282/111729138-5d3c1000-88a9-11eb-8253-0b4175b61d51.png)
+![screenshot_02](https://user-images.githubusercontent.com/64057282/111729132-59a88900-88a9-11eb-9ce9-0dab5ca1e35a.png)
+![screenshot_04](https://user-images.githubusercontent.com/64057282/111729140-5f05d380-88a9-11eb-9aa0-fc7652955e8f.png)

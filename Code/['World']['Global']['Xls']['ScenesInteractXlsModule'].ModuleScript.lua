@@ -885,6 +885,39 @@ local ScenesInteractXls = {
         UseCount = 1,
         ResetTime = 30,
         IsPre = true
+    },
+    [81] = {
+        ID = 81,
+        Name = '夹子1',
+        Path = 'Traps1',
+        ItemID = 3025,
+        IsGet = true,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [82] = {
+        ID = 82,
+        Name = '夹子2',
+        Path = 'Traps2',
+        ItemID = 3025,
+        IsGet = true,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
+    },
+    [83] = {
+        ID = 83,
+        Name = '夹子3',
+        Path = 'Traps3',
+        ItemID = 3025,
+        IsGet = true,
+        RewardCoin = 0,
+        UseCount = 1,
+        ResetTime = 15,
+        IsPre = true
     }
 }
 

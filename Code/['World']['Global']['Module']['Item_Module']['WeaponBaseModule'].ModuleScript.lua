@@ -15,12 +15,12 @@ end
 
 --放入背包
 function WeaponBase:PutIntoBag()
-	ItemBase.PutIntoBag(self)
+    ItemBase.PutIntoBag(self)
 end
 
 --从背包里扔掉
 function WeaponBase:ThrowOutOfBag()
-	ItemBase.ThrowOutOfBag(self)
+    ItemBase.ThrowOutOfBag(self)
 end
 
 --使用
@@ -31,7 +31,7 @@ function WeaponBase:Use()
     if ItemMgr.curWeaponID ~= 0 then
         ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
     end
-    NetUtil.Fire_C('PlayEffectEvent',localPlayer,25,localPlayer.Position)
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 25, localPlayer.Position)
     ItemMgr.curWeaponID = self.id
     ItemBase.Use(self)
     self:Equip()
@@ -69,6 +69,7 @@ end
 function WeaponBase:Attack()
     self.attackCT = self.config.AttackCD
     self:PlayAttackAnim()
+    self:PlayAttackSound()
 end
 
 --获取攻击数据
@@ -88,7 +89,7 @@ end
 
 --播放命中音效
 function WeaponBase:PlayHitSound(_pos)
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.config.HitSoundID, _pos)
+    NetUtil.Fire_S("SPlayEffectEvent", self.config.HitSoundID, _pos)
 end
 
 --播放命中特效
