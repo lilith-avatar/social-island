@@ -119,9 +119,8 @@ function MoleHit:RefreashMole(_type)
     end
 end
 
-function MoleHit:InteractSEventHandler(_player, _gameId)
-    if _gameId == 2 then
-    end
+-- 日夜交替
+function MoleHit:DayAndNightChange(_dayOrNight)
 end
 
 local player
@@ -172,11 +171,6 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
     --解除绑定
     _pit.OnCollisionBegin:Clear()
     _pit.OnCollisionEnd:Clear()
-end
-
-function MoleHit:EnterMiniGameEventHandler(_player, _gameId)
-    if _gameId == 2 then
-    end
 end
 
 function MoleHit:Update(dt)

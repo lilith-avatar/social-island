@@ -869,6 +869,33 @@ local SoundXls = {
         Volume = 60.0,
         Path = 'Audio/A5',
         Info = ''
+    },
+    [97] = {
+        ID = 97,
+        Type = 'SoundEffect',
+        Name = 'Swing09',
+        IsLoop = true,
+        Volume = 5.0,
+        Path = 'Audio/Swing09',
+        Info = ''
+    },
+    [98] = {
+        ID = 98,
+        Type = 'SoundEffect',
+        Name = 'undertale',
+        IsLoop = true,
+        Volume = 5.0,
+        Path = 'Audio/undertale',
+        Info = ''
+    },
+    [99] = {
+        ID = 99,
+        Type = 'SoundEffect',
+        Name = 'creep',
+        IsLoop = true,
+        Volume = 5.0,
+        Path = 'Audio/creep',
+        Info = ''
     }
 }
 
