@@ -11,7 +11,6 @@ end
 
 function Buble:DataInit()
     this.bubleGun = world.BubleGun
-    this.bublePlayer = {}
     this.vertigoPlayer = {}
 end
 
@@ -19,14 +18,14 @@ function Buble:EventBind()
     for k, v in pairs(this.bubleGun:GetChildren()) do
         v.OnCollisionBegin:Connect(
             function(_hitObject)
-                if _hitObject and _hitObject.ClassName == "PlayerInstance" and not this.bublePlayer[_hitObject.UserId] then
-                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 24)
+                if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 25)
                 end
             end
         )
         v.OnCollisionEnd:Connect(
             function(_hitObject)
-                if _hitObject and _hitObject.ClassName == "PlayerInstance" and not this.bublePlayer[_hitObject.UserId] then
+                if _hitObject and _hitObject.ClassName == "PlayerInstance" then
                     NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
@@ -45,14 +44,12 @@ function Buble:Update(dt)
 end
 
 function Buble:InteractSEventHandler(_player, _gameId)
-    if _gameId == 24 then
-        this.bublePlayer[_player.UserId] = true
+    if _gameId == 25 then
     end
 end
 
 function Buble:LeaveInteractSEventHandler(_player, _gameId)
-    if _gameId == 24 then
-        this.bublePlayer[_player.UserId] = nil
+    if _gameId == 25 then
     end
 end
 
@@ -67,7 +64,6 @@ function Buble:CreateBubleEventHandler(_player)
                 timer = 0
             }
         end
-        buble:Destroy()
     end)
     invoke(function()
         if buble then

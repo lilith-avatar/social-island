@@ -330,6 +330,19 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [25] = {
+        ID = 25,
+        Name = 'Buble',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = ''
     }
 }
 
