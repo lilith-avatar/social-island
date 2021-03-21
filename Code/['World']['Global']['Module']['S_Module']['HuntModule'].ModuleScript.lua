@@ -14,21 +14,23 @@ local animalArea = {}
 -- 动物数量上限
 local animalAmountMax = 10
 
--- 动物活动范围
-local animalMoveRange = {
-    min = Vector3(-80, 0, -80),
-    max = Vector3(80, 0, 80)
-}
-
 -- 动物运动状态枚举
 local animalActState = {
+    DISABLE = 0,
     IDLE = 1,
-    MOVE = 2,
+    WANDER = 2,
     SCARED = 3,
     BACK = 4,
     DEADED = 5,
     TRAPPED = 6
 }
+
+-- 进入状态触发
+local EnterStateFunc = {}
+-- 状态持续触发
+local UpdateStateFunc = {}
+-- 离开状态触发
+local LeaveStateFunc = {}
 
 --- 初始化
 function Hunt:Init()
@@ -36,6 +38,8 @@ function Hunt:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
+    this:InitAnimalArea()
+    this:InitAnimalData()
 end
 
 --- 节点引用
@@ -44,20 +48,38 @@ end
 
 --- 数据变量初始化
 function Hunt:DataInit()
-    this:InitAnimalArea()
-    this:InitAnimalData()
 end
 
 --- 节点事件绑定
 function Hunt:EventBind()
-end
-
---- 节点事件绑定
-function Hunt:EnterMiniGameEventHandler(_player, _gameId)
-    if _gameId == 1 then
-        print("进入狩猎")
-    --NetUtil.Fire_C("FsmTriggerEvent", _player, "BowIdle")
-    --NetUtil.Fire_C("SetMiniGameGuiEvent", _player, _gameId, true, true)
+    for k, v in pairs(animalActState) do
+        LeaveStateFunc[v] = function(_animalData)
+            _animalData.obj.IsStatic = false
+            if _animalData.obj.AnimalDeadEvent then
+                _animalData.obj.AnimalDeadEvent:SetActive(false)
+            end
+            if _animalData.obj.AnimalCaughtEvent then
+                _animalData.obj.AnimalCaughtEvent:SetActive(false)
+            end
+            if _animalData.obj.AnimalTrappedEvent then
+                _animalData.obj.AnimalTrappedEvent:SetActive(false)
+            end
+            this["LeaveState" .. v](self, _animalData)
+        end
+        EnterStateFunc[v] = function(_animalData)
+            if _animalData.state ~= v or _animalData.state == animalActState.SCARED then
+                LeaveStateFunc[v](_animalData)
+                _animalData.obj.AnimalState.Value = v
+                _animalData.state = v
+                this["EnterState" .. v](self, _animalData)
+            end
+        end
+        UpdateStateFunc[v] = function(_animalData, dt)
+            if _animalData.stateTime > 0 then
+                _animalData.stateTime = _animalData.stateTime - dt
+            end
+            this["UpdateState" .. v](self, _animalData)
+        end
     end
 end
 
@@ -119,7 +141,7 @@ function Hunt:InitAnimalData()
 end
 
 --- 实例化动物
-function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _SpawnPos, _SpawnRot)
+function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _areaCenterPos, _areaRange, _SpawnPos, _SpawnRot)
     local tempData = {
         obj = world:CreateInstance(
             Config.Animal[_animalID].ArchetypeName,
@@ -128,6 +150,8 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
             _SpawnPos,
             _SpawnRot
         ),
+        areaCenterPos = _areaCenterPos,
+        areaRange = _areaRange,
         state = animalActState.IDLE,
         stateTime = 1,
         defMoveSpeed = Config.Animal[_animalID].DefMoveSpeed,
@@ -149,13 +173,9 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
     if tempData.obj.AnimalDeadEvent then
         tempData.obj.AnimalDeadEvent:Connect(
             function()
-                if tempData.state ~= animalActState.DEADED then
-                    this:ChangeAnimalState(tempData, animalActState.DEADED)
-                    this:AreaSpawnCtrl()
-                    NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
-                    NetUtil.Fire_S("SPlayEffectEvent", tempData.deadAEID, tempData.obj.Position)
-                    tempData.obj.IsCaught.Value = false
-                end
+                EnterStateFunc[animalActState.DEADED](tempData)
+                NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
+                NetUtil.Fire_S("SPlayEffectEvent", tempData.deadAEID, tempData.obj.Position)
             end
         )
     end
@@ -164,10 +184,10 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
         tempData.obj.AnimalCaughtEvent:Connect(
             function()
                 tempData.obj:SetActive(false)
-                this:ChangeAnimalState(tempData, animalActState.DEADED)
-                this:AreaSpawnCtrl()
-                tempData.obj.trap:Destroy()
-                tempData.obj.IsCaught.Value = false
+                EnterStateFunc[animalActState.DISABLE](tempData)
+                if tempData.obj.trap then
+                    tempData.obj.trap:Destroy()
+                end
             end
         )
     end
@@ -175,13 +195,10 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _pos, _range, _Spa
     if tempData.obj.AnimalTrappedEvent then
         tempData.obj.AnimalTrappedEvent:Connect(
             function(_rate)
-                if tempData.state ~= animalActState.DEADED then
-                    local num = math.random(1000)
-                    if num < 1000 * (tempData.caughtRate + _rate) then
-                        this:ChangeAnimalState(tempData, animalActState.TRAPPED)
-                        NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
-                        tempData.obj.IsCaught.Value = true
-                    end
+                local num = math.random(1000)
+                if num < 1000 * (tempData.caughtRate + _rate) then
+                    EnterStateFunc[animalActState.TRAPPED](tempData)
+                    NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
                 end
             end
         )
@@ -195,13 +212,13 @@ function Hunt:AreaSpawnCtrl()
     if this:CountAllAliveAnimal() < animalAmountMax then
         for k, v in pairs(animalArea) do
             if this:CountAreaAliveAnimal(v) < v.amountMax then
-                this:ResetAreaAnimal(v, v.amountMax - this:CountAreaAliveAnimal(v))
+                this:ActiveAreaAnimal(v, v.amountMax - this:CountAreaAliveAnimal(v))
             end
         end
     else
         for k, v in pairs(animalArea) do
             if this:CountAreaAliveAnimal(v) > v.amountMax then
-                this:KillAreaAnimal(v, this:CountAreaAliveAnimal(v) - v.amountMax)
+                this:DeActiveAreaAnimal(v, this:CountAreaAliveAnimal(v) - v.amountMax)
             end
         end
     end
@@ -211,7 +228,7 @@ end
 function Hunt:CountAreaAliveAnimal(_animalArea)
     local num = 0
     for k, v in pairs(_animalArea.animalData) do
-        if v.state ~= animalActState.DEADED then
+        if v.state ~= animalActState.DISABLE then
             num = num + 1
         end
     end
@@ -227,38 +244,61 @@ function Hunt:CountAllAliveAnimal()
     return num
 end
 
---- 杀死区域中一定数量动物
-function Hunt:KillAreaAnimal(_animalArea, _num)
+--- 关闭区域中一定数量动物
+function Hunt:DeActiveAreaAnimal(_animalArea, _num)
     local count = _num
-    while count > 0 do
-        for k, v in pairs(_animalArea.animalData) do
-            if v.state ~= animalActState.DEADED and math.random(3) > 2 then
-                this:ChangeAnimalState(v, animalActState.DEADED)
+    for k, v in pairs(_animalArea.animalData) do
+        local randomNum = math.random(3)
+        if
+            v.state == animalActState.IDLE or v.state == animalActState.WANDER or v.state == animalActState.SCARED or
+                v.state == animalActState.BACK and randomNum > 2
+         then
+            EnterStateFunc[animalActState.DISABLE](v)
+            count = count - 1
+        end
+        if count == 0 then
+            break
+        end
+    end
+end
+
+--- 打开区域中一定数量动物
+function Hunt:ActiveAreaAnimal(_animalArea, _num)
+    local count = _num
+    for k, v in pairs(_animalArea.animalData) do
+        if count > 0 then
+            local randomNum = math.random(3)
+            if v.state == animalActState.DISABLE and randomNum > 2 then
+                EnterStateFunc[animalActState.IDLE](v)
                 count = count - 1
             end
         end
-    end
-end
-
---- 复活区域中一定数量动物
-function Hunt:ResetAreaAnimal(_animalArea, _num)
-    local count = _num
-    while count > 0 do
-        for k, v in pairs(_animalArea.animalData) do
-            if count > 0 then
-                if v.state == animalActState.DEADED and math.random(3) > 2 then
-                    this:ChangeAnimalState(v, animalActState.IDLE)
-                    count = count - 1
-                end
-            end
+        if count == 0 then
+            break
         end
     end
 end
 
---- 动物运动状态改变
-function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
-    _animalData.state = _state
-    if _animalData.state == animalActState.IDLE then
+-- 进入状态触发
+do
+    --DISABLE
+    function Hunt:EnterState0(_animalData)
+        _animalData.stateTime = -1
+        _animalData.obj:SetActive(false)
+        this:DeActiveMovePid(_animalData)
+        this:AreaSpawnCtrl()
+    end
+    --IDLE
+    function Hunt:EnterState1(_animalData)
+        if _animalData.obj.AnimalDeadEvent then
+            _animalData.obj.AnimalDeadEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalCaughtEvent then
+            _animalData.obj.AnimalCaughtEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalTrappedEvent then
+            _animalData.obj.AnimalTrappedEvent:SetActive(true)
+        end
         _animalData.stateTime = math.random(_animalData.idleAnimationDurRange[1], _animalData.idleAnimationDurRange[2])
         _animalData.obj:SetActive(true)
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -270,11 +310,19 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             true,
             1
         )
-        _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-        _animalData.obj.LinearVelocityController.Intensity = 0
-        _animalData.obj.RotationController.Intensity = 0
-        _animalData.obj.LinearVelocity = Vector3.Zero
-    elseif _animalData.state == animalActState.MOVE then
+        this:DeActiveMovePid(_animalData)
+    end
+    --WANDER
+    function Hunt:EnterState2(_animalData)
+        if _animalData.obj.AnimalDeadEvent then
+            _animalData.obj.AnimalDeadEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalCaughtEvent then
+            _animalData.obj.AnimalCaughtEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalTrappedEvent then
+            _animalData.obj.AnimalTrappedEvent:SetActive(true)
+        end
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj:SetActive(true)
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -286,15 +334,22 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             true,
             1
         )
-        _animalData.obj.LinearVelocityController.TargetLinearVelocity =
-            _linearVelocity or
-            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
-        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
-        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
-        _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation =
-            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
-    elseif _animalData.state == animalActState.SCARED then
+        this:ActiveMovePid(
+            _animalData,
+            Vector3(math.random(-10, 10), 6, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+        )
+    end
+    --SCARED
+    function Hunt:EnterState3(_animalData)
+        if _animalData.obj.AnimalDeadEvent then
+            _animalData.obj.AnimalDeadEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalCaughtEvent then
+            _animalData.obj.AnimalCaughtEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalTrappedEvent then
+            _animalData.obj.AnimalTrappedEvent:SetActive(true)
+        end
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj.AnimatedMesh:PlayAnimation(
             _animalData.moveAnimationName[math.random(#_animalData.moveAnimationName)],
@@ -306,14 +361,23 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             _animalData.scaredMoveSpeed / _animalData.defMoveSpeed
         )
         local dir = (_animalData.obj.Position - _animalData.closePlayer.Position)
-        _animalData.obj.LinearVelocityController.TargetLinearVelocity =
-            Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized * _animalData.scaredMoveSpeed
-        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
-        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
-        _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation =
-            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
-    elseif _animalData.state == animalActState.BACK then
+        this:ActiveMovePid(
+            _animalData,
+            (Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized + Vector3(0, 0.3, 0)) *
+                _animalData.scaredMoveSpeed
+        )
+    end
+    --BACK
+    function Hunt:EnterState4(_animalData)
+        if _animalData.obj.AnimalDeadEvent then
+            _animalData.obj.AnimalDeadEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalCaughtEvent then
+            _animalData.obj.AnimalCaughtEvent:SetActive(true)
+        end
+        if _animalData.obj.AnimalTrappedEvent then
+            _animalData.obj.AnimalTrappedEvent:SetActive(true)
+        end
         _animalData.stateTime = math.random(_animalData.moveAnimationDurRange[1], _animalData.moveAnimationDurRange[2])
         _animalData.obj:SetActive(true)
         _animalData.obj.AnimatedMesh:PlayAnimation(
@@ -325,21 +389,19 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
             true,
             1
         )
-        _animalData.obj.LinearVelocityController.TargetLinearVelocity =
-            _linearVelocity or
-            Vector3(math.random(-10, 10), 1, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
-        _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
-        _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
-        _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
-        _animalData.obj.RotationController.TargetRotation =
-            EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
-    elseif _animalData.state == animalActState.DEADED then
-        _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-        _animalData.obj.RotationController.Intensity = 0
-        _animalData.obj.LinearVelocityController.Intensity = 0
-        _animalData.obj.LinearVelocity = Vector3.Zero
+        this:ActiveMovePid(
+            _animalData,
+            ((_animalData.areaCenterPos - _animalData.obj.Position).Normalized + Vector3(0, 0.3, 0)) *
+                _animalData.defMoveSpeed
+        )
+    end
+    --DEADED
+    function Hunt:EnterState5(_animalData)
+        if _animalData.obj.AnimalCaughtEvent then
+            _animalData.obj.AnimalCaughtEvent:SetActive(true)
+        end
+        _animalData.stateTime = 30
         _animalData.obj.BloodEffect:SetActive(true)
-        _animalData.obj.IsStatic = false
         if #_animalData.deadAnimationName > 0 then
             _animalData.obj.AnimatedMesh:PlayAnimation(
                 _animalData.deadAnimationName[math.random(#_animalData.deadAnimationName)],
@@ -351,63 +413,144 @@ function Hunt:ChangeAnimalState(_animalData, _state, _linearVelocity)
                 1
             )
         end
+        this:DeActiveMovePid(_animalData)
+        _animalData.obj.IsStatic = true
         invoke(
             function()
                 _animalData.obj.BloodEffect:SetActive(false)
-                wait(2)
-                _animalData.obj:SetActive(false)
             end,
             1
         )
-    elseif _animalData.state == animalActState.TRAPPED then
-        _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-        _animalData.obj.RotationController.Intensity = 0
-        _animalData.obj.LinearVelocityController.Intensity = 0
-        _animalData.obj.LinearVelocity = Vector3.Zero
-        _animalData.obj.IsStatic = true
+    end
+    --TRAPPED
+    function Hunt:EnterState6(_animalData)
+        if _animalData.obj.AnimalCaughtEvent then
+            _animalData.obj.AnimalCaughtEvent:SetActive(true)
+        end
+        _animalData.stateTime = 30
         _animalData.obj.BloodEffect:SetActive(true)
         _animalData.obj.AnimatedMesh:PlayAnimation(_animalData.idleAnimationName[1], 2, 1, 0.1, true, true, 1)
+        this:DeActiveMovePid(_animalData)
+        _animalData.obj.IsStatic = true
+    end
+end
+
+-- 开启移动pid
+function Hunt:ActiveMovePid(_animalData, _targetLinearVelocity)
+    _animalData.obj.LinearVelocityController.Intensity = _animalData.LVCtrlIntensity
+    _animalData.obj.RotationController.Intensity = _animalData.RotCtrlIntensity
+    _animalData.obj.LinearVelocityController.TargetLinearVelocity = _targetLinearVelocity
+    _animalData.obj.RotationController.Forward = _animalData.obj.LinearVelocityController.TargetLinearVelocity
+    _animalData.obj.RotationController.TargetRotation = EulerDegree(0, _animalData.obj.RotationController.Rotation.y, 0)
+    _animalData.obj.LinearVelocityController.TargetLinearVelocity = _targetLinearVelocity
+end
+
+-- 关闭移动pid
+function Hunt:DeActiveMovePid(_animalData)
+    _animalData.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
+    _animalData.obj.LinearVelocityController.Intensity = 0
+    _animalData.obj.RotationController.Intensity = 0
+    _animalData.obj.LinearVelocity = Vector3.Zero
+end
+
+-- 状态持续触发
+do
+    --DISABLE
+    function Hunt:UpdateState0(_animalData)
+    end
+    --IDLE
+    function Hunt:UpdateState1(_animalData)
+        if _animalData.stateTime <= 0 then
+            EnterStateFunc[animalActState.WANDER](_animalData)
+        end
+        this:AnimalScared(_animalData)
+    end
+    --WANDER
+    function Hunt:UpdateState2(_animalData)
+        if _animalData.stateTime <= 0 then
+            EnterStateFunc[animalActState.IDLE](_animalData)
+        end
+        this:AnimalScared(_animalData)
+        this:AnimalRangeLimit(_animalData)
+    end
+    --SCARED
+    function Hunt:UpdateState3(_animalData)
+        if _animalData.stateTime <= 0 then
+            EnterStateFunc[animalActState.IDLE](_animalData)
+        end
+        this:AnimalScared(_animalData)
+        this:AnimalRangeLimit(_animalData)
+    end
+    --BACK
+    function Hunt:UpdateState4(_animalData)
+        if _animalData.stateTime <= 0 then
+            EnterStateFunc[animalActState.IDLE](_animalData)
+        end
+    end
+    --DEADED
+    function Hunt:UpdateState5(_animalData)
+        if _animalData.stateTime <= 0 then
+            EnterStateFunc[animalActState.DISABLE](_animalData)
+        end
+    end
+    --TRAPPED
+    function Hunt:UpdateState6(_animalData)
+        if _animalData.stateTime <= 0 then
+            EnterStateFunc[animalActState.DISABLE](_animalData)
+        end
     end
 end
 
 --- 动物惊吓
 function Hunt:AnimalScared(_animalData)
-    if
-        _animalData.state ~= animalActState.DEADED and _animalData.state ~= animalActState.BACK and
-            _animalData.state ~= animalActState.TRAPPED
-     then
-        for k, v in pairs(world:FindPlayers()) do
-            if (v.Position - _animalData.obj.Position).Magnitude < 6 then
-                local dis = (v.Position - _animalData.obj.Position).Magnitude
-                if _animalData.state == animalActState.SCARED then
-                    if
-                        dis < (_animalData.obj.Position - _animalData.closePlayer.Position).Magnitude or
-                            _animalData.closePlayer == nil
-                     then
-                        _animalData.closePlayer = v
-                        this:ChangeAnimalState(_animalData, animalActState.SCARED)
-                    end
-                else
+    for k, v in pairs(world:FindPlayers()) do
+        if (v.Position - _animalData.obj.Position).Magnitude < 6 then
+            local dis = (v.Position - _animalData.obj.Position).Magnitude
+            if _animalData.state == animalActState.SCARED then
+                if
+                    dis < (_animalData.obj.Position - _animalData.closePlayer.Position).Magnitude or
+                        _animalData.closePlayer == nil
+                 then
                     _animalData.closePlayer = v
-                    this:ChangeAnimalState(_animalData, animalActState.SCARED)
+                    EnterStateFunc[animalActState.SCARED](_animalData)
                 end
+            else
+                _animalData.closePlayer = v
+                EnterStateFunc[animalActState.SCARED](_animalData)
             end
         end
     end
 end
 
 --- 动物范围限制
-function Hunt:AnimalRangeLimit(_animalArea)
-    for k, v in pairs(_animalArea.animalData) do
-        if v.state ~= animalActState.DEADED and v.state ~= animalActState.BACK then
-            if (v.obj.Position - _animalArea.pos).Magnitude > _animalArea.range then
-                this:ChangeAnimalState(
-                    v,
-                    animalActState.BACK,
-                    (_animalArea.pos - v.obj.Position).Normalized * v.defMoveSpeed
-                )
-            end
-        end
+function Hunt:AnimalRangeLimit(_animalData)
+    if (_animalData.obj.Position - _animalData.areaCenterPos).Magnitude > _animalData.areaRange then
+        EnterStateFunc[animalActState.BACK](_animalData)
+    end
+end
+
+-- 离开状态触发
+do
+    --DISABLE
+    function Hunt:LeaveState0(_animalData)
+    end
+    --IDLE
+    function Hunt:LeaveState1(_animalData)
+    end
+    --WANDER
+    function Hunt:LeaveState2(_animalData)
+    end
+    --SCARED
+    function Hunt:LeaveState3(_animalData)
+    end
+    --BACK
+    function Hunt:LeaveState4(_animalData)
+    end
+    --DEADED
+    function Hunt:LeaveState5(_animalData)
+    end
+    --TRAPPED
+    function Hunt:LeaveState6(_animalData)
     end
 end
 
@@ -415,14 +558,8 @@ end
 function Hunt:AnimalMove(dt)
     for k1, v1 in pairs(animalArea) do
         for k2, v2 in pairs(v1.animalData) do
-            if v2.stateTime > 0 then
-                v2.stateTime = v2.stateTime - dt
-            elseif v2.state ~= animalActState.DEADED and v2.state ~= animalActState.TRAPPED then
-                this:ChangeAnimalState(v2, v2.state % 2 + 1)
-            end
-            this:AnimalScared(v2)
+            UpdateStateFunc[v2.state](v2, dt)
         end
-        this:AnimalRangeLimit(v1)
     end
 end
 
