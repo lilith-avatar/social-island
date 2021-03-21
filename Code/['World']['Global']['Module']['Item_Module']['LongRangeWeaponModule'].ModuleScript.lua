@@ -59,18 +59,6 @@ function LongRangeWeapon:ShootArrow(_force)
                     arrow:Destroy()
                 elseif _hitObj.AnimalID and self.config.Hunt then
                     self:PlayHitSound(_hitObj.Position)
-                    NetUtil.Fire_C(
-                        "GetItemFromPoolEvent",
-                        localPlayer,
-                        Config.Animal[_hitObj.AnimalID.Value].ItemPoolID,
-                        0
-                    )
-                    NetUtil.Fire_S(
-                        "SpawnCoinEvent",
-                        "P",
-                        _hitObj.Position + Vector3(0, 1, 0),
-                        math.floor(self.config.IncomeFactor * Config.Animal[_hitObj.AnimalID.Value].DropCoin)
-                    )
                     _hitObj.AnimalDeadEvent:Fire()
                 elseif _hitObj.Name == "ArrowTargetCol" then
                     self:PlayHitSound(_hitObj.Position)

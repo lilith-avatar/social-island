@@ -85,7 +85,8 @@ function PlayerCam:TPSGetRayDir()
         if
             (v - localPlayer.Position).Magnitude > 4 and
                 Vector3.Angle(localPlayer.Forward, (v - localPlayer.Position)) < 90 and
-                hitResult:GetHitObjAll()[i].Parent.Name ~= "Water"
+                hitResult:GetHitObjAll()[i].Parent.Name ~= "Water" and
+                hitResult:GetHitObjAll()[i].Parent.Name ~= "ColBox"
          then
             --print(hitResult:GetHitObjAll()[i])
             return v
@@ -127,7 +128,7 @@ function PlayerCam:UpdateSwimFilter()
             this:SwitchSwimFilter(false)
         end
     else
-        if localPlayer.Position.y - this.playerGameCam.Forward.y < -16 then
+        if this.playerGameCam.Position.y < -14.5 then
             if filterSwitch == false then
                 this:SwitchSwimFilter(true)
             end

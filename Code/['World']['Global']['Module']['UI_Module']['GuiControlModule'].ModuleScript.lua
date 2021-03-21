@@ -49,7 +49,7 @@ function GuiControl:InitListener()
             PlayerCam:CameraMove(touchInfo)
         end
     )
-    
+
     touchScreen.OnPinchStay:Connect(
         function(pos1, pos2, deltaSize, pinchSpeed)
             PlayerCam:CameraZoom(pos1, pos2, deltaSize, pinchSpeed)
@@ -116,11 +116,11 @@ function GuiControl:InitListener()
             GuiBag:ShowBagUI()
         end
     )
-    --[[menuFigure.ResetBtn.OnClick:Connect(
-		function()
-			localPlayer.Position = world.SpawnLocations.StartPortal00.Position
-		end
-	)]]
+    menuFigure.ResetBtn.OnClick:Connect(
+        function()
+            PlayerCtrl:PlayerReset()
+        end
+    )
 end
 
 --- 点击交互按钮

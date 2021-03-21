@@ -62,18 +62,6 @@ function Catch:TouchPrey(_animal, _isTouch)
     end
 end
 
---捕捉动物
-function Catch:CatchAnimal()
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 19)
-    localPlayer.Avatar:PlayAnimation("PickUpLight", 2, 1, 0.1, true, false, 1)
-    invoke(
-        function()
-            this:IsCatch()
-        end,
-        0.5
-    )
-end
-
 --困住动物
 function Catch:TrapAnimal(_rate, _trap, _animal)
     if _animal.AnimalTrappedEvent then
@@ -82,7 +70,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
 
         invoke(
             function()
-                if _animal.IsCaught.Value then
+                if _animal.AnimalState.Value == 6 then
                     NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你的陷阱成功困住了动物", 2, false)
                     NetUtil.Fire_C("PlayEffectEvent", localPlayer, 43)
                     _trap:SetParentTo(_animal, Vector3(0, -0.5, 0), EulerDegree(0, 0, 0))
@@ -114,30 +102,67 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
     end
 end
 
---判断是否捕捉
-function Catch:IsCatch()
+--与动物交互
+function Catch:InteractAnimal()
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 19)
     if prey then
-        if prey.IsCaught.Value then
-            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "捕捉动物成功", 2, false)
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 13)
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-            Pet:OpenNamedPetUI(prey.AnimalID.Value)
-            prey.AnimalCaughtEvent:Fire()
-            local effect = world:CreateInstance("CaughtSuccess", "CaughtSuccess", world, prey.Col.Position)
-            invoke(
-                function()
-                    effect:Destroy()
-                end,
-                1
-            )
+        if prey.AnimalState.Value == 6 then
+            this:Catch()
+        elseif prey.AnimalState.Value == 5 then
+            this:Search()
         else
-            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "尝试用陷阱把动物困住再捕捉吧", 2, false)
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            this:Touch()
         end
     else
         NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物离你太远了", 2, false)
         NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
     end
+end
+
+--捕捉
+function Catch:Catch()
+    invoke(
+        function()
+            localPlayer.Avatar:PlayAnimation("PickUpLight", 2, 1, 0.1, true, false, 1)
+            wait(.5)
+            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "捕捉动物成功", 2, false)
+            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 13)
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            Pet:OpenNamedPetUI(prey.AnimalID.Value)
+            prey.AnimalCaughtEvent:Fire()
+            local effect = world:CreateInstance("CaughtSuccess", "CaughtSuccess", world, prey.Position)
+            wait(1)
+            effect:Destroy()
+        end
+    )
+end
+
+--肢解
+function Catch:Search()
+    invoke(
+        function()
+            localPlayer.Avatar:PlayAnimation("PickUpLight", 2, 1, 0.1, true, false, 1)
+            wait(.5)
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            NetUtil.Fire_C("GetItemFromPoolEvent", localPlayer, Config.Animal[prey.AnimalID.Value].ItemPoolID, 0)
+            --[[NetUtil.Fire_S(
+                "SpawnCoinEvent",
+                "P",
+                prey.Position + Vector3(0, 1, 0),
+                math.floor(self.config.IncomeFactor * Config.Animal[prey.AnimalID.Value].DropCoin)
+            )]]
+            prey.AnimalCaughtEvent:Fire()
+            local effect = world:CreateInstance("CaughtSuccess", "CaughtSuccess", world, prey.Position)
+            wait(1)
+            effect:Destroy()
+        end
+    )
+end
+
+--触摸
+function Catch:Touch()
+    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "尝试用陷阱把动物困住再捕捉吧", 2, false)
+    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 
 --更新捕捉互动UI
@@ -152,7 +177,7 @@ end
 
 function Catch:InteractCEventHandler(_id)
     if _id == 19 then
-        this:CatchAnimal()
+        this:InteractAnimal()
     end
 end
 
