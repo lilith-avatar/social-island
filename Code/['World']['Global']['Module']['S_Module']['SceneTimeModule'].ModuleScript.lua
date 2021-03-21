@@ -1,7 +1,11 @@
 ---@module SceneTime
 ---@copyright Lilith Games, Avatar Team
----@author XXX, XXXX
-local SceneTime,this = ModuleUtil.New('SceneTime',ServerBase)
+---@author Yen Yuan
+---? How To Use
+---? 客户端： SycnTimeCEventHandler(number clock)
+---? 服务端： SycnTimeSEventHandler(number clock)
+---? 其他的读表即可
+local SceneTime, this = ModuleUtil.New("SceneTime", ServerBase)
 
 ---初始化函数
 function SceneTime:Init()
@@ -31,14 +35,15 @@ function SceneTime:Update(dt)
         if this.clock > 23 then
             this.clock = 0
         end
+        NetUtil.Broadcast("SycnTimeCEvent", this.clock)
+        NetUtil.Fire_S("SycnTimeSEvent", this.clock)
         this:SycnSkyData()
-        NetUtil.Broadcast('SycnTimeCEvent',this.clock)
-        NetUtil.Fire_S('SycnTimeSEvent',this.clock)
     end
 end
 
+---@param _clock number
 function SceneTime:SycnSkyDataSEventHandler(_clock)
-    print(string.format('当前时间 %s 点', math.floor(_clock)))
+    print(string.format("当前时间 %s 点", math.floor(_clock))) --! 上线删除
 end
 
 return SceneTime
