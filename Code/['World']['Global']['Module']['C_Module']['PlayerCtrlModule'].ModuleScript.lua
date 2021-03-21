@@ -155,8 +155,8 @@ end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerClap()
-    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 9)
-    localPlayer.Avatar:PlayAnimation("SocialApplause", 9, 1, 0, true, false, 1)
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
+    localPlayer.Avatar:PlayAnimation("SocialApplause", 8, 1, 0, true, false, 1)
     --拍掌音效
     NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
 end
