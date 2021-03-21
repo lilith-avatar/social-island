@@ -6,10 +6,17 @@
 ---? 服务端： SycnTimeSEventHandler(number clock)
 ---? 其他的读表即可
 local SceneTime, this = ModuleUtil.New("SceneTime", ServerBase)
+local ModeEnum = {
+    Instant = 'Instant', -- 每个小时更改一次 
+    RealTime = 'RealTime' -- 随时间实时更改（大概？）
+}
+
+local TimeMode = ModeEnum.Instant --!可更改
 
 ---初始化函数
 function SceneTime:Init()
     this:DataInit()
+    this:NodeDef()
 end
 
 function SceneTime:DataInit()
@@ -24,6 +31,13 @@ end
 
 ---同步天空盒与表的数据
 function SceneTime:SycnSkyData()
+    this[TimeMode..'SycnSkyData'](self)
+end
+
+function SceneTime:InstantSycnSkyData()
+end
+
+function SceneTime:RealTimeSycnSkyData()
 end
 
 ---Update函数
