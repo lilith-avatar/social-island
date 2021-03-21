@@ -461,6 +461,24 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 end
             end
         end
+        if _hitObject.BombUID then
+            if _isBegin and _hitObject.BombUID.Value == "" then
+                _hitObject.BombUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 23)
+            else
+                _hitObject.BombUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
+        if _hitObject.RadioUID then
+            if _isBegin and _hitObject.RadioUID.Value == "" then
+                _hitObject.RadioUID.Value = localPlayer.UserId
+                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 24)
+            else
+                _hitObject.RadioUID.Value = ""
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            end
+        end
     end
 end
 

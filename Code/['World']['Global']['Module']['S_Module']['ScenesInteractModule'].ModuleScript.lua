@@ -32,6 +32,12 @@ local guitarOBJ = {}
 --帐篷
 local tentOBJ = {}
 
+--炸弹
+local bombOBJ = {}
+
+--收音机
+local radioOBJ = {}
+
 --- 初始化
 function ScenesInteract:Init()
     print("[ScenesInteract] Init()")
@@ -84,12 +90,23 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Tent:GetChildren()) do
         tentOBJ[v.Name] = v
     end
+    for k,v in pairs(world.Bomb:GetChildren())do
+        bombOBJ[v.Name] = v
+    end
+    for k,v in pairs(world.Radio:GetChildren())do
+        radioOBJ[v.Name] = v
+    end
 end
 
 --- 数据变量初始化
 function ScenesInteract:DataInit()
     this.TrojanList = {}
     this.TentList = {}
+    this.RadioData = {
+        songIndex = 0,
+        songList = {97,98,99},
+        curSong = nil
+    }
 end
 
 --- 节点事件绑定
@@ -331,6 +348,35 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
+    if _id == 23 then
+        for k, v in pairs(bombOBJ) do
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 23)
+            if v.BombUID.Value == _player.UserId then
+                _player.LinearVelocity =
+                (v.Position - _player.Position).Normalized * 10
+                NetUtil.Fire_C("FsmTriggerEvent", v.insidePlayer, "Fly")
+            end
+        end
+    end
+    if _id == 24 then
+        for k,v in pairs(radioOBJ) do
+            NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 24)
+            if v.RadioUID.Value == _player.UserId then
+                this.RadioData.songIndex = this.RadioData.songIndex + 1
+                if this.RadioData.songIndex > #this.RadioData.songList then
+                    this.RadioData.songIndex = 1
+                end
+                -- 先停止当前音乐，再播放
+                if this.RadioData.curSong then
+                    NetUtil.Fire_C("StopEffectEvent", _player, 'radio')
+                else
+                    v.Model.On:SetActive(true)
+                end
+                NetUtil.Fire_C("PlayEffectEvent", _player, this.RadioData.songList[this.RadioData.songIndex], v.Position,'radio')
+                this.RadioData.curSong = true
+            end
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -371,6 +417,20 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                     this.TentList[v.Name] = nil
                     v.Effect:SetActive(false)
                 end
+            end
+        end
+    end
+    if _id == 23 then
+        for k, v in pairs(bombOBJ) do
+            if v.BombUID.Value == _player.UserId then
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+            end
+        end
+    end
+    if _id == 24 then
+        for k, v in pairs(radioOBJ) do
+            if v.RadioUID.Value == _player.UserId then
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
     end

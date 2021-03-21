@@ -66,10 +66,11 @@ function PeriodCoinMgr:Update(dt)
 end
 
 --- 状态检查
+local PosId
 function PeriodCoinMgr:CheckCoin(_table,_fId,_CoinType)
 	for k,v in pairs(_table) do
 		if not v[2].ActiveSelf then
-			local PosId = this:RandomPos(_table,_fId)
+			this:RandomPos(_table,_fId)
 			table.remove(_table,k)
 			this:FreshCoin(_table,_fId,PosId)
 		end
@@ -78,14 +79,12 @@ end
 
 --- 随机一个未被占用的点
 function PeriodCoinMgr:RandomPos(_table,_fId)
-	printTable(_table)
-	local PosId = math.random(1,#Config.PeriodCoin[_fId])
-	for k,v in pairs(_table) do
+	PosId = math.random(1,#Config.PeriodCoin[_fId])
+	for k,v in pairs(_table) do	
 		if v and v[1] == PosId then
 			this:RandomPos(_table,_fId)
 		end
 	end
-	return PosId
 end
 
 
@@ -118,30 +117,30 @@ end
 function PeriodCoinMgr:InitCreat()
 	--- 蘑菇金币区
 	for i=0,this.mashroomHighValueNum,1 do
-		local PosId = this:RandomPos(this.mashroomHighValue,3)
+		this:RandomPos(this.mashroomHighValue,3)
 		this:FreshCoin(this.mashroomHighValue,3,PosId)
 	end
 	for i=0,this.mashroomMidValueNum,1 do
-		local PosId = this:RandomPos(this.mashroomMidValue,2)
+		this:RandomPos(this.mashroomMidValue,2)
 		this:FreshCoin(this.mashroomMidValue,2,PosId)
 	end
 	for i=0,this.mashroomLowValueNum,1 do
-		local PosId = this:RandomPos(this.mashroomLowValue,1)
+		this:RandomPos(this.mashroomLowValue,1)
 		this:FreshCoin(this.mashroomLowValue,1,PosId)
 	end
 	--- 云上金币区
 	for i=0,this.cloudNum,1 do
-		local PosId = this:RandomPos(this.cloud,4)
+		this:RandomPos(this.cloud,4)
 		this:FreshCoin(this.cloud,4,PosId)
 	end
 	--- 场景彩蛋金币
 	for i=0,this.sceneCoinNum,1 do
-		local PosId = this:RandomPos(this.sceneCoin,5)
+		this:RandomPos(this.sceneCoin,5)
 		this:FreshCoin(this.sceneCoin,5,PosId)
 	end
 		--- 场景彩蛋金币
 	for i=0,this.lutusNum,1 do
-		local PosId = this:RandomPos(this.lutus,6)
+		this:RandomPos(this.lutus,6)
 		this:FreshCoin(this.lutus,6,PosId)
 	end
 	--[[ 湖上荷叶金币区

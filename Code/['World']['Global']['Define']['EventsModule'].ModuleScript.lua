@@ -32,6 +32,7 @@ Events.ServerEvents = {
     "PlayerSitEvent",
     "JetOverEvent",
     "SpawnCoinEvent",
+    'CreateBubleEvent',
     "SPlayEffectEvent"
 }
 
