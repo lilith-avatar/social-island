@@ -38,6 +38,9 @@ end
 
 function SceneTime:InstantSycnSkyData()
     local data, configData = {}, Config.TimeSkySetting[this.clock]
+    if not configData then
+        return
+    end
     if this.clock == 0 then
         for k, v in pairs(Config.TimeSkySetting[23]) do
             this.sky[k] = v
@@ -73,6 +76,9 @@ end
 
 function SceneTime:RealTimeSycnSkyData()
     local data, configData = {}, Config.TimeSkySetting[this.clock]
+    if not configData then
+        return
+    end
     if this.tweener then
         this.tweener:Pause()
         this.tweener = nil
