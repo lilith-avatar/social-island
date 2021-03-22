@@ -926,6 +926,16 @@ local ItemXls = {
         UseAnimName = 'BowEquip',
         Useable = true
     },
+    [2008] = {
+        ItemID = 2008,
+        Name = 'Item_Name_2008',
+        Des = nil,
+        Icon = 'LongRangeWeapon_Icon',
+        UseCD = 0.5,
+        UseSoundID = 25,
+        UseAnimName = 'BowEquip',
+        Useable = true
+    },
     [4001] = {
         ItemID = 4001,
         Name = 'Item_Name_4001',

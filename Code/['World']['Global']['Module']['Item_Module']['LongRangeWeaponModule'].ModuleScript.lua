@@ -19,14 +19,18 @@ end
 function LongRangeWeapon:Equip()
     WeaponBase.Equip(self)
     GuiBowAim.gui:SetActive(true)
-    GuiBowAim.touchGui:SetActive(true)
+    if self.id ~= 2008 then
+        GuiBowAim.touchGui:SetActive(true)
+    end
 end
 
 --取下装备
 function LongRangeWeapon:Unequip()
     WeaponBase.Unequip(self)
     GuiBowAim.gui:SetActive(false)
-    GuiBowAim.touchGui:SetActive(false)
+    if self.id ~= 2008 then
+        GuiBowAim.touchGui:SetActive(false)
+    end
 end
 
 --发射弓箭

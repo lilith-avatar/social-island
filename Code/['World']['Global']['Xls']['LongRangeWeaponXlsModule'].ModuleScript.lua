@@ -166,6 +166,29 @@ local LongRangeWeaponXls = {
         Hunt = true,
         Mole = false,
         UseAddBuffID = 3
+    },
+    [2008] = {
+        ItemID = 2008,
+        AttackAnimName = {'PistolAttack'},
+        ModelName = 'Pistol',
+        ArrowModelName = 'FireArrow',
+        AttckCD = 1.0,
+        AttackSoundID = 56,
+        ParentNode = 'Bone_R_Hand.RHandWeaponNode',
+        Offset = Vector3(0, 0, 0),
+        Angle = EulerDegree(0, 0, 0),
+        IncomeFactor = 1.0,
+        ExplosionRange = 2.0,
+        UseAddBuffDur = -1.0,
+        UseRemoveBuffID = 0,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 0.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'FireHit',
+        HitSoundID = 33,
+        Hunt = true,
+        Mole = false,
+        UseAddBuffID = 4
     }
 }
 

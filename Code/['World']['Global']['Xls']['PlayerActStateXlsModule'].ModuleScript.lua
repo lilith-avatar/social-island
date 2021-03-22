@@ -260,37 +260,43 @@ local PlayerActStateXls = {
     },
     [43] = {
         ID = 43,
-        Name = 'BubleGunIdle',
-        NextName = 'BubleGunIdle',
+        Name = 'PistolIdle',
+        NextName = 'PistolIdle',
         Dur = 0.0
     },
     [44] = {
         ID = 44,
-        Name = 'BubleGunRun',
-        NextName = 'BubleGunRun',
+        Name = 'PistolRun',
+        NextName = 'PistolRun',
         Dur = 0.0
     },
     [45] = {
         ID = 45,
-        Name = 'BubleGunWalk',
-        NextName = 'BubleGunWalk',
+        Name = 'PistolWalk',
+        NextName = 'PistolWalk',
         Dur = 0.0
     },
     [46] = {
         ID = 46,
-        Name = 'BubleGunJump',
-        NextName = 'BubleGunIdle',
+        Name = 'PistolJump',
+        NextName = 'PistolIdle',
         Dur = 0.6
     },
     [47] = {
         ID = 47,
-        Name = 'BubleGunAttack',
-        NextName = 'BubleGunIdle',
-        Dur = 0.3
+        Name = 'PistolAttack',
+        NextName = 'PistolIdle',
+        Dur = 0.2
     },
     [48] = {
         ID = 48,
-        Name = 'BubleGunVertigo',
+        Name = 'PistolHit',
+        NextName = 'PistolIdle',
+        Dur = 0.2
+    },
+    [49] = {
+        ID = 49,
+        Name = 'Vertigo',
         NextName = 'Idle',
         Dur = 2.0
     }
