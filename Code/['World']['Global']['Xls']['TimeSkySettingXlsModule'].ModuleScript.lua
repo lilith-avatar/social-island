@@ -8,6 +8,7 @@
 local TimeSkySettingXls = {
     [10] = {
         ClockTime = 10,
+        TimeName = 'Day',
         Style = 1,
         Brightness = 0.23,
         Latitude = 60.0,
@@ -30,6 +31,7 @@ local TimeSkySettingXls = {
     },
     [18] = {
         ClockTime = 18,
+        TimeName = 'Dusk',
         Style = 7,
         Brightness = 0.5,
         Latitude = 60.0,
@@ -52,6 +54,7 @@ local TimeSkySettingXls = {
     },
     [20] = {
         ClockTime = 20,
+        TimeName = 'Night',
         Style = 7,
         Brightness = 1.0,
         Latitude = 60.0,

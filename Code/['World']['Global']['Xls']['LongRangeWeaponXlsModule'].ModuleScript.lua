@@ -188,7 +188,7 @@ local LongRangeWeaponXls = {
         HitSoundID = 33,
         Hunt = true,
         Mole = false,
-        UseAddBuffID = 4
+        UseAddBuffID = 64
     }
 }
 
