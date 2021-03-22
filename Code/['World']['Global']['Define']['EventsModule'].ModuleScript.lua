@@ -33,7 +33,8 @@ Events.ServerEvents = {
     "JetOverEvent",
     "SpawnCoinEvent",
     'CreateBubleEvent',
-    "SPlayEffectEvent"
+    "SPlayEffectEvent",
+    'SycnTimeSEvent'
 }
 
 -- 客户端事件列表
@@ -100,7 +101,8 @@ Events.ClientEvents = {
     "PurchaseCEvent",
     "ChangeChairIdEvent",
     "StartJetEvent",
-    "ShowGetCoinNumEvent"
+    "ShowGetCoinNumEvent",
+    'SycnTimeCEvent'
 }
 
 return Events
