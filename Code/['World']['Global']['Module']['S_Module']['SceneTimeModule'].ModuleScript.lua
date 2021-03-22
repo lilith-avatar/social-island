@@ -22,7 +22,7 @@ end
 
 function SceneTime:DataInit()
     this.timer = 0
-    this.clock = 0 -- 当前游戏内时间
+    this.clock = 8 -- 当前游戏内时间
     this.timeSpeed = 5 -- 几秒1个小时
     this.tweener = nil
 end
@@ -41,6 +41,8 @@ function SceneTime:InstantSycnSkyData()
     if not configData then
         return
     end
+    this.sky.ShowSun = configData.ShowSun
+    this.sky.Style = configData.Style
     data = {
         ClockTime = configData.ClockTime,
         Brightness = configData.Brightness,
@@ -74,6 +76,8 @@ function SceneTime:RealTimeSycnSkyData()
         this.tweener:Pause()
         this.tweener = nil
     end
+    this.sky.ShowSun = configData.ShowSun
+    this.sky.Style = configData.Style
     data = {
         ClockTime = configData.ClockTime,
         Brightness = configData.Brightness,
