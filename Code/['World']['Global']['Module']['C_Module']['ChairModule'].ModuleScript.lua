@@ -1,8 +1,8 @@
+--! Abandoned
 ---@module Chair
 ---@copyright Lilith Games, Avatar Team
----@author XXX, XXXX
+---@author Yen Yuan
 local Chair, this = ModuleUtil.New('Chair', ClientBase)
-local Dir = {'Forward', 'Left', 'Back', 'Right'}
 
 ---初始化函数
 function Chair:Init()
@@ -11,75 +11,18 @@ function Chair:Init()
 end
 
 function Chair:DataInit()
-    this.chairFunc = {
-        Normal = function(_chairId, _pos, _rot)
-            this:NormalSit(_chairId, _pos, _rot)
-        end,
-        QTE = function(_chairId, _pos, _rot)
-            this:QteSit(_chairId, _pos, _rot)
-        end
-    }
-    this.chairShake = {
-        Normal = {
-            up = function()
-                this:NormalShakeUp()
-            end,
-            down = function()
-                this:NormalShakeDown()
-            end
-        }
-    }
-    this.chair = nil
-    this.chairType = nil
-    this.qteTotalTime = 0
-    this.keepTime = 0
-    this.timer = 0
-    this.startUpdate = false
-    this.qteDuration = 0
-    this.qteTimer = 0
 end
 
 function Chair:PlayerSit(_chairId, _pos, _rot)
-    this.chair = _chairId
-    localPlayer.Position, localPlayer.Rotation = _pos, _rot
-    localPlayer.Avatar:PlayAnimation('SitIdle', 3, 1, 0, true, true, 1)
 end
 
 function Chair:PlayerLeaveSit()
-    localPlayer.Avatar:StopAnimation('SitIdle', 3)
-    this.startUpdate = false
-    this.qteTotalTime = 0
-    this.keepTime = 0
-    this.timer = 0
-    this.qteDuration = 0
-    this.qteTimer = 0
 end
 
 function Chair:NormalSit(_chairId, _pos, _rot)
-    this:PlayerSit(_chairId, _pos, _rot)
-    this.chairType = 'Normal'
-    this.startUpdate = false
-    --ui控制
-    GuiChair:EnterNormal()
-    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "摇起来！！！", 5, true)
-end
-
-function Chair:DestroyChair()
-    this.chair.model:Destroy()
-    --向服务器发送事件
-end
-
-function Chair:PlayerSitEventHandler(_type, _chairId, _pos, _rot)
-    this.chairFunc[_type](_chairId, _pos, _rot)
 end
 
 function Chair:QteSit(_chairId, _pos, _rot)
-    this:PlayerSit(_chairId, _pos, _rot)
-    this.chairType = 'QTE'
-    this.startUpdate = true
-    --ui控制
-    GuiChair:EnterQte()
-    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "快速点击按钮让自己不掉下去", 5, true)
 end
 
 function Chair:Update(_dt)

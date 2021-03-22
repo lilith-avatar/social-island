@@ -43,7 +43,7 @@ function SceneTime:InstantSycnSkyData()
             this.sky[k] = v
         end
     else
-        for k, v in pairs(Config.TimeSkySetting[this.clock-1]) do
+        for k, v in pairs(Config.TimeSkySetting[this.clock - 1]) do
             this.sky[k] = v
         end
     end
@@ -82,7 +82,7 @@ function SceneTime:RealTimeSycnSkyData()
             this.sky[k] = v
         end
     else
-        for k, v in pairs(Config.TimeSkySetting[this.clock-1]) do
+        for k, v in pairs(Config.TimeSkySetting[this.clock - 1]) do
             this.sky[k] = v
         end
     end
