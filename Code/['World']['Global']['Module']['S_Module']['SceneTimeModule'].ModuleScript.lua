@@ -23,7 +23,7 @@ end
 function SceneTime:DataInit()
     this.timer = 0
     this.clock = 8 -- 当前游戏内时间
-    this.timeSpeed = 12.5 -- 几秒1个小时
+    this.timeSpeed = 2 -- 几秒1个小时
     this.tweener = nil
 end
 
@@ -119,6 +119,21 @@ end
 
 ---@param _clock number
 function SceneTime:SycnTimeSEventHandler(_clock)
+	if math.floor(_clock) == 19 then
+		world.Light:SetActive(true)
+		for k,v in pairs(world.HangLight:GetChildren()) do
+			for k1,v1 in  pairs(v:GetChildren()) do
+				v1.Color = Color(math.random(0,255),math.random(0,255),math.random(0,100),255)
+			end
+		end
+	elseif math.floor(_clock) == 9 then
+		world.Light:SetActive(false)
+		for k,v in pairs(world.HangLight:GetChildren()) do
+			for k1,v1 in  pairs(v:GetChildren()) do
+				v1.Color = Color(70,70,70,255)
+			end
+		end
+	end
     print(string.format("当前时间 %s 点", math.floor(_clock))) --! 上线删除
 end
 

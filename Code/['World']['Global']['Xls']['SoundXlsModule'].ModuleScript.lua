@@ -137,7 +137,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'DOORS_WOOD_GATE_OPEN_2',
         IsLoop = true,
-        Volume = 20.0,
+        Volume = 5.0,
         Path = 'Audio/DOORS_WOOD_GATE_OPEN_2',
         Info = '摇木马的咯吱声'
     },
@@ -155,7 +155,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'Footstep_deck-002',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/Footstep_deck-002',
         Info = '脚步声'
     },
@@ -164,7 +164,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'PlayerControlModule_Jump_Deck',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/PlayerControlModule_Jump_Deck',
         Info = '跳落地'
     },
@@ -173,7 +173,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'JumpIntoWater',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 20.0,
         Path = 'Audio/JumpIntoWater',
         Info = '进入水中的声音'
     },
@@ -182,7 +182,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'WaterWalking',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/WaterWalking',
         Info = '在水中的脚步声'
     },
@@ -191,7 +191,7 @@ local SoundXls = {
         Type = 'SoundEffect',
         Name = 'AudioScript_Swim_03',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/AudioScript_Swim_03',
         Info = '游泳移动的声音'
     },
