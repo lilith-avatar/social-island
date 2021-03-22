@@ -120,6 +120,7 @@ end
 ---@param _clock number
 function SceneTime:SycnTimeSEventHandler(_clock)
 	if math.floor(_clock) == 19 then
+		NetUtil.Broadcast('PlayEffectEvent',100,Vector3(-106.406, -13.9315, 39.7601))
 		world.Light:SetActive(true)
 		for k,v in pairs(world.HangLight:GetChildren()) do
 			for k1,v1 in  pairs(v:GetChildren()) do

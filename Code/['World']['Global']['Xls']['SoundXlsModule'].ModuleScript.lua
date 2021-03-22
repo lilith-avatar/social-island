@@ -19,7 +19,7 @@ local SoundXls = {
         ID = 2,
         Type = 'BGM',
         Name = 'BGM',
-        IsLoop = false,
+        IsLoop = true,
         Volume = 45.0,
         Path = 'Audio/Temp_BGM',
         Info = ''
@@ -532,7 +532,7 @@ local SoundXls = {
         ID = 59,
         Type = 'SoundEffect',
         Name = 'Rocket_Launcher',
-        IsLoop = true,
+        IsLoop = false,
         Volume = 60.0,
         Path = 'Audio/Rocket_Launcher',
         Info = '弹射椅发射的音效'
@@ -895,6 +895,15 @@ local SoundXls = {
         IsLoop = true,
         Volume = 5.0,
         Path = 'Audio/creep',
+        Info = ''
+    },
+	[100] = {
+        ID = 100,
+        Type = 'SoundEffect',
+        Name = 'Night',
+        IsLoop = false,
+        Volume = 30.0,
+        Path = 'Audio/Night',
         Info = ''
     }
 }
