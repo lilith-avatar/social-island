@@ -62,10 +62,40 @@ function PlayerCtrl:EventBind()
             end
         end
     )
-    localPlayer.OnCollisionBegin:Connect(
+    localPlayer.PlayerCol.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject then
                 PlayerCtrl:OnScenesInteractCol(_hitObject, true)
+            end
+        end
+    )
+    localPlayer.PlayerCol.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject then
+                PlayerCtrl:OnScenesInteractCol(_hitObject, false)
+            end
+        end
+    )
+    localPlayer.CoinCol.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject and _hitObject.CoinUID then
+                if _hitObject.CoinUID.Value == localPlayer.UserId or _hitObject.CoinUID.Value == "" then
+                    _hitObject.CoinUID.Value = localPlayer.UserId
+                    _hitObject.GetCoinEvent:Fire()
+                end
+            end
+        end
+    )
+    localPlayer.CoinCol.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject and _hitObject.CoinUID then
+                _hitObject.CoinUID.Value = ""
+            end
+        end
+    )
+    localPlayer.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject then
                 if _hitObject.Name == "SallowWaterCol" then
                     isOnWater = true
                 end
@@ -75,7 +105,6 @@ function PlayerCtrl:EventBind()
     localPlayer.OnCollisionEnd:Connect(
         function(_hitObject)
             if _hitObject then
-                PlayerCtrl:OnScenesInteractCol(_hitObject, false)
                 if _hitObject.Name == "SallowWaterCol" then
                     isOnWater = false
                 end
@@ -317,6 +346,20 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
 end
 
+-- 角色重置
+function PlayerCtrl:PlayerReset()
+    BuffMgr:BuffClear()
+    for k, v in pairs(Config.Interact) do
+        NetUtil.Fire_S("LeaveInteractSEvent", localPlayer, k)
+        NetUtil.Fire_C("LeaveInteractCEvent", localPlayer, k)
+    end
+    localPlayer.LinearVelocity = Vector3.Zero
+    localPlayer.Position = world.SpawnLocations.StartPortal00.Position
+    if ItemMgr.curWeaponID ~= 0 then
+        ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
+    end
+end
+
 -- 碰到场景交互
 function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
     if _hitObject then
@@ -371,9 +414,9 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 _hitObject.GrassInteractUID.Value = ""
             end
         end
-        if _hitObject.Parent.AnimalCaughtEvent then
+        if _hitObject.AnimalCaughtEvent then
             if _isBegin then
-                Catch:TouchPrey(_hitObject.Parent, true)
+                Catch:TouchPrey(_hitObject, true)
                 NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 19)
             else
                 --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
@@ -395,16 +438,6 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             else
                 _hitObject.GuitarUID.Value = ""
                 NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-            end
-        end
-        if _hitObject.CoinUID then
-            if _isBegin then
-                if _hitObject.CoinUID.Value == localPlayer.UserId or _hitObject.CoinUID.Value == "" then
-                    _hitObject.CoinUID.Value = localPlayer.UserId
-                    _hitObject.GetCoinEvent:Fire()
-                end
-            else
-                _hitObject.CoinUID.Value = ""
             end
         end
         if _hitObject.TentUID1 then

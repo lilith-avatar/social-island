@@ -52,29 +52,29 @@ end
 
 --获得Buff
 function BuffMgr:GetBuffEventHandler(_buffID, _dur)
-	if _buffID ~= 0 then
-		if BuffDataList[_buffID] then
-			BuffDataList[_buffID].curTime = _dur
-		else
-			BuffDataList[_buffID] = {
-				curTime = _dur
-			}
-	
-			this:RemoveCoverBuff(Config.Buff[_buffID].BuffCoverIDList)
-		end
-		buffDataTable = table.deepcopy(defPlayerData)
-		for k, v in pairs(Config.Buff[_buffID]) do
-			if string.find(tostring(k), "_Cover") and defPlayerData[string.gsub(k, "_Cover", "")] then ---覆盖
-				buffDataTable[string.gsub(k, "_Cover", "")] = v
-				--print(string.gsub(k, "_Cover", ""))
-				--print(buffDataTable[string.gsub(k, "_Cover", "")])
-			end
-		end
-		this:GetAllBuffData()
-		PlayerCtrl:PlayerAttrUpdate()
-	else
-		return
-	end
+    if _buffID ~= 0 then
+        if BuffDataList[_buffID] then
+            BuffDataList[_buffID].curTime = _dur
+        else
+            BuffDataList[_buffID] = {
+                curTime = _dur
+            }
+
+            this:RemoveCoverBuff(Config.Buff[_buffID].BuffCoverIDList)
+        end
+        buffDataTable = table.deepcopy(defPlayerData)
+        for k, v in pairs(Config.Buff[_buffID]) do
+            if string.find(tostring(k), "_Cover") and defPlayerData[string.gsub(k, "_Cover", "")] then ---覆盖
+                buffDataTable[string.gsub(k, "_Cover", "")] = v
+            --print(string.gsub(k, "_Cover", ""))
+            --print(buffDataTable[string.gsub(k, "_Cover", "")])
+            end
+        end
+        this:GetAllBuffData()
+        PlayerCtrl:PlayerAttrUpdate()
+    else
+        return
+    end
 end
 
 --移除Buff
@@ -85,6 +85,14 @@ function BuffMgr:RemoveBuffEventHandler(_buffID)
         this:GetAllBuffData()
         PlayerCtrl:PlayerAttrUpdate()
     end
+end
+
+--清除所有Buff
+function BuffMgr:BuffClear()
+    BuffDataList = {}
+    buffDataTable = table.deepcopy(defPlayerData)
+    this:GetAllBuffData()
+    PlayerCtrl:PlayerAttrUpdate()
 end
 
 --移除互斥Buff
