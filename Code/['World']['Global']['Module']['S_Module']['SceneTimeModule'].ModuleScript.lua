@@ -41,15 +41,6 @@ function SceneTime:InstantSycnSkyData()
     if not configData then
         return
     end
-    if this.clock == 0 then
-        for k, v in pairs(Config.TimeSkySetting[23]) do
-            this.sky[k] = v
-        end
-    else
-        for k, v in pairs(Config.TimeSkySetting[this.clock - 1]) do
-            this.sky[k] = v
-        end
-    end
     data = {
         ClockTime = configData.ClockTime,
         Brightness = configData.Brightness,
@@ -82,15 +73,6 @@ function SceneTime:RealTimeSycnSkyData()
     if this.tweener then
         this.tweener:Pause()
         this.tweener = nil
-    end
-    if this.clock == 0 then
-        for k, v in pairs(Config.TimeSkySetting[23]) do
-            this.sky[k] = v
-        end
-    else
-        for k, v in pairs(Config.TimeSkySetting[this.clock - 1]) do
-            this.sky[k] = v
-        end
     end
     data = {
         ClockTime = configData.ClockTime,
