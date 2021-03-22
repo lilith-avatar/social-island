@@ -42,15 +42,20 @@ end
 
 function PistolRun:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    localPlayer:MoveTowards(Vector2.Zero)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle", "OneHandedSwordIdle", "PistolHit", "Vertigo"})
+    FsmMgr.playerActFsm:TriggerMonitor(
+        {"Idle", "SwimIdle", "OneHandedSwordIdle", "PistolHit", "PistolAttack", "Vertigo"}
+    )
     self:IdleMonitor()
-    self:MoveMonitor("Pistol")
+    self:WalkMonitor("Pistol")
     self:JumpMonitor("Pistol")
 end
 
 function PistolRun:OnLeave()
     PlayerActState.OnLeave(self)
+    localPlayer.Avatar:StopAnimation("RunFront", 9)
+    localPlayer.Avatar:StopAnimation("RunRight", 9)
+    localPlayer.Avatar:StopAnimation("RunLeft", 9)
+    localPlayer.Avatar:StopAnimation("RunBack", 9)
 end
 
 ---监听静止
