@@ -23,7 +23,7 @@ end
 function SceneTime:DataInit()
     this.timer = 0
     this.clock = 8 -- 当前游戏内时间
-    this.timeSpeed = 5 -- 几秒1个小时
+    this.timeSpeed = 12.5 -- 几秒1个小时
     this.tweener = nil
 end
 
