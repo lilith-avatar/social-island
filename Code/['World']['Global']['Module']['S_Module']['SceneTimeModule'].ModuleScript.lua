@@ -22,8 +22,8 @@ end
 
 function SceneTime:DataInit()
     this.timer = 0
-    this.clock = 8 -- 当前游戏内时间
-    this.timeSpeed = 2 -- 几秒1个小时
+    this.clock = 10 -- 当前游戏内时间
+    this.timeSpeed = 20 -- 几秒1个小时
     this.tweener = nil
 end
 
@@ -111,6 +111,15 @@ function SceneTime:Update(dt)
         if this.clock > 23 then
             this.clock = 0
         end
+        if Config.TimeSkySetting[this.clock] then
+            if this.clock == 10 then
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "新的一天开始了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+            elseif this.clock == 18 then
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "黄昏了，该回家了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+            elseif this.clock == 20 then
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "黑夜了，该去帐篷睡觉了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+            end
+        end
         NetUtil.Broadcast("SycnTimeCEvent", this.clock)
         NetUtil.Fire_S("SycnTimeSEvent", this.clock)
         this:SycnSkyData()
@@ -119,22 +128,22 @@ end
 
 ---@param _clock number
 function SceneTime:SycnTimeSEventHandler(_clock)
-	if math.floor(_clock) == 19 then
-		NetUtil.Broadcast('PlayEffectEvent',100,Vector3(-106.406, -13.9315, 39.7601))
-		world.Light:SetActive(true)
-		for k,v in pairs(world.HangLight:GetChildren()) do
-			for k1,v1 in  pairs(v:GetChildren()) do
-				v1.Color = Color(math.random(0,255),math.random(0,255),math.random(0,100),255)
-			end
-		end
-	elseif math.floor(_clock) == 9 then
-		world.Light:SetActive(false)
-		for k,v in pairs(world.HangLight:GetChildren()) do
-			for k1,v1 in  pairs(v:GetChildren()) do
-				v1.Color = Color(70,70,70,255)
-			end
-		end
-	end
+    if math.floor(_clock) == 19 then
+        NetUtil.Broadcast("PlayEffectEvent", 100, Vector3(-106.406, -13.9315, 39.7601))
+        world.Light:SetActive(true)
+        for k, v in pairs(world.HangLight:GetChildren()) do
+            for k1, v1 in pairs(v:GetChildren()) do
+                v1.Color = Color(math.random(0, 255), math.random(0, 255), math.random(0, 100), 255)
+            end
+        end
+    elseif math.floor(_clock) == 9 then
+        world.Light:SetActive(false)
+        for k, v in pairs(world.HangLight:GetChildren()) do
+            for k1, v1 in pairs(v:GetChildren()) do
+                v1.Color = Color(70, 70, 70, 255)
+            end
+        end
+    end
     print(string.format("当前时间 %s 点", math.floor(_clock))) --! 上线删除
 end
 

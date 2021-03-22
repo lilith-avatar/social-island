@@ -336,7 +336,7 @@ do
         )
         this:ActiveMovePid(
             _animalData,
-            Vector3(math.random(-10, 10), 6, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
+            Vector3(math.random(-10, 10), 3, math.random(-10, 10)).Normalized * _animalData.defMoveSpeed
         )
     end
     --SCARED
@@ -363,7 +363,7 @@ do
         local dir = (_animalData.obj.Position - _animalData.closePlayer.Position)
         this:ActiveMovePid(
             _animalData,
-            (Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized + Vector3(0, 0.3, 0)) *
+            (Vector3(dir.x, dir.y > 0 and dir.y or 0, dir.z).Normalized + Vector3(0, 0.1, 0)) *
                 _animalData.scaredMoveSpeed
         )
     end
@@ -391,7 +391,7 @@ do
         )
         this:ActiveMovePid(
             _animalData,
-            ((_animalData.areaCenterPos - _animalData.obj.Position).Normalized + Vector3(0, 0.3, 0)) *
+            ((_animalData.areaCenterPos - _animalData.obj.Position).Normalized + Vector3(0, 0.1, 0)) *
                 _animalData.defMoveSpeed
         )
     end
