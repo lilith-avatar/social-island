@@ -11,7 +11,7 @@ local ModeEnum = {
     RealTime = "RealTime" -- 随时间实时更改（大概？）
 }
 
-local TimeMode = ModeEnum.RealTime --!可更改
+local TimeMode = ModeEnum.Instant --!可更改
 
 ---初始化函数
 function SceneTime:Init()
@@ -37,9 +37,32 @@ function SceneTime:SycnSkyData()
 end
 
 function SceneTime:InstantSycnSkyData()
-    for k, v in pairs(Config.TimeSkySetting[this.clock]) do
+    local data, configData = {}, Config.TimeSkySetting[this.clock]
+    for k, v in pairs(Config.TimeSkySetting[this.clock-1]) do
         this.sky[k] = v
     end
+    data = {
+        ClockTime = configData.ClockTime,
+        Brightness = configData.Brightness,
+        Latitude = configData.Latitude,
+        SunAngular = configData.SunAngular,
+        ShadowDistance = configData.ShadowDistance,
+        ShadowIntensity = configData.ShadowIntensity,
+        Ambient = configData.Ambient,
+        SunColor = configData.SunColor,
+        EquatorColor = configData.EquatorColor,
+        GroundColor = configData.GroundColor,
+        SunIntensity = configData.SunIntensity,
+        SkyboxIntensity = configData.SkyboxIntensity,
+        FogColor = configData.FogColor,
+        FogStart = configData.FogStart,
+        FogEnd = configData.FogEnd,
+        FogColor = configData.FogColor,
+        FogHeightFadeStart = configData.FogHeightFadeStart,
+        FogHeightFadeEnd = configData.FogHeightFadeEnd
+    }
+    this.tweener = Tween:TweenProperty(this.sky, data, 3, 1)
+    this.tweener:Play()
 end
 
 function SceneTime:RealTimeSycnSkyData()
@@ -71,8 +94,8 @@ function SceneTime:RealTimeSycnSkyData()
         FogHeightFadeStart = configData.FogHeightFadeStart,
         FogHeightFadeEnd = configData.FogHeightFadeEnd
     }
-    local tweener = Tween:TweenProperty(this.sky, data, this.timeSpeed, 1)
-    tweener:Play()
+    this.tweener = Tween:TweenProperty(this.sky, data, this.timeSpeed, 1)
+    this.tweener:Play()
 end
 
 ---Update函数
