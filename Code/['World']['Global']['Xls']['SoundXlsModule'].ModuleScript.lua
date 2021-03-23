@@ -897,7 +897,7 @@ local SoundXls = {
         Path = 'Audio/creep',
         Info = ''
     },
-	[100] = {
+    [100] = {
         ID = 100,
         Type = 'SoundEffect',
         Name = 'Night',

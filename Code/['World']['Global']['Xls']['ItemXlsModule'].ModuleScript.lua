@@ -14,7 +14,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1002] = {
         ItemID = 1002,
@@ -24,7 +25,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1003] = {
         ItemID = 1003,
@@ -34,7 +36,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1004] = {
         ItemID = 1004,
@@ -44,7 +47,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1005] = {
         ItemID = 1005,
@@ -54,7 +58,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1006] = {
         ItemID = 1006,
@@ -64,7 +69,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1007] = {
         ItemID = 1007,
@@ -74,7 +80,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1008] = {
         ItemID = 1008,
@@ -84,7 +91,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1009] = {
         ItemID = 1009,
@@ -94,7 +102,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1010] = {
         ItemID = 1010,
@@ -104,7 +113,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1011] = {
         ItemID = 1011,
@@ -114,7 +124,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1012] = {
         ItemID = 1012,
@@ -124,7 +135,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1013] = {
         ItemID = 1013,
@@ -134,7 +146,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1014] = {
         ItemID = 1014,
@@ -144,7 +157,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1015] = {
         ItemID = 1015,
@@ -154,7 +168,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1016] = {
         ItemID = 1016,
@@ -164,7 +179,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1017] = {
         ItemID = 1017,
@@ -174,7 +190,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1018] = {
         ItemID = 1018,
@@ -184,7 +201,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1019] = {
         ItemID = 1019,
@@ -194,7 +212,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1020] = {
         ItemID = 1020,
@@ -204,7 +223,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1021] = {
         ItemID = 1021,
@@ -214,7 +234,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1022] = {
         ItemID = 1022,
@@ -224,7 +245,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1023] = {
         ItemID = 1023,
@@ -234,7 +256,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1024] = {
         ItemID = 1024,
@@ -244,7 +267,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1025] = {
         ItemID = 1025,
@@ -254,7 +278,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1026] = {
         ItemID = 1026,
@@ -264,7 +289,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1027] = {
         ItemID = 1027,
@@ -274,7 +300,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1028] = {
         ItemID = 1028,
@@ -284,7 +311,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1029] = {
         ItemID = 1029,
@@ -294,7 +322,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1030] = {
         ItemID = 1030,
@@ -304,7 +333,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1031] = {
         ItemID = 1031,
@@ -314,7 +344,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1032] = {
         ItemID = 1032,
@@ -324,7 +355,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1033] = {
         ItemID = 1033,
@@ -334,7 +366,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1034] = {
         ItemID = 1034,
@@ -344,7 +377,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1035] = {
         ItemID = 1035,
@@ -354,7 +388,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1036] = {
         ItemID = 1036,
@@ -364,7 +399,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1037] = {
         ItemID = 1037,
@@ -374,7 +410,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1038] = {
         ItemID = 1038,
@@ -384,7 +421,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1039] = {
         ItemID = 1039,
@@ -394,7 +432,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'OneHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1040] = {
         ItemID = 1040,
@@ -404,7 +443,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1041] = {
         ItemID = 1041,
@@ -414,7 +454,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1042] = {
         ItemID = 1042,
@@ -424,17 +465,19 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1043] = {
         ItemID = 1043,
         Name = 'Item_Name_1043',
-        Des = nil,
+        Des = 'Item_Des_1043',
         Icon = 'MeleeWeapon_Icon',
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1044] = {
         ItemID = 1044,
@@ -444,7 +487,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1045] = {
         ItemID = 1045,
@@ -454,7 +498,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [1046] = {
         ItemID = 1046,
@@ -464,7 +509,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 1,
         UseAnimName = 'TwoHandedSwordEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3001] = {
         ItemID = 3001,
@@ -474,7 +520,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3002] = {
         ItemID = 3002,
@@ -484,7 +531,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3003] = {
         ItemID = 3003,
@@ -494,7 +542,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3004] = {
         ItemID = 3004,
@@ -504,7 +553,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3005] = {
         ItemID = 3005,
@@ -514,7 +564,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 23,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3006] = {
         ItemID = 3006,
@@ -524,7 +575,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 23,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3007] = {
         ItemID = 3007,
@@ -534,7 +586,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3008] = {
         ItemID = 3008,
@@ -544,7 +597,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3009] = {
         ItemID = 3009,
@@ -554,7 +608,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3010] = {
         ItemID = 3010,
@@ -564,7 +619,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3011] = {
         ItemID = 3011,
@@ -574,7 +630,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3012] = {
         ItemID = 3012,
@@ -584,7 +641,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 23,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3013] = {
         ItemID = 3013,
@@ -594,7 +652,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3014] = {
         ItemID = 3014,
@@ -604,7 +663,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3015] = {
         ItemID = 3015,
@@ -614,7 +674,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3016] = {
         ItemID = 3016,
@@ -624,7 +685,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3017] = {
         ItemID = 3017,
@@ -634,7 +696,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3018] = {
         ItemID = 3018,
@@ -644,7 +707,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3019] = {
         ItemID = 3019,
@@ -654,7 +718,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3020] = {
         ItemID = 3020,
@@ -664,7 +729,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3021] = {
         ItemID = 3021,
@@ -674,7 +740,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3022] = {
         ItemID = 3022,
@@ -684,7 +751,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3023] = {
         ItemID = 3023,
@@ -694,7 +762,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3024] = {
         ItemID = 3024,
@@ -704,7 +773,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3025] = {
         ItemID = 3025,
@@ -714,7 +784,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [3026] = {
         ItemID = 3026,
@@ -724,7 +795,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [3027] = {
         ItemID = 3027,
@@ -734,7 +806,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [3028] = {
         ItemID = 3028,
@@ -744,7 +817,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3029] = {
         ItemID = 3029,
@@ -754,7 +828,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3030] = {
         ItemID = 3030,
@@ -764,7 +839,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3031] = {
         ItemID = 3031,
@@ -774,7 +850,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3032] = {
         ItemID = 3032,
@@ -784,7 +861,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3033] = {
         ItemID = 3033,
@@ -794,7 +872,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3034] = {
         ItemID = 3034,
@@ -804,7 +883,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 26,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3035] = {
         ItemID = 3035,
@@ -814,7 +894,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3036] = {
         ItemID = 3036,
@@ -824,7 +905,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3037] = {
         ItemID = 3037,
@@ -834,7 +916,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3038] = {
         ItemID = 3038,
@@ -844,7 +927,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [3039] = {
         ItemID = 3039,
@@ -854,7 +938,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2001] = {
         ItemID = 2001,
@@ -864,7 +949,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2002] = {
         ItemID = 2002,
@@ -874,7 +960,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2003] = {
         ItemID = 2003,
@@ -884,7 +971,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2004] = {
         ItemID = 2004,
@@ -894,7 +982,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2005] = {
         ItemID = 2005,
@@ -904,7 +993,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2006] = {
         ItemID = 2006,
@@ -914,7 +1004,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2007] = {
         ItemID = 2007,
@@ -924,7 +1015,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [2008] = {
         ItemID = 2008,
@@ -934,7 +1026,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 25,
         UseAnimName = 'BowEquip',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [4001] = {
         ItemID = 4001,
@@ -944,7 +1037,8 @@ local ItemXls = {
         UseCD = 0.0,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = true
+        Useable = true,
+        IsConsume = false
     },
     [5001] = {
         ItemID = 5001,
@@ -954,7 +1048,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [5002] = {
         ItemID = 5002,
@@ -964,7 +1059,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [5003] = {
         ItemID = 5003,
@@ -974,7 +1070,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [5004] = {
         ItemID = 5004,
@@ -984,7 +1081,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [5005] = {
         ItemID = 5005,
@@ -994,7 +1092,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [5006] = {
         ItemID = 5006,
@@ -1004,7 +1103,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [5007] = {
         ItemID = 5007,
@@ -1014,7 +1114,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 0,
         UseAnimName = '',
-        Useable = false
+        Useable = false,
+        IsConsume = false
     },
     [6001] = {
         ItemID = 6001,
@@ -1024,7 +1125,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6002] = {
         ItemID = 6002,
@@ -1034,7 +1136,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6003] = {
         ItemID = 6003,
@@ -1044,7 +1147,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6004] = {
         ItemID = 6004,
@@ -1054,7 +1158,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6005] = {
         ItemID = 6005,
@@ -1064,7 +1169,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6006] = {
         ItemID = 6006,
@@ -1074,7 +1180,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6007] = {
         ItemID = 6007,
@@ -1084,7 +1191,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6008] = {
         ItemID = 6008,
@@ -1094,7 +1202,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6009] = {
         ItemID = 6009,
@@ -1104,7 +1213,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6010] = {
         ItemID = 6010,
@@ -1114,7 +1224,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6011] = {
         ItemID = 6011,
@@ -1124,7 +1235,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6012] = {
         ItemID = 6012,
@@ -1134,7 +1246,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6013] = {
         ItemID = 6013,
@@ -1144,7 +1257,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6014] = {
         ItemID = 6014,
@@ -1154,7 +1268,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6015] = {
         ItemID = 6015,
@@ -1164,7 +1279,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6016] = {
         ItemID = 6016,
@@ -1174,7 +1290,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6017] = {
         ItemID = 6017,
@@ -1184,7 +1301,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6018] = {
         ItemID = 6018,
@@ -1194,7 +1312,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6019] = {
         ItemID = 6019,
@@ -1204,7 +1323,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6020] = {
         ItemID = 6020,
@@ -1214,7 +1334,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6021] = {
         ItemID = 6021,
@@ -1224,7 +1345,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6022] = {
         ItemID = 6022,
@@ -1234,7 +1356,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6023] = {
         ItemID = 6023,
@@ -1244,7 +1367,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6024] = {
         ItemID = 6024,
@@ -1254,7 +1378,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6025] = {
         ItemID = 6025,
@@ -1264,7 +1389,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6026] = {
         ItemID = 6026,
@@ -1274,7 +1400,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6027] = {
         ItemID = 6027,
@@ -1284,7 +1411,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6028] = {
         ItemID = 6028,
@@ -1294,7 +1422,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6029] = {
         ItemID = 6029,
@@ -1304,7 +1433,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6030] = {
         ItemID = 6030,
@@ -1314,7 +1444,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6031] = {
         ItemID = 6031,
@@ -1324,7 +1455,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6032] = {
         ItemID = 6032,
@@ -1334,7 +1466,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6033] = {
         ItemID = 6033,
@@ -1344,7 +1477,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6034] = {
         ItemID = 6034,
@@ -1354,7 +1488,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6035] = {
         ItemID = 6035,
@@ -1364,7 +1499,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6036] = {
         ItemID = 6036,
@@ -1374,7 +1510,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6037] = {
         ItemID = 6037,
@@ -1384,7 +1521,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6038] = {
         ItemID = 6038,
@@ -1394,7 +1532,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6039] = {
         ItemID = 6039,
@@ -1404,7 +1543,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6040] = {
         ItemID = 6040,
@@ -1414,7 +1554,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6041] = {
         ItemID = 6041,
@@ -1424,7 +1565,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6042] = {
         ItemID = 6042,
@@ -1434,7 +1576,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6043] = {
         ItemID = 6043,
@@ -1444,7 +1587,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6044] = {
         ItemID = 6044,
@@ -1454,7 +1598,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6045] = {
         ItemID = 6045,
@@ -1464,7 +1609,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6046] = {
         ItemID = 6046,
@@ -1474,7 +1620,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6047] = {
         ItemID = 6047,
@@ -1484,7 +1631,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6048] = {
         ItemID = 6048,
@@ -1494,7 +1642,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6049] = {
         ItemID = 6049,
@@ -1504,7 +1653,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6050] = {
         ItemID = 6050,
@@ -1514,7 +1664,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6051] = {
         ItemID = 6051,
@@ -1524,7 +1675,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6052] = {
         ItemID = 6052,
@@ -1534,7 +1686,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6053] = {
         ItemID = 6053,
@@ -1544,7 +1697,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6054] = {
         ItemID = 6054,
@@ -1554,7 +1708,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6055] = {
         ItemID = 6055,
@@ -1564,7 +1719,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6056] = {
         ItemID = 6056,
@@ -1574,7 +1730,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6057] = {
         ItemID = 6057,
@@ -1584,7 +1741,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6058] = {
         ItemID = 6058,
@@ -1594,7 +1752,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6059] = {
         ItemID = 6059,
@@ -1604,7 +1763,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6060] = {
         ItemID = 6060,
@@ -1614,7 +1774,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6061] = {
         ItemID = 6061,
@@ -1624,7 +1785,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6062] = {
         ItemID = 6062,
@@ -1634,7 +1796,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6063] = {
         ItemID = 6063,
@@ -1644,7 +1807,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6064] = {
         ItemID = 6064,
@@ -1654,7 +1818,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6065] = {
         ItemID = 6065,
@@ -1664,7 +1829,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6066] = {
         ItemID = 6066,
@@ -1674,7 +1840,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6067] = {
         ItemID = 6067,
@@ -1684,7 +1851,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6068] = {
         ItemID = 6068,
@@ -1694,7 +1862,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6069] = {
         ItemID = 6069,
@@ -1704,7 +1873,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6070] = {
         ItemID = 6070,
@@ -1714,7 +1884,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6071] = {
         ItemID = 6071,
@@ -1724,7 +1895,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6072] = {
         ItemID = 6072,
@@ -1734,7 +1906,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6073] = {
         ItemID = 6073,
@@ -1744,7 +1917,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6074] = {
         ItemID = 6074,
@@ -1754,7 +1928,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6075] = {
         ItemID = 6075,
@@ -1764,7 +1939,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6076] = {
         ItemID = 6076,
@@ -1774,7 +1950,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6077] = {
         ItemID = 6077,
@@ -1784,7 +1961,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6078] = {
         ItemID = 6078,
@@ -1794,7 +1972,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6079] = {
         ItemID = 6079,
@@ -1804,7 +1983,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6080] = {
         ItemID = 6080,
@@ -1814,7 +1994,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6081] = {
         ItemID = 6081,
@@ -1824,7 +2005,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6082] = {
         ItemID = 6082,
@@ -1834,7 +2016,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6083] = {
         ItemID = 6083,
@@ -1844,7 +2027,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6084] = {
         ItemID = 6084,
@@ -1854,7 +2038,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6085] = {
         ItemID = 6085,
@@ -1864,7 +2049,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6086] = {
         ItemID = 6086,
@@ -1874,7 +2060,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6087] = {
         ItemID = 6087,
@@ -1884,7 +2071,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6088] = {
         ItemID = 6088,
@@ -1894,7 +2082,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6089] = {
         ItemID = 6089,
@@ -1904,7 +2093,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6090] = {
         ItemID = 6090,
@@ -1914,7 +2104,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6091] = {
         ItemID = 6091,
@@ -1924,7 +2115,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     },
     [6092] = {
         ItemID = 6092,
@@ -1934,7 +2126,8 @@ local ItemXls = {
         UseCD = 0.5,
         UseSoundID = 11,
         UseAnimName = 'HTGoodsDisappear',
-        Useable = true
+        Useable = true,
+        IsConsume = true
     }
 }
 
