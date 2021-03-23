@@ -73,7 +73,7 @@ function GuiBag:TransItemTable()
     --先清空表
     this.slotItem = {}
     for k, v in pairs(Data.Player.bag) do
-        if v.count ~= 0 then
+        if v.count > 0 then
             local data = {
                 num = v.count,
                 id = k,
