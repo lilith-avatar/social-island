@@ -76,12 +76,10 @@ function GuiCook:TransItemTable()
     this.BagMaterial = {}
     for k, v in pairs(Data.Player.bag) do
         if v.count > 0 and Config.RewardItem[k] then
-            for i = 1, v.count do
-                local data = {
-                    id = k
-                }
-                table.insert(this.BagMaterial, data)
-            end
+            local data = {
+                id = k
+            }
+            table.insert(this.BagMaterial, data)
         end
     end
 end
