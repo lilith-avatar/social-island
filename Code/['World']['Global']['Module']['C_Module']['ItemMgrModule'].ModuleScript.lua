@@ -24,9 +24,9 @@ function ItemMgr:DataInit()
     for k, v in pairs(Config.Item) do
         this.itemInstance[k] = this:InstantiateItem(k)
     end
-    this.curWeaponID = 0
+    this.curEquipmentID = 0
 
-    this.curWeapon = nil
+    this.curEquipment = nil
 
     -- TODO: 之后应该由服务器决定数据
     invoke(this.InitBagData, .5)
@@ -35,12 +35,12 @@ end
 -- TODO: 初始化默认背包数据
 function ItemMgr:InitBagData()
     local defaultItems = {
-        5001,
-        5002,
-        5003,
-        5004,
-        5005,
-        5006
+        6001,
+        6002,
+        6003,
+        6004,
+        6005,
+        6006
     }
     for _, v in pairs(defaultItems) do
         NetUtil.Fire_C("GetItemEvent", localPlayer, v)
@@ -49,50 +49,56 @@ end
 
 --新建背包数据
 function ItemMgr:NewBagData(_id)
+    local typeConfig = Config.ItemType[Config.Item[_id].Type]
     local tempBag = {
         id = _id,
-        type = string.sub(tostring(_id), 1, 1),
+        type = Config.Item[_id].Type,
         count = 0,
         lastestTime = 0,
         isNew = true,
-        isConst = tonumber(string.sub(tostring(_id), 1, 1)) < 6
+        isConst = typeConfig.IsConsum
     }
     Data.Player.bag[_id] = tempBag
 end
 
 --实例化近战武器
 function ItemMgr:Instantiate1(_id)
-    return MeleeWeapon:new(Config.Item[_id], Config.MeleeWeapon[_id])
+    return MeleeWeapon:new(Config.Item[_id], Config.Melee[_id])
 end
 
---实例化远程武器
+--实例化弓箭武器
 function ItemMgr:Instantiate2(_id)
-    return LongRangeWeapon:new(Config.Item[_id], Config.LongRangeWeapon[_id])
+    return BowWeapon:new(Config.Item[_id], Config.Bow[_id])
 end
 
---实例化即时使用型道具
+--实例化手枪道具
 function ItemMgr:Instantiate3(_id)
-    return UsableItem:new(Config.Item[_id], Config.UsableItem[_id])
+    return PistolWeapon:new(Config.Item[_id], Config.Pistol[_id])
 end
 
---实例化放置型道具
+--实例化消耗型道具
 function ItemMgr:Instantiate4(_id)
-    return PlaceableItem:new(Config.Item[_id], Config.PlaceableItem[_id])
+    return ConsumableItem:new(Config.Item[_id], Config.Consumable[_id])
+end
+
+--实例化服装型道具
+function ItemMgr:Instantiate5(_id)
+    return ClothingItem:new(Config.Item[_id], Config.Clothing[_id])
 end
 
 --实例化任务型道具
-function ItemMgr:Instantiate5(_id)
-    return TaskItem:new(Config.Item[_id], Config.TaskItem[_id])
+function ItemMgr:Instantiate6(_id)
+    return TaskItem:new(Config.Item[_id], Config.Task[_id])
 end
 
---实例化奖励型道具
-function ItemMgr:Instantiate6(_id)
-    return RewardItem:new(Config.Item[_id], Config.RewardItem[_id])
+--实例化材料型道具
+function ItemMgr:Instantiate7(_id)
+    return MaterialItem:new(Config.Item[_id], Config.Material[_id])
 end
 
 --实例化物品
 function ItemMgr:InstantiateItem(_id)
-    return this["Instantiate" .. string.sub(tostring(_id), 1, 1)](self, _id)
+    return this["Instantiate" .. Config.Item[_id].Type](self, _id)
 end
 
 --兑换任务奖励
@@ -100,20 +106,19 @@ function ItemMgr:RedeemTaskItemReward(_id)
     this.itemInstance[_id]:GetTaskReward()
 end
 
---获得道具
+--获得道具 
 function ItemMgr:GetItemEventHandler(_id)
     -- 初始化默认背包数据
     if Data.Player.bag[_id] == nil then
         print("[ItemMgr] 新建道具", _id)
         this:NewBagData(_id)
     end
-
-    if tonumber(string.sub(tostring(_id), 1, 1)) < 6 and Data.Player.bag[_id].count > 0 then
+    local typeConfig = Config.ItemType[Config.Item[_id].Type]
+    if typeConfig.IsGetRepeatedly == false and Data.Player.bag[_id].count > 0 then
         print("[ItemMgr] 已有道具", _id)
         return
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
-    this.itemInstance[_id]:PutIntoBag()
     GuiNoticeInfo:ShowGetItem(_id)
     print("[ItemMgr] 获得道具", _id)
     return
@@ -123,19 +128,33 @@ end
 function ItemMgr:RemoveItemEventHandler(_id)
     print("[ItemMgr] 移除道具", _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count - 1
-    this.itemInstance[_id]:ThrowOutOfBag()
 end
 
---使用道具
-function ItemMgr:UseItemEventHandler(_id)
-    print("[ItemMgr] 使用道具", _id)
-    this.itemInstance[_id]:Use()
+function ItemMgr:test()
+    ItemMgr:GetItemEventHandler(5001)
+    ItemMgr:GetItemEventHandler(2002)
+    ItemMgr:UseItemInBagEventHandler(5001)
 end
 
---解除当前武器
-function ItemMgr:UnequipCurWeaponEventHandler()
-    if this.curWeaponID ~= 0 then
-        this.itemInstance[this.curWeaponID]:Unequip()
+--使用在背包的道具 
+function ItemMgr:UseItemInBagEventHandler(_id)
+    print("[ItemMgr] 使用在背包的道具", _id)
+    this.itemInstance[_id]:UseInBag()
+end
+
+--使用在手中的道具
+function ItemMgr:UseItemInHandEventHandler()
+    if this.curEquipmentID ~= 0 then
+        print("[ItemMgr] 使用在手中的道具")
+        this.itemInstance[this.curEquipmentID]:UseInHand()
+    end
+end
+
+--解除当前道具
+function ItemMgr:UnequipCurEquipmentEventHandler()
+    if this.curEquipmentID ~= 0 then
+        this.curEquipmentID = 0
+        this.itemInstance[this.curEquipmentID]:Unequip()
     end
 end
 
@@ -196,6 +215,11 @@ function ItemMgr:GetCoinEventHandler(_CoinNum, _itemId)
 end
 
 function ItemMgr:Update(dt, tt)
+    if this.itemInstance[this.curEquipmentID] then
+        this.itemInstance[this.curEquipmentID]:Update(dt)
+    else
+        GuiControl:UpdateUseBtnMask(0)
+    end
 end
 
 return ItemMgr

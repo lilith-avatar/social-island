@@ -11,24 +11,11 @@ end
 
 --攻击
 function MeleeWeapon:Attack()
-    self.attackCT = self.config.AttackCD
-    self:PlayAttackAnim()
-    self:PlayAttackSound()
+    WeaponBase.Attack(self)
 end
 
---进入打地鼠
 function MeleeWeapon:Equip()
     WeaponBase.Equip(self)
-end
-
---获取攻击数据
-function MeleeWeapon:GetAttackData()
-    return {
-        healthChange = self.config.HealthChange,
-        hitAddBuffID = self.config.HitAddBuffID,
-        hitAddBuffDur = self.config.HitAddBuffDur,
-        hitRemoveBuffID = self.config.HitRemoveBuffID
-    }
 end
 
 return MeleeWeapon

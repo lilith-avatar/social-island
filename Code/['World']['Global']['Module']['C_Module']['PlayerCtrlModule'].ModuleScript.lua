@@ -41,6 +41,8 @@ end
 function PlayerCtrl:DataInit()
     this.finalDir = Vector3.Zero
     this.isControllable = true
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
 end
 
 --- 节点事件绑定
@@ -199,7 +201,7 @@ function PlayerCtrl:PlayerSwim()
             --print("游泳检测")
             NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
             NetUtil.Fire_C("PlayEffectEvent", localPlayer, 20)
-        --FsmMgr:FsmTriggerEventHandler("SwimIdle")
+            FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
         if
@@ -238,12 +240,8 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
-    if Data.Player.attr.AnimState ~= "" then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
-    else
-    end
     if not Data.Player.attr.EnableEquipable then
-        NetUtil.Fire_C("UnequipCurWeaponEvent", localPlayer)
+        NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
     end
 end
 
@@ -342,8 +340,8 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     FsmMgr:FsmTriggerEventHandler("OneHandedSwordHit")
     FsmMgr:FsmTriggerEventHandler("TwoHandedSwordHit")
     print("角色受伤", table.dump(_data))
-    BuffMgr:GetBuffEventHandler(_data.hitAddBuffID, _data.hitAddBuffDur)
-    BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
+    BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
+    BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end
 
 -- 角色重置

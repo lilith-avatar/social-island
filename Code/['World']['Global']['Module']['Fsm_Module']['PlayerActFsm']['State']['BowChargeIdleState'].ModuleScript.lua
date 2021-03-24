@@ -49,7 +49,6 @@ function BowChargeIdle:OnUpdate(dt)
     for k, v in pairs(localPlayer.Avatar.Bone_R_Hand.BowChangeEffect:GetChildren()) do
         v.Size = Vector3(0.3, 0.3, 0.3) * GuiBowAim.chargeForce
     end
-    PlayerCam:TPSCamZoom(GuiBowAim.chargeForce)
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then

@@ -1,64 +1,83 @@
 --- 物品基类
--- @module ItemBase
+--- @module ItemBase
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
 local ItemBase = class("ItemBase")
 
-function ItemBase:initialize(_data, _config)
+function ItemBase:initialize(_baseData, _derivedData)
     print("ItemBase:initialize()")
-    self.id = _data.ItemID
-    self.useCD = _data.UseCD
-    self.useCT = _data.UseCD
-    self.useSoundID = _data.UseSoundID
-    self.useAnimName = _data.useAnimName
-    self.isUsable = true
-    self.isEquipable = false
-    self.config = _config
+    self.baseData = _baseData
+    self.typeConfig = Config.ItemType[_baseData.Type]
+    self.derivedData = _derivedData
+    self.equipObj = nil
 end
 
 --放入背包
 function ItemBase:PutIntoBag()
+    NetUtil.Fire_C("GetItemEvent", localPlayer, self.baseData.ItemID)
 end
 
 --从背包里扔掉
 function ItemBase:ThrowOutOfBag()
+    NetUtil.Fire_C("RemoveItemEvent", localPlayer, self.baseData.ItemID)
 end
 
---销毁
-function ItemBase:DestroyItem()
+--在背包中使用
+function ItemBase:UseInBag()
 end
 
---使用
-function ItemBase:Use()
-    self.useCT = self.useCD
-    self:PlayUseSound()
+--拿在手中使用
+function ItemBase:UseInHand()
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.UseSoundID)
+
+    NetUtil.Fire_C("CUseItemEvent", localPlayer, self.baseData.ItemID)
+    NetUtil.Fire_S("SUseItemEvent", localPlayer, self.baseData.ItemID)
 end
 
 --装备
 function ItemBase:Equip()
+    print("装备")
+    NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
+    wait(0.1)
+    local node1, node2 = string.match(self.derivedData.ParentNode, "([%w_]+).([%w_]+)")
+    --print(node1, node1)
+    local pNode = localPlayer.Avatar[node1][node2]
+    self.equipObj =
+        world:CreateInstance(
+        self.derivedData.ModelName,
+        self.derivedData.ModelName .. "Instance",
+        pNode,
+        pNode.Position + self.derivedData.Offset,
+        pNode.Rotation + self.derivedData.Angle
+    )
+
+    localPlayer.Avatar:PlayAnimation(self.baseData.TakeOutAniName, 8, 1, 0.2, true, false, 1)
+    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "TakeOutItem")
+    wait(self.baseData.TakeOutTime)
+
+    print(self.typeConfig.FsmMode)
+    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, self.typeConfig.FsmMode)
+
+    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.TakeOutSoundID)
+    NetUtil.Fire_C("RemoveItemEvent", localPlayer, self.baseData.ItemID)
+    ItemMgr.curEquipmentID = self.baseData.ItemID
+
+    NetUtil.Fire_C("CTakeOutItemEvent", localPlayer, self.baseData.ItemID)
+    NetUtil.Fire_S("STakeOutItemEvent", localPlayer, self.baseData.ItemID)
+
+    GuiControl:UpdateTakeOffBtn()
 end
 
 --取下装备
 function ItemBase:Unequip()
+    self.equipObj:Destroy()
+    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+    wait(self.baseData.TakeOutTime)
+    self:PutIntoBag()
+    GuiControl:UpdateTakeOffBtn()
 end
 
---播放使用音效
-function ItemBase:PlayUseSound()
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.useSoundID)
-end
-
---播放使用动作
-function ItemBase:PlayUseAnim()
-    localPlayer.Avatar:PlayAnimation(self.useAnimName, 4, 1, 0.1, false, false, 1)
-end
-
---CD消退
-function ItemBase:CDRun(dt)
-    if self.useCT > 0 then
-        self.useCT = self.useCT - dt
-    elseif self.useCT < 0 then
-        self.useCT = 0
-    end
+function ItemBase:Update(dt)
 end
 
 return ItemBase

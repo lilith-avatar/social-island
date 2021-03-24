@@ -4,13 +4,10 @@
 -- @author Dead Ratman
 local WeaponBase = class("WeaponBase", ItemBase)
 
-function WeaponBase:initialize(_data, _config)
-    ItemBase.initialize(self, _data, _config)
+function WeaponBase:initialize(_baseData, _derivedData)
+    ItemBase.initialize(self, _baseData, _derivedData)
     print("WeaponBase:initialize()")
-    self.isUsable = true
-    self.isEquipable = true
-    self.weaponObj = nil
-    self.attackCT = self.config.AttackCD
+    self.useCT = self.baseData.UseCD
 end
 
 --放入背包
@@ -23,107 +20,63 @@ function WeaponBase:ThrowOutOfBag()
     ItemBase.ThrowOutOfBag(self)
 end
 
---使用
-function WeaponBase:Use()
-    if self.useCT == 0 then
-    end
+--在背包中使用
+function WeaponBase:UseInBag()
     print("使用", self.id)
-    if ItemMgr.curWeaponID ~= 0 then
-        ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
-    end
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 25, localPlayer.Position)
-    ItemMgr.curWeaponID = self.id
-    ItemBase.Use(self)
+    ItemBase.UseInBag(self)
     self:Equip()
+end
+
+--拿在手中使用
+function WeaponBase:UseInHand()
+    if self.useCT == 0 then
+        ItemBase.UseInHand(self)
+        self:Attack()
+    end
 end
 
 --装备
 function WeaponBase:Equip()
-    local node1, node2 = string.match(self.config.ParentNode, "([%w_]+).([%w_]+)")
-    print(node1, node1)
-    local pNode = localPlayer.Avatar[node1][node2]
-    self.weaponObj =
-        world:CreateInstance(
-        self.config.ModelName,
-        self.config.ModelName .. "Instance",
-        pNode,
-        pNode.Position + self.config.Offset,
-        pNode.Rotation + self.config.Angle
-    )
-    print("装备")
-    NetUtil.Fire_C("GetBuffEvent", localPlayer, self.config.UseAddBuffID, self.config.UseAddBuffDur)
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseRemoveBuffID)
-    GuiControl:UpdateTakeOffBtn()
+    ItemBase.Equip(self)
 end
 
 --取下装备
 function WeaponBase:Unequip()
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.config.UseAddBuffID)
-    self.weaponObj:Destroy()
-    ItemMgr.curWeaponID = 0
-    GuiControl:UpdateTakeOffBtn()
+    ItemBase.Unequip(self)
+    self.useCT = 0
+    GuiControl:UpdateUseBtnMask(0)
 end
 
 --攻击
 function WeaponBase:Attack()
-    self.attackCT = self.config.AttackCD
-    self:PlayAttackAnim()
-    self:PlayAttackSound()
-end
-
---获取攻击数据
-function WeaponBase:GetAttackData()
-    return {
-        healthChange = self.config.HealthChange,
-        hitAddBuffID = self.config.HitAddBuffID,
-        hitAddBuffDur = self.config.HitAddBuffDur,
-        hitRemoveBuffID = self.config.HitRemoveBuffID
-    }
-end
-
---播放攻击音效
-function WeaponBase:PlayAttackSound()
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.config.AttackSoundID)
-end
-
---播放命中音效
-function WeaponBase:PlayHitSound(_pos)
-    NetUtil.Fire_S("SPlayEffectEvent", self.config.HitSoundID, _pos)
-end
-
---播放命中特效
-function WeaponBase:PlayHitEffect(_pos)
-    local effect =
-        world:CreateInstance(self.config.HitEffectName, self.config.HitEffectName .. "Instance", self.weaponObj, _pos)
+    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "UseItem")
+    localPlayer.Avatar:PlayAnimation(self.baseData.UseAniName, 8, 1, 0.2, true, false, 1)
+    self.useCT = self.baseData.UseCD
     invoke(
         function()
-            effect:Destroy()
+            localPlayer.Avatar:StopAnimation(self.baseData.UseAniName, 8)
+            if self.typeConfig.FsmMode then
+                NetUtil.Fire_C("FsmTriggerEvent", localPlayer, self.typeConfig.FsmMode)
+            else
+                NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+            end
         end,
-        1
+        self.baseData.UseTime
     )
-end
-
---切换到待机动作
-function WeaponBase:PlayIdleAnim()
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, self.config.Anim .. "Idle")
-end
-
---切换到攻击动作
-function WeaponBase:PlayAttackAnim()
-    for k, v in pairs(self.config.AttackAnimName) do
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, v)
-    end
 end
 
 --CD消退
 function WeaponBase:CDRun(dt)
-    ItemBase.CDRun(self, dt)
-    if self.attackCT > 0 then
-        self.attackCT = self.attackCT - dt
-    elseif self.attackCT < 0 then
-        self.attackCT = 0
+    if self.useCT > 0 then
+        self.useCT = self.useCT - dt
+    elseif self.useCT < 0 then
+        self.useCT = 0
     end
+    GuiControl:UpdateUseBtnMask(self.useCT / self.baseData.UseCD)
+end
+
+function WeaponBase:Update(dt)
+    self:CDRun(dt)
 end
 
 return WeaponBase

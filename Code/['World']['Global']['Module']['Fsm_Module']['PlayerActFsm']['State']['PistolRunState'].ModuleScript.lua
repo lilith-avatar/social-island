@@ -43,7 +43,14 @@ end
 function PistolRun:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor(
-        {"Idle", "SwimIdle", "OneHandedSwordIdle", "PistolHit", "PistolAttack", "Vertigo"}
+        {
+            "Idle",
+            "SwimIdle",
+            "PistolHit",
+            "PistolAttack",
+            "Vertigo",
+            "TakeOutItem"
+        }
     )
     self:IdleMonitor()
     self:WalkMonitor("Pistol")

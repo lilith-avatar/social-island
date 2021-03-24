@@ -27,8 +27,8 @@ end
 function Catch:EventBind()
 end
 
-function Catch:UseItemEventHandler(_id)
-    if _id == 3025 or _id == 3026 or _id == 3027 then
+function Catch:CUseItemEventHandler(_id)
+    if _id == 4025 or _id == 4026 or _id == 4027 then
         this:InstanceTrap(_id)
     end
 end
@@ -36,14 +36,21 @@ end
 --生成一个陷阱
 function Catch:InstanceTrap(_ItemID)
     local archetTypeName = ""
-    if _ItemID == 3025 then
+    if _ItemID == 4025 then
         archetTypeName = "Trap1"
-    elseif _ItemID == 3026 then
+    elseif _ItemID == 4026 then
         archetTypeName = "Trap2"
-    elseif _ItemID == 3027 then
+    elseif _ItemID == 4027 then
         archetTypeName = "Trap3"
     end
-    local trap = world:CreateInstance(archetTypeName, "trap", world, localPlayer.Position, localPlayer.Rotation)
+    local trap =
+        world:CreateInstance(
+        archetTypeName,
+        "trap",
+        world,
+        localPlayer.Position + localPlayer.Forward,
+        localPlayer.Rotation
+    )
     trap.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.Parent.AnimalID and _hitObject.Parent.AnimalCaughtEvent then

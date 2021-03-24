@@ -64,8 +64,9 @@ function GuiControl:InitListener()
     )
     ctrlFigure.UseBtn.OnDown:Connect(
         function()
-            if ItemMgr.curWeaponID ~= 0 then
-                ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+            if ItemMgr.curEquipmentID ~= 0 then
+                print("UseBtn", ItemMgr.curEquipmentID)
+                NetUtil.Fire_C("UseItemInHandEvent", localPlayer)
                 return
             end
             if
@@ -101,7 +102,7 @@ function GuiControl:InitListener()
     )
     ctrlFigure.TakeOffBtn.OnDown:Connect(
         function()
-            ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
+            NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
         end
     )
     ctrlFigure.LeaveBtn.OnDown:Connect(
@@ -135,6 +136,16 @@ function OnPickBtnClick()
     dynamicFigure.PickBtn:SetActive(false)
     NetUtil.Fire_C("GetItemEvent", localPlayer, pickItemObj.ID.Value)
     pickItemObj:Destroy()
+end
+
+--更新UseBtn的遮罩
+function GuiControl:UpdateUseBtnMask(_amount)
+    ctrlFigure.UseBtn.Mask.FillAmount = _amount
+    if _amount <= 0 and ctrlFigure.UseBtn.Mask.ActiveSelf == true then
+        ctrlFigure.UseBtn.Mask:SetActive(false)
+    elseif _amount > 0 and ctrlFigure.UseBtn.Mask.ActiveSelf == false then
+        ctrlFigure.UseBtn.Mask:SetActive(true)
+    end
 end
 
 --- 设置通用UI事件
@@ -285,7 +296,7 @@ end
 
 --- 更新脱下Btn显示
 function GuiControl:UpdateTakeOffBtn()
-    if ItemMgr.curWeaponID == 0 or ItemMgr.curWeaponID == nil then
+    if ItemMgr.curEquipmentID == 0 or ItemMgr.curEquipmentID == nil then
         gui.Ctrl.TakeOffBtn:SetActive(false)
     else
         gui.Ctrl.TakeOffBtn:SetActive(true)
