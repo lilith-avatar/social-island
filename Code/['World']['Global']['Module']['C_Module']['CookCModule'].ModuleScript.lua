@@ -22,4 +22,7 @@ function CookC:PlayerCookEventHandler(_materialList)
     -- end
 end
 
+function CookC:EventBind()
+end
+
 return CookC

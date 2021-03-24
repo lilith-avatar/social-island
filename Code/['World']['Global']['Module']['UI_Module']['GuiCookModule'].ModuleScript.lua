@@ -15,7 +15,7 @@ function GuiCook:Test()
 end
 
 function GuiCook:DataInit()
-    this.startUpdate = true
+    this.startUpdate = false
     this.timer = 0
     this.pageIndex = 1
     this.maxPage = 1
@@ -116,8 +116,9 @@ function GuiCook:StartCook()
         return
     end
     --开始烹饪
-    this:HideGui()
+    this.gui:SetActive(false)
     --打开进度条
+    this.progressPanel:SetActive(true)
     this.startUpdate = true
 end
 
@@ -232,6 +233,12 @@ end
 function GuiCook:Update(dt)
     if this.startUpdate then
         this.timer = this.timer + dt
+        this.progress.FillAmount = this.timer/5
+        if this.progress.FillAmount >= 1 then
+            this.progressPanel:SetActive(false)
+            --this.gui:SetActive(true)
+            this.progress.FillAmount = 0
+        end
     end
 end
 
