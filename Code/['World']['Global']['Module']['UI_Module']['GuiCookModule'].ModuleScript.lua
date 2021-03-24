@@ -24,11 +24,18 @@ function GuiCook:DataInit()
 
     --* 背包物品显示参数-------------
     this.pageSize = 9
+
+    --* 成品显示页面需要的参数
+    this.foodId = nil
+    this.totalDesk = 0
+    this.remainDesk = 0
 end
 
 function GuiCook:NodeDef()
     this.root = localPlayer.Local.CookGui
     this.gui = this.root.CookPanel
+    this.progressPanel = this.root.ProgressPanel
+    this.foodPanel = this.root.FoodPanel
     --* 背包中食材的slot
     this.slotList = this.gui.DragPanel.SlotPanel:GetChildren()
     --* 显示材料的slot
@@ -41,8 +48,11 @@ function GuiCook:NodeDef()
     this.nextBtn = this.gui.DragPanel.NextBtn -- 下一页按钮
     --* Text--------------------
     this.pageTxt = this.gui.DragPanel.PageText
+    this.titleTxt = this.foodPanel.TitleTxt
+    this.numTxt = this.foodPanel.NumTxt
+    --* icon--------------------
+    this.foodIcon = this.foodPanel.IconImg
     --* 做饭的进度条
-    this.progressPanel = this.root.ProgressPanel
     this.progress = this.progressPanel.ProgressBar.ProgressImg
 end
 
@@ -228,6 +238,15 @@ function GuiCook:RefreshPageBar(_pageIndex)
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
     end
+end
+
+function GuiCook:ShowFood()
+    if not this.foodId then
+        invoke(function()
+            this:ShowFood()
+        end,0.5)
+    end
+    this.titleTxt.Text = '你做出了'
 end
 
 function GuiCook:Update(dt)
