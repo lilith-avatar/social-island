@@ -123,7 +123,6 @@ function SceneTime:GetNextClockData()
         end
     )
     for k, v in pairs(tmpTable) do
-        print(k)
         if this.clock == v.ClockTime then
             return tmpTable[k + 1] or Config.TimeSkySetting[10]
         end
