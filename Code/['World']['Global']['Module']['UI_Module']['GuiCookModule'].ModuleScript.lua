@@ -28,7 +28,7 @@ end
 
 function GuiCook:NodeDef()
     this.root = localPlayer.Local.CookGui
-    this.gui = this.root.BagPanel
+    this.gui = this.root.CookPanel
     --* 背包中食材的slot
     this.slotList = this.gui.DragPanel.SlotPanel:GetChildren()
     --* 显示材料的slot
@@ -41,6 +41,9 @@ function GuiCook:NodeDef()
     this.nextBtn = this.gui.DragPanel.NextBtn -- 下一页按钮
     --* Text--------------------
     this.pageTxt = this.gui.DragPanel.PageText
+    --* 做饭的进度条
+    this.progressPanel = this.root.ProgressPanel
+    this.progress = this.progressPanel.ProgressBar.ProgressImg
 end
 
 function GuiCook:EventBind()
@@ -112,6 +115,10 @@ function GuiCook:StartCook()
     if #this.UsingMaterial == 0 or not this.UsingMaterial then
         return
     end
+    --开始烹饪
+    this:HideGui()
+    --打开进度条
+    this.startUpdate = true
 end
 
 function GuiCook:CancelMaterial(_index)
@@ -219,6 +226,12 @@ function GuiCook:RefreshPageBar(_pageIndex)
     if _pageIndex ~= 1 and _pageIndex ~= this.maxPage then
         this.prevBtn:SetActive(true)
         this.nextBtn:SetActive(true)
+    end
+end
+
+function GuiCook:Update(dt)
+    if this.startUpdate then
+        this.timer = this.timer + dt
     end
 end
 
