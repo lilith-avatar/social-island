@@ -75,6 +75,7 @@ function GuiCook:EventBind()
     this.cookBtn.OnClick:Connect(
         function()
             this:StartCook()
+            NetUtil.Fire_C("PlayerCookEvent", localPlayer, this.UsingMaterial)
         end
     )
     this.closeBtn.OnClick:Connect(
@@ -95,6 +96,12 @@ function GuiCook:TransItemTable()
             table.insert(this.BagMaterial, data)
         end
     end
+    table.sort(
+        this.BagMaterial,
+        function(i1, i2)
+            return i1.id < i2.id
+        end
+    )
 end
 
 function GuiCook:ShowUI()
@@ -147,6 +154,7 @@ function GuiCook:CancelMaterial(_index)
             return v1.id < v2.id
         end
     )
+    print(table.dump(this.BagMaterial))
     this:ShowMaterialIcon()
     this:ClickChangePage(this.pageIndex)
 end
@@ -156,7 +164,8 @@ function GuiCook:ChooseMaterial(_index)
         return
     end
     this.cookBtn.Locked:SetActive(false)
-    table.insert(this.UsingMaterial, {id = this.slotList[_index].ItemID.Value})
+    print(this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id)
+    table.insert(this.UsingMaterial, {id = this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id})
     table.remove(this.BagMaterial, _index + (this.pageIndex - 1) * this.pageSize)
     this:ClickChangePage(this.pageIndex)
     this:ShowMaterialIcon()
@@ -204,12 +213,12 @@ function GuiCook:ShowItemByIndex(_index, _itemId)
         this.slotList[_index].ItemID.Value = ""
         return
     end
-    this.slotList[_index].ItemID.Value = _itemId
     -- 更换图片
     this.slotList[_index].ItemImg.IMGNormal.Texture =
         ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
     -- 显示数量
     this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
+    this.slotList[_index].NameTxt.Text = _itemId
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
 
@@ -242,17 +251,20 @@ end
 
 function GuiCook:ShowFood()
     if not this.foodId then
-        invoke(function()
-            this:ShowFood()
-        end,0.5)
+        invoke(
+            function()
+                this:ShowFood()
+            end,
+            0.5
+        )
     end
-    this.titleTxt.Text = '你做出了'
+    this.titleTxt.Text = "你做出了"
 end
 
 function GuiCook:Update(dt)
     if this.startUpdate then
         this.timer = this.timer + dt
-        this.progress.FillAmount = this.timer/5
+        this.progress.FillAmount = this.timer / 5
         if this.progress.FillAmount >= 1 then
             this.progressPanel:SetActive(false)
             --this.gui:SetActive(true)

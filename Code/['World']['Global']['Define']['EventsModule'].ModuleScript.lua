@@ -102,7 +102,8 @@ Events.ClientEvents = {
     "ChangeChairIdEvent",
     "StartJetEvent",
     "ShowGetCoinNumEvent",
-    'SycnTimeCEvent'
+    'SycnTimeCEvent',
+    'PlayerCookEvent'
 }
 
 return Events

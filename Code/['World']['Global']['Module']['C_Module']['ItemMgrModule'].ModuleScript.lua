@@ -40,7 +40,16 @@ function ItemMgr:InitBagData()
         5003,
         5004,
         5005,
-        5006
+        5006,
+		6093,
+		6094,
+		6095,
+		6096,
+		6097,
+		6098,
+		6099,
+		6100,
+		6101
     }
     for _, v in pairs(defaultItems) do
         NetUtil.Fire_C("GetItemEvent", localPlayer, v)
