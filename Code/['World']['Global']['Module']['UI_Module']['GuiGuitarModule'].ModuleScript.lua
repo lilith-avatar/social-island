@@ -81,12 +81,12 @@ end
 function GuiGuitar:PlayString(_string)
     local playPos = not this.practiceMode and localPlayer.Position or nil
     -- 播放对应弦的音效
-    NetUtil.Fire_C(
+    --[[NetUtil.Fire_C(
         "PlayEffectEvent",
         localPlayer,
         Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret],
         playPos
-    )
+    )]]
     --震动
     --this.string[_string].StringImg
     local Tweener = Tween:ShakeProperty(this.string[_string].StringImg,{'Offset'},0.5,2)

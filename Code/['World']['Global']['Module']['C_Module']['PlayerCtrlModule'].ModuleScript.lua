@@ -39,6 +39,8 @@ end
 
 --- 数据变量初始化
 function PlayerCtrl:DataInit()
+    SoundUtil.InitAudioSource(localPlayer.UserId)
+    SoundUtil.Play2DSE(localPlayer.UserId, 2)
     this.finalDir = Vector3.Zero
     this.isControllable = true
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
@@ -160,7 +162,7 @@ function PlayerCtrl:PlayerClap()
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:PlayAnimation("SocialApplause", 8, 1, 0, true, false, 1)
     --拍掌音效
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
+    --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
 end
 --脚步声
 function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
@@ -169,9 +171,9 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
             FsmMgr.playerActFsm.curState.stateName ~= "Swimming"
      then
         if isOnWater then
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 19)
+            --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 19)
         else
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 17)
+            --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 17)
         end
         localPlayer.Avatar["Bone_" .. _dir .. "_Foot"].FootStep.OnCollisionEnd:Clear()
         invoke(
@@ -200,7 +202,7 @@ function PlayerCtrl:PlayerSwim()
          then
             --print("游泳检测")
             NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 20)
+            --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 20)
             FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
@@ -401,7 +403,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
-                NetUtil.Fire_C("PlayEffectEvent", localPlayer, 22, localPlayer.Position)
+                --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 22, localPlayer.Position)
             end
         end
         if _hitObject.GrassInteractUID then

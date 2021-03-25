@@ -16,7 +16,7 @@ function AudioMgr:Init()
     this:NodeRef()
     this:DataInit()
     this:EventBind()
-    this:PlayBGM(2)
+    --this:PlayBGM(2)
 end
 
 --节点引用

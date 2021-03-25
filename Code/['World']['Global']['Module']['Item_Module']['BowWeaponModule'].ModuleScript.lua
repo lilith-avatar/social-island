@@ -82,7 +82,7 @@ function BowWeapon:ShootArrow(_force)
         endPos,
         self.derivedData.ProjectileSpeed
     )
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.ShootSoundID)
+    --NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.ShootSoundID)
     invoke(
         function()
             wait(_force)

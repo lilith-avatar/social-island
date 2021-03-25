@@ -68,7 +68,7 @@ end
 --- 获得金币
 function CoinMgr:GetCoin(_pool, _coinOBJ)
     _coinOBJ.Block = false
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 4)
+    --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 4)
     NetUtil.Fire_C("UpdateCoinEvent", world:GetPlayerByUserId(_coinOBJ.CoinUID.Value), _coinOBJ.CoinNum.Value)
     invoke(
         function()

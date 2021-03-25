@@ -17,7 +17,7 @@ function Swimming:OnUpdate(dt)
     if timer < 1 then
         timer = timer + dt
     else
-        NetUtil.Fire_C("PlayEffectEvent", localPlayer, 21)
+        --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 21)
         timer = 0
     end
 end

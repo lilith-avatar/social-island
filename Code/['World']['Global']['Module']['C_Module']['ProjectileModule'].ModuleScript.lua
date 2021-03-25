@@ -115,7 +115,7 @@ end
 
 --播放命中音效和特效
 function Projectile:PlayHitSoundEffect(_pos, _seID, _effect)
-    NetUtil.Fire_S("SPlayEffectEvent", _seID, _pos)
+    --NetUtil.Fire_S("SPlayEffectEvent", _seID, _pos)
     local effect = world:CreateInstance(_effect, _effect .. "Instance", world, _pos)
     invoke(
         function()
