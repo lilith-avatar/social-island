@@ -373,6 +373,42 @@ local RewardItemXls = {
     [6092] = {
         ItemID = 6092,
         RewardGold = 5
+    },
+    [6093] = {
+        ItemID = 6093,
+        RewardGold = 20
+    },
+    [6094] = {
+        ItemID = 6094,
+        RewardGold = nil
+    },
+    [6095] = {
+        ItemID = 6095,
+        RewardGold = nil
+    },
+    [6096] = {
+        ItemID = 6096,
+        RewardGold = nil
+    },
+    [6097] = {
+        ItemID = 6097,
+        RewardGold = nil
+    },
+    [6098] = {
+        ItemID = 6098,
+        RewardGold = nil
+    },
+    [6099] = {
+        ItemID = 6099,
+        RewardGold = nil
+    },
+    [6100] = {
+        ItemID = 6100,
+        RewardGold = nil
+    },
+    [6101] = {
+        ItemID = 6101,
+        RewardGold = nil
     }
 }
 
