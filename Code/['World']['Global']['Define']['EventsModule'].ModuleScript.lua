@@ -34,7 +34,8 @@ Events.ServerEvents = {
     "SpawnCoinEvent",
     'CreateBubleEvent',
     "SPlayEffectEvent",
-    'SycnTimeSEvent'
+    'SycnTimeSEvent',
+    'FoodOnDeskEvent'
 }
 
 -- 客户端事件列表
@@ -104,7 +105,8 @@ Events.ClientEvents = {
     "ShowGetCoinNumEvent",
     'SycnTimeCEvent',
     'PlayerCookEvent',
-    'GetFinalFoodEvent'
+    'GetFinalFoodEvent',
+    'SycnDeskFoodNumEvent'
 }
 
 return Events

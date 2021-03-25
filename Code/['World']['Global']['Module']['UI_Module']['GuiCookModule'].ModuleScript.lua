@@ -284,8 +284,18 @@ function GuiCook:ShowFood()
     this.foodPanel:SetActive(true)
 end
 
+function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
+    this.numTxt.Text = _cur .. " / " .. _total
+    if _cur >= _total then
+        --禁止上桌
+        this.deskBtn.Locked:SetActive(true)
+    else
+        this.deskBtn.Locked:SetActive(false)
+    end
+end
+
 function GuiCook:ConsumeMaterial()
-    for k,v in pairs(this.UsingMaterial) do
+    for k, v in pairs(this.UsingMaterial) do
         Data.Player.bag[v.id].count = Data.Player.bag[v.id].count - 1
     end
 end
@@ -296,6 +306,7 @@ function GuiCook:EatFood()
 end
 
 function GuiCook:PutOnDesk()
+    NetUtil.Fire_S('FoodOnDeskEvent',this.foodId,localPlayer)
     this.foodId = nil
     this:ShowUI()
 end
