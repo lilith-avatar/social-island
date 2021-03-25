@@ -172,7 +172,6 @@ function GuiCook:CancelMaterial(_index)
             return v1.id < v2.id
         end
     )
-    print(table.dump(this.BagMaterial))
     this:ShowMaterialIcon()
     this:ClickChangePage(this.pageIndex)
 end
@@ -182,7 +181,6 @@ function GuiCook:ChooseMaterial(_index)
         return
     end
     this.cookBtn.Locked:SetActive(false)
-    print(this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id)
     table.insert(this.UsingMaterial, {id = this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id})
     table.remove(this.BagMaterial, _index + (this.pageIndex - 1) * this.pageSize)
     this:ClickChangePage(this.pageIndex)
