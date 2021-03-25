@@ -36,8 +36,30 @@ function CookS:PutFood(_foodId, _player)
                 index = i
             }
             -- 摆上食物
-            --[[Config.CookMenu[_foodId].Model]]
-            world:CreateInstance('Meal1','Food',world.FoodLocation['Location'..i],world.FoodLocation['Location'..i].Position)
+            --Config.CookMenu[_foodId].Model
+            -- TODO:需要读表中的model创建
+            local model =
+                world:CreateInstance(
+                "Meal1",
+                "Food",
+                world.FoodLocation["Location" .. i],
+                world.FoodLocation["Location" .. i].Position
+            )
+            model.OnCollisionBegin:Connect(
+                function(_hitObject)
+                    if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+                        NetUtil.Fire_C("", _hitObject, this.foodList[i])
+                        NetUtil.Fire_C('')
+                    end
+                end
+            )
+            model.OnCollisionEnd:Connect(
+                function(_hitObject)
+                    if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+                        NetUtil.Fire_C("ChangeMiniGameEvent", _hitObject)
+                    end
+                end
+            )
             return
         end
     end
