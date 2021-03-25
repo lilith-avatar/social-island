@@ -3617,6 +3617,342 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    CookMenu_Name_1 = {
+        ID = 'CookMenu_Name_1',
+        CHS = '蔬菜馅饼',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_2 = {
+        ID = 'CookMenu_Name_2',
+        CHS = '特制馅饼',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_3 = {
+        ID = 'CookMenu_Name_3',
+        CHS = '南瓜蛋糕',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_4 = {
+        ID = 'CookMenu_Name_4',
+        CHS = '猛兽料理',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_5 = {
+        ID = 'CookMenu_Name_5',
+        CHS = '不可名状的料理',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_6 = {
+        ID = 'CookMenu_Name_6',
+        CHS = '什锦肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_7 = {
+        ID = 'CookMenu_Name_7',
+        CHS = '煮鸟肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_8 = {
+        ID = 'CookMenu_Name_8',
+        CHS = '蔬菜沙拉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_9 = {
+        ID = 'CookMenu_Name_9',
+        CHS = '咖喱鹿肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_10 = {
+        ID = 'CookMenu_Name_10',
+        CHS = '煎饺',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_11 = {
+        ID = 'CookMenu_Name_11',
+        CHS = '混合果汁',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_12 = {
+        ID = 'CookMenu_Name_12',
+        CHS = '鸡肉串',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_13 = {
+        ID = 'CookMenu_Name_13',
+        CHS = '煎猪排',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_14 = {
+        ID = 'CookMenu_Name_14',
+        CHS = '白煮鹿肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_15 = {
+        ID = 'CookMenu_Name_15',
+        CHS = '口味奇怪的料理',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_16 = {
+        ID = 'CookMenu_Name_16',
+        CHS = '萝卜肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_17 = {
+        ID = 'CookMenu_Name_17',
+        CHS = '萝卜肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_18 = {
+        ID = 'CookMenu_Name_18',
+        CHS = '萝卜肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_19 = {
+        ID = 'CookMenu_Name_19',
+        CHS = '萝卜肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_20 = {
+        ID = 'CookMenu_Name_20',
+        CHS = '特制馅饼',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_21 = {
+        ID = 'CookMenu_Name_21',
+        CHS = '特制馅饼',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_22 = {
+        ID = 'CookMenu_Name_22',
+        CHS = '特制馅饼',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_23 = {
+        ID = 'CookMenu_Name_23',
+        CHS = '特制馅饼',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_24 = {
+        ID = 'CookMenu_Name_24',
+        CHS = '南瓜蛋糕',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_25 = {
+        ID = 'CookMenu_Name_25',
+        CHS = '什锦肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_26 = {
+        ID = 'CookMenu_Name_26',
+        CHS = '什锦肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_27 = {
+        ID = 'CookMenu_Name_27',
+        CHS = '什锦肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_28 = {
+        ID = 'CookMenu_Name_28',
+        CHS = '什锦肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_29 = {
+        ID = 'CookMenu_Name_29',
+        CHS = '什锦肉汤',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    CookMenu_Name_30 = {
+        ID = 'CookMenu_Name_30',
+        CHS = '蔬菜沙拉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6093 = {
+        ID = 'Item_Name_6093',
+        CHS = '胡萝卜',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6093 = {
+        ID = 'Item_Des_6093',
+        CHS = '野生的胡萝卜，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6094 = {
+        ID = 'Item_Name_6094',
+        CHS = '白萝卜',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6094 = {
+        ID = 'Item_Des_6094',
+        CHS = '野生的白萝卜，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6095 = {
+        ID = 'Item_Name_6095',
+        CHS = '南瓜',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6095 = {
+        ID = 'Item_Des_6095',
+        CHS = '野生的南瓜，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6096 = {
+        ID = 'Item_Name_6096',
+        CHS = '野猪肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6096 = {
+        ID = 'Item_Des_6096',
+        CHS = '野猪的肉，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6097 = {
+        ID = 'Item_Name_6097',
+        CHS = '鸟肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6097 = {
+        ID = 'Item_Des_6097',
+        CHS = '鸟类的肉，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6098 = {
+        ID = 'Item_Name_6098',
+        CHS = '鹿肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6098 = {
+        ID = 'Item_Des_6098',
+        CHS = '鹿的肉，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6099 = {
+        ID = 'Item_Name_6099',
+        CHS = '熊肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6099 = {
+        ID = 'Item_Des_6099',
+        CHS = '熊的肉，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6100 = {
+        ID = 'Item_Name_6100',
+        CHS = '狼肉',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6100 = {
+        ID = 'Item_Des_6100',
+        CHS = '狼的肉，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Name_6101 = {
+        ID = 'Item_Name_6101',
+        CHS = '苹果',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_6101 = {
+        ID = 'Item_Des_6101',
+        CHS = '树上掉落的苹果，可以用于烹饪',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 

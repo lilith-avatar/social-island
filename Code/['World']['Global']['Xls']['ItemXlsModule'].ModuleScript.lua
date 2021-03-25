@@ -2128,6 +2128,105 @@ local ItemXls = {
         UseAnimName = 'HTGoodsDisappear',
         Useable = true,
         IsConsume = true
+    },
+    [6093] = {
+        ItemID = 6093,
+        Name = 'Item_Name_6093',
+        Des = 'Item_Des_6093',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6094] = {
+        ItemID = 6094,
+        Name = 'Item_Name_6094',
+        Des = 'Item_Des_6094',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6095] = {
+        ItemID = 6095,
+        Name = 'Item_Name_6095',
+        Des = 'Item_Des_6095',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6096] = {
+        ItemID = 6096,
+        Name = 'Item_Name_6096',
+        Des = 'Item_Des_6096',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6097] = {
+        ItemID = 6097,
+        Name = 'Item_Name_6097',
+        Des = 'Item_Des_6097',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6098] = {
+        ItemID = 6098,
+        Name = 'Item_Name_6098',
+        Des = 'Item_Des_6098',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6099] = {
+        ItemID = 6099,
+        Name = 'Item_Name_6099',
+        Des = 'Item_Des_6099',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6100] = {
+        ItemID = 6100,
+        Name = 'Item_Name_6100',
+        Des = 'Item_Des_6100',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
+    },
+    [6101] = {
+        ItemID = 6101,
+        Name = 'Item_Name_6101',
+        Des = 'Item_Des_6101',
+        Icon = 'RewardItem_Icon',
+        UseCD = 0.5,
+        UseSoundID = 11,
+        UseAnimName = 'HTGoodsDisappear',
+        Useable = true,
+        IsConsume = true
     }
 }
 
