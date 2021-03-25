@@ -103,7 +103,8 @@ Events.ClientEvents = {
     "StartJetEvent",
     "ShowGetCoinNumEvent",
     'SycnTimeCEvent',
-    'PlayerCookEvent'
+    'PlayerCookEvent',
+    'GetFinalFoodEvent'
 }
 
 return Events

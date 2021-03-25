@@ -46,6 +46,8 @@ function GuiCook:NodeDef()
     this.closeBtn = this.gui.CloseImg.CloseBtn -- 关闭按钮
     this.prevBtn = this.gui.DragPanel.PreBtn -- 上一页按钮
     this.nextBtn = this.gui.DragPanel.NextBtn -- 下一页按钮
+    this.eatBtn = this.foodPanel.EatBtn
+    this.deskBtn = this.foodPanel.DeskBtn
     --* Text--------------------
     this.pageTxt = this.gui.DragPanel.PageText
     this.titleTxt = this.foodPanel.TitleTxt
@@ -83,6 +85,16 @@ function GuiCook:EventBind()
             this:HideGui()
         end
     )
+    this.eatBtn.OnClick:Connect(
+        function()
+            this:EatFood()
+        end
+    )
+    this.deskBtn.OnClick:Connect(
+        function()
+            this:PutOnDesk()
+        end
+    )
 end
 
 function GuiCook:TransItemTable()
@@ -107,6 +119,8 @@ end
 function GuiCook:ShowUI()
     this:ClearAllMaterial()
     this:TransItemTable()
+    this.progressPanel:SetActive(false)
+    this.foodPanel:SetActive(false)
     this.root:SetActive(true)
     this.gui:SetActive(true)
     this:ClickChangePage(1)
@@ -137,6 +151,10 @@ function GuiCook:StartCook()
     --打开进度条
     this.progressPanel:SetActive(true)
     this.startUpdate = true
+end
+
+function GuiCook:GetFinalFoodEventHandler(_foodId)
+    this.foodId = _foodId
 end
 
 function GuiCook:CancelMaterial(_index)
@@ -191,6 +209,10 @@ function GuiCook:ShowMaterialIcon()
 end
 
 function GuiCook:ClickChangePage(_pageIndex)
+    this:GetMaxPageNum(#this.BagMaterial)
+    if _pageIndex > this.maxPage then
+        _pageIndex = this.maxPage
+    end
     this:ShowItemsByPageIndex(_pageIndex)
     this:RefreshPageBar(_pageIndex)
 end
@@ -218,7 +240,7 @@ function GuiCook:ShowItemByIndex(_index, _itemId)
         ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
     -- 显示数量
     this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
-    this.slotList[_index].NameTxt.Text = _itemId
+    this.slotList[_index].NameTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Name)
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
 
@@ -257,8 +279,27 @@ function GuiCook:ShowFood()
             end,
             0.5
         )
+        return
     end
-    this.titleTxt.Text = "你做出了"
+    this:ConsumeMaterial()
+    this.titleTxt.Text = "你做出了" .. LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
+    this.foodPanel:SetActive(true)
+end
+
+function GuiCook:ConsumeMaterial()
+    for k,v in pairs(this.UsingMaterial) do
+        Data.Player.bag[v.id].count = Data.Player.bag[v.id].count - 1
+    end
+end
+
+function GuiCook:EatFood()
+    this.foodId = nil
+    this:ShowUI()
+end
+
+function GuiCook:PutOnDesk()
+    this.foodId = nil
+    this:ShowUI()
 end
 
 function GuiCook:Update(dt)
@@ -266,9 +307,11 @@ function GuiCook:Update(dt)
         this.timer = this.timer + dt
         this.progress.FillAmount = this.timer / 5
         if this.progress.FillAmount >= 1 then
+            this.startUpdate = false
             this.progressPanel:SetActive(false)
             --this.gui:SetActive(true)
             this.progress.FillAmount = 0
+            this:ShowFood()
         end
     end
 end
