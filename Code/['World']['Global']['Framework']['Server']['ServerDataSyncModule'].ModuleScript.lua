@@ -12,7 +12,7 @@ local rawDataGlobal = {}
 local rawDataPlayers = {}
 
 -- 玩家数据定时保存时间间隔（秒）
-local AUTO_SAVE_TIME = 10
+local AUTO_SAVE_TIME = 60
 -- 重新读取游戏数据时间间隔（秒）
 local RELOAD_TIME = 1
 
@@ -129,9 +129,7 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
             local data = _val
             assert(data.uid == _uid, string.format('[DataSync][Server] uid校验不通过, uid = %s', _uid))
             --若已在此服务器的数据总表存在，则更新数据
-            for k, v in pairs(data) do
-                Data.Players[_uid][k] = data[k]
-            end
+            Data.Players[_uid] = data
         else
             -- TODO: 数据兼容的处理
         end
