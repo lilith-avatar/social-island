@@ -11,20 +11,26 @@ local ModeEnum = {
     RealTime = "RealTime" -- 随时间实时更改（大概？）
 }
 
-local TimeMode = ModeEnum.Instant --!可更改
+local TimeMode = ModeEnum.RealTime --!可更改
 
 ---初始化函数
 function SceneTime:Init()
     this:DataInit()
     this:NodeDef()
-    print(this.sky.Style)
+    invoke(
+        function()
+            this.startUpdate = true
+        end,
+        5
+    )
 end
 
 function SceneTime:DataInit()
     this.timer = 0
-    this.clock = 8 -- 当前游戏内时间
-    this.timeSpeed = 12.5 -- 几秒1个小时
+    this.clock = 15 -- 当前游戏内时间
+    this.timeSpeed = 5 -- 几秒1个小时
     this.tweener = nil
+    this.startUpdate = false
 end
 
 function SceneTime:NodeDef()
@@ -44,7 +50,6 @@ function SceneTime:InstantSycnSkyData()
     this.sky.ShowSun = configData.ShowSun
     this.sky.Style = configData.Style
     data = {
-        ClockTime = configData.ClockTime,
         Brightness = configData.Brightness,
         Latitude = configData.Latitude,
         SunAngular = configData.SunAngular,
@@ -68,18 +73,21 @@ function SceneTime:InstantSycnSkyData()
 end
 
 function SceneTime:RealTimeSycnSkyData()
-    local data, configData = {}, Config.TimeSkySetting[this.clock]
+    local data, configData = {}, this:GetNextClockData()
     if not configData then
         return
     end
-    if this.tweener then
-        this.tweener:Pause()
-        this.tweener = nil
-    end
-    this.sky.ShowSun = configData.ShowSun
-    this.sky.Style = configData.Style
+    -- if this.clock == 20 then
+    --     this.sky.Up = ResourceManager.GetTexture('Skybox/Night/Up')
+    --     this.sky.Front = ResourceManager.GetTexture('Skybox/Night/Front')
+    --     this.sky.Back = ResourceManager.GetTexture('Skybox/Night/Back')
+    --     this.sky.Down = ResourceManager.GetTexture('Skybox/Night/Down')
+    --     this.sky.Right = ResourceManager.GetTexture('Skybox/Night/Right')
+    --     this.sky.Left = ResourceManager.GetTexture('Skybox/Night/Left')
+    -- end
+    this.sky.ShowSun = Config.TimeSkySetting[this.clock].ShowSun
+    this.sky.Style = Config.TimeSkySetting[this.clock].Style
     data = {
-        ClockTime = configData.ClockTime,
         Brightness = configData.Brightness,
         Latitude = configData.Latitude,
         SunAngular = configData.SunAngular,
@@ -98,12 +106,35 @@ function SceneTime:RealTimeSycnSkyData()
         FogHeightFadeStart = configData.FogHeightFadeStart,
         FogHeightFadeEnd = configData.FogHeightFadeEnd
     }
-    this.tweener = Tween:TweenProperty(this.sky, data, this.timeSpeed, 1)
+    this.tweener = Tween:TweenProperty(this.sky, data, this.timeSpeed * math.abs(configData.ClockTime - this.clock), 1)
     this.tweener:Play()
+end
+
+function SceneTime:GetNextClockData()
+    local tmpTable = {}
+
+    for k, v in pairs(Config.TimeSkySetting) do
+        table.insert(tmpTable, v)
+    end
+    table.sort(
+        tmpTable,
+        function(t1, t2)
+            return t1.ClockTime < t2.ClockTime
+        end
+    )
+    for k, v in pairs(tmpTable) do
+        if this.clock == v.ClockTime then
+            return tmpTable[k + 1] or Config.TimeSkySetting[10]
+        end
+    end
+    return nil
 end
 
 ---Update函数
 function SceneTime:Update(dt)
+    if not this.startUpdate then
+        return
+    end
     this.timer = this.timer + dt
     if this.timer >= this.timeSpeed then
         this.timer = 0
@@ -111,14 +142,40 @@ function SceneTime:Update(dt)
         if this.clock > 23 then
             this.clock = 0
         end
+        if Config.TimeSkySetting[this.clock] then
+            if this.clock == 10 then
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "新的一天开始了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+            elseif this.clock == 18 then
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "黄昏了，该回家了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+            elseif this.clock == 20 then
+                NetUtil.Broadcast("ShowNoticeInfoEvent", "黑夜了，该去帐篷睡觉了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+            end
+        end
         NetUtil.Broadcast("SycnTimeCEvent", this.clock)
         NetUtil.Fire_S("SycnTimeSEvent", this.clock)
         this:SycnSkyData()
     end
+    this.sky.ClockTime = this.clock + this.timer/this.timeSpeed
 end
 
 ---@param _clock number
 function SceneTime:SycnTimeSEventHandler(_clock)
+    if math.floor(_clock) == 19 then
+        NetUtil.Broadcast("PlayEffectEvent", 100, Vector3(-106.406, -13.9315, 39.7601))
+        world.Light:SetActive(true)
+        for k, v in pairs(world.HangLight:GetChildren()) do
+            for k1, v1 in pairs(v:GetChildren()) do
+                v1.Color = Color(math.random(0, 255), math.random(0, 255), math.random(0, 100), 255)
+            end
+        end
+    elseif math.floor(_clock) == 9 then
+        world.Light:SetActive(false)
+        for k, v in pairs(world.HangLight:GetChildren()) do
+            for k1, v1 in pairs(v:GetChildren()) do
+                v1.Color = Color(70, 70, 70, 255)
+            end
+        end
+    end
     print(string.format("当前时间 %s 点", math.floor(_clock))) --! 上线删除
 end
 
