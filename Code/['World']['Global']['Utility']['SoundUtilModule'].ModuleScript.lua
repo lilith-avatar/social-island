@@ -19,15 +19,15 @@ local SE3DMax = 8
 --2D音效对象池上限
 local SE2DMax = 3
 
---初始化一个音频表
+--初始化音频表
 local function InitClipTable(_data)
-    clipTable = {}
     clipTable[_data.ID] = {
         id = _data.ID,
         clip = ResourceManager.GetSoundClip(_data.Path),
         isLoop = _data.IsLoop,
         volume = _data.Volume
     }
+    print(table.dump(clipTable[_data.ID]))
 end
 
 --初始化一个2D播放器
@@ -36,8 +36,7 @@ local function Init2DAudioSource(_index, _uid)
         world:CreateObject(
         "AudioSource",
         "AudioSource" .. _index,
-        _uid.Local.Independent.GameCam.SENode,
-        _uid.Local.Independent.GameCam.SENode.Position
+        world:GetPlayerByUserId(_uid).Local.Independent.GameCam.SENode
     )
     return audioSourcePool.SE2D[_uid][_index]
 end
@@ -50,16 +49,17 @@ end
 
 function SoundUtil.Init(_config)
     if clipTable == nil then
+        clipTable = {}
         for k, v in pairs(_config) do
             InitClipTable(v)
         end
     end
-    SoundUtil.InitAudioSource()
 end
 
 --初始化音效播放器对象池
 function SoundUtil.InitAudioSource(_uid)
     if _uid then
+        audioSourcePool.SE2D[_uid] = {}
         for i = 1, SE2DMax do
             Init2DAudioSource(i, _uid)
         end
@@ -76,8 +76,8 @@ local function ReleaeseSource(_uid)
     if _uid then
         index = SE2DMax + 1
         while table.nums(audioSourcePool.SE2D[_uid]) > index - 1 do
-            if audioSourcePool.SE2D[_uid][index].Source.State == Enum.AudioSourceState.Stopped then
-                local ReleaesedSource = audioSourcePool.SE2D[_uid][index].Source
+            if audioSourcePool.SE2D[_uid][index].State == Enum.AudioSourceState.Stopped then
+                local ReleaesedSource = audioSourcePool.SE2D[_uid][index]
                 table.remove(audioSourcePool.SE2D[_uid], index)
                 ReleaesedSource:Destroy()
             else
@@ -87,8 +87,8 @@ local function ReleaeseSource(_uid)
     else
         index = SE3DMax + 1
         while table.nums(audioSourcePool.SE3D) > index - 1 do
-            if audioSourcePool.SE3D[index].Source.State == Enum.AudioSourceState.Stopped then
-                local ReleaesedSource = audioSourcePool.SE3D[index].Source
+            if audioSourcePool.SE3D[index].State == Enum.AudioSourceState.Stopped then
+                local ReleaesedSource = audioSourcePool.SE3D[index]
                 table.remove(audioSourcePool.SE3D, index)
                 ReleaesedSource:Destroy()
             else
@@ -112,6 +112,7 @@ function SoundUtil.Play2DSE(_uid, _SEID)
     if source == nil then
         source = Init2DAudioSource(table.nums(audioSourcePool.SE2D[_uid]) + 1, _uid)
     end
+    print("播放2D音频", _SEID)
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
     source.SoundClip = clipTable[_SEID].clip
@@ -120,7 +121,7 @@ function SoundUtil.Play2DSE(_uid, _SEID)
     return index
 end
 
---播放2D音频
+--播放3D音频
 function SoundUtil.Play3DSE(_pos, _SEID)
     local index = nil
     local source = nil
@@ -132,8 +133,9 @@ function SoundUtil.Play3DSE(_pos, _SEID)
         end
     end
     if source == nil then
-        source = Init2DAudioSource(table.nums(audioSourcePool.SE3D) + 1)
+        source = Init3DAudioSource(table.nums(audioSourcePool.SE3D) + 1)
     end
+    print("播放3D音频", _SEID, table.dump(clipTable[_SEID]), _pos)
     source.Position = _pos
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume

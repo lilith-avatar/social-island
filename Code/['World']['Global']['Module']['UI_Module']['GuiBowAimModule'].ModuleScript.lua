@@ -52,6 +52,15 @@ function GuiBowAim:UpdateFrontSight(_chargeForce)
     this.gui.Panel.ChargeLeft.Offset = Vector2(_chargeForce * 80, 0)
 end
 
+--CD
+function GuiBowAim:UpdateTouchGuiCD(_amount)
+    if _amount <= 0 and this.touchGui.AimStick.ActiveSelf == false then
+        this.touchGui.AimStick:SetActive(true)
+    elseif _amount > 0 and this.touchGui.AimStick.ActiveSelf == true then
+        this.touchGui.AimStick:SetActive(false)
+    end
+end
+
 function GuiBowAim:Update(dt)
 end
 

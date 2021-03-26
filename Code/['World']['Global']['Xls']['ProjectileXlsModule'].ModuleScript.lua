@@ -3,11 +3,26 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemNew.xlsx
+--- source file: .//ItemNew.xlsm
 
 local ProjectileXls = {
     [1] = {
         ProjectileID = 1,
+        Name = '火箭',
+        ModelName = 'Arrow_01',
+        HealthChange = 0,
+        HitRange = 0.0,
+        HitForce = 0.0,
+        HitType = 1,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 10.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'ArrowTartgetHitEffect',
+        HitSoundID = 33,
+        Hunt = true
+    },
+    [2] = {
+        ProjectileID = 2,
         Name = '木箭',
         ModelName = 'Arrow_Wood_01',
         HealthChange = 0,
@@ -15,14 +30,89 @@ local ProjectileXls = {
         HitForce = 0.0,
         HitType = 1,
         HitAddBuffID = 0,
-        HitAddBuffDur = 0.0,
+        HitAddBuffDur = 10.0,
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
-        HitSoundID = '33.0',
+        HitSoundID = 33,
         Hunt = true
     },
-    [2] = {
-        ProjectileID = 2,
+    [3] = {
+        ProjectileID = 3,
+        Name = '弹弓',
+        ModelName = 'Slingshot',
+        HealthChange = 0,
+        HitRange = 0.0,
+        HitForce = 0.0,
+        HitType = 1,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 10.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'ArrowTartgetHitEffect',
+        HitSoundID = 33,
+        Hunt = true
+    },
+    [4] = {
+        ProjectileID = 4,
+        Name = '特效绿',
+        ModelName = 'LifeArrow',
+        HealthChange = 0,
+        HitRange = 0.0,
+        HitForce = 0.0,
+        HitType = 1,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 10.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'LifeHit',
+        HitSoundID = 33,
+        Hunt = true
+    },
+    [5] = {
+        ProjectileID = 5,
+        Name = '特效雷',
+        ModelName = 'LightingArrow',
+        HealthChange = 0,
+        HitRange = 0.0,
+        HitForce = 0.0,
+        HitType = 1,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 10.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'LightingHit',
+        HitSoundID = 33,
+        Hunt = true
+    },
+    [6] = {
+        ProjectileID = 6,
+        Name = '特效暗',
+        ModelName = 'DarkArrow',
+        HealthChange = 0,
+        HitRange = 0.0,
+        HitForce = 0.0,
+        HitType = 1,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 10.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'DarkHit',
+        HitSoundID = 33,
+        Hunt = true
+    },
+    [7] = {
+        ProjectileID = 7,
+        Name = '特效火',
+        ModelName = 'FireArrow',
+        HealthChange = 0,
+        HitRange = 0.0,
+        HitForce = 0.0,
+        HitType = 1,
+        HitAddBuffID = 0,
+        HitAddBuffDur = 10.0,
+        HitRemoveBuffID = 0,
+        HitEffectName = 'FireHit',
+        HitSoundID = 33,
+        Hunt = true
+    },
+    [8] = {
+        ProjectileID = 8,
         Name = '子弹',
         ModelName = 'Arrow_Wood_01',
         HealthChange = 0,
@@ -30,10 +120,10 @@ local ProjectileXls = {
         HitForce = 0.0,
         HitType = 1,
         HitAddBuffID = 0,
-        HitAddBuffDur = 0.0,
+        HitAddBuffDur = 10.0,
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
-        HitSoundID = '33.0',
+        HitSoundID = 33,
         Hunt = true
     }
 }

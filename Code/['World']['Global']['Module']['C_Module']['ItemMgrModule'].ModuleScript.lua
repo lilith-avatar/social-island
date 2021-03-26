@@ -49,16 +49,18 @@ end
 
 --新建背包数据
 function ItemMgr:NewBagData(_id)
-    local typeConfig = Config.ItemType[Config.Item[_id].Type]
-    local tempBag = {
-        id = _id,
-        type = Config.Item[_id].Type,
-        count = 0,
-        lastestTime = 0,
-        isNew = true,
-        isConst = typeConfig.IsConsum
-    }
-    Data.Player.bag[_id] = tempBag
+    if Config.Item[_id] then
+        local typeConfig = Config.ItemType[Config.Item[_id].Type]
+        local tempBag = {
+            id = _id,
+            type = Config.Item[_id].Type,
+            count = 0,
+            lastestTime = 0,
+            isNew = true,
+            isConst = typeConfig.IsConsum
+        }
+        Data.Player.bag[_id] = tempBag
+    end
 end
 
 --实例化近战武器
@@ -106,7 +108,7 @@ function ItemMgr:RedeemTaskItemReward(_id)
     this.itemInstance[_id]:GetTaskReward()
 end
 
---获得道具 
+--获得道具
 function ItemMgr:GetItemEventHandler(_id)
     -- 初始化默认背包数据
     if Data.Player.bag[_id] == nil then
@@ -131,12 +133,12 @@ function ItemMgr:RemoveItemEventHandler(_id)
 end
 
 function ItemMgr:test()
-    ItemMgr:GetItemEventHandler(5001)
-    ItemMgr:GetItemEventHandler(2002)
-    ItemMgr:UseItemInBagEventHandler(5001)
+    NetUtil.Fire_C("GetItemEvent", localPlayer, 2001)
+    wait(.1)
+    NetUtil.Fire_C("UseItemInBagEvent", localPlayer, 2001)
 end
 
---使用在背包的道具 
+--使用在背包的道具
 function ItemMgr:UseItemInBagEventHandler(_id)
     print("[ItemMgr] 使用在背包的道具", _id)
     this.itemInstance[_id]:UseInBag()
@@ -191,8 +193,8 @@ end
 function ItemMgr:GetTaskItem(_npcID)
     local npcTable
     for k1, v1 in pairs(Data.Player.bag) do
-        if string.sub(tostring(k1), 1, 1) == "5" and v1.count > 0 then
-            npcTable = this.itemInstance[k1].config.Npc
+        if Config.Item[k1].Type == 6 and v1.count > 0 then
+            npcTable = this.itemInstance[k1].derivedData.Npc
             for k2, v2 in pairs(npcTable) do
                 if v2 == _npcID then
                     return k1
@@ -205,7 +207,7 @@ end
 
 --获得NPC对话文本
 function ItemMgr:GetNpcText(_id)
-    return LanguageUtil.GetText(ItemMgr.itemInstance[_id].config.NpcText)
+    return LanguageUtil.GetText(ItemMgr.itemInstance[_id].derivedData.NpcText)
 end
 
 ---服务器结算处理

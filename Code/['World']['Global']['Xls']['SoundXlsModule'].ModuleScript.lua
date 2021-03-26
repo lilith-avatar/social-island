@@ -8,7 +8,6 @@
 local SoundXls = {
     [1] = {
         ID = 1,
-        Type = 'SoundEffect',
         Name = 'Clap',
         IsLoop = false,
         Volume = 60.0,
@@ -17,43 +16,38 @@ local SoundXls = {
     },
     [2] = {
         ID = 2,
-        Type = 'BGM',
         Name = 'BGM',
-        IsLoop = false,
+        IsLoop = true,
         Volume = 45.0,
         Path = 'Audio/Temp_BGM',
         Info = ''
     },
     [3] = {
         ID = 3,
-        Type = 'SoundEffect',
-        Name = 'Sfx_Shop_1s_Open',
+        Name = 'Dialogue',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Sfx_Shop_1s_Open',
+        Path = 'Audio/Dialogue',
         Info = '对话弹出'
     },
     [4] = {
         ID = 4,
-        Type = 'SoundEffect',
-        Name = 'Coin_Slide_Carpet',
+        Name = 'GetCoin',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Coin_Slide_Carpet',
+        Path = 'Audio/GetCoin',
         Info = '吃金币的音效'
     },
     [5] = {
         ID = 5,
-        Type = 'SoundEffect',
-        Name = 'Sfx_Shop_1s_Open',
+        Name = 'UI_Open',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Sfx_Shop_1s_Open',
+        Path = 'Audio/UI_Open',
         Info = '界面弹出（支付）'
     },
     [6] = {
         ID = 6,
-        Type = 'SoundEffect',
         Name = 'Sfx_Shop_1s_Close',
         IsLoop = false,
         Volume = 60.0,
@@ -62,34 +56,30 @@ local SoundXls = {
     },
     [7] = {
         ID = 7,
-        Type = 'SoundEffect',
-        Name = 'Sfx_Diamond_1s_Add',
+        Name = 'UI_Buy_Confirm',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Sfx_Diamond_1s_Add',
+        Path = 'Audio/UI_Buy_Confirm',
         Info = '点击确认（支付）'
     },
     [8] = {
         ID = 8,
-        Type = 'SoundEffect',
-        Name = 'Sfx_Shop_1s_BuyConfirm',
+        Name = 'UI_Buy_Confirm',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Sfx_Shop_1s_BuyConfirm',
-        Info = '下注成功'
+        Path = 'Audio/UI_Buy_Confirm',
+        Info = '确认支付'
     },
     [9] = {
         ID = 9,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '赛前预备'
     },
     [10] = {
         ID = 10,
-        Type = 'SoundEffect',
         Name = 'Sfx_Shop_1s_Open',
         IsLoop = false,
         Volume = 60.0,
@@ -98,7 +88,6 @@ local SoundXls = {
     },
     [11] = {
         ID = 11,
-        Type = 'SoundEffect',
         Name = 'Drone_attack_Money_shoot',
         IsLoop = false,
         Volume = 60.0,
@@ -107,7 +96,6 @@ local SoundXls = {
     },
     [12] = {
         ID = 12,
-        Type = 'SoundEffect',
         Name = 'Sfx_Shop_1s_Open',
         IsLoop = false,
         Volume = 60.0,
@@ -116,16 +104,14 @@ local SoundXls = {
     },
     [13] = {
         ID = 13,
-        Type = 'SoundEffect',
-        Name = 'Success',
+        Name = 'Catch_Animal',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Success',
+        Path = 'Audio/Catch_Animal',
         Info = '成功捕捉'
     },
     [14] = {
         ID = 14,
-        Type = 'SoundEffect',
         Name = 'Sit',
         IsLoop = false,
         Volume = 35.0,
@@ -134,16 +120,14 @@ local SoundXls = {
     },
     [15] = {
         ID = 15,
-        Type = 'SoundEffect',
-        Name = 'DOORS_WOOD_GATE_OPEN_2',
+        Name = 'Wood_Horse',
         IsLoop = true,
-        Volume = 20.0,
-        Path = 'Audio/DOORS_WOOD_GATE_OPEN_2',
+        Volume = 5.0,
+        Path = 'Audio/Wood_Horse',
         Info = '摇木马的咯吱声'
     },
     [16] = {
         ID = 16,
-        Type = 'SoundEffect',
         Name = 'TempBGM',
         IsLoop = true,
         Volume = 60.0,
@@ -152,61 +136,54 @@ local SoundXls = {
     },
     [17] = {
         ID = 17,
-        Type = 'SoundEffect',
         Name = 'Footstep_deck-002',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/Footstep_deck-002',
         Info = '脚步声'
     },
     [18] = {
         ID = 18,
-        Type = 'SoundEffect',
         Name = 'PlayerControlModule_Jump_Deck',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/PlayerControlModule_Jump_Deck',
         Info = '跳落地'
     },
     [19] = {
         ID = 19,
-        Type = 'SoundEffect',
         Name = 'JumpIntoWater',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 20.0,
         Path = 'Audio/JumpIntoWater',
         Info = '进入水中的声音'
     },
     [20] = {
         ID = 20,
-        Type = 'SoundEffect',
         Name = 'WaterWalking',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 10.0,
         Path = 'Audio/WaterWalking',
         Info = '在水中的脚步声'
     },
     [21] = {
         ID = 21,
-        Type = 'SoundEffect',
-        Name = 'AudioScript_Swim_03',
+        Name = 'SwimingBg',
         IsLoop = false,
-        Volume = 60.0,
-        Path = 'Audio/AudioScript_Swim_03',
+        Volume = 10.0,
+        Path = 'Audio/SwimingBg',
         Info = '游泳移动的声音'
     },
     [22] = {
         ID = 22,
-        Type = 'SoundEffect',
-        Name = 'DrinkBuff_Skywalker_Jump',
+        Name = 'Bounce',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/DrinkBuff_Skywalker_Jump',
+        Path = 'Audio/Bounce',
         Info = '踩蘑菇'
     },
     [23] = {
         ID = 23,
-        Type = 'SoundEffect',
         Name = 'Marquis_ClothChange',
         IsLoop = false,
         Volume = 60.0,
@@ -215,7 +192,6 @@ local SoundXls = {
     },
     [24] = {
         ID = 24,
-        Type = 'SoundEffect',
         Name = 'Fruit_Logic_pickup_02',
         IsLoop = false,
         Volume = 60.0,
@@ -224,7 +200,6 @@ local SoundXls = {
     },
     [25] = {
         ID = 25,
-        Type = 'SoundEffect',
         Name = 'Weapon_Common_pickup',
         IsLoop = false,
         Volume = 60.0,
@@ -233,7 +208,6 @@ local SoundXls = {
     },
     [26] = {
         ID = 26,
-        Type = 'SoundEffect',
         Name = 'Fruit_Logic_eat&boost',
         IsLoop = false,
         Volume = 60.0,
@@ -242,7 +216,6 @@ local SoundXls = {
     },
     [27] = {
         ID = 27,
-        Type = 'SoundEffect',
         Name = 'Weapon_attack',
         IsLoop = false,
         Volume = 60.0,
@@ -251,7 +224,6 @@ local SoundXls = {
     },
     [28] = {
         ID = 28,
-        Type = 'SoundEffect',
         Name = 'Weapon_LightSaber_attack',
         IsLoop = false,
         Volume = 60.0,
@@ -260,7 +232,6 @@ local SoundXls = {
     },
     [29] = {
         ID = 29,
-        Type = 'SoundEffect',
         Name = 'Weapon_knife_attack',
         IsLoop = false,
         Volume = 60.0,
@@ -269,7 +240,6 @@ local SoundXls = {
     },
     [30] = {
         ID = 30,
-        Type = 'SoundEffect',
         Name = 'Weapon_Light',
         IsLoop = false,
         Volume = 60.0,
@@ -278,7 +248,6 @@ local SoundXls = {
     },
     [31] = {
         ID = 31,
-        Type = 'SoundEffect',
         Name = 'Weapon_LightSaber_hit',
         IsLoop = false,
         Volume = 60.0,
@@ -287,7 +256,6 @@ local SoundXls = {
     },
     [32] = {
         ID = 32,
-        Type = 'SoundEffect',
         Name = 'Weapon_Umbrella_hit',
         IsLoop = false,
         Volume = 60.0,
@@ -296,7 +264,6 @@ local SoundXls = {
     },
     [33] = {
         ID = 33,
-        Type = 'SoundEffect',
         Name = 'Weapon_Trombone_hit',
         IsLoop = false,
         Volume = 60.0,
@@ -305,7 +272,6 @@ local SoundXls = {
     },
     [34] = {
         ID = 34,
-        Type = 'SoundEffect',
         Name = 'Item_unequip',
         IsLoop = false,
         Volume = 60.0,
@@ -314,7 +280,6 @@ local SoundXls = {
     },
     [35] = {
         ID = 35,
-        Type = 'SoundEffect',
         Name = 'Weapon_LightSaber_pickup',
         IsLoop = false,
         Volume = 60.0,
@@ -323,7 +288,6 @@ local SoundXls = {
     },
     [36] = {
         ID = 36,
-        Type = 'SoundEffect',
         Name = 'Throw',
         IsLoop = false,
         Volume = 60.0,
@@ -332,7 +296,6 @@ local SoundXls = {
     },
     [37] = {
         ID = 37,
-        Type = 'SoundEffect',
         Name = 'Weapon_Sword_Hit_Wood_Dull_01',
         IsLoop = false,
         Volume = 60.0,
@@ -341,7 +304,6 @@ local SoundXls = {
     },
     [38] = {
         ID = 38,
-        Type = 'SoundEffect',
         Name = 'FlyBoardController_ScoreBreaker',
         IsLoop = false,
         Volume = 60.0,
@@ -350,7 +312,6 @@ local SoundXls = {
     },
     [39] = {
         ID = 39,
-        Type = 'SoundEffect',
         Name = 'Drone_attack_firework_shoot',
         IsLoop = false,
         Volume = 60.0,
@@ -359,142 +320,126 @@ local SoundXls = {
     },
     [40] = {
         ID = 40,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '第三名到达终点'
     },
     [41] = {
         ID = 41,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '第四名到达终点'
     },
     [42] = {
         ID = 42,
-        Type = 'SoundEffect',
-        Name = 'Clip_Lock',
+        Name = 'Trap_Place',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Clip_Lock',
+        Path = 'Audio/Trap_Place',
         Info = '放夹子'
     },
     [43] = {
         ID = 43,
-        Type = 'SoundEffect',
-        Name = 'Clip_Release',
+        Name = 'Trap_Effect',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Clip_Release',
+        Path = 'Audio/Trap_Effect',
         Info = '夹中动物'
     },
     [44] = {
         ID = 44,
-        Type = 'SoundEffect',
-        Name = 'Clip_Destory',
+        Name = 'Trap_Break',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Clip_Destory',
+        Path = 'Audio/Trap_Break',
         Info = '夹子被毁坏'
     },
     [45] = {
         ID = 45,
-        Type = 'SoundEffect',
-        Name = 'Deer_Hurt',
+        Name = '',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Deer_Hurt',
-        Info = '鹿受击'
+        Path = 'Audio/',
+        Info = '鹿待机'
     },
     [46] = {
         ID = 46,
-        Type = 'SoundEffect',
-        Name = 'Deer_Dead',
+        Name = 'Animal_Reindeer_Dead',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Deer_Dead',
+        Path = 'Audio/Animal_Reindeer_Dead',
         Info = '鹿死亡'
     },
     [47] = {
         ID = 47,
-        Type = 'SoundEffect',
-        Name = 'Bird',
+        Name = 'Animal_Pheasant_Idle',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Bird',
-        Info = '山鸡受击'
+        Path = 'Audio/Animal_Pheasant_Idle',
+        Info = '山鸡待机'
     },
     [48] = {
         ID = 48,
-        Type = 'SoundEffect',
-        Name = 'Bird',
+        Name = 'Animal_Pheasant_Dead',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Bird',
+        Path = 'Audio/Animal_Pheasant_Dead',
         Info = '山鸡死亡'
     },
     [49] = {
         ID = 49,
-        Type = 'SoundEffect',
-        Name = 'Pig_Hurt',
+        Name = 'Animal_Boar_Idle',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Pig_Hurt',
-        Info = '野猪受击'
+        Path = 'Audio/Animal_Boar_Idle',
+        Info = '野猪待机'
     },
     [50] = {
         ID = 50,
-        Type = 'SoundEffect',
-        Name = 'Pig_Dead',
+        Name = 'Animal_Boar_Dead',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Pig_Dead',
+        Path = 'Audio/Animal_Boar_Dead',
         Info = '野鸡死亡'
     },
     [51] = {
         ID = 51,
-        Type = 'SoundEffect',
-        Name = 'Wolf_Hurt',
+        Name = 'Animal_Wolf_Idle',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Wolf_Hurt',
-        Info = '狼受击'
+        Path = 'Audio/Animal_Wolf_Idle',
+        Info = '狼待机'
     },
     [52] = {
         ID = 52,
-        Type = 'SoundEffect',
-        Name = 'Wolf_Dead',
+        Name = 'Animal_Wolf_Dead',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Wolf_Dead',
+        Path = 'Audio/Animal_Wolf_Dead',
         Info = '狼死亡'
     },
     [53] = {
         ID = 53,
-        Type = 'SoundEffect',
-        Name = 'Bird',
+        Name = 'Animal_Owl_Idle',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Bird',
-        Info = '猫头鹰受击'
+        Path = 'Audio/Animal_Owl_Idle',
+        Info = '猫头鹰待机'
     },
     [54] = {
         ID = 54,
-        Type = 'SoundEffect',
-        Name = 'Bird',
+        Name = 'Animal_Owl_Dead',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Bird',
+        Path = 'Audio/Animal_Owl_Dead',
         Info = '猫头鹰死亡'
     },
     [55] = {
         ID = 55,
-        Type = 'SoundEffect',
         Name = 'Weapon_Bow_draw',
         IsLoop = false,
         Volume = 60.0,
@@ -503,7 +448,6 @@ local SoundXls = {
     },
     [56] = {
         ID = 56,
-        Type = 'SoundEffect',
         Name = 'Weapon_Bow_shoot',
         IsLoop = false,
         Volume = 60.0,
@@ -512,61 +456,54 @@ local SoundXls = {
     },
     [57] = {
         ID = 57,
-        Type = 'SoundEffect',
-        Name = 'Bear_Hurt',
+        Name = 'Animal_Bear_Idle',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/Bear_Hurt',
-        Info = '熊受击'
+        Path = 'Audio/Animal_Bear_Idle',
+        Info = '熊待机'
     },
     [58] = {
         ID = 58,
-        Type = 'SoundEffect',
-        Name = 'bear_pain_hurt_groan_01',
+        Name = 'Animal_Bear_Dead',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/bear_pain_hurt_groan_01',
+        Path = 'Audio/Animal_Bear_Dead',
         Info = '熊死亡'
     },
     [59] = {
         ID = 59,
-        Type = 'SoundEffect',
         Name = 'Rocket_Launcher',
-        IsLoop = true,
+        IsLoop = false,
         Volume = 60.0,
         Path = 'Audio/Rocket_Launcher',
         Info = '弹射椅发射的音效'
     },
     [60] = {
         ID = 60,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '弹射椅故障旋转的音效'
     },
     [61] = {
         ID = 61,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '玩家失败落下时的音效'
     },
     [62] = {
         ID = 62,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '喷气椅机械音'
     },
     [63] = {
         ID = 63,
-        Type = 'SoundEffect',
         Name = 'Sfx_ChangeStatu_5s_SlotMachine',
         IsLoop = false,
         Volume = 60.0,
@@ -575,43 +512,38 @@ local SoundXls = {
     },
     [64] = {
         ID = 64,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = 'BGM_Party',
         IsLoop = true,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/BGM_Party',
         Info = '营地里和飞碟里BGM'
     },
     [65] = {
         ID = 65,
-        Type = 'SoundEffect',
-        Name = 'TempBGM',
+        Name = 'BGM_Forest',
         IsLoop = true,
         Volume = 60.0,
-        Path = 'Audio/TempBGM',
+        Path = 'Audio/BGM_Forest',
         Info = '野外探索狩猎时BGM'
     },
     [66] = {
         ID = 66,
-        Type = 'SoundEffect',
-        Name = '',
+        Name = '0.0',
         IsLoop = true,
         Volume = 60.0,
-        Path = 'Audio/',
+        Path = 'Audio/0',
         Info = '迷宫内BGM'
     },
     [67] = {
         ID = 67,
-        Type = 'SoundEffect',
         Name = 'E3',
         IsLoop = false,
         Volume = 60.0,
         Path = 'Audio/E3',
-        Info = '吉他音'
+        Info = ''
     },
     [68] = {
         ID = 68,
-        Type = 'SoundEffect',
         Name = 'F3',
         IsLoop = false,
         Volume = 60.0,
@@ -620,7 +552,6 @@ local SoundXls = {
     },
     [69] = {
         ID = 69,
-        Type = 'SoundEffect',
         Name = 'F#3',
         IsLoop = false,
         Volume = 60.0,
@@ -629,7 +560,6 @@ local SoundXls = {
     },
     [70] = {
         ID = 70,
-        Type = 'SoundEffect',
         Name = 'G3',
         IsLoop = false,
         Volume = 60.0,
@@ -638,7 +568,6 @@ local SoundXls = {
     },
     [71] = {
         ID = 71,
-        Type = 'SoundEffect',
         Name = 'G#3',
         IsLoop = false,
         Volume = 60.0,
@@ -647,7 +576,6 @@ local SoundXls = {
     },
     [72] = {
         ID = 72,
-        Type = 'SoundEffect',
         Name = 'A3',
         IsLoop = false,
         Volume = 60.0,
@@ -656,7 +584,6 @@ local SoundXls = {
     },
     [73] = {
         ID = 73,
-        Type = 'SoundEffect',
         Name = 'A#3',
         IsLoop = false,
         Volume = 60.0,
@@ -665,7 +592,6 @@ local SoundXls = {
     },
     [74] = {
         ID = 74,
-        Type = 'SoundEffect',
         Name = 'B3',
         IsLoop = false,
         Volume = 60.0,
@@ -674,7 +600,6 @@ local SoundXls = {
     },
     [75] = {
         ID = 75,
-        Type = 'SoundEffect',
         Name = 'C4',
         IsLoop = false,
         Volume = 60.0,
@@ -683,7 +608,6 @@ local SoundXls = {
     },
     [76] = {
         ID = 76,
-        Type = 'SoundEffect',
         Name = 'C#4',
         IsLoop = false,
         Volume = 60.0,
@@ -692,7 +616,6 @@ local SoundXls = {
     },
     [77] = {
         ID = 77,
-        Type = 'SoundEffect',
         Name = 'D4',
         IsLoop = false,
         Volume = 60.0,
@@ -701,7 +624,6 @@ local SoundXls = {
     },
     [78] = {
         ID = 78,
-        Type = 'SoundEffect',
         Name = 'D#4',
         IsLoop = false,
         Volume = 60.0,
@@ -710,7 +632,6 @@ local SoundXls = {
     },
     [79] = {
         ID = 79,
-        Type = 'SoundEffect',
         Name = 'E4',
         IsLoop = false,
         Volume = 60.0,
@@ -719,7 +640,6 @@ local SoundXls = {
     },
     [80] = {
         ID = 80,
-        Type = 'SoundEffect',
         Name = 'F4',
         IsLoop = false,
         Volume = 60.0,
@@ -728,7 +648,6 @@ local SoundXls = {
     },
     [81] = {
         ID = 81,
-        Type = 'SoundEffect',
         Name = 'F#4',
         IsLoop = false,
         Volume = 60.0,
@@ -737,7 +656,6 @@ local SoundXls = {
     },
     [82] = {
         ID = 82,
-        Type = 'SoundEffect',
         Name = 'G4',
         IsLoop = false,
         Volume = 60.0,
@@ -746,7 +664,6 @@ local SoundXls = {
     },
     [83] = {
         ID = 83,
-        Type = 'SoundEffect',
         Name = 'G#4',
         IsLoop = false,
         Volume = 60.0,
@@ -755,7 +672,6 @@ local SoundXls = {
     },
     [84] = {
         ID = 84,
-        Type = 'SoundEffect',
         Name = 'A4',
         IsLoop = false,
         Volume = 60.0,
@@ -764,7 +680,6 @@ local SoundXls = {
     },
     [85] = {
         ID = 85,
-        Type = 'SoundEffect',
         Name = 'A#4',
         IsLoop = false,
         Volume = 60.0,
@@ -773,7 +688,6 @@ local SoundXls = {
     },
     [86] = {
         ID = 86,
-        Type = 'SoundEffect',
         Name = 'B4',
         IsLoop = false,
         Volume = 60.0,
@@ -782,7 +696,6 @@ local SoundXls = {
     },
     [87] = {
         ID = 87,
-        Type = 'SoundEffect',
         Name = 'C5',
         IsLoop = false,
         Volume = 60.0,
@@ -791,7 +704,6 @@ local SoundXls = {
     },
     [88] = {
         ID = 88,
-        Type = 'SoundEffect',
         Name = 'C#5',
         IsLoop = false,
         Volume = 60.0,
@@ -800,7 +712,6 @@ local SoundXls = {
     },
     [89] = {
         ID = 89,
-        Type = 'SoundEffect',
         Name = 'D5',
         IsLoop = false,
         Volume = 60.0,
@@ -809,7 +720,6 @@ local SoundXls = {
     },
     [90] = {
         ID = 90,
-        Type = 'SoundEffect',
         Name = 'D#5',
         IsLoop = false,
         Volume = 60.0,
@@ -818,7 +728,6 @@ local SoundXls = {
     },
     [91] = {
         ID = 91,
-        Type = 'SoundEffect',
         Name = 'E5',
         IsLoop = false,
         Volume = 60.0,
@@ -827,7 +736,6 @@ local SoundXls = {
     },
     [92] = {
         ID = 92,
-        Type = 'SoundEffect',
         Name = 'F5',
         IsLoop = false,
         Volume = 60.0,
@@ -836,7 +744,6 @@ local SoundXls = {
     },
     [93] = {
         ID = 93,
-        Type = 'SoundEffect',
         Name = 'F#5',
         IsLoop = false,
         Volume = 60.0,
@@ -845,7 +752,6 @@ local SoundXls = {
     },
     [94] = {
         ID = 94,
-        Type = 'SoundEffect',
         Name = 'G5',
         IsLoop = false,
         Volume = 60.0,
@@ -854,7 +760,6 @@ local SoundXls = {
     },
     [95] = {
         ID = 95,
-        Type = 'SoundEffect',
         Name = 'G#5',
         IsLoop = false,
         Volume = 60.0,
@@ -863,7 +768,6 @@ local SoundXls = {
     },
     [96] = {
         ID = 96,
-        Type = 'SoundEffect',
         Name = 'A5',
         IsLoop = false,
         Volume = 60.0,
@@ -872,7 +776,6 @@ local SoundXls = {
     },
     [97] = {
         ID = 97,
-        Type = 'SoundEffect',
         Name = 'Swing09',
         IsLoop = true,
         Volume = 5.0,
@@ -881,7 +784,6 @@ local SoundXls = {
     },
     [98] = {
         ID = 98,
-        Type = 'SoundEffect',
         Name = 'undertale',
         IsLoop = true,
         Volume = 5.0,
@@ -890,12 +792,147 @@ local SoundXls = {
     },
     [99] = {
         ID = 99,
-        Type = 'SoundEffect',
         Name = 'creep',
         IsLoop = true,
         Volume = 5.0,
         Path = 'Audio/creep',
         Info = ''
+    },
+    [100] = {
+        ID = 100,
+        Name = 'Night',
+        IsLoop = false,
+        Volume = 30.0,
+        Path = 'Audio/Night',
+        Info = ''
+    },
+    [101] = {
+        ID = 101,
+        Name = 'UI_Change_Select',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '切换商品选中状态'
+    },
+    [102] = {
+        ID = 102,
+        Name = 'Bonfire',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '点火'
+    },
+    [103] = {
+        ID = 103,
+        Name = 'Enter_Tent',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '进入帐篷'
+    },
+    [104] = {
+        ID = 104,
+        Name = 'Radio_Switch',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '打开收音机'
+    },
+    [105] = {
+        ID = 105,
+        Name = 'Statue_Eye',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '点亮石像眼睛'
+    },
+    [106] = {
+        ID = 106,
+        Name = 'Statue_Eye_Hold',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '石像眼睛发光时一直播放'
+    },
+    [107] = {
+        ID = 107,
+        Name = 'Pearl',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '与珍珠交互时的声音'
+    },
+    [108] = {
+        ID = 108,
+        Name = 'Transmit',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '飞碟传送门触发'
+    },
+    [109] = {
+        ID = 109,
+        Name = 'Weapon_GetBuff',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '获得状态'
+    },
+    [110] = {
+        ID = 110,
+        Name = 'GetItem',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '获得物品'
+    },
+    [111] = {
+        ID = 111,
+        Name = 'Exchange',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '变卖物品'
+    },
+    [112] = {
+        ID = 112,
+        Name = 'Arch_Hit_Target',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = ''
+    },
+    [113] = {
+        ID = 113,
+        Name = 'Arch_Hit_People',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = ''
+    },
+    [114] = {
+        ID = 114,
+        Name = 'Arch_Hit_Apple',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = ''
+    },
+    [115] = {
+        ID = 115,
+        Name = 'Arch_Hit_Chest',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = ''
+    },
+    [116] = {
+        ID = 116,
+        Name = 'Statue_Break',
+        IsLoop = false,
+        Volume = nil,
+        Path = '',
+        Info = '石像破碎'
     }
 }
 

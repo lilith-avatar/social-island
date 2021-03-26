@@ -3,11 +3,11 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemNew.xlsx
+--- source file: .//ItemNew.xlsm
 
 local PistolXls = {
-    [3008] = {
-        ItemID = 3008,
+    [3001] = {
+        ItemID = 3001,
         ModelName = 'Pistol',
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),

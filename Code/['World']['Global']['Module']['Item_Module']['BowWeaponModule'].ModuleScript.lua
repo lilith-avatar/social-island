@@ -35,6 +35,7 @@ end
 
 --攻击
 function BowWeapon:Attack(_force)
+    print("攻击")
     self.useCT = self.baseData.UseCD
     NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowAttack")
     self:ShootArrow(_force)
@@ -68,6 +69,7 @@ function BowWeapon:Charge(dt)
         end
     end
     GuiBowAim:UpdateFrontSight(self.chargeForce)
+    GuiBowAim:UpdateTouchGuiCD(self.useCT / self.baseData.UseCD)
     PlayerCam:TPSCamZoom(self.chargeForce)
 end
 
@@ -82,7 +84,7 @@ function BowWeapon:ShootArrow(_force)
         endPos,
         self.derivedData.ProjectileSpeed
     )
-    --NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.ShootSoundID)
+    SoundUtil.Play3DSE(localPlayer.Position, self.derivedData.ShootSoundID)
     invoke(
         function()
             wait(_force)

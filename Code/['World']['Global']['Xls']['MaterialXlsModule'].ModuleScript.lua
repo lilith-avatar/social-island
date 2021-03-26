@@ -3,88 +3,113 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemNew.xlsx
+--- source file: .//ItemNew.xlsm
 
 local MaterialXls = {
     [7001] = {
         ItemID = 7001,
-        GetCoin = 100
+        MaterialType = 'Food',
+        GetCoin = 5
     },
     [7002] = {
         ItemID = 7002,
-        GetCoin = 40
+        MaterialType = 'Food',
+        GetCoin = 5
     },
     [7003] = {
         ItemID = 7003,
-        GetCoin = 80
+        MaterialType = 'Food',
+        GetCoin = 5
     },
     [7004] = {
         ItemID = 7004,
+        MaterialType = 'Food',
         GetCoin = 20
     },
     [7005] = {
         ItemID = 7005,
-        GetCoin = 40
+        MaterialType = 'Food',
+        GetCoin = 10
     },
     [7006] = {
         ItemID = 7006,
-        GetCoin = 10
+        MaterialType = 'Food',
+        GetCoin = 25
     },
     [7007] = {
         ItemID = 7007,
-        GetCoin = 5
+        MaterialType = 'Food',
+        GetCoin = 40
     },
     [7008] = {
         ItemID = 7008,
-        GetCoin = 60
+        MaterialType = 'Food',
+        GetCoin = 30
     },
     [7009] = {
         ItemID = 7009,
-        GetCoin = 40
+        MaterialType = 'Food',
+        GetCoin = 5
     },
     [7010] = {
         ItemID = 7010,
-        GetCoin = 60
+        MaterialType = '',
+        GetCoin = 40
     },
     [7011] = {
         ItemID = 7011,
-        GetCoin = 80
+        MaterialType = '',
+        GetCoin = 35
     },
     [7012] = {
         ItemID = 7012,
-        GetCoin = 20
+        MaterialType = '',
+        GetCoin = 60
     },
     [7013] = {
         ItemID = 7013,
-        GetCoin = 35
+        MaterialType = '',
+        GetCoin = 25
     },
     [7014] = {
         ItemID = 7014,
-        GetCoin = 120
+        MaterialType = '',
+        GetCoin = 45
     },
     [7015] = {
         ItemID = 7015,
+        MaterialType = '',
         GetCoin = 80
     },
     [7016] = {
         ItemID = 7016,
-        GetCoin = 60
+        MaterialType = '',
+        GetCoin = 65
     },
     [7017] = {
         ItemID = 7017,
-        GetCoin = 100
+        MaterialType = '',
+        GetCoin = 120
     },
     [7018] = {
         ItemID = 7018,
-        GetCoin = 20
+        MaterialType = '',
+        GetCoin = 80
     },
     [7019] = {
         ItemID = 7019,
-        GetCoin = 80
+        MaterialType = '',
+        GetCoin = 65
     },
     [7020] = {
         ItemID = 7020,
-        GetCoin = 60
+        MaterialType = '',
+        GetCoin = 100
+    },
+    [7021] = {
+        ItemID = 7021,
+        MaterialType = '',
+        GetCoin = 5
     }
 }
 

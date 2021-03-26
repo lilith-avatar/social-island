@@ -3,14 +3,14 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemNew.xlsx
+--- source file: .//ItemNew.xlsm
 
 local ConsumableXls = {
-    [4025] = {
-        ItemID = 4025,
+    [4001] = {
+        ItemID = 4001,
         ModelName = 'Item',
         IsPutBack = false,
-        UseEffectName = '',
+        UseEffectName = 'BowReleaseEffect',
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),
         Angle = EulerDegree(0, 0, 0),
@@ -19,11 +19,11 @@ local ConsumableXls = {
         UseAddBuffDur = 0.0,
         UseRemoveBuffID = 0
     },
-    [4026] = {
-        ItemID = 4026,
+    [4002] = {
+        ItemID = 4002,
         ModelName = 'Item',
         IsPutBack = false,
-        UseEffectName = '',
+        UseEffectName = 'BowReleaseEffect',
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),
         Angle = EulerDegree(0, 0, 0),
@@ -32,11 +32,11 @@ local ConsumableXls = {
         UseAddBuffDur = 0.0,
         UseRemoveBuffID = 0
     },
-    [4027] = {
-        ItemID = 4027,
+    [4003] = {
+        ItemID = 4003,
         ModelName = 'Item',
         IsPutBack = false,
-        UseEffectName = '',
+        UseEffectName = 'BowReleaseEffect',
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),
         Angle = EulerDegree(0, 0, 0),

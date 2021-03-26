@@ -40,9 +40,9 @@ Events.ServerEvents = {
     --物品被使用
     "SUseItemEvent", -- @param _player,_itemID
     --投射物发射
-    "SProjectileShootEvent", -- @param _projectileID,_projectileOBJ
+    "SProjectileShootEvent", -- @param _player,_projectileID,_projectileOBJ
     --投射物命中
-    "SProjectileHitEvent" -- @param _projectileID,_projectileOBJ,_hitObj,_hitPos
+    "SProjectileHitEvent" -- @param _player,_projectileID,_projectileOBJ,_hitObj,_hitPos
 }
 
 -- 客户端事件列表

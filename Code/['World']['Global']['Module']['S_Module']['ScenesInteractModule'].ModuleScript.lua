@@ -41,9 +41,9 @@ local radioOBJ = {}
 --- 初始化
 function ScenesInteract:Init()
     print("[ScenesInteract] Init()")
-    --[[this:NodeRef()
+    this:NodeRef()
     this:DataInit()
-    this:EventBind()]]
+    this:EventBind()
 end
 
 --- 节点引用
@@ -103,22 +103,30 @@ function ScenesInteract:EventBind()
 end
 
 --- 实例化场景交互 ScenesInteract:InstanceInteractOBJ(60, Vector3(-62.0279, 0, -35.9028))
-function ScenesInteract:InstanceInteractOBJ(_id)
+function ScenesInteract:InstanceInteractOBJ(_id, _pos)
     local config = Config.ScenesInteract[_id]
-    local temp = {
-        obj = world:CreateInstance(config.ArchetypeName, config.Path, world.ScenesInteract, config.Pos, config.Rot),
-        itemID = config.ItemID,
-        isUse = config.IsGet,
-        addBuffID = config.AddBuffID,
-        addBuffDur = config.AddBuffDur,
-        rewardCoin = config.RewardCoin,
-        useCount = config.UseCount,
-        useCountMax = config.UseCount,
-        resetTime = config.ResetTime,
-        resetCD = 0
-    }
-    world:CreateObject("StringValueObject", "ScenesInteractUID", temp.obj)
-    table.insert(interactOBJ, temp)
+    if config.IsPre or _pos then
+        local temp = {
+            obj = world:CreateInstance(
+                config.ArchetypeName,
+                config.ArchetypeName,
+                world.ScenesInteract,
+                _pos or config.Pos,
+                config.Rot or EulerDegree(0, 0, 0)
+            ),
+            itemID = config.GetItemID,
+            isUse = config.IsUse,
+            addBuffID = config.AddBuffID,
+            addBuffDur = config.AddBuffDur,
+            rewardCoin = config.RewardCoin,
+            useCount = config.UseCount,
+            useCountMax = config.UseCount,
+            resetTime = config.ResetTime,
+            resetCD = 0
+        }
+        world:CreateObject("StringValueObject", "ScenesInteractUID", temp.obj)
+        table.insert(interactOBJ, temp)
+    end
 end
 
 --弹跳
@@ -227,12 +235,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 13 then
         for k, v in pairs(interactOBJ) do
             if v.obj.ScenesInteractUID.Value == _player.UserId then
+                print(table.dump(v))
                 if v.useCount > 0 then
                     if v.itemID ~= nil then
                         NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
                         if v.isUse then
                             wait(.1)
-                            NetUtil.Fire_C("UUseItemInBag", _player, v.itemID)
+                            NetUtil.Fire_C("UseItemInBagEvent", _player, v.itemID)
                         end
                     end
                     NetUtil.Fire_S("SpawnCoinEvent", "P", v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
@@ -243,9 +252,10 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 else
                     v.obj:SetActive(false)
                 end
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+                return
             end
         end
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
     end
     if _id == 15 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 15)
@@ -254,7 +264,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                --NetUtil.Fire_C("PlayEffectEvent", _player, 14, _player.Position)
+                SoundUtil.Play2DSE(localPlayer.UserId, 14)
             end
         end
     end
@@ -295,7 +305,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                --NetUtil.Fire_C("PlayEffectEvent", _player, 15, _player.Position, v.Name)
+                SoundUtil.Play2DSE(localPlayer.UserId, 15)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
@@ -345,7 +355,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
                 -- 先停止当前音乐，再播放
                 if this.RadioData.curSong then
-                    NetUtil.Fire_C("StopEffectEvent", _player, "radio")
+                    --NetUtil.Fire_C("StopEffectEvent", _player, "radio")
                 else
                     v.Model.On:SetActive(true)
                 end

@@ -3,12 +3,12 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//ItemNew.xlsx
+--- source file: .//ItemNew.xlsm
 
 local TaskXls = {
     [6001] = {
         ItemID = 6001,
-        TaskDes = '',
+        TaskDes = '跟导游打个招呼吧。',
         Npc = {14},
         RewardItem = 0,
         RewardGold = 50,
@@ -16,7 +16,7 @@ local TaskXls = {
     },
     [6002] = {
         ItemID = 6002,
-        TaskDes = '',
+        TaskDes = '跟安全员鲍勃了解丛林探险的注意事项。',
         Npc = {13},
         RewardItem = 0,
         RewardGold = 50,
@@ -24,7 +24,7 @@ local TaskXls = {
     },
     [6003] = {
         ItemID = 6003,
-        TaskDes = '',
+        TaskDes = '跟热气球技师询问怎么乘坐热气球，他在河对岸的山上。',
         Npc = {3},
         RewardItem = 0,
         RewardGold = 50,
@@ -32,7 +32,7 @@ local TaskXls = {
     },
     [6004] = {
         ItemID = 6004,
-        TaskDes = '',
+        TaskDes = '跟庆典师了解如何提升自己的魅力。',
         Npc = {5},
         RewardItem = 0,
         RewardGold = 50,
@@ -40,7 +40,7 @@ local TaskXls = {
     },
     [6005] = {
         ItemID = 6005,
-        TaskDes = '',
+        TaskDes = '了解营地内的动物赛跑。',
         Npc = {6},
         RewardItem = 0,
         RewardGold = 50,
@@ -48,7 +48,7 @@ local TaskXls = {
     },
     [6006] = {
         ItemID = 6006,
-        TaskDes = '',
+        TaskDes = '这个图鉴记载了有人在这片森林里发现飞碟的传说。',
         Npc = {12},
         RewardItem = 0,
         RewardGold = 200,
@@ -56,7 +56,7 @@ local TaskXls = {
     },
     [6007] = {
         ItemID = 6007,
-        TaskDes = '',
+        TaskDes = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
         Npc = {3},
         RewardItem = 0,
         RewardGold = 200,

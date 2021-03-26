@@ -28,7 +28,7 @@ end
 
 --拿在手中使用
 function ItemBase:UseInHand()
-    --NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.UseSoundID)
+    SoundUtil.Play3DSE(localPlayer.Position, self.baseData.UseSoundID)
 
     NetUtil.Fire_C("CUseItemEvent", localPlayer, self.baseData.ItemID)
     NetUtil.Fire_S("SUseItemEvent", localPlayer, self.baseData.ItemID)
@@ -58,7 +58,7 @@ function ItemBase:Equip()
     print(self.typeConfig.FsmMode)
     NetUtil.Fire_C("FsmTriggerEvent", localPlayer, self.typeConfig.FsmMode)
 
-    --NetUtil.Fire_C("PlayEffectEvent", localPlayer, self.baseData.TakeOutSoundID)
+    SoundUtil.Play3DSE(localPlayer.Position, self.baseData.TakeOutSoundID)
     NetUtil.Fire_C("RemoveItemEvent", localPlayer, self.baseData.ItemID)
     ItemMgr.curEquipmentID = self.baseData.ItemID
 

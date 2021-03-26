@@ -174,8 +174,8 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _areaCenterPos, _a
         tempData.obj.AnimalDeadEvent:Connect(
             function()
                 EnterStateFunc[animalActState.DEADED](tempData)
-                --NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
-                --NetUtil.Fire_S("SPlayEffectEvent", tempData.deadAEID, tempData.obj.Position)
+                SoundUtil.Play3DSE(tempData.obj.Position, tempData.hitAEID)
+                SoundUtil.Play3DSE(tempData.obj.Position, tempData.deadAEID)
             end
         )
     end
@@ -198,7 +198,7 @@ function Hunt:InstanceAnimal(_animalData, _animalID, _parent, _areaCenterPos, _a
                 local num = math.random(1000)
                 if num < 1000 * (tempData.caughtRate + _rate) then
                     EnterStateFunc[animalActState.TRAPPED](tempData)
-                    --NetUtil.Fire_S("SPlayEffectEvent", tempData.hitAEID, tempData.obj.Position)
+                    SoundUtil.Play3DSE(tempData.obj.Position, tempData.hitAEID)
                 end
             end
         )

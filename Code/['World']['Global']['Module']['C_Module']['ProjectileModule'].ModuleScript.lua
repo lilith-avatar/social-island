@@ -29,34 +29,42 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
     local projectileConfig = Config.Projectile[_id]
     local projectileObj = this:InstanceProjectile(projectileConfig.ModelName, _pos, _rot)
     this:ShootProjectile(projectileObj, _targetPos, _force)
-    NetUtil.Fire_S("SProjectileShootEvent", _id, projectileObj)
-    NetUtil.Fire_C("CProjectileShootEvent", _id, projectileObj)
+    NetUtil.Fire_S("SProjectileShootEvent", localPlayer, _id, projectileObj)
+    NetUtil.Fire_C("CProjectileShootEvent", localPlayer, _id, projectileObj)
     projectileObj.OnCollisionBegin:Connect(
         function(_hitObj, _hitPoint)
             if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
-                NetUtil.Fire_S("SProjectileHitEvent", _id, projectileObj, _hitObj, _hitPoint)
-                NetUtil.Fire_C("CProjectileHitEvent", _id, projectileObj, _hitObj, _hitPoint)
-                local hitPlayers = this:GetPlayersByRange(_hitObj, _hitPoint, projectileConfig.HitRange)
-                this:AddForceToHitPlayer(projectileObj, projectileConfig.HitType, _force, _hitPoint, hitPlayers)
-                this:HitBuff(
-                    hitPlayers,
-                    {
-                        addBuffID = projectileConfig.HitAddBuffID,
-                        addDur = projectileConfig.HitAddBuffDur,
-                        removeBuffID = projectileConfig.HitRemoveBuffID
-                    }
-                )
-                this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
-                projectileObj:Destroy()
+                if _hitObj.Avatar.ClassName == "PlayerAvatarInstance" then
+                    --NetUtil.Fire_S("SProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                    --NetUtil.Fire_C("CProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                    local hitPlayers = this:GetPlayersByRange(_hitObj, _hitPoint, projectileConfig.HitRange)
+                    this:AddForceToHitPlayer(
+                        projectileObj,
+                        projectileConfig.HitType,
+                        projectileConfig.AddForceToHitPlayer,
+                        _hitPoint,
+                        hitPlayers
+                    )
+                    this:HitBuff(
+                        hitPlayers,
+                        {
+                            addBuffID = projectileConfig.HitAddBuffID,
+                            addDur = projectileConfig.HitAddBuffDur,
+                            removeBuffID = projectileConfig.HitRemoveBuffID
+                        }
+                    )
+                    this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
+                    projectileObj:Destroy()
+                end
             elseif _hitObj.AnimalID and projectileConfig.Hunt then
-                NetUtil.Fire_S("SProjectileHitEvent", _id, projectileObj, _hitObj, _hitPoint)
-                NetUtil.Fire_C("CProjectileHitEvent", _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_S("SProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_C("CProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 _hitObj.AnimalDeadEvent:Fire()
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
             elseif _hitObj.Name == "ArrowTargetCol" then
-                NetUtil.Fire_S("SProjectileHitEvent", _id, projectileObj, _hitObj, _hitPoint)
-                NetUtil.Fire_C("CProjectileHitEvent", _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_S("SProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_C("CProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 _hitObj.Parent.ArrowTargetEvent:Fire(_hitPoint)
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
@@ -115,7 +123,7 @@ end
 
 --播放命中音效和特效
 function Projectile:PlayHitSoundEffect(_pos, _seID, _effect)
-    --NetUtil.Fire_S("SPlayEffectEvent", _seID, _pos)
+    SoundUtil.Play3DSE(_pos, _seID)
     local effect = world:CreateInstance(_effect, _effect .. "Instance", world, _pos)
     invoke(
         function()
