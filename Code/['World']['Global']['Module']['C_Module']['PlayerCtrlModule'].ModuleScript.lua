@@ -39,8 +39,13 @@ end
 
 --- 数据变量初始化
 function PlayerCtrl:DataInit()
+    SoundUtil.Init(Config.Sound)
+    SoundUtil.InitAudioSource(localPlayer.UserId)
+    SoundUtil.Play2DSE(localPlayer.UserId, 2)
     this.finalDir = Vector3.Zero
     this.isControllable = true
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
+    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
 end
 
 --- 节点事件绑定
@@ -158,7 +163,7 @@ function PlayerCtrl:PlayerClap()
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:PlayAnimation("SocialApplause", 8, 1, 0, true, false, 1)
     --拍掌音效
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 1)
+    SoundUtil.Play2DSE(localPlayer.UserId, 1)
 end
 --脚步声
 function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
@@ -167,9 +172,9 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
             FsmMgr.playerActFsm.curState.stateName ~= "Swimming"
      then
         if isOnWater then
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 19)
+            SoundUtil.Play2DSE(localPlayer.UserId, 19)
         else
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 17)
+            SoundUtil.Play2DSE(localPlayer.UserId, 17)
         end
         localPlayer.Avatar["Bone_" .. _dir .. "_Foot"].FootStep.OnCollisionEnd:Clear()
         invoke(
@@ -198,8 +203,8 @@ function PlayerCtrl:PlayerSwim()
          then
             --print("游泳检测")
             NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 20)
-        --FsmMgr:FsmTriggerEventHandler("SwimIdle")
+            SoundUtil.Play2DSE(localPlayer.UserId, 20)
+            FsmMgr:FsmTriggerEventHandler("SwimIdle")
         end
     else
         if
@@ -238,12 +243,8 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
-    if Data.Player.attr.AnimState ~= "" then
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, Data.Player.attr.AnimState)
-    else
-    end
     if not Data.Player.attr.EnableEquipable then
-        NetUtil.Fire_C("UnequipCurWeaponEvent", localPlayer)
+        NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
     end
 end
 
@@ -342,8 +343,8 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     FsmMgr:FsmTriggerEventHandler("OneHandedSwordHit")
     FsmMgr:FsmTriggerEventHandler("TwoHandedSwordHit")
     print("角色受伤", table.dump(_data))
-    BuffMgr:GetBuffEventHandler(_data.hitAddBuffID, _data.hitAddBuffDur)
-    BuffMgr:RemoveBuffEventHandler(_data.hitRemoveBuffID)
+    BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
+    BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end
 
 -- 角色重置
@@ -356,7 +357,7 @@ function PlayerCtrl:PlayerReset()
     localPlayer.LinearVelocity = Vector3.Zero
     localPlayer.Position = world.SpawnLocations.StartPortal00.Position
     if ItemMgr.curWeaponID ~= 0 then
-        ItemMgr.itemInstance[ItemMgr.curWeaponID]:Unequip()
+        NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
     end
 end
 
@@ -403,7 +404,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
-                NetUtil.Fire_C("PlayEffectEvent", localPlayer, 22, localPlayer.Position)
+                SoundUtil.Play2DSE(localPlayer.UserId, 22)
             end
         end
         if _hitObject.GrassInteractUID then

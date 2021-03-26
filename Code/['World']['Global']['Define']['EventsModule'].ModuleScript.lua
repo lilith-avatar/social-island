@@ -32,9 +32,17 @@ Events.ServerEvents = {
     "PlayerSitEvent",
     "JetOverEvent",
     "SpawnCoinEvent",
-    'CreateBubleEvent',
+    "CreateBubleEvent",
     "SPlayEffectEvent",
-    'SycnTimeSEvent'
+    "SycnTimeSEvent", 
+    --物品被拿出
+    "STakeOutItemEvent", -- @param _player,_itemID
+    --物品被使用
+    "SUseItemEvent", -- @param _player,_itemID
+    --投射物发射
+    "SProjectileShootEvent", -- @param _player,_projectileID,_projectileOBJ
+    --投射物命中
+    "SProjectileHitEvent" -- @param _player,_projectileID,_projectileOBJ,_hitObj,_hitPos
 }
 
 -- 客户端事件列表
@@ -87,14 +95,15 @@ Events.ClientEvents = {
     "UpdateCoinEvent",
     "GetItemEvent",
     "RemoveItemEvent",
-    "UseItemEvent",
+    "UseItemInBagEvent",
+    "UseItemInHandEvent",
     "CreateItemObjEvent",
     "LeaveMoleGameRangeEvent",
     "InsertInfoEvent",
     "ShowNoticeInfoEvent",
     "SwitchStoreUIEvent",
     "GetItemFromPoolEvent",
-    "UnequipCurWeaponEvent",
+    "UnequipCurEquipmentEvent",
     "GetMolePriceEvent",
     "SliderPurchaseEvent",
     "PurchaseConfirmEvent",
@@ -102,7 +111,15 @@ Events.ClientEvents = {
     "ChangeChairIdEvent",
     "StartJetEvent",
     "ShowGetCoinNumEvent",
-    'SycnTimeCEvent'
+    "SycnTimeCEvent",
+    --物品被拿出
+    "CTakeOutItemEvent", -- @param _itemID
+    --物品被使用
+    "CUseItemEvent", -- @param _itemID
+    --投射物发射
+    "CProjectileShootEvent", -- @param _projectileID,_projectileOBJ
+    --投射物命中
+    "CProjectileHitEvent" -- @param _projectileID,_projectileOBJ,_hitObj,_hitPos
 }
 
 return Events

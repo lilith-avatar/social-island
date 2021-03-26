@@ -27,8 +27,8 @@ end
 function Catch:EventBind()
 end
 
-function Catch:UseItemEventHandler(_id)
-    if _id == 3025 or _id == 3026 or _id == 3027 then
+function Catch:CUseItemEventHandler(_id)
+    if _id == 4025 or _id == 4026 or _id == 4027 then
         this:InstanceTrap(_id)
     end
 end
@@ -36,14 +36,21 @@ end
 --生成一个陷阱
 function Catch:InstanceTrap(_ItemID)
     local archetTypeName = ""
-    if _ItemID == 3025 then
+    if _ItemID == 4025 then
         archetTypeName = "Trap1"
-    elseif _ItemID == 3026 then
+    elseif _ItemID == 4026 then
         archetTypeName = "Trap2"
-    elseif _ItemID == 3027 then
+    elseif _ItemID == 4027 then
         archetTypeName = "Trap3"
     end
-    local trap = world:CreateInstance(archetTypeName, "trap", world, localPlayer.Position, localPlayer.Rotation)
+    local trap =
+        world:CreateInstance(
+        archetTypeName,
+        "trap",
+        world,
+        localPlayer.Position + localPlayer.Forward,
+        localPlayer.Rotation
+    )
     trap.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.Parent.AnimalID and _hitObject.Parent.AnimalCaughtEvent then
@@ -72,7 +79,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
             function()
                 if _animal.AnimalState.Value == 6 then
                     NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你的陷阱成功困住了动物", 2, false)
-                    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 43)
+                    SoundUtil.Play3DSE(_animal.Position, 43)
                     _trap:SetParentTo(_animal, Vector3(0, -0.5, 0), EulerDegree(0, 0, 0))
                     _trap.Open:SetActive(false)
                     _trap.Close:SetActive(true)
@@ -91,7 +98,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
                         _animal.LinearVelocityController.TargetLinearVelocity + _animal.Forward * 5
                     wait(0.5)
                     tweener:Destroy()
-                    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 44)
+                    SoundUtil.Play3DSE(_animal.Position, 44)
                     _trap:Destroy()
                     wait(1)
                     effect:Destroy()
@@ -126,7 +133,7 @@ function Catch:Catch()
             localPlayer.Avatar:PlayAnimation("PickUpLight", 2, 1, 0.1, true, false, 1)
             wait(.5)
             NetUtil.Fire_C("InsertInfoEvent", localPlayer, "捕捉动物成功", 2, false)
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 13)
+            SoundUtil.Play2DSE(localPlayer.UserId, 13)
             NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             Pet:OpenNamedPetUI(prey.AnimalID.Value)
             prey.AnimalCaughtEvent:Fire()
