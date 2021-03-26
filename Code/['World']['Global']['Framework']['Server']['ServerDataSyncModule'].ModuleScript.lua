@@ -130,8 +130,10 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
     assert(player, string.format('[DataSync][Server] 玩家不存在, uid = %s', _uid))
     if _msg == 0 or _msg == 101 then
         print('[DataSync][Server] 获取玩家数据成功', player.Name)
-        if _val then
+        local hasData = _val ~= nil
+        if hasData then
             --若以前的数据存在，更新
+            -- TODO: 数据兼容的处理
             local data = _val
             assert(data.uid == _uid, string.format('[DataSync][Server] uid校验不通过, uid = %s', _uid))
             --若已在此服务器的数据总表存在，则更新数据
@@ -139,10 +141,10 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
                 Data.Players[_uid][k] = data[k]
             end
         else
-            -- TODO: 数据兼容的处理
+            -- 不存在数据，用之前生成的默认数据
         end
-        NetUtil.Fire_S('LoadPlayerDataSuccessEvent', player)
-        NetUtil.Fire_C('LoadPlayerDataSuccessEvent', player)
+        NetUtil.Fire_S('LoadPlayerDataSuccessEvent', player, hasData)
+        NetUtil.Fire_C('LoadPlayerDataSuccessEvent', player, hasData)
         return
     end
     print(
