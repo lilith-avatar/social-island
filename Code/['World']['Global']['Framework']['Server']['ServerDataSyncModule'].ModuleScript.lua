@@ -106,6 +106,7 @@ end
 --- 下载玩家的游戏数据
 --- @param _uid string 玩家ID
 function LoadGameDataAsync(_uid)
+    sheet = DataStore:GetSheet('PlayerData')
     assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
     sheet:GetValue(
         _uid,
@@ -161,6 +162,7 @@ end
 --- @param _userId string 玩家ID
 --- @param _delete string 保存成功后是否删除缓存数据
 function SaveGameDataAsync(_uid, _delete)
+    sheet = DataStore:GetSheet('PlayerData')
     assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
     assert(not string.isnilorempty(_uid), '[DataSync][Server] uid不存在或为空')
     assert(Data.Players[_uid], string.format('[DataSync][Server] Data.Players[_uid]不存在 uid = %s', _uid))
