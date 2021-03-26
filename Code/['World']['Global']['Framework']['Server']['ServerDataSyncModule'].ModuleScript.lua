@@ -54,6 +54,11 @@ function InitEventsAndListeners()
     local onPlayerLeaveEvent = world.S_Event.OnPlayerLeaveEvent
     assert(onPlayerLeaveEvent, '[DataSync][Server] 不存在 OnPlayerLeaveEvent')
     onPlayerLeaveEvent:Connect(OnPlayerLeaveEventHandler)
+
+    -- 长期存储成功事件
+    if not world.S_Event.LoadPlayerDataSuccessEvent then
+        world:CreateObject('CustomEvent', 'LoadPlayerDataSuccessEvent', world.S_Event)
+    end
 end
 
 --- 校验数据定义
@@ -136,6 +141,8 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
         else
             -- TODO: 数据兼容的处理
         end
+        NetUtil.Fire_S('LoadPlayerDataSuccessEvent', player)
+        NetUtil.Fire_C('LoadPlayerDataSuccessEvent', player)
         return
     end
     print(

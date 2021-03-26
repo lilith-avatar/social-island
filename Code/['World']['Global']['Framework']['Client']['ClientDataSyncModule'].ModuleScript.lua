@@ -40,6 +40,11 @@ function InitEventsAndListeners()
     local onPlayerJoinEvent = localPlayer.C_Event.OnPlayerJoinEvent
     assert(onPlayerJoinEvent, '[DataSync][Client] OnPlayerJoinEvent不存在')
     onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
+
+    -- 长期存储成功事件
+    if not localPlayer.C_Event.LoadPlayerDataSuccessEvent then
+        world:CreateObject('CustomEvent', 'LoadPlayerDataSuccessEvent', localPlayer.C_Event)
+    end
 end
 
 --- 校验数据定义
