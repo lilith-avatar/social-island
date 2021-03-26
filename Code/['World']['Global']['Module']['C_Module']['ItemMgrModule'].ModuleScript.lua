@@ -4,12 +4,12 @@
 -- @author Dead Ratman
 ---@module ItemMgr
 
-local ItemMgr, this = ModuleUtil.New("ItemMgr", ClientBase)
+local ItemMgr, this = ModuleUtil.New('ItemMgr', ClientBase)
 
 local coin = 0
 
 function ItemMgr:Init()
-    print("[ItemMgr] ItemMgr:Init")
+    print('[ItemMgr] ItemMgr:Init')
     this:NodeRef()
     this:DataInit()
 end
@@ -27,12 +27,9 @@ function ItemMgr:DataInit()
     this.curEquipmentID = 0
 
     this.curEquipment = nil
-
-    -- TODO: 之后应该由服务器决定数据
-    invoke(this.InitBagData, .5)
 end
 
--- TODO: 初始化默认背包数据
+-- 初始化默认背包数据
 function ItemMgr:InitBagData()
     local defaultItems = {
         6001,
@@ -43,7 +40,7 @@ function ItemMgr:InitBagData()
         6006
     }
     for _, v in pairs(defaultItems) do
-        NetUtil.Fire_C("GetItemEvent", localPlayer, v)
+        NetUtil.Fire_C('GetItemEvent', localPlayer, v)
     end
 end
 
@@ -100,7 +97,7 @@ end
 
 --实例化物品
 function ItemMgr:InstantiateItem(_id)
-    return this["Instantiate" .. Config.Item[_id].Type](self, _id)
+    return this['Instantiate' .. Config.Item[_id].Type](self, _id)
 end
 
 --兑换任务奖励
@@ -112,42 +109,42 @@ end
 function ItemMgr:GetItemEventHandler(_id)
     -- 初始化默认背包数据
     if Data.Player.bag[_id] == nil then
-        print("[ItemMgr] 新建道具", _id)
+        print('[ItemMgr] 新建道具', _id)
         this:NewBagData(_id)
     end
     local typeConfig = Config.ItemType[Config.Item[_id].Type]
     if typeConfig.IsGetRepeatedly == false and Data.Player.bag[_id].count > 0 then
-        print("[ItemMgr] 已有道具", _id)
+        print('[ItemMgr] 已有道具', _id)
         return
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     GuiNoticeInfo:ShowGetItem(_id)
-    print("[ItemMgr] 获得道具", _id)
+    print('[ItemMgr] 获得道具', _id)
     return
 end
 
 --移除道具
 function ItemMgr:RemoveItemEventHandler(_id)
-    print("[ItemMgr] 移除道具", _id)
+    print('[ItemMgr] 移除道具', _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count - 1
 end
 
 function ItemMgr:test()
-    NetUtil.Fire_C("GetItemEvent", localPlayer, 2001)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, 2001)
     wait(.1)
-    NetUtil.Fire_C("UseItemInBagEvent", localPlayer, 2001)
+    NetUtil.Fire_C('UseItemInBagEvent', localPlayer, 2001)
 end
 
 --使用在背包的道具
 function ItemMgr:UseItemInBagEventHandler(_id)
-    print("[ItemMgr] 使用在背包的道具", _id)
+    print('[ItemMgr] 使用在背包的道具', _id)
     this.itemInstance[_id]:UseInBag()
 end
 
 --使用在手中的道具
 function ItemMgr:UseItemInHandEventHandler()
     if this.curEquipmentID ~= 0 then
-        print("[ItemMgr] 使用在手中的道具")
+        print('[ItemMgr] 使用在手中的道具')
         this.itemInstance[this.curEquipmentID]:UseInHand()
     end
 end
@@ -175,17 +172,17 @@ function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin)
                         Data.Player.bag[v.ItemId].count = Data.Player.bag[v.ItemId].count + 1
                         this.itemInstance[v.ItemId]:PutIntoBag()
                     else
-                        NetUtil.Fire_C("GetItemFromPoolEvent", localPlayer, _poolID, 0)
+                        NetUtil.Fire_C('GetItemFromPoolEvent', localPlayer, _poolID, 0)
                     end
                 else
-                    NetUtil.Fire_C("GetItemEvent", localPlayer, v.ItemId)
+                    NetUtil.Fire_C('GetItemEvent', localPlayer, v.ItemId)
                 end
                 break
             end
         end
     end
     if _coin and _coin ~= 0 then
-        NetUtil.Fire_C("UpdateCoinEvent", localPlayer, _coin)
+        NetUtil.Fire_C('UpdateCoinEvent', localPlayer, _coin)
     end
 end
 
@@ -211,9 +208,11 @@ function ItemMgr:GetNpcText(_id)
 end
 
 --- 长期存储成功读取后
-function ItemMgr:LoadPlayerDataSuccessEventHandler()
+function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     print('[ItemMgr] 读取长期存储成功')
-    this:InitBagData()
+    if not _hasData then
+        this:InitBagData()
+    end
 end
 
 ---服务器结算处理
