@@ -210,6 +210,12 @@ function ItemMgr:GetNpcText(_id)
     return LanguageUtil.GetText(ItemMgr.itemInstance[_id].derivedData.NpcText)
 end
 
+--- 长期存储成功读取后
+function ItemMgr:LoadPlayerDataSuccessEventHandler()
+    print('[ItemMgr] 读取长期存储成功')
+    this:InitBagData()
+end
+
 ---服务器结算处理
 function ItemMgr:GetCoinEventHandler(_CoinNum, _itemId)
     this:GetCoin(_CoinNum)
