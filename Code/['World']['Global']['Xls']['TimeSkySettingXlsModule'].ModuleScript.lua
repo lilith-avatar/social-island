@@ -6,8 +6,9 @@
 --- source file: .//TimeSky.xlsx
 
 local TimeSkySettingXls = {
-    [6] = {
-        ClockTime = 6,
+    [10] = {
+        ClockTime = 10,
+        TimeName = 'Day',
         Style = 1,
         Brightness = 0.23,
         Latitude = 60.0,
@@ -28,8 +29,9 @@ local TimeSkySettingXls = {
         FogHeightFadeStart = -1000,
         FogHeightFadeEnd = -1000
     },
-    [10] = {
-        ClockTime = 10,
+    [18] = {
+        ClockTime = 18,
+        TimeName = 'Dusk',
         Style = 7,
         Brightness = 0.5,
         Latitude = 60.0,
@@ -39,7 +41,7 @@ local TimeSkySettingXls = {
         ShadowIntensity = 0.75,
         Ambient = Color(25, 25, 49, 255),
         SunColor = Color(255, 109, 55, 255),
-        EquatorColor = nil,
+        EquatorColor = Color(150, 171, 188, 255),
         GroundColor = Color(63, 23, 14, 255),
         SunIntensity = 1.1,
         SkyboxIntensity = 1.0,
@@ -50,8 +52,9 @@ local TimeSkySettingXls = {
         FogHeightFadeStart = -1000,
         FogHeightFadeEnd = -1000
     },
-    [18] = {
-        ClockTime = 18,
+    [20] = {
+        ClockTime = 20,
+        TimeName = 'Night',
         Style = 7,
         Brightness = 1.0,
         Latitude = 60.0,
