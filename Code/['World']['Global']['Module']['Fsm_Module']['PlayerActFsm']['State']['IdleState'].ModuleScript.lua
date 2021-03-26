@@ -7,13 +7,26 @@ function IdleState:OnEnter()
     localPlayer.GravityScale = 2
     localPlayer.Avatar.Position = localPlayer.Position
     --localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
+    if ItemMgr.curEquipmentID == 0 then
+        localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
+    elseif Config.Item[ItemMgr.curEquipmentID].Type == 1 then
+        localPlayer.Avatar:PlayAnimation("OneHandedSwordIdle", 2, 1, 0.1, true, true, 1)
+    elseif Config.Item[ItemMgr.curEquipmentID].Type == 4 then
+        localPlayer.Avatar:PlayAnimation("ThrowIdle", 2, 1, 0.1, true, true, 1)
+    end
 end
 
 function IdleState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor(
-        {"SwimIdle", "Fly",'Vertigo', "Hit", "BowIdle",'PistolIdle', "TwoHandedSwordIdle", "OneHandedSwordIdle", "MazeIdle"}
+        {
+            "SwimIdle",
+            "Fly",
+            "Vertigo",
+            "Hit",
+            "TakeOutItem",
+            "UseItem"
+        }
     )
     self:MoveMonitor()
     self:JumpMonitor()

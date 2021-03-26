@@ -26,9 +26,7 @@ end
 
 function BowAttack:OnEnter()
     PlayerActState.OnEnter(self)
-
     localPlayer.Avatar:PlayAnimation("BowAttack", 2, 1, 0.1, true, false, 1)
-    ItemMgr.itemInstance[ItemMgr.curWeaponID]:ShootArrow(GuiBowAim.chargeForce)
     localPlayer.Avatar.Bone_R_Hand.BowReleaseEffect:SetActive(true)
     local dir = PlayerCtrl.finalDir
     curDirState = 0
@@ -46,7 +44,6 @@ end
 function BowAttack:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor({"Idle", "SwimIdle", "BowHit"})
-    PlayerCam:TPSCamZoom(GuiBowAim.chargeForce)
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then

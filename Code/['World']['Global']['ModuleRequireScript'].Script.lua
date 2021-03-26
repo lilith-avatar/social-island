@@ -3,7 +3,7 @@
 -- @copyright Lilith Games, Avatar Team
 
 -- Game Defines
-GAME_ID = 'A1003'
+GAME_ID = "A1003"
 
 -- Utilities
 ModuleUtil = require(Utility.ModuleUtilModule)
@@ -20,6 +20,7 @@ ValueChangeUtil = require(Utility.ValueChangeUtilModule)
 TimeUtil = require(Utility.TimeUtilModule)
 CloudLogUtil = require(Utility.CloudLogUtilModule)
 ObjPoolUtil = require(Utility.ObjPoolUtilModule)
+SoundUtil = require(Utility.SoundUtilModule)
 
 -- Init Utilities
 TimeUtil.Init()

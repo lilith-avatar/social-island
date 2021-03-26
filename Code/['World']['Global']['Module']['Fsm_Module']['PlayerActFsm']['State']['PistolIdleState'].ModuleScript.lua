@@ -11,7 +11,14 @@ function PistolIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     localPlayer:MoveTowards(Vector2.Zero)
     FsmMgr.playerActFsm:TriggerMonitor(
-        {"Idle", "SwimIdle", "OneHandedSwordIdle", "PistolAttack", "PistolHit", "Vertigo"}
+        {
+            "Idle",
+            "SwimIdle",
+            "PistolAttack",
+            "PistolHit",
+            "Vertigo",
+            "TakeOutItem"
+        }
     )
     self:MoveMonitor("Pistol")
     self:JumpMonitor("Pistol")

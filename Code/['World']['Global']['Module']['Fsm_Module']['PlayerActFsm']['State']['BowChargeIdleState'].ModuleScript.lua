@@ -27,7 +27,6 @@ end
 function BowChargeIdle:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 55)
     localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.4, true, true, 1)
     localPlayer.Avatar.Bone_R_Hand.BowChangeEffect:SetActive(true)
     local dir = PlayerCtrl.finalDir
@@ -49,7 +48,6 @@ function BowChargeIdle:OnUpdate(dt)
     for k, v in pairs(localPlayer.Avatar.Bone_R_Hand.BowChangeEffect:GetChildren()) do
         v.Size = Vector3(0.3, 0.3, 0.3) * GuiBowAim.chargeForce
     end
-    PlayerCam:TPSCamZoom(GuiBowAim.chargeForce)
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then

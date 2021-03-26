@@ -40,7 +40,7 @@ function GuiPurchase:EventBind()
     gui.PurchasePanel.PurchaseBgImg.LaterBtn.OnClick:Connect(
         function()
             this:OnClickPurchaseLaterBtn()
-            NetUtil.Fire_C("PlayEffectEvent", localPlayer, 6)
+            SoundUtil.Play2DSE(localPlayer.UserId, 6)
         end
     )
     scrollPanel.Slider.OnScroll:Connect(
@@ -55,7 +55,7 @@ end
 --购买确认
 function GuiPurchase:PurchaseConfirmEventHandler(_coinNUm, _interactID, _text)
     gui:SetActive(true)
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 3)
+    SoundUtil.Play2DSE(localPlayer.UserId, 3)
     interactID = _interactID
     purchaseCoin = _coinNUm
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.LockImg:SetActive(Data.Player.coin < _coinNUm)
@@ -74,7 +74,7 @@ end
 --滑块
 function GuiPurchase:SliderPurchaseEventHandler(_interactID, _text, _min, _max)
     gui:SetActive(true)
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 3)
+    SoundUtil.Play2DSE(localPlayer.UserId, 3)
     interactID = _interactID
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
     sliderMin = _min or 1
@@ -110,7 +110,7 @@ function GuiPurchase:OnClickPurchaseConfirmBtn()
     NetUtil.Fire_C("PurchaseCEvent", localPlayer, purchaseCoin, interactID)
     NetUtil.Fire_S("PurchaseSEvent", localPlayer, purchaseCoin, interactID)
     NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * purchaseCoin)
-    NetUtil.Fire_C("PlayEffectEvent", localPlayer, 7)
+    SoundUtil.Play2DSE(localPlayer.UserId, 7)
     this:OnClickPurchaseLaterBtn()
     purchaseCoin = 0
     sliderMin = 0
