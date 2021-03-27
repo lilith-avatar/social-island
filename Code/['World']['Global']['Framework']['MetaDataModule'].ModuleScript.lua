@@ -178,7 +178,7 @@ function SyncData(_path, _value, _uid)
         -- 服务器 => 客户端，Player 玩家数据
         local player = world:GetPlayerByUserId(_uid)
         assert(player, string.format('[MetaData] 玩家不存在 uid = %s', _uid))
-        PrintLog(string.format('[Server] 发出 player = %s, _path = %s, _value = %s', _player, _path, table.dump(_value)))
+        PrintLog(string.format('[Server] 发出 player = %s, _path = %s, _value = %s', player, _path, table.dump(_value)))
         NetUtil.Fire_C('DataSyncS2CEvent', player, _path, _value)
     elseif localPlayer and localPlayer.UserId == _uid and MetaData.ClientSync then
         -- 客户端 => 服务器
@@ -262,4 +262,6 @@ print(table.dump(MetaData.Get(Data.Global)))
 print(table.dump(Data.Player))
 
 print(table.dump(Data.Players))
+
+print(table.dump(Data.Players['pid:local_1']))
 ]]

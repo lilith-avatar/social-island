@@ -3,7 +3,7 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//Item.xlsm
+--- source file: .//Skin.xlsx
 
 local SkinXls = {
     [0] = {
@@ -23,10 +23,7 @@ local SkinXls = {
         Eyes = '',
         EyesColor = '',
         Brows = '',
-        Nose = '',
-        Mouth = '',
-        Beard = '',
-        FaceDecoration = ''
+        Mouth = ''
     },
     [1] = {
         ID = 1,
@@ -45,10 +42,7 @@ local SkinXls = {
         Eyes = '',
         EyesColor = '',
         Brows = '',
-        Nose = '',
-        Mouth = '',
-        Beard = '',
-        FaceDecoration = ''
+        Mouth = ''
     },
     [2] = {
         ID = 2,
@@ -67,10 +61,7 @@ local SkinXls = {
         Eyes = '',
         EyesColor = '',
         Brows = '',
-        Nose = '',
-        Mouth = '',
-        Beard = '',
-        FaceDecoration = ''
+        Mouth = ''
     },
     [3] = {
         ID = 3,
@@ -89,10 +80,7 @@ local SkinXls = {
         Eyes = '',
         EyesColor = '',
         Brows = '',
-        Nose = '',
-        Mouth = '',
-        Beard = '',
-        FaceDecoration = ''
+        Mouth = ''
     },
     [4] = {
         ID = 4,
@@ -111,10 +99,26 @@ local SkinXls = {
         Eyes = '',
         EyesColor = '',
         Brows = '',
-        Nose = '',
-        Mouth = '',
-        Beard = '',
-        FaceDecoration = ''
+        Mouth = ''
+    },
+    [5] = {
+        ID = 5,
+        Gender = '1.0',
+        Head = 'Unisex_Head_003001',
+        Clothes = 'Male_Naked_Body_001',
+        Trousers = 'Male_Trousers_BeachShorts_M_001007',
+        Hair = 'DefaultMale',
+        HairColor = '',
+        Hands = 'DefaultMale',
+        Shoes = 'Unisex_Naked_Feet_001',
+        SkinColor = '',
+        HeadAccessory = 'Empty_Head',
+        FaceAccessory = 'Empty_Face',
+        BodyAccessory = 'Empty_Body',
+        Eyes = 'Default_Eyes_M',
+        EyesColor = '',
+        Brows = 'Default_Eyebrow_M',
+        Mouth = 'Default_Mouth_M'
     }
 }
 

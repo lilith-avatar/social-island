@@ -20,7 +20,6 @@ local defPlayerData = {
     JumpUpVelocity = 8,
     GravityScale = 2,
     SkinID = 0,
-    AnimState = "",
     EnableEquipable = true
 }
 
