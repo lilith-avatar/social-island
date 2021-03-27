@@ -36,6 +36,7 @@ function GuiCook:NodeDef()
     this.gui = this.root.CookPanel
     this.progressPanel = this.root.ProgressPanel
     this.foodPanel = this.root.FoodPanel
+    this.detailPanel = this.root.DetailPanel
     --* 背包中食材的slot
     this.slotList = this.gui.DragPanel.SlotPanel:GetChildren()
     --* 显示材料的slot
@@ -56,6 +57,11 @@ function GuiCook:NodeDef()
     this.foodIcon = this.foodPanel.IconImg
     --* 做饭的进度条
     this.progress = this.progressPanel.ProgressBar.ProgressImg
+    --* 吃东西时候的信息ui
+    this.detailName = this.detailPanel.TitleTxt
+    this.authorName = this.detailPanel.AuthorTxt
+    this.detailEatBtn = this.detailPanel.EatBtn
+    this.detailReward = this.detailPanel.RewardBtn
 end
 
 function GuiCook:EventBind()
@@ -95,6 +101,16 @@ function GuiCook:EventBind()
             this:PutOnDesk()
         end
     )
+    this.detailEatBtn.OnClick:Connect(
+        function()
+            this:EatFood()
+        end
+    )
+    this.detailReward.OnClick:Connect(
+        function()
+            NetUtil.Fire_C("SliderPurchaseEvent", localPlayer, 27, "请选择你要打赏的数量")
+        end
+    )
 end
 
 function GuiCook:TransItemTable()
@@ -121,14 +137,29 @@ function GuiCook:ShowUI()
     this:TransItemTable()
     this.progressPanel:SetActive(false)
     this.foodPanel:SetActive(false)
+    this.detailPanel:SetActive(false)
     this.root:SetActive(true)
     this.gui:SetActive(true)
     this:ClickChangePage(1)
 end
 
+function GuiCook:ShowDetail()
+    this.progressPanel:SetActive(false)
+    this.foodPanel:SetActive(false)
+    this.detailPanel:SetActive(true)
+    this.gui:SetActive(false)
+    this.root:SetActive(true)
+end
+
 function GuiCook:InteractCEventHandler(_gameId)
-    if _gameId == 99 then
-        this:ShowUI()
+    if _gameId == 27 then
+        this:ShowDetail()
+    end
+end
+
+function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
+    if _interactID == 27 then
+        this:HideGui()
     end
 end
 
@@ -300,13 +331,19 @@ function GuiCook:ConsumeMaterial()
     end
 end
 
+function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName)
+    print(_foodId)
+    this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
+    this.authorName.Text = "By " .. _cookName
+end
+
 function GuiCook:EatFood()
     this.foodId = nil
     this:ShowUI()
 end
 
 function GuiCook:PutOnDesk()
-    NetUtil.Fire_S('FoodOnDeskEvent',this.foodId,localPlayer)
+    NetUtil.Fire_S("FoodOnDeskEvent", this.foodId, localPlayer)
     this.foodId = nil
     this:ShowUI()
 end

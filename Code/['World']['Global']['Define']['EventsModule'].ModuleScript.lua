@@ -106,7 +106,8 @@ Events.ClientEvents = {
     'SycnTimeCEvent',
     'PlayerCookEvent',
     'GetFinalFoodEvent',
-    'SycnDeskFoodNumEvent'
+    'SycnDeskFoodNumEvent',
+    'SetSelectFoodEvent'
 }
 
 return Events

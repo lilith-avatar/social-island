@@ -33,7 +33,8 @@ function CookS:PutFood(_foodId, _player)
             this.foodList[i] = {
                 foodId = _foodId,
                 cook = _player.UserId,
-                index = i
+                index = i,
+                cookName = _player.Name
             }
             -- 摆上食物
             --Config.CookMenu[_foodId].Model
@@ -48,15 +49,15 @@ function CookS:PutFood(_foodId, _player)
             model.OnCollisionBegin:Connect(
                 function(_hitObject)
                     if _hitObject and _hitObject.ClassName == "PlayerInstance" then
-                        NetUtil.Fire_C("", _hitObject, this.foodList[i])
-                        NetUtil.Fire_C('')
+                        NetUtil.Fire_C("SetSelectFoodEvent", _hitObject, _foodId, this.foodList[i].Name)
+                        NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 27)
                     end
                 end
             )
             model.OnCollisionEnd:Connect(
                 function(_hitObject)
                     if _hitObject and _hitObject.ClassName == "PlayerInstance" then
-                        NetUtil.Fire_C("ChangeMiniGameEvent", _hitObject)
+                        NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                     end
                 end
             )
