@@ -35,7 +35,8 @@ Events.ServerEvents = {
     'CreateBubleEvent',
     "SPlayEffectEvent",
     'SycnTimeSEvent',
-    'FoodOnDeskEvent'
+    'FoodOnDeskEvent',
+    'FoodRewardEvent'
 }
 
 -- 客户端事件列表
@@ -107,7 +108,7 @@ Events.ClientEvents = {
     'PlayerCookEvent',
     'GetFinalFoodEvent',
     'SycnDeskFoodNumEvent',
-    'SetSelectFoodEvent'
+    'SetSelectFoodEvent',
 }
 
 return Events

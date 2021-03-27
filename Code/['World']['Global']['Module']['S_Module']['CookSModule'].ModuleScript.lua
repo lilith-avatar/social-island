@@ -49,7 +49,13 @@ function CookS:PutFood(_foodId, _player)
             model.OnCollisionBegin:Connect(
                 function(_hitObject)
                     if _hitObject and _hitObject.ClassName == "PlayerInstance" then
-                        NetUtil.Fire_C("SetSelectFoodEvent", _hitObject, _foodId, this.foodList[i].Name)
+                        NetUtil.Fire_C(
+                            "SetSelectFoodEvent",
+                            _hitObject,
+                            _foodId,
+                            this.foodList[i].cookName,
+                            _player.UserId
+                        )
                         NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 27)
                     end
                 end
@@ -68,6 +74,15 @@ end
 
 function CookS:OnPlayerJoinEventHandler(_player)
     NetUtil.Fire_C("SycnDeskFoodNumEvent", _player, this.curFoodNum, this.foodNum)
+end
+
+function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
+    print(_playerId, _cookId)
+    local rewardPlayer, cook = world:GetPlayerByUserId(_playerId), world:GetPlayerByUserId(_cookId)
+    if rewardPlayer and cook then
+        NetUtil.Fire_C("InsertInfoEvent", cook, rewardPlayer.Name .. "打赏了你" .. _coin, 2, false)
+        NetUtil.Fire_C("UpdateCoinEvent", cook, _coin)
+    end
 end
 
 return CookS

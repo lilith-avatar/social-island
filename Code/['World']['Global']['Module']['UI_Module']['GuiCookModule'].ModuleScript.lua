@@ -29,6 +29,8 @@ function GuiCook:DataInit()
     this.foodId = nil
     this.totalDesk = 0
     this.remainDesk = 0
+    --* 打赏需要的参数
+    this.cookUserId = nil
 end
 
 function GuiCook:NodeDef()
@@ -160,6 +162,7 @@ end
 function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
         this:HideGui()
+        NetUtil.Fire_S("FoodRewardEvent", localPlayer.UserId, this.cookUserId, _purchaseCoin)
     end
 end
 
@@ -331,10 +334,11 @@ function GuiCook:ConsumeMaterial()
     end
 end
 
-function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName)
-    print(_foodId)
+function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = "By " .. _cookName
+    this.cookUserId = _cookUserId
+    print(this.cookUserId)
 end
 
 function GuiCook:EatFood()
@@ -357,6 +361,7 @@ function GuiCook:Update(dt)
             this.progressPanel:SetActive(false)
             --this.gui:SetActive(true)
             this.progress.FillAmount = 0
+            this.timer = 0
             this:ShowFood()
         end
     end
