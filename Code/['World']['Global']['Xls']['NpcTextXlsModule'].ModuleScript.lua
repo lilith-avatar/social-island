@@ -46,10 +46,6 @@ local NpcTextXls = {
         ID = 1014,
         Text = 'NpcText_Text_1014'
     },
-    [1015] = {
-        ID = 1015,
-        Text = 'NpcText_Text_1015'
-    },
     [1021] = {
         ID = 1021,
         Text = 'NpcText_Text_1021'
@@ -70,26 +66,6 @@ local NpcTextXls = {
         ID = 1025,
         Text = 'NpcText_Text_1025'
     },
-    [1026] = {
-        ID = 1026,
-        Text = 'NpcText_Text_1026'
-    },
-    [1031] = {
-        ID = 1031,
-        Text = 'NpcText_Text_1031'
-    },
-    [1032] = {
-        ID = 1032,
-        Text = 'NpcText_Text_1032'
-    },
-    [1033] = {
-        ID = 1033,
-        Text = 'NpcText_Text_1033'
-    },
-    [1034] = {
-        ID = 1034,
-        Text = 'NpcText_Text_1034'
-    },
     [1041] = {
         ID = 1041,
         Text = 'NpcText_Text_1041'
@@ -105,10 +81,6 @@ local NpcTextXls = {
     [1044] = {
         ID = 1044,
         Text = 'NpcText_Text_1044'
-    },
-    [1045] = {
-        ID = 1045,
-        Text = 'NpcText_Text_1045'
     },
     [1051] = {
         ID = 1051,
@@ -126,10 +98,6 @@ local NpcTextXls = {
         ID = 1054,
         Text = 'NpcText_Text_1054'
     },
-    [1055] = {
-        ID = 1055,
-        Text = 'NpcText_Text_1055'
-    },
     [1061] = {
         ID = 1061,
         Text = 'NpcText_Text_1061'
@@ -145,62 +113,6 @@ local NpcTextXls = {
     [1072] = {
         ID = 1072,
         Text = 'NpcText_Text_1072'
-    },
-    [1081] = {
-        ID = 1081,
-        Text = 'NpcText_Text_1081'
-    },
-    [1082] = {
-        ID = 1082,
-        Text = 'NpcText_Text_1082'
-    },
-    [1091] = {
-        ID = 1091,
-        Text = 'NpcText_Text_1091'
-    },
-    [1092] = {
-        ID = 1092,
-        Text = 'NpcText_Text_1092'
-    },
-    [1101] = {
-        ID = 1101,
-        Text = 'NpcText_Text_1101'
-    },
-    [1102] = {
-        ID = 1102,
-        Text = 'NpcText_Text_1102'
-    },
-    [1111] = {
-        ID = 1111,
-        Text = 'NpcText_Text_1111'
-    },
-    [1112] = {
-        ID = 1112,
-        Text = 'NpcText_Text_1112'
-    },
-    [1121] = {
-        ID = 1121,
-        Text = 'NpcText_Text_1121'
-    },
-    [1122] = {
-        ID = 1122,
-        Text = 'NpcText_Text_1122'
-    },
-    [1131] = {
-        ID = 1131,
-        Text = 'NpcText_Text_1131'
-    },
-    [1132] = {
-        ID = 1132,
-        Text = 'NpcText_Text_1132'
-    },
-    [1141] = {
-        ID = 1141,
-        Text = 'NpcText_Text_1141'
-    },
-    [1142] = {
-        ID = 1142,
-        Text = 'NpcText_Text_1142'
     },
     [1151] = {
         ID = 1151,
@@ -242,21 +154,21 @@ local NpcTextXls = {
         ID = 1182,
         Text = 'NpcText_Text_1182'
     },
+    [1183] = {
+        ID = 1183,
+        Text = 'NpcText_Text_1183'
+    },
+    [1184] = {
+        ID = 1184,
+        Text = 'NpcText_Text_1184'
+    },
     [1191] = {
         ID = 1191,
         Text = 'NpcText_Text_1191'
     },
-    [1192] = {
-        ID = 1192,
-        Text = 'NpcText_Text_1192'
-    },
     [2001] = {
         ID = 2001,
         Text = 'NpcText_Text_2001'
-    },
-    [2002] = {
-        ID = 2002,
-        Text = 'NpcText_Text_2002'
     },
     [2011] = {
         ID = 2011,
@@ -265,18 +177,6 @@ local NpcTextXls = {
     [2012] = {
         ID = 2012,
         Text = 'NpcText_Text_2012'
-    },
-    [2013] = {
-        ID = 2013,
-        Text = 'NpcText_Text_2013'
-    },
-    [2014] = {
-        ID = 2014,
-        Text = 'NpcText_Text_2014'
-    },
-    [2015] = {
-        ID = 2015,
-        Text = 'NpcText_Text_2015'
     },
     [2021] = {
         ID = 2021,
@@ -294,38 +194,6 @@ local NpcTextXls = {
         ID = 2024,
         Text = 'NpcText_Text_2024'
     },
-    [2031] = {
-        ID = 2031,
-        Text = 'NpcText_Text_2031'
-    },
-    [2032] = {
-        ID = 2032,
-        Text = 'NpcText_Text_2032'
-    },
-    [2033] = {
-        ID = 2033,
-        Text = 'NpcText_Text_2033'
-    },
-    [2041] = {
-        ID = 2041,
-        Text = 'NpcText_Text_2041'
-    },
-    [2042] = {
-        ID = 2042,
-        Text = 'NpcText_Text_2042'
-    },
-    [2043] = {
-        ID = 2043,
-        Text = 'NpcText_Text_2043'
-    },
-    [2044] = {
-        ID = 2044,
-        Text = 'NpcText_Text_2044'
-    },
-    [2045] = {
-        ID = 2045,
-        Text = 'NpcText_Text_2045'
-    },
     [2051] = {
         ID = 2051,
         Text = 'NpcText_Text_2051'
@@ -337,10 +205,6 @@ local NpcTextXls = {
     [2053] = {
         ID = 2053,
         Text = 'NpcText_Text_2053'
-    },
-    [2054] = {
-        ID = 2054,
-        Text = 'NpcText_Text_2054'
     },
     [1000] = {
         ID = 1000,

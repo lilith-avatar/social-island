@@ -3,279 +3,161 @@
 --- @copyright Lilith Games, Project Da Vinci(Avatar Team)
 --- @see https://www.projectdavinci.com/
 --- @see https://github.com/endaye/avatar-ava-xls2lua
---- source file: .//Item.xlsm
+--- source file: .//Shop.xlsx
 
 local ShopXls = {
-    [1] = {
-        [1011] = {
-            NpcId = 1,
-            Index = 1,
-            ItemId = 1011,
-            Price = 500
-        },
-        [3009] = {
-            NpcId = 1,
-            Index = 2,
-            ItemId = 3009,
-            Price = 1000
-        },
-        [3010] = {
-            NpcId = 1,
-            Index = 3,
-            ItemId = 3010,
-            Price = 1500
-        },
-        [3011] = {
-            NpcId = 1,
-            Index = 4,
-            ItemId = 3011,
-            Price = 1500
-        },
-        [3003] = {
-            NpcId = 1,
-            Index = 5,
-            ItemId = 3003,
-            Price = 10000
-        }
-    },
     [2] = {
-        [2002] = {
+        [2001] = {
             NpcId = 2,
             Index = 1,
-            ItemId = 2002,
+            ItemId = 2001,
             Price = 300
+        },
+        [2002] = {
+            NpcId = 2,
+            Index = 2,
+            ItemId = 2002,
+            Price = 1500
         },
         [2003] = {
             NpcId = 2,
-            Index = 2,
-            ItemId = 2003,
-            Price = 2000
-        },
-        [2001] = {
-            NpcId = 2,
             Index = 3,
-            ItemId = 2001,
+            ItemId = 2003,
+            Price = 2500
+        },
+        [2005] = {
+            NpcId = 2,
+            Index = 4,
+            ItemId = 2005,
             Price = 10000
         },
-        [3025] = {
-            NpcId = 2,
-            Index = 4,
-            ItemId = 3025,
-            Price = 200
-        },
-        [3026] = {
+        [4002] = {
             NpcId = 2,
             Index = 5,
-            ItemId = 3026,
-            Price = 1000
-        },
-        [3027] = {
-            NpcId = 2,
-            Index = 6,
-            ItemId = 3027,
-            Price = 8000
-        }
-    },
-    [3] = {
-        [1003] = {
-            NpcId = 3,
-            Index = 1,
-            ItemId = 1003,
-            Price = 1000
-        },
-        [1004] = {
-            NpcId = 3,
-            Index = 2,
-            ItemId = 1004,
-            Price = 1000
-        },
-        [1005] = {
-            NpcId = 3,
-            Index = 3,
-            ItemId = 1005,
+            ItemId = 4002,
             Price = 500
         },
-        [1006] = {
-            NpcId = 3,
-            Index = 4,
-            ItemId = 1006,
-            Price = 2000
-        },
-        [1007] = {
-            NpcId = 3,
-            Index = 5,
-            ItemId = 1007,
-            Price = 3000
+        [4003] = {
+            NpcId = 2,
+            Index = 6,
+            ItemId = 4003,
+            Price = 1500
         }
     },
     [5] = {
-        [1018] = {
+        [1023] = {
             NpcId = 5,
             Index = 1,
-            ItemId = 1018,
-            Price = 500
+            ItemId = 1023,
+            Price = 1000
         },
-        [1033] = {
+        [1034] = {
             NpcId = 5,
             Index = 2,
-            ItemId = 1033,
-            Price = 5000
+            ItemId = 1034,
+            Price = 1000
         },
-        [3013] = {
+        [1035] = {
             NpcId = 5,
             Index = 3,
-            ItemId = 3013,
-            Price = 2500
+            ItemId = 1035,
+            Price = 1000
         },
-        [3016] = {
+        [1036] = {
             NpcId = 5,
             Index = 4,
-            ItemId = 3016,
-            Price = 150
+            ItemId = 1036,
+            Price = 1000
         },
-        [3017] = {
+        [1037] = {
             NpcId = 5,
             Index = 5,
-            ItemId = 3017,
-            Price = 150
+            ItemId = 1037,
+            Price = 1000
         },
-        [3018] = {
+        [1038] = {
             NpcId = 5,
             Index = 6,
-            ItemId = 3018,
-            Price = 150
-        },
-        [3019] = {
-            NpcId = 5,
-            Index = 7,
-            ItemId = 3019,
-            Price = 150
-        },
-        [3020] = {
-            NpcId = 5,
-            Index = 8,
-            ItemId = 3020,
-            Price = 150
-        },
-        [3022] = {
-            NpcId = 5,
-            Index = 9,
-            ItemId = 3022,
-            Price = 500
+            ItemId = 1038,
+            Price = 1000
         }
     },
     [12] = {
-        [1025] = {
+        [1013] = {
             NpcId = 12,
             Index = 1,
-            ItemId = 1025,
-            Price = 10000
-        },
-        [1026] = {
-            NpcId = 12,
-            Index = 2,
-            ItemId = 1026,
+            ItemId = 1013,
             Price = 10000
         },
         [1014] = {
             NpcId = 12,
-            Index = 3,
+            Index = 2,
             ItemId = 1014,
-            Price = 10000
-        },
-        [1015] = {
-            NpcId = 12,
-            Index = 4,
-            ItemId = 1015,
-            Price = 10000
-        },
-        [3005] = {
-            NpcId = 12,
-            Index = 5,
-            ItemId = 3005,
-            Price = 10000
-        },
-        [3006] = {
-            NpcId = 12,
-            Index = 6,
-            ItemId = 3006,
             Price = 10000
         }
     },
     [13] = {
-        [1009] = {
+        [1003] = {
             NpcId = 13,
             Index = 1,
+            ItemId = 1003,
+            Price = 2500
+        },
+        [1005] = {
+            NpcId = 13,
+            Index = 2,
+            ItemId = 1005,
+            Price = 800
+        },
+        [1006] = {
+            NpcId = 13,
+            Index = 3,
+            ItemId = 1006,
+            Price = 1200
+        },
+        [1007] = {
+            NpcId = 13,
+            Index = 4,
+            ItemId = 1007,
+            Price = 800
+        },
+        [1009] = {
+            NpcId = 13,
+            Index = 5,
             ItemId = 1009,
-            Price = 500
+            Price = 1200
+        },
+        [1011] = {
+            NpcId = 13,
+            Index = 6,
+            ItemId = 1011,
+            Price = 800
         },
         [1010] = {
             NpcId = 13,
-            Index = 2,
-            ItemId = 1010,
-            Price = 2000
-        },
-        [1012] = {
-            NpcId = 13,
-            Index = 3,
-            ItemId = 1012,
-            Price = 500
-        },
-        [1013] = {
-            NpcId = 13,
-            Index = 4,
-            ItemId = 1013,
-            Price = 500
-        },
-        [1016] = {
-            NpcId = 13,
-            Index = 5,
-            ItemId = 1016,
-            Price = 2500
-        },
-        [1017] = {
-            NpcId = 13,
-            Index = 6,
-            ItemId = 1017,
-            Price = 1500
-        },
-        [1019] = {
-            NpcId = 13,
             Index = 7,
-            ItemId = 1019,
-            Price = 500
-        },
-        [1020] = {
-            NpcId = 13,
-            Index = 8,
-            ItemId = 1020,
-            Price = 500
-        },
-        [1022] = {
-            NpcId = 13,
-            Index = 9,
-            ItemId = 1022,
-            Price = 500
+            ItemId = 1010,
+            Price = 1000
         }
     },
     [14] = {
-        [3014] = {
+        [1015] = {
             NpcId = 14,
             Index = 1,
-            ItemId = 3014,
-            Price = 500
+            ItemId = 1015,
+            Price = 2500
         },
-        [3008] = {
+        [1016] = {
             NpcId = 14,
             Index = 2,
-            ItemId = 3008,
-            Price = 1000
+            ItemId = 1016,
+            Price = 800
         },
-        [3012] = {
+        [1012] = {
             NpcId = 14,
             Index = 3,
-            ItemId = 3012,
-            Price = 1000
+            ItemId = 1012,
+            Price = 500
         }
     }
 }
