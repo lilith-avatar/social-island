@@ -67,9 +67,9 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.BonfireInteract:GetChildren()) do
         bonfireOBJ[v.Name] = v
     end
-    for k, v in pairs(world.GrassInteract:GetChildren()) do
+    --[[for k, v in pairs(world.GrassInteract:GetChildren()) do
         table.insert(grassOBJ, v)
-    end
+    end]]
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
     end
@@ -290,13 +290,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
-    if _id == 18 then
+    --[[if _id == 18 then
         for k, v in pairs(grassOBJ) do
             if v.GrassInteractUID.Value == _player.UserId then
                 this:GrassInter(v)
             end
         end
-    end
+    end]]
     if _id == 20 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 20)
         for k, v in pairs(trojanObj) do

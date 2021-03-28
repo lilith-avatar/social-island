@@ -3,7 +3,7 @@
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
 ---@module GuiNoticeInfo
-local GuiNoticeInfo, this = ModuleUtil.New("GuiNoticeInfo", ClientBase)
+local GuiNoticeInfo, this = ModuleUtil.New('GuiNoticeInfo', ClientBase)
 
 --gui
 local noticeInfoGUI
@@ -19,8 +19,14 @@ local remainingNoticeInfo = {}
 --当前显示的Notice表
 local curNoticeInfo = {}
 
+-- 文字FadeTween动画
+local textFadeTween = nil
+
+-- 玩家信息处理队列
+local playerInfoList = {}
+
 function GuiNoticeInfo:Init()
-    print("GuiNoticeInfo:Init")
+    print('GuiNoticeInfo:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -30,10 +36,10 @@ end
 function GuiNoticeInfo:NodeRef()
     noticeInfoGUI = localPlayer.Local.SpecialTopUI.NoticeInfoGUI
     for i = 1, 5 do
-        rollItemInfoPanel[i] = noticeInfoGUI.Info.ItemInfoBG["Panel" .. i]
+        rollItemInfoPanel[i] = noticeInfoGUI.Info.ItemInfoBG['Panel' .. i]
     end
     for i = 1, 2 do
-        rollNoticeInfoPanel[i] = noticeInfoGUI.Info.NoticeInfoBG["Panel" .. i]
+        rollNoticeInfoPanel[i] = noticeInfoGUI.Info.NoticeInfoBG['Panel' .. i]
     end
     curItemInfoPanel = rollItemInfoPanel[1]
 end
@@ -54,7 +60,7 @@ function GuiNoticeInfo:PopUpNotice(_panel, _right)
     moveTween.OnComplete:Connect(
         function()
             moveTween:Destroy()
-            _panel.Info.Text = _right and _panel.Info.Text or "nil"
+            _panel.Info.Text = _right and _panel.Info.Text or 'nil'
         end
     )
 end
@@ -62,7 +68,7 @@ end
 --获取空闲的通知UI
 function GuiNoticeInfo:GetFreeNoticeUI()
     for k, v in pairs(rollNoticeInfoPanel) do
-        if v.Info.Text == "nil" then
+        if v.Info.Text == 'nil' then
             return v
         end
     end
@@ -135,6 +141,54 @@ function GuiNoticeInfo:ShowGetItem(_itemID)
     table.insert(remainingItemID, _itemID)
 end
 
+--- 文字渐隐渐显
+function GuiNoticeInfo:TextFade(_text, _isFade)
+    local alpha = _isFade and 0 or 255
+    textFadeTween =
+        Tween:TweenProperty(
+        _text,
+        {Color = Color(_text.Color.r, _text.Color.g, _text.Color.b, _isFade and 0 or 255)},
+        0.2,
+        Enum.EaseCurve.Linear
+    )
+    textFadeTween:Play()
+end
+
+--- 显示玩家信息文字
+function GuiNoticeInfo:ShowInfo(dt)
+    if #playerInfoList > 0 then
+        noticeInfoGUI.Info.PlayerInfoBG:SetActive(true)
+        if noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text ~= playerInfoList[1].text then
+            noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text = playerInfoList[1].text
+            this:TextFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, false)
+        end
+        playerInfoList[1].t = playerInfoList[1].t - dt
+        if playerInfoList[1].t <= 1 and noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Color.a == 255 then
+            this:TextFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, true)
+            invoke(
+                function()
+                    table.remove(playerInfoList, 1)
+                    noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text = ''
+                end,
+                1
+            )
+        end
+    else
+        noticeInfoGUI.Info.PlayerInfoBG:SetActive(false)
+    end
+end
+
+--- 插入玩家信息文字
+function GuiNoticeInfo:InsertInfoEventHandler(_text, _t)
+    table.insert(
+        playerInfoList,
+        {
+            text = _text,
+            t = _t + 0.4
+        }
+    )
+end
+
 --显示通知信息
 function GuiNoticeInfo:ShowNoticeInfoEventHandler(_text, _t, _pos)
     table.insert(
@@ -149,6 +203,7 @@ end
 
 function GuiNoticeInfo:Update(dt)
     this:RollInfoUI(dt)
+    this:ShowInfo(dt)
 end
 
 return GuiNoticeInfo
