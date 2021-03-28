@@ -28,7 +28,6 @@ function BowChargeIdle:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
     localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.4, true, true, 1)
-    localPlayer.Avatar.Bone_R_Hand.BowChangeEffect:SetActive(true)
     local dir = PlayerCtrl.finalDir
     curDirState = 0
     if Vector3.Angle(dir, localPlayer.Forward) < 30 then
@@ -45,9 +44,6 @@ end
 function BowChargeIdle:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor({"Idle", "BowHit", "SwimIdle", "BowAttack"})
-    for k, v in pairs(localPlayer.Avatar.Bone_R_Hand.BowChangeEffect:GetChildren()) do
-        v.Size = Vector3(0.3, 0.3, 0.3) * GuiBowAim.chargeForce
-    end
     local dir = PlayerCtrl.finalDir
     dir.y = 0
     if dir.Magnitude > 0 then
@@ -74,7 +70,6 @@ end
 
 function BowChargeIdle:OnLeave()
     PlayerActState.OnLeave(self)
-    localPlayer.Avatar.Bone_R_Hand.BowChangeEffect:SetActive(false)
     localPlayer.Avatar:StopAnimation("WalkingFront", 9)
     localPlayer.Avatar:StopAnimation("WalkingRight", 9)
     localPlayer.Avatar:StopAnimation("WalkingLeft", 9)

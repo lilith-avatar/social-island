@@ -2,14 +2,16 @@
 -- @module BowWeapon
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local BowWeapon = class("BowWeapon", WeaponBase)
+local BowWeapon = class('BowWeapon', WeaponBase)
 
 function BowWeapon:initialize(_data, _derivedData)
     WeaponBase.initialize(self, _data, _derivedData)
-    print("BowWeapon:initialize()")
+    print('BowWeapon:initialize()')
     self.isCharge = false
     self.chargeForce = 0
     self.projectileConfig = Config.Projectile[self.derivedData.ProjectileID]
+    self.chargeEffectObj = nil
+    self.shootEffectObj = nil
 end
 
 --拿在手中使用
@@ -24,6 +26,20 @@ function BowWeapon:Equip()
     WeaponBase.Equip(self)
     GuiBowAim.gui:SetActive(true)
     GuiBowAim.touchGui:SetActive(true)
+    self.chargeEffectObj =
+        world:CreateInstance(
+        self.derivedData.ChargeEffect,
+        self.derivedData.ChargeEffect .. 'Instance',
+        self.equipObj.ChargeNode,
+        self.equipObj.ChargeNode.Position
+    )
+    self.shootEffectObj =
+        world:CreateInstance(
+        self.derivedData.ShootEffect,
+        self.derivedData.ShootEffect .. 'Instance',
+        self.equipObj.ShootNode,
+        self.equipObj.ShootNode.Position
+    )
 end
 
 --取下装备
@@ -35,16 +51,25 @@ end
 
 --攻击
 function BowWeapon:Attack(_force)
-    print("攻击")
+    print('攻击')
     self.useCT = self.baseData.UseCD
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowAttack")
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowAttack')
     self:ShootArrow(_force)
+    self.equipObj.ChargeNode:SetActive(false)
+    self.equipObj.ShootNode:SetActive(true)
+    invoke(
+        function()
+            self.equipObj.ShootNode:SetActive(false)
+        end,
+        1
+    )
 end
 
 --开始蓄力
 function BowWeapon:StartCharge()
     self.isCharge = true
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "BowChargeIdle")
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowChargeIdle')
+    self.equipObj.ChargeNode:SetActive(true)
 end
 
 --结束蓄力
@@ -57,7 +82,7 @@ end
 function BowWeapon:Charge(dt)
     if self.isCharge then
         if self.chargeForce < 1 then
-            self.chargeForce = self.chargeForce + dt * 2
+            self.chargeForce = self.chargeForce + dt * (1 / self.derivedData.ChargeTime)
         else
             self.chargeForce = 1
         end
@@ -68,9 +93,21 @@ function BowWeapon:Charge(dt)
             self.chargeForce = 0
         end
     end
+    self:UpdateChargeEffect(self.chargeForce)
     GuiBowAim:UpdateFrontSight(self.chargeForce)
     GuiBowAim:UpdateTouchGuiCD(self.useCT / self.baseData.UseCD)
     PlayerCam:TPSCamZoom(self.chargeForce)
+end
+
+--更新蓄力特效
+function BowWeapon:UpdateChargeEffect(_force)
+    if _force < 0.99 then
+        self.chargeEffectObj.Step1.Scale = 0.3 * _force
+        self.chargeEffectObj.Step1:SetActive(true)
+        self.chargeEffectObj.Step2:SetActive(false)
+    else
+        self.chargeEffectObj.Step2:SetActive(true)
+    end
 end
 
 --发射弓箭
@@ -84,6 +121,7 @@ function BowWeapon:ShootArrow(_force)
         endPos,
         self.derivedData.ProjectileSpeed
     )
+
     SoundUtil.Play3DSE(localPlayer.Position, self.derivedData.ShootSoundID)
     invoke(
         function()

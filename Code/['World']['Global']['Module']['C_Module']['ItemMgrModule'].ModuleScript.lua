@@ -152,8 +152,8 @@ end
 --解除当前道具
 function ItemMgr:UnequipCurEquipmentEventHandler()
     if this.curEquipmentID ~= 0 then
-        this.curEquipmentID = 0
         this.itemInstance[this.curEquipmentID]:Unequip()
+        this.curEquipmentID = 0
     end
 end
 

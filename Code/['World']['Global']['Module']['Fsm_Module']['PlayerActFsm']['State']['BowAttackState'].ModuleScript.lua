@@ -27,7 +27,6 @@ end
 function BowAttack:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer.Avatar:PlayAnimation("BowAttack", 2, 1, 0.1, true, false, 1)
-    localPlayer.Avatar.Bone_R_Hand.BowReleaseEffect:SetActive(true)
     local dir = PlayerCtrl.finalDir
     curDirState = 0
     if Vector3.Angle(dir, localPlayer.Forward) < 30 then
@@ -70,7 +69,6 @@ end
 
 function BowAttack:OnLeave()
     PlayerActState.OnLeave(self)
-    localPlayer.Avatar.Bone_R_Hand.BowReleaseEffect:SetActive(false)
     localPlayer.Avatar:StopAnimation("WalkingFront", 9)
     localPlayer.Avatar:StopAnimation("WalkingRight", 9)
     localPlayer.Avatar:StopAnimation("WalkingLeft", 9)
