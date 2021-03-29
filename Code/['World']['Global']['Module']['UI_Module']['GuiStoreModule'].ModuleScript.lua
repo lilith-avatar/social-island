@@ -4,7 +4,7 @@
 -- @author Dead Ratman
 ---@module GuiStore
 
-local GuiStore, this = ModuleUtil.New("GuiStore", ClientBase)
+local GuiStore, this = ModuleUtil.New('GuiStore', ClientBase)
 
 local gui
 
@@ -13,7 +13,7 @@ local curNpcID
 local chosenItemID = 0
 
 function GuiStore:Init()
-    print("GuiStore:Init")
+    print('GuiStore:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -33,8 +33,8 @@ end
 function GuiStore:EventBind()
     gui.ShopPanel.CloseImg.CloseBtn.OnClick:Connect(
         function()
-            NetUtil.Fire_C("SwitchStoreUIEvent", localPlayer, 2)
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            NetUtil.Fire_C('SwitchStoreUIEvent', localPlayer, 2)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
         end
     )
     gui.ShopPanel.BuyBtn.OnClick:Connect(
@@ -47,8 +47,8 @@ end
 --获取商店出售物品data
 function GuiStore:GetItemData(_itemData)
     for k, v in pairs(_itemData) do
-        gui.ShopPanel.DragPanel.Panel1["ShopBgImg" .. v.Index].ItemID.Value = v.ItemId
-        gui.ShopPanel.DragPanel.Panel1["ShopBgImg" .. v.Index].GoodsImg.ShopBtn.OnClick:Connect(
+        gui.ShopPanel.DragPanel.Panel1['ShopBgImg' .. v.Index].ItemID.Value = v.ItemId
+        gui.ShopPanel.DragPanel.Panel1['ShopBgImg' .. v.Index].GoodsImg.ShopBtn.OnClick:Connect(
             function()
                 chosenItemID = v.ItemId
                 this:UpdateStoreUI(false)
@@ -63,11 +63,11 @@ end
 function GuiStore:OnClickBuyBtn()
     if chosenItemID ~= 0 then
         NetUtil.Fire_C(
-            "PurchaseConfirmEvent",
+            'PurchaseConfirmEvent',
             localPlayer,
             Config.Shop[curNpcID][chosenItemID].Price,
             99,
-            "是否购买" .. LanguageUtil.GetText(Config.Item[chosenItemID].Name)
+            '是否购买' .. LanguageUtil.GetText(Config.Item[chosenItemID].Name)
         )
     end
 end
@@ -82,7 +82,7 @@ end
 --购买一个物品
 function GuiStore:BuyItem(_itemID)
     --Data.Player.coin = Data.Player.coin - Config.Shop[curNpcID][_itemID].Price
-    NetUtil.Fire_C("GetItemEvent", localPlayer, _itemID)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, _itemID)
     wait(0.1)
     this:UpdateStoreUI()
 end
@@ -93,8 +93,8 @@ function GuiStore:UpdateItemInfo(_itemID)
         gui.ShopPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.Item[_itemID].Name)
         gui.ShopPanel.DesTextBox.DesText.Text = LanguageUtil.GetText(Config.Item[_itemID].Des)
     else
-        gui.ShopPanel.NameTextBox.NameText.Text = ""
-        gui.ShopPanel.DesTextBox.DesText.Text = ""
+        gui.ShopPanel.NameTextBox.NameText.Text = ''
+        gui.ShopPanel.DesTextBox.DesText.Text = ''
     end
 end
 
@@ -119,7 +119,7 @@ function GuiStore:UpdateBuyBtnUI(_sellBtn)
         for k, v in pairs(Config.Item) do
             if v.ItemID == _sellBtn.ItemID.Value then
                 _sellBtn.PriceImg.PriceTxt.Text = Config.Shop[curNpcID][v.ItemID].Price
-                _sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture("UI/ItemIcon/" .. v.Icon)
+                _sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. v.Icon)
                 break
             end
         end
@@ -148,6 +148,12 @@ function GuiStore:ResetBuyBtnUI(_sellBtn)
     _sellBtn.GoodsImg.ShopBtn.OnClick:Clear()
 end
 
+--更新金币显示
+function GuiStore:UpdateCoin()
+    print("更新金币显示")
+    gui.ShopPanel.CoinInfo.CoinNum.Text = Data.Player.coin
+end
+
 --更新所有显示
 function GuiStore:UpdateStoreUI(_isReset)
     for k, v in pairs(gui.ShopPanel.DragPanel.Panel1:GetChildren()) do
@@ -158,13 +164,14 @@ function GuiStore:UpdateStoreUI(_isReset)
         end
     end
     this:UpdateItemInfo()
+    this:UpdateCoin()
 end
 
 --开关商店显示
 --GuiStore:SwitchStoreUIEventHandler(1, 1)
 function GuiStore:SwitchStoreUIEventHandler(_switch, _npcID)
     if _switch == 1 then
-        print("开商店显示", _npcID)
+        print('开商店显示', _npcID)
         curNpcID = _npcID
         this:GetItemData(Config.Shop[curNpcID])
         this:UpdateStoreUI(false)
