@@ -124,7 +124,7 @@ function GuiBag:ClickUseBtn(_index)
     end
     local itemId = this.slotList[_index].ItemID.Value
     -- 使用物品
-    NetUtil.Fire_C("UseItemEvent", localPlayer, itemId)
+    NetUtil.Fire_C("UseItemInBagEvent", localPlayer, itemId)
     -- 物品消耗判定
     this:ConsumeItem(_index)
     -- 重新展示当前页面物品信息
