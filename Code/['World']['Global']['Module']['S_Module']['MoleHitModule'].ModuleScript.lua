@@ -97,7 +97,7 @@ function MoleHit:RefreashMole(_type)
         -- 绑定碰撞事件
         v.OnCollisionBegin:Connect(
             function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                if _hitObject and _hitObject.ClassName == "PlayerInstance" and _hitObject.Avatar then
                     NetUtil.Fire_C(
                         "GetMolePriceEvent",
                         _hitObject,
