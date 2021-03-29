@@ -15,4 +15,13 @@ function ServerBase:InitDefault(_module)
     EventUtil.LinkConnects(world.S_Event, _module, self)
 end
 
+--- Debug模式下打印日志
+-- self.debug 针对模块本身的debug开关
+-- FrameworkConfig.DebugMode 框架中的全局debug开关
+function ServerBase:Log(...)
+    if self.debug and FrameworkConfig.DebugMode then
+        print(string.format('[%s]', self.name), ...)
+    end
+end
+
 return ServerBase
