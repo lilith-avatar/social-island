@@ -48,7 +48,7 @@ function CookS:PutFood(_foodId, _player)
             )
             model.OnCollisionBegin:Connect(
                 function(_hitObject)
-                    if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+                    if _hitObject and _hitObject.ClassName == "PlayerInstance" and _hitObject.Avatar then
                         NetUtil.Fire_C(
                             "SetSelectFoodEvent",
                             _hitObject,
@@ -62,7 +62,7 @@ function CookS:PutFood(_foodId, _player)
             )
             model.OnCollisionEnd:Connect(
                 function(_hitObject)
-                    if _hitObject and _hitObject.ClassName == "PlayerInstance" then
+                    if _hitObject and _hitObject.ClassName == "PlayerInstance" and _hitObject.Avatar then
                         NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                     end
                 end

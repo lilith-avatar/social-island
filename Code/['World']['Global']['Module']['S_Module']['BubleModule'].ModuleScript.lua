@@ -56,7 +56,7 @@ end
 function Buble:CreateBubleEventHandler(_player)
     local buble = world:CreateInstance("Buble", "Buble",world.Buble,_player.Avatar.Bone_Head.Position + _player.Forward * 2)
     buble.OnCollisionBegin:Connect(function(_hitObject)
-        if _hitObject and _hitObject.ClassName == "PlayerInstance" and not this.vertigoPlayer[_hitObject.UserId] then
+        if _hitObject and _hitObject.ClassName == "PlayerInstance" and not this.vertigoPlayer[_hitObject.UserId] and _hitObject.Avatar then
             -- 人被困住
             NetUtil.Fire_C("FsmTriggerEvent", _hitObject, "BubleGunVertigo")
             this.vertigoPlayer[_hitObject.UserId] = {

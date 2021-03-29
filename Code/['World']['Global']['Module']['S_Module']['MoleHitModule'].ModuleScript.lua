@@ -111,7 +111,7 @@ function MoleHit:RefreashMole(_type)
         )
         v.OnCollisionEnd:Connect(
             function(_hitObject)
-                if _hitObject.ClassName == "PlayerInstance" and _hitObject then
+                if _hitObject.ClassName == "PlayerInstance" and _hitObject and _hitObject.Avatar then
                     NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
