@@ -987,5 +987,5 @@ return Maze
     -- 进入迷宫
     NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
     -- 金币生成
-    NetUtil.Fire_S('SpawnCoinEvent','N',_pos,100)
+    NetUtil.Fire_S('SpawnCoinEvent','N', _pos, 100)
 ]]

@@ -27,15 +27,15 @@ local function InitClipTable(_data)
         isLoop = _data.IsLoop,
         volume = _data.Volume
     }
-    print(table.dump(clipTable[_data.ID]))
+    print('[SoundUtil]', table.dump(clipTable[_data.ID]))
 end
 
 --初始化一个2D播放器
 local function Init2DAudioSource(_index, _uid)
     audioSourcePool.SE2D[_uid][_index] =
         world:CreateObject(
-        "AudioSource",
-        "AudioSource" .. _index,
+        'AudioSource',
+        'AudioSource' .. _index,
         world:GetPlayerByUserId(_uid).Local.Independent.GameCam.SENode
     )
     return audioSourcePool.SE2D[_uid][_index]
@@ -43,7 +43,7 @@ end
 
 --初始化一个3D播放器
 local function Init3DAudioSource(_index)
-    audioSourcePool.SE3D[_index] = world:CreateObject("AudioSource", "AudioSource" .. _index, world.SENode)
+    audioSourcePool.SE3D[_index] = world:CreateObject('AudioSource', 'AudioSource' .. _index, world.SENode)
     return audioSourcePool.SE3D[_index]
 end
 
@@ -112,7 +112,7 @@ function SoundUtil.Play2DSE(_uid, _SEID)
     if source == nil then
         source = Init2DAudioSource(table.nums(audioSourcePool.SE2D[_uid]) + 1, _uid)
     end
-    print("播放2D音频", _SEID)
+    print('[SoundUtil] 播放2D音频', _SEID)
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
     source.SoundClip = clipTable[_SEID].clip
@@ -135,7 +135,7 @@ function SoundUtil.Play3DSE(_pos, _SEID)
     if source == nil then
         source = Init3DAudioSource(table.nums(audioSourcePool.SE3D) + 1)
     end
-    print("播放3D音频", _SEID, table.dump(clipTable[_SEID]), _pos)
+    print('[SoundUtil] 播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
     source.Position = _pos
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
