@@ -38,11 +38,10 @@ function CookS:PutFood(_foodId, _player)
                 cookName = _player.Name
             }
             -- 摆上食物
-            --Config.CookMenu[_foodId].Model
             -- TODO:需要读表中的model创建
             local model =
                 world:CreateInstance(
-                "Meal1",
+                Config.CookMenu[_foodId].Model,
                 "Food",
                 world.FoodLocation["Location" .. i],
                 world.FoodLocation["Location" .. i].Position
