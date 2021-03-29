@@ -343,6 +343,32 @@ local InteractXls = {
         LeaveBtnActive = false,
         UseBtnIcon = '',
         OpenGui = ''
+    },
+    [26] = {
+        ID = 26,
+        Name = 'Cook',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = 'CookGui'
+    },
+    [27] = {
+        ID = 27,
+        Name = 'EatFood',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = true,
+        CtrlActive = true,
+        UseBtnActive = true,
+        JumpBtnActive = true,
+        LeaveBtnActive = false,
+        UseBtnIcon = '',
+        OpenGui = 'CookGui'
     }
 }
 
