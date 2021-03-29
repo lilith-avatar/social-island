@@ -101,12 +101,14 @@ end
 
 --更新蓄力特效
 function BowWeapon:UpdateChargeEffect(_force)
-    if _force < 0.99 then
-        self.chargeEffectObj.Step1.Scale = 0.3 * _force
-        self.chargeEffectObj.Step1:SetActive(true)
-        self.chargeEffectObj.Step2:SetActive(false)
-    else
-        self.chargeEffectObj.Step2:SetActive(true)
+    if self.chargeEffectObj then
+        if _force < 0.99 then
+            self.chargeEffectObj.Step1.Scale = 0.3 * _force
+            self.chargeEffectObj.Step1:SetActive(true)
+            self.chargeEffectObj.Step2:SetActive(false)
+        else
+            self.chargeEffectObj.Step2:SetActive(true)
+        end
     end
 end
 
