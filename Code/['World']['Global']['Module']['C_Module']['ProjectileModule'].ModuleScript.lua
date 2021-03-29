@@ -2,11 +2,11 @@
 --- @module Projectile, client-side
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Projectile, this = ModuleUtil.New("Projectile", ClientBase)
+local Projectile, this = ModuleUtil.New('Projectile', ClientBase)
 
 --- 初始化
 function Projectile:Init()
-    print("Projectile:Init")
+    print('Projectile:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -29,12 +29,12 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
     local projectileConfig = Config.Projectile[_id]
     local projectileObj = this:InstanceProjectile(projectileConfig.ModelName, _pos, _rot)
     this:ShootProjectile(projectileObj, _targetPos, _force)
-    NetUtil.Fire_S("SProjectileShootEvent", localPlayer, _id, projectileObj)
-    NetUtil.Fire_C("CProjectileShootEvent", localPlayer, _id, projectileObj)
+    NetUtil.Fire_S('SProjectileShootEvent', localPlayer, _id, projectileObj)
+    NetUtil.Fire_C('CProjectileShootEvent', localPlayer, _id, projectileObj)
     projectileObj.OnCollisionBegin:Connect(
         function(_hitObj, _hitPoint)
-            if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
-                if _hitObj.Avatar.ClassName == "PlayerAvatarInstance" then
+            if _hitObj ~= localPlayer and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar then
+                if _hitObj.Avatar.ClassName == 'PlayerAvatarInstance' then
                     --NetUtil.Fire_S("SProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                     --NetUtil.Fire_C("CProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                     local hitPlayers = this:GetPlayersByRange(_hitObj, _hitPoint, projectileConfig.HitRange)
@@ -57,14 +57,14 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
                     projectileObj:Destroy()
                 end
             elseif _hitObj.AnimalID and projectileConfig.Hunt then
-                NetUtil.Fire_S("SProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
-                NetUtil.Fire_C("CProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 _hitObj.AnimalDeadEvent:Fire()
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
-            elseif _hitObj.Name == "ArrowTargetCol" then
-                NetUtil.Fire_S("SProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
-                NetUtil.Fire_C("CProjectileHitEvent", localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+            elseif _hitObj.Name == 'ArrowTargetCol' then
+                NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
+                NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 _hitObj.Parent.ArrowTargetEvent:Fire(_hitPoint)
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
@@ -117,14 +117,14 @@ end
 --命中增加/移除buff
 function Projectile:HitBuff(_players, _buffData)
     for k, v in pairs(_players) do
-        NetUtil.Fire_S("SPlayerHitEvent", localPlayer, v, _buffData)
+        NetUtil.Fire_S('SPlayerHitEvent', localPlayer, v, _buffData)
     end
 end
 
 --播放命中音效和特效
 function Projectile:PlayHitSoundEffect(_pos, _seID, _effect)
     SoundUtil.Play3DSE(_pos, _seID)
-    local effect = world:CreateInstance(_effect, _effect .. "Instance", world, _pos)
+    local effect = world:CreateInstance(_effect, _effect .. 'Instance', world, _pos)
     invoke(
         function()
             effect:Destroy()
