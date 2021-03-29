@@ -38,14 +38,14 @@ end
 function UFOMgr:EventBind()
     portal1.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject.ClassName == "PlayerInstance" then
+            if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
                 this:Teleport(_hitObject, portal2.Position + Vector3(math.random(-3, 3), 0, math.random(-3, 3)))
             end
         end
     )
     portal2.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject.ClassName == "PlayerInstance" then
+            if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
                 this:Teleport(_hitObject, portal1.Position + Vector3(math.random(-3, 3), 0, math.random(-3, 3)))
             end
         end
