@@ -38,6 +38,9 @@ local bombOBJ = {}
 --收音机
 local radioOBJ = {}
 
+--锅
+local potOBJ = {}
+
 --- 初始化
 function ScenesInteract:Init()
     print('[ScenesInteract] Init()')
@@ -84,6 +87,9 @@ function ScenesInteract:NodeRef()
     end
     for k, v in pairs(world.Radio:GetChildren()) do
         radioOBJ[v.Name] = v
+    end
+    for k,v in pairs(world.Pot:GetChildren()) do
+        potOBJ[v.Name] = v
     end
 end
 
@@ -376,6 +382,16 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
+    if _id == 26 then
+        for k,v in pairs(potOBJ) do
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 26)
+            if v.PotUID.Value == _player.UserId then
+                v.Off:SetActive(false)
+                v.On:SetActive(true)
+            end
+
+        end
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
@@ -431,6 +447,16 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
             if v.RadioUID.Value == _player.UserId then
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
             end
+        end
+    end
+    if _id == 26 then
+        for k,v in pairs(potOBJ) do
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+            if v.PotUID.Value == _player.UserId then
+                v.Off:SetActive(true)
+                v.On:SetActive(false)
+            end
+
         end
     end
 end
