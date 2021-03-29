@@ -243,7 +243,7 @@ function InitMazeEntranceAndExit()
     exit.Color = Color(0xFF, 0x00, 0x00, DEBUG_ALPHA)
     entrace:SetActive(false)
     exit:SetActive(false)
-    exit.OnCollisionBegin:Connect(PlayerReachExit)
+    -- exit.OnCollisionBegin:Connect(PlayerReachExit)
 end
 
 -- 初始化空气墙
