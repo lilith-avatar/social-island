@@ -94,13 +94,13 @@ end
 
 function ArrowTarget:HitReaction2(_target)
     _target.obj:SetActive(false)
-    ScenesInteract:InstanceInteractOBJ(59, _target.obj.Position)
+    ScenesInteract:InstanceInteractOBJ(36, _target.obj.Position)
     _target.resetCD = 0
 end
 
 function ArrowTarget:HitReaction3(_target)
     _target.obj:SetActive(false)
-    ScenesInteract:InstanceInteractOBJ(60, _target.obj.Position)
+    ScenesInteract:InstanceInteractOBJ(37, _target.obj.Position)
     _target.resetCD = 0
 end
 
