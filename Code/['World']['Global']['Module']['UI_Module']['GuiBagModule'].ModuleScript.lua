@@ -134,7 +134,7 @@ function GuiBag:ClickUseBtn(_index)
 end
 
 function GuiBag:ConsumeItem(_index)
-    if Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].IsConsume then
+    if Config.ItemType[Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id]].IsConsume then
         this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
             this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
         if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then
@@ -152,7 +152,7 @@ function GuiBag:SelectItem(_index)
         this:ChangeNameAndDesc(this.slotList[_index].ItemID.Value)
         this.slotList[_index].ItemImg.Chosen:SetActive(true)
         --判断是否开启使用按钮
-        if Config.Item[this.slotList[_index].ItemID.Value].Useable then
+        if Config.ItemType[Config.Item[this.slotList[_index].ItemID.Value].Type].IsUseable then
             this.useBtn:SetActive(true)
         end
     end
