@@ -176,7 +176,7 @@ function SceneTime:SycnTimeSEventHandler(_clock)
             end
         end
     end
-    print(string.format("当前时间 %s 点", math.floor(_clock))) --! 上线删除
+    print(string.format("[SceneTime] 当前时间 %s 点", math.floor(_clock))) --! 上线删除
 end
 
 return SceneTime

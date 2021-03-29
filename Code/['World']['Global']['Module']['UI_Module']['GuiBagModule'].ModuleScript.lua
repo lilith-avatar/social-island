@@ -73,7 +73,7 @@ function GuiBag:TransItemTable()
     --先清空表
     this.slotItem = {}
     for k, v in pairs(Data.Player.bag) do
-        if v.count ~= 0 then
+        if v.count > 0 then
             local data = {
                 num = v.count,
                 id = k,
@@ -134,7 +134,7 @@ function GuiBag:ClickUseBtn(_index)
 end
 
 function GuiBag:ConsumeItem(_index)
-    if Config.UsableItem[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].IsConsume then
+    if Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].IsConsume then
         this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
             this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
         if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then
