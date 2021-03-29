@@ -16,6 +16,8 @@ local JUMP_UP_VELOCITY = 0
 local MARK_ARCH = 'Maze_Mark'
 local FLAG_ARCH = 'Maze_Flag'
 local CAM_DISTANCE = 7
+local CAM_MIN_VERT_ANGLE = 45
+local CAM_MAX_VERT_ANGLE = 80
 
 -- 玩家头顶的标记
 local mark
@@ -51,10 +53,14 @@ function EnterMaze(_enterPos, _playerDir, _totalTime, _waitTime)
     -- cache player info
     origin.pos = player.Position
     origin.camDist = world.CurrentCamera.Distance
+    origin.maxVertAngle = world.CurrentCamera.MaxVerticalAngle
+    origin.minVertAngle = world.CurrentCamera.MinVerticalAngle
     -- NetUtil.Fire_C('GetBuffEvent', localPlayer, 24, -1)
     player.Position = _enterPos
     player.Forward = _playerDir
     world.CurrentCamera.Distance = CAM_DISTANCE
+    world.CurrentCamera.MaxVerticalAngle = CAM_MAX_VERT_ANGLE
+    world.CurrentCamera.MinVerticalAngle = CAM_MIN_VERT_ANGLE
 
     invoke(
         function()
@@ -85,6 +91,8 @@ function QuitMaze(_score, _time)
     -- resume player info
     player.Position = origin.pos
     world.CurrentCamera.Distance = origin.camDist
+    world.CurrentCamera.MaxVerticalAngle = origin.maxVertAngle
+    world.CurrentCamera.MinVerticalAngle = origin.minVertAngle
     -- NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 24)
 
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, origin.camera)
