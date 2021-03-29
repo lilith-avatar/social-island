@@ -17,7 +17,7 @@ local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 32, 32
+local NUM_ROWS, NUM_COLS = 30, 30
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
@@ -959,5 +959,8 @@ return Maze
 --! TEST ONLY below
 --* 测试迷宫生成
 --[[
+    -- 进入迷宫
     NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
+    -- 金币生成
+    NetUtil.Fire_S('SpawnCoinEvent','N',_pos,100)
 ]]
