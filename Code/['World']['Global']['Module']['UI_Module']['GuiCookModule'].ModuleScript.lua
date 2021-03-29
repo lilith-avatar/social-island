@@ -120,7 +120,7 @@ function GuiCook:TransItemTable()
     --先清空表
     this.BagMaterial = {}
     for k, v in pairs(Data.Player.bag) do
-        if v.count > 0 and Config.Material[k] then
+        if v.count > 0 and Config.Material[k] and Config.Material[k].MaterialType == 'Food' then
             local data = {
                 id = k
             }
