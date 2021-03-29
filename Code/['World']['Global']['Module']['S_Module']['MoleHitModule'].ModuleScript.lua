@@ -143,6 +143,9 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         2,
         true
     )
+    for i=1, math.random(1, 3) do
+        NetUtil.Fire_C('GetItemFromPoolEvent',9, 0)
+    end
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
