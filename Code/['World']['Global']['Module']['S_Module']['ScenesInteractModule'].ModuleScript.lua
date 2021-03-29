@@ -67,9 +67,9 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.BonfireInteract:GetChildren()) do
         bonfireOBJ[v.Name] = v
     end
-    --[[for k, v in pairs(world.GrassInteract:GetChildren()) do
+    for k, v in pairs(world.GrassInteract:GetChildren()) do
         table.insert(grassOBJ, v)
-    end]]
+    end
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
     end
@@ -159,28 +159,32 @@ end
 
 --草动
 function ScenesInteract:GrassInter(_object)
-    local swayTweenerl = this:GrassSwayTween(_object, 20, 0.15)
-    local swayTweener2 = this:GrassSwayTween(_object, -30, 0.3)
-    local swayTweener3 = this:GrassSwayTween(_object, 0, 0.15)
-    swayTweenerl.OnComplete:Connect(
-        function()
-            swayTweener2:Play()
-            swayTweenerl:Destroy()
-        end
-    )
-    swayTweener2.OnComplete:Connect(
-        function()
-            swayTweener3:Play()
-            swayTweener2:Destroy()
-        end
-    )
-    swayTweener3.OnComplete:Connect(
-        function()
-            swayTweener3:Destroy()
-        end
-    )
-
-    swayTweenerl:Play()
+	if _object.IsSwinging.Value == false then
+		_object.IsSwinging.Value = true
+		local swayTweenerl = this:GrassSwayTween(_object, 20, 0.15)
+		local swayTweener2 = this:GrassSwayTween(_object, -30, 0.3)
+		local swayTweener3 = this:GrassSwayTween(_object, 0, 0.15)
+		swayTweenerl.OnComplete:Connect(
+			function()
+				swayTweener2:Play()
+				swayTweenerl:Destroy()
+			end
+		)
+		swayTweener2.OnComplete:Connect(
+			function()
+				swayTweener3:Play()
+				swayTweener2:Destroy()
+			end
+		)
+		swayTweener3.OnComplete:Connect(
+			function()
+				_object.IsSwinging.Value = false
+				swayTweener3:Destroy()
+			end
+		)
+	
+		swayTweenerl:Play()
+	end
 end
 
 function ScenesInteract:GrassSwayTween(_obj, _property, _duration)
@@ -235,7 +239,6 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 13 then
         for k, v in pairs(interactOBJ) do
             if v.obj.ScenesInteractUID.Value == _player.UserId then
-                print(table.dump(v))
                 if v.useCount > 0 then
                     if v.itemID ~= nil then
                         NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
@@ -290,13 +293,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
-    --[[if _id == 18 then
+    if _id == 18 then
         for k, v in pairs(grassOBJ) do
             if v.GrassInteractUID.Value == _player.UserId then
                 this:GrassInter(v)
             end
         end
-    end]]
+    end
     if _id == 20 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 20)
         for k, v in pairs(trojanObj) do
