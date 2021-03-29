@@ -65,6 +65,8 @@ function ItemBase:Equip()
                 pNode.Position + self.derivedData.Offset,
                 pNode.Rotation + self.derivedData.Angle
             )
+            self.equipObj.LocalPosition = self.derivedData.Offset
+            self.equipObj.LocalRotation = self.derivedData.Angle
 
             GuiControl:UpdateTakeOffBtn()
         end,
