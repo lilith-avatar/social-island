@@ -34,7 +34,9 @@ Events.ServerEvents = {
     "SpawnCoinEvent",
     "CreateBubleEvent",
     "SPlayEffectEvent",
-    "SycnTimeSEvent", 
+    'SycnTimeSEvent',
+    'FoodOnDeskEvent',
+    'FoodRewardEvent',
     --物品被拿出
     "STakeOutItemEvent", -- @param _player,_itemID
     --物品被使用
@@ -111,6 +113,11 @@ Events.ClientEvents = {
     "ChangeChairIdEvent",
     "StartJetEvent",
     "ShowGetCoinNumEvent",
+    'SycnTimeCEvent',
+    'PlayerCookEvent',
+    'GetFinalFoodEvent',
+    'SycnDeskFoodNumEvent',
+    'SetSelectFoodEvent',
     "SycnTimeCEvent",
     --物品被拿出
     "CTakeOutItemEvent", -- @param _itemID
