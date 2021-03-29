@@ -90,6 +90,7 @@ function GuiCook:EventBind()
     )
     this.closeBtn.OnClick:Connect(
         function()
+            NetUtil.Fire_S("LeaveInteractSEvent", localPlayer, 26)
             this:HideGui()
         end
     )
@@ -373,6 +374,5 @@ end
 
 function GuiCook:SycnTimeCEventHandler(_clock)
 end
-
 
 return GuiCook
