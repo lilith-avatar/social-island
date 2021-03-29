@@ -2,11 +2,11 @@
 -- @module MeleeWeapon
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local MeleeWeapon = class("MeleeWeapon", WeaponBase)
+local MeleeWeapon = class('MeleeWeapon', WeaponBase)
 
 function MeleeWeapon:initialize(_data, _config)
     WeaponBase.initialize(self, _data, _config)
-    print("MeleeWeapon:initialize()")
+    print('MeleeWeapon:initialize()')
 end
 
 --攻击
@@ -23,18 +23,23 @@ end
 
 function MeleeWeapon:Equip()
     WeaponBase.Equip(self)
-    self.equipObj.Col:SetActive(false)
-    self.equipObj.Col.OnCollisionBegin:Connect(
-        function(_hitObj, _hitPoint)
-            print(_hitObj)
-            if _hitObj ~= localPlayer and _hitObj.ClassName == "PlayerInstance" then
-                if _hitObj.Avatar.ClassName == "PlayerAvatarInstance" then
-                    self:AddForceToHitPlayer(_hitObj)
-                    self:HitBuff(_hitObj)
-                    self:PlayHitSoundEffect(_hitPoint)
+    invoke(
+        function()
+            self.equipObj.Col:SetActive(false)
+            self.equipObj.Col.OnCollisionBegin:Connect(
+                function(_hitObj, _hitPoint)
+                    print(_hitObj)
+                    if _hitObj ~= localPlayer and _hitObj.ClassName == 'PlayerInstance' then
+                        if _hitObj.Avatar.ClassName == 'PlayerAvatarInstance' then
+                            self:AddForceToHitPlayer(_hitObj)
+                            self:HitBuff(_hitObj)
+                            self:PlayHitSoundEffect(_hitPoint)
+                        end
+                    end
                 end
-            end
-        end
+            )
+        end,
+        self.baseData.TakeOutTime + 0.1
     )
 end
 
@@ -46,7 +51,7 @@ end
 --命中增加/移除buff
 function MeleeWeapon:HitBuff(_player)
     NetUtil.Fire_S(
-        "SPlayerHitEvent",
+        'SPlayerHitEvent',
         localPlayer,
         _player,
         {
@@ -61,7 +66,7 @@ end
 function MeleeWeapon:PlayHitSoundEffect(_pos)
     SoundUtil.Play3DSE(_pos, self.derivedData.HitSoundID)
     local effect =
-        world:CreateInstance(self.derivedData.HitEffectName, self.derivedData.HitEffectName .. "Instance", world, _pos)
+        world:CreateInstance(self.derivedData.HitEffectName, self.derivedData.HitEffectName .. 'Instance', world, _pos)
     invoke(
         function()
             effect:Destroy()
