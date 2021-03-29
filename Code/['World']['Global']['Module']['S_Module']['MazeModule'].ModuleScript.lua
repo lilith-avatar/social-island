@@ -130,6 +130,11 @@ local CHECKER_SPACE
 -- 墙壁对象池隐藏默认位置
 local CHECKER_POOL_POS = Vector3.Down * 100
 
+--! 常量配置: 金币相关
+
+-- 金币价值
+local COIN_VAL = 100
+
 --! 迷宫生成数据信息
 
 -- M用于存储迷宫生成数据
@@ -482,6 +487,7 @@ function MazeReset()
     -- gen objs
     invoke(MazeWallsGen)
     invoke(PillarsGen)
+    invoke(CoinGen)
     -- MazeCheckersGen()
     -- invoke(GenNodePath)
     -- show maze
@@ -674,6 +680,21 @@ function MazeCheckersGen()
         r, c = node[1], node[2]
         pos = Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * WALL_HEIGHT * .5
         objChecker = SpawnChecker(pos, rot)
+    end
+end
+
+-- 金币生成
+function CoinGen()
+    local cell, pos
+    for row = 1, NUM_ROWS, 1 do
+        for col = 1, NUM_COLS, 1 do
+            cell = M[row][col]
+            pos =
+                MAZE_CENTER_POS + CELL_LEFT_UP_POS + Vector3(col, 0, -row) * CELL_POS_OFFSET +
+                Vector3.Up * WALL_HEIGHT * .5
+            NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL)
+            wait()
+        end
     end
 end
 
