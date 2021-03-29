@@ -6,7 +6,8 @@ local CoinMgr, this = ModuleUtil.New('CoinMgr', ServerBase)
 
 ---* 常量声明
 -- 对象池默认容量
-local DEFAUL_POOL_SIZE = 40
+local DEFAUL_POOL_SIZE = 200
+local COIN_DESPAWN_DELAY = 0.12
 
 ---* 变量声明
 --金币对象池
@@ -48,7 +49,7 @@ function CoinMgr:InitCoinPool(_size)
 end
 
 --- 刷新一个金币
-function CoinMgr:SpawnCoin(_pool, _pos)
+function CoinMgr:SpawnCoin(_pool, _pos, _dur)
     -- 参数校验
     assert(coinPool[_pool], string.format('[CoinMgr] 不存在此类金币对象池，请检查type，type = %s', _pool))
     assert(_pos and type(_pos) == 'userdata', string.format('[CoinMgr] pos有误，pos = %s', _pos))
@@ -59,56 +60,78 @@ function CoinMgr:SpawnCoin(_pool, _pos)
         coinObj.LinearVelocity = Vector3(math.random(-5, 5), 5, math.random(-5, 5))
         coinObj.Rotation = EulerDegree(90, math.random(0, 180), 0)
     end
-
-    -- 绑定事件
-    coinObj.GetCoinEvent:Connect(
-        function()
-            this:GetCoin(_pool, coinObj)
+    coinObj.CoinUID.Value = ''
+    coinObj.CoinUID.OnValueChanged:Connect(
+        function(_oldVal, _newVal)
+            this:GetCoin(_pool, coinObj, _oldVal, _newVal)
         end
     )
+
+    -- 存在时间
+    if _dur and _dur > 0 then
+        coinObj.TimerId.Value =
+            TimeUtil.SetTimeout(
+            function()
+                -- 在没有玩家吃的情况下消失
+                if coinObj and coinObj.ActiveSelf and string.isnilorempty(coinObj.CoinUID.Value) then
+                    this:DespawnCoin(_pool, coinObj)
+                end
+            end,
+            _dur
+        )
+    end
+
     return coinObj
 end
 
+--- 回收一个金币
+function CoinMgr:DespawnCoin(_pool, _coinObj)
+    _coinObj.CoinUID.OnValueChanged:Clear()
+    _coinObj.CoinUID.Value = ''
+    if _coinObj.TimerId.Value > 0 then
+        TimeUtil.ClearTimeout(_coinObj.TimerId.Value)
+        _coinObj.TimerId.Value = -1
+    end
+    coinPool[_pool]:Despawn(_coinObj)
+end
+
 --- 获得金币
-function CoinMgr:GetCoin(_pool, _coinObj)
+function CoinMgr:GetCoin(_pool, _coinObj, _oldVal, _newVal)
     _coinObj.Block = false
     local uid = _coinObj.CoinUID.Value
+    assert(not string.isnilorempty(uid), string.format('[CoinMgr] uid为空, pool = %s, coinObj = %s', _pool, _coinObj))
     NetUtil.Fire_C('UpdateCoinEvent', world:GetPlayerByUserId(uid), _coinObj.CoinNum.Value)
     invoke(
         function()
             _coinObj.LinearVelocity =
                 (world:GetPlayerByUserId(uid).Position + Vector3.Up - _coinObj.Position).Normalized * 10
-            wait(0.12)
+            wait(COIN_DESPAWN_DELAY)
             if string.sub(_pool, 1, 1) == 'P' then
                 _coinObj.Block = true
             end
-            coinPool[_pool]:Despawn(_coinObj)
-            _coinObj.CoinUID.Value = ''
-            _coinObj.GetCoinEvent:Clear()
+            this:DespawnCoin(_pool, _coinObj)
         end
     )
 end
 
---- 刷新一堆金币
-function CoinMgr:SpawnCoinEventHandler(_type, _pos, _num)
+--- 刷新一堆金币，按照个十百千每一位单独刷
+-- @param _type 金币类型，P:有物理，N:无物理
+-- @param _pos 金币生成时的Position
+-- @param _num 金币数量
+-- @param _dur 金币生命周期（秒），_dur <= 0 or _dur == nil 则为永久
+function CoinMgr:SpawnCoinEventHandler(_type, _pos, _num, _dur)
     this:Log('刷新一堆金币', _num)
-    for i = 1, tonumber(string.sub(tostring(_num), #tostring(_num), #tostring(_num))) do
-        this:SpawnCoin(_type .. '1', _pos)
+    for i = 1, _num % 10 do
+        this:SpawnCoin(_type .. '1', _pos, _dur)
     end
-    if #tostring(_num) > 1 then
-        for i = 1, tonumber(string.sub(tostring(_num), #tostring(_num) - 1, #tostring(_num) - 1)) do
-            this:SpawnCoin(_type .. '10', _pos)
-        end
+    for i = 1, (math.floor(_num / 10) % 10) do
+        this:SpawnCoin(_type .. '10', _pos, _dur)
     end
-    if #tostring(_num) > 2 then
-        for i = 1, tonumber(string.sub(tostring(_num), #tostring(_num) - 2, #tostring(_num) - 2)) do
-            this:SpawnCoin(_type .. '100', _pos)
-        end
+    for i = 1, (math.floor(_num / 100) % 10) do
+        this:SpawnCoin(_type .. '100', _pos, _dur)
     end
-    if #tostring(_num) > 3 then
-        for i = 1, tonumber(string.sub(tostring(_num), 1, #tostring(_num) - 3)) do
-            this:SpawnCoin(_type .. '1000', _pos)
-        end
+    for i = 1, (math.floor(_num / 1000)) do
+        this:SpawnCoin(_type .. '1000', _pos, _dur)
     end
 end
 

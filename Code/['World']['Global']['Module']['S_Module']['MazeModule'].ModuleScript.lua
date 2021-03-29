@@ -683,16 +683,25 @@ function MazeCheckersGen()
     end
 end
 
--- 金币生成
+-- 金币随机生成
 function CoinGen()
-    local cell, pos
-    for row = 1, NUM_ROWS, 1 do
-        for col = 1, NUM_COLS, 1 do
-            cell = M[row][col]
-            pos =
-                MAZE_CENTER_POS + CELL_LEFT_UP_POS + Vector3(col, 0, -row) * CELL_POS_OFFSET +
-                Vector3.Up * WALL_HEIGHT * .5
-            NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL)
+    local cell, pos, row, col
+    local serial = {}
+    for row = 1, NUM_ROWS do
+        for col = 1, NUM_COLS do
+            table.insert(serial, {row, col})
+        end
+    end
+    table.shuffle(serial)
+    for i = 1, #serial do
+        row = serial[i][1]
+        col = serial[i][2]
+        cell = M[row][col]
+        pos =
+            MAZE_CENTER_POS + CELL_LEFT_UP_POS + Vector3(col, 0, -row) * CELL_POS_OFFSET +
+            Vector3.Up * WALL_HEIGHT * 1.5
+        NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL, TOTAL_TIME)
+        if i % 3 == 0 then
             wait()
         end
     end
@@ -986,6 +995,6 @@ return Maze
 --[[
     -- 进入迷宫
     NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
-    -- 金币生成
-    NetUtil.Fire_S('SpawnCoinEvent','N', _pos, 100)
+    -- 金币生成3秒
+    NetUtil.Fire_S('SpawnCoinEvent','N', Vector3(-61.4809, -7, -44.5831), 100, 3)
 ]]

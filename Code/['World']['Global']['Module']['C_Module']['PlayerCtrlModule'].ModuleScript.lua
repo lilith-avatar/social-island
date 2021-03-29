@@ -2,7 +2,7 @@
 --- @module Player Ctrl Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local PlayerCtrl, this = ModuleUtil.New("PlayerCtrl", ClientBase)
+local PlayerCtrl, this = ModuleUtil.New('PlayerCtrl', ClientBase)
 
 --声明变量
 local isDead = false
@@ -27,7 +27,7 @@ local moveRightAxis = 0
 local isOnWater = false
 --- 初始化
 function PlayerCtrl:Init()
-    print("[PlayerCtrl] Init()")
+    print('[PlayerCtrl] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -84,24 +84,17 @@ function PlayerCtrl:EventBind()
     localPlayer.CoinCol.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and _hitObject.CoinUID then
-                if _hitObject.CoinUID.Value == localPlayer.UserId or _hitObject.CoinUID.Value == "" then
+                if _hitObject.CoinUID.Value == localPlayer.UserId or string.isnilorempty(_hitObject.CoinUID.Value) then
                     _hitObject.CoinUID.Value = localPlayer.UserId
-                    _hitObject.GetCoinEvent:Fire()
                 end
             end
         end
     )
-    localPlayer.CoinCol.OnCollisionEnd:Connect(
-        function(_hitObject)
-            if _hitObject and _hitObject.CoinUID then
-                _hitObject.CoinUID.Value = ""
-            end
-        end
-    )
+
     localPlayer.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject then
-                if _hitObject.Name == "SallowWaterCol" then
+                if _hitObject.Name == 'SallowWaterCol' then
                     isOnWater = true
                 end
             end
@@ -110,7 +103,7 @@ function PlayerCtrl:EventBind()
     localPlayer.OnCollisionEnd:Connect(
         function(_hitObject)
             if _hitObject then
-                if _hitObject.Name == "SallowWaterCol" then
+                if _hitObject.Name == 'SallowWaterCol' then
                     isOnWater = false
                 end
             end
@@ -118,12 +111,12 @@ function PlayerCtrl:EventBind()
     )
     localPlayer.Avatar.Bone_R_Foot.FootStep.OnCollisionEnd:Connect(
         function(_hitObject, _hitPoint)
-            PlayerCtrl:FeetStepEffect("R", _hitObject, _hitPoint)
+            PlayerCtrl:FeetStepEffect('R', _hitObject, _hitPoint)
         end
     )
     localPlayer.Avatar.Bone_L_Foot.FootStep.OnCollisionEnd:Connect(
         function(_hitObject, _hitPoint)
-            PlayerCtrl:FeetStepEffect("L", _hitObject, _hitPoint)
+            PlayerCtrl:FeetStepEffect('L', _hitObject, _hitPoint)
         end
     )
 end
@@ -155,31 +148,31 @@ end
 
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
-    FsmMgr:FsmTriggerEventHandler("Jump")
+    FsmMgr:FsmTriggerEventHandler('Jump')
 end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerClap()
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
-    localPlayer.Avatar:PlayAnimation("SocialApplause", 8, 1, 0, true, false, 1)
+    localPlayer.Avatar:PlayAnimation('SocialApplause', 8, 1, 0, true, false, 1)
     --拍掌音效
     SoundUtil.Play2DSE(localPlayer.UserId, 1)
 end
 --脚步声
 function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
     if
-        _hitPoint.y < localPlayer.Position.y + 0.1 and FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and
-            FsmMgr.playerActFsm.curState.stateName ~= "Swimming"
+        _hitPoint.y < localPlayer.Position.y + 0.1 and FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
+            FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
      then
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
         else
             SoundUtil.Play2DSE(localPlayer.UserId, 17)
         end
-        localPlayer.Avatar["Bone_" .. _dir .. "_Foot"].FootStep.OnCollisionEnd:Clear()
+        localPlayer.Avatar['Bone_' .. _dir .. '_Foot'].FootStep.OnCollisionEnd:Clear()
         invoke(
             function()
-                localPlayer.Avatar["Bone_" .. _dir .. "_Foot"].FootStep.OnCollisionEnd:Connect(
+                localPlayer.Avatar['Bone_' .. _dir .. '_Foot'].FootStep.OnCollisionEnd:Connect(
                     function(_hitObject, _hitPoint)
                         this:FeetStepEffect(_dir, _hitObject, _hitPoint)
                     end
@@ -192,7 +185,7 @@ end
 
 --游泳检测
 function PlayerCtrl:PlayerSwim()
-    if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then
+    if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
         --print(localPlayer.Position, world.water.DeepWaterCol.Position)
         if
             localPlayer.Position.x < world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 and
@@ -202,9 +195,9 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.y < -15.4
          then
             --print("游泳检测")
-            NetUtil.Fire_C("GetBuffEvent", localPlayer, 5, -1)
+            NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
             SoundUtil.Play2DSE(localPlayer.UserId, 20)
-            FsmMgr:FsmTriggerEventHandler("SwimIdle")
+            FsmMgr:FsmTriggerEventHandler('SwimIdle')
         end
     else
         if
@@ -214,8 +207,8 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
-            NetUtil.Fire_C("RemoveBuffEvent", localPlayer, 5)
-            FsmMgr:FsmTriggerEventHandler("Idle")
+            NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
+            FsmMgr:FsmTriggerEventHandler('Idle')
         end
     end
 end
@@ -244,7 +237,7 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
     this:PlayerSkinUpdate(Data.Player.attr.SkinID)
     if not Data.Player.attr.EnableEquipable then
-        NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
+        NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     end
 end
 
@@ -321,7 +314,7 @@ end
 -- 更新角色服装
 function PlayerCtrl:PlayerSkinUpdate(_skinID)
     for k, v in pairs(Config.Skin[_skinID]) do
-        if localPlayer.Avatar[k] and v ~= "" then
+        if localPlayer.Avatar[k] and v ~= '' then
             localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
         --print(k, v)
         end
@@ -331,10 +324,10 @@ end
 -- 更新金币
 function PlayerCtrl:UpdateCoinEventHandler(_num)
     if _num ~= 0 then
-		if _num > 0 then
-			SoundUtil.Play2DSE(localPlayer.UserId, 4)
-		end
-		
+        if _num > 0 then
+            SoundUtil.Play2DSE(localPlayer.UserId, 4)
+        end
+
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end
@@ -342,11 +335,11 @@ end
 
 -- 角色受伤
 function PlayerCtrl:CPlayerHitEventHandler(_data)
-    FsmMgr:FsmTriggerEventHandler("Hit")
-    FsmMgr:FsmTriggerEventHandler("BowHit")
-    FsmMgr:FsmTriggerEventHandler("OneHandedSwordHit")
-    FsmMgr:FsmTriggerEventHandler("TwoHandedSwordHit")
-    print("角色受伤", table.dump(_data))
+    FsmMgr:FsmTriggerEventHandler('Hit')
+    FsmMgr:FsmTriggerEventHandler('BowHit')
+    FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
+    FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
+    print('角色受伤', table.dump(_data))
     BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
     BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end
@@ -355,13 +348,13 @@ end
 function PlayerCtrl:PlayerReset()
     BuffMgr:BuffClear()
     for k, v in pairs(Config.Interact) do
-        NetUtil.Fire_S("LeaveInteractSEvent", localPlayer, k)
-        NetUtil.Fire_C("LeaveInteractCEvent", localPlayer, k)
+        NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, k)
+        NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, k)
     end
     localPlayer.LinearVelocity = Vector3.Zero
     localPlayer.Position = world.SpawnLocations.StartPortal00.Position
     if ItemMgr.curWeaponID ~= 0 then
-        NetUtil.Fire_C("UnequipCurEquipmentEvent", localPlayer)
+        NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     end
 end
 
@@ -371,126 +364,126 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
         if _hitObject.ScenesInteractUID then
             if _isBegin then
                 _hitObject.ScenesInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 13)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 13)
             else
-                _hitObject.ScenesInteractUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.ScenesInteractUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.TelescopeInteractUID then
-            if _isBegin and _hitObject.TelescopeInteractUID.Value == "" then
+            if _isBegin and _hitObject.TelescopeInteractUID.Value == '' then
                 _hitObject.TelescopeInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 14)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 14)
             else
-                _hitObject.TelescopeInteractUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.TelescopeInteractUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.SeatInteractUID then
-            if _isBegin and _hitObject.SeatInteractUID.Value == "" then
+            if _isBegin and _hitObject.SeatInteractUID.Value == '' then
                 _hitObject.SeatInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 15)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 15)
             else
-                _hitObject.SeatInteractUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.SeatInteractUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.BonfireInteractUID then
-            if _isBegin and _hitObject.BonfireInteractUID.Value == "" then
+            if _isBegin and _hitObject.BonfireInteractUID.Value == '' then
                 _hitObject.BonfireInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 16)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 16)
             else
-                _hitObject.BonfireInteractUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.BonfireInteractUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.BounceInteractUID then
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_S("InteractSEvent", localPlayer, 17)
+                NetUtil.Fire_S('InteractSEvent', localPlayer, 17)
                 SoundUtil.Play2DSE(localPlayer.UserId, 22)
             end
         end
         if _hitObject.GrassInteractUID then
-            if _isBegin and _hitObject.GrassInteractUID.Value == "" then
+            if _isBegin and _hitObject.GrassInteractUID.Value == '' then
                 _hitObject.GrassInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_S("InteractSEvent", localPlayer, 18)
+                NetUtil.Fire_S('InteractSEvent', localPlayer, 18)
             else
-                _hitObject.GrassInteractUID.Value = ""
+                _hitObject.GrassInteractUID.Value = ''
             end
         end
         if _hitObject.AnimalCaughtEvent then
             if _isBegin then
                 Catch:TouchPrey(_hitObject, true)
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 19)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 19)
             else
                 --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
             end
         end
         if _hitObject.Parent.TrojanUID then
-            if _isBegin and _hitObject.Parent.TrojanUID.Value == "" then
+            if _isBegin and _hitObject.Parent.TrojanUID.Value == '' then
                 _hitObject.Parent.TrojanUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 20)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 20)
             else
-                _hitObject.Parent.TrojanUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.Parent.TrojanUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.GuitarUID then
-            if _isBegin and _hitObject.GuitarUID.Value == "" then
+            if _isBegin and _hitObject.GuitarUID.Value == '' then
                 _hitObject.GuitarUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 21)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 21)
             else
-                _hitObject.GuitarUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.GuitarUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.TentUID1 then
             if _isBegin then
-                if _hitObject.TentUID1.Value == localPlayer.UserId or _hitObject.TentUID1.Value == "" then
+                if _hitObject.TentUID1.Value == localPlayer.UserId or _hitObject.TentUID1.Value == '' then
                     _hitObject.TentUID1.Value = localPlayer.UserId
-                    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 22)
+                    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 22)
                     return
                 end
-                if _hitObject.TentUID2.Value == localPlayer.UserId or _hitObject.TentUID2.Value == "" then
+                if _hitObject.TentUID2.Value == localPlayer.UserId or _hitObject.TentUID2.Value == '' then
                     _hitObject.TentUID2.Value = localPlayer.UserId
-                    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 22)
+                    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 22)
                     return
                 end
             else
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
                 if _hitObject.TentUID1.Value == localPlayer.UserId then
-                    _hitObject.TentUID1.Value = ""
+                    _hitObject.TentUID1.Value = ''
                 elseif _hitObject.TentUID2.Value == localPlayer.UserId then
-                    _hitObject.TentUID2.Value = ""
+                    _hitObject.TentUID2.Value = ''
                 end
             end
         end
         if _hitObject.BombUID then
-            if _isBegin and _hitObject.BombUID.Value == "" then
+            if _isBegin and _hitObject.BombUID.Value == '' then
                 _hitObject.BombUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 23)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 23)
             else
-                _hitObject.BombUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.BombUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.RadioUID then
-            if _isBegin and _hitObject.RadioUID.Value == "" then
+            if _isBegin and _hitObject.RadioUID.Value == '' then
                 _hitObject.RadioUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 24)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 24)
             else
-                _hitObject.RadioUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.RadioUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
         if _hitObject.PotUID then
-            if _isBegin and _hitObject.PotUID.Value == "" then
+            if _isBegin and _hitObject.PotUID.Value == '' then
                 _hitObject.PotUID.Value = localPlayer.UserId
-                NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 26)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 26)
             else
-                _hitObject.PotUID.Value = ""
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+                _hitObject.PotUID.Value = ''
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             end
         end
     end
