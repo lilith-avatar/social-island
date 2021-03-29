@@ -82,79 +82,79 @@ local ShopXls = {
             Price = 1000
         }
     },
-    [12] = {
+    [10] = {
         [1013] = {
-            NpcId = 12,
+            NpcId = 10,
             Index = 1,
             ItemId = 1013,
             Price = 10000
         },
         [1014] = {
-            NpcId = 12,
+            NpcId = 10,
             Index = 2,
             ItemId = 1014,
             Price = 10000
         }
     },
-    [13] = {
+    [11] = {
         [1003] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 1,
             ItemId = 1003,
             Price = 2500
         },
         [1005] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 2,
             ItemId = 1005,
             Price = 800
         },
         [1006] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 3,
             ItemId = 1006,
             Price = 1200
         },
         [1007] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 4,
             ItemId = 1007,
             Price = 800
         },
         [1009] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 5,
             ItemId = 1009,
             Price = 1200
         },
         [1011] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 6,
             ItemId = 1011,
             Price = 800
         },
         [1010] = {
-            NpcId = 13,
+            NpcId = 11,
             Index = 7,
             ItemId = 1010,
             Price = 1000
         }
     },
-    [14] = {
+    [12] = {
         [1015] = {
-            NpcId = 14,
+            NpcId = 12,
             Index = 1,
             ItemId = 1015,
             Price = 2500
         },
         [1016] = {
-            NpcId = 14,
+            NpcId = 12,
             Index = 2,
             ItemId = 1016,
             Price = 800
         },
         [1012] = {
-            NpcId = 14,
+            NpcId = 12,
             Index = 3,
             ItemId = 1012,
             Price = 500
