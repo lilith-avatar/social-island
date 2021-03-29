@@ -289,9 +289,9 @@ function InitWallPool()
     assert(WALL_SPACE and not WALL_SPACE:IsNull(), '[Maze] WALL_SPACE 为空')
     -- 总共需要多少面墙
     -- 外墙数 = NUM_ROWS * 2 + NUM_COLS * 2
-    -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
+    -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1)
     -- 出入口 = -2
-    local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
+    local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1)
     print('[Maze] InitWallPool() 需要墙数', wallNeeded)
     local rot = EulerDegree(0, 0, 0)
     local name
@@ -480,10 +480,10 @@ function MazeReset()
     PrintMazeData()
     PrintNodePath()
     -- gen objs
-    MazeWallsGen()
-    PillarsGen()
-    MazeCheckersGen()
-    invoke(GenNodePath)
+    invoke(MazeWallsGen)
+    invoke(PillarsGen)
+    -- MazeCheckersGen()
+    -- invoke(GenNodePath)
     -- show maze
     MazeShow()
 end
@@ -602,7 +602,11 @@ function MazeWallsGen()
             for col = 1, NUM_COLS do
                 cell = M[row][col]
                 --* 1：路，0：墙
-                if cell[dir] == 0 then
+                if
+                    cell[dir] == 0 and
+                        (dir == LEFT or dir == UP or (dir == RIGHT and col == NUM_COLS) or
+                            (dir == DOWN and row == NUM_ROWS))
+                 then
                     pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
