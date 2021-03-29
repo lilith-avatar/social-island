@@ -2245,6 +2245,20 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    Item_Des_5001 = {
+        ID = 'Item_Des_5001',
+        CHS = '我有一个梦想。',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5002 = {
+        ID = 'Item_Des_5002',
+        CHS = '安全第一。',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 
