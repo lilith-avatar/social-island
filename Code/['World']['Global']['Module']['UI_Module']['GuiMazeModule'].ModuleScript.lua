@@ -1,21 +1,21 @@
---- 玩家默认UI
---- @module Player Default GUI
+--- 玩家迷宫GUI
+--- @module Maze GUI
 --- @copyright Lilith Games, Avatar Team
+--- @author Yuancheng Zhang
 local GuiMaze, this = ModuleUtil.New('GuiMaze', ClientBase)
 
 -- 获取本地玩家
 local player
--- 迷宫中的相机
-local camMaze
 
 -- Const
 local MAZE_CHARACTER_WIDTH = 0.1
 local AVATAR_HEIGHT = 0.1
 local AVATAR_HEAD_SIZE = 0.1
-local WALK_SPEED = .7
+local WALK_SPEED = 0.7
 local JUMP_UP_VELOCITY = 0
 local MARK_ARCH = 'Maze_Mark'
 local FLAG_ARCH = 'Maze_Flag'
+local CAM_DISTANCE = 7
 
 -- 玩家头顶的标记
 local mark
@@ -34,7 +34,6 @@ function GuiMaze:Init()
     print('[GuiMaze] Init()')
     -- 获取本地玩家
     player = localPlayer
-    camMaze = localPlayer.Local.Independent.MazeCam
     self:InitGui()
 end
 
@@ -51,10 +50,11 @@ function EnterMaze(_enterPos, _playerDir, _totalTime, _waitTime)
     print('[GuiMaze] EnterMaze')
     -- cache player info
     origin.pos = player.Position
+    origin.camDist = world.CurrentCamera.Distance
     -- NetUtil.Fire_C('GetBuffEvent', localPlayer, 24, -1)
     player.Position = _enterPos
     player.Forward = _playerDir
-    NetUtil.Fire_C('SetCurCamEvent', localPlayer, camMaze)
+    world.CurrentCamera.Distance = CAM_DISTANCE
 
     invoke(
         function()
@@ -84,6 +84,7 @@ function QuitMaze(_score, _time)
     inMaze = false
     -- resume player info
     player.Position = origin.pos
+    world.CurrentCamera.Distance = origin.camDist
     -- NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 24)
 
     NetUtil.Fire_C('SetCurCamEvent', localPlayer, origin.camera)

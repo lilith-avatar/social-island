@@ -2,14 +2,14 @@
 --- @module Player Cam Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local PlayerCam, this = ModuleUtil.New("PlayerCam", ClientBase)
+local PlayerCam, this = ModuleUtil.New('PlayerCam', ClientBase)
 
 --滤镜开关
 local filterSwitch = false
 
 --- 初始化
 function PlayerCam:Init()
-    print("[PlayerCam] Init()")
+    print('[PlayerCam] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -33,9 +33,6 @@ function PlayerCam:DataInit()
 
     -- FPS相机
     this.fpsCam = localPlayer.Local.Independent.FPSCam
-
-    -- 迷宫中的相机
-    this.mazeCam = localPlayer.Local.Independent.MazeCam
 
     this.chairCam = localPlayer.Local.Independent.ChairCam
 end
@@ -85,8 +82,8 @@ function PlayerCam:TPSGetRayDir()
         if
             (v - localPlayer.Position).Magnitude > 4 and
                 Vector3.Angle(localPlayer.Forward, (v - localPlayer.Position)) < 90 and
-                hitResult:GetHitObjAll()[i].Parent.Name ~= "Water" and
-                hitResult:GetHitObjAll()[i].Parent.Name ~= "ColBox"
+                hitResult:GetHitObjAll()[i].Parent.Name ~= 'Water' and
+                hitResult:GetHitObjAll()[i].Parent.Name ~= 'ColBox'
          then
             --print(hitResult:GetHitObjAll()[i])
             return v
@@ -123,7 +120,7 @@ end
 
 ---游泳滤镜检测
 function PlayerCam:UpdateSwimFilter()
-    if FsmMgr.playerActFsm.curState.stateName ~= "SwimIdle" and FsmMgr.playerActFsm.curState.stateName ~= "Swimming" then
+    if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
         if filterSwitch == true then
             this:SwitchSwimFilter(false)
         end

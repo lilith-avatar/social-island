@@ -17,7 +17,7 @@ local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 32, 32
+local NUM_ROWS, NUM_COLS = 30, 30
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
@@ -130,6 +130,11 @@ local CHECKER_SPACE
 -- 墙壁对象池隐藏默认位置
 local CHECKER_POOL_POS = Vector3.Down * 100
 
+--! 常量配置: 金币相关
+
+-- 金币价值
+local COIN_VAL = 100
+
 --! 迷宫生成数据信息
 
 -- M用于存储迷宫生成数据
@@ -239,11 +244,11 @@ function InitMazeEntranceAndExit()
     exit.Size = Vector3.One * 0.3 * CELL_SIDE
     entrace.Block = false
     exit.Block = false
-    entrace.Color = Color(0x00, 0xFF, 0x00, 0xFF)
-    exit.Color = Color(0xFF, 0x00, 0x00, 0xFF)
+    entrace.Color = Color(0x00, 0xFF, 0x00, DEBUG_ALPHA)
+    exit.Color = Color(0xFF, 0x00, 0x00, DEBUG_ALPHA)
     entrace:SetActive(false)
     exit:SetActive(false)
-    exit.OnCollisionBegin:Connect(PlayerReachExit)
+    -- exit.OnCollisionBegin:Connect(PlayerReachExit)
 end
 
 -- 初始化空气墙
@@ -289,9 +294,9 @@ function InitWallPool()
     assert(WALL_SPACE and not WALL_SPACE:IsNull(), '[Maze] WALL_SPACE 为空')
     -- 总共需要多少面墙
     -- 外墙数 = NUM_ROWS * 2 + NUM_COLS * 2
-    -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
+    -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1)
     -- 出入口 = -2
-    local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1) * 2
+    local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1)
     print('[Maze] InitWallPool() 需要墙数', wallNeeded)
     local rot = EulerDegree(0, 0, 0)
     local name
@@ -480,10 +485,11 @@ function MazeReset()
     PrintMazeData()
     PrintNodePath()
     -- gen objs
-    MazeWallsGen()
-    PillarsGen()
-    MazeCheckersGen()
-    invoke(GenNodePath)
+    invoke(MazeWallsGen)
+    invoke(PillarsGen)
+    invoke(CoinGen)
+    -- MazeCheckersGen()
+    -- invoke(GenNodePath)
     -- show maze
     MazeShow()
 end
@@ -602,7 +608,11 @@ function MazeWallsGen()
             for col = 1, NUM_COLS do
                 cell = M[row][col]
                 --* 1：路，0：墙
-                if cell[dir] == 0 then
+                if
+                    cell[dir] == 0 and
+                        (dir == LEFT or dir == UP or (dir == RIGHT and col == NUM_COLS) or
+                            (dir == DOWN and row == NUM_ROWS))
+                 then
                     pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
@@ -670,6 +680,21 @@ function MazeCheckersGen()
         r, c = node[1], node[2]
         pos = Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS + Vector3.Up * WALL_HEIGHT * .5
         objChecker = SpawnChecker(pos, rot)
+    end
+end
+
+-- 金币生成
+function CoinGen()
+    local cell, pos
+    for row = 1, NUM_ROWS, 1 do
+        for col = 1, NUM_COLS, 1 do
+            cell = M[row][col]
+            pos =
+                MAZE_CENTER_POS + CELL_LEFT_UP_POS + Vector3(col, 0, -row) * CELL_POS_OFFSET +
+                Vector3.Up * WALL_HEIGHT * .5
+            NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL)
+            wait()
+        end
     end
 end
 
@@ -959,5 +984,8 @@ return Maze
 --! TEST ONLY below
 --* 测试迷宫生成
 --[[
+    -- 进入迷宫
     NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
+    -- 金币生成
+    NetUtil.Fire_S('SpawnCoinEvent','N',_pos,100)
 ]]
