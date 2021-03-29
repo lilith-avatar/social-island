@@ -331,6 +331,10 @@ end
 -- 更新金币
 function PlayerCtrl:UpdateCoinEventHandler(_num)
     if _num ~= 0 then
+		if _num > 0 then
+			SoundUtil.Play2DSE(localPlayer.UserId, 4)
+		end
+		
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end
