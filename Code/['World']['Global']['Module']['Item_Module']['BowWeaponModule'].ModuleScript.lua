@@ -26,19 +26,24 @@ function BowWeapon:Equip()
     WeaponBase.Equip(self)
     GuiBowAim.gui:SetActive(true)
     GuiBowAim.touchGui:SetActive(true)
-    self.chargeEffectObj =
-        world:CreateInstance(
-        self.derivedData.ChargeEffect,
-        self.derivedData.ChargeEffect .. 'Instance',
-        self.equipObj.ChargeNode,
-        self.equipObj.ChargeNode.Position
-    )
-    self.shootEffectObj =
-        world:CreateInstance(
-        self.derivedData.ShootEffect,
-        self.derivedData.ShootEffect .. 'Instance',
-        self.equipObj.ShootNode,
-        self.equipObj.ShootNode.Position
+    invoke(
+        function()
+            self.chargeEffectObj =
+                world:CreateInstance(
+                self.derivedData.ChargeEffect,
+                self.derivedData.ChargeEffect .. 'Instance',
+                self.equipObj.ChargeNode,
+                self.equipObj.ChargeNode.Position
+            )
+            self.shootEffectObj =
+                world:CreateInstance(
+                self.derivedData.ShootEffect,
+                self.derivedData.ShootEffect .. 'Instance',
+                self.equipObj.ShootNode,
+                self.equipObj.ShootNode.Position
+            )
+        end,
+        self.baseData.TakeOutTime + 0.1
     )
 end
 

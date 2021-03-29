@@ -25,7 +25,9 @@ function IdleState:OnUpdate(dt)
             "Vertigo",
             "Hit",
             "TakeOutItem",
-            "UseItem"
+            "UseItem",
+            "BowIdle",
+            "PistolIdle",
         }
     )
     self:MoveMonitor()

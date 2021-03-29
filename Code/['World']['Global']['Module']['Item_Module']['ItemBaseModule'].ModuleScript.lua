@@ -37,36 +37,39 @@ end
 --装备
 function ItemBase:Equip()
     print('装备')
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     wait(0.1)
-    local node1, node2 = string.match(self.derivedData.ParentNode, '([%w_]+).([%w_]+)')
-    --print(node1, node1)
-    local pNode = localPlayer.Avatar[node1][node2]
-    self.equipObj =
-        world:CreateInstance(
-        self.derivedData.ModelName,
-        self.derivedData.ModelName .. 'Instance',
-        pNode,
-        pNode.Position + self.derivedData.Offset,
-        pNode.Rotation + self.derivedData.Angle
-    )
-
     localPlayer.Avatar:PlayAnimation(self.baseData.TakeOutAniName, 8, 1, 0.2, true, false, 1)
 
-    wait(self.baseData.TakeOutTime)
+    invoke(
+        function()
+            print(self.typeConfig.FsmMode)
+            NetUtil.Fire_C('FsmTriggerEvent', localPlayer, self.typeConfig.FsmMode)
 
-    print(self.typeConfig.FsmMode)
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, self.typeConfig.FsmMode)
+            SoundUtil.Play3DSE(localPlayer.Position, self.baseData.TakeOutSoundID)
+            NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
+            ItemMgr.curEquipmentID = self.baseData.ItemID
 
-    SoundUtil.Play3DSE(localPlayer.Position, self.baseData.TakeOutSoundID)
-    NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
-    ItemMgr.curEquipmentID = self.baseData.ItemID
+            NetUtil.Fire_C('CTakeOutItemEvent', localPlayer, self.baseData.ItemID)
+            NetUtil.Fire_S('STakeOutItemEvent', localPlayer, self.baseData.ItemID)
 
-    NetUtil.Fire_C('CTakeOutItemEvent', localPlayer, self.baseData.ItemID)
-    NetUtil.Fire_S('STakeOutItemEvent', localPlayer, self.baseData.ItemID)
+            local node1, node2 = string.match(self.derivedData.ParentNode, '([%w_]+).([%w_]+)')
+            --print(node1, node1)
+            local pNode = localPlayer.Avatar[node1][node2]
+            self.equipObj =
+                world:CreateInstance(
+                self.derivedData.ModelName,
+                self.derivedData.ModelName .. 'Instance',
+                pNode,
+                pNode.Position + self.derivedData.Offset,
+                pNode.Rotation + self.derivedData.Angle
+            )
 
-    GuiControl:UpdateTakeOffBtn()
+            GuiControl:UpdateTakeOffBtn()
+        end,
+        self.baseData.TakeOutTime
+    )
 end
 
 --取下装备
@@ -74,7 +77,7 @@ function ItemBase:Unequip()
     ItemMgr.curEquipmentID = 0
     self.equipObj:Destroy()
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
-    wait(self.baseData.TakeOutTime)
+    --wait(self.baseData.TakeOutTime)
     self:PutIntoBag()
     GuiControl:UpdateTakeOffBtn()
 end
