@@ -9,29 +9,10 @@ function TakeOutItemState:OnUpdate(dt)
     FsmMgr.playerActFsm:TriggerMonitor(
         {
             "Idle",
-            "Walk",
-            "Run",
-            "Jump",
-            "Vertigo",
-            "Fly",
-            "Hit",
-            "SwimIdle",
-            "Swimming",
             "TakeOutItem",
             "UseItem",
             "BowIdle",
-            "BowWalk",
-            "BowRun",
-            "BowJump",
-            "BowChargeIdle",
-            "BowAttack",
-            "BowHit",
             "PistolIdle",
-            "PistolRun",
-            "PistolWalk",
-            "PistolJump",
-            "PistolAttack",
-            "PistolHit"
         }
     )
 end

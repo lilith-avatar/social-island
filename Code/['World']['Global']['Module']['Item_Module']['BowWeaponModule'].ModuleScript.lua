@@ -59,7 +59,9 @@ function BowWeapon:Attack(_force)
     self.equipObj.ShootNode:SetActive(true)
     invoke(
         function()
-            self.equipObj.ShootNode:SetActive(false)
+            if self.equipObj.ShootNode then
+                self.equipObj.ShootNode:SetActive(false)
+            end
         end,
         1
     )
