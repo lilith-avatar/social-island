@@ -602,7 +602,7 @@ local ScenesInteractXls = {
         AddBuffID = 34,
         AddBuffDur = 30.0,
         RewardCoin = 0,
-        UseCount = 1,
+        UseCount = 99999,
         ResetTime = 30.0,
         IsPre = true
     },
