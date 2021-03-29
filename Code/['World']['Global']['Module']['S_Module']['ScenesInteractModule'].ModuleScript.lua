@@ -49,18 +49,7 @@ end
 --- 节点引用
 function ScenesInteract:NodeRef()
     for k, v in pairs(Config.ScenesInteract) do
-        if v.IsPre then
-            interactOBJ[k] = {
-                obj = world.ScenesInteract[v.Path],
-                itemID = v.ItemID,
-                isGet = v.IsGet,
-                rewardCoin = v.RewardCoin,
-                useCount = v.UseCount,
-                useCountMax = v.UseCount,
-                resetTime = v.ResetTime,
-                resetCD = 0
-            }
-        end
+        this:InstanceInteractOBJ(v.ID)
     end
     for k, v in pairs(world.BounceInteract:GetChildren()) do
         bounceOBJ[v.Name] = {
@@ -78,9 +67,9 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.BonfireInteract:GetChildren()) do
         bonfireOBJ[v.Name] = v
     end
-    for k, v in pairs(world.GrassInteract:GetChildren()) do
+    --[[for k, v in pairs(world.GrassInteract:GetChildren()) do
         table.insert(grassOBJ, v)
-    end
+    end]]
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = v
     end
@@ -90,10 +79,10 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Tent:GetChildren()) do
         tentOBJ[v.Name] = v
     end
-    for k,v in pairs(world.Bomb:GetChildren())do
+    for k, v in pairs(world.Bomb:GetChildren()) do
         bombOBJ[v.Name] = v
     end
-    for k,v in pairs(world.Radio:GetChildren())do
+    for k, v in pairs(world.Radio:GetChildren()) do
         radioOBJ[v.Name] = v
     end
 end
@@ -104,7 +93,7 @@ function ScenesInteract:DataInit()
     this.TentList = {}
     this.RadioData = {
         songIndex = 0,
-        songList = {97,98,99},
+        songList = {97, 98, 99},
         curSong = nil
     }
 end
@@ -116,31 +105,27 @@ end
 --- 实例化场景交互 ScenesInteract:InstanceInteractOBJ(60, Vector3(-62.0279, 0, -35.9028))
 function ScenesInteract:InstanceInteractOBJ(_id, _pos)
     local config = Config.ScenesInteract[_id]
-    print("实例化场景交互", config.Path)
-    if config.IsPre == false then
-        table.insert(
-            interactOBJ,
-            {
-                obj = world:CreateInstance(config.Path, config.Path, world.ScenesInteract, _pos),
-                itemID = config.ItemID,
-                isGet = config.IsGet,
-                rewardCoin = config.RewardCoin,
-                useCount = config.UseCount,
-                useCountMax = config.UseCount,
-                resetTime = config.ResetTime,
-                resetCD = 0
-            }
-        )
-        --[[interactOBJ[_id] = {
-            obj = world:CreateInstance(config.Path, config.Path, world.ScenesInteract, _pos),
-            itemID = config.ItemID,
-            isGet = config.IsGet,
+    if config.IsPre or _pos then
+        local temp = {
+            obj = world:CreateInstance(
+                config.ArchetypeName,
+                config.ArchetypeName,
+                world.ScenesInteract,
+                _pos or config.Pos,
+                config.Rot or EulerDegree(0, 0, 0)
+            ),
+            itemID = config.GetItemID,
+            isUse = config.IsUse,
+            addBuffID = config.AddBuffID,
+            addBuffDur = config.AddBuffDur,
             rewardCoin = config.RewardCoin,
             useCount = config.UseCount,
             useCountMax = config.UseCount,
             resetTime = config.ResetTime,
             resetCD = 0
-        }]]
+        }
+        world:CreateObject("StringValueObject", "ScenesInteractUID", temp.obj)
+        table.insert(interactOBJ, temp)
     end
 end
 
@@ -250,12 +235,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     if _id == 13 then
         for k, v in pairs(interactOBJ) do
             if v.obj.ScenesInteractUID.Value == _player.UserId then
+                print(table.dump(v))
                 if v.useCount > 0 then
                     if v.itemID ~= nil then
-                        if v.isGet then
-                            NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
-                        else
-                            NetUtil.Fire_C("UseItemEvent", _player, v.itemID)
+                        NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
+                        if v.isUse then
+                            wait(.1)
+                            NetUtil.Fire_C("UseItemInBagEvent", _player, v.itemID)
                         end
                     end
                     NetUtil.Fire_S("SpawnCoinEvent", "P", v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
@@ -266,9 +252,10 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 else
                     v.obj:SetActive(false)
                 end
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+                return
             end
         end
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
     end
     if _id == 15 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 15)
@@ -277,7 +264,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C("PlayEffectEvent", _player, 14, _player.Position)
+                SoundUtil.Play2DSE(localPlayer.UserId, 14)
             end
         end
     end
@@ -303,13 +290,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             end
         end
     end
-    if _id == 18 then
+    --[[if _id == 18 then
         for k, v in pairs(grassOBJ) do
             if v.GrassInteractUID.Value == _player.UserId then
                 this:GrassInter(v)
             end
         end
-    end
+    end]]
     if _id == 20 then
         NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 20)
         for k, v in pairs(trojanObj) do
@@ -318,7 +305,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
-                NetUtil.Fire_C("PlayEffectEvent", _player, 15, _player.Position, v.Name)
+                SoundUtil.Play2DSE(localPlayer.UserId, 15)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
@@ -353,14 +340,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(bombOBJ) do
             NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 23)
             if v.BombUID.Value == _player.UserId then
-                _player.LinearVelocity =
-                (v.Position - _player.Position).Normalized * 10
+                _player.LinearVelocity = (v.Position - _player.Position).Normalized * 10
                 NetUtil.Fire_C("FsmTriggerEvent", v.insidePlayer, "Fly")
             end
         end
     end
     if _id == 24 then
-        for k,v in pairs(radioOBJ) do
+        for k, v in pairs(radioOBJ) do
             NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 24)
             if v.RadioUID.Value == _player.UserId then
                 this.RadioData.songIndex = this.RadioData.songIndex + 1
@@ -369,11 +355,17 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
                 -- 先停止当前音乐，再播放
                 if this.RadioData.curSong then
-                    NetUtil.Fire_C("StopEffectEvent", _player, 'radio')
+                    --NetUtil.Fire_C("StopEffectEvent", _player, "radio")
                 else
                     v.Model.On:SetActive(true)
                 end
-                NetUtil.Fire_C("PlayEffectEvent", _player, this.RadioData.songList[this.RadioData.songIndex], v.Position,'radio')
+                --[[NetUtil.Fire_C(
+                    "PlayEffectEvent",
+                    _player,
+                    this.RadioData.songList[this.RadioData.songIndex],
+                    v.Position,
+                    "radio"
+                )]]
                 this.RadioData.curSong = true
             end
         end

@@ -12,7 +12,7 @@ local rawDataGlobal = {}
 local rawDataPlayers = {}
 
 -- 玩家数据定时保存时间间隔（秒）
-local AUTO_SAVE_TIME = 60
+local AUTO_SAVE_TIME = 10
 -- 重新读取游戏数据时间间隔（秒）
 local RELOAD_TIME = 1
 
@@ -54,6 +54,11 @@ function InitEventsAndListeners()
     local onPlayerLeaveEvent = world.S_Event.OnPlayerLeaveEvent
     assert(onPlayerLeaveEvent, '[DataSync][Server] 不存在 OnPlayerLeaveEvent')
     onPlayerLeaveEvent:Connect(OnPlayerLeaveEventHandler)
+
+    -- 长期存储成功事件
+    if not world.S_Event.LoadPlayerDataSuccessEvent then
+        world:CreateObject('CustomEvent', 'LoadPlayerDataSuccessEvent', world.S_Event)
+    end
 end
 
 --- 校验数据定义
@@ -106,6 +111,7 @@ end
 --- 下载玩家的游戏数据
 --- @param _uid string 玩家ID
 function LoadGameDataAsync(_uid)
+    sheet = DataStore:GetSheet('PlayerData')
     assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
     sheet:GetValue(
         _uid,
@@ -124,15 +130,21 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
     assert(player, string.format('[DataSync][Server] 玩家不存在, uid = %s', _uid))
     if _msg == 0 or _msg == 101 then
         print('[DataSync][Server] 获取玩家数据成功', player.Name)
-        if _val then
+        local hasData = _val ~= nil
+        if hasData then
             --若以前的数据存在，更新
+            -- TODO: 数据兼容的处理
             local data = _val
             assert(data.uid == _uid, string.format('[DataSync][Server] uid校验不通过, uid = %s', _uid))
             --若已在此服务器的数据总表存在，则更新数据
-            Data.Players[_uid] = data
+            for k, v in pairs(data) do
+                Data.Players[_uid][k] = data[k]
+            end
         else
-            -- TODO: 数据兼容的处理
+            -- 不存在数据，用之前生成的默认数据
         end
+        NetUtil.Fire_S('LoadPlayerDataSuccessEvent', player, hasData)
+        NetUtil.Fire_C('LoadPlayerDataSuccessEvent', player, hasData)
         return
     end
     print(
@@ -159,6 +171,7 @@ end
 --- @param _userId string 玩家ID
 --- @param _delete string 保存成功后是否删除缓存数据
 function SaveGameDataAsync(_uid, _delete)
+    sheet = DataStore:GetSheet('PlayerData')
     assert(sheet, '[DataSync][Server] DataPlayers的sheet不存在')
     assert(not string.isnilorempty(_uid), '[DataSync][Server] uid不存在或为空')
     assert(Data.Players[_uid], string.format('[DataSync][Server] Data.Players[_uid]不存在 uid = %s', _uid))

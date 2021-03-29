@@ -4,11 +4,9 @@
 -- @author Dead Ratman
 local TaskItem = class('TaskItem', ItemBase)
 
-function TaskItem:initialize(_data, _config)
-    ItemBase.initialize(self, _data, _config)
+function TaskItem:initialize(_baseData, _derivedData)
+    ItemBase.initialize(self, _baseData, _derivedData)
     print('TaskItem:initialize()')
-    self.isUsable = false
-    self.isEquipable = false
 end
 
 --放入背包
@@ -21,20 +19,13 @@ function TaskItem:ThrowOutOfBag()
 	ItemBase.ThrowOutOfBag(self)
 end
 
---使用
-function TaskItem:Use()
-    if self.useCT == 0 then
-        ItemBase.Use(self)
-    end
-end
-
 --获得任务奖励
 function TaskItem:GetTaskReward()
-    if self.config.RewardItem and self.config.RewardItem ~= 0 then
-        NetUtil.Fire_C('GetItemEvent', localPlayer, self.config.RewardItem)
+    if self.derivedData.RewardItem and self.derivedData.RewardItem ~= 0 then
+        NetUtil.Fire_C('GetItemEvent', localPlayer, self.derivedData.RewardItem)
     end
-    NetUtil.Fire_C("UpdateCoinEvent",localPlayer,self.config.RewardGold)
-    NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.id)
+    NetUtil.Fire_C("UpdateCoinEvent",localPlayer,self.derivedData.RewardGold)
+    NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
 end
 
 --CD消退
