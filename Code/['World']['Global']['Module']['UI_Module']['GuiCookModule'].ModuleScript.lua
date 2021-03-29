@@ -154,7 +154,9 @@ function GuiCook:ShowDetail()
 end
 
 function GuiCook:InteractCEventHandler(_gameId)
-    if _gameId == 27 then
+    if _gameId == 26 then
+        this:ShowUI()
+    elseif _gameId == 27 then
         this:ShowDetail()
     end
 end
@@ -167,7 +169,7 @@ function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
 end
 
 function GuiCook:LeaveInteractCEventHandler(_gameId)
-    if _gameId == 99 then
+    if _gameId == 26 then
         this:HideGui()
     end
 end
@@ -339,12 +341,13 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = "By " .. _cookName
     this.cookUserId = _cookUserId
-    print(this.cookUserId)
+    --TODO: 无法打赏自己做的菜
 end
 
 function GuiCook:EatFood()
     this.foodId = nil
-    this:ShowUI()
+    this:HideGui()
+    --this:ShowUI()
 end
 
 function GuiCook:PutOnDesk()
@@ -367,5 +370,9 @@ function GuiCook:Update(dt)
         end
     end
 end
+
+function GuiCook:SycnTimeCEventHandler(_clock)
+end
+
 
 return GuiCook

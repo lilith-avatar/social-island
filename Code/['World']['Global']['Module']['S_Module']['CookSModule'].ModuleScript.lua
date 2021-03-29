@@ -10,6 +10,7 @@ end
 
 function CookS:DataInit()
     this.foodNum = #world.FoodLocation:GetChildren()
+    this.potFree = true
     this.curFoodNum = 0
     this.foodList = {}
     for i = 1, this.foodNum do
