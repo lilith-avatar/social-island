@@ -239,8 +239,8 @@ function InitMazeEntranceAndExit()
     exit.Size = Vector3.One * 0.3 * CELL_SIDE
     entrace.Block = false
     exit.Block = false
-    entrace.Color = Color(0x00, 0xFF, 0x00, 0xFF)
-    exit.Color = Color(0xFF, 0x00, 0x00, 0xFF)
+    entrace.Color = Color(0x00, 0xFF, 0x00, DEBUG_ALPHA)
+    exit.Color = Color(0xFF, 0x00, 0x00, DEBUG_ALPHA)
     entrace:SetActive(false)
     exit:SetActive(false)
     exit.OnCollisionBegin:Connect(PlayerReachExit)
