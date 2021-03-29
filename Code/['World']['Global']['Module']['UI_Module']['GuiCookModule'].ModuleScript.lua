@@ -90,6 +90,7 @@ function GuiCook:EventBind()
     )
     this.closeBtn.OnClick:Connect(
         function()
+            NetUtil.Fire_S("LeaveInteractSEvent", localPlayer, 26)
             this:HideGui()
         end
     )
@@ -119,7 +120,7 @@ function GuiCook:TransItemTable()
     --先清空表
     this.BagMaterial = {}
     for k, v in pairs(Data.Player.bag) do
-        if v.count > 0 and Config.RewardItem[k] then
+        if v.count > 0 and Config.Material[k] and Config.Material[k].MaterialType == 'Food' then
             local data = {
                 id = k
             }
@@ -154,7 +155,9 @@ function GuiCook:ShowDetail()
 end
 
 function GuiCook:InteractCEventHandler(_gameId)
-    if _gameId == 27 then
+    if _gameId == 26 then
+        this:ShowUI()
+    elseif _gameId == 27 then
         this:ShowDetail()
     end
 end
@@ -167,7 +170,7 @@ function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
 end
 
 function GuiCook:LeaveInteractCEventHandler(_gameId)
-    if _gameId == 99 then
+    if _gameId == 26 then
         this:HideGui()
     end
 end
@@ -197,7 +200,7 @@ function GuiCook:CancelMaterial(_index)
     end
     table.insert(this.BagMaterial, this.UsingMaterial[_index])
     table.remove(this.UsingMaterial, _index)
-    if #this.UsingMaterial == 0 or not this.UsingMaterial then
+    if #this.UsingMaterial == 2 or not this.UsingMaterial then
         this.cookBtn.Locked:SetActive(true)
     end
     table.sort(
@@ -211,10 +214,11 @@ function GuiCook:CancelMaterial(_index)
 end
 
 function GuiCook:ChooseMaterial(_index)
-    if #this.UsingMaterial >= 3 then
+    if #this.UsingMaterial > 3 then
         return
+    elseif #this.UsingMaterial == 3 then
+        this.cookBtn.Locked:SetActive(false)
     end
-    this.cookBtn.Locked:SetActive(false)
     table.insert(this.UsingMaterial, {id = this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id})
     table.remove(this.BagMaterial, _index + (this.pageIndex - 1) * this.pageSize)
     this:ClickChangePage(this.pageIndex)
@@ -338,12 +342,13 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = "By " .. _cookName
     this.cookUserId = _cookUserId
-    print(this.cookUserId)
+    --TODO: 无法打赏自己做的菜
 end
 
 function GuiCook:EatFood()
     this.foodId = nil
-    this:ShowUI()
+    this:HideGui()
+    --this:ShowUI()
 end
 
 function GuiCook:PutOnDesk()
@@ -365,6 +370,9 @@ function GuiCook:Update(dt)
             this:ShowFood()
         end
     end
+end
+
+function GuiCook:SycnTimeCEventHandler(_clock)
 end
 
 return GuiCook
