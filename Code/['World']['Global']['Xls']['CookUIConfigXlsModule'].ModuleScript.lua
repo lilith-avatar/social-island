@@ -8,39 +8,39 @@
 local CookUIConfigXls = {
     [1] = {
         ID = 1,
-        Name = '6093.0'
+        Name = 7001
     },
     [2] = {
         ID = 2,
-        Name = '6094.0'
+        Name = 7002
     },
     [3] = {
         ID = 3,
-        Name = '6095.0'
+        Name = 7003
     },
     [4] = {
         ID = 4,
-        Name = '6096.0'
+        Name = 7004
     },
     [5] = {
         ID = 5,
-        Name = '6097.0'
+        Name = 7005
     },
     [6] = {
         ID = 6,
-        Name = '6098.0'
+        Name = 7006
     },
     [7] = {
         ID = 7,
-        Name = '6099.0'
+        Name = 7007
     },
     [8] = {
         ID = 8,
-        Name = '6100.0'
+        Name = 7008
     },
     [9] = {
         ID = 9,
-        Name = '6101.0'
+        Name = 7009
     }
 }
 

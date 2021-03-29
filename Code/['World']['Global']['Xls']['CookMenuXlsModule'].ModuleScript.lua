@@ -8,7 +8,7 @@
 local CookMenuXls = {
     [1] = {
         Id = 1,
-        Menu = {6093, 6094, 6095},
+        Menu = {7001, 7002, 7003},
         Name = 'CookMenu_Name_1',
         Ico = '',
         Model = 'Meal1',
@@ -17,7 +17,7 @@ local CookMenuXls = {
     },
     [2] = {
         Id = 2,
-        Menu = {6093, 6095, 6096},
+        Menu = {7001, 7003, 7004},
         Name = 'CookMenu_Name_2',
         Ico = '',
         Model = 'Meal2',
@@ -26,7 +26,7 @@ local CookMenuXls = {
     },
     [3] = {
         Id = 3,
-        Menu = {6095, 6101, 6093},
+        Menu = {7003, 7009, 7001},
         Name = 'CookMenu_Name_3',
         Ico = '',
         Model = 'Meal3',
@@ -35,7 +35,7 @@ local CookMenuXls = {
     },
     [4] = {
         Id = 4,
-        Menu = {6099, 6100, 6096},
+        Menu = {7007, 7008, 7004},
         Name = 'CookMenu_Name_4',
         Ico = '',
         Model = 'Meal4',
@@ -44,7 +44,7 @@ local CookMenuXls = {
     },
     [5] = {
         Id = 5,
-        Menu = nil,
+        Menu = {},
         Name = 'CookMenu_Name_5',
         Ico = '',
         Model = 'Meal5',
@@ -53,7 +53,7 @@ local CookMenuXls = {
     },
     [6] = {
         Id = 6,
-        Menu = {6096, 6097, 6098},
+        Menu = {7004, 7005, 7006},
         Name = 'CookMenu_Name_6',
         Ico = '',
         Model = 'Meal7',
@@ -62,7 +62,7 @@ local CookMenuXls = {
     },
     [7] = {
         Id = 7,
-        Menu = {6097, 6094, 6101},
+        Menu = {7005, 7002, 7009},
         Name = 'CookMenu_Name_7',
         Ico = '',
         Model = 'Meal8',
@@ -71,7 +71,7 @@ local CookMenuXls = {
     },
     [8] = {
         Id = 8,
-        Menu = {6095, 6101, 6093},
+        Menu = {7003, 7009, 7001},
         Name = 'CookMenu_Name_8',
         Ico = '',
         Model = 'Meal9',
@@ -80,7 +80,7 @@ local CookMenuXls = {
     },
     [9] = {
         Id = 9,
-        Menu = {6098, 6094, 6095},
+        Menu = {7006, 7002, 7003},
         Name = 'CookMenu_Name_9',
         Ico = '',
         Model = 'Meal10',
@@ -89,7 +89,7 @@ local CookMenuXls = {
     },
     [10] = {
         Id = 10,
-        Menu = {6094, 6095, 6096},
+        Menu = {7002, 7003, 7004},
         Name = 'CookMenu_Name_10',
         Ico = '',
         Model = 'Meal11',
@@ -98,7 +98,7 @@ local CookMenuXls = {
     },
     [11] = {
         Id = 11,
-        Menu = {6094, 6095, 6101},
+        Menu = {7002, 7003, 7009},
         Name = 'CookMenu_Name_11',
         Ico = '',
         Model = 'Meal12',
@@ -107,7 +107,7 @@ local CookMenuXls = {
     },
     [12] = {
         Id = 12,
-        Menu = {6097, 6101, 6095},
+        Menu = {7005, 7009, 7003},
         Name = 'CookMenu_Name_12',
         Ico = '',
         Model = 'Meal13',
@@ -116,7 +116,7 @@ local CookMenuXls = {
     },
     [13] = {
         Id = 13,
-        Menu = {6093, 6094, 6096},
+        Menu = {7001, 7002, 7004},
         Name = 'CookMenu_Name_13',
         Ico = '',
         Model = 'Meal14',
@@ -125,7 +125,7 @@ local CookMenuXls = {
     },
     [14] = {
         Id = 14,
-        Menu = {6098, 6094, 6101},
+        Menu = {7006, 7002, 7009},
         Name = 'CookMenu_Name_14',
         Ico = '',
         Model = 'Meal15',
@@ -134,7 +134,7 @@ local CookMenuXls = {
     },
     [15] = {
         Id = 15,
-        Menu = nil,
+        Menu = {},
         Name = 'CookMenu_Name_15',
         Ico = '',
         Model = 'Meal6',
@@ -143,7 +143,7 @@ local CookMenuXls = {
     },
     [16] = {
         Id = 16,
-        Menu = {6093, 6094, 6097},
+        Menu = {7001, 7002, 7005},
         Name = 'CookMenu_Name_16',
         Ico = '',
         Model = 'Meal16',
@@ -152,7 +152,7 @@ local CookMenuXls = {
     },
     [17] = {
         Id = 17,
-        Menu = {6093, 6094, 6098},
+        Menu = {7001, 7002, 7006},
         Name = 'CookMenu_Name_17',
         Ico = '',
         Model = 'Meal16',
@@ -161,7 +161,7 @@ local CookMenuXls = {
     },
     [18] = {
         Id = 18,
-        Menu = {6093, 6094, 6099},
+        Menu = {7001, 7002, 7007},
         Name = 'CookMenu_Name_18',
         Ico = '',
         Model = 'Meal16',
@@ -170,7 +170,7 @@ local CookMenuXls = {
     },
     [19] = {
         Id = 19,
-        Menu = {6093, 6094, 6100},
+        Menu = {7001, 7002, 7008},
         Name = 'CookMenu_Name_19',
         Ico = '',
         Model = 'Meal16',
@@ -179,7 +179,7 @@ local CookMenuXls = {
     },
     [20] = {
         Id = 20,
-        Menu = {6093, 6095, 6097},
+        Menu = {7001, 7003, 7005},
         Name = 'CookMenu_Name_20',
         Ico = '',
         Model = 'Meal2',
@@ -188,7 +188,7 @@ local CookMenuXls = {
     },
     [21] = {
         Id = 21,
-        Menu = {6093, 6095, 6098},
+        Menu = {7001, 7003, 7006},
         Name = 'CookMenu_Name_21',
         Ico = '',
         Model = 'Meal2',
@@ -197,7 +197,7 @@ local CookMenuXls = {
     },
     [22] = {
         Id = 22,
-        Menu = {6093, 6095, 6099},
+        Menu = {7001, 7003, 7007},
         Name = 'CookMenu_Name_22',
         Ico = '',
         Model = 'Meal2',
@@ -206,7 +206,7 @@ local CookMenuXls = {
     },
     [23] = {
         Id = 23,
-        Menu = {6093, 6095, 6100},
+        Menu = {7001, 7003, 7008},
         Name = 'CookMenu_Name_23',
         Ico = '',
         Model = 'Meal2',
@@ -215,7 +215,7 @@ local CookMenuXls = {
     },
     [24] = {
         Id = 24,
-        Menu = {6095, 6101, 6094},
+        Menu = {7003, 7009, 7002},
         Name = 'CookMenu_Name_24',
         Ico = '',
         Model = 'Meal3',
@@ -224,7 +224,7 @@ local CookMenuXls = {
     },
     [25] = {
         Id = 25,
-        Menu = {6099, 6097, 6098},
+        Menu = {7007, 7005, 7006},
         Name = 'CookMenu_Name_25',
         Ico = '',
         Model = 'Meal7',
@@ -233,7 +233,7 @@ local CookMenuXls = {
     },
     [26] = {
         Id = 26,
-        Menu = {6096, 6099, 6098},
+        Menu = {7004, 7007, 7006},
         Name = 'CookMenu_Name_26',
         Ico = '',
         Model = 'Meal7',
@@ -242,7 +242,7 @@ local CookMenuXls = {
     },
     [27] = {
         Id = 27,
-        Menu = {6096, 6097, 6099},
+        Menu = {7004, 7005, 7007},
         Name = 'CookMenu_Name_27',
         Ico = '',
         Model = 'Meal7',
@@ -251,7 +251,7 @@ local CookMenuXls = {
     },
     [28] = {
         Id = 28,
-        Menu = {6096, 6100, 6098},
+        Menu = {7004, 7008, 7006},
         Name = 'CookMenu_Name_28',
         Ico = '',
         Model = 'Meal7',
@@ -260,7 +260,7 @@ local CookMenuXls = {
     },
     [29] = {
         Id = 29,
-        Menu = {6096, 6100, 6100},
+        Menu = {7004, 7008, 7008},
         Name = 'CookMenu_Name_29',
         Ico = '',
         Model = 'Meal7',
@@ -269,7 +269,7 @@ local CookMenuXls = {
     },
     [30] = {
         Id = 30,
-        Menu = {6095, 6101, 6094},
+        Menu = {7003, 7009, 7002},
         Name = 'CookMenu_Name_30',
         Ico = '',
         Model = 'Meal9',
