@@ -8,7 +8,7 @@
 local BuffXls = {
     [1] = {
         ID = 1,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {0, 26, 27, 28, 29, 30},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -50,7 +50,7 @@ local BuffXls = {
     },
     [4] = {
         ID = 4,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {0, 26, 27, 28, 29, 30},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -554,7 +554,7 @@ local BuffXls = {
     },
     [40] = {
         ID = 40,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {0, 26, 27, 28, 29, 30},
         AvatarHeight_Overlay = 0.5,
         AvatarHeadSize_Overlay = 0.5,
         AvatarWidth_Overlay = 1.0,
@@ -568,7 +568,7 @@ local BuffXls = {
     },
     [41] = {
         ID = 41,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {0, 26, 27, 28, 29, 30},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
@@ -680,7 +680,7 @@ local BuffXls = {
     },
     [49] = {
         ID = 49,
-        BuffCoverIDList = {0},
+        BuffCoverIDList = {0, 26, 27, 28, 29, 30},
         AvatarHeight_Overlay = 1.0,
         AvatarHeadSize_Overlay = 1.0,
         AvatarWidth_Overlay = 1.0,
