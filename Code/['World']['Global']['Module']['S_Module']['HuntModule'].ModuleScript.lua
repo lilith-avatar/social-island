@@ -357,7 +357,6 @@ do
     end
     --WANDER
     function Hunt:EnterState2(_animalData)
-        print('WANDER', _animalData.obj)
         if _animalData.obj.AnimalDeadEvent then
             _animalData.obj.AnimalDeadEvent:SetActive(true)
         end
