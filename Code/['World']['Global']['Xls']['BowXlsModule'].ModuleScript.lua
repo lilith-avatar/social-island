@@ -58,7 +58,7 @@ local BowXls = {
         ProjectileID = 4,
         ProjectileCount = 1,
         ProjectileSpeed = 40.0,
-        ChargeEffect = 'BowChangeEffect',
+        ChargeEffect = 'LifeBowChangeEffect',
         ShootSoundID = 56,
         ShootEffect = 'LifeBowFire'
     },
@@ -72,7 +72,7 @@ local BowXls = {
         ProjectileID = 5,
         ProjectileCount = 1,
         ProjectileSpeed = 40.0,
-        ChargeEffect = 'BowChangeEffect',
+        ChargeEffect = 'LightingBowChangeEffect',
         ShootSoundID = 56,
         ShootEffect = 'LightingBowFire'
     },
@@ -100,7 +100,7 @@ local BowXls = {
         ProjectileID = 7,
         ProjectileCount = 1,
         ProjectileSpeed = 40.0,
-        ChargeEffect = 'BowChangeEffect',
+        ChargeEffect = 'FireBowChangeEffect',
         ShootSoundID = 56,
         ShootEffect = 'FireBowFire'
     }

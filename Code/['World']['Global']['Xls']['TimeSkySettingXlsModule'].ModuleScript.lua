@@ -27,7 +27,13 @@ local TimeSkySettingXls = {
         FogStart = 60.0,
         FogEnd = 250.0,
         FogHeightFadeStart = -1000,
-        FogHeightFadeEnd = -1000
+        FogHeightFadeEnd = -1000,
+        SkyUp = '',
+        SkyFront = '',
+        SkyBack = '',
+        SkyDown = '',
+        SkyRight = '',
+        SkyLeft = ''
     },
     [18] = {
         ClockTime = 18,
@@ -50,7 +56,13 @@ local TimeSkySettingXls = {
         FogStart = 60.0,
         FogEnd = 250.0,
         FogHeightFadeStart = -1000,
-        FogHeightFadeEnd = -1000
+        FogHeightFadeEnd = -1000,
+        SkyUp = '',
+        SkyFront = '',
+        SkyBack = '',
+        SkyDown = '',
+        SkyRight = '',
+        SkyLeft = ''
     },
     [20] = {
         ClockTime = 20,
@@ -73,7 +85,13 @@ local TimeSkySettingXls = {
         FogStart = 12.5,
         FogEnd = 250.0,
         FogHeightFadeStart = -1000,
-        FogHeightFadeEnd = -1000
+        FogHeightFadeEnd = -1000,
+        SkyUp = '',
+        SkyFront = '',
+        SkyBack = '',
+        SkyDown = '',
+        SkyRight = '',
+        SkyLeft = ''
     }
 }
 

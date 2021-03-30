@@ -2259,6 +2259,20 @@ local LanguagePackXls = {
         CHT = '',
         EN = '',
         JP = ''
+    },
+    Item_Name_5003 = {
+        ID = 'Item_Name_5003',
+        CHS = '畸变水晶',
+        CHT = '',
+        EN = '',
+        JP = ''
+    },
+    Item_Des_5003 = {
+        ID = 'Item_Des_5003',
+        CHS = '触摸会发生意想不到的事情。',
+        CHT = '',
+        EN = '',
+        JP = ''
     }
 }
 

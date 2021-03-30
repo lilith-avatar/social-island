@@ -19,6 +19,13 @@ local ClothingXls = {
         UseAddBuffDur = -1.0,
         UseRemoveBuffID = nil,
         SkinID = 5
+    },
+    [5003] = {
+        ItemID = 5003,
+        UseAddBuffID = 0,
+        UseAddBuffDur = 0.0,
+        UseRemoveBuffID = 0,
+        SkinID = 1
     }
 }
 
