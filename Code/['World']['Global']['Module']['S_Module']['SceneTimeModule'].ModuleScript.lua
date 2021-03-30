@@ -77,14 +77,12 @@ function SceneTime:RealTimeSycnSkyData()
     if not configData then
         return
     end
-    -- if this.clock == 20 then
-    --     this.sky.Up = ResourceManager.GetTexture('Skybox/Night/Up')
-    --     this.sky.Front = ResourceManager.GetTexture('Skybox/Night/Front')
-    --     this.sky.Back = ResourceManager.GetTexture('Skybox/Night/Back')
-    --     this.sky.Down = ResourceManager.GetTexture('Skybox/Night/Down')
-    --     this.sky.Right = ResourceManager.GetTexture('Skybox/Night/Right')
-    --     this.sky.Left = ResourceManager.GetTexture('Skybox/Night/Left')
-    -- end
+    this.sky.Up = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyUp)
+    this.sky.Front = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyFront)
+    this.sky.Back = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyBack)
+    this.sky.Down = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyDown)
+    this.sky.Right = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyRight)
+    this.sky.Left = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyLeft)
     this.sky.ShowSun = Config.TimeSkySetting[this.clock].ShowSun
     this.sky.Style = Config.TimeSkySetting[this.clock].Style
     data = {
