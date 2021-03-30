@@ -276,7 +276,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 v:Sit(_player)
                 _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
                 -- 音效
-                SoundUtil.Play2DSE(localPlayer.UserId, 14)
+                SoundUtil.Play3DSE(_player.Position, 14)
             end
         end
     end
@@ -317,7 +317,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
                 -- 音效
-                SoundUtil.Play2DSE(localPlayer.UserId, 15)
+                SoundUtil.Play3DSE(_player.Position, 15)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
