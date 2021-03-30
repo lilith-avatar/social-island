@@ -2,7 +2,7 @@
 --- @module Snail Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Snail, this = ModuleUtil.New("Snail", ServerBase)
+local Snail, this = ModuleUtil.New('Snail', ServerBase)
 
 --- 变量声明
 -- 蜗牛对象池
@@ -39,7 +39,7 @@ local gameState = 1
 
 --- 初始化
 function Snail:Init()
-    print("[Snail] Init()")
+    print('[Snail] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -49,7 +49,7 @@ end
 function Snail:NodeRef()
     for i = 1, 4 do
         snailObjPool[i] = {
-            obj = world.MiniGames.Game_08_Snail.Snail["Snail" .. i],
+            obj = world.MiniGames.Game_08_Snail.Snail['Snail' .. i],
             index = i,
             state = 1,
             moveData = {},
@@ -57,8 +57,8 @@ function Snail:NodeRef()
             betPlayer = {},
             ranking = 0
         }
-        startPoints[i] = world.MiniGames.Game_08_Snail.Track["Start" .. i]
-        endPoints[i] = world.MiniGames.Game_08_Snail.Track["End" .. i]
+        startPoints[i] = world.MiniGames.Game_08_Snail.Track['Start' .. i]
+        endPoints[i] = world.MiniGames.Game_08_Snail.Track['End' .. i]
     end
 end
 
@@ -84,9 +84,9 @@ end
 function Snail:EnterMiniGameEventHandler(_player, _gameId)
     if _gameId == 8 then
         if this:IsBetable(_player) then
-            NetUtil.Fire_C("InteractCEvent", _player, 8)
+            NetUtil.Fire_C('InteractCEvent', _player, 8)
         else
-            NetUtil.Fire_C("InsertInfoEvent", _player, "你不能多次投注或在比赛进行中投注", 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, '你不能多次投注或在比赛进行中投注', 3, true)
         end
     end
 end
@@ -134,7 +134,7 @@ function Snail:StartRaceCD(dt)
             this:StartSnailRace()
         else
             if startCD == 10 then
-                NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧", 10, Vector3(-30.1, -11.3, -29.7))
+                NetUtil.Broadcast('ShowNoticeInfoEvent', '蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧', 10, Vector3(-30.1, -11.3, -29.7))
             end
             startCD = startCD - dt
         end
@@ -143,7 +143,7 @@ end
 
 --- 开始比赛
 function Snail:StartSnailRace()
-    NetUtil.Broadcast("ShowNoticeInfoEvent", "蜗牛赛跑竞猜开始啦", 10, Vector3(-30.1, -11.3, -29.7))
+    NetUtil.Broadcast('ShowNoticeInfoEvent', '蜗牛赛跑竞猜开始啦', 10, Vector3(-30.1, -11.3, -29.7))
     SoundUtil.Play3DSE(startPoints[1].Position, 10)
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
@@ -185,7 +185,7 @@ function Snail:SnailMove(dt)
         if v.state == snailActState.MOVE then
             if v.moveData[v.moveStep].time <= 0 then
                 v.moveStep = v.moveStep + 1
-                if v.moveStep > #v.moveData then
+                if v.moveStep > #v.moveData or (v.obj.Position - startPoints[v.index].Position).Magnitude > 19.5 then
                     this:SnailFinish(v)
                 else
                     --print(v.obj, "改变速度", v.moveData[v.moveStep].speed)
@@ -201,9 +201,9 @@ end
 
 --- 改变特效
 function Snail:ChangeEffect(_snailObjPool, _speed)
-    _snailObjPool.obj.AnimatedMesh:PlayAnimation("Walk", 2, 1, 0.1, true, true, _speed * 3)
+    _snailObjPool.obj.AnimatedMesh:PlayAnimation('Walk', 2, 1, 0.1, true, true, _speed * 3)
     for i = 1, 3 do
-        _snailObjPool.obj["Speed" .. i .. "Effect"]:SetActive(false)
+        _snailObjPool.obj['Speed' .. i .. 'Effect']:SetActive(false)
     end
     if _speed > 1 then
         _snailObjPool.obj.Speed1Effect:SetActive(true)
@@ -216,13 +216,13 @@ end
 
 --- 蜗牛到达终点
 function Snail:SnailFinish(_snailObjPool)
-    _snailObjPool.obj.AnimatedMesh:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
+    _snailObjPool.obj.AnimatedMesh:PlayAnimation('Idle', 2, 1, 0.1, true, true, 1)
     for i = 1, 3 do
-        _snailObjPool.obj["Speed" .. i .. "Effect"]:SetActive(false)
+        _snailObjPool.obj['Speed' .. i .. 'Effect']:SetActive(false)
     end
     _snailObjPool.obj.FinishEffect:SetActive(true)
     if _snailObjPool.state == snailActState.MOVE then
-        print("[Snail]", _snailObjPool.obj, "到达终点")
+        print('[Snail]', _snailObjPool.obj, '到达终点')
         _snailObjPool.state = snailActState.FINISH
         _snailObjPool.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
         _snailObjPool.ranking = 0
@@ -230,9 +230,9 @@ function Snail:SnailFinish(_snailObjPool)
             if v.state == snailActState.FINISH then
                 _snailObjPool.ranking = _snailObjPool.ranking + 1
                 if _snailObjPool.ranking == 1 then
-                    SoundUtil.Play2DSE(localPlayer.UserId, 38)
+                    SoundUtil.Play3DSE(_snailObjPool.obj.Position, 38)
                 elseif _snailObjPool.ranking == 2 then
-                    SoundUtil.Play2DSE(localPlayer.UserId, 39)
+                    SoundUtil.Play3DSE(_snailObjPool.obj.Position, 39)
                 end
             end
         end
@@ -265,19 +265,19 @@ function Snail:GiveReward(_snailObjPool)
         reward = 3
     end
     for k, v in pairs(_snailObjPool.betPlayer) do
-        NetUtil.Fire_C("UpdateCoinEvent", v.player, v.money * reward)
+        NetUtil.Fire_C('UpdateCoinEvent', v.player, v.money * reward)
         if _snailObjPool.ranking < 3 then
             NetUtil.Fire_C(
-                "InsertInfoEvent",
+                'InsertInfoEvent',
                 v.player,
-                "你投注的蜗牛获得了第" .. _snailObjPool.ranking .. "名,为你赢得了" .. v.money * reward .. "金币",
+                '你投注的蜗牛获得了第' .. _snailObjPool.ranking .. '名,为你赢得了' .. v.money * reward .. '金币',
                 3,
                 false
             )
-            SoundUtil.Play2DSE(localPlayer.UserId, 11)
+            SoundUtil.Play3DSE(v.player.Position, 11)
         else
-            NetUtil.Fire_C("InsertInfoEvent", v.player, "你投注的蜗牛获得了第" .. _snailObjPool.ranking .. "名,并没有奖励", 3, false)
-            SoundUtil.Play2DSE(localPlayer.UserId, 12)
+            NetUtil.Fire_C('InsertInfoEvent', v.player, '你投注的蜗牛获得了第' .. _snailObjPool.ranking .. '名,并没有奖励', 3, false)
+            SoundUtil.Play3DSE(v.player.Position, 12)
         end
 
         --NetUtil.Fire_C("GetItemEvent", v, 5011)
