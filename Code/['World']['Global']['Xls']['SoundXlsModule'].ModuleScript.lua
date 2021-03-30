@@ -19,7 +19,7 @@ local SoundXls = {
         Name = 'BGM',
         IsLoop = true,
         Volume = 45.0,
-        Path = 'Audio/Temp_BGM',
+        Path = 'Audio/BGM_Forest',
         Info = ''
     },
     [3] = {
