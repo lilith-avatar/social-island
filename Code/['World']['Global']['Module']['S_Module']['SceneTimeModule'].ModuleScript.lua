@@ -27,8 +27,8 @@ end
 
 function SceneTime:DataInit()
     this.timer = 0
-    this.clock = 15 -- 当前游戏内时间
-    this.timeSpeed = 5 -- 几秒1个小时
+    this.clock = 13 -- 当前游戏内时间
+    this.timeSpeed = 12.5 -- 几秒1个小时
     this.tweener = nil
     this.startUpdate = false
 end
@@ -77,6 +77,7 @@ function SceneTime:RealTimeSycnSkyData()
     if not configData then
         return
     end
+	
     this.sky.Up = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyUp)
     this.sky.Front = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyFront)
     this.sky.Back = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyBack)
@@ -122,9 +123,11 @@ function SceneTime:GetNextClockData()
     )
     for k, v in pairs(tmpTable) do
         if this.clock == v.ClockTime then
-            return tmpTable[k + 1] or Config.TimeSkySetting[10]
+			--print(tmpTable[k + 1].ClockTime or Config.TimeSkySetting[6].ClockTime)
+            return tmpTable[k + 1] or Config.TimeSkySetting[6]
         end
     end
+	
     return nil
 end
 
