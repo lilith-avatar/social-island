@@ -88,7 +88,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Radio:GetChildren()) do
         radioOBJ[v.Name] = v
     end
-    for k,v in pairs(world.Pot:GetChildren()) do
+    for k, v in pairs(world.Pot:GetChildren()) do
         potOBJ[v.Name] = v
     end
 end
@@ -287,6 +287,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                     v.On:SetActive(false)
                     v.Off:SetActive(true)
                 else
+                    SoundUtil.Play3DSE(_player.Position, 102)
                     v.On:SetActive(true)
                     v.Off:SetActive(false)
                 end
@@ -383,13 +384,12 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         end
     end
     if _id == 26 then
-        for k,v in pairs(potOBJ) do
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 26)
+        for k, v in pairs(potOBJ) do
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 26)
             if v.PotUID.Value == _player.UserId then
                 v.Off:SetActive(false)
                 v.On:SetActive(true)
             end
-
         end
     end
 end
@@ -450,13 +450,12 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         end
     end
     if _id == 26 then
-        for k,v in pairs(potOBJ) do
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        for k, v in pairs(potOBJ) do
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
             if v.PotUID.Value == _player.UserId then
                 v.Off:SetActive(true)
                 v.On:SetActive(false)
             end
-
         end
     end
 end

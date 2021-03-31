@@ -43,6 +43,7 @@ function Catch:InstanceTrap(_ItemID)
     elseif _ItemID == 4003 then
         archetTypeName = "Trap3"
     end
+    SoundUtil.Play3DSE(localPlayer.Position, 42)
     local trap =
         world:CreateInstance(
         archetTypeName,

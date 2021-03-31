@@ -50,6 +50,7 @@ function GuiStore:GetItemData(_itemData)
         gui.ShopPanel.DragPanel.Panel1['ShopBgImg' .. v.Index].ItemID.Value = v.ItemId
         gui.ShopPanel.DragPanel.Panel1['ShopBgImg' .. v.Index].GoodsImg.ShopBtn.OnClick:Connect(
             function()
+                SoundUtil.Play2DSE(localPlayer.UserId, 101)
                 chosenItemID = v.ItemId
                 this:UpdateStoreUI(false)
                 this:UpdateItemInfo(v.ItemId)
