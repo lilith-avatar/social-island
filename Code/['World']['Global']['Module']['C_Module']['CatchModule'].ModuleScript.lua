@@ -94,8 +94,6 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
                         _animal,
                         _animal.Position + Vector3(0, -0.5, 0)
                     )
-                    _animal.LinearVelocityController.TargetLinearVelocity =
-                        _animal.LinearVelocityController.TargetLinearVelocity + _animal.Forward * 5
                     wait(0.5)
                     tweener:Destroy()
                     SoundUtil.Play3DSE(_animal.Position, 44)
