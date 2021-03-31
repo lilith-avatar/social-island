@@ -2,7 +2,7 @@
 --- @module Pet Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Pet, this = ModuleUtil.New("Pet", ClientBase)
+local Pet, this = ModuleUtil.New('Pet', ClientBase)
 
 --宠物ID
 local petID = 0
@@ -10,9 +10,15 @@ local petID = 0
 --宠物物体
 local petOBJ = nil
 
+--移动路径
+local moveTable = {}
+
+--移动步速
+local moveStep = 0
+
 --宠物数据
 local petData = {
-    name = "",
+    name = '',
     strength = 0,
     speed = 0,
     state = 0
@@ -20,17 +26,25 @@ local petData = {
 
 --宠物状态枚举
 local petStateEum = {
+    DISABLE = 0,
     IDLE = 1,
     MOVE = 2,
     TELEPORT = 3,
-    RACE = 4
+    RIDE = 4
 }
 
 local gui
 
+-- 进入状态触发
+local EnterStateFunc = {}
+-- 状态持续触发
+local UpdateStateFunc = {}
+-- 离开状态触发
+local LeaveStateFunc = {}
+
 --- 初始化
 function Pet:Init()
-    print("[Pet] Init()")
+    print('[Pet] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -43,6 +57,10 @@ end
 
 --- 数据变量初始化
 function Pet:DataInit()
+    Navigation.SetWalkableRoots(world.Scenes.Terrain:GetChildren())
+    Navigation.SetObstacleRoots(table.MergeTables(world.Stone:GetChildren(), world.Tree:GetChildren()))
+    Navigation.SetAgent(1, 0.1, 0.2, 30.0)
+    Navigation.SetUpdateDelay(0)
 end
 
 --- 节点事件绑定
@@ -55,6 +73,20 @@ function Pet:EventBind()
             gui:SetActive(false)
         end
     )
+
+    for k, v in pairs(petStateEum) do
+        LeaveStateFunc[v] = function()
+            this['LeaveState' .. v](self)
+        end
+        EnterStateFunc[v] = function()
+            LeaveStateFunc[v]()
+            petData.state = v
+            this['EnterState' .. v](self)
+        end
+        UpdateStateFunc[v] = function(dt)
+            this['UpdateState' .. v](self, dt)
+        end
+    end
 end
 
 --- 弹出宠物命名面板
@@ -65,10 +97,10 @@ end
 
 --- 宠物命名
 function Pet:NamedPet(_name)
-    if _name ~= "" and _name ~= nil then
-        petData.name = ":" .. _name
+    if _name ~= '' and _name ~= nil then
+        petData.name = ':' .. _name
     else
-        _name = ""
+        _name = ''
     end
 end
 
@@ -82,13 +114,19 @@ function Pet:InstancePet(_id)
         Config.Pet[_id].ArchetypeName,
         Config.Pet[_id].Name,
         world,
-        localPlayer.Position - localPlayer.Forward * 3 + Vector3(0, 1, 0)
+        localPlayer.Position - localPlayer.Forward * 2 + Vector3(0, 1, 0)
     )
-    petOBJ.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-    petOBJ.LinearVelocityController.Intensity = 0
-    petOBJ.RotationController.Intensity = 0
-    petOBJ.LinearVelocity = Vector3.Zero
-    this:GetPetData(_id)
+    --this:GetPetData(_id)
+end
+
+-- 获取移动点
+function Pet:GetMoveTable(_pos)
+    moveStep = 1
+    local result = 0
+    moveTable, result = petOBJ:GetWaypoints(petOBJ.Position, _pos, 0.1, 1, 3)
+    if result > 2 then
+        print('寻路失败', result, petOBJ, petData.state)
+    end
 end
 
 --- 获取宠物数据
@@ -123,79 +161,135 @@ function Pet:GetPetData(_id)
         math.random(Config.PetEntry2[petEntry2ID].SpeedRange[1], Config.PetEntry2[petEntry2ID].SpeedRange[2])
     petData.strength = petData.strength > 0 and petData.strength or 1
     petData.speed = petData.speed > 0 and petData.speed or 1
-    petOBJ.NameGUI.Panel.NameBGText.Text = localPlayer.Name .. "的宠物:" .. petData.name
-    petOBJ.NameGUI.Panel.NameText.Text = localPlayer.Name .. "的宠物:" .. petData.name
+    petOBJ.NameGUI.Panel.NameBGText.Text = localPlayer.Name .. '的宠物' .. petData.name
+    petOBJ.NameGUI.Panel.NameText.Text = localPlayer.Name .. '的宠物' .. petData.name
     petOBJ.NameGUI.Panel.TypeBGText.Text =
         Config.PetEntry1[petEntry1ID].Name .. Config.PetEntry2[petEntry2ID].Name .. Config.Pet[_id].Name
     petOBJ.NameGUI.Panel.TypeText.Text =
         Config.PetEntry1[petEntry1ID].Name .. Config.PetEntry2[petEntry2ID].Name .. Config.Pet[_id].Name
+    petData.state = 1
+end
+
+-- 进入状态触发
+do
+    --DISABLE
+    function Pet:EnterState0()
+        petOBJ:SetActive(false)
+        petOBJ:MoveTowards(Vector2.Zero)
+    end
+    --IDLE
+    function Pet:EnterState1()
+        petOBJ:SetActive(true)
+        petOBJ.AnimatedMesh:PlayAnimation(
+            Config.Animal[petID].IdleAnimationName[math.random(#Config.Animal[petID].IdleAnimationName)],
+            2,
+            1,
+            0.1,
+            true,
+            true,
+            1
+        )
+        petOBJ:MoveTowards(Vector2.Zero)
+    end
+    --MOVE
+    function Pet:EnterState2()
+        petOBJ:SetActive(true)
+        petOBJ.AnimatedMesh:PlayAnimation(
+            Config.Animal[petID].MoveAnimationName[math.random(#Config.Animal[petID].MoveAnimationName)],
+            2,
+            1,
+            0.1,
+            true,
+            true,
+            1
+        )
+        petOBJ.WalkSpeed = Config.Animal[petID].DefMoveSpeed
+        this:GetMoveTable(localPlayer.Position - localPlayer.Forward)
+    end
+    --TELEPORT
+    function Pet:EnterState3()
+        petOBJ.Position = localPlayer.Position - localPlayer.Forward + Vector3(0, 1, 0)
+    end
+    --RIDE
+    function Pet:EnterState4()
+    end
+end
+
+-- 状态持续触发
+do
+    --DISABLE
+    function Pet:UpdateState0()
+    end
+    --IDLE
+    function Pet:UpdateState1()
+        if (petOBJ.Position - localPlayer.Position).Magnitude > 3 then
+            EnterStateFunc[petStateEum.MOVE]()
+        end
+    end
+    --MOVE
+    function Pet:UpdateState2()
+        if (petOBJ.Position - localPlayer.Position).Magnitude > 10 then
+            EnterStateFunc[petStateEum.TELEPORT]()
+        end
+        this:PetMove()
+    end
+    --TELEPORT
+    function Pet:UpdateState3()
+        if (petOBJ.Position - localPlayer.Position).Magnitude < 3 then
+            EnterStateFunc[petStateEum.IDLE]()
+        elseif (petOBJ.Position - localPlayer.Position).Magnitude < 10 then
+            EnterStateFunc[petStateEum.MOVE]()
+        end
+    end
+    --RIDE
+    function Pet:UpdateState4()
+    end
+end
+
+-- 离开状态触发
+do
+    --DISABLE
+    function Pet:LeaveState0()
+    end
+    --IDLE
+    function Pet:LeaveState1()
+    end
+    --MOVE
+    function Pet:LeaveState2()
+    end
+    --TELEPORT
+    function Pet:LeaveState3()
+    end
+    --RIDE
+    function Pet:LeaveState4()
+    end
 end
 
 ---宠物运动
 function Pet:PetMove()
-    if petOBJ and petData.state ~= petStateEum.RACE then
-        if (petOBJ.Position - localPlayer.Position).Magnitude < 3 then
-            this:ChangeAnimalState(petOBJ, petStateEum.IDLE)
-        elseif (petOBJ.Position - localPlayer.Position).Magnitude < 10 then
-            this:ChangeAnimalState(petOBJ, petStateEum.MOVE)
-            petOBJ.LinearVelocityController.TargetLinearVelocity =
-                petOBJ.RotationController.Forward * 12
+    if moveTable then
+        if moveStep < #moveTable then
+            local dir = (moveTable[moveStep + 1].Position - petOBJ.Position).Normalized
+            dir.y = 0
+            petOBJ:FaceToDir(dir, 2 * math.pi)
+            petOBJ:MoveTowards(Vector2(dir.x, dir.z))
+            if (petOBJ.Position - moveTable[moveStep + 1].Position).Magnitude < 1 then
+                moveStep = moveStep + 1
+            end
         else
-            this:ChangeAnimalState(petOBJ, petStateEum.TELEPORT)
+            petOBJ:MoveTowards(Vector2.Zero)
+            EnterStateFunc[petStateEum.IDLE]()
         end
-        petOBJ.RotationController.Forward = localPlayer.Position - petOBJ.Position
-        petOBJ.RotationController.TargetRotation = EulerDegree(0, petOBJ.RotationController.Rotation.y, 0)
-    end
-end
-
----宠物运动状态改变
-function Pet:ChangeAnimalState(petOBJ, _state)
-    if petData.state ~= _state then
-        petData.state = _state
-        if _state == petStateEum.IDLE then
-            petOBJ.AnimatedMesh:PlayAnimation(
-                Config.Animal[petID].IdleAnimationName[math.random(#Config.Animal[petID].IdleAnimationName)],
-                2,
-                1,
-                0.1,
-                true,
-                true,
-                1
-            )
-            petOBJ.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-            petOBJ.LinearVelocityController.Intensity = 0
-            petOBJ.LinearVelocity = Vector3.Zero
-            petOBJ.IsStatic = true
-        elseif _state == petStateEum.MOVE then
-            petOBJ.AnimatedMesh:PlayAnimation(
-                Config.Animal[petID].MoveAnimationName[math.random(#Config.Animal[petID].MoveAnimationName)],
-                2,
-                1,
-                0.1,
-                true,
-                true,
-                12 / Config.Animal[petID].DefMoveSpeed
-            )
-            petOBJ.LinearVelocityController.Intensity = Config.Animal[petID].LVCtrlIntensity
-            petOBJ.RotationController.Intensity = Config.Animal[petID].RotCtrlIntensity
-            petOBJ.IsStatic = false
-        elseif _state == petStateEum.TELEPORT then
-            petOBJ.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-            petOBJ.LinearVelocityController.Intensity = 0
-            petOBJ.LinearVelocity = Vector3.Zero
-            petOBJ.Position = localPlayer.Position - localPlayer.Forward * 3 + Vector3(0, 1, 0)
-        elseif _state == petStateEum.RACE then
-            petOBJ.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
-            petOBJ.LinearVelocityController.Intensity = 0
-            petOBJ.RotationController.Intensity = 0
-            petOBJ.LinearVelocity = Vector3.Zero
-            petOBJ.IsStatic = true
-        end
+    else
+        petOBJ:MoveTowards(Vector2.Zero)
+        EnterStateFunc[petStateEum.IDLE]()
     end
 end
 
 function Pet:Update(dt)
-    this:PetMove()
+    if petOBJ then
+        UpdateStateFunc[petData.state](dt)
+    end
 end
 
 return Pet
