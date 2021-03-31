@@ -290,10 +290,14 @@ end
 -- 获取移动点
 function Hunt:GetMoveTable(_animalData, _pos)
     _animalData.moveStep = 1
+    local result = 6
     if _pos then
-        _animalData.moveTable = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 3)
+        if (_pos - _animalData.areaCenterPos).Magnitude > _animalData.areaRange then
+            _pos = _animalData.areaCenterPos + (_pos - _animalData.areaCenterPos).Normalized * _animalData.areaRange
+        end
+        _animalData.moveTable, result = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 3)
     else
-        _animalData.moveTable =
+        _animalData.moveTable, result =
             _animalData.obj:GetWaypoints(
             _animalData.obj.Position,
             _animalData.areaCenterPos +
@@ -306,6 +310,9 @@ function Hunt:GetMoveTable(_animalData, _pos)
             1,
             10
         )
+    end
+    if result > 2 then
+        print('寻路失败', result, _animalData.obj, _animalData.state)
     end
 end
 
