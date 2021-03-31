@@ -235,7 +235,7 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerHeadEffectUpdate(Data.Player.attr.HeadEffect)
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
-    this:PlayerSkinUpdate(Data.Player.attr.SkinID)
+    --this:PlayerSkinUpdate(Data.Player.attr.SkinID)
     if not Data.Player.attr.EnableEquipable then
         NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     end
@@ -316,6 +316,8 @@ function PlayerCtrl:PlayerSkinUpdate(_skinID)
     for k, v in pairs(Config.Skin[_skinID]) do
         if localPlayer.Avatar[k] and v ~= '' then
             localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
+			--print(v)
+			--print(localPlayer.Avatar[k])
         --print(k, v)
         end
     end
