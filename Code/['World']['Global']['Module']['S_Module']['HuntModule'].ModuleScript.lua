@@ -291,10 +291,9 @@ end
 function Hunt:GetMoveTable(_animalData, _pos)
     _animalData.moveStep = 1
     if _pos then
-        _animalData.moveTable, _animalData.obj.TestGUI.ResultText.Text =
-            _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 3)
+        _animalData.moveTable = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 3)
     else
-        _animalData.moveTable, _animalData.obj.TestGUI.ResultText.Text =
+        _animalData.moveTable =
             _animalData.obj:GetWaypoints(
             _animalData.obj.Position,
             _animalData.areaCenterPos +
@@ -306,15 +305,6 @@ function Hunt:GetMoveTable(_animalData, _pos)
             0.5,
             1,
             10
-        )
-    end
-    for k, v in pairs(_animalData.moveTable) do
-        local TestSphere = world:CreateInstance('TestSphere', 'TestSphere', world, v.Position)
-        invoke(
-            function()
-                TestSphere:Destroy()
-            end,
-            5
         )
     end
 end
