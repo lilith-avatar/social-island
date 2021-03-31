@@ -96,14 +96,12 @@ end
 function PlayerCam:SwitchSwimFilter(_switch)
     filterSwitch = _switch
     if _switch then
-        this.playerGameCam.WaterEffect:SetActive(true)
         this.playerGameCam.WaterVignette:SetActive(true)
         this.playerGameCam.WaterGaussionBlur:SetActive(true)
         this.playerGameCam.WaterAmbientOcclusion:SetActive(true)
         this.playerGameCam.WaterGrain:SetActive(true)
         this.playerGameCam.WaterColorGrading:SetActive(true)
     else
-        this.playerGameCam.WaterEffect:SetActive(false)
         this.playerGameCam.WaterVignette:SetActive(false)
         this.playerGameCam.WaterGaussionBlur:SetActive(false)
         this.playerGameCam.WaterAmbientOcclusion:SetActive(false)
