@@ -52,6 +52,7 @@ end
 --获得Buff
 function BuffMgr:GetBuffEventHandler(_buffID, _dur)
     if _buffID ~= 0 then
+        SoundUtil.Play2DSE(localPlayer.UserId, 109)
         if BuffDataList[_buffID] then
             BuffDataList[_buffID].curTime = _dur
         else
