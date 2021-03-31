@@ -11,6 +11,8 @@ local SoundXls = {
         Name = 'Clap',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/Clap',
         Info = ''
     },
@@ -19,6 +21,8 @@ local SoundXls = {
         Name = 'BGM',
         IsLoop = true,
         Volume = 45.0,
+        MinDistance = 20,
+        MaxDistance = 50,
         Path = 'Audio/BGM_Forest',
         Info = ''
     },
@@ -27,6 +31,8 @@ local SoundXls = {
         Name = 'Dialogue',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/Dialogue',
         Info = '对话弹出'
     },
@@ -35,6 +41,8 @@ local SoundXls = {
         Name = 'GetCoin',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 7,
         Path = 'Audio/GetCoin',
         Info = '吃金币的音效'
     },
@@ -43,6 +51,8 @@ local SoundXls = {
         Name = 'UI_Open',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/UI_Open',
         Info = '界面弹出（支付）'
     },
@@ -51,6 +61,8 @@ local SoundXls = {
         Name = 'Sfx_Shop_1s_Close',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/Sfx_Shop_1s_Close',
         Info = '界面关闭（支付）'
     },
@@ -59,6 +71,8 @@ local SoundXls = {
         Name = 'UI_Buy_Confirm',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/UI_Buy_Confirm',
         Info = '点击确认（支付）'
     },
@@ -67,6 +81,8 @@ local SoundXls = {
         Name = 'UI_Buy_Confirm',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/UI_Buy_Confirm',
         Info = '确认支付'
     },
@@ -75,6 +91,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = nil,
+        MaxDistance = nil,
         Path = 'Audio/0',
         Info = '赛前预备'
     },
@@ -83,6 +101,8 @@ local SoundXls = {
         Name = 'Sfx_Shop_1s_Open',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/Sfx_Shop_1s_Open',
         Info = '起跑'
     },
@@ -91,6 +111,8 @@ local SoundXls = {
         Name = 'Drone_attack_Money_shoot',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/Drone_attack_Money_shoot',
         Info = '赢到钱'
     },
@@ -99,6 +121,8 @@ local SoundXls = {
         Name = 'Sfx_Shop_1s_Open',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = 'Audio/Sfx_Shop_1s_Open',
         Info = '输了钱'
     },
@@ -107,6 +131,8 @@ local SoundXls = {
         Name = 'Catch_Animal',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = 'Audio/Catch_Animal',
         Info = '成功捕捉'
     },
@@ -115,6 +141,8 @@ local SoundXls = {
         Name = 'Sit',
         IsLoop = false,
         Volume = 35.0,
+        MinDistance = 5,
+        MaxDistance = 5,
         Path = 'Audio/Sit',
         Info = '坐下的音效'
     },
@@ -123,6 +151,8 @@ local SoundXls = {
         Name = 'Wood_Horse',
         IsLoop = true,
         Volume = 5.0,
+        MinDistance = 5,
+        MaxDistance = 5,
         Path = 'Audio/Wood_Horse',
         Info = '摇木马的咯吱声'
     },
@@ -131,6 +161,8 @@ local SoundXls = {
         Name = 'TempBGM',
         IsLoop = true,
         Volume = 60.0,
+        MinDistance = 20,
+        MaxDistance = 50,
         Path = 'Audio/TempBGM',
         Info = '鸟语（环境）'
     },
@@ -139,6 +171,8 @@ local SoundXls = {
         Name = 'Footstep_deck-002',
         IsLoop = false,
         Volume = 10.0,
+        MinDistance = 3,
+        MaxDistance = 7,
         Path = 'Audio/Footstep_deck-002',
         Info = '脚步声'
     },
@@ -147,6 +181,8 @@ local SoundXls = {
         Name = 'PlayerControlModule_Jump_Deck',
         IsLoop = false,
         Volume = 10.0,
+        MinDistance = 3,
+        MaxDistance = 7,
         Path = 'Audio/PlayerControlModule_Jump_Deck',
         Info = '跳落地'
     },
@@ -155,6 +191,8 @@ local SoundXls = {
         Name = 'JumpIntoWater',
         IsLoop = false,
         Volume = 20.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/JumpIntoWater',
         Info = '进入水中的声音'
     },
@@ -163,6 +201,8 @@ local SoundXls = {
         Name = 'WaterWalking',
         IsLoop = false,
         Volume = 10.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/WaterWalking',
         Info = '在水中的脚步声'
     },
@@ -171,6 +211,8 @@ local SoundXls = {
         Name = 'SwimingBg',
         IsLoop = false,
         Volume = 10.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/SwimingBg',
         Info = '游泳移动的声音'
     },
@@ -179,6 +221,8 @@ local SoundXls = {
         Name = 'Bounce',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/Bounce',
         Info = '踩蘑菇'
     },
@@ -187,6 +231,8 @@ local SoundXls = {
         Name = 'Marquis_ClothChange',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = 'Audio/Marquis_ClothChange',
         Info = '换外观的交互声音'
     },
@@ -195,6 +241,8 @@ local SoundXls = {
         Name = 'Fruit_Logic_pickup_02',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = 'Audio/Fruit_Logic_pickup_02',
         Info = '拿起的交互声音'
     },
@@ -203,6 +251,8 @@ local SoundXls = {
         Name = 'Weapon_Common_pickup',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = 'Audio/Weapon_Common_pickup',
         Info = '装备的交互声音'
     },
@@ -211,6 +261,8 @@ local SoundXls = {
         Name = 'Fruit_Logic_eat&boost',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = 'Audio/Fruit_Logic_eat&boost',
         Info = '吃食物的交互声音'
     },
@@ -219,6 +271,8 @@ local SoundXls = {
         Name = 'Weapon_attack',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_attack',
         Info = '挥动近战武器（重）'
     },
@@ -227,6 +281,8 @@ local SoundXls = {
         Name = 'Weapon_LightSaber_attack',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_LightSaber_attack',
         Info = '挥动光剑'
     },
@@ -235,6 +291,8 @@ local SoundXls = {
         Name = 'Weapon_knife_attack',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_knife_attack',
         Info = '挥动近战武器（利刃）'
     },
@@ -243,6 +301,8 @@ local SoundXls = {
         Name = 'Weapon_Light',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_Light',
         Info = '挥动近战武器（轻）'
     },
@@ -251,6 +311,8 @@ local SoundXls = {
         Name = 'Weapon_LightSaber_hit',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_LightSaber_hit',
         Info = '光剑命中'
     },
@@ -259,6 +321,8 @@ local SoundXls = {
         Name = 'Weapon_Umbrella_hit',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_Umbrella_hit',
         Info = '命中玩家'
     },
@@ -267,6 +331,8 @@ local SoundXls = {
         Name = 'Weapon_Trombone_hit',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_Trombone_hit',
         Info = '命中除了树、人、动物外其他物体'
     },
@@ -275,6 +341,8 @@ local SoundXls = {
         Name = 'Item_unequip',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Item_unequip',
         Info = '实体和道具消失时烟雾炸开的声音'
     },
@@ -283,6 +351,8 @@ local SoundXls = {
         Name = 'Weapon_LightSaber_pickup',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_LightSaber_pickup',
         Info = '装备光剑'
     },
@@ -291,6 +361,8 @@ local SoundXls = {
         Name = 'Throw',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Throw',
         Info = '投掷'
     },
@@ -299,6 +371,8 @@ local SoundXls = {
         Name = 'Weapon_Sword_Hit_Wood_Dull_01',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 20,
         Path = 'Audio/Weapon_Sword_Hit_Wood_Dull_01',
         Info = '金属命中其他物体'
     },
@@ -307,6 +381,8 @@ local SoundXls = {
         Name = 'FlyBoardController_ScoreBreaker',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 20,
+        MaxDistance = 30,
         Path = 'Audio/FlyBoardController_ScoreBreaker',
         Info = '第一名到达终点'
     },
@@ -315,6 +391,8 @@ local SoundXls = {
         Name = 'Drone_attack_firework_shoot',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 20,
+        MaxDistance = 30,
         Path = 'Audio/Drone_attack_firework_shoot',
         Info = '第二名到达终点'
     },
@@ -323,6 +401,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = nil,
+        MaxDistance = nil,
         Path = 'Audio/0',
         Info = '第三名到达终点'
     },
@@ -331,6 +411,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = nil,
+        MaxDistance = nil,
         Path = 'Audio/0',
         Info = '第四名到达终点'
     },
@@ -339,6 +421,8 @@ local SoundXls = {
         Name = 'Trap_Place',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/Trap_Place',
         Info = '放夹子'
     },
@@ -347,6 +431,8 @@ local SoundXls = {
         Name = 'Trap_Effect',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 30,
         Path = 'Audio/Trap_Effect',
         Info = '夹中动物'
     },
@@ -355,6 +441,8 @@ local SoundXls = {
         Name = 'Trap_Break',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/Trap_Break',
         Info = '夹子被毁坏'
     },
@@ -363,6 +451,8 @@ local SoundXls = {
         Name = '',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/',
         Info = '鹿待机'
     },
@@ -371,6 +461,8 @@ local SoundXls = {
         Name = 'Animal_Reindeer_Dead',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Reindeer_Dead',
         Info = '鹿死亡'
     },
@@ -379,6 +471,8 @@ local SoundXls = {
         Name = 'Animal_Pheasant_Idle',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Pheasant_Idle',
         Info = '山鸡待机'
     },
@@ -387,6 +481,8 @@ local SoundXls = {
         Name = 'Animal_Pheasant_Dead',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Pheasant_Dead',
         Info = '山鸡死亡'
     },
@@ -395,6 +491,8 @@ local SoundXls = {
         Name = 'Animal_Boar_Idle',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Boar_Idle',
         Info = '野猪待机'
     },
@@ -403,6 +501,8 @@ local SoundXls = {
         Name = 'Animal_Boar_Dead',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Boar_Dead',
         Info = '野鸡死亡'
     },
@@ -411,6 +511,8 @@ local SoundXls = {
         Name = 'Animal_Wolf_Idle',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Wolf_Idle',
         Info = '狼待机'
     },
@@ -419,6 +521,8 @@ local SoundXls = {
         Name = 'Animal_Wolf_Dead',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Wolf_Dead',
         Info = '狼死亡'
     },
@@ -427,6 +531,8 @@ local SoundXls = {
         Name = 'Animal_Owl_Idle',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Owl_Idle',
         Info = '猫头鹰待机'
     },
@@ -435,6 +541,8 @@ local SoundXls = {
         Name = 'Animal_Owl_Dead',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Owl_Dead',
         Info = '猫头鹰死亡'
     },
@@ -443,6 +551,8 @@ local SoundXls = {
         Name = 'Weapon_Bow_draw',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/Weapon_Bow_draw',
         Info = '拉弓'
     },
@@ -451,6 +561,8 @@ local SoundXls = {
         Name = 'Weapon_Bow_shoot',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 10,
+        MaxDistance = 15,
         Path = 'Audio/Weapon_Bow_shoot',
         Info = '放箭'
     },
@@ -459,6 +571,8 @@ local SoundXls = {
         Name = 'Animal_Bear_Idle',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Bear_Idle',
         Info = '熊待机'
     },
@@ -467,6 +581,8 @@ local SoundXls = {
         Name = 'Animal_Bear_Dead',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Animal_Bear_Dead',
         Info = '熊死亡'
     },
@@ -475,6 +591,8 @@ local SoundXls = {
         Name = 'Rocket_Launcher',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Rocket_Launcher',
         Info = '弹射椅发射的音效'
     },
@@ -483,6 +601,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = nil,
+        MaxDistance = nil,
         Path = 'Audio/0',
         Info = '弹射椅故障旋转的音效'
     },
@@ -491,6 +611,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = nil,
+        MaxDistance = nil,
         Path = 'Audio/0',
         Info = '玩家失败落下时的音效'
     },
@@ -499,6 +621,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = nil,
+        MaxDistance = nil,
         Path = 'Audio/0',
         Info = '喷气椅机械音'
     },
@@ -507,6 +631,8 @@ local SoundXls = {
         Name = 'Sfx_ChangeStatu_5s_SlotMachine',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Sfx_ChangeStatu_5s_SlotMachine',
         Info = '猜拳倒计时'
     },
@@ -515,6 +641,8 @@ local SoundXls = {
         Name = 'BGM_Party',
         IsLoop = true,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/BGM_Party',
         Info = '营地里和飞碟里BGM'
     },
@@ -523,6 +651,8 @@ local SoundXls = {
         Name = 'BGM_Forest',
         IsLoop = true,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/BGM_Forest',
         Info = '野外探索狩猎时BGM'
     },
@@ -531,6 +661,8 @@ local SoundXls = {
         Name = '0.0',
         IsLoop = true,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/0',
         Info = '迷宫内BGM'
     },
@@ -539,6 +671,8 @@ local SoundXls = {
         Name = 'E3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/E3',
         Info = ''
     },
@@ -547,6 +681,8 @@ local SoundXls = {
         Name = 'F3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/F3',
         Info = ''
     },
@@ -555,6 +691,8 @@ local SoundXls = {
         Name = 'F#3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/F#3',
         Info = ''
     },
@@ -563,6 +701,8 @@ local SoundXls = {
         Name = 'G3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/G3',
         Info = ''
     },
@@ -571,6 +711,8 @@ local SoundXls = {
         Name = 'G#3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/G#3',
         Info = ''
     },
@@ -579,6 +721,8 @@ local SoundXls = {
         Name = 'A3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/A3',
         Info = ''
     },
@@ -587,6 +731,8 @@ local SoundXls = {
         Name = 'A#3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/A#3',
         Info = ''
     },
@@ -595,6 +741,8 @@ local SoundXls = {
         Name = 'B3',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/B3',
         Info = ''
     },
@@ -603,6 +751,8 @@ local SoundXls = {
         Name = 'C4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/C4',
         Info = ''
     },
@@ -611,6 +761,8 @@ local SoundXls = {
         Name = 'C#4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/C#4',
         Info = ''
     },
@@ -619,6 +771,8 @@ local SoundXls = {
         Name = 'D4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/D4',
         Info = ''
     },
@@ -627,6 +781,8 @@ local SoundXls = {
         Name = 'D#4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/D#4',
         Info = ''
     },
@@ -635,6 +791,8 @@ local SoundXls = {
         Name = 'E4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/E4',
         Info = ''
     },
@@ -643,6 +801,8 @@ local SoundXls = {
         Name = 'F4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/F4',
         Info = ''
     },
@@ -651,6 +811,8 @@ local SoundXls = {
         Name = 'F#4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/F#4',
         Info = ''
     },
@@ -659,6 +821,8 @@ local SoundXls = {
         Name = 'G4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/G4',
         Info = ''
     },
@@ -667,6 +831,8 @@ local SoundXls = {
         Name = 'G#4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/G#4',
         Info = ''
     },
@@ -675,6 +841,8 @@ local SoundXls = {
         Name = 'A4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/A4',
         Info = ''
     },
@@ -683,6 +851,8 @@ local SoundXls = {
         Name = 'A#4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/A#4',
         Info = ''
     },
@@ -691,6 +861,8 @@ local SoundXls = {
         Name = 'B4',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/B4',
         Info = ''
     },
@@ -699,6 +871,8 @@ local SoundXls = {
         Name = 'C5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/C5',
         Info = ''
     },
@@ -707,6 +881,8 @@ local SoundXls = {
         Name = 'C#5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/C#5',
         Info = ''
     },
@@ -715,6 +891,8 @@ local SoundXls = {
         Name = 'D5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/D5',
         Info = ''
     },
@@ -723,6 +901,8 @@ local SoundXls = {
         Name = 'D#5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/D#5',
         Info = ''
     },
@@ -731,6 +911,8 @@ local SoundXls = {
         Name = 'E5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/E5',
         Info = ''
     },
@@ -739,6 +921,8 @@ local SoundXls = {
         Name = 'F5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/F5',
         Info = ''
     },
@@ -747,6 +931,8 @@ local SoundXls = {
         Name = 'F#5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/F#5',
         Info = ''
     },
@@ -755,6 +941,8 @@ local SoundXls = {
         Name = 'G5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/G5',
         Info = ''
     },
@@ -763,6 +951,8 @@ local SoundXls = {
         Name = 'G#5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/G#5',
         Info = ''
     },
@@ -771,6 +961,8 @@ local SoundXls = {
         Name = 'A5',
         IsLoop = false,
         Volume = 60.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/A5',
         Info = ''
     },
@@ -779,6 +971,8 @@ local SoundXls = {
         Name = 'Swing09',
         IsLoop = true,
         Volume = 5.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Swing09',
         Info = ''
     },
@@ -787,6 +981,8 @@ local SoundXls = {
         Name = 'undertale',
         IsLoop = true,
         Volume = 5.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/undertale',
         Info = ''
     },
@@ -795,6 +991,8 @@ local SoundXls = {
         Name = 'creep',
         IsLoop = true,
         Volume = 5.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/creep',
         Info = ''
     },
@@ -803,6 +1001,8 @@ local SoundXls = {
         Name = 'Night',
         IsLoop = false,
         Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 30,
         Path = 'Audio/Night',
         Info = ''
     },
@@ -810,7 +1010,9 @@ local SoundXls = {
         ID = 101,
         Name = 'UI_Change_Select',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 1,
+        MaxDistance = 1,
         Path = '',
         Info = '切换商品选中状态'
     },
@@ -818,7 +1020,9 @@ local SoundXls = {
         ID = 102,
         Name = 'Bonfire',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '点火'
     },
@@ -826,7 +1030,9 @@ local SoundXls = {
         ID = 103,
         Name = 'Enter_Tent',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '进入帐篷'
     },
@@ -834,7 +1040,9 @@ local SoundXls = {
         ID = 104,
         Name = 'Radio_Switch',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '打开收音机'
     },
@@ -842,7 +1050,9 @@ local SoundXls = {
         ID = 105,
         Name = 'Statue_Eye',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '点亮石像眼睛'
     },
@@ -850,7 +1060,9 @@ local SoundXls = {
         ID = 106,
         Name = 'Statue_Eye_Hold',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '石像眼睛发光时一直播放'
     },
@@ -858,7 +1070,9 @@ local SoundXls = {
         ID = 107,
         Name = 'Pearl',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '与珍珠交互时的声音'
     },
@@ -866,7 +1080,9 @@ local SoundXls = {
         ID = 108,
         Name = 'Transmit',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '飞碟传送门触发'
     },
@@ -874,7 +1090,9 @@ local SoundXls = {
         ID = 109,
         Name = 'Weapon_GetBuff',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '获得状态'
     },
@@ -882,7 +1100,9 @@ local SoundXls = {
         ID = 110,
         Name = 'GetItem',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '获得物品'
     },
@@ -890,7 +1110,9 @@ local SoundXls = {
         ID = 111,
         Name = 'Exchange',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '变卖物品'
     },
@@ -898,7 +1120,9 @@ local SoundXls = {
         ID = 112,
         Name = 'Arch_Hit_Target',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = ''
     },
@@ -906,7 +1130,9 @@ local SoundXls = {
         ID = 113,
         Name = 'Arch_Hit_People',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = ''
     },
@@ -914,7 +1140,9 @@ local SoundXls = {
         ID = 114,
         Name = 'Arch_Hit_Apple',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = ''
     },
@@ -922,7 +1150,9 @@ local SoundXls = {
         ID = 115,
         Name = 'Arch_Hit_Chest',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = ''
     },
@@ -930,7 +1160,9 @@ local SoundXls = {
         ID = 116,
         Name = 'Statue_Break',
         IsLoop = false,
-        Volume = nil,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
         Path = '',
         Info = '石像破碎'
     }

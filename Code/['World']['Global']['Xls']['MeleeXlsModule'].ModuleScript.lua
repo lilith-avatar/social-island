@@ -18,7 +18,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 32,
-        HitForce = 5.0,
+        HitForce = 10.0,
         Hunt = true
     },
     [1002] = {
@@ -33,7 +33,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 32,
-        HitForce = 5.0,
+        HitForce = 10.0,
         Hunt = true
     },
     [1003] = {
@@ -48,7 +48,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 32,
-        HitForce = 35.0,
+        HitForce = 20.0,
         Hunt = true
     },
     [1004] = {
@@ -198,7 +198,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 31,
-        HitForce = 30.0,
+        HitForce = 20.0,
         Hunt = true
     },
     [1014] = {
@@ -213,7 +213,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 31,
-        HitForce = 30.0,
+        HitForce = 20.0,
         Hunt = true
     },
     [1015] = {
