@@ -200,9 +200,6 @@ function GuiCook:CancelMaterial(_index)
     end
     table.insert(this.BagMaterial, this.UsingMaterial[_index])
     table.remove(this.UsingMaterial, _index)
-    if #this.UsingMaterial == 2 or not this.UsingMaterial then
-        this.cookBtn.Locked:SetActive(true)
-    end
     table.sort(
         this.BagMaterial,
         function(v1, v2)
@@ -211,18 +208,26 @@ function GuiCook:CancelMaterial(_index)
     )
     this:ShowMaterialIcon()
     this:ClickChangePage(this.pageIndex)
+    this:JudgeCookLocked()
 end
 
 function GuiCook:ChooseMaterial(_index)
-    if #this.UsingMaterial > 3 then
+    if #this.UsingMaterial >= 3 then
         return
-    elseif #this.UsingMaterial == 3 then
-        this.cookBtn.Locked:SetActive(false)
     end
     table.insert(this.UsingMaterial, {id = this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id})
     table.remove(this.BagMaterial, _index + (this.pageIndex - 1) * this.pageSize)
     this:ClickChangePage(this.pageIndex)
     this:ShowMaterialIcon()
+    this:JudgeCookLocked()
+end
+
+function GuiCook:JudgeCookLocked()
+    if this.UsingMaterial and #this.UsingMaterial == 3 then
+        this.cookBtn.Locked:SetActive(false)
+    else
+        this.cookBtn.Locked:SetActive(true)
+    end
 end
 
 function GuiCook:ClearAllMaterial()
