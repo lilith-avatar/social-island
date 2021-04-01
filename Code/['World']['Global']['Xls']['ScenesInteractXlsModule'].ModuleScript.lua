@@ -19,6 +19,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 600.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [2] = {
@@ -34,6 +36,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [3] = {
@@ -49,6 +53,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [4] = {
@@ -64,6 +70,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 600.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [5] = {
@@ -79,6 +87,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 600.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [6] = {
@@ -94,6 +104,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [7] = {
@@ -109,6 +121,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [8] = {
@@ -124,6 +138,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [9] = {
@@ -139,6 +155,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [10] = {
@@ -154,6 +172,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 109,
         IsPre = true
     },
     [11] = {
@@ -169,6 +189,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [12] = {
@@ -184,6 +206,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [13] = {
@@ -199,6 +223,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = nil,
         IsPre = true
     },
     [14] = {
@@ -214,6 +240,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 109,
         IsPre = true
     },
     [15] = {
@@ -229,6 +257,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 109,
         IsPre = true
     },
     [16] = {
@@ -244,6 +274,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 109,
         IsPre = true
     },
     [17] = {
@@ -259,6 +291,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 109,
         IsPre = true
     },
     [18] = {
@@ -274,6 +308,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [19] = {
@@ -289,6 +325,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [20] = {
@@ -304,6 +342,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [21] = {
@@ -319,6 +359,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [22] = {
@@ -334,6 +376,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [23] = {
@@ -349,6 +393,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = nil,
         IsPre = true
     },
     [24] = {
@@ -364,6 +410,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [25] = {
@@ -379,6 +427,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [26] = {
@@ -394,6 +444,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [27] = {
@@ -409,6 +461,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [28] = {
@@ -424,6 +478,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [29] = {
@@ -439,6 +495,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [30] = {
@@ -454,6 +512,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [31] = {
@@ -469,6 +529,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [32] = {
@@ -484,6 +546,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [33] = {
@@ -499,6 +563,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [34] = {
@@ -514,6 +580,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [35] = {
@@ -529,6 +597,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [36] = {
@@ -544,6 +614,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = false
     },
     [37] = {
@@ -559,6 +631,8 @@ local ScenesInteractXls = {
         RewardCoin = 600,
         UseCount = 1,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 117,
         IsPre = false
     },
     [38] = {
@@ -574,6 +648,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [39] = {
@@ -589,6 +665,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [40] = {
@@ -604,6 +682,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [41] = {
@@ -619,6 +699,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [42] = {
@@ -634,6 +716,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [43] = {
@@ -649,6 +733,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [44] = {
@@ -664,6 +750,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [45] = {
@@ -679,6 +767,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [46] = {
@@ -694,6 +784,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 300.0,
+        AnitName = '',
+        InteractAEID = 109,
         IsPre = true
     },
     [47] = {
@@ -709,6 +801,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [48] = {
@@ -724,6 +818,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [49] = {
@@ -739,6 +835,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [50] = {
@@ -754,6 +852,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [51] = {
@@ -769,6 +869,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [52] = {
@@ -784,6 +886,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [53] = {
@@ -799,6 +903,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [54] = {
@@ -814,6 +920,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [55] = {
@@ -829,6 +937,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [56] = {
@@ -844,6 +954,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [57] = {
@@ -859,6 +971,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [58] = {
@@ -874,6 +988,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [59] = {
@@ -889,6 +1005,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [60] = {
@@ -904,6 +1022,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [61] = {
@@ -919,6 +1039,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 999999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [62] = {
@@ -934,6 +1056,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 999999,
         ResetTime = -1.0,
+        AnitName = '',
+        InteractAEID = 25,
         IsPre = true
     },
     [63] = {
@@ -949,6 +1073,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [64] = {
@@ -964,6 +1090,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [65] = {
@@ -979,6 +1107,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [66] = {
@@ -994,6 +1124,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [67] = {
@@ -1009,6 +1141,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [68] = {
@@ -1024,6 +1158,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [69] = {
@@ -1039,6 +1175,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [70] = {
@@ -1054,6 +1192,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [71] = {
@@ -1069,6 +1209,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
+        AnitName = '',
+        InteractAEID = 26,
         IsPre = true
     },
     [72] = {
@@ -1084,6 +1226,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [73] = {
@@ -1099,6 +1243,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [74] = {
@@ -1114,6 +1260,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [75] = {
@@ -1129,6 +1277,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [76] = {
@@ -1144,6 +1294,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [77] = {
@@ -1159,6 +1311,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [78] = {
@@ -1174,6 +1328,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [79] = {
@@ -1189,6 +1345,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     },
     [80] = {
@@ -1204,6 +1362,8 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
+        AnitName = '',
+        InteractAEID = 24,
         IsPre = true
     }
 }

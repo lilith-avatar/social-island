@@ -20,7 +20,7 @@ local SoundXls = {
         ID = 2,
         Name = 'BGM',
         IsLoop = true,
-        Volume = 45.0,
+        Volume = 0.0,
         MinDistance = 20,
         MaxDistance = 50,
         Path = 'Audio/BGM_Forest',
@@ -40,7 +40,7 @@ local SoundXls = {
         ID = 4,
         Name = 'GetCoin',
         IsLoop = false,
-        Volume = 60.0,
+        Volume = 20.0,
         MinDistance = 5,
         MaxDistance = 7,
         Path = 'Audio/GetCoin',
@@ -168,12 +168,12 @@ local SoundXls = {
     },
     [17] = {
         ID = 17,
-        Name = 'Footstep_deck-002',
+        Name = 'Foot_L',
         IsLoop = false,
         Volume = 10.0,
         MinDistance = 3,
         MaxDistance = 7,
-        Path = 'Audio/Footstep_deck-002',
+        Path = 'Audio/Foot_L',
         Info = '脚步声'
     },
     [18] = {
@@ -188,12 +188,12 @@ local SoundXls = {
     },
     [19] = {
         ID = 19,
-        Name = 'JumpIntoWater',
+        Name = 'FootStep_Water',
         IsLoop = false,
         Volume = 20.0,
         MinDistance = 10,
         MaxDistance = 15,
-        Path = 'Audio/JumpIntoWater',
+        Path = 'Audio/FootStep_Water',
         Info = '进入水中的声音'
     },
     [20] = {
@@ -204,7 +204,7 @@ local SoundXls = {
         MinDistance = 10,
         MaxDistance = 15,
         Path = 'Audio/WaterWalking',
-        Info = '在水中的脚步声'
+        Info = '游泳声'
     },
     [21] = {
         ID = 21,
@@ -1013,7 +1013,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 1,
         MaxDistance = 1,
-        Path = '',
+        Path = 'Audio/UI_Change_Select',
         Info = '切换商品选中状态'
     },
     [102] = {
@@ -1023,7 +1023,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Bonfire',
         Info = '点火'
     },
     [103] = {
@@ -1033,7 +1033,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Enter_Tent',
         Info = '进入帐篷'
     },
     [104] = {
@@ -1043,7 +1043,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Radio_Switch',
         Info = '打开收音机'
     },
     [105] = {
@@ -1053,7 +1053,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Statue_Eye',
         Info = '点亮石像眼睛'
     },
     [106] = {
@@ -1063,7 +1063,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Statue_Eye_Hold',
         Info = '石像眼睛发光时一直播放'
     },
     [107] = {
@@ -1073,7 +1073,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Pearl',
         Info = '与珍珠交互时的声音'
     },
     [108] = {
@@ -1083,7 +1083,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Transmit',
         Info = '飞碟传送门触发'
     },
     [109] = {
@@ -1093,7 +1093,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Weapon_GetBuff',
         Info = '获得状态'
     },
     [110] = {
@@ -1103,7 +1103,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/GetItem',
         Info = '获得物品'
     },
     [111] = {
@@ -1113,7 +1113,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Exchange',
         Info = '变卖物品'
     },
     [112] = {
@@ -1123,7 +1123,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Arch_Hit_Target',
         Info = ''
     },
     [113] = {
@@ -1133,7 +1133,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Arch_Hit_People',
         Info = ''
     },
     [114] = {
@@ -1143,7 +1143,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Arch_Hit_Apple',
         Info = ''
     },
     [115] = {
@@ -1153,7 +1153,7 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Arch_Hit_Chest',
         Info = ''
     },
     [116] = {
@@ -1163,8 +1163,18 @@ local SoundXls = {
         Volume = 30.0,
         MinDistance = 5,
         MaxDistance = 10,
-        Path = '',
+        Path = 'Audio/Statue_Break',
         Info = '石像破碎'
+    },
+    [117] = {
+        ID = 117,
+        Name = 'Chest_Open',
+        IsLoop = false,
+        Volume = 30.0,
+        MinDistance = 5,
+        MaxDistance = 10,
+        Path = 'Audio/Chest_Open',
+        Info = '打开宝箱'
     }
 }
 

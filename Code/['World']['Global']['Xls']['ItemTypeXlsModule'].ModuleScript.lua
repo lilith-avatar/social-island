@@ -72,7 +72,7 @@ local ItemTypeXls = {
         FsmMode = '',
         IsStack = true,
         IsGetRepeatedly = true,
-        IsUseable = false,
+        IsUseable = true,
         IsConsum = true,
         IsEquip = false
     }
