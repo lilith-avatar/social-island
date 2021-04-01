@@ -144,7 +144,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         true
     )
     for i=1, math.random(1, 3) do
-        NetUtil.Fire_C('GetItemFromPoolEvent',9, 0)
+        NetUtil.Fire_C('GetItemFromPoolEvent',world:GetPlayerByUserId(_uid),9, 0)
     end
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
@@ -160,6 +160,7 @@ end
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
+	SoundUtil.Play3DSE(_pit.Mole.Position,116)
     local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
     tweener:Play()
     invoke(
