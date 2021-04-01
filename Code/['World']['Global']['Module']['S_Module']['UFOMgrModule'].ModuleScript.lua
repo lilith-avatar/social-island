@@ -78,6 +78,7 @@ end
 --- 传送
 function UFOMgr:Teleport(_player, _pos)
     SoundUtil.Play3DSE(_player.Position, 108)
+	SoundUtil.Play3DSE(_pos, 108)
     _player.Position = _pos
 end
 
