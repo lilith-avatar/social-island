@@ -172,6 +172,8 @@ end
 
 function GuiBag:ClickChangePage(_pageIndex)
     this:ClearSelect()
+    this:GetMaxPageNum(#this.slotItem)
+    _pageIndex = _pageIndex > this.maxPage and this.maxPage or _pageIndex
     this:ShowItemsByPageIndex(_pageIndex)
     this:RefreshPageBar(_pageIndex)
 end
@@ -212,7 +214,6 @@ function GuiBag:ShowItemsByPageIndex(_pageIndex)
             this.slotList[i]:SetActive(false)
         end
     end
-    this:GetMaxPageNum(#this.slotItem)
 end
 
 ---更新最大页面数
