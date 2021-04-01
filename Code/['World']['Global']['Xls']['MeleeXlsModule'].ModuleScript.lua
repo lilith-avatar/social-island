@@ -18,7 +18,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 32,
-        HitForce = 5.0,
+        HitForce = 10.0,
         Hunt = true
     },
     [1002] = {
@@ -33,7 +33,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 32,
-        HitForce = 5.0,
+        HitForce = 10.0,
         Hunt = true
     },
     [1003] = {
@@ -48,7 +48,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 32,
-        HitForce = 35.0,
+        HitForce = 20.0,
         Hunt = true
     },
     [1004] = {
@@ -198,7 +198,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 31,
-        HitForce = 30.0,
+        HitForce = 20.0,
         Hunt = true
     },
     [1014] = {
@@ -213,7 +213,7 @@ local MeleeXls = {
         HitRemoveBuffID = 0,
         HitEffectName = 'ArrowTartgetHitEffect',
         HitSoundID = 31,
-        HitForce = 30.0,
+        HitForce = 20.0,
         Hunt = true
     },
     [1015] = {
@@ -221,7 +221,7 @@ local MeleeXls = {
         ModelName = 'S_Magnet_Red_01',
         ParentNode = 'Bone_R_Hand.RHandWeaponNode',
         Offset = Vector3(0, 0, 0),
-        Angle = EulerDegree(180, 0, 0),
+        Angle = EulerDegree(0, 0, 0),
         HealthChange = 30,
         HitAddBuffID = 2,
         HitAddBuffDur = 10.0,

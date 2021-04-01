@@ -235,7 +235,7 @@ function PlayerCtrl:PlayerAttrUpdate()
     this:PlayerHeadEffectUpdate(Data.Player.attr.HeadEffect)
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
-    this:PlayerSkinUpdate(Data.Player.attr.SkinID)
+    --this:PlayerSkinUpdate(Data.Player.attr.SkinID)
     if not Data.Player.attr.EnableEquipable then
         NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     end
@@ -316,18 +316,22 @@ function PlayerCtrl:PlayerSkinUpdate(_skinID)
     for k, v in pairs(Config.Skin[_skinID]) do
         if localPlayer.Avatar[k] and v ~= '' then
             localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
+			--print(v)
+			--print(localPlayer.Avatar[k])
         --print(k, v)
         end
     end
 end
 
 -- 更新金币
-function PlayerCtrl:UpdateCoinEventHandler(_num)
+function PlayerCtrl:UpdateCoinEventHandler(_num,_fromBag)
     if _num ~= 0 then
-        if _num > 0 then
-            SoundUtil.Play2DSE(localPlayer.UserId, 4)
+        if _num > 0 and _fromBag then
+            SoundUtil.Play2DSE(localPlayer.UserId, 111)
+		elseif _num > 0 then
+			SoundUtil.Play2DSE(localPlayer.UserId, 4)
         end
-
+		
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end
@@ -401,7 +405,6 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S('InteractSEvent', localPlayer, 17)
-                SoundUtil.Play2DSE(localPlayer.UserId, 22)
             end
         end
         if _hitObject.GrassInteractUID then

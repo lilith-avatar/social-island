@@ -88,7 +88,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Radio:GetChildren()) do
         radioOBJ[v.Name] = v
     end
-    for k,v in pairs(world.Pot:GetChildren()) do
+    for k, v in pairs(world.Pot:GetChildren()) do
         potOBJ[v.Name] = v
     end
 end
@@ -147,8 +147,9 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
         invoke(
             function()
                 _bounce.tweener1:Play()
-                wait(0.1)
-                _player.LinearVelocity = Vector3(0, 20, 0)
+				_player.LinearVelocity = Vector3(0, 20, 0)
+				SoundUtil.Play3DSE(_bounce.obj.Position, 22)
+				wait(0.1)
                 _bounce.tweener1:Destroy()
                 _bounce.tweener2:Play()
                 wait(0.1)
@@ -287,6 +288,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                     v.On:SetActive(false)
                     v.Off:SetActive(true)
                 else
+                    SoundUtil.Play3DSE(_player.Position, 102)
                     v.On:SetActive(true)
                     v.Off:SetActive(false)
                 end
@@ -336,6 +338,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(tentOBJ) do
             if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
                 _player.Avatar:SetActive(false)
+				SoundUtil.Play3DSE(_player.Position, 103)
                 if not this.TentList[v.Name] then
                     this.TentList[v.Name] = {
                         model = v,
@@ -361,6 +364,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(radioOBJ) do
             NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 24)
             if v.RadioUID.Value == _player.UserId then
+				SoundUtil.Play3DSE(_player.Position, 104)
                 this.RadioData.songIndex = this.RadioData.songIndex + 1
                 if this.RadioData.songIndex > #this.RadioData.songList then
                     this.RadioData.songIndex = 1
@@ -383,13 +387,12 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         end
     end
     if _id == 26 then
-        for k,v in pairs(potOBJ) do
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 26)
+        for k, v in pairs(potOBJ) do
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 26)
             if v.PotUID.Value == _player.UserId then
                 v.Off:SetActive(false)
                 v.On:SetActive(true)
             end
-
         end
     end
 end
@@ -450,13 +453,12 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         end
     end
     if _id == 26 then
-        for k,v in pairs(potOBJ) do
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        for k, v in pairs(potOBJ) do
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
             if v.PotUID.Value == _player.UserId then
                 v.Off:SetActive(true)
                 v.On:SetActive(false)
             end
-
         end
     end
 end

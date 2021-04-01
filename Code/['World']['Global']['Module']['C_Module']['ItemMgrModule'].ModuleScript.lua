@@ -119,6 +119,7 @@ function ItemMgr:GetItemEventHandler(_id)
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     GuiNoticeInfo:ShowGetItem(_id)
+	SoundUtil.Play2DSE(localPlayer.UserId, 110)
     print('[ItemMgr] 获得道具', _id)
     return
 end
@@ -165,8 +166,10 @@ function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin)
             weightSum = weightSum + v.Weight
         end
         local randomNum = math.random(weightSum)
+		local tempWeightSum=0
         for k, v in pairs(Config.ItemPool[_poolID]) do
-            if randomNum < v.Weight then
+			tempWeightSum = tempWeightSum + v.Weight
+            if randomNum < tempWeightSum then
                 if Data.Player.bag[v.ItemId] then
                     if tonumber(string.sub(tostring(v.ItemId), 1, 1)) >= 6 then
                         Data.Player.bag[v.ItemId].count = Data.Player.bag[v.ItemId].count + 1
