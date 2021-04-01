@@ -92,6 +92,7 @@ function CoinMgr:DespawnCoin(_pool, _coinObj)
         TimeUtil.ClearTimeout(_coinObj.TimerId.Value)
         _coinObj.TimerId.Value = -1
     end
+	_coinObj.LinearVelocity = Vector3(0,0,0)
     coinPool[_pool]:Despawn(_coinObj)
 end
 
