@@ -337,6 +337,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(tentOBJ) do
             if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
                 _player.Avatar:SetActive(false)
+				SoundUtil.Play3DSE(_player.Position, 103)
                 if not this.TentList[v.Name] then
                     this.TentList[v.Name] = {
                         model = v,
@@ -362,6 +363,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         for k, v in pairs(radioOBJ) do
             NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 24)
             if v.RadioUID.Value == _player.UserId then
+				SoundUtil.Play3DSE(_player.Position, 104)
                 this.RadioData.songIndex = this.RadioData.songIndex + 1
                 if this.RadioData.songIndex > #this.RadioData.songList then
                     this.RadioData.songIndex = 1
