@@ -180,18 +180,21 @@ function GuiBag:RefreshPageBar(_pageIndex)
     this.pageIndex = _pageIndex
     --页面数字显示
     this.pageTxt.Text = tostring(math.floor(_pageIndex))
+    --先全部打开
+    this.prevBtn.UnableImg:SetActive(false)
+    this.nextBtn.UnableImg:SetActive(false)
     --如果第一页则不显示上一页按钮
     if _pageIndex <= 1 then
-        this.prevBtn:SetActive(false)
+        this.prevBtn.UnableImg:SetActive(true)
     end
     --如果最后一页不显示下一页按钮
     if _pageIndex == this.maxPage then
-        this.nextBtn:SetActive(false)
+        this.nextBtn.UnableImg:SetActive(true)
     end
     --其他情况打开全部按钮
     if _pageIndex ~= 1 and _pageIndex ~= this.maxPage then
-        this.prevBtn:SetActive(true)
-        this.nextBtn:SetActive(true)
+        this.prevBtn.UnableImg:SetActive(false)
+        this.nextBtn.UnableImg:SetActive(false)
     end
 end
 
