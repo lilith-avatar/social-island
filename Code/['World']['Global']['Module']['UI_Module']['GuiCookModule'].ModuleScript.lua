@@ -354,10 +354,17 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = "By " .. _cookName
     this.cookUserId = _cookUserId
-    --TODO: 无法打赏自己做的菜
+    this.foodId = _foodId
+    -- 无法打赏自己做的菜
+    if this.cookUserId == localPlayer.UserId then
+        this.detailReward:SetActive(false)
+    else
+        this.detailReward:SetActive(true)
+    end
 end
 
 function GuiCook:EatFood()
+    NetUtil.Fire_C('GetBuffEvent',localPlayer,Config.CookMenu[this.foodId].BuffId,Config.CookMenu[this.foodId].BuffDur)
     this.foodId = nil
     this:HideGui()
     --this:ShowUI()
