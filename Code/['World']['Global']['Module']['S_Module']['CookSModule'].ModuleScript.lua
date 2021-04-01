@@ -86,7 +86,9 @@ end
 
 function CookS:DestroyAllFood()
     for k,v in pairs(world.FoodLocation:GetChildren()) do
-        v.Food:Destroy()
+        if v.Food then
+            v.Food:Destroy()
+        end
         --向所有人发起流程，关闭详情ui
         --NetUtil.Broadcast()
     end
