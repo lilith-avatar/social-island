@@ -119,6 +119,7 @@ function ItemMgr:GetItemEventHandler(_id)
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     GuiNoticeInfo:ShowGetItem(_id)
+	SoundUtil.Play2DSE(localPlayer.UserId, 110)
     print('[ItemMgr] 获得道具', _id)
     return
 end

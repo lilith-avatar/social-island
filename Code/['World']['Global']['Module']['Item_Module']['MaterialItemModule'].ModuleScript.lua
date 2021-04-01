@@ -13,7 +13,7 @@ end
 function MaterialItem:UseInBag()
     print("使用", self.id)
     ItemBase.UseInBag(self)
-    NetUtil.Fire_C("UpdateCoinEvent", localPlayer, self.baseData.GetCoin)
+    NetUtil.Fire_C("UpdateCoinEvent", localPlayer, self.baseData.GetCoin, true)
 end
 
 return MaterialItem
