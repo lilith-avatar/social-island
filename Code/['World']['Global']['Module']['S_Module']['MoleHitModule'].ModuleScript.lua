@@ -146,6 +146,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     for i = 1, math.random(1, 3) do
         NetUtil.Fire_C("GetItemFromPoolEvent", player, 9, 0)
     end
+
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
@@ -171,6 +172,7 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
         end,
         1
     )
+    SoundUtil.Play3DSE(_pit.Mole.Position,116)
     --解除绑定
     _pit.OnCollisionBegin:Clear()
     _pit.OnCollisionEnd:Clear()
