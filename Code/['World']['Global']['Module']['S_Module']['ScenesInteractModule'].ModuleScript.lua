@@ -317,13 +317,13 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
                 -- 音效
-                SoundUtil.Play3DSE(_player.Position, 15)
                 this.TrojanList[v.Name] = {
                     model = v,
                     timer = 0,
                     totalTimer = 0,
                     originForward = v.Forward,
-                    dirRatio = 1
+                    dirRatio = 1,
+                    sound = SoundUtil.Play3DSE(_player.Position, 15)
                 }
             end
         end
@@ -412,7 +412,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
                 _player.Avatar:StopAnimation('SitIdle', 2)
                 NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-                NetUtil.Fire_C('StopEffectEvent', _player, v.Name)
+                SoundUtil.Stop3DSE(this.TrojanList[v.Name].sound)
                 v.Forward = this.TrojanList[v.Name].originForward
                 this.TrojanList[v.Name] = nil
             end
