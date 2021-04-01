@@ -38,7 +38,6 @@ function CookS:PutFood(_foodId, _player)
                 cookName = _player.Name
             }
             -- 摆上食物
-            -- TODO:需要读表中的model创建
             local model =
                 world:CreateInstance(
                 Config.CookMenu[_foodId].Model,
@@ -46,6 +45,7 @@ function CookS:PutFood(_foodId, _player)
                 world.FoodLocation["Location" .. i],
                 world.FoodLocation["Location" .. i].Position
             )
+            --需要扩大碰撞盒
             model.OnCollisionBegin:Connect(
                 function(_hitObject)
                     if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
@@ -77,11 +77,24 @@ function CookS:OnPlayerJoinEventHandler(_player)
 end
 
 function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
-    print(_playerId, _cookId)
     local rewardPlayer, cook = world:GetPlayerByUserId(_playerId), world:GetPlayerByUserId(_cookId)
     if rewardPlayer and cook then
         NetUtil.Fire_C("InsertInfoEvent", cook, rewardPlayer.Name .. "打赏了你" .. _coin, 2, false)
         NetUtil.Fire_C("UpdateCoinEvent", cook, _coin)
+    end
+end
+
+function CookS:DestroyAllFood()
+    for k,v in pairs(world.FoodLocation:GetChildren()) do
+        v.Food:Destroy()
+        --向所有人发起流程，关闭详情ui
+        --NetUtil.Broadcast()
+    end
+end
+
+function CookS:SycnTimeSEventHandler(_clock)
+    if _clock == 6 then
+        this:DestroyAllFood()
     end
 end
 

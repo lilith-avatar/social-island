@@ -31,6 +31,8 @@ function GuiCook:DataInit()
     this.remainDesk = 0
     --* 打赏需要的参数
     this.cookUserId = nil
+
+    this.canEat = false
 end
 
 function GuiCook:NodeDef()
@@ -158,12 +160,17 @@ function GuiCook:InteractCEventHandler(_gameId)
     if _gameId == 26 then
         this:ShowUI()
     elseif _gameId == 27 then
-        this:ShowDetail()
+        if this.canEat then
+            this:ShowDetail()
+        else
+            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "宴会还没有开始，晚上再来吧", 2, false)
+        end
     end
 end
 
 function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
+        
         this:HideGui()
         NetUtil.Fire_S("FoodRewardEvent", localPlayer.UserId, this.cookUserId, _purchaseCoin)
     end
@@ -378,6 +385,11 @@ function GuiCook:Update(dt)
 end
 
 function GuiCook:SycnTimeCEventHandler(_clock)
+    if _clock >=19 or _clock <= 6 then
+        this.canEat = true
+    else
+        this.canEat = false
+    end
 end
 
 return GuiCook

@@ -6,8 +6,6 @@ local Chair, this = ModuleUtil.New('Chair', ClientBase)
 
 ---初始化函数
 function Chair:Init()
-    print('[Chair] Init()')
-    Chair:DataInit()
 end
 
 function Chair:DataInit()

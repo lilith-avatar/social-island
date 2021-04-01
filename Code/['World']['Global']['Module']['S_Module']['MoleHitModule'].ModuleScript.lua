@@ -70,8 +70,8 @@ function MoleHit:DataInit()
         ufo = function()
             UFOMgr:ActiveUFO()
         end,
-        maze = function ()
-            NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
+        maze = function()
+            NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, Const.GameEnum.MAZE)
         end
     }
 end
@@ -97,7 +97,7 @@ function MoleHit:RefreashMole(_type)
         -- 绑定碰撞事件
         v.OnCollisionBegin:Connect(
             function(_hitObject)
-                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
+                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == "PlayerAvatarInstance" then
                     NetUtil.Fire_C(
                         "GetMolePriceEvent",
                         _hitObject,
@@ -111,7 +111,7 @@ function MoleHit:RefreashMole(_type)
         )
         v.OnCollisionEnd:Connect(
             function(_hitObject)
-                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
+                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == "PlayerAvatarInstance" then
                     NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                 end
             end
@@ -143,9 +143,10 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         2,
         true
     )
-    for i=1, math.random(1, 3) do
-        NetUtil.Fire_C('GetItemFromPoolEvent',world:GetPlayerByUserId(_uid),9, 0)
+    for i = 1, math.random(1, 3) do
+        NetUtil.Fire_C("GetItemFromPoolEvent", player, 9, 0)
     end
+
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
@@ -160,7 +161,6 @@ end
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
-	SoundUtil.Play3DSE(_pit.Mole.Position,116)
     local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
     tweener:Play()
     invoke(
@@ -172,6 +172,7 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
         end,
         1
     )
+    SoundUtil.Play3DSE(_pit.Mole.Position,116)
     --解除绑定
     _pit.OnCollisionBegin:Clear()
     _pit.OnCollisionEnd:Clear()
