@@ -405,7 +405,6 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
             if _isBegin then
                 _hitObject.BounceInteractUID.Value = localPlayer.UserId
                 NetUtil.Fire_S('InteractSEvent', localPlayer, 17)
-                SoundUtil.Play2DSE(localPlayer.UserId, 22)
             end
         end
         if _hitObject.GrassInteractUID then
