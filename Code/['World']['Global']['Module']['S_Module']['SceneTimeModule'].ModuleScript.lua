@@ -124,7 +124,7 @@ function SceneTime:GetNextClockData()
     for k, v in pairs(tmpTable) do
         if this.clock == v.ClockTime then
 			--print(tmpTable[k + 1].ClockTime or Config.TimeSkySetting[6].ClockTime)
-            return tmpTable[k + 1] or Config.TimeSkySetting[6]
+            return tmpTable[k + 1] or tmpTable[1]
         end
     end
 	
