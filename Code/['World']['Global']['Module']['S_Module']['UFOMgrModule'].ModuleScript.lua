@@ -54,7 +54,7 @@ end
 
 --- 开启UFO
 function UFOMgr:ActiveUFO()
-    durUFO = 120
+    durUFO = 45
     UFO:SetActive(true)
     NetUtil.Broadcast('ShowNoticeInfoEvent', '神秘的UFO出现了，天空出现了大量金币', 10, Vector3(54.3585, 66.6861, 24.6156))
 end

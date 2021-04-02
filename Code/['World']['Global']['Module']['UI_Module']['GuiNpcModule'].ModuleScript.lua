@@ -43,6 +43,7 @@ function GuiNpc:InitGui()
     shopBtn = npcGui.ShopBtn
     leaveBtn = npcGui.LeaveBtn
     dialogTxt = npcGui.DialogTxt
+	NameTxt = npcGui.NameTxt
 end
 
 --- 初始化表格
@@ -112,6 +113,7 @@ function OpenNpcGui()
     portraitImg.Visible = portrait ~= nil
 
     taskItemID = ItemMgr:GetTaskItem(currNpcId)
+	NameTxt.Text = LanguageUtil.GetText(NpcInfo[currNpcId].Name)
     if taskItemID == 0 then
         dialogTxt.Text = PickARandomDialog()
     else

@@ -125,7 +125,7 @@ function Pet:GetMoveTable(_pos)
     local result = 0
     moveTable, result = petOBJ:GetWaypoints(petOBJ.Position, _pos, 0.1, 1, 3)
     if result > 2 then
-        print('寻路失败', result, petOBJ, petData.state)
+        --print('寻路失败', result, petOBJ, petData.state)
     end
 end
 

@@ -22,7 +22,7 @@ local NpcInfoXls = {
         BubbleId = {2001},
         GameId = nil,
         PetBattleSwitch = false,
-        ShopId = 1,
+        ShopId = nil,
         PortraitRes = ''
     },
     [2] = {

@@ -12,7 +12,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_1',
         Ico = '',
         Model = 'Meal1',
-        BuffId = nil,
+        BuffId = 11,
         BuffDur = 30.0
     },
     [2] = {
@@ -21,7 +21,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_2',
         Ico = '',
         Model = 'Meal2',
-        BuffId = nil,
+        BuffId = 47,
         BuffDur = 30.0
     },
     [3] = {
@@ -30,7 +30,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_3',
         Ico = '',
         Model = 'Meal3',
-        BuffId = nil,
+        BuffId = 7,
         BuffDur = 30.0
     },
     [4] = {
@@ -39,7 +39,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_4',
         Ico = '',
         Model = 'Meal4',
-        BuffId = nil,
+        BuffId = 43,
         BuffDur = 30.0
     },
     [5] = {
@@ -48,7 +48,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_5',
         Ico = '',
         Model = 'Meal5',
-        BuffId = nil,
+        BuffId = 45,
         BuffDur = 30.0
     },
     [6] = {
@@ -57,7 +57,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_6',
         Ico = '',
         Model = 'Meal7',
-        BuffId = nil,
+        BuffId = 6,
         BuffDur = 30.0
     },
     [7] = {
@@ -66,7 +66,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_7',
         Ico = '',
         Model = 'Meal8',
-        BuffId = nil,
+        BuffId = 14,
         BuffDur = 30.0
     },
     [8] = {
@@ -75,7 +75,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_8',
         Ico = '',
         Model = 'Meal9',
-        BuffId = nil,
+        BuffId = 12,
         BuffDur = 30.0
     },
     [9] = {
@@ -84,7 +84,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_9',
         Ico = '',
         Model = 'Meal10',
-        BuffId = nil,
+        BuffId = 13,
         BuffDur = 30.0
     },
     [10] = {
@@ -93,7 +93,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_10',
         Ico = '',
         Model = 'Meal11',
-        BuffId = nil,
+        BuffId = 8,
         BuffDur = 30.0
     },
     [11] = {
@@ -102,7 +102,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_11',
         Ico = '',
         Model = 'Meal12',
-        BuffId = nil,
+        BuffId = 51,
         BuffDur = 30.0
     },
     [12] = {
@@ -111,7 +111,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_12',
         Ico = '',
         Model = 'Meal13',
-        BuffId = nil,
+        BuffId = 52,
         BuffDur = 30.0
     },
     [13] = {
@@ -120,7 +120,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_13',
         Ico = '',
         Model = 'Meal14',
-        BuffId = nil,
+        BuffId = 44,
         BuffDur = 30.0
     },
     [14] = {
@@ -129,7 +129,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_14',
         Ico = '',
         Model = 'Meal15',
-        BuffId = nil,
+        BuffId = 49,
         BuffDur = 30.0
     },
     [15] = {
@@ -138,7 +138,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_15',
         Ico = '',
         Model = 'Meal6',
-        BuffId = nil,
+        BuffId = 45,
         BuffDur = 30.0
     },
     [16] = {
@@ -147,7 +147,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_16',
         Ico = '',
         Model = 'Meal16',
-        BuffId = nil,
+        BuffId = 46,
         BuffDur = 30.0
     },
     [17] = {
@@ -156,7 +156,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_17',
         Ico = '',
         Model = 'Meal16',
-        BuffId = nil,
+        BuffId = 46,
         BuffDur = 30.0
     },
     [18] = {
@@ -165,7 +165,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_18',
         Ico = '',
         Model = 'Meal16',
-        BuffId = nil,
+        BuffId = 46,
         BuffDur = 30.0
     },
     [19] = {
@@ -174,7 +174,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_19',
         Ico = '',
         Model = 'Meal16',
-        BuffId = nil,
+        BuffId = 46,
         BuffDur = 30.0
     },
     [20] = {
@@ -183,7 +183,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_20',
         Ico = '',
         Model = 'Meal2',
-        BuffId = nil,
+        BuffId = 47,
         BuffDur = 30.0
     },
     [21] = {
@@ -192,7 +192,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_21',
         Ico = '',
         Model = 'Meal2',
-        BuffId = nil,
+        BuffId = 47,
         BuffDur = 30.0
     },
     [22] = {
@@ -201,7 +201,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_22',
         Ico = '',
         Model = 'Meal2',
-        BuffId = nil,
+        BuffId = 47,
         BuffDur = 30.0
     },
     [23] = {
@@ -210,7 +210,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_23',
         Ico = '',
         Model = 'Meal2',
-        BuffId = nil,
+        BuffId = 47,
         BuffDur = 30.0
     },
     [24] = {
@@ -219,7 +219,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_24',
         Ico = '',
         Model = 'Meal3',
-        BuffId = nil,
+        BuffId = 7,
         BuffDur = 30.0
     },
     [25] = {
@@ -228,7 +228,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_25',
         Ico = '',
         Model = 'Meal7',
-        BuffId = nil,
+        BuffId = 6,
         BuffDur = 30.0
     },
     [26] = {
@@ -237,7 +237,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_26',
         Ico = '',
         Model = 'Meal7',
-        BuffId = nil,
+        BuffId = 6,
         BuffDur = 30.0
     },
     [27] = {
@@ -246,7 +246,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_27',
         Ico = '',
         Model = 'Meal7',
-        BuffId = nil,
+        BuffId = 6,
         BuffDur = 30.0
     },
     [28] = {
@@ -255,7 +255,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_28',
         Ico = '',
         Model = 'Meal7',
-        BuffId = nil,
+        BuffId = 6,
         BuffDur = 30.0
     },
     [29] = {
@@ -264,7 +264,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_29',
         Ico = '',
         Model = 'Meal7',
-        BuffId = nil,
+        BuffId = 6,
         BuffDur = 30.0
     },
     [30] = {
@@ -273,7 +273,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_30',
         Ico = '',
         Model = 'Meal9',
-        BuffId = nil,
+        BuffId = 50,
         BuffDur = 30.0
     }
 }
