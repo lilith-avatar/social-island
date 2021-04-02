@@ -1185,6 +1185,26 @@ local SoundXls = {
         MaxDistance = 7,
         Path = 'Audio/Foot_R',
         Info = '右脚步声'
+    },
+    [119] = {
+        ID = 119,
+        Name = 'Chest_Fall',
+        IsLoop = false,
+        Volume = 60.0,
+        MinDistance = 15,
+        MaxDistance = 30,
+        Path = 'Audio/Throw',
+        Info = '宝箱掉下'
+    },
+    [120] = {
+        ID = 120,
+        Name = 'Apple_Fall',
+        IsLoop = false,
+        Volume = 60.0,
+        MinDistance = 15,
+        MaxDistance = 30,
+        Path = 'Audio/Throw',
+        Info = '苹果掉下'
     }
 }
 

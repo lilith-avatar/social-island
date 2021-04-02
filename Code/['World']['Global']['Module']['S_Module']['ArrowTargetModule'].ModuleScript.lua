@@ -95,12 +95,14 @@ end
 function ArrowTarget:HitReaction2(_target)
     _target.obj:SetActive(false)
     ScenesInteract:InstanceInteractOBJ(36, _target.obj.Position)
+	SoundUtil.Play3DSE(_target.obj, 120)
     _target.resetCD = 0
 end
 
 function ArrowTarget:HitReaction3(_target)
     _target.obj:SetActive(false)
     ScenesInteract:InstanceInteractOBJ(37, _target.obj.Position)
+	SoundUtil.Play3DSE(_target.obj, 119)
     _target.resetCD = 0
 end
 
