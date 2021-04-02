@@ -167,7 +167,11 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
         else
-            SoundUtil.Play2DSE(localPlayer.UserId, 17)
+			if _dir == 'R' then
+				SoundUtil.Play2DSE(localPlayer.UserId, 118)
+			else
+				SoundUtil.Play2DSE(localPlayer.UserId, 17)
+			end
         end
         localPlayer.Avatar['Bone_' .. _dir .. '_Foot'].FootStep.OnCollisionEnd:Clear()
         invoke(

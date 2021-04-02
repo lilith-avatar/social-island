@@ -170,7 +170,7 @@ local SoundXls = {
         ID = 17,
         Name = 'Foot_L',
         IsLoop = false,
-        Volume = 10.0,
+        Volume = 60.0,
         MinDistance = 3,
         MaxDistance = 7,
         Path = 'Audio/Foot_L',
@@ -1175,6 +1175,16 @@ local SoundXls = {
         MaxDistance = 10,
         Path = 'Audio/Chest_Open',
         Info = '打开宝箱'
+    },
+    [118] = {
+        ID = 118,
+        Name = 'Foot_R',
+        IsLoop = false,
+        Volume = 60.0,
+        MinDistance = 3,
+        MaxDistance = 7,
+        Path = 'Audio/Foot_R',
+        Info = '右脚步声'
     }
 }
 
