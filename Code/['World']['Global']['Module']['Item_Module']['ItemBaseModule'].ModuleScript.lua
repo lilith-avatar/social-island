@@ -41,6 +41,7 @@ function ItemBase:Equip()
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     wait(0.1)
     localPlayer.Avatar:PlayAnimation(self.baseData.TakeOutAniName, 8, 1, 0.2, true, false, 1)
+    GuiControl:UpdateUseBtnIcon(self.baseData.UseBtnIcon)
 
     invoke(
         function()
@@ -77,11 +78,20 @@ end
 --取下装备
 function ItemBase:Unequip()
     ItemMgr.curEquipmentID = 0
-    self.equipObj:Destroy()
+    local effect = world:CreateInstance('UnequipEffect', 'UnequipEffect', self.equipObj.Parent, self.equipObj.Position)
+    invoke(
+        function()
+            self.equipObj:Destroy()
+            wait(.3)
+            effect:Destroy()
+        end,
+        0.2
+    )
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
     --wait(self.baseData.TakeOutTime)
     self:PutIntoBag()
     GuiControl:UpdateTakeOffBtn()
+    GuiControl:UpdateUseBtnIcon()
 end
 
 function ItemBase:Update(dt)
