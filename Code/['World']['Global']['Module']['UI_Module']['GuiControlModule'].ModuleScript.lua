@@ -16,7 +16,6 @@ local pickItemObj = 0
 function GuiControl:Init()
     print('[GuiControl] Init()')
     self:InitGui()
-    self:InitNodes()
     self:InitListener()
 end
 
@@ -30,9 +29,6 @@ function GuiControl:InitGui()
     ctrlFigure = gui.Ctrl
 
     GuiControl:ResetDefUIEventHandler()
-end
-
-function GuiControl:InitNodes()
 end
 
 function GuiControl:InitListener()
@@ -215,6 +211,7 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
         gui.Ctrl.UseBtn:SetActive(config.UseBtnActive)
         gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
         gui.Ctrl.LeaveBtn:SetActive(config.LeaveBtnActive)
+        gui.Ctrl.SocialAnimBtn:SetActive(config.SocialAnimActive)
     end
     if config.UseBtnIcon ~= '' then
         this:ChangeUseBtnIcon(config.UseBtnIcon)

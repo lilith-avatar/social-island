@@ -8,7 +8,7 @@
 local TimeSkySettingXls = {
     [1] = {
         ClockTime = 1,
-        TimeName = 'Night',
+        TimeName = 'Night5',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -37,7 +37,7 @@ local TimeSkySettingXls = {
     },
     [2] = {
         ClockTime = 2,
-        TimeName = 'Night',
+        TimeName = 'Night6',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -66,7 +66,7 @@ local TimeSkySettingXls = {
     },
     [3] = {
         ClockTime = 3,
-        TimeName = 'Night',
+        TimeName = 'Night7',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -95,7 +95,7 @@ local TimeSkySettingXls = {
     },
     [4] = {
         ClockTime = 4,
-        TimeName = 'Night',
+        TimeName = 'Night8',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -124,7 +124,7 @@ local TimeSkySettingXls = {
     },
     [5] = {
         ClockTime = 5,
-        TimeName = 'Night',
+        TimeName = 'Night9',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -501,7 +501,7 @@ local TimeSkySettingXls = {
     },
     [18] = {
         ClockTime = 18,
-        TimeName = 'Dusk',
+        TimeName = 'Dusk1',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -530,7 +530,7 @@ local TimeSkySettingXls = {
     },
     [19] = {
         ClockTime = 19,
-        TimeName = 'Dusk',
+        TimeName = 'Dusk2',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -559,7 +559,7 @@ local TimeSkySettingXls = {
     },
     [20] = {
         ClockTime = 20,
-        TimeName = 'Night',
+        TimeName = 'Night1',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -588,7 +588,7 @@ local TimeSkySettingXls = {
     },
     [21] = {
         ClockTime = 21,
-        TimeName = 'Night',
+        TimeName = 'Night2',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -617,7 +617,7 @@ local TimeSkySettingXls = {
     },
     [22] = {
         ClockTime = 22,
-        TimeName = 'Night',
+        TimeName = 'Night3',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
@@ -675,7 +675,7 @@ local TimeSkySettingXls = {
     },
     [24] = {
         ClockTime = 24,
-        TimeName = 'Night',
+        TimeName = 'Night4',
         Style = 0,
         Brightness = 0.2,
         Latitude = 60.0,
