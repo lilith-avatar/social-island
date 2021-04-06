@@ -30,7 +30,9 @@ function GuiGuitar:NodeDef()
     this.gui = localPlayer.Local.GuitarGui
     this.fret = this.gui.FretPanel:GetChildren()
     this.string = this.gui.StringPanel:GetChildren()
-    this.practiceBtn = this.gui.PracticeBtn
+    this.chordBtn = this.gui.ChordPanel:GetChildren()
+    this.chordModeBtn = this.gui.ModePanel.ChordModeBtn
+    this.proModeBtn = this.gui.ModePanel.ProModeBtn
     this.closeBtn = this.gui.CloseBtn
 end
 
@@ -67,15 +69,28 @@ function GuiGuitar:EventBind()
             )
         end
     end
-    this.practiceBtn.OnClick:Connect(
-        function()
-            this:ChangeMode()
-        end
-    )
+    for k, v in pairs(this.chordBtn) do
+        v.OnClick:Connect(
+            function()
+                this:ChangeChord(v.Name)
+                v.Color = Color(0, 85, 255, 255)
+            end
+        )
+    end
     this.closeBtn.OnClick:Connect(
         function()
             this:StringInit()
             this:HideGui()
+        end
+    )
+    this.chordModeBtn.OnClick:Connect(
+        function()
+            this:ChangeMode(true)
+        end
+    )
+    this.proModeBtn.OnClick:Connect(
+        function()
+            this:ChangeMode(false)
         end
     )
 end
@@ -88,9 +103,16 @@ function GuiGuitar:PlayString(_string)
     Tweener:Play()
 end
 
-function GuiGuitar:ChangeMode()
-    this.practiceMode = not this.practiceMode
-    this.practiceBtn.Color = this.practiceMode and Color(85, 85, 127) or Color(255, 255, 255)
+function GuiGuitar:ChangeMode(_isChordMode)
+    --this.practiceMode = not this.practiceMode
+    --this.practiceBtn.Color = this.practiceMode and Color(85, 85, 127) or Color(255, 255, 255)
+    this.gui.ChordPanel:SetActive(_isChordMode)
+    if _isChordMode then
+        this:ChangeChord(this.chordBtn[1].Name)
+        this.chordBtn[1].Color = Color(0, 85, 255, 255)
+    else
+        this:StringInit()
+    end
 end
 
 --- 按弦
@@ -124,6 +146,16 @@ end
 function GuiGuitar:HideGui()
     this.gui:SetActive(false)
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+end
+
+function GuiGuitar:ChangeChord(_chord)
+    --所有的按钮回复白色
+    for k, v in pairs(this.chordBtn) do
+        v.Color = Color(255, 255, 255, 255)
+    end
+    for k, v in pairs(Config.ChordFret[_chord].StringFret) do
+        this.stringPitch[k].pitchFret = v
+    end
 end
 
 return GuiGuitar
