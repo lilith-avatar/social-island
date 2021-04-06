@@ -153,7 +153,6 @@ end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerClap()
-    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:PlayAnimation('SocialApplause', 8, 1, 0, true, false, 1)
     --拍掌音效
     SoundUtil.Play2DSE(localPlayer.UserId, 1)
