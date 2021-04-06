@@ -2,7 +2,7 @@
 --- @module ScenesInteract Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman.Yen Yuan
-local ScenesInteract, this = ModuleUtil.New('ScenesInteract', ServerBase)
+local ScenesInteract, this = ModuleUtil.New("ScenesInteract", ServerBase)
 
 --- 变量声明
 --交互物体
@@ -43,7 +43,7 @@ local potOBJ = {}
 
 --- 初始化
 function ScenesInteract:Init()
-    print('[ScenesInteract] Init()')
+    print("[ScenesInteract] Init()")
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -130,7 +130,7 @@ function ScenesInteract:InstanceInteractOBJ(_id, _pos)
             resetTime = config.ResetTime,
             resetCD = 0
         }
-        world:CreateObject('StringValueObject', 'ScenesInteractUID', temp.obj)
+        world:CreateObject("StringValueObject", "ScenesInteractUID", temp.obj)
         table.insert(interactOBJ, temp)
     end
 end
@@ -147,9 +147,9 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
         invoke(
             function()
                 _bounce.tweener1:Play()
-				_player.LinearVelocity = Vector3(0, 20, 0)
-				SoundUtil.Play3DSE(_bounce.obj.Position, 22)
-				wait(0.1)
+                _player.LinearVelocity = Vector3(0, 20, 0)
+                SoundUtil.Play3DSE(_bounce.obj.Position, 22)
+                wait(0.1)
                 _bounce.tweener1:Destroy()
                 _bounce.tweener2:Play()
                 wait(0.1)
@@ -157,7 +157,7 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
                 _bounce.tweener2:Destroy()
                 wait(0.2)
                 _bounce.isbouncing = false
-                _bounce.obj.BounceInteractUID.Value = ''
+                _bounce.obj.BounceInteractUID.Value = ""
                 _bounce.tweener3:Destroy()
             end
         )
@@ -209,7 +209,7 @@ function ScenesInteract:TrojanShake(dt)
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
             -- 给钱
-            NetUtil.Fire_C('UpdateCoinEvent', localPlayer, 1)
+            NetUtil.Fire_C("UpdateCoinEvent", localPlayer, 1)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
@@ -221,7 +221,7 @@ function ScenesInteract:TentShake(dt)
         if v.num >= 2 then
             v.timer = v.timer + dt
             if v.timer >= 1 then
-                local tweener = Tween:ShakeProperty(v.model, {'Rotation'}, 0.5, 1)
+                local tweener = Tween:ShakeProperty(v.model, {"Rotation"}, 0.5, 1)
                 tweener:Play()
                 v.timer = 0
             end
@@ -248,16 +248,16 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             if v.obj.ScenesInteractUID.Value == _player.UserId then
                 if v.useCount > 0 then
                     if v.itemID ~= nil then
-                        NetUtil.Fire_C('GetItemEvent', _player, v.itemID)
+                        NetUtil.Fire_C("GetItemEvent", _player, v.itemID)
                         if v.isUse then
                             wait(.1)
-                            NetUtil.Fire_C('UseItemInBagEvent', _player, v.itemID)
+                            NetUtil.Fire_C("UseItemInBagEvent", _player, v.itemID)
                         end
                     end
                     if v.addBuffID then
-                        NetUtil.Fire_C('GetBuffEvent', _player, v.addBuffID, v.addBuffDur)
+                        NetUtil.Fire_C("GetBuffEvent", _player, v.addBuffID, v.addBuffDur)
                     end
-                    NetUtil.Fire_S('SpawnCoinEvent', 'P', v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
+                    NetUtil.Fire_S("SpawnCoinEvent", "P", v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
                     v.useCount = v.useCount - 1
                     if v.useCount == 0 then
                         v.obj:SetActive(false)
@@ -265,17 +265,17 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 else
                     v.obj:SetActive(false)
                 end
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
                 return
             end
         end
     end
     if _id == 15 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 15)
         for k, v in pairs(seatOBJ) do
             if v.SeatInteractUID.Value == _player.UserId then
                 v:Sit(_player)
-                _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+                _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
                 SoundUtil.Play3DSE(_player.Position, 14)
             end
@@ -294,8 +294,8 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
             end
         end
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-        NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 16)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
+        NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 16)
     end
     if _id == 17 then
         for k, v in pairs(bounceOBJ) do
@@ -312,12 +312,12 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         end
     end
     if _id == 20 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 20)
         for k, v in pairs(trojanObj) do
             if v.TrojanUID.Value == _player.UserId then
                 v.Seat:Sit(_player)
-                _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
-                _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+                _player.Avatar:PlayAnimation("HTRide", 3, 1, 0, true, true, 1)
+                _player.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
                 -- 音效
                 this.TrojanList[v.Name] = {
                     model = v,
@@ -331,14 +331,15 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         end
     end
     if _id == 21 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 21)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 21)
     end
     if _id == 22 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 22)
         for k, v in pairs(tentOBJ) do
             if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
                 _player.Avatar:SetActive(false)
-				SoundUtil.Play3DSE(_player.Position, 103)
+                NetUtil.Fire_C("GetBuffEvent", _player, 20, 1)
+                SoundUtil.Play3DSE(_player.Position, 103)
                 if not this.TentList[v.Name] then
                     this.TentList[v.Name] = {
                         model = v,
@@ -353,18 +354,18 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     end
     if _id == 23 then
         for k, v in pairs(bombOBJ) do
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 23)
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 23)
             if v.BombUID.Value == _player.UserId then
                 _player.LinearVelocity = (v.Position - _player.Position).Normalized * 10
-                NetUtil.Fire_C('FsmTriggerEvent', v.insidePlayer, 'Fly')
+                NetUtil.Fire_C("FsmTriggerEvent", v.insidePlayer, "Fly")
             end
         end
     end
     if _id == 24 then
         for k, v in pairs(radioOBJ) do
-            NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 24)
+            NetUtil.Fire_C("OpenDynamicEvent", _player, "Interact", 24)
             if v.RadioUID.Value == _player.UserId then
-				SoundUtil.Play3DSE(_player.Position, 104)
+                SoundUtil.Play3DSE(_player.Position, 104)
                 this.RadioData.songIndex = this.RadioData.songIndex + 1
                 if this.RadioData.songIndex > #this.RadioData.songList then
                     this.RadioData.songIndex = 1
@@ -388,7 +389,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
     end
     if _id == 26 then
         for k, v in pairs(potOBJ) do
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 26)
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player, 26)
             if v.PotUID.Value == _player.UserId then
                 v.Off:SetActive(false)
                 v.On:SetActive(true)
@@ -402,8 +403,8 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         for k, v in pairs(seatOBJ) do
             if v.SeatInteractUID.Value == _player.UserId then
                 v:Leave(_player)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
     end
@@ -411,10 +412,10 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         for k, v in pairs(trojanObj) do
             if v.TrojanUID.Value == _player.UserId then
                 v.Seat:Leave(_player)
-                _player.Avatar:StopAnimation('HTRide', 3)
-                _player.Avatar:StopAnimation('SitIdle', 2)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                _player.Avatar:StopAnimation("HTRide", 3)
+                _player.Avatar:StopAnimation("SitIdle", 2)
+                NetUtil.Fire_C("FsmTriggerEvent", _player, "Jump")
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
                 SoundUtil.Stop3DSE(this.TrojanList[v.Name].sound)
                 v.Forward = this.TrojanList[v.Name].originForward
                 this.TrojanList[v.Name] = nil
@@ -422,10 +423,10 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         end
     end
     if _id == 21 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
     end
     if _id == 22 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+        NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
         _player.Avatar:SetActive(true)
         for k, v in pairs(tentOBJ) do
             if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
@@ -441,20 +442,20 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     if _id == 23 then
         for k, v in pairs(bombOBJ) do
             if v.BombUID.Value == _player.UserId then
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
     end
     if _id == 24 then
         for k, v in pairs(radioOBJ) do
             if v.RadioUID.Value == _player.UserId then
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             end
         end
     end
     if _id == 26 then
         for k, v in pairs(potOBJ) do
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+            NetUtil.Fire_C("ChangeMiniGameUIEvent", _player)
             if v.PotUID.Value == _player.UserId then
                 v.Off:SetActive(true)
                 v.On:SetActive(false)
