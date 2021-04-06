@@ -47,7 +47,6 @@ function GuiGuitar:StringInit()
     end
 end
 
-
 function GuiGuitar:EventBind()
     for k, v in ipairs(this.string) do
         v.OnEnter:Connect(
@@ -70,11 +69,13 @@ function GuiGuitar:EventBind()
             )
         end
     end
-    for k,v in pairs(this.chordBtn) do
-        v.OnClick:Connect(function()
-            this:ChangeChord(v.Name)
-            v.Color = Color(0, 85, 255, 255)
-        end)
+    for k, v in pairs(this.chordBtn) do
+        v.OnClick:Connect(
+            function()
+                this:ChangeChord(v.Name)
+                v.Color = Color(0, 85, 255, 255)
+            end
+        )
     end
     this.closeBtn.OnClick:Connect(
         function()
@@ -106,6 +107,12 @@ function GuiGuitar:ChangeMode(_isChordMode)
     --this.practiceMode = not this.practiceMode
     --this.practiceBtn.Color = this.practiceMode and Color(85, 85, 127) or Color(255, 255, 255)
     this.gui.ChordPanel:SetActive(_isChordMode)
+    if _isChordMode then
+        this:ChangeChord(this.chordBtn[1].Name)
+        this.chordBtn[1].Color = Color(0, 85, 255, 255)
+    else
+        this:StringInit()
+    end
 end
 
 --- 按弦
@@ -143,10 +150,10 @@ end
 
 function GuiGuitar:ChangeChord(_chord)
     --所有的按钮回复白色
-    for k,v in pairs(this.chordBtn) do
-        v.Color = Color(255,255,255,255)
+    for k, v in pairs(this.chordBtn) do
+        v.Color = Color(255, 255, 255, 255)
     end
-    for k,v in pairs(Config.ChordFret[_chord].StringFret) do
+    for k, v in pairs(Config.ChordFret[_chord].StringFret) do
         this.stringPitch[k].pitchFret = v
     end
 end
