@@ -152,11 +152,10 @@ function PlayerCtrl:PlayerJump()
 end
 
 -- 鼓掌逻辑
-function PlayerCtrl:PlayerClap()
-    localPlayer.Avatar:PlayAnimation('SocialApplause', 8, 1, 0, true, false, 1)
-    --拍掌音效
-    SoundUtil.Play2DSE(localPlayer.UserId, 1)
+function PlayerCtrl:PlayerHello()
+    localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
 end
+
 --脚步声
 function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
     if

@@ -64,7 +64,7 @@ function GuiControl:InitListener()
              then
                 return
             end
-            PlayerCtrl:PlayerClap()
+            PlayerCtrl:PlayerHello()
         end
     )
     ctrlFigure.UseBtn.OnEnter:Connect(
@@ -135,6 +135,12 @@ function GuiControl:UpdateUseBtnMask(_amount)
     elseif _amount > 0 and ctrlFigure.UseBtn.Mask.ActiveSelf == false then
         ctrlFigure.UseBtn.Mask:SetActive(true)
     end
+end
+
+--更新UseBtn的图标
+function GuiControl:UpdateUseBtnIcon(_icon)
+    _icon = _icon or 'Icon_Applaud'
+    ctrlFigure.UseBtn.Img.Texture = ResourceManager.GetTexture('UI/IconNew/' .. _icon)
 end
 
 --- 设置通用UI事件

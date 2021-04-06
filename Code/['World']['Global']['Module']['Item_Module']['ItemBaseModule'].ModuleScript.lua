@@ -41,6 +41,7 @@ function ItemBase:Equip()
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     wait(0.1)
     localPlayer.Avatar:PlayAnimation(self.baseData.TakeOutAniName, 8, 1, 0.2, true, false, 1)
+    GuiControl:UpdateUseBtnIcon(self.baseData.UseBtnIcon)
 
     invoke(
         function()
@@ -82,6 +83,7 @@ function ItemBase:Unequip()
     --wait(self.baseData.TakeOutTime)
     self:PutIntoBag()
     GuiControl:UpdateTakeOffBtn()
+    GuiControl:UpdateUseBtnIcon()
 end
 
 function ItemBase:Update(dt)
