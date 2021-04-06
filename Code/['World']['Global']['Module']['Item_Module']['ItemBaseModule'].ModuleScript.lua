@@ -78,7 +78,15 @@ end
 --取下装备
 function ItemBase:Unequip()
     ItemMgr.curEquipmentID = 0
-    self.equipObj:Destroy()
+    local effect = world:CreateInstance('UnequipEffect', 'UnequipEffect', self.equipObj.Parent, self.equipObj.Position)
+    invoke(
+        function()
+            self.equipObj:Destroy()
+            wait(.3)
+            effect:Destroy()
+        end,
+        0.2
+    )
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
     --wait(self.baseData.TakeOutTime)
     self:PutIntoBag()
