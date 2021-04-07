@@ -19,7 +19,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 600.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -36,7 +36,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -53,7 +53,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -70,7 +70,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 600.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -87,7 +87,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 600.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -104,7 +104,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -121,7 +121,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -138,7 +138,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -155,7 +155,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -172,7 +172,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 109,
         IsPre = true
     },
@@ -189,7 +189,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -206,7 +206,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -223,7 +223,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = nil,
         IsPre = true
     },
@@ -240,7 +240,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 109,
         IsPre = true
     },
@@ -257,7 +257,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 109,
         IsPre = true
     },
@@ -274,7 +274,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 109,
         IsPre = true
     },
@@ -291,7 +291,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 109,
         IsPre = true
     },
@@ -308,7 +308,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -325,7 +325,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -342,7 +342,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -359,7 +359,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -376,7 +376,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -393,7 +393,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = nil,
         IsPre = true
     },
@@ -410,7 +410,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -427,7 +427,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -444,7 +444,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -461,7 +461,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -478,7 +478,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -495,7 +495,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -512,7 +512,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -529,7 +529,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -546,7 +546,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -563,7 +563,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -580,7 +580,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -597,7 +597,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -614,7 +614,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = false
     },
@@ -631,7 +631,7 @@ local ScenesInteractXls = {
         RewardCoin = 600,
         UseCount = 1,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 117,
         IsPre = false
     },
@@ -648,7 +648,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -665,7 +665,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -682,7 +682,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -699,7 +699,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -716,7 +716,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -733,7 +733,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -750,7 +750,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -767,7 +767,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -784,7 +784,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 300.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 109,
         IsPre = true
     },
@@ -801,7 +801,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -818,7 +818,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -835,7 +835,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -852,7 +852,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -869,7 +869,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -886,7 +886,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -903,7 +903,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -920,7 +920,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -937,7 +937,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -954,7 +954,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -971,7 +971,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -988,7 +988,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1005,7 +1005,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1022,7 +1022,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1039,7 +1039,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 999999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -1056,7 +1056,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 999999,
         ResetTime = -1.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 25,
         IsPre = true
     },
@@ -1073,7 +1073,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1090,7 +1090,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1107,7 +1107,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1124,7 +1124,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1141,7 +1141,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1158,7 +1158,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1175,7 +1175,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -1192,7 +1192,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -1209,7 +1209,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 26,
         IsPre = true
     },
@@ -1226,7 +1226,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1243,7 +1243,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1260,7 +1260,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1277,7 +1277,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1294,7 +1294,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1311,7 +1311,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1328,7 +1328,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1345,7 +1345,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     },
@@ -1362,7 +1362,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 5.0,
-        AnitName = '',
+        AnitName = 'PickUpLight',
         InteractAEID = 24,
         IsPre = true
     }

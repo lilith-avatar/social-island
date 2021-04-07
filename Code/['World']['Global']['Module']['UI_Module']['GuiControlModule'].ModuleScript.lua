@@ -16,7 +16,6 @@ local pickItemObj = 0
 function GuiControl:Init()
     print('[GuiControl] Init()')
     self:InitGui()
-    self:InitNodes()
     self:InitListener()
 end
 
@@ -30,9 +29,6 @@ function GuiControl:InitGui()
     ctrlFigure = gui.Ctrl
 
     GuiControl:ResetDefUIEventHandler()
-end
-
-function GuiControl:InitNodes()
 end
 
 function GuiControl:InitListener()
@@ -68,7 +64,7 @@ function GuiControl:InitListener()
              then
                 return
             end
-            PlayerCtrl:PlayerClap()
+            PlayerCtrl:PlayerHello()
         end
     )
     ctrlFigure.UseBtn.OnEnter:Connect(
@@ -139,6 +135,12 @@ function GuiControl:UpdateUseBtnMask(_amount)
     elseif _amount > 0 and ctrlFigure.UseBtn.Mask.ActiveSelf == false then
         ctrlFigure.UseBtn.Mask:SetActive(true)
     end
+end
+
+--更新UseBtn的图标
+function GuiControl:UpdateUseBtnIcon(_icon)
+    _icon = _icon or 'Icon_Applaud'
+    ctrlFigure.UseBtn.Img.Texture = ResourceManager.GetTexture('UI/IconNew/' .. _icon)
 end
 
 --- 设置通用UI事件
@@ -215,6 +217,7 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
         gui.Ctrl.UseBtn:SetActive(config.UseBtnActive)
         gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
         gui.Ctrl.LeaveBtn:SetActive(config.LeaveBtnActive)
+        gui.Ctrl.SocialAnimBtn:SetActive(config.SocialAnimActive)
     end
     if config.UseBtnIcon ~= '' then
         this:ChangeUseBtnIcon(config.UseBtnIcon)
