@@ -37,6 +37,20 @@ local snailGameState = {
 -- 游戏状态
 local gameState = 1
 
+-- 蜗牛心情
+local snailEmo = {
+    'Normal',
+    'Happy',
+    'Sad',
+    'Excited',
+    'Confused'
+}
+
+--Billboard
+local championPanel
+local emoText = {}
+local championEffect
+
 --- 初始化
 function Snail:Init()
     print('[Snail] Init()')
@@ -59,12 +73,16 @@ function Snail:NodeRef()
         }
         startPoints[i] = world.MiniGames.Game_08_Snail.Track['Start' .. i]
         endPoints[i] = world.MiniGames.Game_08_Snail.Track['End' .. i]
+        emoText[i] = world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel['Emo' .. i]
     end
+    championPanel = world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel.ChampionPanel
+    championEffect = world.MiniGames.Game_08_Snail.Track.ChampionEffect
 end
 
 --- 数据变量初始化
 function Snail:DataInit()
     dis = (endPoints[1].Position - startPoints[1].Position).Magnitude
+    this:UpdateSnailEmo()
 end
 
 --- 节点事件绑定
@@ -230,12 +248,16 @@ function Snail:SnailFinish(_snailObjPool)
         for k, v in pairs(snailObjPool) do
             if v.state == snailActState.FINISH then
                 _snailObjPool.ranking = _snailObjPool.ranking + 1
-                if _snailObjPool.ranking == 1 then
-                    SoundUtil.Play3DSE(_snailObjPool.obj.Position, 38)
-                elseif _snailObjPool.ranking == 2 then
-                    SoundUtil.Play3DSE(_snailObjPool.obj.Position, 39)
-                end
             end
+        end
+        if _snailObjPool.ranking == 1 then
+            SoundUtil.Play3DSE(_snailObjPool.obj.Position, 38)
+            this:UpdateChampionUI(_snailObjPool.index)
+            championEffect:SetActive(false)
+            wait()
+            championEffect:SetActive(true)
+        elseif _snailObjPool.ranking == 2 then
+            SoundUtil.Play3DSE(_snailObjPool.obj.Position, 39)
         end
         this:ShowRank(_snailObjPool)
         this:GiveReward(_snailObjPool)
@@ -300,6 +322,9 @@ end
 --- 重置游戏
 function Snail:ResetSnailRace()
     for k, v in pairs(snailObjPool) do
+        for _, p in pairs(v.betPlayer) do
+            NetUtil.Fire_C('CSnailResetEvent', p.player)
+        end
         v.ranking = 0
         v.state = snailActState.READY
         v.moveStep = 0
@@ -318,7 +343,22 @@ function Snail:ResetSnailRace()
             1.5
         )
     end
+    this:UpdateSnailEmo()
     gameState = snailGameState.WAIT
+end
+
+--- 更新冠军显示
+function Snail:UpdateChampionUI(_index)
+    for k, v in pairs(championPanel:GetChildren()) do
+        v:SetActive(_index == k)
+    end
+end
+
+--- 更新蜗牛心情
+function Snail:UpdateSnailEmo()
+    for k, v in pairs(emoText) do
+        v.Text = snailEmo[math.random(5)]
+    end
 end
 
 function Snail:Update(dt)
