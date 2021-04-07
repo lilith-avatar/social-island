@@ -101,12 +101,26 @@ end
 
 --更新购买按钮显示
 function GuiStore:UpdateBuyBtn()
-    gui.ShopPanel.BuyBtn.Locked:SetActive(false)
-    for k, v in pairs(Data.Player.bag) do
-        if k == chosenItemID and v.count > 0 and tonumber(string.sub(tostring(chosenItemID), 1, 1)) < 6 then
-            gui.ShopPanel.BuyBtn.Locked:SetActive(true)
-            break
+    if chosenItemID ~= 0 then
+        gui.ShopPanel.BuyBtn:SetActive(true)
+        gui.ShopPanel.BuyBtn.Locked:SetActive(false)
+        gui.ShopPanel.BuyBtn.Text = '购买'
+        for k, v in pairs(Data.Player.bag) do
+            local typeConfig = Config.ItemType[Config.Item[k].Type]
+            if k == chosenItemID and v.count > 0 and typeConfig.IsGetRepeatedly == false then
+                gui.ShopPanel.BuyBtn.Locked:SetActive(true)
+                gui.ShopPanel.BuyBtn.Text = '已拥有'
+                break
+            end
         end
+        if Config.Shop[curNpcID][chosenItemID] then
+            if Config.Shop[curNpcID][chosenItemID].Price > Data.Player.coin then
+                gui.ShopPanel.BuyBtn.Locked:SetActive(true)
+                gui.ShopPanel.BuyBtn.Text = '金币不足'
+            end
+        end
+    else
+        gui.ShopPanel.BuyBtn:SetActive(false)
     end
 end
 
@@ -116,11 +130,25 @@ function GuiStore:UpdateBuyBtnUI(_sellBtn)
     if _sellBtn.ItemID.Value == 0 then
         _sellBtn:SetActive(false)
     else
+        --锁定显示
+        --[[_sellBtn.GoodsImg.LockImg.Visible = false
+        for k, v in pairs(Data.Player.bag) do
+            local typeConfig = Config.ItemType[Config.Item[k].Type]
+            if k == _sellBtn.ItemID.Value and v.count > 0 and typeConfig.IsGetRepeatedly == false then
+                _sellBtn.GoodsImg.LockImg.Visible = true
+                break
+            end
+        end]]
         --Icon和价格显示
         for k, v in pairs(Config.Item) do
             if v.ItemID == _sellBtn.ItemID.Value then
                 _sellBtn.PriceImg.PriceTxt.Text = Config.Shop[curNpcID][v.ItemID].Price
                 _sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. v.Icon)
+                if Config.Shop[curNpcID][v.ItemID].Price > Data.Player.coin then
+                    _sellBtn.PriceImg.PriceTxt.Color = Color(163, 163, 163, 255)
+                else
+                    _sellBtn.PriceImg.PriceTxt.Color = Color(0, 86, 142, 255)
+                end
                 break
             end
         end
@@ -129,16 +157,6 @@ function GuiStore:UpdateBuyBtnUI(_sellBtn)
             _sellBtn.GoodsImg.Chosen:SetActive(true)
         else
             _sellBtn.GoodsImg.Chosen:SetActive(false)
-        end
-        --锁定显示
-        for k, v in pairs(Data.Player.bag) do
-            if
-                k == _sellBtn.ItemID.Value and v.count > 0 and
-                    tonumber(string.sub(tostring(_sellBtn.ItemID.Value), 1, 1)) < 6
-             then
-                _sellBtn.GoodsImg.LockImg.Visible = true
-                break
-            end
         end
     end
 end
@@ -151,7 +169,6 @@ end
 
 --更新金币显示
 function GuiStore:UpdateCoin()
-    print("更新金币显示")
     gui.ShopPanel.CoinInfo.CoinNum.Text = Data.Player.coin
 end
 
@@ -166,6 +183,7 @@ function GuiStore:UpdateStoreUI(_isReset)
     end
     this:UpdateItemInfo()
     this:UpdateCoin()
+    this:UpdateBuyBtn()
 end
 
 --开关商店显示
@@ -178,8 +196,8 @@ function GuiStore:SwitchStoreUIEventHandler(_switch, _npcID)
         this:UpdateStoreUI(false)
         gui.Visible = true
     elseif _switch == 2 then
-        curNpcID = 0
         this:UpdateStoreUI(true)
+        curNpcID = 0
         gui.Visible = false
     end
 end

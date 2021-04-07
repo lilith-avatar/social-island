@@ -16,6 +16,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'ControlGui'
     },
@@ -29,6 +30,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -42,6 +44,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'MoleHitGui'
     },
@@ -55,6 +58,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'MazeGui'
     },
@@ -68,6 +72,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'CannonGUI'
     },
@@ -81,6 +86,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -94,6 +100,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -107,6 +114,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'PlantGUI'
     },
@@ -120,6 +128,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'SnailGUI'
     },
@@ -133,6 +142,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'RaceGameGui'
     },
@@ -146,6 +156,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -159,6 +170,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'MonsterGUI'
     },
@@ -172,6 +184,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'NpcGui'
     },
@@ -185,6 +198,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -198,6 +212,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = true,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = 'TelescopeGUI'
     },
@@ -211,6 +226,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = true,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -224,6 +240,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -237,6 +254,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -250,6 +268,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -263,6 +282,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -276,6 +296,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = true,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -289,6 +310,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = 'GuitarGui'
     },
@@ -302,6 +324,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = true,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -315,6 +338,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -328,6 +352,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -341,6 +366,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     },
@@ -354,6 +380,7 @@ local InteractXls = {
         UseBtnActive = false,
         JumpBtnActive = false,
         LeaveBtnActive = false,
+        SocialAnimActive = false,
         UseBtnIcon = '',
         OpenGui = 'CookGui'
     },
@@ -367,6 +394,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = 'CookGui'
     },
@@ -380,6 +408,7 @@ local InteractXls = {
         UseBtnActive = true,
         JumpBtnActive = true,
         LeaveBtnActive = false,
+        SocialAnimActive = true,
         UseBtnIcon = '',
         OpenGui = ''
     }
