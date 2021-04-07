@@ -312,7 +312,7 @@ function Hunt:GetMoveTable(_animalData, _pos)
         )
     end
     if result > 2 then
-        print('寻路失败', result, _animalData.obj, _animalData.state)
+        --print('寻路失败', result, _animalData.obj, _animalData.state)
     end
 end
 

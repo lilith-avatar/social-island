@@ -145,7 +145,7 @@ function GuiStore:UpdateBuyBtnUI(_sellBtn)
                 _sellBtn.PriceImg.PriceTxt.Text = Config.Shop[curNpcID][v.ItemID].Price
                 _sellBtn.GoodsImg.IMGNormal.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. v.Icon)
                 if Config.Shop[curNpcID][v.ItemID].Price > Data.Player.coin then
-                    _sellBtn.PriceImg.PriceTxt.Color = Color(163, 163, 163, 255)
+                    _sellBtn.PriceImg.PriceTxt.Color = Color(255, 0, 0, 255)
                 else
                     _sellBtn.PriceImg.PriceTxt.Color = Color(0, 86, 142, 255)
                 end
