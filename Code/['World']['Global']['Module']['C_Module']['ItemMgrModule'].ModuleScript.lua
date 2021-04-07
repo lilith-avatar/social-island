@@ -25,6 +25,10 @@ function ItemMgr:DataInit()
     this.curEquipmentID = 0
 
     this.curEquipment = nil
+
+    invoke(function()
+        this:InitBagData()
+    end, 0.5)
 end
 
 -- 初始化默认背包数据
@@ -35,7 +39,16 @@ function ItemMgr:InitBagData()
         6003,
         6004,
         6005,
-        6006
+        6006,
+        7001,
+        7002,
+        7003,
+        7004,
+        7005,
+        7006,
+        7007,
+        7008,
+        7009
     }
     for _, v in pairs(defaultItems) do
         NetUtil.Fire_C('GetItemEvent', localPlayer, v)
