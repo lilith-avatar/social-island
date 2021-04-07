@@ -38,17 +38,17 @@ function CookS:PutFood(_foodId, _player)
                 cookName = _player.Name
             }
             -- 摆上食物
-            local model =
-                world:CreateInstance(
+
+            world:CreateInstance(
                 Config.CookMenu[_foodId].Model,
                 "Food",
                 world.FoodLocation["Location" .. i],
                 world.FoodLocation["Location" .. i].Position
             )
             --需要扩大碰撞盒
-            model.OnCollisionBegin:Connect(
+            world.FoodLocation["Location" .. i].OnCollisionBegin:Connect(
                 function(_hitObject)
-                    if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
+                    if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == "PlayerAvatarInstance" then
                         NetUtil.Fire_C(
                             "SetSelectFoodEvent",
                             _hitObject,
@@ -60,9 +60,9 @@ function CookS:PutFood(_foodId, _player)
                     end
                 end
             )
-            model.OnCollisionEnd:Connect(
+            world.FoodLocation["Location" .. i].OnCollisionEnd:Connect(
                 function(_hitObject)
-                    if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName=='PlayerAvatarInstance' then
+                    if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == "PlayerAvatarInstance" then
                         NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
                     end
                 end
@@ -85,9 +85,11 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
 end
 
 function CookS:DestroyAllFood()
-    for k,v in pairs(world.FoodLocation:GetChildren()) do
+    for k, v in pairs(world.FoodLocation:GetChildren()) do
         if v.Food then
             v.Food:Destroy()
+            v.OnCollisionBegin:Clear()
+            v.OnCollisionEnd:Clear()
         end
         --向所有人发起流程，关闭详情ui
         --NetUtil.Broadcast()
