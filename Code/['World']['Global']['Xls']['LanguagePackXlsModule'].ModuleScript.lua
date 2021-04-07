@@ -11,2268 +11,2592 @@ local LanguagePackXls = {
         CHS = '使用药品可以恢复生命',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     lang_str_002 = {
         ID = 'lang_str_002',
         CHS = '在水中游泳会消耗体力，体力耗尽则消耗生命',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     lang_str_003 = {
         ID = 'lang_str_003',
         CHS = '注意预警，预警之后岛屿会下沉',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     lang_str_004 = {
         ID = 'lang_str_004',
         CHS = '宝箱会刷新不同等级的道具',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     lang_str_005 = {
         ID = 'lang_str_005',
         CHS = '注意指示灯，桥会定期升降',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des1_1_house = {
         ID = 'Example1_Des1_1_house',
         CHS = '我真的很想%s吃饭',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des2_1_house = {
         ID = 'Example1_Des2_1_house',
         CHS = '做什么',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des1_1_MMM = {
         ID = 'Example1_Des1_1_MMM',
         CHS = '我饿了',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des2_1_MMM = {
         ID = 'Example1_Des2_1_MMM',
         CHS = '工作是什么',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des1_1_ddd = {
         ID = 'Example1_Des1_1_ddd',
         CHS = '到底什么时候能吃饭',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des2_1_ddd = {
         ID = 'Example1_Des2_1_ddd',
         CHS = '我是谁',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des1_2_farm = {
         ID = 'Example1_Des1_2_farm',
         CHS = '今天晚上吃什么',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des2_2_farm = {
         ID = 'Example1_Des2_2_farm',
         CHS = '我从哪里来',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des1_2_MMM = {
         ID = 'Example1_Des1_2_MMM',
         CHS = '下班就去吃饭吧',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Example1_Des2_2_MMM = {
         ID = 'Example1_Des2_2_MMM',
         CHS = '就这样吧',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_1 = {
         ID = 'CookMenu_Name_1',
         CHS = '蔬菜馅饼',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_2 = {
         ID = 'CookMenu_Name_2',
         CHS = '特制馅饼',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_3 = {
         ID = 'CookMenu_Name_3',
         CHS = '南瓜蛋糕',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_4 = {
         ID = 'CookMenu_Name_4',
         CHS = '猛兽料理',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_5 = {
         ID = 'CookMenu_Name_5',
         CHS = '不可名状的料理',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_6 = {
         ID = 'CookMenu_Name_6',
         CHS = '什锦肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_7 = {
         ID = 'CookMenu_Name_7',
         CHS = '煮鸟肉',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_8 = {
         ID = 'CookMenu_Name_8',
         CHS = '蔬菜沙拉',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_9 = {
         ID = 'CookMenu_Name_9',
         CHS = '咖喱鹿肉',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_10 = {
         ID = 'CookMenu_Name_10',
         CHS = '煎饺',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_11 = {
         ID = 'CookMenu_Name_11',
         CHS = '混合果汁',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_12 = {
         ID = 'CookMenu_Name_12',
         CHS = '鸡肉串',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_13 = {
         ID = 'CookMenu_Name_13',
         CHS = '煎猪排',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_14 = {
         ID = 'CookMenu_Name_14',
         CHS = '白煮鹿肉',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_15 = {
         ID = 'CookMenu_Name_15',
         CHS = '口味奇怪的料理',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_16 = {
         ID = 'CookMenu_Name_16',
         CHS = '萝卜肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_17 = {
         ID = 'CookMenu_Name_17',
         CHS = '萝卜肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_18 = {
         ID = 'CookMenu_Name_18',
         CHS = '萝卜肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_19 = {
         ID = 'CookMenu_Name_19',
         CHS = '萝卜肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_20 = {
         ID = 'CookMenu_Name_20',
         CHS = '特制馅饼',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_21 = {
         ID = 'CookMenu_Name_21',
         CHS = '特制馅饼',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_22 = {
         ID = 'CookMenu_Name_22',
         CHS = '特制馅饼',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_23 = {
         ID = 'CookMenu_Name_23',
         CHS = '特制馅饼',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_24 = {
         ID = 'CookMenu_Name_24',
         CHS = '南瓜蛋糕',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_25 = {
         ID = 'CookMenu_Name_25',
         CHS = '什锦肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_26 = {
         ID = 'CookMenu_Name_26',
         CHS = '什锦肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_27 = {
         ID = 'CookMenu_Name_27',
         CHS = '什锦肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_28 = {
         ID = 'CookMenu_Name_28',
         CHS = '什锦肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_29 = {
         ID = 'CookMenu_Name_29',
         CHS = '什锦肉汤',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     CookMenu_Name_30 = {
         ID = 'CookMenu_Name_30',
         CHS = '蔬菜沙拉',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GuiText_Txt_1 = {
         ID = 'GuiText_Txt_1',
         CHS = '新的一天开始了',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A new day has begun',
+        JP = '',
+        YN = 'Hari baru telah dimulai'
     },
     GuiText_Txt_2 = {
         ID = 'GuiText_Txt_2',
         CHS = '傍晚了，回去营地吧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It’s dusk, time to get back to the campground.',
+        JP = '',
+        YN = 'Sudah petang, waktunya kembali ke kamp.'
     },
     GuiText_Txt_3 = {
         ID = 'GuiText_Txt_3',
         CHS = '天黑了，准备狂欢吧！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It’s nighttime, time to party!',
+        JP = '',
+        YN = 'Sudah malam, waktunya berpesta!'
     },
     GuiText_Txt_4 = {
         ID = 'GuiText_Txt_4',
         CHS = '神秘的UFO出现了！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The mysterious UFO has appeared!',
+        JP = '',
+        YN = 'UFO misterius telah muncul!'
     },
     GuiText_Txt_5 = {
         ID = 'GuiText_Txt_5',
         CHS = '天空中出现了神秘的迷宫！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A mysterious maze has appeared in the sky!',
+        JP = '',
+        YN = 'Labirin misterius muncul di langit!'
     },
     GuiText_Txt_6 = {
         ID = 'GuiText_Txt_6',
         CHS = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
+        JP = '',
+        YN = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
     },
     GuiText_Txt_7 = {
         ID = 'GuiText_Txt_7',
         CHS = '蜗牛赛跑开始了！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The snail race has begun!',
+        JP = '',
+        YN = 'Balapan siput telah dimulai!'
     },
     GuiText_Txt_8 = {
         ID = 'GuiText_Txt_8',
         CHS = '你不能多次投注或在比赛进行中投注',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You cannot place multiple bets or place a bet while a race is underway.',
+        JP = '',
+        YN = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
     },
     GuiText_Txt_9 = {
         ID = 'GuiText_Txt_9',
         CHS = '你投注的蜗牛获得了第',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The snail you betted on obtained a rank of',
+        JP = '',
+        YN = 'Siput yang kamu pilih meraih peringkat'
     },
     GuiText_Txt_10 = {
         ID = 'GuiText_Txt_10',
         CHS = '名，为你赢得了',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = ', and you won',
+        JP = '',
+        YN = ', dan kamu memenangkan'
     },
     GuiText_Txt_11 = {
         ID = 'GuiText_Txt_11',
         CHS = '枚金币。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'coins.',
+        JP = '',
+        YN = 'koin.'
     },
     GuiText_Txt_12 = {
         ID = 'GuiText_Txt_12',
         CHS = '你投注的蜗牛获得了第',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The snail you betted on obtained a rank of ',
+        JP = '',
+        YN = 'Siput yang kamu pilih meraih peringkat'
     },
     GuiText_Txt_13 = {
         ID = 'GuiText_Txt_13',
         CHS = '名，你输掉了你的金币。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = ', and you lost your coins.',
+        JP = '',
+        YN = ', dan kamu kehilangan koin.'
     },
     GuiText_Txt_14 = {
         ID = 'GuiText_Txt_14',
         CHS = '请选择投注数量',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Place your bet.',
+        JP = '',
+        YN = 'Pasang taruhanmu.'
     },
     GuiText_Txt_15 = {
         ID = 'GuiText_Txt_15',
         CHS = '你没钱啦',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You don’t have enough coins.',
+        JP = '',
+        YN = 'Koinmu tidak cukup.'
     },
     GuiText_Txt_16 = {
         ID = 'GuiText_Txt_16',
         CHS = '你成功给',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You successfully placed a bet on Snail number ',
+        JP = '',
+        YN = 'Kamu berhasil memasang taruhan pada Siput nomor'
     },
     GuiText_Txt_17 = {
         ID = 'GuiText_Txt_17',
         CHS = '号蜗牛投注',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = '.',
+        JP = '',
+        YN = '.'
     },
     GuiText_Txt_18 = {
         ID = 'GuiText_Txt_18',
         CHS = '选择一个颜色的蜗牛',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Bet on a snail by choosing its color.',
+        JP = '',
+        YN = 'Pasang taruhan dengan memilih warna siput.'
     },
     GuiText_Txt_19 = {
         ID = 'GuiText_Txt_19',
         CHS = '你的陷阱困住了一只动物',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Your trap caught an animal.',
+        JP = '',
+        YN = 'Ada hewan yang terjebak di perangkapmu.'
     },
     GuiText_Txt_20 = {
         ID = 'GuiText_Txt_20',
         CHS = '你的陷阱被动物挣脱了',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'An animal broke free from your trap.',
+        JP = '',
+        YN = 'Ada hewan yang lolos dari perangkapmu.'
     },
     GuiText_Txt_21 = {
         ID = 'GuiText_Txt_21',
         CHS = '动物距离你太远了',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You’re too close to the animal.',
+        JP = '',
+        YN = 'Jarakmu dengan hewan terlalu dekat.'
     },
     GuiText_Txt_22 = {
         ID = 'GuiText_Txt_22',
         CHS = '恭喜，你抓到了这只动物。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Congratulations, you’ve caught this animal.',
+        JP = '',
+        YN = 'Selamat, kamu berhasil menangkap hewan ini.'
     },
     GuiText_Txt_23 = {
         ID = 'GuiText_Txt_23',
         CHS = '尝试用陷阱把动物困住再捕捉吧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Try to get the animal stuck with the trap first.',
+        JP = '',
+        YN = 'Cobalah jebak hewannya dengan perangkap dulu.'
     },
     GuiText_Txt_24 = {
         ID = 'GuiText_Txt_24',
         CHS = '你抓到了一个宠物，给他起个名字吧！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You’ve caught a pet! Give your pet a name!',
+        JP = '',
+        YN = 'Kamu berhasil mendapat piaraan! Beri dia nama!'
     },
     GuiText_Txt_25 = {
         ID = 'GuiText_Txt_25',
         CHS = '你需要向石像内塞入',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You need to put ',
+        JP = '',
+        YN = 'Kamu harus menaruh '
     },
     GuiText_Txt_26 = {
         ID = 'GuiText_Txt_26',
         CHS = '枚硬币来祈愿。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = ' coins into the stone golem to make a wish.',
+        JP = '',
+        YN = ' koin ke dalam golem batu untuk membuat permohonan.'
     },
     GuiText_Txt_27 = {
         ID = 'GuiText_Txt_27',
         CHS = '是否购买',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Do you want to purchase %s ?',
+        JP = '',
+        YN = 'Kamu ingin membeli %s ?'
     },
     Item_Name_1001 = {
         ID = 'Item_Name_1001',
         CHS = '坚硬的树枝',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hard Branch',
+        JP = '',
+        YN = 'Cabang Keras'
     },
     Item_Des_1001 = {
         ID = 'Item_Des_1001',
         CHS = '树上掉落的枝桠，挥动起来很顺手。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A tree branch good for swinging around.',
+        JP = '',
+        YN = 'Cabang pohon yang bisa diayun.'
     },
     Item_Name_1002 = {
         ID = 'Item_Name_1002',
         CHS = '简易火把',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Crude Torch',
+        JP = '',
+        YN = 'Obor Kasar'
     },
     Item_Des_1002 = {
         ID = 'Item_Des_1002',
         CHS = '用森林中捡到的树枝制成的火把。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A torch made from a forest tree branch.',
+        JP = '',
+        YN = 'Obor dari cabang pohon hutan.'
     },
     Item_Name_1003 = {
         ID = 'Item_Name_1003',
         CHS = '棒球棍',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Baseball Bat',
+        JP = '',
+        YN = 'Tongkat Bisbol'
     },
     Item_Des_1003 = {
         ID = 'Item_Des_1003',
         CHS = '精选树枝，打磨而成。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Made from a polished tree branch.',
+        JP = '',
+        YN = 'Dibuat dari cabang pohon yang dipoles.'
     },
     Item_Name_1004 = {
         ID = 'Item_Name_1004',
         CHS = '锄头',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hoe',
+        JP = '',
+        YN = 'Cangkul'
     },
     Item_Des_1004 = {
         ID = 'Item_Des_1004',
         CHS = '普通的锄头。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Just an ordinary hoe.',
+        JP = '',
+        YN = 'Cangkul biasa.'
     },
     Item_Name_1005 = {
         ID = 'Item_Name_1005',
         CHS = '大铁锤',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Big Iron Hammer',
+        JP = '',
+        YN = 'Palu Besi Besar'
     },
     Item_Des_1005 = {
         ID = 'Item_Des_1005',
         CHS = '熊也受不了。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Not even a bear can take a hit from this thing.',
+        JP = '',
+        YN = 'Beruangpun tak akan bisa kena pukulan palu ini.'
     },
     Item_Name_1006 = {
         ID = 'Item_Name_1006',
         CHS = '消防斧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Fireman Ax',
+        JP = '',
+        YN = 'Kapak Damkar'
     },
     Item_Des_1006 = {
         ID = 'Item_Des_1006',
         CHS = '如果不砍厚重的东西就很是趁手。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A handy tool for chopping things that aren’t too tough.',
+        JP = '',
+        YN = 'Praktis untuk memotong barang yang tidak terlalu tebal.'
     },
     Item_Name_1007 = {
         ID = 'Item_Name_1007',
         CHS = '轻便的匕首',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lightweight Dagger',
+        JP = '',
+        YN = 'Belati Ringan'
     },
     Item_Des_1007 = {
         ID = 'Item_Des_1007',
         CHS = '森林求生的好助手。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Comes in handy when trying to survive in the forest.',
+        JP = '',
+        YN = 'Praktis dipakai untuk bertahan hidup di hutan.'
     },
     Item_Name_1008 = {
         ID = 'Item_Name_1008',
         CHS = '损坏的钉鞋',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Worn-out Climbing Shoes',
+        JP = '',
+        YN = 'Sepatu Pendaki yang Usang'
     },
     Item_Des_1008 = {
         ID = 'Item_Des_1008',
         CHS = '加了钉子的登山鞋，已经破旧的没法穿了。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A pair of shoes fitted with spikes for mountain climbing.',
+        JP = '',
+        YN = 'Sepasang sepatu dengan sol berpaku untuk memanjat gunung.'
     },
     Item_Name_1009 = {
         ID = 'Item_Name_1009',
         CHS = '登山斧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Ice Ax',
+        JP = '',
+        YN = 'Kapak Es'
     },
     Item_Des_1009 = {
         ID = 'Item_Des_1009',
         CHS = '一只手就可以挥动，能有力的嵌入墙壁。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Can be swung into the face of a cliff with one hand.',
+        JP = '',
+        YN = 'Bisa ditancapkan di tebing dengan satu tangan.'
     },
     Item_Name_1010 = {
         ID = 'Item_Name_1010',
         CHS = '简易的斧头',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Basic Ax',
+        JP = '',
+        YN = 'Kapak Biasa'
     },
     Item_Des_1010 = {
         ID = 'Item_Des_1010',
         CHS = '砍柴用的斧头。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Ax used for chopping wood.',
+        JP = '',
+        YN = 'Kapak untuk menebang kayu.'
     },
     Item_Name_1011 = {
         ID = 'Item_Name_1011',
         CHS = '旧斧头',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Dull Ax',
+        JP = '',
+        YN = 'Kapak Tumpul'
     },
     Item_Des_1011 = {
         ID = 'Item_Des_1011',
         CHS = '已经不再锋利了，但是好在还没有生锈。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It’s no longer sharp, but good thing it’s not rusted.',
+        JP = '',
+        YN = 'Sudah tidak tajam lagi, tapi untungnya tidak berkarat.'
     },
     Item_Name_1012 = {
         ID = 'Item_Name_1012',
         CHS = '平底锅',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Frying Pan',
+        JP = '',
+        YN = 'Wajan'
     },
     Item_Des_1012 = {
         ID = 'Item_Des_1012',
         CHS = '居家旅行必备单品！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A necessity whether or not you are traveling!',
+        JP = '',
+        YN = 'Barang wajib, baik saat dalam perjalanan maupun tidak!'
     },
     Item_Name_1013 = {
         ID = 'Item_Name_1013',
         CHS = '掣电光剑',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lightning Saber',
+        JP = '',
+        YN = 'Pedang Cahaya'
     },
     Item_Des_1013 = {
         ID = 'Item_Des_1013',
         CHS = '绝地武士同款光剑。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The last glimmer of light in the end of days.',
+        JP = '',
+        YN = 'Pancaran cahaya terakhir di penghujung masa.'
     },
     Item_Name_1014 = {
         ID = 'Item_Name_1014',
         CHS = '暗能光剑',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Dark Saber',
+        JP = '',
+        YN = 'Pedang Gelap'
     },
     Item_Des_1014 = {
         ID = 'Item_Des_1014',
         CHS = '受到黑暗原力影响的光剑',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A sword corrupted by the power of darkness.',
+        JP = '',
+        YN = 'Pedang yang ternoda oleh kekuatan kegelapan.'
     },
     Item_Name_1015 = {
         ID = 'Item_Name_1015',
         CHS = '磁铁',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Magnet',
+        JP = '',
+        YN = 'Magnet'
     },
     Item_Des_1015 = {
         ID = 'Item_Des_1015',
         CHS = '有人坚信可以通过这个东西找到外星人。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Some people firmly believe that aliens can be found using this thing.',
+        JP = '',
+        YN = 'Sebagian orang meyakini bahwa alien menggunakan benda ini.'
     },
     Item_Name_1016 = {
         ID = 'Item_Name_1016',
         CHS = '皮搋子',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Plunger',
+        JP = '',
+        YN = 'Plunger'
     },
     Item_Des_1016 = {
         ID = 'Item_Des_1016',
         CHS = '马桶伴侣。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Goes hand in hand with a toilet.',
+        JP = '',
+        YN = 'Teman setia toilet.'
     },
     Item_Name_1017 = {
         ID = 'Item_Name_1017',
         CHS = '溢能锄',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Energized Pickax',
+        JP = '',
+        YN = 'Beliung Berenergi'
     },
     Item_Des_1017 = {
         ID = 'Item_Des_1017',
         CHS = '蕴含着神秘力量的矿锄。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A mining pickax imbued with mysterious energy.',
+        JP = '',
+        YN = 'Beliung tambang yang memiliki energi misterius.'
     },
     Item_Name_1018 = {
         ID = 'Item_Name_1018',
         CHS = '耀光撬棍',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Glowing Crowbar',
+        JP = '',
+        YN = 'Linggis Berpendar'
     },
     Item_Des_1018 = {
         ID = 'Item_Des_1018',
         CHS = '影响着使用者的心智。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It influences the mind of the user.',
+        JP = '',
+        YN = 'Benda ini memengaruhi pikiran pemakainya.'
     },
     Item_Name_1019 = {
         ID = 'Item_Name_1019',
         CHS = '奇异勺',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wicked Spoon',
+        JP = '',
+        YN = 'Sendok Aneh'
     },
     Item_Des_1019 = {
         ID = 'Item_Des_1019',
         CHS = '闪烁着生命能量。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Glittering with vitality.',
+        JP = '',
+        YN = 'Memancarkan cahaya terang.'
     },
     Item_Name_1020 = {
         ID = 'Item_Name_1020',
         CHS = '聚能锹',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Energized Shovel',
+        JP = '',
+        YN = 'Sekop Berenergi'
     },
     Item_Des_1020 = {
         ID = 'Item_Des_1020',
         CHS = '仿佛在搜集地球环境的能量。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It seems to be searching the planet for energy.',
+        JP = '',
+        YN = 'Terlihat seperti mencari keberadaan energi di planet.'
     },
     Item_Name_1021 = {
         ID = 'Item_Name_1021',
         CHS = '迷你松树',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Minipine',
+        JP = '',
+        YN = 'Pinus Mini'
     },
     Item_Des_1021 = {
         ID = 'Item_Des_1021',
         CHS = '这棵树似乎被什么东西缩小了。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This tree seems to have been shrunk by something.',
+        JP = '',
+        YN = 'Sepertinya ada sesuatu yang membuat pohon ini menjadi kecil.'
     },
     Item_Name_1022 = {
         ID = 'Item_Name_1022',
         CHS = '鱼竿',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Fishing Pole',
+        JP = '',
+        YN = 'Joran Pancing'
     },
     Item_Des_1022 = {
         ID = 'Item_Des_1022',
         CHS = '一把高端鱼竿。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A great pole for angling.',
+        JP = '',
+        YN = 'Joran yang pas untuk memancing.'
     },
     Item_Name_1023 = {
         ID = 'Item_Name_1023',
         CHS = '手持烟花',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Handheld Firework',
+        JP = '',
+        YN = 'Petasan'
     },
     Item_Des_1023 = {
         ID = 'Item_Des_1023',
         CHS = '庆典必不可少的道具。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A celebration isn’t festive without it.',
+        JP = '',
+        YN = 'Perayaan tidak akan meriah tanpanya.'
     },
     Item_Name_1024 = {
         ID = 'Item_Name_1024',
         CHS = '雷鸣锤',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Thunderous',
+        JP = '',
+        YN = 'Guntur'
     },
     Item_Des_1024 = {
         ID = 'Item_Des_1024',
         CHS = '铭刻着雷电符文的石锤。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A stone hammer engraved with the rune of thunder.',
+        JP = '',
+        YN = 'Palu batu dengan ukiran sajak guntur.'
     },
     Item_Name_1025 = {
         ID = 'Item_Name_1025',
         CHS = '月斧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lunare',
+        JP = '',
+        YN = 'Lunare'
     },
     Item_Des_1025 = {
         ID = 'Item_Des_1025',
         CHS = '沾染月球荒芜气息的斧头。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'An ax brimming with the starkness of the moon.',
+        JP = '',
+        YN = 'Kapak yang bercahaya bagai bulan.'
     },
     Item_Name_1026 = {
         ID = 'Item_Name_1026',
         CHS = '过载手斧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Overloaded Handax',
+        JP = '',
+        YN = 'Kapak Genggam Mutakhir'
     },
     Item_Des_1026 = {
         ID = 'Item_Des_1026',
         CHS = '被外星科技充能过的手斧。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A handax energized by alien technology.',
+        JP = '',
+        YN = 'Kapak genggam dengan energi dari teknologi alien.'
     },
     Item_Name_1027 = {
         ID = 'Item_Name_1027',
         CHS = '异形之颚',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Alien Jaw',
+        JP = '',
+        YN = 'Rahang Alien'
     },
     Item_Des_1027 = {
         ID = 'Item_Des_1027',
         CHS = '带有尖牙的骸骨，不像地球生物。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A jaw with sharp teeth still on it—out of this world!',
+        JP = '',
+        YN = 'Rahang dengan gigi-gigi tajam. Sangat langka!'
     },
     Item_Name_1028 = {
         ID = 'Item_Name_1028',
         CHS = '寒霜锤',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Permafrost',
+        JP = '',
+        YN = 'Es Abadi'
     },
     Item_Des_1028 = {
         ID = 'Item_Des_1028',
         CHS = '铭刻着冰霜符文的石锤。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A stone hammer engraved with the rune of frost.',
+        JP = '',
+        YN = 'Palu batu dengan ukiran sajak es.'
     },
     Item_Name_1029 = {
         ID = 'Item_Name_1029',
         CHS = '锋利的匕首',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Sharp Dagger',
+        JP = '',
+        YN = 'Belati Tajam'
     },
     Item_Des_1029 = {
         ID = 'Item_Des_1029',
         CHS = '闪烁着寒光。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Emanating a chilling glow.',
+        JP = '',
+        YN = 'Kilatannya menakutkan.'
     },
     Item_Name_1030 = {
         ID = 'Item_Name_1030',
         CHS = '原子分割器',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Atom Splitter',
+        JP = '',
+        YN = 'Pemisah Atom'
     },
     Item_Des_1030 = {
         ID = 'Item_Des_1030',
         CHS = '看上去能够使接触到的所有东西一分为二。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Looks like something that can halve anything it comes into contact with.',
+        JP = '',
+        YN = 'Sepertinya bisa memisahkan apa pun yang disentuhnya.'
     },
     Item_Name_1031 = {
         ID = 'Item_Name_1031',
         CHS = '日斧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Sunfire',
+        JP = '',
+        YN = 'Panas Surya'
     },
     Item_Des_1031 = {
         ID = 'Item_Des_1031',
         CHS = '这把斧头被融合了太阳的火焰。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This ax has incorporated the flames of the sun.',
+        JP = '',
+        YN = 'Kapak ini memanfaatkan api dari matahari.'
     },
     Item_Name_1032 = {
         ID = 'Item_Name_1032',
         CHS = '火星陨落',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Mar-teor',
+        JP = '',
+        YN = 'Mar-teor'
     },
     Item_Des_1032 = {
         ID = 'Item_Des_1032',
         CHS = '带有火星撞击一般的力量。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Get it? Powerful like a meteor the size ofMars...',
+        JP = '',
+        YN = 'Dinamai begitu karena benda ini kuat seperti meteor yang berukuran planet Mars...'
     },
     Item_Name_1033 = {
         ID = 'Item_Name_1033',
         CHS = '狼牙锤',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wolf Mace',
+        JP = '',
+        YN = 'Gada Serigala'
     },
     Item_Des_1033 = {
         ID = 'Item_Des_1033',
         CHS = '将猎物一击毙命，但影响口感。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It takes only one pummel to kill a prey, and it also tenderizes the meat!',
+        JP = '',
+        YN = 'Hanya perlu sekali ayun untuk membunuh hewan dan membuat lembut dagingnya!'
     },
     Item_Name_1034 = {
         ID = 'Item_Name_1034',
         CHS = '手持烟花',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Handheld Firework',
+        JP = '',
+        YN = 'Petasan'
     },
     Item_Des_1034 = {
         ID = 'Item_Des_1034',
         CHS = '庆典必不可少的道具。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A celebration isn’t festive without it.',
+        JP = '',
+        YN = 'Perayaan tidak akan meriah tanpanya.'
     },
     Item_Name_1035 = {
         ID = 'Item_Name_1035',
         CHS = '手持烟花',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Handheld Firework',
+        JP = '',
+        YN = 'Petasan'
     },
     Item_Des_1035 = {
         ID = 'Item_Des_1035',
         CHS = '庆典必不可少的道具。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A celebration isn’t festive without it.',
+        JP = '',
+        YN = 'Perayaan tidak akan meriah tanpanya.'
     },
     Item_Name_1036 = {
         ID = 'Item_Name_1036',
         CHS = '手持烟花',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Handheld Firework',
+        JP = '',
+        YN = 'Petasan'
     },
     Item_Des_1036 = {
         ID = 'Item_Des_1036',
         CHS = '庆典必不可少的道具。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A celebration isn’t festive without it.',
+        JP = '',
+        YN = 'Perayaan tidak akan meriah tanpanya.'
     },
     Item_Name_1037 = {
         ID = 'Item_Name_1037',
         CHS = '手持烟花',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Handheld Firework',
+        JP = '',
+        YN = 'Petasan'
     },
     Item_Des_1037 = {
         ID = 'Item_Des_1037',
         CHS = '庆典必不可少的道具。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A celebration isn’t festive without it.',
+        JP = '',
+        YN = 'Perayaan tidak akan meriah tanpanya.'
     },
     Item_Name_1038 = {
         ID = 'Item_Name_1038',
         CHS = '手持烟花',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Handheld Firework',
+        JP = '',
+        YN = 'Petasan'
     },
     Item_Des_1038 = {
         ID = 'Item_Des_1038',
         CHS = '庆典必不可少的道具。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A celebration isn’t festive without it.',
+        JP = '',
+        YN = 'Perayaan tidak akan meriah tanpanya.'
     },
     Item_Name_2001 = {
         ID = 'Item_Name_2001',
         CHS = '木弓',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wooden Bow',
+        JP = '',
+        YN = 'Busur Kayu'
     },
     Item_Des_2001 = {
         ID = 'Item_Des_2001',
         CHS = '野营营地提供的打猎用弓。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A hunting bow provided by the campground.',
+        JP = '',
+        YN = 'Busur untuk berburu yang diperoleh dari kamp.'
     },
     Item_Name_2002 = {
         ID = 'Item_Name_2002',
         CHS = '弹弓',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Slingshot',
+        JP = '',
+        YN = 'Katapel'
     },
     Item_Des_2002 = {
         ID = 'Item_Des_2002',
         CHS = '硕大的弹弓，打到自己会很疼。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It tends to backfire on you.',
+        JP = '',
+        YN = 'Mungkin kamu akan terkena tembakannya.'
     },
     Item_Name_2003 = {
         ID = 'Item_Name_2003',
         CHS = '烈焰弓',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Phoenix',
+        JP = '',
+        YN = 'Phoenix'
     },
     Item_Des_2003 = {
         ID = 'Item_Des_2003',
         CHS = '能够射出火箭',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Fires fire.',
+        JP = '',
+        YN = 'Menembakkan api.'
     },
     Item_Name_2004 = {
         ID = 'Item_Name_2004',
         CHS = '月芒',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lunarity',
+        JP = '',
+        YN = 'Lunarity'
     },
     Item_Des_2004 = {
         ID = 'Item_Des_2004',
         CHS = '这把弓散发着月亮般柔和的光。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This bow emits the gentle glow akin to that of the moon.',
+        JP = '',
+        YN = 'Busur ini memancarkan cahaya yang lembut seperti bulan.'
     },
     Item_Name_2005 = {
         ID = 'Item_Name_2005',
         CHS = '星辉',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Astra',
+        JP = '',
+        YN = 'Astra'
     },
     Item_Des_2005 = {
         ID = 'Item_Des_2005',
         CHS = '这把弓能够凝聚雷电的力量。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This bow can harness the power of lightning.',
+        JP = '',
+        YN = 'Busur ini bisa memanfaatkan kekuatan petir.'
     },
     Item_Name_2006 = {
         ID = 'Item_Name_2006',
         CHS = '苍穹',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Galaxy',
+        JP = '',
+        YN = 'Galaksi'
     },
     Item_Des_2006 = {
         ID = 'Item_Des_2006',
         CHS = '这把弓带有浩瀚的宇宙能量。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This bow is suffused with the energy of the universe.',
+        JP = '',
+        YN = 'Busur ini memiliki energi semesta.'
     },
     Item_Name_2007 = {
         ID = 'Item_Name_2007',
         CHS = '阳焰',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Solarity',
+        JP = '',
+        YN = 'Solarity'
     },
     Item_Des_2007 = {
         ID = 'Item_Des_2007',
         CHS = '由太阳的火焰凝聚而成的弓。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This bow is made from the smoldering fire of the sun.',
+        JP = '',
+        YN = 'Busur ini dibuat dari api matahari yang membara.'
     },
     Item_Name_3001 = {
         ID = 'Item_Name_3001',
         CHS = '泡泡手枪',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Des_3001 = {
         ID = 'Item_Des_3001',
         CHS = '能够发出泡泡',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Name_4001 = {
         ID = 'Item_Name_4001',
         CHS = '小型陷阱',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Small Trap',
+        JP = '',
+        YN = 'Perangkap Kecil'
     },
     Item_Des_4001 = {
         ID = 'Item_Des_4001',
         CHS = '小概率捕捉小型动物',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Can probably only catch critters.',
+        JP = '',
+        YN = 'Mungkin hanya bisa untuk menangkap hewan kecil.'
     },
     Item_Name_4002 = {
         ID = 'Item_Name_4002',
         CHS = '中型陷阱',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Medium Trap',
+        JP = '',
+        YN = 'Perangkap Menengah'
     },
     Item_Des_4002 = {
         ID = 'Item_Des_4002',
         CHS = '小概率捕捉所有动物',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Easily catches critters, but will have trouble catching larger animals.',
+        JP = '',
+        YN = 'Cocok untuk menangkap hewan kecil, tapi belum tentu bisa untuk menangkap hewan besar.'
     },
     Item_Name_4003 = {
         ID = 'Item_Name_4003',
         CHS = '大型陷阱',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Large Trap',
+        JP = '',
+        YN = 'Perangkap Besar'
     },
     Item_Des_4003 = {
         ID = 'Item_Des_4003',
         CHS = '大概率捕捉所有动物',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Can easily trap all kinds of animals.',
+        JP = '',
+        YN = 'Cocok untuk menangkap semua jenis hewan.'
     },
     Item_Name_5001 = {
         ID = 'Item_Name_5001',
         CHS = '宇航员套装',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Name_5002 = {
         ID = 'Item_Name_5002',
         CHS = '游泳圈',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Name_6001 = {
         ID = 'Item_Name_6001',
         CHS = '《野营活动指南》',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Camping Guide',
+        JP = '',
+        YN = 'Panduan Kamping'
     },
     Item_Des_6001 = {
         ID = 'Item_Des_6001',
         CHS = '跟导游打个招呼吧。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Say hi to the tour guide.',
+        JP = '',
+        YN = 'Sapalah pemandu tur.'
     },
     Item_Name_6002 = {
         ID = 'Item_Name_6002',
         CHS = '《丛林安全指南》',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Forest Survival Guide',
+        JP = '',
+        YN = 'Panduan Bertahan di Hutan'
     },
     Item_Des_6002 = {
         ID = 'Item_Des_6002',
         CHS = '跟安全员鲍勃了解丛林探险的注意事项。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Learn what it takes to survive in the forest from Ranger Bob.',
+        JP = '',
+        YN = 'Pelajari cara bertahan di hutan dari Ranger Bob.'
     },
     Item_Name_6003 = {
         ID = 'Item_Name_6003',
         CHS = '《热气球游览须知》',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hot-air Balloon Instructions',
+        JP = '',
+        YN = 'Instruksi Balon Udara'
     },
     Item_Des_6003 = {
         ID = 'Item_Des_6003',
         CHS = '跟热气球技师询问怎么乘坐热气球，他在河对岸的山上。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Ask the hot-air balloon technician how to ride it; he’s on top of the hill across the river.',
+        JP = '',
+        YN = 'Tanyakan cara mengoperasikan balon udara ke teknisinya. Dia berada di puncak bukit di seberang sungai.'
     },
     Item_Name_6004 = {
         ID = 'Item_Name_6004',
         CHS = '《派对魅力》',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'How to be Fun at Parties',
+        JP = '',
+        YN = 'Cara Bersenang-senang di Pesta'
     },
     Item_Des_6004 = {
         ID = 'Item_Des_6004',
         CHS = '跟庆典师了解如何提升自己的魅力。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Learn how to be more attractive and fun at parties from the event planner.',
+        JP = '',
+        YN = 'Pelajari cara tampil menarik dan menikmati pesta dari perencana pesta.'
     },
     Item_Name_6005 = {
         ID = 'Item_Name_6005',
         CHS = '《动物赛跑报名表》',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Animal Race Sign-up Sheet',
+        JP = '',
+        YN = 'Formulir Pendaftaran Balapan Hewan'
     },
     Item_Des_6005 = {
         ID = 'Item_Des_6005',
         CHS = '了解营地内的动物赛跑。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It concerns the animal race in the campground.',
+        JP = '',
+        YN = 'Berhubungan dengan balapan hewan di kamp.'
     },
     Item_Name_6006 = {
         ID = 'Item_Name_6006',
         CHS = '《飞碟图鉴》',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'UFO Notebook',
+        JP = '',
+        YN = 'Buku UFO'
     },
     Item_Des_6006 = {
         ID = 'Item_Des_6006',
         CHS = '这个图鉴记载了有人在这片森林里发现飞碟的传说。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Someone sighted a UFO and drew it down in this notebook.',
+        JP = '',
+        YN = 'Ada seseorang yang pernah menyaksikan UFO dan menggambarnya di buku ini.'
     },
     Item_Name_6007 = {
         ID = 'Item_Name_6007',
         CHS = '野猪王的獠牙',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Des_6007 = {
         ID = 'Item_Des_6007',
         CHS = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Name_7001 = {
         ID = 'Item_Name_7001',
         CHS = '胡萝卜',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Carrot',
+        JP = '',
+        YN = 'Wortel'
     },
     Item_Des_7001 = {
         ID = 'Item_Des_7001',
         CHS = '野生的胡萝卜，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A raw carrot that can be used for cooking.',
+        JP = '',
+        YN = 'Wortel mentah yang bisa dimasak.'
     },
     Item_Name_7002 = {
         ID = 'Item_Name_7002',
         CHS = '白萝卜',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'White Radish',
+        JP = '',
+        YN = 'Lobak Putih'
     },
     Item_Des_7002 = {
         ID = 'Item_Des_7002',
         CHS = '野生的白萝卜，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A raw white radish that can be used for cooking.',
+        JP = '',
+        YN = 'Lobak putih mentah yang bisa dimasak.'
     },
     Item_Name_7003 = {
         ID = 'Item_Name_7003',
         CHS = '南瓜',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Pumpkin',
+        JP = '',
+        YN = 'Labu'
     },
     Item_Des_7003 = {
         ID = 'Item_Des_7003',
         CHS = '野生的南瓜，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A raw pumpkin that can be used for cooking.',
+        JP = '',
+        YN = 'Labu mentah yang bisa dimasak.'
     },
     Item_Name_7004 = {
         ID = 'Item_Name_7004',
         CHS = '野猪肉',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wild Boar Meat',
+        JP = '',
+        YN = 'Daging Babi Hutan'
     },
     Item_Des_7004 = {
         ID = 'Item_Des_7004',
         CHS = '野猪的肉，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Meat of a wild boar that can be used for cooking. ',
+        JP = '',
+        YN = 'Daging babi hutan yang bisa dimasak. '
     },
     Item_Name_7005 = {
         ID = 'Item_Name_7005',
         CHS = '鸟肉',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Poultry',
+        JP = '',
+        YN = 'Daging Unggas'
     },
     Item_Des_7005 = {
         ID = 'Item_Des_7005',
         CHS = '鸟类的肉，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Meat of a bird that can be used for cooking.',
+        JP = '',
+        YN = 'Daging unggas yang bisa dimasak.'
     },
     Item_Name_7006 = {
         ID = 'Item_Name_7006',
         CHS = '鹿肉',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Venison',
+        JP = '',
+        YN = 'Daging Rusa'
     },
     Item_Des_7006 = {
         ID = 'Item_Des_7006',
         CHS = '鹿的肉，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Meat of a deer that can be used for cooking.',
+        JP = '',
+        YN = 'Daging rusa yang bisa dimasak.'
     },
     Item_Name_7007 = {
         ID = 'Item_Name_7007',
         CHS = '熊肉',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Bear Meat',
+        JP = '',
+        YN = 'Daging Beruang'
     },
     Item_Des_7007 = {
         ID = 'Item_Des_7007',
         CHS = '熊的肉，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Meat of a bear that can be used for cooking.',
+        JP = '',
+        YN = 'Daging beruang yang bisa dimasak.'
     },
     Item_Name_7008 = {
         ID = 'Item_Name_7008',
         CHS = '狼肉',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wolf Meat',
+        JP = '',
+        YN = 'Daging Serigala'
     },
     Item_Des_7008 = {
         ID = 'Item_Des_7008',
         CHS = '狼的肉，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Meat of a wolf that can be used for cooking.',
+        JP = '',
+        YN = 'Daging serigala yang bisa dimasak.'
     },
     Item_Name_7009 = {
         ID = 'Item_Name_7009',
         CHS = '苹果',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Apple',
+        JP = '',
+        YN = 'Apel'
     },
     Item_Des_7009 = {
         ID = 'Item_Des_7009',
         CHS = '树上掉落的苹果，可以用于烹饪',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'An apple that fell off a tree; can be used for cooking.',
+        JP = '',
+        YN = 'Apel yang jatuh dari pohonnya. Bisa dimasak.'
     },
     Item_Name_7010 = {
         ID = 'Item_Name_7010',
         CHS = '鹿茸',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Antlers',
+        JP = '',
+        YN = 'Tanduk Rusa'
     },
     Item_Des_7010 = {
         ID = 'Item_Des_7010',
         CHS = '鹿的角，可以用作药材，活血化瘀。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Antlers of a stag that are usually mounted on a hunter’s wall as trophy.',
+        JP = '',
+        YN = 'Tanduk rusa jantan yang biasanya dijadikan trofi di dinding.'
     },
     Item_Name_7011 = {
         ID = 'Item_Name_7011',
         CHS = '鹿皮',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Deer Pelt',
+        JP = '',
+        YN = 'Kulit Rusa'
     },
     Item_Des_7011 = {
         ID = 'Item_Des_7011',
         CHS = '质地很柔软的优质皮草。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'High-quality deer skin.',
+        JP = '',
+        YN = 'Kulit rusa berkualitas tinggi.'
     },
     Item_Name_7012 = {
         ID = 'Item_Name_7012',
         CHS = '麝香',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Musk',
+        JP = '',
+        YN = 'Wewangian'
     },
     Item_Des_7012 = {
         ID = 'Item_Des_7012',
         CHS = '雄鹿的分泌物，散发着芳香的气味，可以入药。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Secretion of a male musk deer; it smells fragrant and can be made into medicine.',
+        JP = '',
+        YN = 'Sekresi dari rusa jantan. Berbau harum dan bisa diolah menjadi obat.'
     },
     Item_Name_7013 = {
         ID = 'Item_Name_7013',
         CHS = '山鸡翎',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Pheasant Feather',
+        JP = '',
+        YN = 'Bulu Pegar'
     },
     Item_Des_7013 = {
         ID = 'Item_Des_7013',
         CHS = '雄山鸡尾巴上的硬羽毛，十分华丽。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Splendid tail feather from a male pheasant.',
+        JP = '',
+        YN = 'Bulu ekor pegar jantan yang indah.'
     },
     Item_Name_7014 = {
         ID = 'Item_Name_7014',
         CHS = '黑野猪皮',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Black Wild Boar Pelt',
+        JP = '',
+        YN = 'Kulit Babi Hutan Hitam'
     },
     Item_Des_7014 = {
         ID = 'Item_Des_7014',
         CHS = '黑野猪的皮，用作地毯是极好的。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The skin of a black wild boar that will make a good carpet some day.',
+        JP = '',
+        YN = 'Kulit babi hutan hitam yang kelak bisa diolah menjadi karpet.'
     },
     Item_Name_7015 = {
         ID = 'Item_Name_7015',
         CHS = '野猪牙',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wild Boar Tusk',
+        JP = '',
+        YN = 'Taring Babi Hutan'
     },
     Item_Des_7015 = {
         ID = 'Item_Des_7015',
         CHS = '野猪的獠牙，可以做成挂饰。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The tusk of a wild boar that can be made into a decoration.',
+        JP = '',
+        YN = 'Taring babi hutan yang bisa dibuat menjadi dekorasi.'
     },
     Item_Name_7016 = {
         ID = 'Item_Name_7016',
         CHS = '白野猪皮',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'White Wild Boar Pelt',
+        JP = '',
+        YN = 'Kulit Babi Hutan Putih'
     },
     Item_Des_7016 = {
         ID = 'Item_Des_7016',
         CHS = '白野猪的皮，常被用来制作衣服和皮包等物品。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The skin of a white wild boar that is usually used to make clothes and purses.',
+        JP = '',
+        YN = 'Kulit babi hutan putih yang biasanya dibuat menjadi bahan pakaian dan tas.'
     },
     Item_Name_7017 = {
         ID = 'Item_Name_7017',
         CHS = '熊胆',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Undigested Food',
+        JP = '',
+        YN = 'Makanan yang Tak Dicerna'
     },
     Item_Des_7017 = {
         ID = 'Item_Des_7017',
         CHS = '罕见的动物药材，有解毒的功效。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Not really useful for anything.',
+        JP = '',
+        YN = 'Tidak terlalu berguna.'
     },
     Item_Name_7018 = {
         ID = 'Item_Name_7018',
         CHS = '熊皮',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Bear Pelt',
+        JP = '',
+        YN = 'Kulit Beruang'
     },
     Item_Des_7018 = {
         ID = 'Item_Des_7018',
         CHS = '针毛粗长、绒毛厚密，罕见的皮草。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'A skin full of thick needle-like hair.',
+        JP = '',
+        YN = 'Kulit dengan bulu rambut yang menyerupai jarum.'
     },
     Item_Name_7019 = {
         ID = 'Item_Name_7019',
         CHS = '狼皮',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wolf Pelt',
+        JP = '',
+        YN = 'Kulit Serigala'
     },
     Item_Des_7019 = {
         ID = 'Item_Des_7019',
         CHS = '银色的毛皮，可以制作衣服和包。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Silver skin that can be turned into clothes and purses.',
+        JP = '',
+        YN = 'Kulit abu-abu yang bisa dibuat menjadi pakaian dan tas.'
     },
     Item_Name_7020 = {
         ID = 'Item_Name_7020',
         CHS = '狼牙',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Wolf Fang',
+        JP = '',
+        YN = 'Taring Serigala'
     },
     Item_Des_7020 = {
         ID = 'Item_Des_7020',
         CHS = '狼的獠牙，可以做成挂饰。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The fang of an alpha wolf that can be strung into a necklace.',
+        JP = '',
+        YN = 'Taring serigala jantan yang bisa dirangkai menjadi kalung.'
     },
     Item_Name_7021 = {
         ID = 'Item_Name_7021',
         CHS = '破碎的皮毛',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Tattered Pelt',
+        JP = '',
+        YN = 'Kulit Sobek'
     },
     Item_Des_7021 = {
         ID = 'Item_Des_7021',
         CHS = '想不到有什么用处。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Not really useful for anything.',
+        JP = '',
+        YN = 'Tidak terlalu berguna.'
     },
     Task_NpcText_6001 = {
         ID = 'Task_NpcText_6001',
         CHS = '你好，野营活动已经开始了，尽情狂欢吧！但是拿着器械的时候务必注意安全，不要伤害到营地里的人。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hey, the event has started, go have fun! But remember, be careful with your weapon. Don’t hurt people in the campground.',
+        JP = '',
+        YN = 'Hei, acaranya sudah dimulai. Selamat bersenang-senang! Ingat, jangan sampai kamu melukai orang dengan senjatamu di kamp.'
     },
     Task_NpcText_6002 = {
         ID = 'Task_NpcText_6002',
         CHS = '安全事项？如果你要离开营地，记得在营地里挑选一个趁手的家伙以备不时之需，我这里也有一些，要看看吗？',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Safety precautions? If you want to leave the campground, get something to protect yourself with. I happen to have some here, want to take a look?',
+        JP = '',
+        YN = 'Pelindung? Jika kamu ingin pergi keluar dari kamp, bawa sesuatu untuk melindungi diri. Aku punya beberapa pelindung, mau lihat?'
     },
     Task_NpcText_6003 = {
         ID = 'Task_NpcText_6003',
         CHS = '你好，我架设了用于游览的热气球，会不时在这里停靠，乘坐是免费的哦，要不要试一试？',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello, the hot-air balloon I’ve set up for sightseeing will stop here from time to time. Want to go for a ride? It’s free.',
+        JP = '',
+        YN = 'Halo, balon udara yang kusiapkan untuk wisata akan turun di sini dari waktu ke waktu. Ingin naik? Gratis, kok.'
     },
     Task_NpcText_6004 = {
         ID = 'Task_NpcText_6004',
         CHS = '提升魅力的秘诀？当然是好好打扮自己！我布置了一些装饰物在营地里，你也可以从我这里选一些你喜欢的饰品。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The secret to be more attractive? Well, obviously you need to dress better. I’ve laid out some accessories in the campground, you can also choose from my selections.',
+        JP = '',
+        YN = 'Rahasia tampil lebih menarik? Tentu saja kamu perlu berdandan lebih baik. Aku sudah menyiapkan beberapa aksesori di kamp, kamu bisa langsung memilihnya.'
     },
     Task_NpcText_6005 = {
         ID = 'Task_NpcText_6005',
         CHS = '哦？你要了解动物赛跑嘛？没有比赛进行的时候随时可以进行投注，如果要参赛，记得带上自己的动物。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Oh? You want to know about the snail race? When there’s no race going on, you can place a bet. If you win the bet, you’ll be handsomely rewarded.',
+        JP = '',
+        YN = 'Oh? Kamu ingin tahu tentang balapan siput? Ketika tidak ada balapan yang berlangsung, kamu bisa memasang taruhan. Jika menang, hadiahmu akan banyak.'
     },
     Task_NpcText_6006 = {
         ID = 'Task_NpcText_6006',
         CHS = '检测到——异星——生命体征——',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Alien—life form—detected—',
+        JP = '',
+        YN = 'Ada organisme—alien'
     },
     Task_NpcText_6007 = {
         ID = 'Task_NpcText_6007',
         CHS = '恭喜你，在我们这里每个成年的猎人都要猎杀野猪王证明自己，你已经是一个出色的猎人了，这是我新做的弓，这把弓或许能帮你更进一步！',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcInfo_Name_1 = {
         ID = 'NpcInfo_Name_1',
         CHS = '里尔',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Learze',
+        JP = '',
+        YN = 'Learze'
     },
     NpcInfo_Title_1 = {
         ID = 'NpcInfo_Title_1',
         CHS = '昆虫学家',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Entomologist',
+        JP = '',
+        YN = 'Entomologis'
     },
     NpcInfo_Name_2 = {
         ID = 'NpcInfo_Name_2',
         CHS = '约翰·瑞欧',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Johnny Rico',
+        JP = '',
+        YN = 'Johnny Rico'
     },
     NpcInfo_Title_2 = {
         ID = 'NpcInfo_Title_2',
         CHS = '猎人',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hunter',
+        JP = '',
+        YN = 'Pemburu'
     },
     NpcInfo_Name_3 = {
         ID = 'NpcInfo_Name_3',
         CHS = '赞德·巴卡洛',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Zander Barcalow',
+        JP = '',
+        YN = 'Zander Barcalow'
     },
     NpcInfo_Title_3 = {
         ID = 'NpcInfo_Title_3',
         CHS = '热气球技师',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hot-air Balloon Technician',
+        JP = '',
+        YN = 'Teknisi Balon Udara'
     },
     NpcInfo_Name_4 = {
         ID = 'NpcInfo_Name_4',
         CHS = '劳拉·克罗夫特',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lara Croft',
+        JP = '',
+        YN = 'Lara Croft'
     },
     NpcInfo_Title_4 = {
         ID = 'NpcInfo_Title_4',
         CHS = '迷宫摊主',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcInfo_Name_5 = {
         ID = 'NpcInfo_Name_5',
         CHS = '杰克·苏利',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Jake Sully',
+        JP = '',
+        YN = 'Jake Sully'
     },
     NpcInfo_Title_5 = {
         ID = 'NpcInfo_Title_5',
         CHS = '庆典师',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Event Planner',
+        JP = '',
+        YN = 'Perencana Acara'
     },
     NpcInfo_Name_6 = {
         ID = 'NpcInfo_Name_6',
         CHS = '内蒂里',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Neytiri',
+        JP = '',
+        YN = 'Neytiri'
     },
     NpcInfo_Title_6 = {
         ID = 'NpcInfo_Title_6',
         CHS = '动物赛跑管理员',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Snail Race Staff',
+        JP = '',
+        YN = 'Staf Balapan Siput'
     },
     NpcInfo_Name_7 = {
         ID = 'NpcInfo_Name_7',
         CHS = '情侣',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lover',
+        JP = '',
+        YN = 'Lover'
     },
     NpcInfo_Name_8 = {
         ID = 'NpcInfo_Name_8',
         CHS = '情侣',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Lover',
+        JP = '',
+        YN = 'Lover'
     },
     NpcInfo_Name_9 = {
         ID = 'NpcInfo_Name_9',
         CHS = '探险家',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Explorer',
+        JP = '',
+        YN = 'Penjelajah'
     },
     NpcInfo_Name_10 = {
         ID = 'NpcInfo_Name_10',
         CHS = 'Z先生',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Mr.Z',
+        JP = '',
+        YN = 'Mr.Z'
     },
     NpcInfo_Title_10 = {
         ID = 'NpcInfo_Title_10',
         CHS = '飞碟AI',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'UFO AI',
+        JP = '',
+        YN = 'UFO AI'
     },
     NpcInfo_Name_11 = {
         ID = 'NpcInfo_Name_11',
         CHS = '鲍勃',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Bob',
+        JP = '',
+        YN = 'Bob'
     },
     NpcInfo_Title_11 = {
         ID = 'NpcInfo_Title_11',
         CHS = '营地安全员',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Camp Safety Staff',
+        JP = '',
+        YN = 'Staf Keamanan Kamp'
     },
     NpcInfo_Name_12 = {
         ID = 'NpcInfo_Name_12',
         CHS = '马克·波罗',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Marco Polo',
+        JP = '',
+        YN = 'Marco Polo'
     },
     NpcInfo_Title_12 = {
         ID = 'NpcInfo_Title_12',
         CHS = '导游',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Tourist Guide',
+        JP = '',
+        YN = 'Buku Petunjuk Pariwisata'
     },
     NpcInfo_Name_13 = {
         ID = 'NpcInfo_Name_13',
         CHS = '托尼',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Tony',
+        JP = '',
+        YN = 'Tony'
     },
     NpcInfo_Title_13 = {
         ID = 'NpcInfo_Title_13',
         CHS = '探险家',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Explorer',
+        JP = '',
+        YN = 'Penjelajah'
     },
     GameInfo_GameName_1 = {
         ID = 'GameInfo_GameName_1',
         CHS = '打猎',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_2 = {
         ID = 'GameInfo_GameName_2',
         CHS = '打地鼠',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_3 = {
         ID = 'GameInfo_GameName_3',
         CHS = '迷宫',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_4 = {
         ID = 'GameInfo_GameName_4',
         CHS = '人间大炮',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_5 = {
         ID = 'GameInfo_GameName_5',
         CHS = '青蛙过河',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_6 = {
         ID = 'GameInfo_GameName_6',
         CHS = '热气球',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_7 = {
         ID = 'GameInfo_GameName_7',
         CHS = '种花',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_8 = {
         ID = 'GameInfo_GameName_8',
         CHS = '赛蜗牛',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_9 = {
         ID = 'GameInfo_GameName_9',
         CHS = '竞速',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_10 = {
         ID = 'GameInfo_GameName_10',
         CHS = '摇摇椅',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     GameInfo_GameName_11 = {
         ID = 'GameInfo_GameName_11',
         CHS = '斗怪物',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcText_Text_1001 = {
         ID = 'NpcText_Text_1001',
         CHS = '你好！朋友！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello, friend!',
+        JP = '',
+        YN = 'Halo, teman!'
     },
     NpcText_Text_1002 = {
         ID = 'NpcText_Text_1002',
         CHS = '这个森林的生态真是太有趣了。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The ecosystem of this forest is so fascinating.',
+        JP = '',
+        YN = 'Ekosistem di hutan ini sangat menarik.'
     },
     NpcText_Text_1003 = {
         ID = 'NpcText_Text_1003',
         CHS = '大自然总会给你一些馈赠。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Nature will always reward you in some way.',
+        JP = '',
+        YN = 'Alam akan selalu memberimu rezeki.'
     },
     NpcText_Text_1004 = {
         ID = 'NpcText_Text_1004',
         CHS = '听说这片森林有奇怪的蜗牛，我猜和外星人出没的谣言有关系。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'I heard there are strange snails in this forest. I’m guessing it has something to do with the rumor that there are aliens about.',
+        JP = '',
+        YN = 'Kudengar ada siput yang aneh di hutan ini. Kurasa itu ada kaitannya dengan rumor adanya alien yang berkeliaran.'
     },
     NpcText_Text_1005 = {
         ID = 'NpcText_Text_1005',
         CHS = '去别的地方看看吧，别害怕，这附近没有人受伤的报道。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Look somewhere else. Don’t be afraid, there’s no report of people getting hurt here.',
+        JP = '',
+        YN = 'Carilah di tempat lain. Jangan takut, tidak ada orang yang mengadu karena terluka di sini.'
     },
     NpcText_Text_1006 = {
         ID = 'NpcText_Text_1006',
         CHS = '嘘，别把昆虫吓跑了。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Shhh, don’t scare away the insects.',
+        JP = '',
+        YN = 'Shhh, jangan membuat serangganya kabur.'
     },
     NpcText_Text_1011 = {
         ID = 'NpcText_Text_1011',
         CHS = '你想和我交朋友？不……不是不行。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'You want to be friends with me? It’s not impossible.',
+        JP = '',
+        YN = 'Kamu ingin berteman denganku? Boleh saja.'
     },
     NpcText_Text_1012 = {
         ID = 'NpcText_Text_1012',
         CHS = '如果打到了好的猎物，一定要拿给我看看！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'If you caught something, be sure to show it to me!',
+        JP = '',
+        YN = 'Jika kamu menangkap sesuatu, tunjukkan kepadaku!'
     },
     NpcText_Text_1013 = {
         ID = 'NpcText_Text_1013',
         CHS = '你好！陌生人！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello stranger!',
+        JP = '',
+        YN = 'Halo, orang asing!'
     },
     NpcText_Text_1014 = {
         ID = 'NpcText_Text_1014',
         CHS = '想看看我做的弓箭吗？',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Want to see the bow I made?',
+        JP = '',
+        YN = 'Ingin melihat busur yang kubuat?'
     },
     NpcText_Text_1021 = {
         ID = 'NpcText_Text_1021',
         CHS = '你好。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello.',
+        JP = '',
+        YN = 'Halo.'
     },
     NpcText_Text_1022 = {
         ID = 'NpcText_Text_1022',
         CHS = '试试我新搭的热气球！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Try the hot-air balloon I just set up!',
+        JP = '',
+        YN = 'Cobalah balon udara yang baru kusiapkan!'
     },
     NpcText_Text_1023 = {
         ID = 'NpcText_Text_1023',
         CHS = '注意安全，不要从天上跳下来。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Be careful. Don’t fall.',
+        JP = '',
+        YN = 'Hati-hati. Jangan sampai jatuh.'
     },
     NpcText_Text_1024 = {
         ID = 'NpcText_Text_1024',
         CHS = '你说能不能从热气球上找到外星人！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Do you think I can find aliens by going on a hot-air balloon ride?',
+        JP = '',
+        YN = 'Apakah kira-kira aku bisa bertemu alien dengan memakai balon udara?'
     },
     NpcText_Text_1025 = {
         ID = 'NpcText_Text_1025',
         CHS = '热气球准乘两人。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The hot-air balloon can take two people.',
+        JP = '',
+        YN = 'Balon udara muat untuk dua orang.'
     },
     NpcText_Text_1041 = {
         ID = 'NpcText_Text_1041',
         CHS = '需要一些狂欢道具吗？',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcText_Text_1042 = {
         ID = 'NpcText_Text_1042',
         CHS = '尽情舞蹈吧！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Dance away!',
+        JP = '',
+        YN = 'Berdansalah!'
     },
     NpcText_Text_1043 = {
         ID = 'NpcText_Text_1043',
         CHS = '你好。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello.',
+        JP = '',
+        YN = 'Halo.'
     },
     NpcText_Text_1044 = {
         ID = 'NpcText_Text_1044',
         CHS = '化妆舞会正在筹备中，敬请期待。',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcText_Text_1051 = {
         ID = 'NpcText_Text_1051',
         CHS = '我养的蜗牛都很可爱，不是嘛？',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The snails I’ve raised are the cutest, are they not?',
+        JP = '',
+        YN = 'Siput yang kubesarkan adalah siput yang terlucu, ya kan?'
     },
     NpcText_Text_1052 = {
         ID = 'NpcText_Text_1052',
         CHS = '来一次激动人心的动物比赛吧！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Let’s have a great race!',
+        JP = '',
+        YN = 'Ayo kita mulai balapan!'
     },
     NpcText_Text_1053 = {
         ID = 'NpcText_Text_1053',
         CHS = '猜猜哪只蜗牛跑的更快？猜对有奖！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Which snail is the fastest? Guess right and you’ll win a prize!',
+        JP = '',
+        YN = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!'
     },
     NpcText_Text_1054 = {
         ID = 'NpcText_Text_1054',
         CHS = '这些蜗牛好奇怪？不，这个森林里的蜗牛都是这样的。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'These snails are so strange. No, all the snails in this forest are like this.',
+        JP = '',
+        YN = 'Siput-siput ini aneh sekali. Tidak, semua siput di hutan ini memang seperti ini.'
     },
     NpcText_Text_1061 = {
         ID = 'NpcText_Text_1061',
         CHS = '这里景色真美呀！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'It’s so beautiful here.',
+        JP = '',
+        YN = 'Pemandangannya bagus sekali di sini.'
     },
     NpcText_Text_1062 = {
         ID = 'NpcText_Text_1062',
         CHS = '你好！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello!',
+        JP = '',
+        YN = 'Halo!'
     },
     NpcText_Text_1071 = {
         ID = 'NpcText_Text_1071',
         CHS = '你好！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello!',
+        JP = '',
+        YN = 'Halo!'
     },
     NpcText_Text_1072 = {
         ID = 'NpcText_Text_1072',
         CHS = '听说这里有外星人出没哦。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'I heard there are aliens here!',
+        JP = '',
+        YN = 'Dengar-dengar ada alien di sini!'
     },
     NpcText_Text_1151 = {
         ID = 'NpcText_Text_1151',
         CHS = '你好！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hello!',
+        JP = '',
+        YN = 'Halo!'
     },
     NpcText_Text_1152 = {
         ID = 'NpcText_Text_1152',
         CHS = '每次看到瀑布，我的心情就澎湃起来了呢！',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcText_Text_1161 = {
         ID = 'NpcText_Text_1161',
         CHS = '欢迎访问。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Welcome.',
+        JP = '',
+        YN = 'Selamat datang.'
     },
     NpcText_Text_1162 = {
         ID = 'NpcText_Text_1162',
         CHS = '%*&&&?/.@!@!',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcText_Text_1163 = {
         ID = 'NpcText_Text_1163',
         CHS = '任务进行中……各系统运转正常。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Mission underway... All systems running as intended.',
+        JP = '',
+        YN = 'Misi sudah dimulai... Semua sistem berjalan lancar.'
     },
     NpcText_Text_1164 = {
         ID = 'NpcText_Text_1164',
         CHS = '检测到未知生命体。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Unknown life form detected.',
+        JP = '',
+        YN = 'Ada organisme tak dikenal.'
     },
     NpcText_Text_1171 = {
         ID = 'NpcText_Text_1171',
         CHS = '野外很危险，出去记得带一些防身的家伙。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The wilderness is very dangerous. Don’t forget to take a weapon with you when you go out there.',
+        JP = '',
+        YN = 'Alam belantara adalah tempat yang berbahaya. Jangan lupa untuk membawa senjata saat kamu di sana.'
     },
     NpcText_Text_1172 = {
         ID = 'NpcText_Text_1172',
         CHS = '武器也很危险，小心不要打到营地里的朋友们。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Weapons are dangerous too. Careful not to hurt the people in the campground.',
+        JP = '',
+        YN = 'Senjata juga berbahaya. Hati-hati, jangan sampai melukai orang-orang di kamp.'
     },
     NpcText_Text_1181 = {
         ID = 'NpcText_Text_1181',
         CHS = '我们已经到站了，这片森林人迹罕至，大家可以尽情亲近大自然！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'We’ve arrived! Lucky for you, this forest is not open to visitors yet. This is the perfect opportunity to get close to nature!',
+        JP = '',
+        YN = 'Kita sudah sampai! Kamu beruntung, hutan ini belum dibuka untuk umum. Sekarang saat yang pas untuk mengenal alam dengan lebih baik!'
     },
     NpcText_Text_1182 = {
         ID = 'NpcText_Text_1182',
         CHS = '听说有人在这里观测到UFO出没，探索森林的时候务必注意安全。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'I heard someone has sighted a UFO here, so be careful when you explore the forest.',
+        JP = '',
+        YN = 'Kudengar ada orang yang pernah melihat UFO di sini, berhati-hatilah saat menjelajah hutan.'
     },
     NpcText_Text_1183 = {
         ID = 'NpcText_Text_1183',
         CHS = '这个岛真适合露营。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'This place is perfect for camping.',
+        JP = '',
+        YN = 'Tempat ini pas untuk kamping.'
     },
     NpcText_Text_1184 = {
         ID = 'NpcText_Text_1184',
         CHS = '这个岛会不会是外星人的杰作呢。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'The landscape of this forest is peculiar. Could it be the work of aliens?',
+        JP = '',
+        YN = 'Lanskap hutan ini terlihat tidak asing. Apakah ini hasil ulah alien?'
     },
     NpcText_Text_1191 = {
         ID = 'NpcText_Text_1191',
         CHS = '大自然的风光真是太好了！',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
         CHS = '红蘑菇……黄蘑姑……紫蘑菇……',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Red mushroom... yellow mushroom... purple mushroom...',
+        JP = '',
+        YN = 'Jamur merah... jamur kuning... jamur ungu...'
     },
     NpcText_Text_2011 = {
         ID = 'NpcText_Text_2011',
         CHS = '瞄准，屏息，射击。',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Aim, hold your breath, and shoot.',
+        JP = '',
+        YN = 'Bidik, tahan napas, lalu tembak.'
     },
     NpcText_Text_2012 = {
         ID = 'NpcText_Text_2012',
         CHS = '打猎要有节制！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hunting requires control!',
+        JP = '',
+        YN = 'Berburu memerlukan kontrol yang stabil!'
     },
     NpcText_Text_2021 = {
         ID = 'NpcText_Text_2021',
         CHS = '快试试我搭的热气球吧！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Try the hot-air balloon I’ve set up!',
+        JP = '',
+        YN = 'Cobalah balon udara yang sudah kusiapkan!'
     },
     NpcText_Text_2022 = {
         ID = 'NpcText_Text_2022',
         CHS = '有序排队，注意安全！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Line up in an orderly fashion, and be careful!',
+        JP = '',
+        YN = 'Antre dengan tertib, dan berhati-hatilah!'
     },
     NpcText_Text_2023 = {
         ID = 'NpcText_Text_2023',
         CHS = '今天的太阳真是太舒服了！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'What a great day today!',
+        JP = '',
+        YN = 'Hari ini sangat luar biasa!'
     },
     NpcText_Text_2024 = {
         ID = 'NpcText_Text_2024',
         CHS = '热气球就要来了！还有人想体验热气球吗？',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Hot-air balloon is coming! Does anyone else want to go for a ride?',
+        JP = '',
+        YN = 'Balon udara sudah datang! Ada orang yang mau naik?'
     },
     NpcText_Text_2051 = {
         ID = 'NpcText_Text_2051',
         CHS = '瞧一瞧看一看！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Take a good look!',
+        JP = '',
+        YN = 'Lihatlah!'
     },
     NpcText_Text_2052 = {
         ID = 'NpcText_Text_2052',
         CHS = '买定离手！',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'No backing out after you’ve placed your bet!',
+        JP = '',
+        YN = 'Setelah taruhan dipasang, tidak bisa dibatalkan!'
     },
     NpcText_Text_2053 = {
         ID = 'NpcText_Text_2053',
         CHS = '猜猜谁会赢！猜对有奖哦',
         CHT = '',
-        EN = '',
-        JP = ''
+        EN = 'Which snail is the fastest? Guess right and you’ll win a prize!',
+        JP = '',
+        YN = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!'
     },
     NpcText_Text_1000 = {
         ID = 'NpcText_Text_1000',
         CHS = ' ',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Des_5001 = {
         ID = 'Item_Des_5001',
         CHS = '我有一个梦想。',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Des_5002 = {
         ID = 'Item_Des_5002',
         CHS = '安全第一。',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Name_5003 = {
         ID = 'Item_Name_5003',
         CHS = '畸变水晶',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     },
     Item_Des_5003 = {
         ID = 'Item_Des_5003',
         CHS = '触摸会发生意想不到的事情。',
         CHT = '',
         EN = '',
-        JP = ''
+        JP = '',
+        YN = ''
     }
 }
 
