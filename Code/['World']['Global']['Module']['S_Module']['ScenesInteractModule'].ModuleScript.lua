@@ -211,7 +211,7 @@ function ScenesInteract:TrojanShake(dt)
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
             -- 给钱
-            NetUtil.Fire_C('UpdateCoinEvent', localPlayer, 1)
+            NetUtil.Fire_C('UpdateCoinEvent', v.player, 1)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
@@ -250,10 +250,10 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
             if v.obj.ScenesInteractUID.Value == _player.UserId then
                 if v.useCount > 0 then
                     if v.anitName then
-                        localPlayer.Avatar:PlayAnimation(v.anitName, 2, 1, 0.1, true, false, 1)
+                        _player.Avatar:PlayAnimation(v.anitName, 2, 1, 0.1, true, false, 1)
                     end
                     if v.interactAEID then
-                        SoundUtil.Play3DSE(localPlayer.Position, v.interactAEID)
+                        SoundUtil.Play3DSE(_player.Position, v.interactAEID)
                     end
                     if v.itemID ~= nil then
                         NetUtil.Fire_C('GetItemEvent', _player, v.itemID)
@@ -333,7 +333,8 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                     totalTimer = 0,
                     originForward = v.Forward,
                     dirRatio = 1,
-                    sound = SoundUtil.Play3DSE(_player.Position, 15)
+                    sound = SoundUtil.Play3DSE(_player.Position, 15),
+                    player = _player
                 }
             end
         end

@@ -46,6 +46,11 @@ function PlayerCtrl:DataInit()
     this.isControllable = true
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
+    for k, v in pairs(world.SenceAudio:GetChildren()) do
+        if v.State == Enum.AudioSourceState.Stopped then
+            v:Play()
+        end
+    end
 end
 
 --- 节点事件绑定
@@ -165,11 +170,11 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
         else
-			if _dir == 'R' then
-				SoundUtil.Play2DSE(localPlayer.UserId, 118)
-			else
-				SoundUtil.Play2DSE(localPlayer.UserId, 17)
-			end
+            if _dir == 'R' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 118)
+            else
+                SoundUtil.Play2DSE(localPlayer.UserId, 17)
+            end
         end
         localPlayer.Avatar['Bone_' .. _dir .. '_Foot'].FootStep.OnCollisionEnd:Clear()
         invoke(
@@ -318,22 +323,22 @@ function PlayerCtrl:PlayerSkinUpdate(_skinID)
     for k, v in pairs(Config.Skin[_skinID]) do
         if localPlayer.Avatar[k] and v ~= '' then
             localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
-			--print(v)
-			--print(localPlayer.Avatar[k])
+        --print(v)
+        --print(localPlayer.Avatar[k])
         --print(k, v)
         end
     end
 end
 
 -- 更新金币
-function PlayerCtrl:UpdateCoinEventHandler(_num,_fromBag)
+function PlayerCtrl:UpdateCoinEventHandler(_num, _fromBag)
     if _num ~= 0 then
         if _num > 0 and _fromBag then
             SoundUtil.Play2DSE(localPlayer.UserId, 111)
-		elseif _num > 0 then
-			SoundUtil.Play2DSE(localPlayer.UserId, 4)
+        elseif _num > 0 then
+            SoundUtil.Play2DSE(localPlayer.UserId, 4)
         end
-		
+
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end

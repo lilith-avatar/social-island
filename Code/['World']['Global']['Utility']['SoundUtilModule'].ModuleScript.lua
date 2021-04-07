@@ -116,6 +116,7 @@ function SoundUtil.Play2DSE(_uid, _SEID)
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
     source.SoundClip = clipTable[_SEID].clip
+    wait()
     source:Play()
     ReleaeseSource(_uid)
     return index
@@ -140,6 +141,7 @@ function SoundUtil.Play3DSE(_pos, _SEID)
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
     source.SoundClip = clipTable[_SEID].clip
+    wait()
     source:Play()
     ReleaeseSource()
     return index

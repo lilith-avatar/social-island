@@ -6,8 +6,6 @@
 
 local ItemMgr, this = ModuleUtil.New('ItemMgr', ClientBase)
 
-local coin = 0
-
 function ItemMgr:Init()
     print('[ItemMgr] ItemMgr:Init')
     this:NodeRef()
@@ -132,7 +130,7 @@ function ItemMgr:GetItemEventHandler(_id)
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     GuiNoticeInfo:ShowGetItem(_id)
-	SoundUtil.Play2DSE(localPlayer.UserId, 110)
+    SoundUtil.Play2DSE(localPlayer.UserId, 110)
     print('[ItemMgr] 获得道具', _id)
     return
 end
@@ -179,9 +177,9 @@ function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin)
             weightSum = weightSum + v.Weight
         end
         local randomNum = math.random(weightSum)
-		local tempWeightSum=0
+        local tempWeightSum = 0
         for k, v in pairs(Config.ItemPool[_poolID]) do
-			tempWeightSum = tempWeightSum + v.Weight
+            tempWeightSum = tempWeightSum + v.Weight
             if randomNum < tempWeightSum then
                 if Data.Player.bag[v.ItemId] then
                     if tonumber(string.sub(tostring(v.ItemId), 1, 1)) >= 6 then
@@ -228,6 +226,9 @@ function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     print('[ItemMgr] 读取长期存储成功')
     if not _hasData then
         this:InitBagData()
+    end
+    for k, v in pairs(Data.Player.bag) do
+        print('Item:', k)
     end
 end
 
