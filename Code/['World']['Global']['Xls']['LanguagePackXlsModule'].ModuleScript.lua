@@ -2685,6 +2685,270 @@ local LanguagePackXls = {
         EN = '',
         JP = '',
         YN = ''
+    },
+    GuiText_Txt_InfoGui_1 = {
+        ID = 'GuiText_Txt_InfoGui_1',
+        CHS = '新的一天开始了',
+        CHT = '',
+        EN = 'A new day has begun',
+        JP = '',
+        YN = 'Hari baru telah dimulai'
+    },
+    GuiText_Txt_InfoGui_2 = {
+        ID = 'GuiText_Txt_InfoGui_2',
+        CHS = '傍晚了，回去营地吧',
+        CHT = '',
+        EN = 'It’s dusk, time to get back to the campground.',
+        JP = '',
+        YN = 'Sudah petang, waktunya kembali ke kamp.'
+    },
+    GuiText_Txt_InfoGui_3 = {
+        ID = 'GuiText_Txt_InfoGui_3',
+        CHS = '天黑了，准备狂欢吧！',
+        CHT = '',
+        EN = 'It’s nighttime, time to party!',
+        JP = '',
+        YN = 'Sudah malam, waktunya berpesta!'
+    },
+    GuiText_Txt_InfoGui_4 = {
+        ID = 'GuiText_Txt_InfoGui_4',
+        CHS = '神秘的UFO出现了！',
+        CHT = '',
+        EN = 'The mysterious UFO has appeared!',
+        JP = '',
+        YN = 'UFO misterius telah muncul!'
+    },
+    GuiText_Txt_InfoGui_5 = {
+        ID = 'GuiText_Txt_InfoGui_5',
+        CHS = '天空中出现了神秘的迷宫！',
+        CHT = '',
+        EN = 'A mysterious maze has appeared in the sky!',
+        JP = '',
+        YN = 'Labirin misterius muncul di langit!'
+    },
+    GuiText_Txt_SnailGui_1 = {
+        ID = 'GuiText_Txt_SnailGui_1',
+        CHS = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
+        CHT = '',
+        EN = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
+        JP = '',
+        YN = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
+    },
+    GuiText_Txt_SnailGui_2 = {
+        ID = 'GuiText_Txt_SnailGui_2',
+        CHS = '蜗牛赛跑开始了！',
+        CHT = '',
+        EN = 'The snail race has begun!',
+        JP = '',
+        YN = 'Balapan siput telah dimulai!'
+    },
+    GuiText_Txt_SnailGui_3 = {
+        ID = 'GuiText_Txt_SnailGui_3',
+        CHS = '你不能多次投注或在比赛进行中投注',
+        CHT = '',
+        EN = 'You cannot place multiple bets or place a bet while a race is underway.',
+        JP = '',
+        YN = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
+    },
+    GuiText_Txt_SnailGui_4 = {
+        ID = 'GuiText_Txt_SnailGui_4',
+        CHS = '你投注的蜗牛获得了第%s名，为你赢得了%s枚金币。',
+        CHT = '',
+        EN = 'The snail you betted on obtained a rank of %s, and you won %s coins.',
+        JP = '',
+        YN = 'Siput yang kamu pilih meraih peringkat %s, dan kamu memenangkan %s koin.'
+    },
+    GuiText_Txt_SnailGui_5 = {
+        ID = 'GuiText_Txt_SnailGui_5',
+        CHS = '你投注的蜗牛获得了第%s名，你输掉了你的金币。',
+        CHT = '',
+        EN = 'The snail you betted on obtained a rank of %s, and you lost your coins.',
+        JP = '',
+        YN = 'Siput yang kamu pilih meraih peringkat %s, dan kamu kehilangan koin.'
+    },
+    GuiText_Txt_SnailGui_6 = {
+        ID = 'GuiText_Txt_SnailGui_6',
+        CHS = '请选择投注数量',
+        CHT = '',
+        EN = 'Place your bet.',
+        JP = '',
+        YN = 'Pasang taruhanmu.'
+    },
+    GuiText_Txt_SnailGui_7 = {
+        ID = 'GuiText_Txt_SnailGui_7',
+        CHS = '你没钱啦',
+        CHT = '',
+        EN = 'You don’t have enough coins.',
+        JP = '',
+        YN = 'Koinmu tidak cukup.'
+    },
+    GuiText_Txt_SnailGui_8 = {
+        ID = 'GuiText_Txt_SnailGui_8',
+        CHS = '你成功给%s号蜗牛投注',
+        CHT = '',
+        EN = 'You successfully placed a bet on Snail number %s.',
+        JP = '',
+        YN = 'Kamu berhasil memasang taruhan pada Siput nomor %s.'
+    },
+    GuiText_Txt_SnailGui_9 = {
+        ID = 'GuiText_Txt_SnailGui_9',
+        CHS = '选择一个颜色的蜗牛',
+        CHT = '',
+        EN = 'Bet on a snail by choosing its color.',
+        JP = '',
+        YN = 'Pasang taruhan dengan memilih warna siput.'
+    },
+    GuiText_Txt_PetGui_1 = {
+        ID = 'GuiText_Txt_PetGui_1',
+        CHS = '你的陷阱困住了一只动物',
+        CHT = '',
+        EN = 'Your trap caught an animal.',
+        JP = '',
+        YN = 'Ada hewan yang terjebak di perangkapmu.'
+    },
+    GuiText_Txt_PetGui_2 = {
+        ID = 'GuiText_Txt_PetGui_2',
+        CHS = '你的陷阱被动物挣脱了',
+        CHT = '',
+        EN = 'An animal broke free from your trap.',
+        JP = '',
+        YN = 'Ada hewan yang lolos dari perangkapmu.'
+    },
+    GuiText_Txt_PetGui_3 = {
+        ID = 'GuiText_Txt_PetGui_3',
+        CHS = '动物距离你太远了',
+        CHT = '',
+        EN = 'You’re too close to the animal.',
+        JP = '',
+        YN = 'Jarakmu dengan hewan terlalu dekat.'
+    },
+    GuiText_Txt_PetGui_4 = {
+        ID = 'GuiText_Txt_PetGui_4',
+        CHS = '恭喜，你抓到了这只动物。',
+        CHT = '',
+        EN = 'Congratulations, you’ve caught this animal.',
+        JP = '',
+        YN = 'Selamat, kamu berhasil menangkap hewan ini.'
+    },
+    GuiText_Txt_PetGui_5 = {
+        ID = 'GuiText_Txt_PetGui_5',
+        CHS = '尝试用陷阱把动物困住再捕捉吧',
+        CHT = '',
+        EN = 'Try to get the animal stuck with the trap first.',
+        JP = '',
+        YN = 'Cobalah jebak hewannya dengan perangkap dulu.'
+    },
+    GuiText_Txt_PetGui_6 = {
+        ID = 'GuiText_Txt_PetGui_6',
+        CHS = '你抓到了一个宠物，给他起个名字吧！',
+        CHT = '',
+        EN = 'You’ve caught a pet! Give your pet a name!',
+        JP = '',
+        YN = 'Kamu berhasil mendapat piaraan! Beri dia nama!'
+    },
+    GuiText_Txt_MoleGui_1 = {
+        ID = 'GuiText_Txt_MoleGui_1',
+        CHS = '你需要向石像内塞入%s枚硬币来祈愿。',
+        CHT = '',
+        EN = 'You need to put %s coins into the stone golem to make a wish.',
+        JP = '',
+        YN = 'Kamu harus menaruh %s koin ke dalam golem batu untuk membuat permohonan.'
+    },
+    GuiText_Txt_ShopGui_1 = {
+        ID = 'GuiText_Txt_ShopGui_1',
+        CHS = '是否购买%s',
+        CHT = '',
+        EN = 'Do you want to purchase %s?',
+        JP = '',
+        YN = 'Kamu ingin membeli %s?'
+    },
+    GuiText_Txt_NpcGui_1 = {
+        ID = 'GuiText_Txt_NpcGui_1',
+        CHS = '进入游戏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_NpcGui_2 = {
+        ID = 'GuiText_Txt_NpcGui_2',
+        CHS = '离开',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_NpcGui_3 = {
+        ID = 'GuiText_Txt_NpcGui_3',
+        CHS = '购买',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_ShopGui_2 = {
+        ID = 'GuiText_Txt_ShopGui_2',
+        CHS = '金币不足',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_ShopGui_3 = {
+        ID = 'GuiText_Txt_ShopGui_3',
+        CHS = '购买',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_1 = {
+        ID = 'GuiText_Txt_CookGui_1',
+        CHS = '来做饭吧',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_2 = {
+        ID = 'GuiText_Txt_CookGui_2',
+        CHS = '选用食材',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_3 = {
+        ID = 'GuiText_Txt_CookGui_3',
+        CHS = '你做出了%s',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_4 = {
+        ID = 'GuiText_Txt_CookGui_4',
+        CHS = '吃掉它',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_5 = {
+        ID = 'GuiText_Txt_CookGui_5',
+        CHS = '放到桌上',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_6 = {
+        ID = 'GuiText_Txt_CookGui_6',
+        CHS = '打赏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 

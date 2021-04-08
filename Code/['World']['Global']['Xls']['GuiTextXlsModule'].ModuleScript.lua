@@ -6,157 +6,137 @@
 --- source file: .//GuiText.xlsx
 
 local GuiTextXls = {
-    [1] = {
-        TextId = 1,
-        Txt = 'GuiText_Txt_1'
+    InfoGui_1 = {
+        TextId = 'InfoGui_1',
+        Txt = 'GuiText_Txt_InfoGui_1'
     },
-    [2] = {
-        TextId = 2,
-        Txt = 'GuiText_Txt_2'
+    InfoGui_2 = {
+        TextId = 'InfoGui_2',
+        Txt = 'GuiText_Txt_InfoGui_2'
     },
-    [3] = {
-        TextId = 3,
-        Txt = 'GuiText_Txt_3'
+    InfoGui_3 = {
+        TextId = 'InfoGui_3',
+        Txt = 'GuiText_Txt_InfoGui_3'
     },
-    [4] = {
-        TextId = 4,
-        Txt = 'GuiText_Txt_4'
+    InfoGui_4 = {
+        TextId = 'InfoGui_4',
+        Txt = 'GuiText_Txt_InfoGui_4'
     },
-    [5] = {
-        TextId = 5,
-        Txt = 'GuiText_Txt_5'
+    InfoGui_5 = {
+        TextId = 'InfoGui_5',
+        Txt = 'GuiText_Txt_InfoGui_5'
     },
-    [6] = {
-        TextId = 6,
-        Txt = 'GuiText_Txt_6'
+    SnailGui_1 = {
+        TextId = 'SnailGui_1',
+        Txt = 'GuiText_Txt_SnailGui_1'
     },
-    [7] = {
-        TextId = 7,
-        Txt = 'GuiText_Txt_7'
+    SnailGui_2 = {
+        TextId = 'SnailGui_2',
+        Txt = 'GuiText_Txt_SnailGui_2'
     },
-    [8] = {
-        TextId = 8,
-        Txt = 'GuiText_Txt_8'
+    SnailGui_3 = {
+        TextId = 'SnailGui_3',
+        Txt = 'GuiText_Txt_SnailGui_3'
     },
-    [9] = {
-        TextId = 9,
-        Txt = 'GuiText_Txt_9'
+    SnailGui_4 = {
+        TextId = 'SnailGui_4',
+        Txt = 'GuiText_Txt_SnailGui_4'
     },
-    [10] = {
-        TextId = 10,
-        Txt = 'GuiText_Txt_10'
+    SnailGui_5 = {
+        TextId = 'SnailGui_5',
+        Txt = 'GuiText_Txt_SnailGui_5'
     },
-    [11] = {
-        TextId = 11,
-        Txt = 'GuiText_Txt_11'
+    SnailGui_6 = {
+        TextId = 'SnailGui_6',
+        Txt = 'GuiText_Txt_SnailGui_6'
     },
-    [12] = {
-        TextId = 12,
-        Txt = 'GuiText_Txt_12'
+    SnailGui_7 = {
+        TextId = 'SnailGui_7',
+        Txt = 'GuiText_Txt_SnailGui_7'
     },
-    [13] = {
-        TextId = 13,
-        Txt = 'GuiText_Txt_13'
+    SnailGui_8 = {
+        TextId = 'SnailGui_8',
+        Txt = 'GuiText_Txt_SnailGui_8'
     },
-    [14] = {
-        TextId = 14,
-        Txt = 'GuiText_Txt_14'
+    SnailGui_9 = {
+        TextId = 'SnailGui_9',
+        Txt = 'GuiText_Txt_SnailGui_9'
     },
-    [15] = {
-        TextId = 15,
-        Txt = 'GuiText_Txt_15'
+    PetGui_1 = {
+        TextId = 'PetGui_1',
+        Txt = 'GuiText_Txt_PetGui_1'
     },
-    [16] = {
-        TextId = 16,
-        Txt = 'GuiText_Txt_16'
+    PetGui_2 = {
+        TextId = 'PetGui_2',
+        Txt = 'GuiText_Txt_PetGui_2'
     },
-    [17] = {
-        TextId = 17,
-        Txt = 'GuiText_Txt_17'
+    PetGui_3 = {
+        TextId = 'PetGui_3',
+        Txt = 'GuiText_Txt_PetGui_3'
     },
-    [18] = {
-        TextId = 18,
-        Txt = 'GuiText_Txt_18'
+    PetGui_4 = {
+        TextId = 'PetGui_4',
+        Txt = 'GuiText_Txt_PetGui_4'
     },
-    [19] = {
-        TextId = 19,
-        Txt = 'GuiText_Txt_19'
+    PetGui_5 = {
+        TextId = 'PetGui_5',
+        Txt = 'GuiText_Txt_PetGui_5'
     },
-    [20] = {
-        TextId = 20,
-        Txt = 'GuiText_Txt_20'
+    PetGui_6 = {
+        TextId = 'PetGui_6',
+        Txt = 'GuiText_Txt_PetGui_6'
     },
-    [21] = {
-        TextId = 21,
-        Txt = 'GuiText_Txt_21'
+    MoleGui_1 = {
+        TextId = 'MoleGui_1',
+        Txt = 'GuiText_Txt_MoleGui_1'
     },
-    [22] = {
-        TextId = 22,
-        Txt = 'GuiText_Txt_22'
+    ShopGui_1 = {
+        TextId = 'ShopGui_1',
+        Txt = 'GuiText_Txt_ShopGui_1'
     },
-    [23] = {
-        TextId = 23,
-        Txt = 'GuiText_Txt_23'
+    NpcGui_1 = {
+        TextId = 'NpcGui_1',
+        Txt = 'GuiText_Txt_NpcGui_1'
     },
-    [24] = {
-        TextId = 24,
-        Txt = 'GuiText_Txt_24'
+    NpcGui_2 = {
+        TextId = 'NpcGui_2',
+        Txt = 'GuiText_Txt_NpcGui_2'
     },
-    [25] = {
-        TextId = 25,
-        Txt = 'GuiText_Txt_25'
+    NpcGui_3 = {
+        TextId = 'NpcGui_3',
+        Txt = 'GuiText_Txt_NpcGui_3'
     },
-    [26] = {
-        TextId = 26,
-        Txt = 'GuiText_Txt_26'
+    ShopGui_2 = {
+        TextId = 'ShopGui_2',
+        Txt = 'GuiText_Txt_ShopGui_2'
     },
-    [27] = {
-        TextId = 27,
-        Txt = 'GuiText_Txt_27'
+    ShopGui_3 = {
+        TextId = 'ShopGui_3',
+        Txt = 'GuiText_Txt_ShopGui_3'
     },
-    [28] = {
-        TextId = 28,
-        Txt = 'GuiText_Txt_28'
+    CookGui_1 = {
+        TextId = 'CookGui_1',
+        Txt = 'GuiText_Txt_CookGui_1'
     },
-    [29] = {
-        TextId = 29,
-        Txt = 'GuiText_Txt_29'
+    CookGui_2 = {
+        TextId = 'CookGui_2',
+        Txt = 'GuiText_Txt_CookGui_2'
     },
-    [30] = {
-        TextId = 30,
-        Txt = 'GuiText_Txt_30'
+    CookGui_3 = {
+        TextId = 'CookGui_3',
+        Txt = 'GuiText_Txt_CookGui_3'
     },
-    [31] = {
-        TextId = 31,
-        Txt = 'GuiText_Txt_31'
+    CookGui_4 = {
+        TextId = 'CookGui_4',
+        Txt = 'GuiText_Txt_CookGui_4'
     },
-    [32] = {
-        TextId = 32,
-        Txt = 'GuiText_Txt_32'
+    CookGui_5 = {
+        TextId = 'CookGui_5',
+        Txt = 'GuiText_Txt_CookGui_5'
     },
-    [33] = {
-        TextId = 33,
-        Txt = 'GuiText_Txt_33'
-    },
-    [34] = {
-        TextId = 34,
-        Txt = 'GuiText_Txt_34'
-    },
-    [35] = {
-        TextId = 35,
-        Txt = 'GuiText_Txt_35'
-    },
-    [36] = {
-        TextId = 36,
-        Txt = 'GuiText_Txt_36'
-    },
-    [37] = {
-        TextId = 37,
-        Txt = 'GuiText_Txt_37'
-    },
-    [38] = {
-        TextId = 38,
-        Txt = 'GuiText_Txt_38'
+    CookGui_6 = {
+        TextId = 'CookGui_6',
+        Txt = 'GuiText_Txt_CookGui_6'
     }
 }
 
