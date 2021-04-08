@@ -94,6 +94,8 @@ function CookS:DestroyAllFood()
         --向所有人发起流程，关闭详情ui
         --NetUtil.Broadcast()
     end
+    this.curFoodNum = 0
+    NetUtil.Broadcast("SycnDeskFoodNumEvent", this.curFoodNum, this.foodNum)
 end
 
 function CookS:SycnTimeSEventHandler(_clock)

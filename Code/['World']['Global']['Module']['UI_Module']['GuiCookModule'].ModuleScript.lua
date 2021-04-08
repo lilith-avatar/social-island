@@ -1,7 +1,7 @@
 ---@module GuiCook
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local GuiCook, this = ModuleUtil.New("GuiCook", ClientBase)
+local GuiCook, this = ModuleUtil.New('GuiCook', ClientBase)
 
 ---初始化函数
 function GuiCook:Init()
@@ -11,7 +11,7 @@ function GuiCook:Init()
 end
 
 function GuiCook:Test()
-    NetUtil.Fire_C("GetItemEvent", localPlayer, 6043)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, 6043)
 end
 
 function GuiCook:DataInit()
@@ -44,11 +44,15 @@ function GuiCook:NodeDef()
     --* 背包中食材的slot
     this.slotList = this.gui.DragPanel.SlotPanel:GetChildren()
     --* 显示材料的slot
-    this.MaterialSlot = this.gui.MaterialPanel:GetChildren()
+    this.MaterialSlot = {
+        this.gui.MaterialPanel.Material1,
+        this.gui.MaterialPanel.Material2,
+        this.gui.MaterialPanel.Material3
+    }
     --* 进度条的slot
     --* Button------------------
-    this.cookBtn = this.gui.CookBtn -- 烹饪按钮
-    this.closeBtn = this.gui.CloseImg.CloseBtn -- 关闭按钮
+    this.cookBtn = this.gui.MaterialPanel.CookBtn -- 烹饪按钮
+    this.closeBtn = this.gui.MaterialPanel.CloseImg.CloseBtn -- 关闭按钮
     this.prevBtn = this.gui.DragPanel.PreBtn -- 上一页按钮
     this.nextBtn = this.gui.DragPanel.NextBtn -- 下一页按钮
     this.eatBtn = this.foodPanel.EatBtn
@@ -87,12 +91,12 @@ function GuiCook:EventBind()
     this.cookBtn.OnClick:Connect(
         function()
             this:StartCook()
-            NetUtil.Fire_C("PlayerCookEvent", localPlayer, this.UsingMaterial)
+            NetUtil.Fire_C('PlayerCookEvent', localPlayer, this.UsingMaterial)
         end
     )
     this.closeBtn.OnClick:Connect(
         function()
-            NetUtil.Fire_S("LeaveInteractSEvent", localPlayer, 26)
+            NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 26)
             this:HideGui()
         end
     )
@@ -113,7 +117,7 @@ function GuiCook:EventBind()
     )
     this.detailReward.OnClick:Connect(
         function()
-            NetUtil.Fire_C("SliderPurchaseEvent", localPlayer, 27, "请选择你要打赏的数量")
+            NetUtil.Fire_C('SliderPurchaseEvent', localPlayer, 27, '请选择你要打赏的数量')
         end
     )
 end
@@ -163,16 +167,15 @@ function GuiCook:InteractCEventHandler(_gameId)
         if this.canEat then
             this:ShowDetail()
         else
-            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "宴会还没有开始，晚上再来吧", 2, false)
+            NetUtil.Fire_C('InsertInfoEvent', localPlayer, '宴会还没有开始，晚上再来吧', 2, false)
         end
     end
 end
 
 function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
-        
         this:HideGui()
-        NetUtil.Fire_S("FoodRewardEvent", localPlayer.UserId, this.cookUserId, _purchaseCoin)
+        NetUtil.Fire_S('FoodRewardEvent', localPlayer.UserId, this.cookUserId, _purchaseCoin)
     end
 end
 
@@ -247,11 +250,15 @@ function GuiCook:ShowMaterialIcon()
     for k, v in ipairs(this.MaterialSlot) do
         if this.UsingMaterial[k] then
             v.ItemImg.IMGNormal.Texture =
-                ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[this.UsingMaterial[k].id].Icon)
+                ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[this.UsingMaterial[k].id].Icon)
             v.ItemImg.IMGNormal.Size = Vector2(128, 128)
-            v.ItemImg:SetActive(true)
+            v.ItemImg.ItemText.Text = LanguageUtil.GetText(Config.Item[this.UsingMaterial[k].id].Name)
+            --v.ItemImg:SetActive(true)
         else
-            v.ItemImg:SetActive(false)
+            v.ItemImg.IMGNormal.Texture =
+                ResourceManager.GetTexture('UI/Cook/Result/CS_AVG_Icon_Food_1')
+            v.ItemImg.IMGNormal.Size = Vector2(138, 151)
+            v.ItemImg.ItemText.Text = 'Pick One'
         end
     end
 end
@@ -280,12 +287,12 @@ end
 function GuiCook:ShowItemByIndex(_index, _itemId)
     if not _itemId then
         this.slotList[_index]:SetActive(false)
-        this.slotList[_index].ItemID.Value = ""
+        this.slotList[_index].ItemID.Value = ''
         return
     end
     -- 更换图片
     this.slotList[_index].ItemImg.IMGNormal.Texture =
-        ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
+        ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[_itemId].Icon)
     -- 显示数量
     this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
     this.slotList[_index].NameTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Name)
@@ -330,12 +337,12 @@ function GuiCook:ShowFood()
         return
     end
     this:ConsumeMaterial()
-    this.titleTxt.Text = "你做出了" .. LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
+    this.titleTxt.Text = '你做出了' .. LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
     this.foodPanel:SetActive(true)
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
-    this.numTxt.Text = _cur .. " / " .. _total
+    this.deskBtn.Text = 'PUT ON DESK('.._cur..'/'.._total..')'
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
@@ -352,7 +359,7 @@ end
 
 function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
-    this.authorName.Text = "By " .. _cookName
+    this.authorName.Text = 'By ' .. _cookName
     this.cookUserId = _cookUserId
     this.foodId = _foodId
     -- 无法打赏自己做的菜
@@ -364,15 +371,20 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
 end
 
 function GuiCook:EatFood()
-    NetUtil.Fire_C('GetBuffEvent',localPlayer,Config.CookMenu[this.foodId].BuffId,Config.CookMenu[this.foodId].BuffDur)
+    NetUtil.Fire_C(
+        'GetBuffEvent',
+        localPlayer,
+        Config.CookMenu[this.foodId].BuffId,
+        Config.CookMenu[this.foodId].BuffDur
+    )
     this.foodId = nil
     this:HideGui()
-    NetUtil.Fire_C('ChangeMiniGameUIEvent',localPlayer)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     --this:ShowUI()
 end
 
 function GuiCook:PutOnDesk()
-    NetUtil.Fire_S("FoodOnDeskEvent", this.foodId, localPlayer)
+    NetUtil.Fire_S('FoodOnDeskEvent', this.foodId, localPlayer)
     this.foodId = nil
     this:ShowUI()
 end
@@ -393,7 +405,7 @@ function GuiCook:Update(dt)
 end
 
 function GuiCook:SycnTimeCEventHandler(_clock)
-    if _clock >=19 or _clock <= 6 then
+    if _clock >= 19 or _clock <= 6 then
         this.canEat = true
     else
         this.canEat = false
