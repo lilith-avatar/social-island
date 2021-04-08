@@ -342,7 +342,7 @@ function GuiCook:ShowFood()
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
-    this.numTxt.Text = _cur .. ' / ' .. _total
+    this.deskBtn.Text = 'PUT ON DESK('.._cur..'/'.._total..')'
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
