@@ -113,6 +113,50 @@ local GuiTextXls = {
     [27] = {
         TextId = 27,
         Txt = 'GuiText_Txt_27'
+    },
+    [28] = {
+        TextId = 28,
+        Txt = 'GuiText_Txt_28'
+    },
+    [29] = {
+        TextId = 29,
+        Txt = 'GuiText_Txt_29'
+    },
+    [30] = {
+        TextId = 30,
+        Txt = 'GuiText_Txt_30'
+    },
+    [31] = {
+        TextId = 31,
+        Txt = 'GuiText_Txt_31'
+    },
+    [32] = {
+        TextId = 32,
+        Txt = 'GuiText_Txt_32'
+    },
+    [33] = {
+        TextId = 33,
+        Txt = 'GuiText_Txt_33'
+    },
+    [34] = {
+        TextId = 34,
+        Txt = 'GuiText_Txt_34'
+    },
+    [35] = {
+        TextId = 35,
+        Txt = 'GuiText_Txt_35'
+    },
+    [36] = {
+        TextId = 36,
+        Txt = 'GuiText_Txt_36'
+    },
+    [37] = {
+        TextId = 37,
+        Txt = 'GuiText_Txt_37'
+    },
+    [38] = {
+        TextId = 38,
+        Txt = 'GuiText_Txt_38'
     }
 }
 

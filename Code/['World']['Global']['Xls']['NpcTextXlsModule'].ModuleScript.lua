@@ -118,10 +118,6 @@ local NpcTextXls = {
         ID = 1151,
         Text = 'NpcText_Text_1151'
     },
-    [1152] = {
-        ID = 1152,
-        Text = 'NpcText_Text_1152'
-    },
     [1161] = {
         ID = 1161,
         Text = 'NpcText_Text_1161'

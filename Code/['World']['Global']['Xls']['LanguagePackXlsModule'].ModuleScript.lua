@@ -2280,11 +2280,11 @@ local LanguagePackXls = {
     },
     NpcText_Text_1041 = {
         ID = 'NpcText_Text_1041',
-        CHS = '需要一些狂欢道具吗？',
+        CHS = '需要打扮自己吗？',
         CHT = '',
-        EN = '',
+        EN = 'Do you need to dress yourself up?',
         JP = '',
-        YN = ''
+        YN = 'Kamu perlu berdandan?'
     },
     NpcText_Text_1042 = {
         ID = 'NpcText_Text_1042',
@@ -2304,11 +2304,11 @@ local LanguagePackXls = {
     },
     NpcText_Text_1044 = {
         ID = 'NpcText_Text_1044',
-        CHS = '化妆舞会正在筹备中，敬请期待。',
+        CHS = '晚宴正在筹备中，敬请期待',
         CHT = '',
-        EN = '',
+        EN = 'The dinner party is being prepared, please wait.',
         JP = '',
-        YN = ''
+        YN = 'Pesta makan malam sedang disiapkan, harap tunggu.'
     },
     NpcText_Text_1051 = {
         ID = 'NpcText_Text_1051',
@@ -2402,9 +2402,9 @@ local LanguagePackXls = {
         ID = 'NpcText_Text_1162',
         CHS = '%*&&&?/.@!@!',
         CHT = '',
-        EN = '',
+        EN = '%*&&&?/.@!@!',
         JP = '',
-        YN = ''
+        YN = '%*&&&?/.@!@!'
     },
     NpcText_Text_1163 = {
         ID = 'NpcText_Text_1163',
@@ -2593,6 +2593,94 @@ local LanguagePackXls = {
     Item_Des_5003 = {
         ID = 'Item_Des_5003',
         CHS = '触摸会发生意想不到的事情。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_28 = {
+        ID = 'GuiText_Txt_28',
+        CHS = '进入游戏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_29 = {
+        ID = 'GuiText_Txt_29',
+        CHS = '离开',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_30 = {
+        ID = 'GuiText_Txt_30',
+        CHS = '购买',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_31 = {
+        ID = 'GuiText_Txt_31',
+        CHS = '金币不足',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_32 = {
+        ID = 'GuiText_Txt_32',
+        CHS = '购买',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_33 = {
+        ID = 'GuiText_Txt_33',
+        CHS = '来做饭吧',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_34 = {
+        ID = 'GuiText_Txt_34',
+        CHS = '选用食材',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_35 = {
+        ID = 'GuiText_Txt_35',
+        CHS = '你做出了%s',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_36 = {
+        ID = 'GuiText_Txt_36',
+        CHS = '吃掉它',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_37 = {
+        ID = 'GuiText_Txt_37',
+        CHS = '放到桌上',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_38 = {
+        ID = 'GuiText_Txt_38',
+        CHS = '打赏',
         CHT = '',
         EN = '',
         JP = '',
