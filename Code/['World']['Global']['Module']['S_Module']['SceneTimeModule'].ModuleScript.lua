@@ -77,8 +77,8 @@ function SceneTime:RealTimeSycnSkyData()
     if not configData then
         return
     end
-    if Config.TimeSkySetting[this.clock].ChangeBrightness then
-        this.sky.Brightness = Config.TimeSkySetting[this.clock].ChangeBrightness
+    if Config.TimeSkySetting[this.clock].ChangeIntensity then
+        this.sky.SkyboxIntensity = Config.TimeSkySetting[this.clock].ChangeIntensity
     end
     this.sky.Up = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyUp)
     this.sky.Front = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyFront)
