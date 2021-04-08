@@ -155,6 +155,8 @@ function ItemMgr:UseItemInHandEventHandler()
     if this.curEquipmentID ~= 0 then
         print('[ItemMgr] 使用在手中的道具')
         this.itemInstance[this.curEquipmentID]:UseInHand()
+        NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 15)
+        NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, 15)
     end
 end
 

@@ -65,6 +65,8 @@ Events.ClientEvents = {
     'ChangeMiniGameUIEvent',
     --- 打开动态交互事件
     'OpenDynamicEvent', -- @param _type, _id
+    --- 关闭动态交互事件
+    'CloseDynamicEvent',
     -- 交互
     'InteractCEvent', -- @param _id
     'LeaveInteractCEvent', -- @param _player, _id

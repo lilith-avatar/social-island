@@ -54,7 +54,7 @@ function GuiControl:InitListener()
     ctrlFigure.UseBtn.OnDown:Connect(
         function()
             if ItemMgr.curEquipmentID ~= 0 then
-                print('UseBtn', ItemMgr.curEquipmentID)
+                --print('UseBtn', ItemMgr.curEquipmentID)
                 NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
                 return
             end
@@ -190,6 +190,13 @@ function GuiControl:OpenDynamicEventHandler(_type, _var)
         dynamicFigure.PickBtn:SetActive(true)
         pickItemObj = _var
     end
+end
+
+--- 关闭动态交互事件
+function GuiControl:CloseDynamicEventHandler()
+    dynamicFigure:SetActive(false)
+    dynamicFigure.InteractBtn:SetActive(false)
+    dynamicFigure.PickBtn:SetActive(false)
 end
 
 --- 更新金币显示

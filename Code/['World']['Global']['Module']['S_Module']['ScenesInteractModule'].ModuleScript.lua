@@ -245,6 +245,7 @@ function ScenesInteract:TentNumEffect(_num, _model)
 end
 
 function ScenesInteract:InteractSEventHandler(_player, _id)
+    print('InteractSEventHandler', _id)
     if _id == 13 then
         for k, v in pairs(interactOBJ) do
             if v.obj.ScenesInteractUID.Value == _player.UserId then
@@ -279,11 +280,11 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         end
     end
     if _id == 15 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
         for k, v in pairs(seatOBJ) do
             if v.SeatInteractUID.Value == _player.UserId then
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
                 v:Sit(_player)
-                _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+                _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
                 -- 音效
                 SoundUtil.Play3DSE(_player.Position, 14)
             end
@@ -302,6 +303,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
             end
         end
+        
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
         NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 16)
     end
@@ -408,6 +410,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
+    print('LeaveInteractSEventHandler', _id)
     if _id == 15 then
         for k, v in pairs(seatOBJ) do
             if v.SeatInteractUID.Value == _player.UserId then

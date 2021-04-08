@@ -112,11 +112,10 @@ function SoundUtil.Play2DSE(_uid, _SEID)
     if source == nil then
         source = Init2DAudioSource(table.nums(audioSourcePool.SE2D[_uid]) + 1, _uid)
     end
-    print('[SoundUtil] 播放2D音频', _SEID)
+    --print('[SoundUtil] 播放2D音频', _SEID)
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
     source.SoundClip = clipTable[_SEID].clip
-    wait()
     source:Play()
     ReleaeseSource(_uid)
     return index
@@ -136,12 +135,11 @@ function SoundUtil.Play3DSE(_pos, _SEID)
     if source == nil then
         source = Init3DAudioSource(table.nums(audioSourcePool.SE3D) + 1)
     end
-    print('[SoundUtil] 播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
+    --print('[SoundUtil] 播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
     source.Position = _pos
     source.Loop = clipTable[_SEID].isLoop
     source.Volume = clipTable[_SEID].volume
     source.SoundClip = clipTable[_SEID].clip
-    wait()
     source:Play()
     ReleaeseSource()
     return index

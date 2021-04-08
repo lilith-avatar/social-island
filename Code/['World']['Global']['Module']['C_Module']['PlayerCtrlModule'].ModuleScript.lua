@@ -378,7 +378,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 13)
             else
                 _hitObject.ScenesInteractUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.TelescopeInteractUID then
@@ -387,7 +387,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 14)
             else
                 _hitObject.TelescopeInteractUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.SeatInteractUID then
@@ -396,7 +396,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 15)
             else
                 _hitObject.SeatInteractUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.BonfireInteractUID then
@@ -405,7 +405,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 16)
             else
                 _hitObject.BonfireInteractUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.BounceInteractUID then
@@ -436,7 +436,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 20)
             else
                 _hitObject.Parent.TrojanUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.GuitarUID then
@@ -445,7 +445,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 21)
             else
                 _hitObject.GuitarUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.TentUID1 then
@@ -461,7 +461,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                     return
                 end
             else
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
                 if _hitObject.TentUID1.Value == localPlayer.UserId then
                     _hitObject.TentUID1.Value = ''
                 elseif _hitObject.TentUID2.Value == localPlayer.UserId then
@@ -475,7 +475,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 23)
             else
                 _hitObject.BombUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.RadioUID then
@@ -484,7 +484,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 24)
             else
                 _hitObject.RadioUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
         if _hitObject.PotUID then
@@ -493,7 +493,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
                 NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 26)
             else
                 _hitObject.PotUID.Value = ''
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
             end
         end
     end
