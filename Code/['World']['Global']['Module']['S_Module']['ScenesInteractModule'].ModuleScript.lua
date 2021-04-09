@@ -325,6 +325,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
         for k, v in pairs(trojanObj) do
             if v.TrojanUID.Value == _player.UserId then
+                NetUtil.Fire_C('UnequipCurEquipmentEvent',_player)
                 v.Seat:Sit(_player)
                 _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)

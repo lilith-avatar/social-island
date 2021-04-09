@@ -21,6 +21,7 @@ function GuiCook:DataInit()
     this.maxPage = 1
     this.UsingMaterial = {} --食材栏中的食材
     this.BagMaterial = {} --背包中的食材
+    this.foodLocation = nil
 
     --* 背包物品显示参数-------------
     this.pageSize = 9
@@ -193,6 +194,7 @@ function GuiCook:StartCook()
     if #this.UsingMaterial == 0 or not this.UsingMaterial then
         return
     end
+    this.foodLocation = nil
     --开始烹饪
     this.gui:SetActive(false)
     --打开进度条
@@ -249,14 +251,13 @@ end
 function GuiCook:ShowMaterialIcon()
     for k, v in ipairs(this.MaterialSlot) do
         if this.UsingMaterial[k] then
+            --v.ItemImg:SetActive(true)
             v.ItemImg.IMGNormal.Texture =
                 ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[this.UsingMaterial[k].id].Icon)
             v.ItemImg.IMGNormal.Size = Vector2(128, 128)
             v.ItemImg.ItemText.Text = LanguageUtil.GetText(Config.Item[this.UsingMaterial[k].id].Name)
-            --v.ItemImg:SetActive(true)
         else
-            v.ItemImg.IMGNormal.Texture =
-                ResourceManager.GetTexture('UI/Cook/Result/CS_AVG_Icon_Food_1')
+            v.ItemImg.IMGNormal.Texture = ResourceManager.GetTexture('UI/Cook/Result/CS_AVG_Icon_Food_1')
             v.ItemImg.IMGNormal.Size = Vector2(138, 151)
             v.ItemImg.ItemText.Text = 'Pick One'
         end
@@ -342,7 +343,7 @@ function GuiCook:ShowFood()
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
-    this.deskBtn.Text = 'PUT ON DESK('.._cur..'/'.._total..')'
+    this.deskBtn.Text = 'PUT ON DESK(' .. _cur .. '/' .. _total .. ')'
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
@@ -357,11 +358,12 @@ function GuiCook:ConsumeMaterial()
     end
 end
 
-function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId)
+function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foodLocation)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = 'By ' .. _cookName
     this.cookUserId = _cookUserId
     this.foodId = _foodId
+    this.foodLocation = _foodLocation
     -- 无法打赏自己做的菜
     if this.cookUserId == localPlayer.UserId then
         this.detailReward:SetActive(false)
@@ -380,6 +382,9 @@ function GuiCook:EatFood()
     this.foodId = nil
     this:HideGui()
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+    if this.foodLocation then
+        NetUtil.Fire_S('PlayerEatFoodEvent',this.foodLocation)
+    end
     --this:ShowUI()
 end
 

@@ -54,7 +54,8 @@ function CookS:PutFood(_foodId, _player)
                             _hitObject,
                             _foodId,
                             this.foodList[i].cookName,
-                            _player.UserId
+                            _player.UserId,
+                            i
                         )
                         NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 27)
                     end
@@ -84,6 +85,14 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
     end
 end
 
+function CookS:PlayerEatFoodEventHandler(_foodLocation)
+    if world.FoodLocation['Location'.._foodLocation].Food then
+        world.FoodLocation['Location'.._foodLocation].Food:Destroy()
+        world.FoodLocation['Location'.._foodLocation].OnCollisionBegin:Clear()
+        world.FoodLocation['Location'.._foodLocation].OnCollisionEnd:Clear()
+    end
+end
+
 function CookS:DestroyAllFood()
     for k, v in pairs(world.FoodLocation:GetChildren()) do
         if v.Food then
@@ -96,6 +105,9 @@ function CookS:DestroyAllFood()
     end
     this.curFoodNum = 0
     NetUtil.Broadcast("SycnDeskFoodNumEvent", this.curFoodNum, this.foodNum)
+end
+
+function CookS:DestroyFood(_LocationIndex)
 end
 
 function CookS:SycnTimeSEventHandler(_clock)

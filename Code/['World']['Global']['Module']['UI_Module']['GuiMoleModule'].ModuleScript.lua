@@ -59,7 +59,7 @@ end
 
 function GuiMole:InteractCEventHandler(_gameId)
     if _gameId == 2 then
-        NetUtil.Fire_C('PurchaseConfirmEvent',localPlayer,this.curPrice,2,string.format('需要支付 %s 来开启,可能会开出什么好东西也说不定', this.curPrice))
+        NetUtil.Fire_C('PurchaseConfirmEvent',localPlayer,this.curPrice,2,string.format(LanguageUtil.GetText(Config.GuiText['MoleGui_1'].Txt), this.curPrice))
     end
 end
 
