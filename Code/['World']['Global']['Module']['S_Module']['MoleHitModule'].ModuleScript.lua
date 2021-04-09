@@ -161,12 +161,14 @@ end
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
+    _pit.Mole.Block = false
     local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
     tweener:Play()
     invoke(
         function()
             -- 摧毁地鼠
             _pit.Mole:SetActive(false)
+            _pit.Mole.Block = true
             -- 关闭特效
             _pit.Effect:SetActive(false)
         end,
