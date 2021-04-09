@@ -139,7 +139,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     -- 发送全局通知
     NetUtil.Broadcast(
         "InsertInfoEvent",
-        _type, this.hitTime[_type]..'/'.. math.floor(this.hitNum[_type]),
+        this.hitTime[_type]..'/'.. math.floor(this.hitNum[_type]),
         2,
         true
     )
