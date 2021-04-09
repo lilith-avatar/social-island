@@ -68,7 +68,10 @@ function GuiStore:OnClickBuyBtn()
             localPlayer,
             Config.Shop[curNpcID][chosenItemID].Price,
             99,
-            '是否购买' .. LanguageUtil.GetText(Config.Item[chosenItemID].Name)
+            string.format(
+                LanguageUtil.GetText(Config.GuiText.ShopGui_1.Txt),
+                LanguageUtil.GetText(Config.Item[chosenItemID].Name)
+            )
         )
     end
 end
@@ -104,19 +107,19 @@ function GuiStore:UpdateBuyBtn()
     if chosenItemID ~= 0 then
         gui.ShopPanel.BuyBtn:SetActive(true)
         gui.ShopPanel.BuyBtn.Locked:SetActive(false)
-        gui.ShopPanel.BuyBtn.Text = '购买'
+        gui.ShopPanel.BuyBtn.Text = LanguageUtil.GetText(Config.GuiText.ShopGui_3.Txt)
         for k, v in pairs(Data.Player.bag) do
             local typeConfig = Config.ItemType[Config.Item[k].Type]
             if k == chosenItemID and v.count > 0 and typeConfig.IsGetRepeatedly == false then
                 gui.ShopPanel.BuyBtn.Locked:SetActive(true)
-                gui.ShopPanel.BuyBtn.Text = '已拥有'
+                gui.ShopPanel.BuyBtn.Text = LanguageUtil.GetText(Config.GuiText.ShopGui_4.Txt)
                 break
             end
         end
         if Config.Shop[curNpcID][chosenItemID] then
             if Config.Shop[curNpcID][chosenItemID].Price > Data.Player.coin then
                 gui.ShopPanel.BuyBtn.Locked:SetActive(true)
-                gui.ShopPanel.BuyBtn.Text = '金币不足'
+                gui.ShopPanel.BuyBtn.Text = LanguageUtil.GetText(Config.GuiText.ShopGui_2.Txt)
             end
         end
     else

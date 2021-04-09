@@ -2752,19 +2752,19 @@ local LanguagePackXls = {
     },
     GuiText_Txt_SnailGui_4 = {
         ID = 'GuiText_Txt_SnailGui_4',
-        CHS = '你投注的蜗牛获得了第%s名，为你赢得了%s枚金币。',
+        CHS = '你投注的蜗牛获得了第%d名，为你赢得了%d枚金币。',
         CHT = '',
-        EN = 'The snail you betted on obtained a rank of %s, and you won %s coins.',
+        EN = 'The snail you betted on obtained a rank of %d, and you won %d coins.',
         JP = '',
-        YN = 'Siput yang kamu pilih meraih peringkat %s, dan kamu memenangkan %s koin.'
+        YN = 'Siput yang kamu pilih meraih peringkat %d, dan kamu memenangkan %d koin.'
     },
     GuiText_Txt_SnailGui_5 = {
         ID = 'GuiText_Txt_SnailGui_5',
-        CHS = '你投注的蜗牛获得了第%s名，你输掉了你的金币。',
+        CHS = '你投注的蜗牛获得了第%d名，你输掉了你的金币。',
         CHT = '',
-        EN = 'The snail you betted on obtained a rank of %s, and you lost your coins.',
+        EN = 'The snail you betted on obtained a rank of %d, and you lost your coins.',
         JP = '',
-        YN = 'Siput yang kamu pilih meraih peringkat %s, dan kamu kehilangan koin.'
+        YN = 'Siput yang kamu pilih meraih peringkat %d, dan kamu kehilangan koin.'
     },
     GuiText_Txt_SnailGui_6 = {
         ID = 'GuiText_Txt_SnailGui_6',
@@ -2784,19 +2784,75 @@ local LanguagePackXls = {
     },
     GuiText_Txt_SnailGui_8 = {
         ID = 'GuiText_Txt_SnailGui_8',
-        CHS = '你成功给%s号蜗牛投注',
+        CHS = '你成功给%d号蜗牛投注%d',
         CHT = '',
-        EN = 'You successfully placed a bet on Snail number %s.',
+        EN = 'You successfully placed a bet on Snail %d number %d.',
         JP = '',
-        YN = 'Kamu berhasil memasang taruhan pada Siput nomor %s.'
+        YN = 'Kamu berhasil memasang taruhan pada Siput %d nomor %d.'
     },
     GuiText_Txt_SnailGui_9 = {
         ID = 'GuiText_Txt_SnailGui_9',
-        CHS = '选择一个颜色的蜗牛',
+        CHS = '选择一个蜗牛',
         CHT = '',
         EN = 'Bet on a snail by choosing its color.',
         JP = '',
         YN = 'Pasang taruhan dengan memilih warna siput.'
+    },
+    GuiText_Txt_SnailGui_10 = {
+        ID = 'GuiText_Txt_SnailGui_10',
+        CHS = '上轮冠军：',
+        CHT = '',
+        EN = 'Champion:',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_SnailGui_11 = {
+        ID = 'GuiText_Txt_SnailGui_11',
+        CHS = '心情：',
+        CHT = '',
+        EN = 'Mood:',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_SnailGui_12 = {
+        ID = 'GuiText_Txt_SnailGui_12',
+        CHS = '普通',
+        CHT = '',
+        EN = 'Normal',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_SnailGui_13 = {
+        ID = 'GuiText_Txt_SnailGui_13',
+        CHS = '开心',
+        CHT = '',
+        EN = 'Happy',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_SnailGui_14 = {
+        ID = 'GuiText_Txt_SnailGui_14',
+        CHS = '难过',
+        CHT = '',
+        EN = 'Sad',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_SnailGui_15 = {
+        ID = 'GuiText_Txt_SnailGui_15',
+        CHS = '兴奋',
+        CHT = '',
+        EN = 'Excited',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_SnailGui_16 = {
+        ID = 'GuiText_Txt_SnailGui_16',
+        CHS = '迷惑',
+        CHT = '',
+        EN = 'Confused',
+        JP = '',
+        YN = ''
     },
     GuiText_Txt_PetGui_1 = {
         ID = 'GuiText_Txt_PetGui_1',
@@ -2945,6 +3001,14 @@ local LanguagePackXls = {
     GuiText_Txt_CookGui_6 = {
         ID = 'GuiText_Txt_CookGui_6',
         CHS = '打赏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_ShopGui_4 = {
+        ID = 'GuiText_Txt_ShopGui_4',
+        CHS = '已拥有',
         CHT = '',
         EN = '',
         JP = '',
