@@ -1,7 +1,7 @@
 ---@module GuiBag
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local GuiBag, this = ModuleUtil.New("GuiBag", ClientBase)
+local GuiBag, this = ModuleUtil.New('GuiBag', ClientBase)
 
 ---初始化函数
 function GuiBag:Init()
@@ -82,6 +82,12 @@ function GuiBag:TransItemTable()
             table.insert(this.slotItem, data)
         end
     end
+    table.sort(
+        this.slotItem,
+        function(i1, i2)
+            return i1.id < i2.id
+        end
+    )
 end
 
 function GuiBag:ShowBagUI()
@@ -104,13 +110,13 @@ end
 function GuiBag:ShowItemByIndex(_index, _itemId)
     if not _itemId then
         this.slotList[_index]:SetActive(false)
-        this.slotList[_index].ItemID.Value = ""
+        this.slotList[_index].ItemID.Value = ''
         return
     end
     this.slotList[_index].ItemID.Value = _itemId
     -- 更换图片
     this.slotList[_index].ItemImg.IMGNormal.Texture =
-        ResourceManager.GetTexture("UI/ItemIcon/" .. Config.Item[_itemId].Icon)
+        ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[_itemId].Icon)
     -- 显示数量
     this.slotList[_index].ItemNumBg.NumText.Text = Data.Player.bag[_itemId].count
     this.slotList[_index].ItemNumBg:SetActive(Data.Player.bag[_itemId].count ~= 1)
@@ -124,7 +130,7 @@ function GuiBag:ClickUseBtn(_index)
     end
     local itemId = this.slotList[_index].ItemID.Value
     -- 使用物品
-    NetUtil.Fire_C("UseItemInBagEvent", localPlayer, itemId)
+    NetUtil.Fire_C('UseItemInBagEvent', localPlayer, itemId)
     -- 物品消耗判定
     this:ConsumeItem(_index)
     -- 重新展示当前页面物品信息
@@ -160,8 +166,8 @@ end
 
 function GuiBag:ClearSelect()
     --清除描述
-    this.nameTxt.Text = " "
-    this.descTxt.Text = " "
+    this.nameTxt.Text = ' '
+    this.descTxt.Text = ' '
     this.useBtn:SetActive(false)
     if this.selectIndex then
         this.slotList[this.selectIndex].ItemImg.Chosen:SetActive(false)
