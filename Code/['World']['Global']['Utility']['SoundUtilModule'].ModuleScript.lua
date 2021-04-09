@@ -27,7 +27,7 @@ local function InitClipTable(_data)
         isLoop = _data.IsLoop,
         volume = _data.Volume
     }
-    print('[SoundUtil]', table.dump(clipTable[_data.ID]))
+    --print('[SoundUtil]', table.dump(clipTable[_data.ID]))
 end
 
 --初始化一个2D播放器

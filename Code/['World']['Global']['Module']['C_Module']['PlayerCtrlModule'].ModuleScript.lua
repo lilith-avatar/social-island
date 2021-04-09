@@ -318,18 +318,6 @@ function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
     end
 end
 
--- 更新角色服装
-function PlayerCtrl:PlayerSkinUpdate(_skinID)
-    for k, v in pairs(Config.Skin[_skinID]) do
-        if localPlayer.Avatar[k] and v ~= '' then
-            localPlayer.Avatar[k] = v or localPlayer.Avatar[k]
-        --print(v)
-        --print(localPlayer.Avatar[k])
-        --print(k, v)
-        end
-    end
-end
-
 -- 更新金币
 function PlayerCtrl:UpdateCoinEventHandler(_num, _fromBag)
     if _num ~= 0 then

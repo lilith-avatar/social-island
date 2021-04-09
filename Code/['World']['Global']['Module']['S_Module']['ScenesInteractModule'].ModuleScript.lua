@@ -303,7 +303,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
                 end
             end
         end
-        
+
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
         NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 16)
     end
@@ -438,6 +438,7 @@ function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
     end
     if _id == 22 then
+        NetUtil.Fire_C('PlayerSkinUpdateEvent', _player, 0)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
         _player.Avatar:SetActive(true)
         for k, v in pairs(tentOBJ) do
