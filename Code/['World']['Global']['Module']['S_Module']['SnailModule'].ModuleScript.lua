@@ -77,11 +77,20 @@ function Snail:NodeRef()
     end
     championPanel = world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel.ChampionPanel
     championEffect = world.MiniGames.Game_08_Snail.Track.ChampionEffect
+    world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel.TopText.Text =
+        LanguageUtil.GetText(Config.GuiText.SnailGui_10.Txt)
+    for i = 1, 4 do
+        world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel['SnailInfo' .. i].Text =
+            LanguageUtil.GetText(Config.GuiText.SnailGui_11.Txt)
+    end
 end
 
 --- 数据变量初始化
 function Snail:DataInit()
     dis = (endPoints[1].Position - startPoints[1].Position).Magnitude
+    for i = 1, 5 do
+        snailEmo[i] = LanguageUtil.GetText(Config.GuiText['SnailGui_' .. tostring(i + 11)].Txt)
+    end
     this:UpdateSnailEmo()
 end
 
@@ -104,7 +113,7 @@ function Snail:EnterMiniGameEventHandler(_player, _gameId)
         if this:IsBetable(_player) then
             NetUtil.Fire_C('InteractCEvent', _player, 8)
         else
-            NetUtil.Fire_C('InsertInfoEvent', _player, '你不能多次投注或在比赛进行中投注', 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
         end
     end
 end
@@ -153,7 +162,12 @@ function Snail:StartRaceCD(dt)
         else
             if startCD == 10 then
                 SoundUtil.Play3DSE(startPoints[1].Position, 9)
-                NetUtil.Broadcast('ShowNoticeInfoEvent', '蜗牛赛跑竞猜10秒后就要开始啦，快来下注吧', 10, Vector3(-30.1, -11.3, -29.7))
+                NetUtil.Broadcast(
+                    'ShowNoticeInfoEvent',
+                    LanguageUtil.GetText(Config.GuiText.SnailGui_1.Txt),
+                    10,
+                    Vector3(-30.1, -11.3, -29.7)
+                )
             end
             startCD = startCD - dt
         end
@@ -162,7 +176,12 @@ end
 
 --- 开始比赛
 function Snail:StartSnailRace()
-    NetUtil.Broadcast('ShowNoticeInfoEvent', '蜗牛赛跑竞猜开始啦', 10, Vector3(-30.1, -11.3, -29.7))
+    NetUtil.Broadcast(
+        'ShowNoticeInfoEvent',
+        LanguageUtil.GetText(Config.GuiText.SnailGui_2.Txt),
+        10,
+        Vector3(-30.1, -11.3, -29.7)
+    )
     SoundUtil.Play3DSE(startPoints[1].Position, 10)
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
@@ -293,13 +312,23 @@ function Snail:GiveReward(_snailObjPool)
             NetUtil.Fire_C(
                 'InsertInfoEvent',
                 v.player,
-                '你投注的蜗牛获得了第' .. _snailObjPool.ranking .. '名,为你赢得了' .. v.money * reward .. '金币',
+                string.format(
+                    LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt),
+                    _snailObjPool.ranking,
+                    v.money * reward
+                ),
                 3,
                 false
             )
             SoundUtil.Play3DSE(v.player.Position, 11)
         else
-            NetUtil.Fire_C('InsertInfoEvent', v.player, '你投注的蜗牛获得了第' .. _snailObjPool.ranking .. '名,并没有奖励', 3, false)
+            NetUtil.Fire_C(
+                'InsertInfoEvent',
+                v.player,
+                string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_5.Txt), _snailObjPool.ranking),
+                3,
+                false
+            )
             SoundUtil.Play3DSE(v.player.Position, 12)
         end
 

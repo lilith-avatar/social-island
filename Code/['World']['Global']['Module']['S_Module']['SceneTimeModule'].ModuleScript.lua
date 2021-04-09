@@ -5,10 +5,10 @@
 ---? 客户端： SycnTimeCEventHandler(number clock)
 ---? 服务端： SycnTimeSEventHandler(number clock)
 ---? 其他的读表即可
-local SceneTime, this = ModuleUtil.New("SceneTime", ServerBase)
+local SceneTime, this = ModuleUtil.New('SceneTime', ServerBase)
 local ModeEnum = {
-    Instant = "Instant", -- 每个小时更改一次
-    RealTime = "RealTime" -- 随时间实时更改（大概？）
+    Instant = 'Instant', -- 每个小时更改一次
+    RealTime = 'RealTime' -- 随时间实时更改（大概？）
 }
 
 local TimeMode = ModeEnum.RealTime --!可更改
@@ -39,7 +39,7 @@ end
 
 ---同步天空盒与表的数据
 function SceneTime:SycnSkyData()
-    this[TimeMode .. "SycnSkyData"](self)
+    this[TimeMode .. 'SycnSkyData'](self)
 end
 
 function SceneTime:InstantSycnSkyData()
@@ -125,11 +125,11 @@ function SceneTime:GetNextClockData()
     )
     for k, v in pairs(tmpTable) do
         if this.clock == v.ClockTime then
-			--print(tmpTable[k + 1].ClockTime or Config.TimeSkySetting[6].ClockTime)
+            --print(tmpTable[k + 1].ClockTime or Config.TimeSkySetting[6].ClockTime)
             return tmpTable[k + 1] or tmpTable[1]
         end
     end
-	
+
     return nil
 end
 
@@ -147,15 +147,30 @@ function SceneTime:Update(dt)
         end
         if Config.TimeSkySetting[this.clock] then
             if this.clock == 10 then
-                NetUtil.Broadcast("ShowNoticeInfoEvent", "新的一天开始了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+                NetUtil.Broadcast(
+                    'ShowNoticeInfoEvent',
+                    LanguageUtil.GetText(Config.GuiText.InfoGui_1.Txt),
+                    20,
+                    Vector3(-61.4808, -10.0305, -44.5828)
+                )
             elseif this.clock == 18 then
-                NetUtil.Broadcast("ShowNoticeInfoEvent", "黄昏了，该回家了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+                NetUtil.Broadcast(
+                    'ShowNoticeInfoEvent',
+                    LanguageUtil.GetText(Config.GuiText.InfoGui_2.Txt),
+                    20,
+                    Vector3(-61.4808, -10.0305, -44.5828)
+                )
             elseif this.clock == 20 then
-                NetUtil.Broadcast("ShowNoticeInfoEvent", "黑夜了，该去帐篷睡觉了", 20, Vector3(-61.4808, -10.0305, -44.5828))
+                NetUtil.Broadcast(
+                    'ShowNoticeInfoEvent',
+                    LanguageUtil.GetText(Config.GuiText.InfoGui_3.Txt),
+                    20,
+                    Vector3(-61.4808, -10.0305, -44.5828)
+                )
             end
         end
-        NetUtil.Broadcast("SycnTimeCEvent", this.clock)
-        NetUtil.Fire_S("SycnTimeSEvent", this.clock)
+        NetUtil.Broadcast('SycnTimeCEvent', this.clock)
+        NetUtil.Fire_S('SycnTimeSEvent', this.clock)
         this:SycnSkyData()
     end
     this.sky.ClockTime = this.clock + this.timer / this.timeSpeed
@@ -164,7 +179,7 @@ end
 ---@param _clock number
 function SceneTime:SycnTimeSEventHandler(_clock)
     if math.floor(_clock) == 19 then
-        NetUtil.Broadcast("PlayEffectEvent", 100, Vector3(-106.406, -13.9315, 39.7601))
+        NetUtil.Broadcast('PlayEffectEvent', 100, Vector3(-106.406, -13.9315, 39.7601))
         world.Light:SetActive(true)
         for k, v in pairs(world.HangLight:GetChildren()) do
             for k1, v1 in pairs(v:GetChildren()) do
@@ -179,11 +194,11 @@ function SceneTime:SycnTimeSEventHandler(_clock)
             end
         end
     end
-    print(string.format("[SceneTime] 当前时间 %s 点", math.floor(_clock))) --! 上线删除
+    print(string.format('[SceneTime] 当前时间 %s 点', math.floor(_clock))) --! 上线删除
 end
 
 function SceneTime:OnPlayerJoinEventHandler(_player)
-    NetUtil.Fire_C("SycnTimeCEvent", _player, this.clock)
+    NetUtil.Fire_C('SycnTimeCEvent', _player, this.clock)
 end
 
 return SceneTime

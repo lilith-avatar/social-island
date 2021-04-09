@@ -56,7 +56,12 @@ end
 function UFOMgr:ActiveUFO()
     durUFO = 45
     UFO:SetActive(true)
-    NetUtil.Broadcast('ShowNoticeInfoEvent', '神秘的UFO出现了，天空出现了大量金币', 10, Vector3(54.3585, 66.6861, 24.6156))
+    NetUtil.Broadcast(
+        'ShowNoticeInfoEvent',
+        LanguageUtil.GetText(Config.GuiText.InfoGui_4.Txt),
+        10,
+        Vector3(54.3585, 66.6861, 24.6156)
+    )
 end
 
 --- UFO计时
@@ -78,7 +83,7 @@ end
 --- 传送
 function UFOMgr:Teleport(_player, _pos)
     SoundUtil.Play3DSE(_player.Position, 108)
-	SoundUtil.Play3DSE(_pos, 108)
+    SoundUtil.Play3DSE(_pos, 108)
     _player.Position = _pos
 end
 

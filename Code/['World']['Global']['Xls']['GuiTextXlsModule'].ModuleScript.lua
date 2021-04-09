@@ -62,6 +62,34 @@ local GuiTextXls = {
         TextId = 'SnailGui_9',
         Txt = 'GuiText_Txt_SnailGui_9'
     },
+    SnailGui_10 = {
+        TextId = 'SnailGui_10',
+        Txt = 'GuiText_Txt_SnailGui_10'
+    },
+    SnailGui_11 = {
+        TextId = 'SnailGui_11',
+        Txt = 'GuiText_Txt_SnailGui_11'
+    },
+    SnailGui_12 = {
+        TextId = 'SnailGui_12',
+        Txt = 'GuiText_Txt_SnailGui_12'
+    },
+    SnailGui_13 = {
+        TextId = 'SnailGui_13',
+        Txt = 'GuiText_Txt_SnailGui_13'
+    },
+    SnailGui_14 = {
+        TextId = 'SnailGui_14',
+        Txt = 'GuiText_Txt_SnailGui_14'
+    },
+    SnailGui_15 = {
+        TextId = 'SnailGui_15',
+        Txt = 'GuiText_Txt_SnailGui_15'
+    },
+    SnailGui_16 = {
+        TextId = 'SnailGui_16',
+        Txt = 'GuiText_Txt_SnailGui_16'
+    },
     PetGui_1 = {
         TextId = 'PetGui_1',
         Txt = 'GuiText_Txt_PetGui_1'
@@ -94,6 +122,18 @@ local GuiTextXls = {
         TextId = 'ShopGui_1',
         Txt = 'GuiText_Txt_ShopGui_1'
     },
+    ShopGui_2 = {
+        TextId = 'ShopGui_2',
+        Txt = 'GuiText_Txt_ShopGui_2'
+    },
+    ShopGui_3 = {
+        TextId = 'ShopGui_3',
+        Txt = 'GuiText_Txt_ShopGui_3'
+    },
+    ShopGui_4 = {
+        TextId = 'ShopGui_4',
+        Txt = 'GuiText_Txt_ShopGui_4'
+    },
     NpcGui_1 = {
         TextId = 'NpcGui_1',
         Txt = 'GuiText_Txt_NpcGui_1'
@@ -105,14 +145,6 @@ local GuiTextXls = {
     NpcGui_3 = {
         TextId = 'NpcGui_3',
         Txt = 'GuiText_Txt_NpcGui_3'
-    },
-    ShopGui_2 = {
-        TextId = 'ShopGui_2',
-        Txt = 'GuiText_Txt_ShopGui_2'
-    },
-    ShopGui_3 = {
-        TextId = 'ShopGui_3',
-        Txt = 'GuiText_Txt_ShopGui_3'
     },
     CookGui_1 = {
         TextId = 'CookGui_1',

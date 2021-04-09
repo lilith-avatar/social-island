@@ -36,9 +36,20 @@ function GuiSnail:EventBind()
                 if Data.Player.coin >= 1 then
                     snailIndex = k
                     gui.SnailPanel:SetActive(false)
-                    NetUtil.Fire_C('SliderPurchaseEvent', localPlayer, 8, '请选择投注数量')
+                    NetUtil.Fire_C(
+                        'SliderPurchaseEvent',
+                        localPlayer,
+                        8,
+                        LanguageUtil.GetText(Config.GuiText.SnailGui_6.Txt)
+                    )
                 else
-                    NetUtil.Fire_C('InsertInfoEvent', localPlayer, '你没钱啦', 3, true)
+                    NetUtil.Fire_C(
+                        'InsertInfoEvent',
+                        localPlayer,
+                        LanguageUtil.GetText(Config.GuiText.SnailGui_7.Txt),
+                        3,
+                        true
+                    )
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
                 end
             end
@@ -71,7 +82,13 @@ function GuiSnail:BetMoney(_num)
     NetUtil.Fire_S('SnailBetEvent', localPlayer, snailIndex, _num)
     --NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * _num)
     SoundUtil.Play2DSE(localPlayer.UserId, 8)
-    NetUtil.Fire_C('InsertInfoEvent', localPlayer, '你成功给' .. snailIndex .. '号蜗牛投注' .. _num, 3, true)
+    NetUtil.Fire_C(
+        'InsertInfoEvent',
+        localPlayer,
+        string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_8.Txt), snailIndex, _num),
+        3,
+        true
+    )
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
@@ -87,7 +104,7 @@ end
 function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 8)
-        NetUtil.Fire_C('InsertInfoEvent', localPlayer, '选择一个颜色的蜗牛', 1, false)
+        NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.SnailGui_9.Txt), 1, false)
         gui:SetActive(true)
         gui.SnailPanel:SetActive(true)
         gui.BetPanel:SetActive(false)
