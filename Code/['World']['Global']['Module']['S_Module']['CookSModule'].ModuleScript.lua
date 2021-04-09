@@ -98,6 +98,9 @@ function CookS:DestroyAllFood()
     NetUtil.Broadcast("SycnDeskFoodNumEvent", this.curFoodNum, this.foodNum)
 end
 
+function CookS:DestroyFood(_LocationIndex)
+end
+
 function CookS:SycnTimeSEventHandler(_clock)
     if _clock == 6 then
         this:DestroyAllFood()

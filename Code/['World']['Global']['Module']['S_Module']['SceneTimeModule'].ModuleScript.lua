@@ -129,7 +129,7 @@ function SceneTime:GetNextClockData()
             return tmpTable[k + 1] or tmpTable[1]
         end
     end
-	
+
     return nil
 end
 
