@@ -54,7 +54,8 @@ function CookS:PutFood(_foodId, _player)
                             _hitObject,
                             _foodId,
                             this.foodList[i].cookName,
-                            _player.UserId
+                            _player.UserId,
+                            i
                         )
                         NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 27)
                     end
@@ -81,6 +82,14 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
     if rewardPlayer and cook then
         NetUtil.Fire_C("InsertInfoEvent", cook, rewardPlayer.Name .. "打赏了你" .. _coin, 2, false)
         NetUtil.Fire_C("UpdateCoinEvent", cook, _coin)
+    end
+end
+
+function CookS:PlayerEatFoodEventHandler(_foodLocation)
+    if world.FoodLocation['Location'.._foodLocation].Food then
+        world.FoodLocation['Location'.._foodLocation].Food:Destroy()
+        world.FoodLocation['Location'.._foodLocation].OnCollisionBegin:Clear()
+        world.FoodLocation['Location'.._foodLocation].OnCollisionEnd:Clear()
     end
 end
 
