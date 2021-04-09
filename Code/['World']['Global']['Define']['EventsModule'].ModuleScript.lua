@@ -129,7 +129,8 @@ Events.ClientEvents = {
     'CProjectileShootEvent', -- @param _projectileID,_projectileOBJ
     --投射物命中
     'CProjectileHitEvent', -- @param _projectileID,_projectileOBJ,_hitObj,_hitPos
-    'CSnailResetEvent'
+    'CSnailResetEvent',
+    'PlayerSkinUpdateEvent'
 }
 
 return Events
