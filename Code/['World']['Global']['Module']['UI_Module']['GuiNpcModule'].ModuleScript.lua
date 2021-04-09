@@ -2,7 +2,7 @@
 --- @module Player Default GUI
 --- @copyright Lilith Games, Avatar Team
 --- @author Yuancheng Zhang, Lin
-local GuiNpc, this = ModuleUtil.New("GuiNpc", ClientBase)
+local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
 local controlGui, monsterGui, npcBtn
@@ -22,7 +22,7 @@ local taskItemID = 0
 
 --- 初始化
 function GuiNpc:Init()
-    print("[GuiNpc] Init()")
+    print('[GuiNpc] Init()')
     -- Cache
     ItemMgr = ItemMgr
 
@@ -40,10 +40,13 @@ function GuiNpc:InitGui()
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
     gameBtn = npcGui.GameBtn
+    gameBtn.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_1.Txt)
     shopBtn = npcGui.ShopBtn
+    shopBtn.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_3.Txt)
     leaveBtn = npcGui.LeaveBtn
+    leaveBtn.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_2.Txt)
     dialogTxt = npcGui.DialogTxt
-	NameTxt = npcGui.NameTxt
+    NameTxt = npcGui.NameTxt
 end
 
 --- 初始化表格
@@ -55,7 +58,7 @@ end
 function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
-            npc.Portrait = ResourceManager.GetTexture("TestPortrait/" .. npc.PortraitRes)
+            npc.Portrait = ResourceManager.GetTexture('TestPortrait/' .. npc.PortraitRes)
         -- print('[GuiNpc] InitResource()', npc.PortraitRes)
         end
     end
@@ -75,18 +78,18 @@ function FoundNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
-    print("[GuiNpc] FoundNpc()", _npcId)
-    NetUtil.Fire_C("OpenDynamicEvent", localPlayer, "Interact", 12)
+    print('[GuiNpc] FoundNpc()', _npcId)
+    NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 12)
     currNpcId = _npcId
     currNpcObj = _npcObj
 end
 
 --- 离开NPC
 function BeyondNpc()
-    print("[GuiNpc] BeyondNpc()")
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+    print('[GuiNpc] BeyondNpc()')
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     if currNpcId then
-        NetUtil.Fire_C("LeaveNpcEvent", localPlayer, currNpcId)
+        NetUtil.Fire_C('LeaveNpcEvent', localPlayer, currNpcId)
     end
     monsterGui.Visible = true
     npcGui.Visible = false
@@ -99,9 +102,9 @@ function OpenNpcGui()
     if currNpcId == nil or NpcInfo[currNpcId] == nil then
         return
     end
-    print("[GuiNpc] OpenNpcGui()")
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 12)
-    NetUtil.Fire_C("TalkToNpcEvent", localPlayer, currNpcId)
+    print('[GuiNpc] OpenNpcGui()')
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 12)
+    NetUtil.Fire_C('TalkToNpcEvent', localPlayer, currNpcId)
     -- 音效
     SoundUtil.Play2DSE(localPlayer.UserId, 3)
     npcGui.Visible = true
@@ -113,7 +116,7 @@ function OpenNpcGui()
     portraitImg.Visible = portrait ~= nil
 
     taskItemID = ItemMgr:GetTaskItem(currNpcId)
-	NameTxt.Text = LanguageUtil.GetText(NpcInfo[currNpcId].Name)
+    NameTxt.Text = LanguageUtil.GetText(NpcInfo[currNpcId].Name)
     if taskItemID == 0 then
         dialogTxt.Text = PickARandomDialog()
     else
@@ -130,22 +133,21 @@ function EnterMiniGame()
     end
 
     local gameId = NpcInfo[currNpcId].GameId
-    NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, gameId)
+    NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
     --! Test only
-    print("[GuiNpc] EnterMiniGameEvent", localPlayer, gameId)
+    print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
 end
 
 --- 打开商城
 function EnterShop()
-    print("[GuiNpc] EnterShop()")
+    print('[GuiNpc] EnterShop()')
     if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].ShopId == nil then
         return
     end
     -- TODO: 商店相关逻辑
     npcGui.Visible = false
-    NetUtil.Fire_C("SwitchStoreUIEvent", localPlayer, 1, currNpcId)
+    NetUtil.Fire_C('SwitchStoreUIEvent', localPlayer, 1, currNpcId)
 end
-
 
 --- 随机选取一段对话
 function PickARandomDialog()
@@ -154,7 +156,7 @@ function PickARandomDialog()
     end
     local dialogId = table.shuffle(NpcInfo[currNpcId].DialogId)[1]
     local dialog = NpcText[dialogId].Text
-    assert(dialogId and dialog, string.format("[GuiNpc] NPC: %s, 不存在DialogId: %s", currNpcId, dialogId))
+    assert(dialogId and dialog, string.format('[GuiNpc] NPC: %s, 不存在DialogId: %s', currNpcId, dialogId))
     return LanguageUtil.GetText(dialog)
 end
 

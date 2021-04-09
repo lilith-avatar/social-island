@@ -2,14 +2,14 @@
 --- @module Catch Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local Catch, this = ModuleUtil.New("Catch", ClientBase)
+local Catch, this = ModuleUtil.New('Catch', ClientBase)
 
 --声明变量
 local prey = nil
 
 --- 初始化
 function Catch:Init()
-    print("[Catch] Init()")
+    print('[Catch] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -35,19 +35,19 @@ end
 
 --生成一个陷阱
 function Catch:InstanceTrap(_ItemID)
-    local archetTypeName = ""
+    local archetTypeName = ''
     if _ItemID == 4001 then
-        archetTypeName = "Trap1"
+        archetTypeName = 'Trap1'
     elseif _ItemID == 4002 then
-        archetTypeName = "Trap2"
+        archetTypeName = 'Trap2'
     elseif _ItemID == 4003 then
-        archetTypeName = "Trap3"
+        archetTypeName = 'Trap3'
     end
     SoundUtil.Play3DSE(localPlayer.Position, 42)
     local trap =
         world:CreateInstance(
         archetTypeName,
-        "trap",
+        'trap',
         world,
         localPlayer.Position + localPlayer.Forward,
         localPlayer.Rotation
@@ -79,19 +79,31 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
         invoke(
             function()
                 if _animal.AnimalState.Value == 6 then
-                    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "你的陷阱成功困住了动物", 2, false)
+                    NetUtil.Fire_C(
+                        'InsertInfoEvent',
+                        localPlayer,
+                        LanguageUtil.GetText(Config.GuiText.PetGui_1.Txt),
+                        2,
+                        false
+                    )
                     SoundUtil.Play3DSE(_animal.Position, 43)
                     _trap:SetParentTo(_animal, Vector3(0, -0.5, 0), EulerDegree(0, 0, 0))
                     _trap.Open:SetActive(false)
                     _trap.Close:SetActive(true)
                 else
-                    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物挣脱了你的陷阱", 2, false)
-                    local tweener = Tween:ShakeProperty(_trap, {"Rotation"}, 0.5, 5)
+                    NetUtil.Fire_C(
+                        'InsertInfoEvent',
+                        localPlayer,
+                        LanguageUtil.GetText(Config.GuiText.PetGui_2.Txt),
+                        2,
+                        false
+                    )
+                    local tweener = Tween:ShakeProperty(_trap, {'Rotation'}, 0.5, 5)
                     tweener:Play()
                     local effect =
                         world:CreateInstance(
-                        "AnimalEscape",
-                        "AnimalEscape",
+                        'AnimalEscape',
+                        'AnimalEscape',
                         _animal,
                         _animal.Position + Vector3(0, -0.5, 0)
                     )
@@ -110,7 +122,7 @@ end
 
 --与动物交互
 function Catch:InteractAnimal()
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 19)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 19)
     if prey then
         if prey.AnimalState.Value == 6 then
             this:Catch()
@@ -120,8 +132,8 @@ function Catch:InteractAnimal()
             this:Touch()
         end
     else
-        NetUtil.Fire_C("InsertInfoEvent", localPlayer, "动物离你太远了", 2, false)
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+        NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_3.Txt), 2, false)
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     end
 end
 
@@ -129,14 +141,14 @@ end
 function Catch:Catch()
     invoke(
         function()
-            localPlayer.Avatar:PlayAnimation("PickUpLight", 2, 1, 0.1, true, false, 1)
+            localPlayer.Avatar:PlayAnimation('PickUpLight', 2, 1, 0.1, true, false, 1)
             wait(.5)
-            NetUtil.Fire_C("InsertInfoEvent", localPlayer, "捕捉动物成功", 2, false)
+            NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_4.Txt), 2, false)
             SoundUtil.Play2DSE(localPlayer.UserId, 13)
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             Pet:OpenNamedPetUI(prey.AnimalID.Value)
             prey.AnimalCaughtEvent:Fire()
-            local effect = world:CreateInstance("CaughtSuccess", "CaughtSuccess", world, prey.Position)
+            local effect = world:CreateInstance('CaughtSuccess', 'CaughtSuccess', world, prey.Position)
             wait(1)
             effect:Destroy()
         end
@@ -147,10 +159,10 @@ end
 function Catch:Search()
     invoke(
         function()
-            localPlayer.Avatar:PlayAnimation("PickUpLight", 2, 1, 0.1, true, false, 1)
+            localPlayer.Avatar:PlayAnimation('PickUpLight', 2, 1, 0.1, true, false, 1)
             wait(.5)
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-            NetUtil.Fire_C("GetItemFromPoolEvent", localPlayer, Config.Animal[prey.AnimalID.Value].ItemPoolID, 0)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+            NetUtil.Fire_C('GetItemFromPoolEvent', localPlayer, Config.Animal[prey.AnimalID.Value].ItemPoolID, 0)
             --[[NetUtil.Fire_S(
                 "SpawnCoinEvent",
                 "P",
@@ -158,7 +170,7 @@ function Catch:Search()
                 math.floor(self.config.IncomeFactor * Config.Animal[prey.AnimalID.Value].DropCoin)
             )]]
             prey.AnimalCaughtEvent:Fire()
-            local effect = world:CreateInstance("CaughtSuccess", "CaughtSuccess", world, prey.Position)
+            local effect = world:CreateInstance('CaughtSuccess', 'CaughtSuccess', world, prey.Position)
             wait(1)
             effect:Destroy()
         end
@@ -167,8 +179,8 @@ end
 
 --触摸
 function Catch:Touch()
-    NetUtil.Fire_C("InsertInfoEvent", localPlayer, "尝试用陷阱把动物困住再捕捉吧", 2, false)
-    NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+    NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_5.Txt), 2, false)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
 --更新捕捉互动UI
@@ -176,7 +188,7 @@ function Catch:UpdateCatchUI()
     if prey then
         if (prey.Position - localPlayer.Position).Magnitude > 3 then
             prey = nil
-            NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
         end
     end
 end
