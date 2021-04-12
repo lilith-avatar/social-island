@@ -338,7 +338,7 @@ function GuiCook:ShowFood()
         return
     end
     this:ConsumeMaterial()
-    this.titleTxt.Text = '你做出了' .. LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
+    this.titleTxt.Text = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
     this.foodPanel:SetActive(true)
 end
 
