@@ -131,7 +131,8 @@ Events.ClientEvents = {
     --投射物命中
     'CProjectileHitEvent', -- @param _projectileID,_projectileOBJ,_hitObj,_hitPos
     'CSnailResetEvent',
-    'PlayerSkinUpdateEvent'
+    'PlayerSkinUpdateEvent',
+    'EatFoodEvent'
 }
 
 return Events
