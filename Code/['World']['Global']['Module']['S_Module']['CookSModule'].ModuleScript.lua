@@ -90,6 +90,9 @@ function CookS:PlayerEatFoodEventHandler(_foodLocation)
         world.FoodLocation['Location'.._foodLocation].Food:Destroy()
         world.FoodLocation['Location'.._foodLocation].OnCollisionBegin:Clear()
         world.FoodLocation['Location'.._foodLocation].OnCollisionEnd:Clear()
+        this.foodList[_foodLocation] = nil
+        this.curFoodNum = this.curFoodNum - 1
+        NetUtil.Broadcast("SycnDeskFoodNumEvent", this.curFoodNum, this.foodNum)
     end
 end
 
@@ -103,12 +106,13 @@ function CookS:DestroyAllFood()
         --向所有人发起流程，关闭详情ui
         --NetUtil.Broadcast()
     end
+    for i = 1, this.foodNum do
+        this.foodList[i] = nil
+    end
     this.curFoodNum = 0
     NetUtil.Broadcast("SycnDeskFoodNumEvent", this.curFoodNum, this.foodNum)
 end
 
-function CookS:DestroyFood(_LocationIndex)
-end
 
 function CookS:SycnTimeSEventHandler(_clock)
     if _clock == 6 then
