@@ -58,9 +58,9 @@ end
 
 --蓄力
 function GuiBowAim:UpdateFrontSight(_chargeForce)
-    this.gui.Panel.ChargeDown.Offset = Vector2(0, _chargeForce * 80)
-    this.gui.Panel.ChargeRight.Offset = Vector2(_chargeForce * -80, 0)
-    this.gui.Panel.ChargeLeft.Offset = Vector2(_chargeForce * 80, 0)
+    this.gui.Panel.ChargeDown.Offset = Vector2(0, _chargeForce * 60)
+    this.gui.Panel.ChargeRight.Offset = Vector2(_chargeForce * -60 * 0.866, _chargeForce * 60 * -0.5)
+    this.gui.Panel.ChargeLeft.Offset = Vector2(_chargeForce * 60 * 0.866, _chargeForce * 60 * -0.5)
 end
 
 --CD

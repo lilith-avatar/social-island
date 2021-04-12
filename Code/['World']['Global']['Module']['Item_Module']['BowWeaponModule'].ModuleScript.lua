@@ -96,7 +96,7 @@ function BowWeapon:Charge(dt)
         end
     else
         if self.chargeForce > 0 then
-            self.chargeForce = self.chargeForce - dt * 5
+            self.chargeForce = self.chargeForce - dt * 15
         else
             self.chargeForce = 0
         end
