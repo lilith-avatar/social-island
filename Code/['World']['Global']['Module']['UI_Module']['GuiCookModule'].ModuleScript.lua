@@ -392,7 +392,7 @@ end
 function GuiCook:PutOnDesk()
     NetUtil.Fire_S('FoodOnDeskEvent', this.foodId, localPlayer)
     this.foodId = nil
-    this:ShowUI()
+    this:HideGui()
 end
 
 function GuiCook:Update(dt)
@@ -415,6 +415,12 @@ function GuiCook:SycnTimeCEventHandler(_clock)
         this.canEat = true
     else
         this.canEat = false
+    end
+end
+
+function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
+    if _interactID == 27 then
+        this:EatFood()
     end
 end
 
