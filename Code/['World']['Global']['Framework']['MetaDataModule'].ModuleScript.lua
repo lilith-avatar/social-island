@@ -171,7 +171,14 @@ end
 -- @param _value 传入的数据
 -- @param _uid UserId
 function SyncData(_path, _value, _uid)
-    if localPlayer == nil and string.isnilorempty(_uid) and MetaData.ServerSync then
+    if MetaData.ServerSync and MetaData.ClientSync and localPlayer then
+        -- 服务器/客户端 同虚拟机
+        local player = world:GetPlayerByUserId(_uid)
+        assert(player == localPlayer, string.format('[MetaData] 玩家不存在 uid = %s', _uid))
+        PrintLog(string.format('[Server] 发出 player = %s, _path = %s, _value = %s', player, _path, table.dump(_value)))
+        NetUtil.Fire_C('DataSyncS2CEvent', player, _path, _value)
+        NetUtil.Fire_S('DataSyncC2SEvent', localPlayer, _path, _value)
+    elseif localPlayer == nil and string.isnilorempty(_uid) and MetaData.ServerSync then
         -- 服务器 => 客户端，Global 全局数据
         NetUtil.Broadcast('DataSyncS2CEvent', _path, _value)
     elseif localPlayer == nil and MetaData.ServerSync then
