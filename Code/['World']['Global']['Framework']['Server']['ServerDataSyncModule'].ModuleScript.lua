@@ -276,9 +276,8 @@ end
 function OnPlayerLeaveEventHandler(_player, _uid)
     print('[DataSync][Server] OnPlayerLeaveEventHandler', _player, _uid)
     assert(not string.isnilorempty(_uid), '[ServerDataSync] OnPlayerLeaveEventHandler() uid不存在')
-
     --* 保存长期存储：rawDataPlayers[_uid] 保存成功后删掉
-    SaveGameDataAsync(uid, true)
+    SaveGameDataAsync(_uid, true)
 end
 
 return ServerDataSync
