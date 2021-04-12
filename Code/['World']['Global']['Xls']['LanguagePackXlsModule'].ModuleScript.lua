@@ -1970,9 +1970,9 @@ local LanguagePackXls = {
         ID = 'NpcInfo_Name_6',
         CHS = '内蒂里',
         CHT = '',
-        EN = 'Neytiri',
+        EN = 'Tony',
         JP = '',
-        YN = 'Neytiri'
+        YN = 'Tony'
     },
     NpcInfo_Title_6 = {
         ID = 'NpcInfo_Title_6',
@@ -2042,9 +2042,9 @@ local LanguagePackXls = {
         ID = 'NpcInfo_Name_12',
         CHS = '马克·波罗',
         CHT = '',
-        EN = 'Marco Polo',
+        EN = 'Neytiri',
         JP = '',
-        YN = 'Marco Polo'
+        YN = 'Neytiri'
     },
     NpcInfo_Title_12 = {
         ID = 'NpcInfo_Title_12',
@@ -3009,6 +3009,30 @@ local LanguagePackXls = {
     GuiText_Txt_ShopGui_4 = {
         ID = 'GuiText_Txt_ShopGui_4',
         CHS = '已拥有',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_7 = {
+        ID = 'GuiText_Txt_CookGui_7',
+        CHS = '宴会还没有开始，晚上再来吧。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_8 = {
+        ID = 'GuiText_Txt_CookGui_8',
+        CHS = '你要打赏%s多少金币呢？',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_9 = {
+        ID = 'GuiText_Txt_CookGui_9',
+        CHS = '你为%s的%s支付了%s小费。',
         CHT = '',
         EN = '',
         JP = '',
