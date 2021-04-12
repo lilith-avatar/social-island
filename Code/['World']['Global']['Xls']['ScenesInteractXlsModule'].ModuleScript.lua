@@ -56,7 +56,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -182,7 +182,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 109,
         IsPre = true
     },
@@ -218,7 +218,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -236,7 +236,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = nil,
         IsPre = true
     },
@@ -254,7 +254,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 109,
         IsPre = true
     },
@@ -272,7 +272,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 109,
         IsPre = true
     },
@@ -290,7 +290,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 109,
         IsPre = true
     },
@@ -308,7 +308,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 109,
         IsPre = true
     },
@@ -416,7 +416,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = -1.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = nil,
         IsPre = true
     },
@@ -434,7 +434,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -452,7 +452,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -470,7 +470,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -506,7 +506,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -524,7 +524,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -542,7 +542,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -560,7 +560,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -578,7 +578,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -596,7 +596,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -614,7 +614,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = '',
         InteractAEID = 24,
         IsPre = true
     },
@@ -632,7 +632,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -686,7 +686,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -704,7 +704,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -722,7 +722,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 99999,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -740,7 +740,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -758,7 +758,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 30.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 25,
         IsPre = true
     },
@@ -776,7 +776,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -794,7 +794,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -812,7 +812,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 15.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 24,
         IsPre = true
     },
@@ -830,7 +830,7 @@ local ScenesInteractXls = {
         RewardCoin = 0,
         UseCount = 1,
         ResetTime = 300.0,
-        AnitName = 'PickUpLight',
+        AnitName = 'PushDoor',
         InteractAEID = 109,
         IsPre = true
     },
