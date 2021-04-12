@@ -25,10 +25,6 @@ function ItemMgr:DataInit()
     this.curEquipmentID = 0
 
     this.curEquipment = nil
-
-    invoke(function()
-        this:InitBagData()
-    end,0.5)
 end
 
 -- 初始化默认背包数据
@@ -203,7 +199,10 @@ end
 function ItemMgr:GetTaskItem(_npcID)
     local npcTable
     for k1, v1 in pairs(Data.Player.bag) do
-        if Config.Item[k1].Type == 6 and v1.count > 0 then
+        if Config.Item[k1] == nil then
+            --! 如果长期存储里拿到的k1道具并不在Item表里，则清除长期存储
+            Data.Player.bag[k1] = nil
+        elseif Config.Item[k1].Type == 6 and v1.count > 0 then
             npcTable = this.itemInstance[k1].derivedData.Npc
             for k2, v2 in pairs(npcTable) do
                 if v2 == _npcID then
@@ -229,12 +228,6 @@ function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     for k, v in pairs(Data.Player.bag) do
         print('Item:', k)
     end
-end
-
----服务器结算处理
-function ItemMgr:GetCoinEventHandler(_CoinNum, _itemId)
-    this:GetCoin(_CoinNum)
-    this:Get5(_itemId)
 end
 
 function ItemMgr:Update(dt, tt)
