@@ -17,6 +17,7 @@ end
 --拿在手中使用
 function BowWeapon:UseInHand()
     if self.useCT == 0 then
+        SoundUtil.Play3DSE(localPlayer.Position, self.baseData.UseSoundID)
         self:StartCharge()
     end
 end

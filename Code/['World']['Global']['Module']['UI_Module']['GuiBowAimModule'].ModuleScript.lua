@@ -3,10 +3,12 @@
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
 ---@module GuiBowAim
-local GuiBowAim, this = ModuleUtil.New("GuiBowAim", ClientBase)
+local GuiBowAim, this = ModuleUtil.New('GuiBowAim', ClientBase)
+
+local isAble = true
 
 function GuiBowAim:Init()
-    print("GuiBowAim:Init")
+    print('GuiBowAim:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -26,20 +28,29 @@ end
 function GuiBowAim:EventBind()
     this.touchGui.AimStick.OnEnter:Connect(
         function()
-            NetUtil.Fire_C("UseItemInHandEvent", localPlayer)
+            if isAble then
+                NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
+            end
             this.touchGui.AimStick.Size = Vector2(1800, 1500)
         end
     )
     this.touchGui.AimStick.OnTouched:Connect(
         function(touchInfo)
-            PlayerCam:CameraMove(touchInfo)
+            if isAble then
+                if FsmMgr.playerActFsm.curState.stateName ~= 'BowChargeIdle' then
+                    NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
+                end
+                PlayerCam:CameraMove(touchInfo)
+            end
         end
     )
     this.touchGui.AimStick.OnLeave:Connect(
         function()
             if ItemMgr.curWeaponID ~= 0 then
-                ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndCharge()
-                this.touchGui.AimStick.Size = Vector2(164, 164)
+                if isAble then
+                    ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndCharge()
+                end
+                this.touchGui.AimStick.Size = Vector2(200, 200)
             end
         end
     )
@@ -54,10 +65,12 @@ end
 
 --CD
 function GuiBowAim:UpdateTouchGuiCD(_amount)
-    if _amount <= 0 and this.touchGui.AimStick.ActiveSelf == false then
-        this.touchGui.AimStick:SetActive(true)
-    elseif _amount > 0 and this.touchGui.AimStick.ActiveSelf == true then
-        this.touchGui.AimStick:SetActive(false)
+    if _amount <= 0 and isAble == false then
+        --this.touchGui.AimStick:SetActive(true)
+        isAble = true
+    elseif _amount > 0 and isAble == true then
+        isAble = false
+    --this.touchGui.AimStick:SetActive(false)
     end
 end
 
