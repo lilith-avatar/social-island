@@ -365,7 +365,7 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foo
     this.foodId = _foodId
     this.foodLocation = _foodLocation
     -- 无法打赏自己做的菜
-    if this.cookUserId == localPlayer.UserId then
+    if this.cookUserId == localPlayer.UserId or Data.Player.coin <= 0 then
         this.detailReward:SetActive(false)
     else
         this.detailReward:SetActive(true)
