@@ -133,6 +133,8 @@ function ScenesInteract:InstanceInteractOBJ(_id, _pos)
             interactAEID = config.InteractAEID
         }
         world:CreateObject('StringValueObject', 'ScenesInteractUID', temp.obj)
+        world:CreateObject('IntValueObject', 'ScenesInteractID', temp.obj)
+        temp.obj.ScenesInteractID.Value = _id
         table.insert(interactOBJ, temp)
     end
 end
@@ -325,7 +327,7 @@ function ScenesInteract:InteractSEventHandler(_player, _id)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
         for k, v in pairs(trojanObj) do
             if v.TrojanUID.Value == _player.UserId then
-                NetUtil.Fire_C('UnequipCurEquipmentEvent',_player)
+                NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
                 v.Seat:Sit(_player)
                 _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
                 _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
