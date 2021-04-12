@@ -379,12 +379,13 @@ function GuiCook:EatFood()
         Config.CookMenu[this.foodId].BuffId,
         Config.CookMenu[this.foodId].BuffDur
     )
-    this.foodId = nil
+    NetUtil.Fire_C('EatFoodEvent',localPlayer,this.foodId)
     this:HideGui()
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     if this.foodLocation then
         NetUtil.Fire_S('PlayerEatFoodEvent',this.foodLocation)
     end
+    this.foodId = nil
     --this:ShowUI()
 end
 
