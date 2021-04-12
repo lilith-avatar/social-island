@@ -17,7 +17,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'ControlGui'
     },
     [1] = {
@@ -31,7 +31,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [2] = {
@@ -45,7 +45,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Ghost',
         OpenGui = 'MoleHitGui'
     },
     [3] = {
@@ -59,7 +59,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'MazeGui'
     },
     [4] = {
@@ -73,7 +73,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'CannonGUI'
     },
     [5] = {
@@ -87,7 +87,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [6] = {
@@ -101,7 +101,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Run',
         OpenGui = ''
     },
     [7] = {
@@ -115,7 +115,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'PlantGUI'
     },
     [8] = {
@@ -129,7 +129,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'SnailGUI'
     },
     [9] = {
@@ -143,7 +143,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'RaceGameGui'
     },
     [10] = {
@@ -157,7 +157,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [11] = {
@@ -171,7 +171,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = 'MonsterGUI'
     },
     [12] = {
@@ -185,7 +185,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Do',
         OpenGui = 'NpcGui'
     },
     [13] = {
@@ -199,7 +199,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [14] = {
@@ -213,7 +213,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = true,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Control',
         OpenGui = 'TelescopeGUI'
     },
     [15] = {
@@ -227,7 +227,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = true,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Down',
         OpenGui = ''
     },
     [16] = {
@@ -241,7 +241,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_MagicSelf',
         OpenGui = ''
     },
     [17] = {
@@ -255,7 +255,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [18] = {
@@ -269,7 +269,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [19] = {
@@ -283,7 +283,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_CKDetails',
         OpenGui = ''
     },
     [20] = {
@@ -297,7 +297,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = true,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Control',
         OpenGui = ''
     },
     [21] = {
@@ -311,7 +311,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Control',
         OpenGui = 'GuitarGui'
     },
     [22] = {
@@ -325,7 +325,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = true,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Petal',
         OpenGui = ''
     },
     [23] = {
@@ -339,7 +339,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
         OpenGui = ''
     },
     [24] = {
@@ -353,7 +353,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Horn',
         OpenGui = ''
     },
     [25] = {
@@ -367,7 +367,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Pick',
         OpenGui = ''
     },
     [26] = {
@@ -381,7 +381,7 @@ local InteractXls = {
         JumpBtnActive = false,
         LeaveBtnActive = false,
         SocialAnimActive = false,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Control',
         OpenGui = 'CookGui'
     },
     [27] = {
@@ -395,7 +395,7 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = 'Icon_Eat',
         OpenGui = 'CookGui'
     },
     [28] = {
@@ -409,7 +409,21 @@ local InteractXls = {
         JumpBtnActive = true,
         LeaveBtnActive = false,
         SocialAnimActive = true,
-        UseBtnIcon = '',
+        InteractBtnIcon = '',
+        OpenGui = ''
+    },
+    [29] = {
+        ID = 29,
+        Name = 'Map',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = true,
+        SocialAnimActive = false,
+        InteractBtnIcon = 'Icon_Do',
         OpenGui = ''
     }
 }

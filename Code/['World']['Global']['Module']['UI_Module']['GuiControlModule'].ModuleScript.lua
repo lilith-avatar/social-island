@@ -181,11 +181,18 @@ function GuiControl:ResetDefUIEventHandler()
 end
 
 --- 打开动态交互事件
-function GuiControl:OpenDynamicEventHandler(_type, _var)
+function GuiControl:OpenDynamicEventHandler(_type, _var, _scenesInteractID)
     dynamicFigure:SetActive(true)
     if _type == 'Interact' then
         dynamicFigure.InteractBtn:SetActive(true)
         interactID = _var
+        if _var ~= 13 then
+            dynamicFigure.InteractBtn.Img.Texture =
+                ResourceManager.GetTexture('UI/IconNew/' .. Config.Interact[_var].InteractBtnIcon)
+        else
+            dynamicFigure.InteractBtn.Img.Texture =
+                ResourceManager.GetTexture('UI/IconNew/' .. Config.ScenesInteract[_scenesInteractID].InteractBtnIcon)
+        end
     elseif _type == 'Pick' then
         dynamicFigure.PickBtn:SetActive(true)
         pickItemObj = _var
@@ -205,13 +212,6 @@ function GuiControl:UpdateCoinNum(_num)
     gui.Menu.CoinNum.Text = '金币：' .. Data.Player.coin
 end
 
---- 改变使用按钮图标
-function GuiControl:ChangeUseBtnIcon(_icon)
-    _icon = _icon or 'Icon_Control'
-    gui.Ctrl.UseBtn.Image = ResourceManager.GetTexture('UI/' .. _icon)
-    gui.Ctrl.UseBtn.PressedImage = ResourceManager.GetTexture('UI/' .. _icon .. '_A')
-end
-
 --- 进入小游戏修改UI
 function GuiControl:ChangeMiniGameUIEventHandler(_id)
     _id = _id or 0
@@ -225,9 +225,6 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
         gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
         gui.Ctrl.LeaveBtn:SetActive(config.LeaveBtnActive)
         gui.Ctrl.SocialAnimBtn:SetActive(config.SocialAnimActive)
-    end
-    if config.UseBtnIcon ~= '' then
-        this:ChangeUseBtnIcon(config.UseBtnIcon)
     end
 
     for k, v in pairs(localPlayer.Local:GetChildren()) do

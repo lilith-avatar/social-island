@@ -4,14 +4,14 @@
 -- @author Dead Ratman
 ---@module GuiTelescope
 
-local GuiTelescope, this = ModuleUtil.New("GuiTelescope", ClientBase)
+local GuiTelescope, this = ModuleUtil.New('GuiTelescope', ClientBase)
 
 local gui
 
 local zoomMultiple = 1
 
 function GuiTelescope:Init()
-    print("GuiTelescope:Init")
+    print('GuiTelescope:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -44,6 +44,12 @@ function GuiTelescope:EventBind()
             end
         end
     )
+    gui.Panel.LeaveBtn.OnClick:Connect(
+        function()
+            NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 14)
+            NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, 14)
+        end
+    )
 end
 
 --相机缩放
@@ -53,15 +59,15 @@ end
 
 function GuiTelescope:InteractCEventHandler(_id)
     if _id == 14 then
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer, 14)
-        NetUtil.Fire_C("SetCurCamEvent", localPlayer, PlayerCam.fpsCam)
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 14)
+        NetUtil.Fire_C('SetCurCamEvent', localPlayer, PlayerCam.fpsCam)
     end
 end
 
 function GuiTelescope:LeaveInteractCEventHandler(_id)
     if _id == 14 then
-        NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-        NetUtil.Fire_C("SetCurCamEvent", localPlayer)
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+        NetUtil.Fire_C('SetCurCamEvent', localPlayer)
         zoomMultiple = 1
         this:CamZoom(zoomMultiple)
     end

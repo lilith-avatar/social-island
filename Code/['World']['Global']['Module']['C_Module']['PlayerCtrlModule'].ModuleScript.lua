@@ -363,7 +363,7 @@ function PlayerCtrl:OnScenesInteractCol(_hitObject, _isBegin)
         if _hitObject.ScenesInteractUID then
             if _isBegin then
                 _hitObject.ScenesInteractUID.Value = localPlayer.UserId
-                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 13)
+                NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 13, _hitObject.ScenesInteractID.Value)
             else
                 _hitObject.ScenesInteractUID.Value = ''
                 NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
