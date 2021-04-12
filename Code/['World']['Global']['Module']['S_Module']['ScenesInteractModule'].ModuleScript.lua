@@ -109,13 +109,15 @@ function ScenesInteract:DataInit()
         curSong = nil
     }
     for k, v in pairs(Const.InteractEnum) do
-        EnterInteractFunc[v] = function(_player, _id)
-            this["Enter" .. k](self, _player)
+        EnterInteractFunc[v] = function(_player)
+            if this['Enter' .. k] then
+                this['Enter' .. k](self, _player)
+            end
         end
-    end
-    for k, v in pairs(Const.InteractEnum) do
-        LeaveInteractFunc[v] = function(_player, _id)
-            this["Leave" .. k](self, _player)
+        LeaveInteractFunc[v] = function(_player)
+            if this['Leave' .. k] then
+                this['Leave' .. k](self, _player)
+            end
         end
     end
 end
@@ -129,8 +131,13 @@ function ScenesInteract:InstanceInteractOBJ(_id, _pos)
     local config = Config.ScenesInteract[_id]
     if config.IsPre or _pos then
         local temp = {
-            obj = world:CreateInstance(config.ArchetypeName, config.ArchetypeName, world.ScenesInteract,
-                _pos or config.Pos, config.Rot or EulerDegree(0, 0, 0)),
+            obj = world:CreateInstance(
+                config.ArchetypeName,
+                config.ArchetypeName,
+                world.ScenesInteract,
+                _pos or config.Pos,
+                config.Rot or EulerDegree(0, 0, 0)
+            ),
             itemID = config.GetItemID,
             isUse = config.IsUse,
             addBuffID = config.AddBuffID,
@@ -154,30 +161,50 @@ end
 function ScenesInteract:ElasticDeformation(_bounce, _player)
     if _bounce.isbouncing == false then
         _bounce.isbouncing = true
-        _bounce.tweener1 = Tween:TweenProperty(_bounce.obj, {
-            Scale = 0.8 * _bounce.originScale
-        }, 0.1, Enum.EaseCurve.Linear)
-        _bounce.tweener2 = Tween:TweenProperty(_bounce.obj, {
-            Scale = 1.2 * _bounce.originScale
-        }, 0.1, Enum.EaseCurve.Linear)
-        _bounce.tweener3 = Tween:TweenProperty(_bounce.obj, {
-            Scale = _bounce.originScale
-        }, 0.2, Enum.EaseCurve.Linear)
-        invoke(function()
-            _bounce.tweener1:Play()
-            _player.LinearVelocity = Vector3(0, 20, 0)
-            SoundUtil.Play3DSE(_bounce.obj.Position, 22)
-            wait(0.1)
-            _bounce.tweener1:Destroy()
-            _bounce.tweener2:Play()
-            wait(0.1)
-            _bounce.tweener3:Play()
-            _bounce.tweener2:Destroy()
-            wait(0.2)
-            _bounce.isbouncing = false
-            _bounce.obj.BounceInteractUID.Value = ''
-            _bounce.tweener3:Destroy()
-        end)
+        _bounce.tweener1 =
+            Tween:TweenProperty(
+            _bounce.obj,
+            {
+                Scale = 0.8 * _bounce.originScale
+            },
+            0.1,
+            Enum.EaseCurve.Linear
+        )
+        _bounce.tweener2 =
+            Tween:TweenProperty(
+            _bounce.obj,
+            {
+                Scale = 1.2 * _bounce.originScale
+            },
+            0.1,
+            Enum.EaseCurve.Linear
+        )
+        _bounce.tweener3 =
+            Tween:TweenProperty(
+            _bounce.obj,
+            {
+                Scale = _bounce.originScale
+            },
+            0.2,
+            Enum.EaseCurve.Linear
+        )
+        invoke(
+            function()
+                _bounce.tweener1:Play()
+                _player.LinearVelocity = Vector3(0, 20, 0)
+                SoundUtil.Play3DSE(_bounce.obj.Position, 22)
+                wait(0.1)
+                _bounce.tweener1:Destroy()
+                _bounce.tweener2:Play()
+                wait(0.1)
+                _bounce.tweener3:Play()
+                _bounce.tweener2:Destroy()
+                wait(0.2)
+                _bounce.isbouncing = false
+                _bounce.obj.BounceInteractUID.Value = ''
+                _bounce.tweener3:Destroy()
+            end
+        )
     end
 end
 
@@ -188,27 +215,38 @@ function ScenesInteract:GrassInter(_object)
         local swayTweenerl = this:GrassSwayTween(_object, 20, 0.15)
         local swayTweener2 = this:GrassSwayTween(_object, -30, 0.3)
         local swayTweener3 = this:GrassSwayTween(_object, 0, 0.15)
-        swayTweenerl.OnComplete:Connect(function()
-            swayTweener2:Play()
-            swayTweenerl:Destroy()
-        end)
-        swayTweener2.OnComplete:Connect(function()
-            swayTweener3:Play()
-            swayTweener2:Destroy()
-        end)
-        swayTweener3.OnComplete:Connect(function()
-            _object.IsSwinging.Value = false
-            swayTweener3:Destroy()
-        end)
+        swayTweenerl.OnComplete:Connect(
+            function()
+                swayTweener2:Play()
+                swayTweenerl:Destroy()
+            end
+        )
+        swayTweener2.OnComplete:Connect(
+            function()
+                swayTweener3:Play()
+                swayTweener2:Destroy()
+            end
+        )
+        swayTweener3.OnComplete:Connect(
+            function()
+                _object.IsSwinging.Value = false
+                swayTweener3:Destroy()
+            end
+        )
 
         swayTweenerl:Play()
     end
 end
 
 function ScenesInteract:GrassSwayTween(_obj, _property, _duration)
-    return Tween:TweenProperty(_obj, {
-        Rotation = EulerDegree(_obj.Rotation.x, _obj.Rotation.y, _obj.Rotation.z + _property)
-    }, _duration, Enum.EaseCurve.Linear)
+    return Tween:TweenProperty(
+        _obj,
+        {
+            Rotation = EulerDegree(_obj.Rotation.x, _obj.Rotation.y, _obj.Rotation.z + _property)
+        },
+        _duration,
+        Enum.EaseCurve.Linear
+    )
 end
 
 function ScenesInteract:TrojanShake(dt)
@@ -413,11 +451,6 @@ function ScenesInteract:EnterCook(_player)
     end
 end
 
-function ScenesInteract:InteractSEventHandler(_player, _id)
-    print('InteractSEventHandler', _id)
-    EnterInteractFunc[_id](_player)
-end
-
 function ScenesInteract:LeaveSeatInteract(_player)
     for k, v in pairs(seatOBJ) do
         if v.SeatInteractUID.Value == _player.UserId then
@@ -483,6 +516,10 @@ function ScenesInteract:LeaveCook(_player)
     end
 end
 
+function ScenesInteract:InteractSEventHandler(_player, _id)
+    print('InteractSEventHandler', _id)
+    EnterInteractFunc[_id](_player)
+end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     print('LeaveInteractSEventHandler', _id)
