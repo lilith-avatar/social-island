@@ -5,41 +5,47 @@
 local ScenesInteract, this = ModuleUtil.New('ScenesInteract', ServerBase)
 
 --- 变量声明
---交互物体
+-- 交互物体
 local interactOBJ = {}
 
---弹跳物体
+-- 弹跳物体
 local bounceOBJ = {}
 
---望远镜
+-- 望远镜
 local telescopeOBJ = {}
 
---座位
+-- 座位
 local seatOBJ = {}
 
---篝火
+-- 篝火
 local bonfireOBJ = {}
 
---草
+-- 草
 local grassOBJ = {}
 
---木马
+-- 木马
 local trojanObj = {}
 
---吉他
+-- 吉他
 local guitarOBJ = {}
 
---帐篷
+-- 帐篷
 local tentOBJ = {}
 
---炸弹
+-- 炸弹
 local bombOBJ = {}
 
---收音机
+-- 收音机
 local radioOBJ = {}
 
---锅
+-- 锅
 local potOBJ = {}
+
+-- 进入交互命令函数
+local EnterInteractFunc = {}
+
+-- 离开交互命令函数
+local LeaveInteractFunc = {}
 
 --- 初始化
 function ScenesInteract:Init()
@@ -102,6 +108,18 @@ function ScenesInteract:DataInit()
         songList = {97, 98, 99},
         curSong = nil
     }
+    for k, v in pairs(Const.InteractEnum) do
+        EnterInteractFunc[v] = function(_player)
+            if this['Enter' .. k] then
+                this['Enter' .. k](self, _player)
+            end
+        end
+        LeaveInteractFunc[v] = function(_player)
+            if this['Leave' .. k] then
+                this['Leave' .. k](self, _player)
+            end
+        end
+    end
 end
 
 --- 节点事件绑定
@@ -139,15 +157,37 @@ function ScenesInteract:InstanceInteractOBJ(_id, _pos)
     end
 end
 
---弹跳
+-- 弹跳
 function ScenesInteract:ElasticDeformation(_bounce, _player)
     if _bounce.isbouncing == false then
         _bounce.isbouncing = true
         _bounce.tweener1 =
-            Tween:TweenProperty(_bounce.obj, {Scale = 0.8 * _bounce.originScale}, 0.1, Enum.EaseCurve.Linear)
+            Tween:TweenProperty(
+            _bounce.obj,
+            {
+                Scale = 0.8 * _bounce.originScale
+            },
+            0.1,
+            Enum.EaseCurve.Linear
+        )
         _bounce.tweener2 =
-            Tween:TweenProperty(_bounce.obj, {Scale = 1.2 * _bounce.originScale}, 0.1, Enum.EaseCurve.Linear)
-        _bounce.tweener3 = Tween:TweenProperty(_bounce.obj, {Scale = _bounce.originScale}, 0.2, Enum.EaseCurve.Linear)
+            Tween:TweenProperty(
+            _bounce.obj,
+            {
+                Scale = 1.2 * _bounce.originScale
+            },
+            0.1,
+            Enum.EaseCurve.Linear
+        )
+        _bounce.tweener3 =
+            Tween:TweenProperty(
+            _bounce.obj,
+            {
+                Scale = _bounce.originScale
+            },
+            0.2,
+            Enum.EaseCurve.Linear
+        )
         invoke(
             function()
                 _bounce.tweener1:Play()
@@ -168,7 +208,7 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
     end
 end
 
---草动
+-- 草动
 function ScenesInteract:GrassInter(_object)
     if _object.IsSwinging.Value == false then
         _object.IsSwinging.Value = true
@@ -201,7 +241,9 @@ end
 function ScenesInteract:GrassSwayTween(_obj, _property, _duration)
     return Tween:TweenProperty(
         _obj,
-        {Rotation = EulerDegree(_obj.Rotation.x, _obj.Rotation.y, _obj.Rotation.z + _property)},
+        {
+            Rotation = EulerDegree(_obj.Rotation.x, _obj.Rotation.y, _obj.Rotation.z + _property)
+        },
         _duration,
         Enum.EaseCurve.Linear
     )
@@ -246,241 +288,245 @@ function ScenesInteract:TentNumEffect(_num, _model)
     end
 end
 
-function ScenesInteract:InteractSEventHandler(_player, _id)
-    print('InteractSEventHandler', _id)
-    if _id == 13 then
-        for k, v in pairs(interactOBJ) do
-            if v.obj.ScenesInteractUID.Value == _player.UserId then
-                if v.useCount > 0 then
-                    if v.anitName then
-                        _player.Avatar:PlayAnimation(v.anitName, 2, 1, 0.1, true, false, 1)
+function ScenesInteract:EnterScenesInteract(_player)
+    for k, v in pairs(interactOBJ) do
+        if v.obj.ScenesInteractUID.Value == _player.UserId then
+            if v.useCount > 0 then
+                if v.anitName then
+                    _player.Avatar:PlayAnimation(v.anitName, 2, 1, 0.1, true, false, 1)
+                end
+                if v.interactAEID then
+                    SoundUtil.Play3DSE(_player.Position, v.interactAEID)
+                end
+                if v.itemID ~= nil then
+                    NetUtil.Fire_C('GetItemEvent', _player, v.itemID)
+                    if v.isUse then
+                        wait(.1)
+                        NetUtil.Fire_C('UseItemInBagEvent', _player, v.itemID)
                     end
-                    if v.interactAEID then
-                        SoundUtil.Play3DSE(_player.Position, v.interactAEID)
-                    end
-                    if v.itemID ~= nil then
-                        NetUtil.Fire_C('GetItemEvent', _player, v.itemID)
-                        if v.isUse then
-                            wait(.1)
-                            NetUtil.Fire_C('UseItemInBagEvent', _player, v.itemID)
-                        end
-                    end
-                    if v.addBuffID then
-                        NetUtil.Fire_C('GetBuffEvent', _player, v.addBuffID, v.addBuffDur)
-                    end
-                    NetUtil.Fire_S('SpawnCoinEvent', 'P', v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
-                    v.useCount = v.useCount - 1
-                    if v.useCount == 0 then
-                        v.obj:SetActive(false)
-                    end
-                else
+                end
+                if v.addBuffID then
+                    NetUtil.Fire_C('GetBuffEvent', _player, v.addBuffID, v.addBuffDur)
+                end
+                NetUtil.Fire_S('SpawnCoinEvent', 'P', v.obj.Position + Vector3(0, 2.5, 0), v.rewardCoin)
+                v.useCount = v.useCount - 1
+                if v.useCount == 0 then
                     v.obj:SetActive(false)
                 end
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-                return
+            else
+                v.obj:SetActive(false)
+            end
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+            return
+        end
+    end
+end
+function ScenesInteract:EnterSeatInteract(_player)
+    for k, v in pairs(seatOBJ) do
+        if v.SeatInteractUID.Value == _player.UserId then
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
+            v:Sit(_player)
+            _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
+            -- 音效
+            SoundUtil.Play3DSE(_player.Position, 14)
+        end
+    end
+end
+function ScenesInteract:EnterBonfireInteract(_player)
+    for k, v in pairs(bonfireOBJ) do
+        if v.BonfireInteractUID.Value == _player.UserId then
+            if v.On.ActiveSelf then
+                v.On:SetActive(false)
+                v.Off:SetActive(true)
+            else
+                SoundUtil.Play3DSE(_player.Position, 102)
+                v.On:SetActive(true)
+                v.Off:SetActive(false)
             end
         end
     end
-    if _id == 15 then
-        for k, v in pairs(seatOBJ) do
-            if v.SeatInteractUID.Value == _player.UserId then
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
-                v:Sit(_player)
-                _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
-                -- 音效
-                SoundUtil.Play3DSE(_player.Position, 14)
-            end
-        end
-    end
-    if _id == 16 then
-        for k, v in pairs(bonfireOBJ) do
-            if v.BonfireInteractUID.Value == _player.UserId then
-                if v.On.ActiveSelf then
-                    v.On:SetActive(false)
-                    v.Off:SetActive(true)
-                else
-                    SoundUtil.Play3DSE(_player.Position, 102)
-                    v.On:SetActive(true)
-                    v.Off:SetActive(false)
-                end
-            end
-        end
 
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-        NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 16)
-    end
-    if _id == 17 then
-        for k, v in pairs(bounceOBJ) do
-            if v.obj.BounceInteractUID.Value == _player.UserId then
-                this:ElasticDeformation(v, _player)
-            end
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+    NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 16)
+end
+function ScenesInteract:EnterBounceInteract(_player)
+    for k, v in pairs(bounceOBJ) do
+        if v.obj.BounceInteractUID.Value == _player.UserId then
+            this:ElasticDeformation(v, _player)
         end
     end
-    if _id == 18 then
-        for k, v in pairs(grassOBJ) do
-            if v.GrassInteractUID.Value == _player.UserId then
-                this:GrassInter(v)
-            end
+end
+function ScenesInteract:EnterGrassInteract(_player)
+    for k, v in pairs(grassOBJ) do
+        if v.GrassInteractUID.Value == _player.UserId then
+            this:GrassInter(v)
         end
     end
-    if _id == 20 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
-        for k, v in pairs(trojanObj) do
-            if v.TrojanUID.Value == _player.UserId then
-                NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
-                v.Seat:Sit(_player)
-                _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
-                _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
-                -- 音效
-                this.TrojanList[v.Name] = {
+end
+function ScenesInteract:EnterTrojan(_player)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
+    for k, v in pairs(trojanObj) do
+        if v.TrojanUID.Value == _player.UserId then
+            NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
+            v.Seat:Sit(_player)
+            _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
+            _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+            -- 音效
+            this.TrojanList[v.Name] = {
+                model = v,
+                timer = 0,
+                totalTimer = 0,
+                originForward = v.Forward,
+                dirRatio = 1,
+                sound = SoundUtil.Play3DSE(_player.Position, 15),
+                player = _player
+            }
+        end
+    end
+end
+function ScenesInteract:EnterGuitar(_player)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 21)
+end
+function ScenesInteract:EnterTent(_player)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
+    for k, v in pairs(tentOBJ) do
+        if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
+            _player.Avatar:SetActive(false)
+            NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
+            SoundUtil.Play3DSE(_player.Position, 103)
+            if not this.TentList[v.Name] then
+                this.TentList[v.Name] = {
                     model = v,
-                    timer = 0,
-                    totalTimer = 0,
-                    originForward = v.Forward,
-                    dirRatio = 1,
-                    sound = SoundUtil.Play3DSE(_player.Position, 15),
-                    player = _player
+                    num = 0,
+                    timer = 0
                 }
             end
+            this.TentList[v.Name].num = this.TentList[v.Name].num + 1
+            this:TentNumEffect(this.TentList[v.Name].num, v)
         end
     end
-    if _id == 21 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 21)
+end
+function ScenesInteract:EnterBomb(_player)
+    for k, v in pairs(bombOBJ) do
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 23)
+        if v.BombUID.Value == _player.UserId then
+            _player.LinearVelocity = (v.Position - _player.Position).Normalized * 10
+            NetUtil.Fire_C('FsmTriggerEvent', v.insidePlayer, 'Fly')
+        end
     end
-    if _id == 22 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
-        for k, v in pairs(tentOBJ) do
-            if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
-                _player.Avatar:SetActive(false)
-                NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
-                SoundUtil.Play3DSE(_player.Position, 103)
-                if not this.TentList[v.Name] then
-                    this.TentList[v.Name] = {
-                        model = v,
-                        num = 0,
-                        timer = 0
-                    }
-                end
-                this.TentList[v.Name].num = this.TentList[v.Name].num + 1
-                this:TentNumEffect(this.TentList[v.Name].num, v)
+end
+function ScenesInteract:EnterRadio(_player)
+    for k, v in pairs(radioOBJ) do
+        NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 24)
+        if v.RadioUID.Value == _player.UserId then
+            SoundUtil.Play3DSE(_player.Position, 104)
+            this.RadioData.songIndex = this.RadioData.songIndex + 1
+            if this.RadioData.songIndex > #this.RadioData.songList then
+                this.RadioData.songIndex = 1
+            end
+            -- 先停止当前音乐，再播放
+            if this.RadioData.curSong then
+                -- NetUtil.Fire_C("StopEffectEvent", _player, "radio")
+            else
+                v.Model.On:SetActive(true)
+            end
+            --[[NetUtil.Fire_C(
+                "PlayEffectEvent",
+                _player,
+                this.RadioData.songList[this.RadioData.songIndex],
+                v.Position,
+                "radio"
+            )]]
+            this.RadioData.curSong = true
+        end
+    end
+end
+function ScenesInteract:EnterCook(_player)
+    for k, v in pairs(potOBJ) do
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 26)
+        if v.PotUID.Value == _player.UserId then
+            v.Off:SetActive(false)
+            v.On:SetActive(true)
+        end
+    end
+end
+
+function ScenesInteract:LeaveSeatInteract(_player)
+    for k, v in pairs(seatOBJ) do
+        if v.SeatInteractUID.Value == _player.UserId then
+            v:Leave(_player)
+            NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+        end
+    end
+end
+function ScenesInteract:LeaveTrojan(_player)
+    for k, v in pairs(trojanObj) do
+        if v.TrojanUID.Value == _player.UserId then
+            v.Seat:Leave(_player)
+            _player.Avatar:StopAnimation('HTRide', 3)
+            _player.Avatar:StopAnimation('SitIdle', 2)
+            NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+            SoundUtil.Stop3DSE(this.TrojanList[v.Name].sound)
+            v.Forward = this.TrojanList[v.Name].originForward
+            this.TrojanList[v.Name] = nil
+        end
+    end
+end
+function ScenesInteract:LeaveGuitar(_player)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+end
+function ScenesInteract:LeaveTent(_player)
+    NetUtil.Fire_C('PlayerSkinUpdateEvent', _player, 0)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+    _player.Avatar:SetActive(true)
+    for k, v in pairs(tentOBJ) do
+        if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
+            this.TentList[v.Name].num = this.TentList[v.Name].num - 1
+            this:TentNumEffect(this.TentList[v.Name].num, v)
+            if this.TentList[v.Name].num == 0 then
+                this.TentList[v.Name] = nil
+                v.Effect:SetActive(false)
             end
         end
     end
-    if _id == 23 then
-        for k, v in pairs(bombOBJ) do
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 23)
-            if v.BombUID.Value == _player.UserId then
-                _player.LinearVelocity = (v.Position - _player.Position).Normalized * 10
-                NetUtil.Fire_C('FsmTriggerEvent', v.insidePlayer, 'Fly')
-            end
+end
+function ScenesInteract:LeaveBomb(_player)
+    for k, v in pairs(bombOBJ) do
+        if v.BombUID.Value == _player.UserId then
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
         end
     end
-    if _id == 24 then
-        for k, v in pairs(radioOBJ) do
-            NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 24)
-            if v.RadioUID.Value == _player.UserId then
-                SoundUtil.Play3DSE(_player.Position, 104)
-                this.RadioData.songIndex = this.RadioData.songIndex + 1
-                if this.RadioData.songIndex > #this.RadioData.songList then
-                    this.RadioData.songIndex = 1
-                end
-                -- 先停止当前音乐，再播放
-                if this.RadioData.curSong then
-                    --NetUtil.Fire_C("StopEffectEvent", _player, "radio")
-                else
-                    v.Model.On:SetActive(true)
-                end
-                --[[NetUtil.Fire_C(
-                    "PlayEffectEvent",
-                    _player,
-                    this.RadioData.songList[this.RadioData.songIndex],
-                    v.Position,
-                    "radio"
-                )]]
-                this.RadioData.curSong = true
-            end
+end
+function ScenesInteract:LeaveRadio(_player)
+    for k, v in pairs(radioOBJ) do
+        if v.RadioUID.Value == _player.UserId then
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
         end
     end
-    if _id == 26 then
-        for k, v in pairs(potOBJ) do
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 26)
-            if v.PotUID.Value == _player.UserId then
-                v.Off:SetActive(false)
-                v.On:SetActive(true)
-            end
+end
+function ScenesInteract:LeaveCook(_player)
+    for k, v in pairs(potOBJ) do
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+        if v.PotUID.Value == _player.UserId then
+            v.Off:SetActive(true)
+            v.On:SetActive(false)
         end
     end
+end
+
+function ScenesInteract:InteractSEventHandler(_player, _id)
+    print('InteractSEventHandler', _id)
+    EnterInteractFunc[_id](_player)
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     print('LeaveInteractSEventHandler', _id)
-    if _id == 15 then
-        for k, v in pairs(seatOBJ) do
-            if v.SeatInteractUID.Value == _player.UserId then
-                v:Leave(_player)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-            end
-        end
-    end
-    if _id == 20 then
-        for k, v in pairs(trojanObj) do
-            if v.TrojanUID.Value == _player.UserId then
-                v.Seat:Leave(_player)
-                _player.Avatar:StopAnimation('HTRide', 3)
-                _player.Avatar:StopAnimation('SitIdle', 2)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-                SoundUtil.Stop3DSE(this.TrojanList[v.Name].sound)
-                v.Forward = this.TrojanList[v.Name].originForward
-                this.TrojanList[v.Name] = nil
-            end
-        end
-    end
-    if _id == 21 then
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-    end
-    if _id == 22 then
-        NetUtil.Fire_C('PlayerSkinUpdateEvent', _player, 0)
-        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-        _player.Avatar:SetActive(true)
-        for k, v in pairs(tentOBJ) do
-            if v.TentUID1.Value == _player.UserId or v.TentUID2.Value == _player.UserId then
-                this.TentList[v.Name].num = this.TentList[v.Name].num - 1
-                this:TentNumEffect(this.TentList[v.Name].num, v)
-                if this.TentList[v.Name].num == 0 then
-                    this.TentList[v.Name] = nil
-                    v.Effect:SetActive(false)
-                end
-            end
-        end
-    end
-    if _id == 23 then
-        for k, v in pairs(bombOBJ) do
-            if v.BombUID.Value == _player.UserId then
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-            end
-        end
-    end
-    if _id == 24 then
-        for k, v in pairs(radioOBJ) do
-            if v.RadioUID.Value == _player.UserId then
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-            end
-        end
-    end
-    if _id == 26 then
-        for k, v in pairs(potOBJ) do
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-            if v.PotUID.Value == _player.UserId then
-                v.Off:SetActive(true)
-                v.On:SetActive(false)
-            end
-        end
-    end
+    LeaveInteractFunc[_id](_player)
 end
 
---重置交互物体
+-- 重置交互物体
 function ScenesInteract:ResetSIOBJ(dt)
     for k, v in pairs(interactOBJ) do
         if v.useCount == 0 and v.resetTime > 0 then

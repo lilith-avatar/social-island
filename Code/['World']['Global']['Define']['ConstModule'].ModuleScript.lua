@@ -6,7 +6,7 @@ local Const = {}
 -- e.g. (need DELETE)
 Const.MAX_PLAYERS = 4
 
---语言枚举
+-- 语言枚举
 Const.LanguageEnum = {
     CHS = 'CHS', -- 简体中文
     CHT = 'CHT', -- 繁体中文
@@ -39,6 +39,40 @@ Const.NpcState = {
     IDLE = 1, -- 闲置
     SEE_PLAYER = 2, -- 看见玩家
     TALKING = 3 -- 和玩家对话
+}
+
+-- 交互枚举
+Const.InteractEnum = {
+    Def = 0,
+    Hunt = 1,
+    WhackAMole = 2,
+    Maze = 3,
+    Cannon = 4,
+    Frog = 5,
+    Zeppelin = 6,
+    Flower = 7,
+    Snail = 8,
+    Race = 9,
+    Chair = 10,
+    MonsterArena = 11,
+    NPC = 12,
+    ScenesInteract = 13,
+    TelescopeInteract = 14,
+    SeatInteract = 15,
+    BonfireInteract = 16,
+    BounceInteract = 17,
+    GrassInteract = 18,
+    CaughtAnimal = 19,
+    Trojan = 20,
+    Guitar = 21,
+    Tent = 22,
+    Bomb = 23,
+    Radio = 24,
+    Buble = 25,
+    Cook = 26,
+    EatFood = 27,
+    Lotus = 28,
+    Map = 29
 }
 
 return Const
