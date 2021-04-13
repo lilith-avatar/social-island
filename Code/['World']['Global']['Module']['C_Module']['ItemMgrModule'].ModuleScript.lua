@@ -225,9 +225,7 @@ function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     if not _hasData then
         this:InitBagData()
     end
-    for k, v in pairs(Data.Player.bag) do
-        print('Item:', k)
-    end
+    GuiControl:UpdateCoinNum(Data.Player.coin)
 end
 
 function ItemMgr:Update(dt, tt)
