@@ -209,7 +209,7 @@ end
 --- 更新金币显示
 function GuiControl:UpdateCoinNum(_num)
     NetUtil.Fire_C('ShowGetCoinNumEvent', localPlayer, _num)
-    gui.Menu.CoinNum.Text = '金币：' .. Data.Player.coin
+    gui.Menu.CoinNum.Text = Data.Player.coin
 end
 
 --- 进入小游戏修改UI

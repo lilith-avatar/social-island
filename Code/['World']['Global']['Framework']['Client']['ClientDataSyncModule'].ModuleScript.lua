@@ -36,11 +36,6 @@ function InitEventsAndListeners()
     world:CreateObject('CustomEvent', 'DataSyncS2CEvent', localPlayer.C_Event)
     localPlayer.C_Event.DataSyncS2CEvent:Connect(DataSyncS2CEventHandler)
 
-    -- 玩家加入事件
-    local onPlayerJoinEvent = localPlayer.C_Event.OnPlayerJoinEvent
-    assert(onPlayerJoinEvent, '[DataSync][Client] OnPlayerJoinEvent不存在')
-    onPlayerJoinEvent:Connect(OnPlayerJoinEventHandler)
-
     -- 长期存储成功事件
     if not localPlayer.C_Event.LoadPlayerDataSuccessEvent then
         world:CreateObject('CustomEvent', 'LoadPlayerDataSuccessEvent', localPlayer.C_Event)
@@ -101,12 +96,6 @@ function DataSyncS2CEventHandler(_path, _value)
             )
         )
     end
-end
-
---- 新玩家加入事件Handler
-function OnPlayerJoinEventHandler(_player)
-    -- 心跳连接服务器成功后，开启客户端数据同步
-    ClientDataSync.Start()
 end
 
 return ClientDataSync

@@ -1970,9 +1970,9 @@ local LanguagePackXls = {
         ID = 'NpcInfo_Name_6',
         CHS = '内蒂里',
         CHT = '',
-        EN = 'Neytiri',
+        EN = 'Tony',
         JP = '',
-        YN = 'Neytiri'
+        YN = 'Tony'
     },
     NpcInfo_Title_6 = {
         ID = 'NpcInfo_Title_6',
@@ -2042,9 +2042,9 @@ local LanguagePackXls = {
         ID = 'NpcInfo_Name_12',
         CHS = '马克·波罗',
         CHT = '',
-        EN = 'Marco Polo',
+        EN = 'Neytiri',
         JP = '',
-        YN = 'Marco Polo'
+        YN = 'Neytiri'
     },
     NpcInfo_Title_12 = {
         ID = 'NpcInfo_Title_12',
@@ -2598,94 +2598,6 @@ local LanguagePackXls = {
         JP = '',
         YN = ''
     },
-    GuiText_Txt_28 = {
-        ID = 'GuiText_Txt_28',
-        CHS = '进入游戏',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_29 = {
-        ID = 'GuiText_Txt_29',
-        CHS = '离开',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_30 = {
-        ID = 'GuiText_Txt_30',
-        CHS = '购买',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_31 = {
-        ID = 'GuiText_Txt_31',
-        CHS = '金币不足',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_32 = {
-        ID = 'GuiText_Txt_32',
-        CHS = '购买',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_33 = {
-        ID = 'GuiText_Txt_33',
-        CHS = '来做饭吧',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_34 = {
-        ID = 'GuiText_Txt_34',
-        CHS = '选用食材',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_35 = {
-        ID = 'GuiText_Txt_35',
-        CHS = '你做出了%s',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_36 = {
-        ID = 'GuiText_Txt_36',
-        CHS = '吃掉它',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_37 = {
-        ID = 'GuiText_Txt_37',
-        CHS = '放到桌上',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
-    GuiText_Txt_38 = {
-        ID = 'GuiText_Txt_38',
-        CHS = '打赏',
-        CHT = '',
-        EN = '',
-        JP = '',
-        YN = ''
-    },
     GuiText_Txt_InfoGui_1 = {
         ID = 'GuiText_Txt_InfoGui_1',
         CHS = '新的一天开始了',
@@ -3009,6 +2921,30 @@ local LanguagePackXls = {
     GuiText_Txt_ShopGui_4 = {
         ID = 'GuiText_Txt_ShopGui_4',
         CHS = '已拥有',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_7 = {
+        ID = 'GuiText_Txt_CookGui_7',
+        CHS = '宴会还没有开始，晚上再来吧。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_8 = {
+        ID = 'GuiText_Txt_CookGui_8',
+        CHS = '你要打赏%s多少金币呢？',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGui_9 = {
+        ID = 'GuiText_Txt_CookGui_9',
+        CHS = '你为%s的%s支付了%s小费。',
         CHT = '',
         EN = '',
         JP = '',

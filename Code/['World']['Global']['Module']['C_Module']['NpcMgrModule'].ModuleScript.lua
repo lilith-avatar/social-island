@@ -89,11 +89,12 @@ end
 
 -- 创建NPC气泡
 function CreateBubbleGui(_npcObj, _npcInfo)
-    if not _npcInfo.BubbleId or #_npcInfo.BubbleId == 0 then
+	printTable(_npcInfo.BubbleId)
+    if not _npcInfo.BubbleId or _npcInfo.BubbleId[1] == 1000 then
         return -- 没有气泡
     end
     local gui = world:CreateInstance('NpcBubbleGui', 'BubbleGui', _npcObj)
-    gui.LocalPosition = Vector3(0, 1.5, 0)
+    gui.LocalPosition = Vector3(0, 2.2, 0)
     gui.LocalRotation = EulerDegree(0, 0, 0)
 end
 
@@ -164,12 +165,13 @@ end
 function BubbleShow(_npcId)
     local npcObj = npcs[_npcId].obj
     local gui = npcObj.BubbleGui
-    if npcObj.NpcState.Value == Const.NpcState.TALKING then
+    if npcObj.NpcState.Value == Const.NpcState.TALKING  or not gui then
         BubbleHide(_npcId)
         return
     end
     --npcObj.Avatar:PlayAnimation('SocialComeHere', 9, 1, 0.1, true, false, 1)
-    gui.BubbleTxt.Text = PickARandomBubble(npcs[_npcId].info)
+	gui.Bg.BubbleTxt.Text = PickARandomBubble(npcs[_npcId].info)
+	gui.Bg.NameTxt.Text = LanguageUtil.GetText(npcs[_npcId].info.Name)
     gui.Visible = true
     TimeUtil.SetTimeout(
         function()
@@ -182,7 +184,9 @@ end
 -- 隐藏气泡
 function BubbleHide(_npcId)
     local gui = npcs[_npcId].obj.BubbleGui
-    gui.Visible = false
+    if gui then
+		gui.Visible = false
+	end
 end
 
 -- 随机获取气泡文字

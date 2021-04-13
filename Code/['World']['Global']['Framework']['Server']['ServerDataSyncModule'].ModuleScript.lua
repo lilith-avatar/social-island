@@ -132,6 +132,7 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
         print('[DataSync][Server] 获取玩家数据成功', player.Name)
         local hasData = _val ~= nil
         if hasData then
+            print('[DataSync][Server] 玩家数据，存在', player.Name)
             --若以前的数据存在，更新
             -- TODO: 数据兼容的处理
             local data = _val
@@ -142,6 +143,7 @@ function LoadGameDataAsyncCb(_val, _msg, _uid)
             end
         else
             -- 不存在数据，用之前生成的默认数据
+            print('[DataSync][Server] 玩家数据，不存在', player.Name)
         end
         NetUtil.Fire_S('LoadPlayerDataSuccessEvent', player, hasData)
         NetUtil.Fire_C('LoadPlayerDataSuccessEvent', player, hasData)
@@ -276,9 +278,8 @@ end
 function OnPlayerLeaveEventHandler(_player, _uid)
     print('[DataSync][Server] OnPlayerLeaveEventHandler', _player, _uid)
     assert(not string.isnilorempty(_uid), '[ServerDataSync] OnPlayerLeaveEventHandler() uid不存在')
-
     --* 保存长期存储：rawDataPlayers[_uid] 保存成功后删掉
-    SaveGameDataAsync(uid, true)
+    SaveGameDataAsync(_uid, true)
 end
 
 return ServerDataSync

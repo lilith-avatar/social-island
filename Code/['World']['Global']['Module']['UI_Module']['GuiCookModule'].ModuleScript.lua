@@ -338,7 +338,7 @@ function GuiCook:ShowFood()
         return
     end
     this:ConsumeMaterial()
-    this.titleTxt.Text = '你做出了' .. LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
+    this.titleTxt.Text = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
     this.foodPanel:SetActive(true)
 end
 
@@ -365,7 +365,7 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foo
     this.foodId = _foodId
     this.foodLocation = _foodLocation
     -- 无法打赏自己做的菜
-    if this.cookUserId == localPlayer.UserId then
+    if this.cookUserId == localPlayer.UserId or Data.Player.coin <= 0 then
         this.detailReward:SetActive(false)
     else
         this.detailReward:SetActive(true)
@@ -379,19 +379,20 @@ function GuiCook:EatFood()
         Config.CookMenu[this.foodId].BuffId,
         Config.CookMenu[this.foodId].BuffDur
     )
-    this.foodId = nil
+    NetUtil.Fire_C('EatFoodEvent',localPlayer,this.foodId)
     this:HideGui()
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     if this.foodLocation then
         NetUtil.Fire_S('PlayerEatFoodEvent',this.foodLocation)
     end
+    this.foodId = nil
     --this:ShowUI()
 end
 
 function GuiCook:PutOnDesk()
     NetUtil.Fire_S('FoodOnDeskEvent', this.foodId, localPlayer)
     this.foodId = nil
-    this:ShowUI()
+    this:HideGui()
 end
 
 function GuiCook:Update(dt)
@@ -414,6 +415,12 @@ function GuiCook:SycnTimeCEventHandler(_clock)
         this.canEat = true
     else
         this.canEat = false
+    end
+end
+
+function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
+    if _interactID == 27 then
+        this:EatFood()
     end
 end
 
