@@ -99,7 +99,6 @@ function GuiSnail:InteractCEventHandler(_id)
         NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.SnailGui_9.Txt), 1, false)
         gui:SetActive(true)
         gui.SnailPanel:SetActive(true)
-        gui.BetPanel:SetActive(false)
     end
 end
 
