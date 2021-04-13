@@ -406,6 +406,7 @@ function ScenesInteract:EnterTent(_player)
         end
     end
 end
+
 function ScenesInteract:EnterBomb(_player)
     for k, v in pairs(bombOBJ) do
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 23)
