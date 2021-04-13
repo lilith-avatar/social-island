@@ -4,7 +4,7 @@
 local GuiSnail, this = ModuleUtil.New('GuiSnail', ClientBase)
 
 local gui
-local snailBtn, betBtn = {}, {}
+local snailBtn = {}
 local snailIndex = 0
 local arrowEffect = {}
 
@@ -19,9 +19,6 @@ function GuiSnail:NodeRef()
     gui = localPlayer.Local.SnailGUI
     for i = 1, 4 do
         snailBtn[i] = gui.SnailPanel['SnailBtn' .. i]
-        if gui.BetPanel['BetBtn' .. i] then
-            betBtn[i] = gui.BetPanel['BetBtn' .. i]
-        end
         arrowEffect[i] = world.MiniGames.Game_08_Snail.Snail['Snail' .. i].ArrowEffect
     end
 end
@@ -55,11 +52,6 @@ function GuiSnail:EventBind()
             end
         )
     end
-    gui.BetPanel.LeaveBtn.OnDown:Connect(
-        function()
-            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-        end
-    )
 end
 
 function GuiSnail:Update(dt)
