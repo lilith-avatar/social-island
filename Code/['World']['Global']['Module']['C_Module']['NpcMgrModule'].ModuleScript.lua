@@ -89,7 +89,6 @@ end
 
 -- 创建NPC气泡
 function CreateBubbleGui(_npcObj, _npcInfo)
-	printTable(_npcInfo.BubbleId)
     if not _npcInfo.BubbleId or _npcInfo.BubbleId[1] == 1000 then
         return -- 没有气泡
     end

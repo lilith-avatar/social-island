@@ -5,7 +5,7 @@
 local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
-local controlGui, monsterGui, npcBtn
+local controlGui,  npcBtn
 local npcGui, gameBtn, battleBtn, shopBtn, leaveBtn, dialogTxt
 
 -- Cache
@@ -34,8 +34,7 @@ end
 
 --- 初始化GUI结点
 function GuiNpc:InitGui()
-    -- Monster GUI
-    monsterGui = localPlayer.Local.MonsterGUI
+
     -- NPC GUI
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
@@ -91,7 +90,7 @@ function BeyondNpc()
     if currNpcId then
         NetUtil.Fire_C('LeaveNpcEvent', localPlayer, currNpcId)
     end
-    monsterGui.Visible = true
+
     npcGui.Visible = false
     currNpcId = nil
     currNpcObj = nil
