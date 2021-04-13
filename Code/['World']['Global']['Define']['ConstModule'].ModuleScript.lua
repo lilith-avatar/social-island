@@ -75,4 +75,10 @@ Const.InteractEnum = {
     Map = 29
 }
 
+Const.SeatStateEnum = {
+    Disable = 0,
+    Free = 1,
+    Used = 2
+}
+
 return Const

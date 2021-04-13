@@ -220,11 +220,13 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
     gui.Joystick:SetActive(config.JoystickActive)
     gui.Menu:SetActive(config.MenuActive)
     gui.Ctrl:SetActive(config.CtrlActive)
+    this:UpdateTakeOffBtn()
     if config.CtrlActive then
         gui.Ctrl.UseBtn:SetActive(config.UseBtnActive)
         gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
         gui.Ctrl.LeaveBtn:SetActive(config.LeaveBtnActive)
         gui.Ctrl.SocialAnimBtn:SetActive(config.SocialAnimActive)
+        gui.Ctrl.TakeOffBtn:SetActive(config.TakeOffBtnActive)
     end
 
     for k, v in pairs(localPlayer.Local:GetChildren()) do
@@ -239,7 +241,6 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
         interactID = 0
         this:ResetDefUIEventHandler()
     end
-    this:UpdateTakeOffBtn()
 end
 
 --- 更新脱下Btn显示

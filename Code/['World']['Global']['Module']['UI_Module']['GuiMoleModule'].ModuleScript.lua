@@ -13,16 +13,16 @@ end
 
 ---节点定义
 function GuiMole:NodeDef()
-    this.payRoot = localPlayer.Local.PayGui
+    --[[this.payRoot = localPlayer.Local.PayGui
     this.priceRoot = this.payRoot.PricePay
     this.des = this.priceRoot.PayBG.DesText
     this.cancel = this.priceRoot.PayBG.CancelBtn
-    this.pay = this.priceRoot.PayBG.PayBtn
+    this.pay = this.priceRoot.PayBG.PayBtn]]
 end
 
 ---事件绑定
 function GuiMole:EventBind()
-    this.cancel.OnClick:Connect(
+    --[[this.cancel.OnClick:Connect(
         function()
             NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
         end
@@ -33,7 +33,7 @@ function GuiMole:EventBind()
             this:Pay()
             NetUtil.Fire_C("ResetDefUIEvent", localPlayer)
         end
-    )
+    )]]
 end
 
 ---数据初始化

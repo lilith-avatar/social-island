@@ -368,6 +368,7 @@ function ScenesInteract:EnterTrojan(_player)
     for k, v in pairs(trojanObj) do
         if v.TrojanUID.Value == _player.UserId then
             NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
+            v.TrojanState.Value = Const.SeatStateEnum.Used
             v.Seat:Sit(_player)
             _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
             _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
@@ -406,6 +407,7 @@ function ScenesInteract:EnterTent(_player)
         end
     end
 end
+
 function ScenesInteract:EnterBomb(_player)
     for k, v in pairs(bombOBJ) do
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 23)
@@ -464,6 +466,7 @@ function ScenesInteract:LeaveTrojan(_player)
     for k, v in pairs(trojanObj) do
         if v.TrojanUID.Value == _player.UserId then
             v.Seat:Leave(_player)
+            v.TrojanState.Value = Const.SeatStateEnum.Free
             _player.Avatar:StopAnimation('HTRide', 3)
             _player.Avatar:StopAnimation('SitIdle', 2)
             NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')

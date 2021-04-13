@@ -432,10 +432,10 @@ end
 
 ---摇摇椅碰撞函数
 function PlayerCtrl:TrojanColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.Parent.TrojanUID.Value == '' then
+    if _isBegin and _hitObject.Parent.TrojanUID.Value == '' and _hitObject.Parent.TrojanState.Value == Const.SeatStateEnum.Free then
         _hitObject.Parent.TrojanUID.Value = localPlayer.UserId
         NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 20)
-    else
+    elseif _hitObject.Parent.TrojanState.Value == Const.SeatStateEnum.Free then
         _hitObject.Parent.TrojanUID.Value = ''
         NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
     end
