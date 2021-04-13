@@ -7,7 +7,10 @@ local FrameworkConfig = {
     DebugMode = true,
     -- 启动心跳
     HeartbeatStart = true,
-    -- TODO: Data Scheme配置：解决底层对逻辑层的反向引用问题
+    -- 长期存储：玩家数据定时保存时间间隔（秒）
+    DatabaseAutoSaveTime = 30,
+    -- 长期存储：重新读取游戏数据时间间隔（秒）
+    DatabaseReloadTimeAfterFailed = 1,
     -- 服务器配置
     Server = {
         -- 心跳包间隔时间，单位：秒

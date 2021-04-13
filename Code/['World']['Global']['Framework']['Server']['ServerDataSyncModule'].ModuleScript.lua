@@ -12,7 +12,7 @@ local rawDataGlobal = {}
 local rawDataPlayers = {}
 
 -- 玩家数据定时保存时间间隔（秒）
-local AUTO_SAVE_TIME = 10
+local AUTO_SAVE_TIME = FrameworkConfig.DatabaseAutoSaveTime
 -- 重新读取游戏数据时间间隔（秒）
 local RELOAD_TIME = 1
 
