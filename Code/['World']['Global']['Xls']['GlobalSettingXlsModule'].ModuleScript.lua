@@ -6,9 +6,9 @@
 --- source file: .//GlobalSetting.xls
 
 local GlobalSettingXls = {
-    DefaultLanguage = "EN",
+    DefaultLanguage = "CHS",
     NpcBubbleShowTime = 3.0,
-    NpcBubbleInterval = {5,8},
+    NpcBubbleInterval = {5,12},
     MazeFlagModel = "Maze_Flag",
     MazeFlagNum = 1.0,
     MazePlayerMark = "Maze_Mark"
