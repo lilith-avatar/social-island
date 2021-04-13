@@ -38,7 +38,7 @@ local SoundXls = {
     },
     [4] = {
         ID = 4,
-        Name = 'GetCoin',
+        Name = 'GetItem',
         IsLoop = false,
         Volume = 20.0,
         MinDistance = 5,
