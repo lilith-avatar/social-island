@@ -118,7 +118,7 @@ function GuiCook:EventBind()
     )
     this.detailReward.OnClick:Connect(
         function()
-            NetUtil.Fire_C('SliderPurchaseEvent', localPlayer, 27, '请选择你要打赏的数量')
+            NetUtil.Fire_C('SliderPurchaseEvent', localPlayer, 27, LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt))
         end
     )
 end
@@ -343,7 +343,7 @@ function GuiCook:ShowFood()
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
-    this.deskBtn.Text = 'PUT ON DESK(' .. _cur .. '/' .. _total .. ')'
+    this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt)..'(%s/%s)', _cur,_total)
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
