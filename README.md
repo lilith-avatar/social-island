@@ -1,11 +1,11 @@
-# UFO Social Island</h1>
+# Camping Social Island</h1>
 [![](https://img.shields.io/badge/-DaVinci-MediumPurple)](http://api.projectdavinci.com/)
 [![](https://img.shields.io/badge/project-Ava-ff69b4)](https://github.com/lilith-avatar/avatar-ava/projects/1)
 [![](https://img.shields.io/badge/-api%20plugin-9cf)](https://github.com/lilith-avatar/davinci-api-wrap)
 [![](https://img.shields.io/github/v/release/lilith-avatar/social-island)](https://github.com/lilith-avatar/social-island/releases)
 [![](https://img.shields.io/badge/smap-download-success)](https://github.com/lilith-avatar/social-island/raw/main/Smap/Social%20Island.smap)
 
-* 中文译名：飞碟社交岛
+* 中文译名：野营社交岛
 * 游戏类型：社交休闲
 * 关键词：社交、互动、休闲
 
