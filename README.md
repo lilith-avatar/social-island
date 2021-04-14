@@ -2,6 +2,12 @@
     <h1 style='border-bottom:none'  align='center'> Social Island</h1>
 </p>
 
+[![](https://img.shields.io/badge/-DaVinci-MediumPurple)](http://api.projectdavinci.com/)
+[![](https://img.shields.io/badge/project-Ava-ff69b4)](https://github.com/lilith-avatar/avatar-ava/projects/1)
+[![](https://img.shields.io/badge/-api%20plugin-9cf)](https://github.com/lilith-avatar/davinci-api-wrap)
+[![](https://img.shields.io/github/v/release/lilith-avatar/social-island)](https://github.com/lilith-avatar/social-island/releases)
+[![](https://img.shields.io/badge/smap-download-success)](https://github.com/lilith-avatar/social-island/raw/main/Smap/Social%20Island.smap)
+
 ## 飞碟社交岛项目
 * 开发人员：周任翔，吴佳伦，袁晨曦，曲凌云，李政霖，张远程
 * 美术人员：陈夏捷，高琦，吴梦然，饶奕瑾
