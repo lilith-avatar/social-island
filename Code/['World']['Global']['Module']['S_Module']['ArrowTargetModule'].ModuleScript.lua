@@ -2,7 +2,7 @@
 --- @module ArrowTarget Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman.Yen Yuan
-local ArrowTarget, this = ModuleUtil.New("ArrowTarget", ServerBase)
+local ArrowTarget, this = ModuleUtil.New('ArrowTarget', ServerBase)
 
 --- 变量声明
 local arrowTargetOBJ = {}
@@ -16,7 +16,7 @@ local flyChestRad = 50
 
 --- 初始化
 function ArrowTarget:Init()
-    print("[ArrowTarget] Init()")
+    print('[ArrowTarget] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -38,7 +38,7 @@ end
 function ArrowTarget:DataInit()
     for i = 1, 4 do
         HitReactionFunc[i] = function(_target)
-            this["HitReaction" .. i](self, _target)
+            this['HitReaction' .. i](self, _target)
         end
     end
 end
@@ -61,7 +61,7 @@ function ArrowTarget:HitTarget(_pos, _target)
     local config = Config.ArrowTarget[_target.obj.ArrowTargetID.Value]
     local effect = world:CreateInstance(config.HitEffect, config.HitEffect, world, _pos)
     HitReactionFunc[_target.obj.ArrowTargetID.Value](_target)
-    NetUtil.Fire_S("SpawnCoinEvent", "P", _pos, config.RewardCoin)
+    NetUtil.Fire_S('SpawnCoinEvent', 'P', _pos, config.RewardCoin)
     invoke(
         function()
             effect:Destroy()
@@ -95,14 +95,15 @@ end
 function ArrowTarget:HitReaction2(_target)
     _target.obj:SetActive(false)
     ScenesInteract:InstanceInteractOBJ(36, _target.obj.Position)
-	SoundUtil.Play3DSE(_target.obj, 120)
+    SoundUtil.Play3DSE(_target.obj.Position, 120)
     _target.resetCD = 0
 end
 
 function ArrowTarget:HitReaction3(_target)
+    print('_target.obj', _target.obj)
     _target.obj:SetActive(false)
     ScenesInteract:InstanceInteractOBJ(37, _target.obj.Position)
-	SoundUtil.Play3DSE(_target.obj, 119)
+    SoundUtil.Play3DSE(_target.obj.Position, 119)
     _target.resetCD = 0
 end
 
