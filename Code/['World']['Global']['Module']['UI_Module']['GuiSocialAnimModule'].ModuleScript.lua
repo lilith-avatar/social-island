@@ -83,7 +83,7 @@ function this:SetAnimSlot(_data)
     slotBtnUI.OnClick:Clear()
     slotBtnUI.Info.TextSize = 20 - math.ceil(string.len(_data.ShowName) / 1.5)
     slotBtnUI.Info.Text = _data.ShowName
-    --slotBtnUI.Icon.Texture = ResourceManager.GetTexture('SocialAnimationIcon/' .. _data.Icon)
+    slotBtnUI.Icon.Texture = ResourceManager.GetTexture('SocialAnimationIcon/' .. _data.Icon)
     slotBtnUI.OnClick:Connect(
         function()
             SocialAnimationGUI:SetActive(false)
