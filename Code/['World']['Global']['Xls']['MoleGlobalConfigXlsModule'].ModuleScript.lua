@@ -20,7 +20,7 @@ local MoleGlobalConfigXls = {
     },
     DropCoinRange = {
         Key = 'DropCoinRange',
-        Value = {{num=10,weight=10},{num=15,weight=30},{num=20,weight=30},{num=30,weight=50},{num=50,weight=30},{num=100,weight=20},{num=300,weight=10},{num=600,weight=5},{num=1000,weight=1}}
+        Value = {{num=0,weight=1000},{num=30,weight=800},{num=50,weight=700},{num=70,weight=600},{num=100,weight=400},{num=120,weight=300},{num=130,weight=200},{num=150,weight=0},{num=180,weight=0},{num=200,weight=80},{num=250,weight=0},{num=300,weight=60},{num=350,weight=0},{num=400,weight=55},{num=450,weight=0},{num=500,weight=250},{num=600,weight=200},{num=700,weight=150},{num=800,weight=100},{num=900,weight=50},{num=1000,weight=30}}
     }
 }
 

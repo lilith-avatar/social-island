@@ -80,12 +80,15 @@ function SceneTime:RealTimeSycnSkyData()
     if Config.TimeSkySetting[this.clock].ChangeIntensity then
         this.sky.SkyboxIntensity = Config.TimeSkySetting[this.clock].ChangeIntensity
     end
-    this.sky.Up = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyUp)
-    this.sky.Front = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyFront)
-    this.sky.Back = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyBack)
-    this.sky.Down = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyDown)
-    this.sky.Right = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyRight)
-    this.sky.Left = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyLeft)
+    if Config.TimeSkySetting[this.clock].SkyUp then
+        this.sky.Up = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyUp)
+        this.sky.Front = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyFront)
+        this.sky.Back = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyBack)
+        this.sky.Down = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyDown)
+        this.sky.Right = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyRight)
+        this.sky.Left = ResourceManager.GetTexture(Config.TimeSkySetting[this.clock].SkyLeft)
+    end
+
     this.sky.ShowSun = Config.TimeSkySetting[this.clock].ShowSun
     this.sky.Style = Config.TimeSkySetting[this.clock].Style
     data = {
