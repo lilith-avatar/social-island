@@ -295,7 +295,7 @@ function Hunt:GetMoveTable(_animalData, _pos)
         if (_pos - _animalData.areaCenterPos).Magnitude > _animalData.areaRange then
             _pos = _animalData.areaCenterPos + (_pos - _animalData.areaCenterPos).Normalized * _animalData.areaRange
         end
-        _animalData.moveTable, result = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 3)
+        _animalData.moveTable, result = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 100)
     else
         _animalData.moveTable, result =
             _animalData.obj:GetWaypoints(
@@ -308,7 +308,7 @@ function Hunt:GetMoveTable(_animalData, _pos)
                 ),
             0.5,
             1,
-            10
+            100
         )
     end
     if result > 2 then
