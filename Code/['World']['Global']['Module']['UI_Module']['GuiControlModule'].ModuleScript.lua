@@ -39,11 +39,11 @@ function GuiControl:InitListener()
         end
     )
 
-    touchScreen.OnPinchStay:Connect(
+    --[[touchScreen.OnPinchStay:Connect(
         function(pos1, pos2, deltaSize, pinchSpeed)
             PlayerCam:CameraZoom(pos1, pos2, deltaSize, pinchSpeed)
         end
-    )
+    )]]
     dynamicFigure.InteractBtn.OnDown:Connect(OnInteractBtnClick)
     dynamicFigure.PickBtn.OnDown:Connect(OnPickBtnClick)
     ctrlFigure.JumpBtn.OnDown:Connect(

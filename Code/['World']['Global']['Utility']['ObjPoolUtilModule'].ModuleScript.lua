@@ -26,6 +26,17 @@ function ObjPoolUtil.static.Newpool(_folderName, _objName, _maxCount)
     return realPool
 end
 
+---从池中预创建对象到世界下
+---@param _position Vector3
+---@param _rotation EulerDegree
+function ObjPoolUtil:PreSpawn(_position)
+    for i = 1, self.maxCount do
+        local realObj = world:CreateInstance(self.obj, self.obj, self.folder, _position)
+        table.insert(self.pool, realObj)
+        realObj:SetActive(false)
+    end
+end
+
 ---从池中创建对象到世界下
 ---@param _position Vector3
 ---@param _rotation EulerDegree
@@ -40,9 +51,9 @@ function ObjPoolUtil:Spawn(_position, _rotation)
         return realObj
     else
         realObj = self.pool[1]
+        self.pool[1]:SetActive(true)
         self.pool[1].Position = _position
         self.pool[1].Rotation = _rotation or EulerDegree(0, 0, 0)
-        self.pool[1]:SetActive(true)
         table.remove(self.pool, 1)
         return realObj
     end

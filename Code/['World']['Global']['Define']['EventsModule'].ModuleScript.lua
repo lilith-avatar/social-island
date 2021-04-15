@@ -45,7 +45,9 @@ Events.ServerEvents = {
     'SProjectileShootEvent', -- @param _player,_projectileID,_projectileOBJ
     --投射物命中
     'SProjectileHitEvent', -- @param _player,_projectileID,_projectileOBJ,_hitObj,_hitPos
-    'PlayerEatFoodEvent'
+    'PlayerEatFoodEvent',
+    'SInteractOnPlayerColBeginEvent',
+    'SInteractOnPlayerColEndEvent'
 }
 
 -- 客户端事件列表
@@ -132,7 +134,9 @@ Events.ClientEvents = {
     'CProjectileHitEvent', -- @param _projectileID,_projectileOBJ,_hitObj,_hitPos
     'CSnailResetEvent',
     'PlayerSkinUpdateEvent',
-    'EatFoodEvent'
+    'EatFoodEvent',
+    'CInteractOnPlayerColBeginEvent',
+    'CInteractOnPlayerColEndEvent'
 }
 
 return Events

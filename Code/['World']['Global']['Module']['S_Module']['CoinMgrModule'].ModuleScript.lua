@@ -6,7 +6,7 @@ local CoinMgr, this = ModuleUtil.New('CoinMgr', ServerBase)
 
 ---* 常量声明
 -- 对象池默认容量
-local DEFAUL_POOL_SIZE = 200
+local DEFAUL_POOL_SIZE = 1200
 local COIN_DESPAWN_DELAY = 0.12
 
 ---* 变量声明
@@ -43,6 +43,7 @@ function CoinMgr:InitCoinPool(_size)
     coinPool.N10 = ObjPoolUtil.Newpool(world.Coin, 'Coin10_N', _size)
     coinPool.P10 = ObjPoolUtil.Newpool(world.Coin, 'Coin10_P', _size)
     coinPool.N100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_N', _size)
+    coinPool.N100:PreSpawn(Vector3.Zero)
     coinPool.P100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_P', _size)
     coinPool.N1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_N', _size)
     coinPool.P1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_P', _size)
@@ -92,7 +93,7 @@ function CoinMgr:DespawnCoin(_pool, _coinObj)
         TimeUtil.ClearTimeout(_coinObj.TimerId.Value)
         _coinObj.TimerId.Value = -1
     end
-	_coinObj.LinearVelocity = Vector3(0,0,0)
+    _coinObj.LinearVelocity = Vector3(0, 0, 0)
     coinPool[_pool]:Despawn(_coinObj)
 end
 

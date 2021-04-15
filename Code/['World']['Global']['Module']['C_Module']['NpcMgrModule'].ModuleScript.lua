@@ -43,6 +43,8 @@ function CreateNpcs()
             world:CreateInstance(npcInfo.Model, 'NPC_' .. npcInfo.ID, npcFolder, npcInfo.SpawnPos, npcInfo.SpawnRot)
         npcObj.Rotation = npcInfo.SpawnRot
         local id = world:CreateObject('IntValueObject', 'ID', npcObj)
+        world:CreateObject('IntValueObject', 'InteractID', npcObj)
+        npcObj.InteractID.Value = 12
         id.Value = npcInfo.ID
         -- 创建当前玩家
         local state = world:CreateObject('IntValueObject', 'NpcState', npcObj) -- 当前NPC面对的玩家
@@ -100,7 +102,7 @@ end
 -- 事件绑定
 function BindNpcEvents(_npcObj, _npcInfo)
     local npcObj, npcInfo = _npcObj, _npcInfo -- 用于闭包
-    npcObj.CollisionArea.OnCollisionBegin:Connect(
+    --[[npcObj.CollisionArea.OnCollisionBegin:Connect(
         function(_hitObj)
             OnEnterNpc(_hitObj, npcInfo.ID)
         end
@@ -109,7 +111,7 @@ function BindNpcEvents(_npcObj, _npcInfo)
         function(_hitObj)
             OnExitNpc(_hitObj, npcInfo.ID)
         end
-    )
+    )]]
 end
 
 -- NPC空闲动作
@@ -119,7 +121,7 @@ function InitNpcIdleAction(_npcObj, _npcInfo)
     end
     -- 绑定idle动画序列
     for i, anim in ipairs(_npcInfo.Anim) do
-		--print(_npcObj)
+        --print(_npcObj)
         local ani = _npcObj.Avatar:AddAnimationEvent(anim, 1)
         local idx = i ~= #_npcInfo.Anim and i + 1 or 1
         ani:Connect(
@@ -164,13 +166,13 @@ end
 function BubbleShow(_npcId)
     local npcObj = npcs[_npcId].obj
     local gui = npcObj.BubbleGui
-    if npcObj.NpcState.Value == Const.NpcState.TALKING  or not gui then
+    if npcObj.NpcState.Value == Const.NpcState.TALKING or not gui then
         BubbleHide(_npcId)
         return
     end
     --npcObj.Avatar:PlayAnimation('SocialComeHere', 9, 1, 0.1, true, false, 1)
-	gui.Bg.BubbleTxt.Text = PickARandomBubble(npcs[_npcId].info)
-	gui.Bg.NameTxt.Text = LanguageUtil.GetText(npcs[_npcId].info.Name)
+    gui.Bg.BubbleTxt.Text = PickARandomBubble(npcs[_npcId].info)
+    gui.Bg.NameTxt.Text = LanguageUtil.GetText(npcs[_npcId].info.Name)
     gui.Visible = true
     TimeUtil.SetTimeout(
         function()
@@ -184,8 +186,8 @@ end
 function BubbleHide(_npcId)
     local gui = npcs[_npcId].obj.BubbleGui
     if gui then
-		gui.Visible = false
-	end
+        gui.Visible = false
+    end
 end
 
 -- 随机获取气泡文字
@@ -225,11 +227,11 @@ end
 
 -- 使NPC面向玩家
 function NpcFaceToPlayer(_npcId)
-	if _npcId ~= 10 then
-		local npcObj = npcs[_npcId].obj
-		local dir = localPlayer.Position - npcObj.Position
-		npcObj.Forward = Vector3(dir.x, 0, dir.z)
-	end
+    if _npcId ~= 10 then
+        local npcObj = npcs[_npcId].obj
+        local dir = localPlayer.Position - npcObj.Position
+        npcObj.Forward = Vector3(dir.x, 0, dir.z)
+    end
 end
 
 -- 使NPC回复方向
@@ -288,6 +290,21 @@ end
 --移除道具
 function NpcMgr:RemoveItemEventHandler(_id)
     invoke(RefreshNpcTaskSign, .1)
+end
+
+--- 玩家碰撞开始
+function NpcMgr:CInteractOnPlayerColBeginEventHandler(_obj, _id)
+    if _id == 12 then
+        print('CInteractOnPlayerColBeginEvent', 12)
+        OnEnterNpc(localPlayer, _obj.ID.Value)
+    end
+end
+
+--- 玩家碰撞结束
+function NpcMgr:CInteractOnPlayerColEndEventHandler(_obj, _id)
+    if _id == 12 then
+        OnExitNpc(localPlayer, _obj.ID.Value)
+    end
 end
 
 return NpcMgr
