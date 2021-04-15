@@ -258,7 +258,7 @@ local InteractXls = {
         LeaveBtnActive = false,
         TakeOffBtnActive = false,
         SocialAnimActive = true,
-        InteractBtnIcon = 'Icon_MagicSelf',
+        InteractBtnIcon = 'Icon_FireAttack',
         OpenGui = ''
     },
     [17] = {
