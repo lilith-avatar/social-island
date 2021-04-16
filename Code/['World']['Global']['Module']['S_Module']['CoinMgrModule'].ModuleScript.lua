@@ -6,7 +6,7 @@ local CoinMgr, this = ModuleUtil.New('CoinMgr', ServerBase)
 
 ---* 常量声明
 -- 对象池默认容量
-local DEFAUL_POOL_SIZE = 1200
+local DEFAUL_POOL_SIZE = 120
 local COIN_DESPAWN_DELAY = 0.12
 
 ---* 变量声明
@@ -45,6 +45,7 @@ function CoinMgr:InitCoinPool(_size)
     coinPool.N100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_N', _size)
     coinPool.N100:PreSpawn(Vector3.Zero)
     coinPool.P100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_P', _size)
+    coinPool.P100:PreSpawn(Vector3.Zero)
     coinPool.N1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_N', _size)
     coinPool.P1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_P', _size)
 end
