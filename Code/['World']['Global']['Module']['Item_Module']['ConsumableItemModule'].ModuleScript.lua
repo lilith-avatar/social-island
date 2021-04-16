@@ -46,6 +46,7 @@ function ConsumableItem:UseInHand()
     else
         self.equipObj:Destroy()
         NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+        GuiControl:UpdateUseBtnIcon()
         GuiControl:UpdateTakeOffBtn()
     end
 end

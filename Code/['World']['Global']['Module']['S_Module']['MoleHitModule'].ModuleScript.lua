@@ -17,8 +17,10 @@ end
 local tmpRange, totalWeight
 local function SortDropCoinByWeight(_DropCoinRange)
     tmpRange, totalWeight = {}, 0
-    for k, v in pairs(_DropCoinRange) do
-        totalWeight = totalWeight + v.weight
+    if totalWeight == 0 then
+        for k, v in pairs(_DropCoinRange) do
+            totalWeight = totalWeight + v.weight
+        end
     end
     for k, v in pairs(_DropCoinRange) do
         local data = {

@@ -167,25 +167,23 @@ end
 --交互掉落道具
 function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin)
     if _poolID ~= 0 then
-        local weightSum = 0
+        local tempTable = {}
         for k, v in pairs(Config.ItemPool[_poolID]) do
+            if Data.Player.bag[v.ItemId] and Config.ItemType[Config.Item[v.ItemId].Type].IsGetRepeatedly == false then
+            else
+                tempTable[k] = v
+            end
+        end
+        local weightSum = 0
+        for k, v in pairs(tempTable) do
             weightSum = weightSum + v.Weight
         end
         local randomNum = math.random(weightSum)
         local tempWeightSum = 0
-        for k, v in pairs(Config.ItemPool[_poolID]) do
+        for k, v in pairs(tempTable) do
             tempWeightSum = tempWeightSum + v.Weight
             if randomNum < tempWeightSum then
-                if Data.Player.bag[v.ItemId] then
-                    if tonumber(string.sub(tostring(v.ItemId), 1, 1)) >= 6 then
-                        Data.Player.bag[v.ItemId].count = Data.Player.bag[v.ItemId].count + 1
-                        this.itemInstance[v.ItemId]:PutIntoBag()
-                    else
-                        NetUtil.Fire_C('GetItemFromPoolEvent', localPlayer, _poolID, 0)
-                    end
-                else
-                    NetUtil.Fire_C('GetItemEvent', localPlayer, v.ItemId)
-                end
+                NetUtil.Fire_C('GetItemEvent', localPlayer, v.ItemId)
                 break
             end
         end
@@ -225,9 +223,7 @@ function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     if not _hasData then
         this:InitBagData()
     end
-    for k, v in pairs(Data.Player.bag) do
-        print('Item:', k)
-    end
+    GuiControl:UpdateCoinNum(Data.Player.coin)
 end
 
 function ItemMgr:Update(dt, tt)

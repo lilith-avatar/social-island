@@ -258,7 +258,7 @@ local InteractXls = {
         LeaveBtnActive = false,
         TakeOffBtnActive = false,
         SocialAnimActive = true,
-        InteractBtnIcon = 'Icon_MagicSelf',
+        InteractBtnIcon = 'Icon_FireAttack',
         OpenGui = ''
     },
     [17] = {
@@ -311,7 +311,7 @@ local InteractXls = {
         Name = 'Trojan',
         IsEnterByNPC = false,
         JoystickActive = false,
-        MenuActive = false,
+        MenuActive = true,
         CtrlActive = true,
         UseBtnActive = false,
         JumpBtnActive = false,
