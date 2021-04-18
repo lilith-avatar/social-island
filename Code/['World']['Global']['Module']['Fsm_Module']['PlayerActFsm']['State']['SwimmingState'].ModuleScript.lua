@@ -1,4 +1,4 @@
-local Swimming = class("Swimming", PlayerActState)
+local Swimming = class('Swimming', PlayerActState)
 
 local timer = 0
 
@@ -6,12 +6,12 @@ function Swimming:OnEnter()
     timer = 0
     PlayerActState.OnEnter(self)
     --localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
+    localPlayer.Avatar:PlayAnimation('Swimming', 2, 1, 0.1, true, true, 1)
 end
 
 function Swimming:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle"})
+    FsmMgr.playerActFsm:TriggerMonitor({'Idle'})
     self:IdleMonitor()
     self:JumpMonitor()
     if timer < 1 then
@@ -40,7 +40,7 @@ function Swimming:IdleMonitor()
             localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, 0, localPlayer.LinearVelocity.z)
             localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
         else
-            FsmMgr.playerActFsm:Switch("SwimIdle")
+            FsmMgr.playerActFsm:Switch('SwimIdle')
         end
     else
         if dir.Magnitude > 0 then
@@ -51,7 +51,7 @@ function Swimming:IdleMonitor()
             localPlayer.LinearVelocity =
                 Vector3(
                 localPlayer.LinearVelocity.x,
-                PlayerCam.playerGameCam.Forward.y * 7,
+                (PlayerCam.playerGameCam.Forward.y + 0.1) * 7,
                 localPlayer.LinearVelocity.z
             )
             if localPlayer.State == 1 and PlayerCam.playerGameCam.Forward.y > 0 then
@@ -59,7 +59,7 @@ function Swimming:IdleMonitor()
             end
             localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
         else
-            FsmMgr.playerActFsm:Switch("SwimIdle")
+            FsmMgr.playerActFsm:Switch('SwimIdle')
         end
     end
 end
@@ -67,7 +67,7 @@ end
 function Swimming:JumpMonitor()
     if FsmMgr.playerActFsm.stateTrigger.Jump then
         if localPlayer.Position.y > -15.7 then
-            FsmMgr.playerActFsm:Switch("Jump")
+            FsmMgr.playerActFsm:Switch('Jump')
         end
     end
 end
