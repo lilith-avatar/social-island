@@ -43,9 +43,9 @@ function CoinMgr:InitCoinPool(_size)
     coinPool.N10 = ObjPoolUtil.Newpool(world.Coin, 'Coin10_N', _size)
     coinPool.P10 = ObjPoolUtil.Newpool(world.Coin, 'Coin10_P', _size)
     coinPool.N100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_N', _size)
-    coinPool.N100:PreSpawn(Vector3.Zero)
+    --coinPool.N100:PreSpawn(Vector3.Zero)
     coinPool.P100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_P', _size)
-    coinPool.P100:PreSpawn(Vector3.Zero)
+    --coinPool.P100:PreSpawn(Vector3.Zero)
     coinPool.N1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_N', _size)
     coinPool.P1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_P', _size)
 end
@@ -65,6 +65,7 @@ function CoinMgr:SpawnCoin(_pool, _pos, _dur)
     coinObj.CoinUID.Value = ''
     coinObj.CoinUID.OnValueChanged:Connect(
         function(_oldVal, _newVal)
+            print(coinObj, 'CoinUID.OnValueChanged', _oldVal, _newVal)
             this:GetCoin(_pool, coinObj, _oldVal, _newVal)
         end
     )
