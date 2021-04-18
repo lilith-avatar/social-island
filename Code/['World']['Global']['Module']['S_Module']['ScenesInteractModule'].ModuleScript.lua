@@ -523,7 +523,7 @@ do
                         totalTimer = 0,
                         originForward = v1.obj.Forward,
                         dirRatio = 1,
-                        sound = SoundUtil.Play3DSE(_player.Position, 15),
+                        --sound = SoundUtil.Play3DSE(_player.Position, 15),
                         player = _player
                     }
                 end
@@ -541,7 +541,7 @@ do
                 _player.Avatar:StopAnimation('SitIdle', 2)
                 NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-                SoundUtil.Stop3DSE(this.TrojanList[v.obj.Name].sound)
+                --SoundUtil.Stop3DSE(this.TrojanList[v.obj.Name].sound)
                 v.obj.Forward = this.TrojanList[v.obj.Name].originForward
                 this.TrojanList[v.obj.Name] = nil
             end
