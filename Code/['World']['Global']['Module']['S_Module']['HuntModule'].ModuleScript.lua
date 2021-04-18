@@ -34,7 +34,7 @@ local LeaveStateFunc = {}
 
 --- 初始化
 function Hunt:Init()
-    print('Hunt:Init')
+    --[[print('Hunt:Init')
     this:NodeRef()
     invoke(
         function()
@@ -44,7 +44,7 @@ function Hunt:Init()
             this:InitAnimalData()
         end,
         5
-    )
+    )]]
 end
 
 --- 节点引用
@@ -295,7 +295,7 @@ function Hunt:GetMoveTable(_animalData, _pos)
         if (_pos - _animalData.areaCenterPos).Magnitude > _animalData.areaRange then
             _pos = _animalData.areaCenterPos + (_pos - _animalData.areaCenterPos).Normalized * _animalData.areaRange
         end
-        _animalData.moveTable, result = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 0.1, 1, 100)
+        _animalData.moveTable, result = _animalData.obj:GetWaypoints(_animalData.obj.Position, _pos, 60, 1, 100)
     else
         _animalData.moveTable, result =
             _animalData.obj:GetWaypoints(
@@ -306,13 +306,14 @@ function Hunt:GetMoveTable(_animalData, _pos)
                     0,
                     math.random(-1 * math.floor(_animalData.areaRange), math.floor(_animalData.areaRange))
                 ),
-            0.5,
+            60,
             1,
             100
         )
     end
+    --_animalData.obj.SurfaceGUI.Result.Text = result
     if result > 2 then
-        --print('寻路失败', result, _animalData.obj, _animalData.state)
+    --print('寻路失败', result, _animalData.obj, _animalData.state)
     end
 end
 
