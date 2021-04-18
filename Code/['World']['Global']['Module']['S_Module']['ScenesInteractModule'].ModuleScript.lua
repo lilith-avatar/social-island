@@ -104,7 +104,8 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = {
             obj = v,
-            aroundPlayers = {}
+            aroundPlayers = {},
+
         }
         world:CreateObject('StringValueObject', 'UsingPlayerUid', v)
         world:CreateObject('IntValueObject', 'InteractID', v)
@@ -310,6 +311,7 @@ end
 
 function ScenesInteract:TrojanShake(dt)
     for k, v in pairs(this.TrojanList) do
+        v.model.InfoGUI.Info.Text = v.player.Name
         v.timer = v.timer + dt
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
@@ -507,6 +509,7 @@ do
         for k1, v1 in pairs(trojanObj) do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId and v1.obj.UsingPlayerUid.Value == '' then
+                    
                     NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
                     v1.obj.UsingPlayerUid.Value = _player.UserId
                     v1.obj.Seat:Sit(_player)
@@ -531,6 +534,7 @@ do
     function ScenesInteract:LeaveTrojan(_player)
         for k, v in pairs(trojanObj) do
             if v.obj.UsingPlayerUid.Value == _player.UserId then
+                v.obj.InfoGUI.Info.Text = 'Free'
                 v.obj.Seat:Leave(_player)
                 v.obj.UsingPlayerUid.Value = ''
                 _player.Avatar:StopAnimation('HTRide', 3)
