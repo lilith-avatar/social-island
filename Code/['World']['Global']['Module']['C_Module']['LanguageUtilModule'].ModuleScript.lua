@@ -35,6 +35,36 @@ function LanguageUtil.GetText(_id)
     return text
 end
 
+local function utf8Len(str)
+    local len = #str
+    local left = 0
+    local arr = {0, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc}
+    local length = 0
+    local startNum = 1
+    local wordLen = 0
+    local strTb = {}
+    while left ~= len do
+        local temp = string.byte(str, startNum)
+        --将字符串的某个字符转换成十六进制
+        local i = #arr
+        while arr[i] do
+            if temp >= arr[i] then
+                left = left + i
+                break
+            end
+            i = i - 1
+        end
+        length = length + 1
+
+        wordLen = i + wordLen
+        local tmpString = string.sub(str, startNum, wordLen)
+        startNum = startNum + i
+        strTb[#strTb + 1] = tmpString
+    end
+
+    return length, strTb
+end
+
 --- 文字自适应
 function LanguageUtil.TextAutoSize(_textUI, _minSize)
     local maxSize = math.floor(_textUI.FinalSize.y / CHAR_SIZE)
@@ -54,9 +84,12 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
     maxUILenth = math.floor(_textUI.FinalSize.x / (CHAR_SIZE * maxSize)) * maxSize
 
     local minStrLenth, maxStrLenth = 0, 0
+
+    local textLength, textTable = utf8Len(_textUI.Text)
     --计算最小/最大字号字符串的实际长度
-    for i = 1, string.len(_textUI.Text) do
-        if string.byte(_textUI.Text, i) > 127 then
+    for i = 1, textLength do
+        --print(textTable[i], string.byte(textTable[i]))
+        if string.byte(textTable[i]) > 127 then
             minStrLenth = minStrLenth + CHAR_SIZE * minSize * 2
             maxStrLenth = maxStrLenth + CHAR_SIZE * maxSize * 2
         else
@@ -64,8 +97,8 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
             maxStrLenth = maxStrLenth + CHAR_SIZE * maxSize
         end
     end
-    print('文字自适应', _textUI, maxSize, minSize)
-    print(minUILenth, maxUILenth, minStrLenth, maxStrLenth)
+    --print('文字自适应', _textUI, maxSize, minSize, textLength)
+    --print(minUILenth, maxUILenth, minStrLenth, maxStrLenth)
     if maxUILenth > maxStrLenth then --最大字号
         _textUI.FontSize = maxSize
     elseif minUILenth < minStrLenth then --最小字号
@@ -85,7 +118,7 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
     else --自适应字号
         _textUI.FontSize = math.floor((minUILenth / minStrLenth) * minSize)
     end
-    print('文字自适应', _textUI, _textUI.FontSize)
+    --print('文字自适应', _textUI, _textUI.FontSize)
 end
 
 return LanguageUtil
