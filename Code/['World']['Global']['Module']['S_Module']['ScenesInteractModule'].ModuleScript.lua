@@ -104,8 +104,7 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(world.Trojan:GetChildren()) do
         trojanObj[v.Name] = {
             obj = v,
-            aroundPlayers = {},
-
+            aroundPlayers = {}
         }
         world:CreateObject('StringValueObject', 'UsingPlayerUid', v)
         world:CreateObject('IntValueObject', 'InteractID', v)
@@ -255,6 +254,7 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
                 _player.LinearVelocity = Vector3(0, 20, 0)
                 SoundUtil.Play3DSE(_bounce.obj.Position, 22)
                 wait(0.1)
+                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Fly')
                 _bounce.tweener1:Destroy()
                 _bounce.tweener2:Play()
                 wait(0.1)
@@ -508,7 +508,6 @@ do
         for k1, v1 in pairs(trojanObj) do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId and v1.obj.UsingPlayerUid.Value == '' then
-                    
                     NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
                     v1.obj.UsingPlayerUid.Value = _player.UserId
                     v1.obj.Seat:Sit(_player)
