@@ -611,13 +611,16 @@ do
                     else
                         v.obj.UsingPlayerUid2.Value = ''
                     end
-                    _player.Avatar:SetActive(true)
                     this.TentList[v.obj.Name].num = this.TentList[v.obj.Name].num - 1
                     this:TentNumEffect(this.TentList[v.obj.Name].num, v.obj)
                     if this.TentList[v.obj.Name].num == 0 then
                         this.TentList[v.obj.Name] = nil
                         v.obj.Effect:SetActive(false)
                     end
+                    --离开帐篷玩家的表现
+                    _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
+                    _player.Position,_player.Rotation = v.obj.LeaveLoc.Position,v.obj.LeaveLoc.Rotation
+                    _player.Avatar:SetActive(true)
                 end
             end
         end
