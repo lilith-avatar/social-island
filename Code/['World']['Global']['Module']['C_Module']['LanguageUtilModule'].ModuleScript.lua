@@ -125,9 +125,9 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
                             1) *
                         curSize
                     textSize = curSize * sizeLength
-                    print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
-                    print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
-                    print(uiSize, textSize, sizeLength, curSize)
+                    --print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
+                    --print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
+                    --print(uiSize, textSize, sizeLength, curSize)
                     if uiSize > textSize then
                         _textUI.FontSize = curSize
                         break
