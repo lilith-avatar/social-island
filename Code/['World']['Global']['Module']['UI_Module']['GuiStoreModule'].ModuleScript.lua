@@ -94,8 +94,8 @@ end
 --更新物品信息显示
 function GuiStore:UpdateItemInfo(_itemID)
     if _itemID then
-        gui.ShopPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.Item[_itemID].Name)
-        gui.ShopPanel.DesTextBox.DesText.Text = LanguageUtil.GetText(Config.Item[_itemID].Des)
+        LanguageUtil.SetText(gui.ShopPanel.NameTextBox.NameText, Config.Item[_itemID].Name, true)
+        LanguageUtil.SetText(gui.ShopPanel.DesTextBox.DesText, Config.Item[_itemID].Des, true)
     else
         gui.ShopPanel.NameTextBox.NameText.Text = ''
         gui.ShopPanel.DesTextBox.DesText.Text = ''

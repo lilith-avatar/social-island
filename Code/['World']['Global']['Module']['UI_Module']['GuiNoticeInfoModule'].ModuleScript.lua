@@ -92,8 +92,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
             curItemInfoPanel = v
             if #remainingItemID > 0 then
                 curItemInfoPanel:SetActive(true)
-                v.InfoText.Text = LanguageUtil.GetText(Config.Item[remainingItemID[1]].Name)
-                LanguageUtil.TextAutoSize(v.InfoText)
+                LanguageUtil.SetText(v.InfoText, Config.Item[remainingItemID[1]].Name, true)
                 table.remove(remainingItemID, 1)
             end
         end

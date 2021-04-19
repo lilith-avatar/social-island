@@ -7,7 +7,7 @@ local lang = Config.GlobalSetting.DefaultLanguage
 local defaultLang = Const.LanguageEnum.CHS
 local valid = FrameworkConfig.DebugMode and false -- 打开参数校验
 
-local CHAR_SIZE = 1
+local CHAR_SIZE = 0.8
 
 --- 设置当前语言
 function LanguageUtil.SetLanguage(_lang)
@@ -67,13 +67,9 @@ end
 
 --- 文字自适应
 function LanguageUtil.TextAutoSize(_textUI, _minSize)
+    local textLength, textTable = utf8Len(_textUI.Text)
     local maxSize = math.floor(_textUI.FinalSize.y / CHAR_SIZE)
     local minSize = _minSize or 10
-
-    --[[local maxColumns = math.floor(_textUI.FinalSize.x / (CHAR_SIZE * minSize))
-    local maxRows = math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * minSize)) / 2)
-    local maxAmount = maxColumns * maxRows]]
-    local columns, rows = 1, 1
 
     local minUILenth, maxUILenth = 0, 0
     --计算最小/最大字号UI的实际长度
@@ -83,20 +79,18 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
         minSize
     maxUILenth = math.floor(_textUI.FinalSize.x / (CHAR_SIZE * maxSize)) * maxSize
 
-    local minStrLenth, maxStrLenth = 0, 0
-
-    local textLength, textTable = utf8Len(_textUI.Text)
+    local minStrLenth, maxStrLenth, sizeLength = 0, 0, 0
     --计算最小/最大字号字符串的实际长度
     for i = 1, textLength do
         --print(textTable[i], string.byte(textTable[i]))
         if string.byte(textTable[i]) > 127 then
-            minStrLenth = minStrLenth + CHAR_SIZE * minSize * 2
-            maxStrLenth = maxStrLenth + CHAR_SIZE * maxSize * 2
+            sizeLength = sizeLength + CHAR_SIZE * 2
         else
-            minStrLenth = minStrLenth + CHAR_SIZE * minSize
-            maxStrLenth = maxStrLenth + CHAR_SIZE * maxSize
+            sizeLength = sizeLength + CHAR_SIZE
         end
     end
+    minStrLenth = sizeLength * minSize
+    maxStrLenth = sizeLength * maxSize
     --print('文字自适应', _textUI, maxSize, minSize, textLength)
     --print(minUILenth, maxUILenth, minStrLenth, maxStrLenth)
     if maxUILenth > maxStrLenth then --最大字号
@@ -110,15 +104,50 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
             else
                 lenth = lenth + CHAR_SIZE * minSize
             end
-            if lenth + CHAR_SIZE * 3 > minUILenth then
+            if lenth + CHAR_SIZE * 3 > minUILenth then --超出文本框变为省略号
                 _textUI.Text = string.sub(_textUI.Text, 1, i) .. '...'
                 break
             end
         end
     else --自适应字号
-        _textUI.FontSize = math.floor((minUILenth / minStrLenth) * minSize)
+        local curSize = math.floor((minUILenth / minStrLenth) * minSize)
+        local uiSize = 0
+        local textSize = curSize * sizeLength
+        invoke(
+            function()
+                while true do
+                    uiSize =
+                        (math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)) > 0 and
+                        math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)) or
+                        1) *
+                        (math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2) > 0 and
+                            math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2) or
+                            1) *
+                        curSize
+                    textSize = curSize * sizeLength
+                    print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
+                    print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
+                    print(uiSize, textSize, sizeLength, curSize)
+                    if uiSize > textSize then
+                        _textUI.FontSize = curSize
+                        break
+                    end
+                    curSize = curSize - 1
+                end
+            end
+        )
     end
     --print('文字自适应', _textUI, _textUI.FontSize)
+end
+
+--- 根据ID返回当前游戏语言对应的文本信息，并设置文字大小自适应
+function LanguageUtil.SetText(_textUI, _id, _isAuto, _minSize)
+    _textUI:SetActive(false)
+    _textUI.Text = this.GetText(_id)
+    if _isAuto then
+        this.TextAutoSize(_textUI, _minSize)
+    end
+    _textUI:SetActive(true)
 end
 
 return LanguageUtil
