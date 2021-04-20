@@ -155,8 +155,21 @@ function StartUpdate()
         dt = curr - prev
         tt = tt + dt
         prev = curr
-        UpdateServer(dt, tt)
+        xpcall(
+            function()
+                print(dt/nil)
+                UpdateServer(dt, tt)
+            end,
+            function(err)
+                ErrorShow(err)
+            end
+        )
     end
+end
+
+function ErrorShow(err)
+    world.Global.ErrorGUI:SetActive(true)
+    world.Global.ErrorGUI.Error.Text = err
 end
 
 --- Update函数
