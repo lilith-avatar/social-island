@@ -53,7 +53,7 @@ function PlayerCtrl:DataInit()
     this.isControllable = true
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
-    for k, v in pairs(world.SenceAudio:GetChildren()) do
+    for k, v in pairs(world.ScenesAudio:GetChildren()) do
         if v.State == Enum.AudioSourceState.Stopped then
             v:Play()
         end
