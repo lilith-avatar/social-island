@@ -157,7 +157,6 @@ function StartUpdate()
         prev = curr
         xpcall(
             function()
-                print(dt/nil)
                 UpdateServer(dt, tt)
             end,
             function(err)
