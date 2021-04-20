@@ -11,16 +11,10 @@ end
 
 function Swimming:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({'Idle'})
+    FsmMgr.playerActFsm:TriggerMonitor({'Idle', 'Fly'})
     self:IdleMonitor()
     self:JumpMonitor()
-    if timer < 1 then
-        timer = timer + dt
-    else
-        --NetUtil.Fire_C("PlayEffectEvent", localPlayer, 21)
-        --SoundUtil.Play3DSE(localPlayer.Position, 21)
-        timer = 0
-    end
+    self:Splash(dt)
 end
 
 function Swimming:OnLeave()
@@ -31,35 +25,45 @@ end
 function Swimming:IdleMonitor()
     local dir = PlayerCtrl.finalDir
     dir.y = 0
-    if localPlayer.Position.y > -15.7 then
-        if dir.Magnitude > 0 then
-            if PlayerCam:IsFreeMode() then
-                localPlayer:FaceToDir(dir, 4 * math.pi)
-            end
-            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-            localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, 0, localPlayer.LinearVelocity.z)
-            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-        else
-            FsmMgr.playerActFsm:Switch('SwimIdle')
+    if dir.Magnitude > 0 then
+        if PlayerCam:IsFreeMode() then
+            localPlayer:FaceToDir(dir, 4 * math.pi)
         end
-    else
-        if dir.Magnitude > 0 then
-            if PlayerCam:IsFreeMode() then
-                localPlayer:FaceToDir(dir, 4 * math.pi)
+        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+        local LVy = (PlayerCam.playerGameCam.Forward.y + 0.2) * 7
+        if localPlayer.Position.y > -15.7 then
+            if LVy > 0 then
+                LVy = 0
+            else
+                LVy = LVy
             end
-            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-            localPlayer.LinearVelocity =
-                Vector3(
-                localPlayer.LinearVelocity.x,
-                (PlayerCam.playerGameCam.Forward.y + 0.1) * 7,
-                localPlayer.LinearVelocity.z
-            )
-            if localPlayer.State == 1 and PlayerCam.playerGameCam.Forward.y > 0 then
-                localPlayer.Position = localPlayer.Position + Vector3(0, 0.1, 0)
-            end
-            localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
         else
-            FsmMgr.playerActFsm:Switch('SwimIdle')
+            LVy = LVy
+        end
+        localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, LVy, localPlayer.LinearVelocity.z)
+        if localPlayer.State == 1 and PlayerCam.playerGameCam.Forward.y > 0 then
+            localPlayer.Position = localPlayer.Position + Vector3(0, 0.1, 0)
+        end
+        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
+    else
+        FsmMgr.playerActFsm:Switch('SwimIdle')
+    end
+end
+
+--水花
+function Swimming:Splash(dt)
+    if localPlayer.Position.y > -15.7 then
+        if timer < 0.5 then
+            timer = timer + dt
+        else
+            local effect = world:CreateInstance('FootStep', 'FootStep', world, localPlayer.Position + Vector3(0, 1, 0))
+            invoke(
+                function()
+                    effect:Destroy()
+                end,
+                1
+            )
+            timer = 0
         end
     end
 end

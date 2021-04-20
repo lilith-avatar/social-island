@@ -253,11 +253,13 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
                 _bounce.tweener1:Play()
                 _player.LinearVelocity = Vector3(0, 20, 0)
                 SoundUtil.Play3DSE(_bounce.obj.Position, 22)
-                wait(0.1)
+                _player.Position = _player.Position + Vector3(0, 0.3, 0)
                 NetUtil.Fire_C('FsmTriggerEvent', _player, 'Fly')
+                wait(0.1)
                 _bounce.tweener1:Destroy()
                 _bounce.tweener2:Play()
                 wait(0.1)
+
                 _bounce.tweener3:Play()
                 _bounce.tweener2:Destroy()
                 wait(0.2)
@@ -619,7 +621,7 @@ do
                     end
                     --离开帐篷玩家的表现
                     _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
-                    _player.Position,_player.Rotation = v.obj.LeaveLoc.Position,v.obj.LeaveLoc.Rotation
+                    _player.Position, _player.Rotation = v.obj.LeaveLoc.Position, v.obj.LeaveLoc.Rotation
                     _player.Avatar:SetActive(true)
                 end
             end

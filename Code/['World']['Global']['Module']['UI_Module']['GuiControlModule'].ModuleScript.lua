@@ -58,35 +58,7 @@ function GuiControl:InitListener()
                 NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
                 return
             end
-            if
-                FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
-                    FsmMgr.playerActFsm.curState.stateName == 'Swimming'
-             then
-                return
-            end
             PlayerCtrl:PlayerHello()
-        end
-    )
-    ctrlFigure.UseBtn.OnEnter:Connect(
-        function()
-            if
-                FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
-                    FsmMgr.playerActFsm.curState.stateName == 'Swimming'
-             then
-                localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, -3, localPlayer.LinearVelocity.z)
-                return
-            end
-        end
-    )
-    ctrlFigure.UseBtn.OnLeave:Connect(
-        function()
-            if
-                FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
-                    FsmMgr.playerActFsm.curState.stateName == 'Swimming'
-             then
-                localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, 0, localPlayer.LinearVelocity.z)
-                return
-            end
         end
     )
     ctrlFigure.TakeOffBtn.OnDown:Connect(

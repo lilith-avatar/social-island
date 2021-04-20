@@ -10,7 +10,7 @@ end
 
 function JumpState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    --FsmMgr.playerActFsm:TriggerMonitor({"SwimIdle"})
+    FsmMgr.playerActFsm:TriggerMonitor({"Fly"})
     self:IdleMonitor()
 end
 
