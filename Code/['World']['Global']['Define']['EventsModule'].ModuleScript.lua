@@ -136,7 +136,9 @@ Events.ClientEvents = {
     'PlayerSkinUpdateEvent',
     'EatFoodEvent',
     'CInteractOnPlayerColBeginEvent',
-    'CInteractOnPlayerColEndEvent'
+    'CInteractOnPlayerColEndEvent',
+    'SetCamDistanceEvent',
+    'ResetTentCamEvent'
 }
 
 return Events

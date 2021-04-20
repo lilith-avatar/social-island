@@ -66,13 +66,13 @@ function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
             v:Emit(math.floor(tonumber(v.Name)))
         end]]
 		if _num >= 1000 then
-			this:GetCoinEffct(localPlayer.Effect.GetCoinEffect.ConstraintFree.n1000)
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1000)
 		elseif _num >= 100 then
-			this:GetCoinEffct(localPlayer.Effect.GetCoinEffect.ConstraintFree.n100)
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n100)
 		elseif _num >= 10 then
-			this:GetCoinEffct(localPlayer.Effect.GetCoinEffect.ConstraintFree.n10)
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n10)
 		else
-			this:GetCoinEffct(localPlayer.Effect.GetCoinEffect.ConstraintFree.n1)
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1)
 		end
     end
 end
@@ -83,7 +83,7 @@ function GuiCoinInfo:GetCoinEffct(_effect)
 	_effect:SetActive(true)
 	invoke(function()
 		if _effect.LocalPosition.y >= 0.15 then
-			localPlayer.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(false)
+			localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(false)
 			_effect.LinearVelocity = Vector3(0,0,0)
 			wait(0.2)
 			if _effect.LinearVelocity == Vector3(0,0,0) then
@@ -91,8 +91,8 @@ function GuiCoinInfo:GetCoinEffct(_effect)
 			end
 			wait(0.2)
 			if _effect.LinearVelocity == Vector3(0,-1,0) then
-				localPlayer.Effect.GetCoinEffect.ConstraintFree.Fx.Position = _effect.Position 
-				localPlayer.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(true)
+				localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx.Position = _effect.Position 
+				localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(true)
 				_effect.LinearVelocity = Vector3(0,4,0)
 			end
 			_effect:SetActive(false)

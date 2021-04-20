@@ -34,7 +34,10 @@ function PlayerCam:DataInit()
     -- FPS相机
     this.fpsCam = localPlayer.Local.Independent.FPSCam
 
-    this.chairCam = localPlayer.Local.Independent.ChairCam
+    this.actionCam = localPlayer.Local.Independent.ActionCam
+
+    --* 存储相机tweener
+    this.distanceTweener = nil
 end
 
 --- 节点事件绑定
@@ -140,6 +143,26 @@ function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
     this.curCamera = _cam or this.playerGameCam
     this.curCamera.LookAt = _lookAt or localPlayer
     world.CurrentCamera = this.curCamera
+end
+
+-- 推远或推近玩家镜头
+function PlayerCam:SetCamDistanceEventHandler(_distance, _triggerBlock)
+    if this.distanceTweener then
+        this.distanceTweener:Pause()
+        this.distanceTweener:Destroy()
+    end
+    this.curCamera.PhysicalBlock = false
+    this.distanceTweener = Tween:TweenProperty(this.curCamera, {Distance = _distance}, 1, 1)
+    this.distanceTweener:Play()
+    this.distanceTweener:WaitForComplete()
+    this.curCamera.PhysicalBlock = _triggerBlock or false
+end
+
+function PlayerCam:ResetTentCamEventHandler(_distance)
+    this.curCamera.LookAt = localPlayer
+    wait()
+    this.curCamera:CameraMoveInDegree(Vector2(180, 0))
+    NetUtil.Fire_C('SetCamDistanceEvent', localPlayer, _distance, true)
 end
 
 function PlayerCam:Update(dt)
