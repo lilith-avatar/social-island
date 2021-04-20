@@ -455,6 +455,21 @@ local InteractXls = {
         SocialAnimActive = false,
         InteractBtnIcon = 'Icon_Do',
         OpenGui = ''
+    },
+    [30] = {
+        ID = 30,
+        Name = 'Swim',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        TakeOffBtnActive = false,
+        SocialAnimActive = false,
+        InteractBtnIcon = '',
+        OpenGui = 'SwimGui'
     }
 }
 
