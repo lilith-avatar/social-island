@@ -335,19 +335,6 @@ function ScenesInteract:TentShake(dt)
     end
 end
 
-function ScenesInteract:TentNumEffect(_num, _model)
-    if _num == 1 then
-        _model.Effect:SetActive(true)
-        _model.Effect.Sleep:SetActive(true)
-        _model.Effect.MakeLove:SetActive(false)
-    end
-    if _num >= 2 then
-        _model.Effect:SetActive(true)
-        _model.Effect.Sleep:SetActive(false)
-        _model.Effect.MakeLove:SetActive(true)
-    end
-end
-
 --场景交互
 do
     function ScenesInteract:ScenesInteractColBeginFunc(_player, _obj)
@@ -581,9 +568,9 @@ do
                         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
                         NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
                         NetUtil.Fire_C('SetCurCamEvent', _player, nil, v1.obj)
-                        NetUtil.Fire_C('SetCamDistanceEvent',_player,6)
-                        -- TODO: 这里考虑把镜头推远
+                        NetUtil.Fire_C('SetCamDistanceEvent', _player, 6)
                         _player.Avatar:SetActive(false)
+                        _player.Position, _player.Rotation = v1.obj.LeaveLoc.Position, v1.obj.LeaveLoc.Rotation
                         if v1.obj.UsingPlayerUid1.Value == '' then
                             v1.obj.UsingPlayerUid1.Value = _player.UserId
                         else
@@ -622,12 +609,48 @@ do
                     end
                     --离开帐篷玩家的表现
                     _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
-                    _player.Position, _player.Rotation = v.obj.LeaveLoc.Position, v.obj.LeaveLoc.Rotation
                     _player.Avatar:SetActive(true)
-                    NetUtil.Fire_C('ResetTentCamEvent',_player,3)
+                    NetUtil.Fire_C('ResetTentCamEvent', _player, 3)
                 end
             end
         end
+    end
+end
+
+local distanceTweener1, distanceTweener2
+function ScenesInteract:TentBreath(_tent)
+    distanceTweener1 = Tween:TweenProperty(_tent, {Scale = 1.05}, 0.8, 1)
+    distanceTweener2 = Tween:TweenProperty(_tent, {Scale = 1}, 1, 1)
+    distanceTweener1.OnComplete:Connect(
+        function()
+            distanceTweener2:Play()
+        end
+    )
+    distanceTweener2.OnComplete:Connect(
+        function()
+            distanceTweener1:Play()
+        end
+    )
+    distanceTweener1:Play()
+end
+
+function ScenesInteract:TentNumEffect(_num, _model)
+    if _num == 1 then
+        _model.Effect:SetActive(true)
+        _model.Effect.Sleep:SetActive(true)
+        _model.Effect.MakeLove:SetActive(false)
+        this:TentBreath(_model)
+    elseif distanceTweener1 then
+        distanceTweener1:Pause()
+        distanceTweener1:Destroy()
+        distanceTweener2:Pause()
+        distanceTweener2:Destroy()
+        _model.Scale = 1
+    end
+    if _num >= 2 then
+        _model.Effect:SetActive(true)
+        _model.Effect.Sleep:SetActive(false)
+        _model.Effect.MakeLove:SetActive(true)
     end
 end
 
@@ -676,6 +699,7 @@ do
         NetUtil.Fire_C('CloseDynamicEvent', _player)
         potOBJ[_obj.Name].aroundPlayers[_player.UserId] = nil
     end
+
     function ScenesInteract:EnterCook(_player)
         for k1, v1 in pairs(potOBJ) do
             for k2, v2 in pairs(v1.aroundPlayers) do
