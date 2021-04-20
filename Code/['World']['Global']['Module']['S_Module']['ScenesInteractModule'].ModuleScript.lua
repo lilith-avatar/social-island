@@ -568,7 +568,7 @@ do
                         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
                         NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
                         NetUtil.Fire_C('SetCurCamEvent', _player, nil, v1.obj)
-                        NetUtil.Fire_C('SetCamDistanceEvent', _player, 6)
+                        NetUtil.Fire_C('SetCamDistanceEvent', _player, 6, 0.5)
                         _player.Avatar:SetActive(false)
                         _player.Position, _player.Rotation = v1.obj.LeaveLoc.Position, v1.obj.LeaveLoc.Rotation
                         if v1.obj.UsingPlayerUid1.Value == '' then
@@ -606,6 +606,7 @@ do
                     if this.TentList[v.obj.Name].num == 0 then
                         this.TentList[v.obj.Name] = nil
                         v.obj.Effect:SetActive(false)
+                        v.obj.Mesh = ResourceManager.GetMesh('Game/Tent/Tent'..v.obj.ColorStr.Value..'Open')
                     end
                     --离开帐篷玩家的表现
                     _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
@@ -619,8 +620,8 @@ end
 
 local distanceTweener1, distanceTweener2
 function ScenesInteract:TentBreath(_tent)
-    distanceTweener1 = Tween:TweenProperty(_tent, {Scale = 1.05}, 0.8, 1)
-    distanceTweener2 = Tween:TweenProperty(_tent, {Scale = 1}, 1, 1)
+    distanceTweener1 = Tween:TweenProperty(_tent, {Stretch = Vector3(1, 1.1, 1)}, 1, 3)
+    distanceTweener2 = Tween:TweenProperty(_tent, {Stretch = Vector3(1, 1, 1)}, 1.8, 1)
     distanceTweener1.OnComplete:Connect(
         function()
             distanceTweener2:Play()
@@ -628,6 +629,7 @@ function ScenesInteract:TentBreath(_tent)
     )
     distanceTweener2.OnComplete:Connect(
         function()
+            wait(0.5)
             distanceTweener1:Play()
         end
     )
@@ -639,13 +641,14 @@ function ScenesInteract:TentNumEffect(_num, _model)
         _model.Effect:SetActive(true)
         _model.Effect.Sleep:SetActive(true)
         _model.Effect.MakeLove:SetActive(false)
+        _model.Mesh = ResourceManager.GetMesh('Game/Tent/Tent'.._model.ColorStr.Value..'Close')
         this:TentBreath(_model)
     elseif distanceTweener1 then
         distanceTweener1:Pause()
         distanceTweener1:Destroy()
         distanceTweener2:Pause()
         distanceTweener2:Destroy()
-        _model.Scale = 1
+        _model.Stretch = Vector3(1, 1, 1)
     end
     if _num >= 2 then
         _model.Effect:SetActive(true)
