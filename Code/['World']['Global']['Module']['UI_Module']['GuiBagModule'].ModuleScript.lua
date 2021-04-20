@@ -207,8 +207,8 @@ function GuiBag:RefreshPageBar(_pageIndex)
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
-    this.nameTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Name)
-    this.descTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Des)
+    LanguageUtil.SetText(this.nameTxt, Config.Item[_itemId].Name, true)
+    LanguageUtil.SetText(this.descTxt, Config.Item[_itemId].Des, true)
 end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)

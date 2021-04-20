@@ -1,4 +1,4 @@
-local BowRun = class("BowRun", PlayerActState)
+local BowRun = class('BowRun', PlayerActState)
 
 local dirStateEnum = {
     Forward = 1,
@@ -13,13 +13,13 @@ local function Turn(_dir)
     if _dir ~= curDirState then
         curDirState = _dir
         if _dir == dirStateEnum.Forward then
-            localPlayer.Avatar:PlayAnimation("BowRun", 2, 1, 0.1, true, true, 1)
+            localPlayer.Avatar:PlayAnimation('BowRun', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
         elseif _dir == dirStateEnum.Right then
-            localPlayer.Avatar:PlayAnimation("BowRunRight", 2, 1, 0.1, true, true, 1)
+            localPlayer.Avatar:PlayAnimation('BowRunRight', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
         elseif _dir == dirStateEnum.Left then
-            localPlayer.Avatar:PlayAnimation("BowRunLeft", 2, 1, 0.1, true, true, 1)
+            localPlayer.Avatar:PlayAnimation('BowRunLeft', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
         elseif _dir == dirStateEnum.Back then
-            localPlayer.Avatar:PlayAnimation("BowRunBack", 2, 1, 0.1, true, true, 1)
+            localPlayer.Avatar:PlayAnimation('BowRunBack', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
         end
     end
 end
@@ -43,16 +43,16 @@ function BowRun:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     FsmMgr.playerActFsm:TriggerMonitor(
         {
-            "Idle",
-            "BowHit",
-            "SwimIdle",
-            "BowChargeIdle",
-            "TakeOutItem"
+            'Idle',
+            'BowHit',
+            'SwimIdle',
+            'BowChargeIdle',
+            'TakeOutItem'
         }
     )
     self:IdleMonitor()
-    self:WalkMonitor("Bow")
-    self:JumpMonitor("Bow")
+    self:WalkMonitor('Bow')
+    self:JumpMonitor('Bow')
 end
 
 function BowRun:OnLeave()
@@ -77,7 +77,7 @@ function BowRun:IdleMonitor()
         end
         localPlayer:MoveTowards(Vector2(dir.x, dir.z))
     else
-        FsmMgr.playerActFsm:Switch("BowIdle")
+        FsmMgr.playerActFsm:Switch('BowIdle')
     end
 end
 

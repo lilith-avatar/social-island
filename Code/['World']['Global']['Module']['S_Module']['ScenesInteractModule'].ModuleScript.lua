@@ -254,6 +254,7 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
                 _player.LinearVelocity = Vector3(0, 20, 0)
                 SoundUtil.Play3DSE(_bounce.obj.Position, 22)
                 wait(0.1)
+                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Fly')
                 _bounce.tweener1:Destroy()
                 _bounce.tweener2:Play()
                 wait(0.1)
@@ -520,7 +521,7 @@ do
                         totalTimer = 0,
                         originForward = v1.obj.Forward,
                         dirRatio = 1,
-                        sound = SoundUtil.Play3DSE(_player.Position, 15),
+                        --sound = SoundUtil.Play3DSE(_player.Position, 15),
                         player = _player
                     }
                 end
@@ -537,7 +538,7 @@ do
                 _player.Avatar:StopAnimation('SitIdle', 2)
                 NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-                SoundUtil.Stop3DSE(this.TrojanList[v.obj.Name].sound)
+                --SoundUtil.Stop3DSE(this.TrojanList[v.obj.Name].sound)
                 v.obj.Forward = this.TrojanList[v.obj.Name].originForward
                 this.TrojanList[v.obj.Name] = nil
             end
@@ -575,25 +576,27 @@ do
     function ScenesInteract:EnterTent(_player)
         for k1, v1 in pairs(tentOBJ) do
             for k2, v2 in pairs(v1.aroundPlayers) do
-                if v2 == _player.UserId and v1.obj.UsingPlayerUid1.Value == '' or v1.obj.UsingPlayerUid2.Value == '' then
-                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
-                    NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
-                    _player.Avatar:SetActive(false)
-                    if v1.obj.UsingPlayerUid1.Value == '' then
-                        v1.obj.UsingPlayerUid1.Value = _player.UserId
-                    else
-                        v1.obj.UsingPlayerUid2.Value = _player.UserId
+                if v2 == _player.UserId then
+                    if v1.obj.UsingPlayerUid1.Value == '' or v1.obj.UsingPlayerUid2.Value == '' then
+                        NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
+                        NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
+                        _player.Avatar:SetActive(false)
+                        if v1.obj.UsingPlayerUid1.Value == '' then
+                            v1.obj.UsingPlayerUid1.Value = _player.UserId
+                        else
+                            v1.obj.UsingPlayerUid2.Value = _player.UserId
+                        end
+                        SoundUtil.Play3DSE(_player.Position, 103)
+                        if not this.TentList[v1.obj.Name] then
+                            this.TentList[v1.obj.Name] = {
+                                model = v1.obj,
+                                num = 0,
+                                timer = 0
+                            }
+                        end
+                        this.TentList[v1.obj.Name].num = this.TentList[v1.obj.Name].num + 1
+                        this:TentNumEffect(this.TentList[v1.obj.Name].num, v1.obj)
                     end
-                    SoundUtil.Play3DSE(_player.Position, 103)
-                    if not this.TentList[v1.obj.Name] then
-                        this.TentList[v1.obj.Name] = {
-                            model = v1.obj,
-                            num = 0,
-                            timer = 0
-                        }
-                    end
-                    this.TentList[v1.obj.Name].num = this.TentList[v1.obj.Name].num + 1
-                    this:TentNumEffect(this.TentList[v1.obj.Name].num, v1.obj)
                 end
             end
         end
@@ -608,13 +611,16 @@ do
                     else
                         v.obj.UsingPlayerUid2.Value = ''
                     end
-                    _player.Avatar:SetActive(true)
                     this.TentList[v.obj.Name].num = this.TentList[v.obj.Name].num - 1
-                    this:TentNumEffect(this.TentList[v.obj.Name].num, v)
+                    this:TentNumEffect(this.TentList[v.obj.Name].num, v.obj)
                     if this.TentList[v.obj.Name].num == 0 then
                         this.TentList[v.obj.Name] = nil
                         v.obj.Effect:SetActive(false)
                     end
+                    --离开帐篷玩家的表现
+                    _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
+                    _player.Position,_player.Rotation = v.obj.LeaveLoc.Position,v.obj.LeaveLoc.Rotation
+                    _player.Avatar:SetActive(true)
                 end
             end
         end

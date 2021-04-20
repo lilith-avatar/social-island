@@ -92,7 +92,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
             curItemInfoPanel = v
             if #remainingItemID > 0 then
                 curItemInfoPanel:SetActive(true)
-                v.InfoText.Text = LanguageUtil.GetText(Config.Item[remainingItemID[1]].Name)
+                LanguageUtil.SetText(v.InfoText, Config.Item[remainingItemID[1]].Name, true)
                 table.remove(remainingItemID, 1)
             end
         end
@@ -101,6 +101,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
         if this:GetFreeNoticeUI() then
             local tmpUI = this:GetFreeNoticeUI()
             tmpUI.Info.Text = remainingNoticeInfo[1].text
+            LanguageUtil.TextAutoSize(tmpUI.Info)
             local tempData = remainingNoticeInfo[1]
             table.insert(
                 curNoticeInfo,
@@ -162,6 +163,7 @@ function GuiNoticeInfo:ShowInfo(dt)
         noticeInfoGUI.Info.PlayerInfoBG:SetActive(true)
         if noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text ~= playerInfoList[1].text then
             noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text = playerInfoList[1].text
+            LanguageUtil.TextAutoSize(noticeInfoGUI.Info.PlayerInfoBG.BG.Info)
             this:TextFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, false)
         end
         playerInfoList[1].t = playerInfoList[1].t - dt
