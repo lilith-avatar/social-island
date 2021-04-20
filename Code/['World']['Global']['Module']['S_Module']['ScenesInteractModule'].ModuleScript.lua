@@ -580,6 +580,9 @@ do
                     if v1.obj.UsingPlayerUid1.Value == '' or v1.obj.UsingPlayerUid2.Value == '' then
                         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
                         NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
+                        NetUtil.Fire_C('SetCurCamEvent', _player, nil, v1.obj)
+                        NetUtil.Fire_C('SetCamDistanceEvent',_player,6)
+                        -- TODO: 这里考虑把镜头推远
                         _player.Avatar:SetActive(false)
                         if v1.obj.UsingPlayerUid1.Value == '' then
                             v1.obj.UsingPlayerUid1.Value = _player.UserId
@@ -619,8 +622,9 @@ do
                     end
                     --离开帐篷玩家的表现
                     _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
-                    _player.Position,_player.Rotation = v.obj.LeaveLoc.Position,v.obj.LeaveLoc.Rotation
+                    _player.Position, _player.Rotation = v.obj.LeaveLoc.Position, v.obj.LeaveLoc.Rotation
                     _player.Avatar:SetActive(true)
+                    NetUtil.Fire_C('ResetTentCamEvent',_player,3)
                 end
             end
         end
