@@ -39,14 +39,14 @@ function UFOMgr:EventBind()
     portal1.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
-                this:Teleport(_hitObject, portal2.Position + Vector3(math.random(-3, 3), 0, math.random(-3, 3)))
+                this:Teleport(_hitObject, portal2.Position + _hitObject.Forward * 4)
             end
         end
     )
     portal2.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
-                this:Teleport(_hitObject, portal1.Position + Vector3(math.random(-3, 3), 0, math.random(-3, 3)))
+                this:Teleport(_hitObject, portal1.Position + _hitObject.Forward * 4)
             end
         end
     )
@@ -82,9 +82,27 @@ end
 
 --- 传送
 function UFOMgr:Teleport(_player, _pos)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 31)
+    local effect1 = world:CreateInstance('TeleportEffect', 'TeleportEffect', _player, _player.Position)
     SoundUtil.Play3DSE(_player.Position, 108)
-    SoundUtil.Play3DSE(_pos, 108)
-    _player.Position = _pos
+    invoke(
+        function()
+            NetUtil.Fire_C('SwitchTeleportFilterEvent', _player, true)
+            _player.Avatar:SetActive(false)
+            wait(1)
+            _player.Position = _pos
+            local effect2 = world:CreateInstance('TeleportEffect', 'TeleportEffect', _player, _player.Position)
+            SoundUtil.Play3DSE(_pos, 108)
+            effect1:Destroy()
+            wait(1)
+            NetUtil.Fire_C('SwitchTeleportFilterEvent', _player, false)
+            _player.Avatar:SetActive(true)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+            wait(1)
+            effect2:Destroy()
+        end,
+        1
+    )
 end
 
 function UFOMgr:Update(dt)
