@@ -138,7 +138,8 @@ Events.ClientEvents = {
     'CInteractOnPlayerColBeginEvent',
     'CInteractOnPlayerColEndEvent',
     'SetCamDistanceEvent',
-    'ResetTentCamEvent'
+    'ResetTentCamEvent',
+    'SwitchTeleportFilterEvent'
 }
 
 return Events

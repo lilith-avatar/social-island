@@ -469,7 +469,22 @@ local InteractXls = {
         TakeOffBtnActive = false,
         SocialAnimActive = false,
         InteractBtnIcon = '',
-        OpenGui = 'SwimGui'
+        OpenGui = ''
+    },
+    [31] = {
+        ID = 31,
+        Name = 'Teleport',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        TakeOffBtnActive = false,
+        SocialAnimActive = false,
+        InteractBtnIcon = '',
+        OpenGui = ''
     }
 }
 
