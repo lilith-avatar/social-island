@@ -4,7 +4,7 @@
 -- @author Dead Ratman
 ---@module GuiPurchase
 
-local GuiPurchase, this = ModuleUtil.New("GuiPurchase", ClientBase)
+local GuiPurchase, this = ModuleUtil.New('GuiPurchase', ClientBase)
 
 local gui, confirmPanel, scrollPanel
 
@@ -18,7 +18,7 @@ local purchaseCoin = 0
 local sliderMin, sliderMax = 0, 0
 
 function GuiPurchase:Init()
-    print("GuiPurchase:Init")
+    print('GuiPurchase:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -59,11 +59,12 @@ function GuiPurchase:PurchaseConfirmEventHandler(_coinNUm, _interactID, _text)
     interactID = _interactID
     purchaseCoin = _coinNUm
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.LockImg:SetActive(Data.Player.coin < _coinNUm)
+    gui.PurchasePanel.PurchaseBgImg.DesText:SetActive(false)
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
-    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText)
+    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText, 40, 60)
     confirmPanel:SetActive(true)
     confirmPanel.PriceText.Text = _coinNUm
-    confirmPanel.PlayerCoinText.Text = "/" .. Data.Player.coin
+    confirmPanel.PlayerCoinText.Text = '/' .. Data.Player.coin
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
         function()
@@ -77,8 +78,9 @@ function GuiPurchase:SliderPurchaseEventHandler(_interactID, _text, _min, _max)
     gui:SetActive(true)
     SoundUtil.Play2DSE(localPlayer.UserId, 3)
     interactID = _interactID
+    gui.PurchasePanel.PurchaseBgImg.DesText:SetActive(false)
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
-    LanguageUtil.TextAutoSize( gui.PurchasePanel.PurchaseBgImg.DesText)
+    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText, 40, 60)
     sliderMin = _min or 1
     sliderMax = _max or Data.Player.coin
     scrollPanel.MinText.Text = _min or 1
@@ -91,7 +93,7 @@ function GuiPurchase:SliderPurchaseEventHandler(_interactID, _text, _min, _max)
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Connect(
         function()
             scrollPanel:SetActive(false)
-            NetUtil.Fire_C("PurchaseConfirmEvent", localPlayer, purchaseCoin, interactID, _text)
+            NetUtil.Fire_C('PurchaseConfirmEvent', localPlayer, purchaseCoin, interactID, _text)
         end
     )
 end
@@ -102,16 +104,16 @@ function GuiPurchase:OnClickPurchaseLaterBtn()
     scrollPanel:SetActive(false)
     gui:SetActive(false)
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.OnClick:Clear()
-	NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     interactID = 0
     purchaseCoin = 0
 end
 
 --点击购买
 function GuiPurchase:OnClickPurchaseConfirmBtn()
-    NetUtil.Fire_C("PurchaseCEvent", localPlayer, purchaseCoin, interactID)
-    NetUtil.Fire_S("PurchaseSEvent", localPlayer, purchaseCoin, interactID)
-    NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * purchaseCoin)
+    NetUtil.Fire_C('PurchaseCEvent', localPlayer, purchaseCoin, interactID)
+    NetUtil.Fire_S('PurchaseSEvent', localPlayer, purchaseCoin, interactID)
+    NetUtil.Fire_C('UpdateCoinEvent', localPlayer, -1 * purchaseCoin)
     SoundUtil.Play2DSE(localPlayer.UserId, 7)
     this:OnClickPurchaseLaterBtn()
     purchaseCoin = 0

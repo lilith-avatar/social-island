@@ -118,7 +118,8 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
     this.slotList[_index].ItemImg.IMGNormal.Texture =
         ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[_itemId].Icon)
     -- 显示数量
-    this.slotList[_index].ItemNumBg.NumText.Text = Data.Player.bag[_itemId].count > 99 and 99 or Data.Player.bag[_itemId].count
+    this.slotList[_index].ItemNumBg.NumText.Text =
+        Data.Player.bag[_itemId].count > 99 and 99 or Data.Player.bag[_itemId].count
     this.slotList[_index].ItemNumBg:SetActive(Data.Player.bag[_itemId].count ~= 1)
     this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
     this.slotList[_index]:SetActive(_itemId and true or false)
@@ -207,8 +208,8 @@ function GuiBag:RefreshPageBar(_pageIndex)
 end
 
 function GuiBag:ChangeNameAndDesc(_itemId)
-    LanguageUtil.SetText(this.nameTxt, Config.Item[_itemId].Name, true)
-    LanguageUtil.SetText(this.descTxt, Config.Item[_itemId].Des, true)
+    LanguageUtil.SetText(this.nameTxt, Config.Item[_itemId].Name, true, 40, 80)
+    LanguageUtil.SetText(this.descTxt, Config.Item[_itemId].Des, true, 30, 60)
 end
 
 function GuiBag:ShowItemsByPageIndex(_pageIndex)
