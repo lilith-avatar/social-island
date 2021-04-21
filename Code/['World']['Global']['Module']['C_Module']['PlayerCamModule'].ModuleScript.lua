@@ -146,13 +146,13 @@ function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
 end
 
 -- 推远或推近玩家镜头
-function PlayerCam:SetCamDistanceEventHandler(_distance, _triggerBlock)
+function PlayerCam:SetCamDistanceEventHandler(_distance, _duration, _triggerBlock)
     if this.distanceTweener then
         this.distanceTweener:Pause()
         this.distanceTweener:Destroy()
     end
     this.curCamera.PhysicalBlock = false
-    this.distanceTweener = Tween:TweenProperty(this.curCamera, {Distance = _distance}, 1, 1)
+    this.distanceTweener = Tween:TweenProperty(this.curCamera, {Distance = _distance}, _duration, 1)
     this.distanceTweener:Play()
     this.distanceTweener:WaitForComplete()
     this.curCamera.PhysicalBlock = _triggerBlock or false
@@ -162,7 +162,7 @@ function PlayerCam:ResetTentCamEventHandler(_distance)
     this.curCamera.LookAt = localPlayer
     wait()
     this.curCamera:CameraMoveInDegree(Vector2(180, 0))
-    NetUtil.Fire_C('SetCamDistanceEvent', localPlayer, _distance, true)
+    NetUtil.Fire_C('SetCamDistanceEvent', localPlayer, _distance, 1, true)
 end
 
 function PlayerCam:Update(dt)
