@@ -24,20 +24,21 @@ end
 
 ---事件绑定
 function GuiSwim:EventBind()
-    jumpBtn.OnClick:Connect(
-        function()
-            NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Jump')
-        end
-    )
+    jumpBtn.OnClick:Connect(function()
+        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Jump')
+    end)
 end
 
 ---Update函数
 function GuiSwim:Update(_dt)
-    if localPlayer.Position.y > -15.7 and not jumpBtn.ActiveSelf then
-        jumpBtn:SetActive(true)
-    elseif localPlayer.Position.y < -15.7 and jumpBtn.ActiveSelf then
-        jumpBtn:SetActive(false)
+    if FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or FsmMgr.playerActFsm.curState.stateName == 'Swimming' then
+        if localPlayer.Position.y > -15.7 and not jumpBtn.ActiveSelf then
+            jumpBtn:SetActive(true)
+        elseif localPlayer.Position.y < -15.7 and jumpBtn.ActiveSelf then
+            jumpBtn:SetActive(false)
+        end
     end
+
 end
 
 return GuiSwim
