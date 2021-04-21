@@ -39,11 +39,11 @@ function GuiNpc:InitGui()
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
     gameBtn = npcGui.GameBtn
-    gameBtn.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_1.Txt)
+    gameBtn.GameTxt.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_1.Txt)
     shopBtn = npcGui.ShopBtn
-    shopBtn.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_3.Txt)
+    shopBtn.ShopTxt.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_3.Txt)
     leaveBtn = npcGui.LeaveBtn
-    leaveBtn.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_2.Txt)
+    leaveBtn.LeaveTxt.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_2.Txt)
     dialogTxt = npcGui.DialogTxt
     NameTxt = npcGui.NameTxt
 end

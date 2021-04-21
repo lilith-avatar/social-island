@@ -64,6 +64,7 @@ function GuiCook:NodeDef()
     this.numTxt = this.foodPanel.NumTxt
     --* icon--------------------
     this.foodIcon = this.foodPanel.IconImg
+    this.detailIcon = this.detailPanel.IconImg
     --* 做饭的进度条
     this.progress = this.progressPanel.ProgressBar.ProgressImg
     --* 吃东西时候的信息ui
@@ -118,7 +119,12 @@ function GuiCook:EventBind()
     )
     this.detailReward.OnClick:Connect(
         function()
-            NetUtil.Fire_C('SliderPurchaseEvent', localPlayer, 27, LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt))
+            NetUtil.Fire_C(
+                'SliderPurchaseEvent',
+                localPlayer,
+                27,
+                LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt)
+            )
         end
     )
 end
@@ -339,11 +345,13 @@ function GuiCook:ShowFood()
     end
     this:ConsumeMaterial()
     this.titleTxt.Text = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
+    this.foodIcon.Texture = ResourceManager.GetTexture('UI/MealIco/' .. Config.CookMenu[this.foodId].Ico)
+    this.foodIcon.Size = Vector2(350, 350)
     this.foodPanel:SetActive(true)
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
-    this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt)..'(%s/%s)', _cur,_total)
+    this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
@@ -361,6 +369,8 @@ end
 function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foodLocation)
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = 'By ' .. _cookName
+    this.detailIcon.Texture = ResourceManager.GetTexture('UI/MealIco/' .. Config.CookMenu[_foodId].Ico)
+    this.detailIcon.Size = Vector2(128,128)
     this.cookUserId = _cookUserId
     this.foodId = _foodId
     this.foodLocation = _foodLocation
@@ -379,11 +389,11 @@ function GuiCook:EatFood()
         Config.CookMenu[this.foodId].BuffId,
         Config.CookMenu[this.foodId].BuffDur
     )
-    NetUtil.Fire_C('EatFoodEvent',localPlayer,this.foodId)
+    NetUtil.Fire_C('EatFoodEvent', localPlayer, this.foodId)
     this:HideGui()
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     if this.foodLocation then
-        NetUtil.Fire_S('PlayerEatFoodEvent',this.foodLocation)
+        NetUtil.Fire_S('PlayerEatFoodEvent', this.foodLocation)
     end
     this.foodId = nil
     --this:ShowUI()
@@ -392,7 +402,7 @@ end
 function GuiCook:PutOnDesk()
     NetUtil.Fire_S('FoodOnDeskEvent', this.foodId, localPlayer)
     this.foodId = nil
-    NetUtil.Fire_C('ChangeMiniGameUIEvent',localPlayer)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
 function GuiCook:Update(dt)

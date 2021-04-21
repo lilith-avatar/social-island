@@ -5,7 +5,7 @@
 local PlayerCam, this = ModuleUtil.New('PlayerCam', ClientBase)
 
 --滤镜开关
-local filterSwitch = false
+local swimFilterSwitch = false
 
 --- 初始化
 function PlayerCam:Init()
@@ -34,7 +34,10 @@ function PlayerCam:DataInit()
     -- FPS相机
     this.fpsCam = localPlayer.Local.Independent.FPSCam
 
-    this.chairCam = localPlayer.Local.Independent.ChairCam
+    this.actionCam = localPlayer.Local.Independent.ActionCam
+
+    --* 存储相机tweener
+    this.distanceTweener = nil
 end
 
 --- 节点事件绑定
@@ -94,7 +97,7 @@ end
 
 ---开关游泳滤镜
 function PlayerCam:SwitchSwimFilter(_switch)
-    filterSwitch = _switch
+    swimFilterSwitch = _switch
     if _switch then
         this.playerGameCam.WaterVignette:SetActive(true)
         this.playerGameCam.WaterGaussionBlur:SetActive(true)
@@ -110,6 +113,15 @@ function PlayerCam:SwitchSwimFilter(_switch)
     end
 end
 
+---开关传送滤镜
+function PlayerCam:SwitchTeleportFilterEventHandler(_switch)
+    if _switch then
+        this.playerGameCam.TeleportGlitch:SetActive(true)
+    else
+        this.playerGameCam.TeleportGlitch:SetActive(false)
+    end
+end
+
 ---TPS相机缩放
 function PlayerCam:TPSCamZoom(_force)
     this.tpsCam.FieldOfView = 60 - 10 * _force
@@ -119,16 +131,16 @@ end
 ---游泳滤镜检测
 function PlayerCam:UpdateSwimFilter()
     if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
-        if filterSwitch == true then
+        if swimFilterSwitch == true then
             this:SwitchSwimFilter(false)
         end
     else
         if this.playerGameCam.Position.y < -14.5 then
-            if filterSwitch == false then
+            if swimFilterSwitch == false then
                 this:SwitchSwimFilter(true)
             end
         else
-            if filterSwitch == true then
+            if swimFilterSwitch == true then
                 this:SwitchSwimFilter(false)
             end
         end
@@ -140,6 +152,26 @@ function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
     this.curCamera = _cam or this.playerGameCam
     this.curCamera.LookAt = _lookAt or localPlayer
     world.CurrentCamera = this.curCamera
+end
+
+-- 推远或推近玩家镜头
+function PlayerCam:SetCamDistanceEventHandler(_distance, _duration, _triggerBlock)
+    if this.distanceTweener then
+        this.distanceTweener:Pause()
+        this.distanceTweener:Destroy()
+    end
+    this.curCamera.PhysicalBlock = false
+    this.distanceTweener = Tween:TweenProperty(this.curCamera, {Distance = _distance}, _duration, 1)
+    this.distanceTweener:Play()
+    this.distanceTweener:WaitForComplete()
+    this.curCamera.PhysicalBlock = _triggerBlock or false
+end
+
+function PlayerCam:ResetTentCamEventHandler(_distance)
+    this.curCamera.LookAt = localPlayer
+    wait()
+    this.curCamera:CameraMoveInDegree(Vector2(180, 0))
+    NetUtil.Fire_C('SetCamDistanceEvent', localPlayer, _distance, 1, true)
 end
 
 function PlayerCam:Update(dt)

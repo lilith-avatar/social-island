@@ -203,4 +203,12 @@ function Catch:Update(dt)
     this:UpdateCatchUI()
 end
 
+--- 玩家碰撞开始
+function Catch:CInteractOnPlayerColBeginEventHandler(_obj, _id)
+    if _id == 19 then
+        Catch:TouchPrey(_obj, true)
+        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 19)
+    end
+end
+
 return Catch

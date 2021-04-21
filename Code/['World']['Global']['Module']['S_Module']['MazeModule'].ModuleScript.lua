@@ -17,7 +17,7 @@ local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 --! 常量配置: Maze 迷宫相关
 
 -- 迷宫尺寸
-local NUM_ROWS, NUM_COLS = 30, 30
+local NUM_ROWS, NUM_COLS = 10, 10
 
 -- 迷宫Hierachy根节点
 local MAZE_ROOT = world.MiniGames.Game_03_Maze
@@ -693,7 +693,7 @@ function CoinGen()
         end
     end
     table.shuffle(serial)
-    for i = 1, #serial do
+    for i = 1, #serial do --#serial
         row = serial[i][1]
         col = serial[i][2]
         cell = M[row][col]
@@ -913,9 +913,15 @@ function Maze:EnterMiniGameEventHandler(_player, _gameId)
             -- TODO: 反馈给NPC对话，说明此原因
             print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
         else
+            --PlayerStartMaze(_player)
             MazeReset()
             MazeShow()
-            PlayerStartMaze(_player)
+            NetUtil.Broadcast(
+                'ShowNoticeInfoEvent',
+                LanguageUtil.GetText(Config.GuiText.InfoGui_5.Txt),
+                10,
+                entrace.Position
+            )
         end
     end
 end

@@ -26,6 +26,8 @@ local moveRightAxis = 0
 
 local isOnWater = false
 
+local isSwim = false
+
 --- 初始化
 function PlayerCtrl:Init()
     print('[PlayerCtrl] Init()')
@@ -47,7 +49,7 @@ function PlayerCtrl:DataInit()
     this.isControllable = true
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
-    for k, v in pairs(world.SenceAudio:GetChildren()) do
+    for k, v in pairs(world.ScenesAudio:GetChildren()) do
         if v.State == Enum.AudioSourceState.Stopped then
             v:Play()
         end
@@ -193,8 +195,7 @@ end
 
 --游泳检测
 function PlayerCtrl:PlayerSwim()
-    if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
-        --print(localPlayer.Position, world.water.DeepWaterCol.Position)
+    if isSwim == false then
         if
             localPlayer.Position.x < world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 and
                 localPlayer.Position.x > world.Water.DeepWaterCol.Position.x - world.Water.DeepWaterCol.Size.x / 2 and
@@ -202,10 +203,17 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.4
          then
-            --print("游泳检测")
-            NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
-            SoundUtil.Play2DSE(localPlayer.UserId, 20)
+            print('进入游泳')
             FsmMgr:FsmTriggerEventHandler('SwimIdle')
+            if
+                FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
+                    FsmMgr.playerActFsm.curState.stateName == 'Swimming'
+             then
+                isSwim = true
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 30)
+                NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
+                SoundUtil.Play2DSE(localPlayer.UserId, 20)
+            end
         end
     else
         if
@@ -215,8 +223,25 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
-            NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
+            print('退出游泳')
             FsmMgr:FsmTriggerEventHandler('Idle')
+            if
+                FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
+                    FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
+             then
+                isSwim = false
+                localPlayer.GravityScale = 2
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
+                local effect =
+                    world:CreateInstance('LandWater', 'LandWater', world, localPlayer.Position + Vector3(0, 2, 0))
+                invoke(
+                    function()
+                        effect:Destroy()
+                    end,
+                    1
+                )
+            end
         end
     end
 end
@@ -358,193 +383,15 @@ function PlayerCtrl:PlayerReset()
     end
 end
 
----场景交互碰撞函数
-function PlayerCtrl:ScenesInteractColFunc(_hitObject, _isBegin)
-    if _isBegin then
-        _hitObject.ScenesInteractUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 13, _hitObject.ScenesInteractID.Value)
-    else
-        _hitObject.ScenesInteractUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
-
----望远镜碰撞函数
-function PlayerCtrl:TelescopeInteractColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.TelescopeInteractUID.Value == '' then
-        _hitObject.TelescopeInteractUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 14)
-    else
-        _hitObject.TelescopeInteractUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
-
----座位碰撞函数
-function PlayerCtrl:SeatInteractColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.SeatInteractUID.Value == '' then
-        _hitObject.SeatInteractUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 15)
-    else
-        _hitObject.SeatInteractUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
-
----篝火碰撞函数
-function PlayerCtrl:BonfireInteractColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.BonfireInteractUID.Value == '' then
-        _hitObject.BonfireInteractUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 16)
-    else
-        _hitObject.BonfireInteractUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
-
----弹性物体碰撞函数
-function PlayerCtrl:BounceInteractColFunc(_hitObject, _isBegin)
-    if _isBegin then
-        _hitObject.BounceInteractUID.Value = localPlayer.UserId
-        NetUtil.Fire_S('InteractSEvent', localPlayer, 17)
-    end
-end
-
----草碰撞函数
-function PlayerCtrl:GrassInteractColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.GrassInteractUID.Value == '' then
-        _hitObject.GrassInteractUID.Value = localPlayer.UserId
-        NetUtil.Fire_S('InteractSEvent', localPlayer, 18)
-    else
-        _hitObject.GrassInteractUID.Value = ''
-    end
-end
-
----动物碰撞函数
-function PlayerCtrl:AnimalCaughtColFunc(_hitObject, _isBegin)
-    if _isBegin then
-        Catch:TouchPrey(_hitObject, true)
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 19)
-    else
-        --NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
-    end
-end
-
----摇摇椅碰撞函数
-function PlayerCtrl:TrojanColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.Parent.TrojanUID.Value == '' and _hitObject.Parent.TrojanState.Value == Const.SeatStateEnum.Free then
-        _hitObject.Parent.TrojanUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 20)
-    elseif _hitObject.Parent.TrojanState.Value == Const.SeatStateEnum.Free then
-        _hitObject.Parent.TrojanUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
-
----吉他碰撞函数
-function PlayerCtrl:GuitarColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.GuitarUID.Value == '' then
-        _hitObject.GuitarUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 21)
-    else
-        _hitObject.GuitarUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
----帐篷碰撞函数
-function PlayerCtrl:TentColFunc(_hitObject, _isBegin)
-    if _isBegin then
-        if _hitObject.TentUID1.Value == localPlayer.UserId or _hitObject.TentUID1.Value == '' then
-            _hitObject.TentUID1.Value = localPlayer.UserId
-            NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 22)
-            return
-        end
-        if _hitObject.TentUID2.Value == localPlayer.UserId or _hitObject.TentUID2.Value == '' then
-            _hitObject.TentUID2.Value = localPlayer.UserId
-            NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 22)
-            return
-        end
-    else
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-        if _hitObject.TentUID1.Value == localPlayer.UserId then
-            _hitObject.TentUID1.Value = ''
-        elseif _hitObject.TentUID2.Value == localPlayer.UserId then
-            _hitObject.TentUID2.Value = ''
-        end
-    end
-end
----炸弹碰撞函数
-function PlayerCtrl:BombColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.BombUID.Value == '' then
-        _hitObject.BombUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 23)
-    else
-        _hitObject.BombUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
----收音机碰撞函数
-function PlayerCtrl:RadioColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.RadioUID.Value == '' then
-        _hitObject.RadioUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 24)
-    else
-        _hitObject.RadioUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
----烹饪大锅碰撞函数
-function PlayerCtrl:PotColFunc(_hitObject, _isBegin)
-    if _isBegin and _hitObject.PotUID.Value == '' then
-        _hitObject.PotUID.Value = localPlayer.UserId
-        NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 26)
-    else
-        _hitObject.PotUID.Value = ''
-        NetUtil.Fire_C('CloseDynamicEvent', localPlayer)
-    end
-end
-
 -- 碰到场景交互
 function PlayerCtrl:ColFunc(_hitObject, _isBegin)
-    if _hitObject then
-        if _hitObject.ScenesInteractUID then
-            this:ScenesInteractColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.TelescopeInteractUID then
-            this:TelescopeInteractColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.SeatInteractUID then
-            this:SeatInteractColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.BonfireInteractUID then
-            this:BonfireInteractColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.BounceInteractUID then
-            this:BounceInteractColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.GrassInteractUID then
-            this:GrassInteractColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.AnimalCaughtEvent then
-            this:AnimalCaughtColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.Parent.TrojanUID then
-            this:TrojanColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.GuitarUID then
-            this:GuitarColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.TentUID1 then
-            this:TentColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.BombUID then
-            this:BombColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.RadioUID then
-            this:RadioColFunc(_hitObject, _isBegin)
-        end
-        if _hitObject.PotUID then
-            this:PotColFunc(_hitObject, _isBegin)
+    if _hitObject.InteractID then
+        if _isBegin then
+            NetUtil.Fire_S('SInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
+            NetUtil.Fire_C('CInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
+        else
+            NetUtil.Fire_S('SInteractOnPlayerColEndEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
+            NetUtil.Fire_C('CInteractOnPlayerColEndEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         end
     end
 end

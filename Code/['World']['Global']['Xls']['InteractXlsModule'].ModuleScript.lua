@@ -258,7 +258,7 @@ local InteractXls = {
         LeaveBtnActive = false,
         TakeOffBtnActive = false,
         SocialAnimActive = true,
-        InteractBtnIcon = 'Icon_MagicSelf',
+        InteractBtnIcon = 'Icon_FireAttack',
         OpenGui = ''
     },
     [17] = {
@@ -311,7 +311,7 @@ local InteractXls = {
         Name = 'Trojan',
         IsEnterByNPC = false,
         JoystickActive = false,
-        MenuActive = false,
+        MenuActive = true,
         CtrlActive = true,
         UseBtnActive = false,
         JumpBtnActive = false,
@@ -454,6 +454,36 @@ local InteractXls = {
         TakeOffBtnActive = false,
         SocialAnimActive = false,
         InteractBtnIcon = 'Icon_Do',
+        OpenGui = ''
+    },
+    [30] = {
+        ID = 30,
+        Name = 'Swim',
+        IsEnterByNPC = false,
+        JoystickActive = true,
+        MenuActive = false,
+        CtrlActive = true,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        TakeOffBtnActive = false,
+        SocialAnimActive = false,
+        InteractBtnIcon = '',
+        OpenGui = ''
+    },
+    [31] = {
+        ID = 31,
+        Name = 'Teleport',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        TakeOffBtnActive = false,
+        SocialAnimActive = false,
+        InteractBtnIcon = '',
         OpenGui = ''
     }
 }

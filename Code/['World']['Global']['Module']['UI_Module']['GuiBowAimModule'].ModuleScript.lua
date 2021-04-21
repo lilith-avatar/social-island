@@ -34,6 +34,16 @@ function GuiBowAim:EventBind()
             this.touchGui.AimStick.Size = Vector2(1800, 1500)
         end
     )
+    Input.OnKeyDown:Connect(
+        function()
+            if Input.GetPressKeyData(Enum.KeyCode.F) == Enum.KeyState.KeyStatePress then
+                if isAble then
+                    NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
+                end
+                this.touchGui.AimStick.Size = Vector2(1800, 1500)
+            end
+        end
+    )
     this.touchGui.AimStick.OnTouched:Connect(
         function(touchInfo)
             if isAble then
@@ -44,6 +54,18 @@ function GuiBowAim:EventBind()
             end
         end
     )
+    Input.OnKeyHold:Connect(
+        function()
+            if Input.GetPressKeyData(Enum.KeyCode.F) == Enum.KeyState.KeyStateHold then
+                if isAble then
+                    if FsmMgr.playerActFsm.curState.stateName ~= 'BowChargeIdle' then
+                        NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
+                    end
+                    --PlayerCam:CameraMove(touchInfo)
+                end
+            end
+        end
+    )
     this.touchGui.AimStick.OnLeave:Connect(
         function()
             if ItemMgr.curWeaponID ~= 0 then
@@ -51,6 +73,18 @@ function GuiBowAim:EventBind()
                     ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndCharge()
                 end
                 this.touchGui.AimStick.Size = Vector2(200, 200)
+            end
+        end
+    )
+    Input.OnKeyUp:Connect(
+        function()
+            if Input.GetPressKeyData(Enum.KeyCode.F) == Enum.KeyState.KeyStateRelease then
+                if ItemMgr.curWeaponID ~= 0 then
+                    if isAble then
+                        ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndCharge()
+                    end
+                    this.touchGui.AimStick.Size = Vector2(200, 200)
+                end
             end
         end
     )

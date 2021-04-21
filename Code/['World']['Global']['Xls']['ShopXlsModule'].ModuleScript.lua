@@ -9,31 +9,31 @@ local ShopXls = {
     [2] = {
         [2002] = {
             NpcId = 2,
-            Index = 2,
+            Index = 1,
             ItemId = 2002,
             Price = 1500
         },
         [2003] = {
             NpcId = 2,
-            Index = 3,
+            Index = 2,
             ItemId = 2003,
             Price = 2500
         },
         [2005] = {
             NpcId = 2,
-            Index = 4,
+            Index = 3,
             ItemId = 2005,
             Price = 10000
         },
         [4002] = {
             NpcId = 2,
-            Index = 5,
+            Index = 4,
             ItemId = 4002,
             Price = 500
         },
         [4003] = {
             NpcId = 2,
-            Index = 6,
+            Index = 5,
             ItemId = 4003,
             Price = 1500
         }

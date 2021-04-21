@@ -39,7 +39,7 @@ end
 
 --信息UI滚动
 function GuiCoinInfo:RollInfoUI()
-    for k, v in pairs(rollInfoPanel) do
+    for k, v in pairs(rollInfoPanel) do--[[
         if v.Offset.y <= 175 then
             v.Offset = v.Offset + Vector2(0, 3)
             v.CoinNum.Alpha = v.CoinNum.Alpha - 0.01
@@ -53,7 +53,7 @@ function GuiCoinInfo:RollInfoUI()
                 v.CoinNum.Text = "+" .. remainingCoinNum
                 remainingCoinNum = 0
             end
-        end
+        end]]
     end
 end
 
@@ -61,10 +61,43 @@ end
 function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
     if _num > 0 then
         remainingCoinNum = remainingCoinNum + _num
+		--[[
         for k, v in pairs(localPlayer.Effect.GetCoinEffect:GetChildren()) do
             v:Emit(math.floor(tonumber(v.Name)))
-        end
+        end]]
+		if _num >= 1000 then
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1000)
+		elseif _num >= 100 then
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n100)
+		elseif _num >= 10 then
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n10)
+		else
+			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1)
+		end
     end
+end
+
+function GuiCoinInfo:GetCoinEffct(_effect)
+	_effect.LocalPosition = Vector3(0,0,0)
+	_effect.LinearVelocity = _effect.LinearVelocity + Vector3(0,localPlayer.LinearVelocity.y,0)
+	_effect:SetActive(true)
+	invoke(function()
+		if _effect.LocalPosition.y >= 0.15 then
+			localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(false)
+			_effect.LinearVelocity = Vector3(0,0,0)
+			wait(0.2)
+			if _effect.LinearVelocity == Vector3(0,0,0) then
+				_effect.LinearVelocity = Vector3(0,-1,0)
+			end
+			wait(0.2)
+			if _effect.LinearVelocity == Vector3(0,-1,0) then
+				localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx.Position = _effect.Position 
+				localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(true)
+				_effect.LinearVelocity = Vector3(0,4,0)
+			end
+			_effect:SetActive(false)
+		end
+	end,0.15)
 end
 
 function GuiCoinInfo:Update(dt)

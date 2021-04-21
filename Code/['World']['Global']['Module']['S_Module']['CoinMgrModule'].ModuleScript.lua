@@ -6,7 +6,7 @@ local CoinMgr, this = ModuleUtil.New('CoinMgr', ServerBase)
 
 ---* 常量声明
 -- 对象池默认容量
-local DEFAUL_POOL_SIZE = 200
+local DEFAUL_POOL_SIZE = 120
 local COIN_DESPAWN_DELAY = 0.12
 
 ---* 变量声明
@@ -43,7 +43,9 @@ function CoinMgr:InitCoinPool(_size)
     coinPool.N10 = ObjPoolUtil.Newpool(world.Coin, 'Coin10_N', _size)
     coinPool.P10 = ObjPoolUtil.Newpool(world.Coin, 'Coin10_P', _size)
     coinPool.N100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_N', _size)
+    --coinPool.N100:PreSpawn(Vector3.Zero)
     coinPool.P100 = ObjPoolUtil.Newpool(world.Coin, 'Coin100_P', _size)
+    --coinPool.P100:PreSpawn(Vector3.Zero)
     coinPool.N1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_N', _size)
     coinPool.P1000 = ObjPoolUtil.Newpool(world.Coin, 'Coin1000_P', _size)
 end
@@ -58,11 +60,12 @@ function CoinMgr:SpawnCoin(_pool, _pos, _dur)
     local coinObj = coinPool[_pool]:Spawn(_pos)
     if string.sub(_pool, 1, 1) == 'P' then
         coinObj.LinearVelocity = Vector3(math.random(-5, 5), 5, math.random(-5, 5))
-        coinObj.Rotation = EulerDegree(90, math.random(0, 180), 0)
+        coinObj.Rotation = EulerDegree(0, math.random(0, 180), 0)
     end
     coinObj.CoinUID.Value = ''
     coinObj.CoinUID.OnValueChanged:Connect(
         function(_oldVal, _newVal)
+            print(coinObj, 'CoinUID.OnValueChanged', _oldVal, _newVal)
             this:GetCoin(_pool, coinObj, _oldVal, _newVal)
         end
     )
@@ -92,7 +95,7 @@ function CoinMgr:DespawnCoin(_pool, _coinObj)
         TimeUtil.ClearTimeout(_coinObj.TimerId.Value)
         _coinObj.TimerId.Value = -1
     end
-	_coinObj.LinearVelocity = Vector3(0,0,0)
+    _coinObj.LinearVelocity = Vector3(0, 0, 0)
     coinPool[_pool]:Despawn(_coinObj)
 end
 
