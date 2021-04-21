@@ -10,7 +10,7 @@ local debug, PrintMazeData, PrintNodePath, GenNodePath = false
 --! 常量配置: 玩家相关
 
 -- 游戏时长(秒)
-local TOTAL_TIME = 90
+local TOTAL_TIME = 30
 local PRE_WAIT_TIME = 1 --迷宫开始前，玩家等待时间
 local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 
@@ -69,15 +69,19 @@ local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .
 --! 常量配置: Wall & Pillar 墙体相关
 
 -- 墙体的Archetype
-local WALL_ARCH = 'Maze_Wall'
+local WALL_ARCH = 'Maze_Wall_Cloud'
 -- 对应Size.Y
 local WALL_HEIGHT = .35 * MAZE_SCALE
 -- 对应Size.X
 local WALL_LENGTH = CELL_SIDE
 -- 对应Size.Z
 local WALL_THICKNESS = 0.04 * MAZE_SCALE
+-- 墙壁位移
+local WALL_OFFSET = Vector3(0, 0.75, 0)
 
-local PILLAR_ARCH = 'Maze_Pillar'
+-- 柱子的Archetype
+-- local PILLAR_ARCH = 'Maze_Pillar'
+-- 对应Size.Y
 local PILLAR_HEIGHT = WALL_HEIGHT
 
 -- 墙壁对象池Hierachy根节点
@@ -344,7 +348,9 @@ end
 
 -- 初始化对象池 - 柱子
 function InitPillarPool()
-    if pillarPoolDone then
+    -- 如果不需要柱子或者柱子已经生成
+    if pillarPoolDone or string.isnilorempty(PILLAR_ARCH) then
+        pillarPoolDone = true
         return
     end
     assert(PILLAR_SPACE and not PILLAR_SPACE:IsNull(), '[Maze] PILLAR_SPACE 为空')
@@ -661,7 +667,7 @@ function MazeWallsGen()
                         (dir == LEFT or dir == UP or (dir == RIGHT and col == NUM_COLS) or
                             (dir == DOWN and row == NUM_ROWS))
                  then
-                    pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos
+                    pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos + WALL_OFFSET
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
                 end
@@ -672,6 +678,10 @@ end
 
 -- 迷宫柱子生成
 function PillarsGen()
+    if string.isnilorempty(PILLAR_ARCH) then
+        return
+    end
+
     -- 柱子位置偏移量
     local cell, pos, rot = nil, nil, EulerDegree(0, 0, 0)
     local rd = false -- 用于判定右下角是否有柱子
@@ -855,21 +865,21 @@ end
 -- 玩家开始迷宫
 function PlayerStartMaze(_player)
     print('[Maze] PlayerStartMaze')
-    NetUtil.Fire_C('InsertInfoEvent', _player, '在规定时间内找到迷宫的出口', 5, true)
+    -- NetUtil.Fire_C('InsertInfoEvent', _player, '在规定时间内找到迷宫的出口', 5, true)
     playerData = {}
     playerData.player = _player
     playerData.checker = 0
     playerData.score = 0
     playerData.time = 0
-    NetUtil.Fire_C(
-        'ClientMazeEvent',
-        playerData.player,
-        Const.MazeEventEnum.JOIN,
-        entrace.Position,
-        floor.Right,
-        TOTAL_TIME,
-        PRE_WAIT_TIME
-    )
+    -- NetUtil.Fire_C(
+    --     'ClientMazeEvent',
+    --     playerData.player,
+    --     Const.MazeEventEnum.JOIN,
+    --     entrace.Position,
+    --     floor.Right,
+    --     TOTAL_TIME,
+    --     PRE_WAIT_TIME
+    -- )
     timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME + PRE_WAIT_TIME + POST_WAIT_TIME)
     startTime = now()
 end
@@ -902,13 +912,13 @@ function PlayerQuitMaze()
     MazeHide()
     GetResult()
     if CheckPlayerExists() then
-        NetUtil.Fire_C(
-            'ClientMazeEvent',
-            playerData.player,
-            Const.MazeEventEnum.QUIT,
-            playerData.score,
-            playerData.time
-        )
+        -- NetUtil.Fire_C(
+        --     'ClientMazeEvent',
+        --     playerData.player,
+        --     Const.MazeEventEnum.QUIT,
+        --     playerData.score,
+        --     playerData.time
+        -- )
         playerData = nil
     end
     TimeUtil.ClearTimeout(timer)
@@ -964,16 +974,17 @@ function Maze:EnterMiniGameEventHandler(_player, _gameId)
             -- TODO: 反馈给NPC对话，说明此原因
             print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
         else
-            --PlayerStartMaze(_player)
+            PlayerStartMaze(_player)
             MazeReset()
             MazeShow()
             for _, player in pairs(world:FindPlayers()) do
+                table.shuffle(corners)
                 NetUtil.Fire_C(
                     'ShowNoticeInfoEvent',
                     player,
                     LanguageUtil.GetText(Config.GuiText.InfoGui_5.Txt),
                     10,
-                    entrace.Position
+                    corners[1]
                 )
             end
         end
