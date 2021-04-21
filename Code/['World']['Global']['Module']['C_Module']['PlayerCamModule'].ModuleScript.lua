@@ -5,7 +5,7 @@
 local PlayerCam, this = ModuleUtil.New('PlayerCam', ClientBase)
 
 --滤镜开关
-local filterSwitch = false
+local swimFilterSwitch = false
 
 --- 初始化
 function PlayerCam:Init()
@@ -97,7 +97,7 @@ end
 
 ---开关游泳滤镜
 function PlayerCam:SwitchSwimFilter(_switch)
-    filterSwitch = _switch
+    swimFilterSwitch = _switch
     if _switch then
         this.playerGameCam.WaterVignette:SetActive(true)
         this.playerGameCam.WaterGaussionBlur:SetActive(true)
@@ -113,6 +113,15 @@ function PlayerCam:SwitchSwimFilter(_switch)
     end
 end
 
+---开关传送滤镜
+function PlayerCam:SwitchTeleportFilterEventHandler(_switch)
+    if _switch then
+        this.playerGameCam.TeleportGlitch:SetActive(true)
+    else
+        this.playerGameCam.TeleportGlitch:SetActive(false)
+    end
+end
+
 ---TPS相机缩放
 function PlayerCam:TPSCamZoom(_force)
     this.tpsCam.FieldOfView = 60 - 10 * _force
@@ -122,16 +131,16 @@ end
 ---游泳滤镜检测
 function PlayerCam:UpdateSwimFilter()
     if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
-        if filterSwitch == true then
+        if swimFilterSwitch == true then
             this:SwitchSwimFilter(false)
         end
     else
         if this.playerGameCam.Position.y < -14.5 then
-            if filterSwitch == false then
+            if swimFilterSwitch == false then
                 this:SwitchSwimFilter(true)
             end
         else
-            if filterSwitch == true then
+            if swimFilterSwitch == true then
                 this:SwitchSwimFilter(false)
             end
         end
