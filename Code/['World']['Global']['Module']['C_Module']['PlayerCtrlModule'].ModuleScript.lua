@@ -26,11 +26,7 @@ local moveRightAxis = 0
 
 local isOnWater = false
 
--- 碰撞开始命令函数
-local ColBeginFunc = {}
-
--- 碰撞结束命令函数
-local ColEndFunc = {}
+local isSwim = false
 
 --- 初始化
 function PlayerCtrl:Init()
@@ -53,21 +49,9 @@ function PlayerCtrl:DataInit()
     this.isControllable = true
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
-    for k, v in pairs(world.SenceAudio:GetChildren()) do
+    for k, v in pairs(world.ScenesAudio:GetChildren()) do
         if v.State == Enum.AudioSourceState.Stopped then
             v:Play()
-        end
-    end
-    for k, v in pairs(Const.InteractEnum) do
-        ColBeginFunc[v] = function(_hitObject)
-            if this[k .. 'ColBeginFunc'] then
-                this[k .. 'ColBeginFunc'](self, _hitObject)
-            end
-        end
-        ColEndFunc = function(_hitObject)
-            if this[k .. 'ColEndFunc'] then
-                this[k .. 'ColEndFunc'](self, _hitObject)
-            end
         end
     end
 end
@@ -211,8 +195,7 @@ end
 
 --游泳检测
 function PlayerCtrl:PlayerSwim()
-    if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
-        --print(localPlayer.Position, world.water.DeepWaterCol.Position)
+    if isSwim == false then
         if
             localPlayer.Position.x < world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 and
                 localPlayer.Position.x > world.Water.DeepWaterCol.Position.x - world.Water.DeepWaterCol.Size.x / 2 and
@@ -220,10 +203,17 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.4
          then
-            --print("游泳检测")
-            NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
-            SoundUtil.Play2DSE(localPlayer.UserId, 20)
+            print('进入游泳')
             FsmMgr:FsmTriggerEventHandler('SwimIdle')
+            if
+                FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
+                    FsmMgr.playerActFsm.curState.stateName == 'Swimming'
+             then
+                isSwim = true
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 30)
+                NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
+                SoundUtil.Play2DSE(localPlayer.UserId, 20)
+            end
         end
     else
         if
@@ -233,8 +223,25 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
-            NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
+            print('退出游泳')
             FsmMgr:FsmTriggerEventHandler('Idle')
+            if
+                FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
+                    FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
+             then
+                isSwim = false
+                localPlayer.GravityScale = 2
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
+                local effect =
+                    world:CreateInstance('LandWater', 'LandWater', world, localPlayer.Position + Vector3(0, 2, 0))
+                invoke(
+                    function()
+                        effect:Destroy()
+                    end,
+                    1
+                )
+            end
         end
     end
 end
