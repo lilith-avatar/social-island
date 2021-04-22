@@ -167,11 +167,13 @@ function GuiNoticeInfo:ShowInfo(dt)
             noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text = playerInfoList[1].text
             LanguageUtil.TextAutoSize(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, 10, 40)
             this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, false)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Icon, false)
             this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG, false)
         end
         playerInfoList[1].t = playerInfoList[1].t - dt
         if playerInfoList[1].t <= 1 and noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Color.a == 255 then
             this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, true)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Icon, true)
             this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG, true)
             invoke(
                 function()
