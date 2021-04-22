@@ -791,12 +791,16 @@ end
 
 function ScenesInteract:InteractSEventHandler(_player, _id)
     print('InteractSEventHandler', _id)
-    EnterInteractFunc[_id](_player)
+    if EnterInteractFunc[_id] then
+        EnterInteractFunc[_id](_player)
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     print('LeaveInteractSEventHandler', _id)
-    LeaveInteractFunc[_id](_player)
+    if LeaveInteractFunc[_id] then
+        LeaveInteractFunc[_id](_player)
+    end
 end
 
 -- 重置交互物体
