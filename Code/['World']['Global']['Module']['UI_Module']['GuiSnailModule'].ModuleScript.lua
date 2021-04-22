@@ -18,7 +18,7 @@ end
 function GuiSnail:NodeRef()
     gui = localPlayer.Local.SnailGUI
     for i = 1, 4 do
-        snailBtn[i] = gui.SnailPanel['SnailBtn' .. i]
+        snailBtn[i] = gui.SnailPanel['Snail' .. i].SnailBtn
         arrowEffect[i] = world.MiniGames.Game_08_Snail.Snail['Snail' .. i].ArrowEffect
     end
 end
