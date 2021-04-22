@@ -48,7 +48,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_5',
         Ico = 'Meal_Ico_6',
         Model = 'Meal5',
-        BuffId = 45,
+        BuffId = 14,
         BuffDur = 30.0
     },
     [6] = {
@@ -138,7 +138,7 @@ local CookMenuXls = {
         Name = 'CookMenu_Name_15',
         Ico = 'Meal_Ico_19',
         Model = 'Meal6',
-        BuffId = 45,
+        BuffId = 14,
         BuffDur = 30.0
     },
     [16] = {
