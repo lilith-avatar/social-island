@@ -57,7 +57,7 @@ end
 function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
-            npc.Portrait = ResourceManager.GetTexture('TestPortrait/' .. npc.PortraitRes)
+            npc.Portrait = ResourceManager.GetTexture('UI/NPCTalk/' .. npc.PortraitRes)
         -- print('[GuiNpc] InitResource()', npc.PortraitRes)
         end
     end

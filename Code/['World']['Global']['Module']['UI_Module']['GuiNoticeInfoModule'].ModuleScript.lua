@@ -19,8 +19,8 @@ local remainingNoticeInfo = {}
 --当前显示的Notice表
 local curNoticeInfo = {}
 
--- 文字FadeTween动画
-local textFadeTween = nil
+-- UIFadeTween动画
+local uiFadeTween = nil
 
 -- 玩家信息处理队列
 local playerInfoList = {}
@@ -92,7 +92,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
             curItemInfoPanel = v
             if #remainingItemID > 0 then
                 curItemInfoPanel:SetActive(true)
-                LanguageUtil.SetText(v.InfoText, Config.Item[remainingItemID[1]].Name, true)
+                LanguageUtil.SetText(v.InfoText, Config.Item[remainingItemID[1]].Name, true, 20, 40)
                 table.remove(remainingItemID, 1)
             end
         end
@@ -100,8 +100,9 @@ function GuiNoticeInfo:RollInfoUI(dt)
     if #remainingNoticeInfo > 0 then
         if this:GetFreeNoticeUI() then
             local tmpUI = this:GetFreeNoticeUI()
+            tmpUI.Info:SetActive(false)
             tmpUI.Info.Text = remainingNoticeInfo[1].text
-            LanguageUtil.TextAutoSize(tmpUI.Info)
+            LanguageUtil.TextAutoSize(tmpUI.Info, 10, 50)
             local tempData = remainingNoticeInfo[1]
             table.insert(
                 curNoticeInfo,
@@ -144,17 +145,17 @@ function GuiNoticeInfo:ShowGetItem(_itemID)
     table.insert(remainingItemID, _itemID)
 end
 
---- 文字渐隐渐显
-function GuiNoticeInfo:TextFade(_text, _isFade)
+--- UI渐隐渐显
+function GuiNoticeInfo:UIFade(_ui, _isFade)
     local alpha = _isFade and 0 or 255
-    textFadeTween =
+    uiFadeTween =
         Tween:TweenProperty(
-        _text,
-        {Color = Color(_text.Color.r, _text.Color.g, _text.Color.b, _isFade and 0 or 255)},
+        _ui,
+        {Color = Color(_ui.Color.r, _ui.Color.g, _ui.Color.b, alpha)},
         0.2,
         Enum.EaseCurve.Linear
     )
-    textFadeTween:Play()
+    uiFadeTween:Play()
 end
 
 --- 显示玩家信息文字
@@ -162,13 +163,18 @@ function GuiNoticeInfo:ShowInfo(dt)
     if #playerInfoList > 0 then
         noticeInfoGUI.Info.PlayerInfoBG:SetActive(true)
         if noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text ~= playerInfoList[1].text then
+            noticeInfoGUI.Info.PlayerInfoBG.BG.Info:SetActive(false)
             noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text = playerInfoList[1].text
-            LanguageUtil.TextAutoSize(noticeInfoGUI.Info.PlayerInfoBG.BG.Info)
-            this:TextFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, false)
+            LanguageUtil.TextAutoSize(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, 10, 40)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, false)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Icon, false)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG, false)
         end
         playerInfoList[1].t = playerInfoList[1].t - dt
         if playerInfoList[1].t <= 1 and noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Color.a == 255 then
-            this:TextFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, true)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, true)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG.Icon, true)
+            this:UIFade(noticeInfoGUI.Info.PlayerInfoBG.BG, true)
             invoke(
                 function()
                     table.remove(playerInfoList, 1)

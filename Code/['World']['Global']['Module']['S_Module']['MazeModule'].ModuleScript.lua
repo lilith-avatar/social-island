@@ -10,7 +10,7 @@ local debug, PrintMazeData, PrintNodePath, GenNodePath = false
 --! 常量配置: 玩家相关
 
 -- 游戏时长(秒)
-local TOTAL_TIME = 90
+local TOTAL_TIME = 30
 local PRE_WAIT_TIME = 1 --迷宫开始前，玩家等待时间
 local POST_WAIT_TIME = .8 --迷宫结束后，玩家等待时间
 
@@ -38,6 +38,10 @@ local EXIT = NUM_ROWS
 
 -- 入口出口对象
 local entrace, exit
+-- 角落flag，用于计算角落的位置
+local cornerFlag
+-- 四个角落的坐标
+local corners = {}
 
 --! 常量配置: Floor 迷宫地板相关
 
@@ -47,31 +51,37 @@ local MAZE_FLOOR_THICKNESS = 2
 -- local MAZE_FLOOR_COLOR = Color(0x9E, 0x9E, 0x9E, 255)
 local MAZE_FLOOR_COLOR = Color(0x9E, 0x9E, 0x9E, 00)
 -- 迷宫地板Obj，根据迷宫中心和尺寸生成
-local floor
+local floor, floorDeco
+-- 地板的Archetype（仅装饰）
+local FLOOR_DECO_ARCH = 'Big_Cloud'
+-- 地板装饰的偏移
+local FLOOR_DECO_OFFSET = Vector3(0, -4, 0)
 
 --! 常量配置: Cell 迷宫单元格相关
 
 -- 迷宫Cell单元格尺寸
 local CELL_SIDE = .54 * MAZE_SCALE
-
 -- 迷宫Cell位置偏移量
 local CELL_POS_OFFSET = CELL_SIDE
-
 -- 迷宫左上角的Cell中心位置
 local CELL_LEFT_UP_POS = Vector3(-NUM_COLS - 1, 0, NUM_ROWS + 1) * CELL_SIDE * .5
 
 --! 常量配置: Wall & Pillar 墙体相关
 
 -- 墙体的Archetype
-local WALL_ARCH = 'Maze_Wall'
+local WALL_ARCH = 'Maze_Wall_Cloud'
 -- 对应Size.Y
 local WALL_HEIGHT = .35 * MAZE_SCALE
 -- 对应Size.X
 local WALL_LENGTH = CELL_SIDE
 -- 对应Size.Z
 local WALL_THICKNESS = 0.04 * MAZE_SCALE
+-- 墙壁位移
+local WALL_OFFSET = Vector3(0, 0.75, 0)
 
-local PILLAR_ARCH = 'Maze_Pillar'
+-- 柱子的Archetype
+-- local PILLAR_ARCH = 'Maze_Pillar'
+-- 对应Size.Y
 local PILLAR_HEIGHT = WALL_HEIGHT
 
 -- 墙壁对象池Hierachy根节点
@@ -184,6 +194,7 @@ function Maze:Init()
     InitMazeCheckerSpace()
     InitMazeFloor()
     InitMazeEntranceAndExit()
+    InitMazeCornerFlog()
     invoke(InitBoundary) -- 空气墙
     invoke(InitCheckerPool, .2) -- 对象池：检查点
     invoke(InitWallPool, 1) -- 对象池：墙
@@ -234,6 +245,19 @@ function InitMazeFloor()
     floor = world:CreateObject('Cube', 'Maze_Floor', MAZE_ROOT, MAZE_CENTER_POS, MAZE_CENTER_ROT)
     floor.Color = MAZE_FLOOR_COLOR
     floor:SetActive(false)
+
+    -- 生成地板实体
+    if not string.isnilorempty(FLOOR_DECO_ARCH) then
+        floorDeco =
+            world:CreateInstance(
+            FLOOR_DECO_ARCH,
+            'Maze_Floor_Deco',
+            MAZE_ROOT,
+            MAZE_CENTER_POS + FLOOR_DECO_OFFSET,
+            MAZE_CENTER_ROT
+        )
+        floorDeco:SetActive(false)
+    end
 end
 
 -- 初始化迷宫入口出口
@@ -248,7 +272,16 @@ function InitMazeEntranceAndExit()
     exit.Color = Color(0xFF, 0x00, 0x00, DEBUG_ALPHA)
     entrace:SetActive(false)
     exit:SetActive(false)
+    --* 出口事件绑定
     -- exit.OnCollisionBegin:Connect(PlayerReachExit)
+end
+
+-- 初始化迷宫角落flag
+function InitMazeCornerFlog()
+    cornerFlag = world:CreateObject('Sphere', 'CornerFlag', floor)
+    cornerFlag.Size = Vector3.One * 0.3 * CELL_SIDE
+    cornerFlag.Color = Color(0xFF, 0x00, 0x00, DEBUG_ALPHA)
+    cornerFlag:SetActive(false)
 end
 
 -- 初始化空气墙
@@ -315,7 +348,9 @@ end
 
 -- 初始化对象池 - 柱子
 function InitPillarPool()
-    if pillarPoolDone then
+    -- 如果不需要柱子或者柱子已经生成
+    if pillarPoolDone or string.isnilorempty(PILLAR_ARCH) then
+        pillarPoolDone = true
         return
     end
     assert(PILLAR_SPACE and not PILLAR_SPACE:IsNull(), '[Maze] PILLAR_SPACE 为空')
@@ -476,6 +511,7 @@ function MazeReset()
     -- reset
     MazeFloorReset()
     MazeEntraceAndExitReset()
+    MazeConrnerReset()
     MazeDataReset()
     MazeObjsReset()
     -- data
@@ -500,8 +536,12 @@ function MazeFloorReset()
     local collen = NUM_COLS * CELL_SIDE
     floor.Size = Vector3(collen, MAZE_FLOOR_THICKNESS, rowlen)
     floor:SetActive(true)
+    if floorDeco then
+        floorDeco:SetActive(true)
+    end
 end
 
+-- 重置入口出口
 function MazeEntraceAndExitReset()
     entrace.LocalPosition =
         Vector3(1, 0, -ENTRANCE) * CELL_POS_OFFSET + CELL_LEFT_UP_POS +
@@ -511,6 +551,20 @@ function MazeEntraceAndExitReset()
         Vector3.Up * (MAZE_FLOOR_THICKNESS + WALL_HEIGHT) * .5
     entrace:SetActive(true)
     exit:SetActive(true)
+end
+
+-- 重置角落
+function MazeConrnerReset()
+    local calPos = function(r, c)
+        cornerFlag.LocalPosition =
+            Vector3(c, 0, -r) * CELL_POS_OFFSET + CELL_LEFT_UP_POS +
+            Vector3.Up * (MAZE_FLOOR_THICKNESS + WALL_HEIGHT) * .5
+        return cornerFlag.Position
+    end
+    corners[1] = calPos(1, 1)
+    corners[2] = calPos(1, NUM_COLS)
+    corners[3] = calPos(NUM_ROWS, 1)
+    corners[4] = calPos(NUM_ROWS, NUM_COLS)
 end
 
 -- 迷宫数据重置
@@ -613,7 +667,7 @@ function MazeWallsGen()
                         (dir == LEFT or dir == UP or (dir == RIGHT and col == NUM_COLS) or
                             (dir == DOWN and row == NUM_ROWS))
                  then
-                    pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos
+                    pos = Vector3(col, 0, -row) * CELL_POS_OFFSET + WALL_DICT[dir].pos + WALL_OFFSET
                     rot = WALL_DICT[dir].rot
                     objWall = SpawnWall(pos, rot)
                 end
@@ -624,6 +678,10 @@ end
 
 -- 迷宫柱子生成
 function PillarsGen()
+    if string.isnilorempty(PILLAR_ARCH) then
+        return
+    end
+
     -- 柱子位置偏移量
     local cell, pos, rot = nil, nil, EulerDegree(0, 0, 0)
     local rd = false -- 用于判定右下角是否有柱子
@@ -699,7 +757,7 @@ function CoinGen()
         cell = M[row][col]
         pos =
             MAZE_CENTER_POS + CELL_LEFT_UP_POS + Vector3(col, 0, -row) * CELL_POS_OFFSET +
-            Vector3.Up * WALL_HEIGHT * 1.5
+            Vector3.Up * WALL_HEIGHT * 1.3
         NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL, TOTAL_TIME)
         if i % 3 == 0 then
             wait()
@@ -723,6 +781,9 @@ function MazeHide()
     PILLAR_SPACE:SetActive(false)
     CHECKER_SPACE:SetActive(false)
     floor:SetActive(false)
+    if floorDeco then
+        floorDeco:SetActive(false)
+    end
 end
 
 -- 找出迷宫路径
@@ -804,21 +865,21 @@ end
 -- 玩家开始迷宫
 function PlayerStartMaze(_player)
     print('[Maze] PlayerStartMaze')
-    NetUtil.Fire_C('InsertInfoEvent', _player, '在规定时间内找到迷宫的出口', 5, true)
+    -- NetUtil.Fire_C('InsertInfoEvent', _player, '在规定时间内找到迷宫的出口', 5, true)
     playerData = {}
     playerData.player = _player
     playerData.checker = 0
     playerData.score = 0
     playerData.time = 0
-    NetUtil.Fire_C(
-        'ClientMazeEvent',
-        playerData.player,
-        Const.MazeEventEnum.JOIN,
-        entrace.Position,
-        floor.Right,
-        TOTAL_TIME,
-        PRE_WAIT_TIME
-    )
+    -- NetUtil.Fire_C(
+    --     'ClientMazeEvent',
+    --     playerData.player,
+    --     Const.MazeEventEnum.JOIN,
+    --     entrace.Position,
+    --     floor.Right,
+    --     TOTAL_TIME,
+    --     PRE_WAIT_TIME
+    -- )
     timer = TimeUtil.SetTimeout(PlayerQuitMaze, TOTAL_TIME + PRE_WAIT_TIME + POST_WAIT_TIME)
     startTime = now()
 end
@@ -851,13 +912,13 @@ function PlayerQuitMaze()
     MazeHide()
     GetResult()
     if CheckPlayerExists() then
-        NetUtil.Fire_C(
-            'ClientMazeEvent',
-            playerData.player,
-            Const.MazeEventEnum.QUIT,
-            playerData.score,
-            playerData.time
-        )
+        -- NetUtil.Fire_C(
+        --     'ClientMazeEvent',
+        --     playerData.player,
+        --     Const.MazeEventEnum.QUIT,
+        --     playerData.score,
+        --     playerData.time
+        -- )
         playerData = nil
     end
     TimeUtil.ClearTimeout(timer)
@@ -913,15 +974,19 @@ function Maze:EnterMiniGameEventHandler(_player, _gameId)
             -- TODO: 反馈给NPC对话，说明此原因
             print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
         else
-            --PlayerStartMaze(_player)
+            PlayerStartMaze(_player)
             MazeReset()
             MazeShow()
-            NetUtil.Broadcast(
-                'ShowNoticeInfoEvent',
-                LanguageUtil.GetText(Config.GuiText.InfoGui_5.Txt),
-                10,
-                entrace.Position
-            )
+            for _, player in pairs(world:FindPlayers()) do
+                table.shuffle(corners)
+                NetUtil.Fire_C(
+                    'ShowNoticeInfoEvent',
+                    player,
+                    LanguageUtil.GetText(Config.GuiText.InfoGui_5.Txt),
+                    10,
+                    corners[1]
+                )
+            end
         end
     end
 end

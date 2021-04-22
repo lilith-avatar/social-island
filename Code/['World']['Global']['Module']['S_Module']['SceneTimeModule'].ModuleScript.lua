@@ -151,24 +151,21 @@ function SceneTime:Update(dt)
         if Config.TimeSkySetting[this.clock] then
             if this.clock == 10 then
                 NetUtil.Broadcast(
-                    'ShowNoticeInfoEvent',
+                    'InsertInfoEvent',
                     LanguageUtil.GetText(Config.GuiText.InfoGui_1.Txt),
-                    20,
-                    Vector3(-61.4808, -10.0305, -44.5828)
+                    10
                 )
             elseif this.clock == 18 then
                 NetUtil.Broadcast(
-                    'ShowNoticeInfoEvent',
+                    'InsertInfoEvent',
                     LanguageUtil.GetText(Config.GuiText.InfoGui_2.Txt),
-                    20,
-                    Vector3(-61.4808, -10.0305, -44.5828)
+                    10
                 )
             elseif this.clock == 20 then
                 NetUtil.Broadcast(
-                    'ShowNoticeInfoEvent',
+                    'InsertInfoEvent',
                     LanguageUtil.GetText(Config.GuiText.InfoGui_3.Txt),
-                    20,
-                    Vector3(-61.4808, -10.0305, -44.5828)
+                    10
                 )
             end
         end

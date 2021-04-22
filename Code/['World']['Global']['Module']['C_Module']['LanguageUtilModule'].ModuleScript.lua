@@ -66,10 +66,14 @@ local function utf8Len(str)
 end
 
 --- 文字自适应
-function LanguageUtil.TextAutoSize(_textUI, _minSize)
+function LanguageUtil.TextAutoSize(_textUI, _minSize, _maxSize)
+    _textUI:SetActive(false)
     local textLength, textTable = utf8Len(_textUI.Text)
-    local maxSize = math.floor(_textUI.FinalSize.y / CHAR_SIZE)
+    local maxSize = _maxSize or math.floor(_textUI.FinalSize.y / CHAR_SIZE)
     local minSize = _minSize or 10
+    if maxSize > math.floor(_textUI.FinalSize.y / CHAR_SIZE) then
+        maxSize = math.floor(_textUI.FinalSize.y / CHAR_SIZE)
+    end
 
     local minUILenth, maxUILenth = 0, 0
     --计算最小/最大字号UI的实际长度
@@ -77,7 +81,10 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
         math.floor(_textUI.FinalSize.x / (CHAR_SIZE * minSize)) *
         math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * minSize)) / 2) *
         minSize
-    maxUILenth = math.floor(_textUI.FinalSize.x / (CHAR_SIZE * maxSize)) * maxSize
+    maxUILenth =
+        math.floor(_textUI.FinalSize.x / (CHAR_SIZE * maxSize)) *
+        math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * maxSize)) / 2) *
+        maxSize
 
     local minStrLenth, maxStrLenth, sizeLength = 0, 0, 0
     --计算最小/最大字号字符串的实际长度
@@ -98,7 +105,7 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
     elseif minUILenth < minStrLenth then --最小字号
         _textUI.FontSize = minSize
         local lenth = 0
-        for i = 1, string.len(_textUI.Text) do
+        for i = 1, textLength do
             if string.byte(_textUI.Text, i) > 127 then
                 lenth = lenth + CHAR_SIZE * minSize * 2
             else
@@ -113,39 +120,41 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize)
         local curSize = math.floor((minUILenth / minStrLenth) * minSize)
         local uiSize = 0
         local textSize = curSize * sizeLength
-        invoke(
-            function()
-                while true do
-                    uiSize =
-                        (math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)) > 0 and
-                        math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)) or
-                        1) *
-                        (math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2) > 0 and
-                            math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2) or
-                            1) *
-                        curSize
-                    textSize = curSize * sizeLength
-                    --print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
-                    --print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
-                    --print(uiSize, textSize, sizeLength, curSize)
-                    if uiSize > textSize then
-                        _textUI.FontSize = curSize
-                        break
-                    end
-                    curSize = curSize - 1
-                end
+        if curSize > maxSize then
+            curSize = maxSize
+        end
+
+        while true do
+            uiSize =
+                (math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)) > 0 and
+                math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)) or
+                1) *
+                (math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2) > 0 and
+                    math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2) or
+                    1) *
+                curSize
+            textSize = curSize * sizeLength
+            --print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
+            --print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
+            --print(uiSize, textSize, sizeLength, curSize)
+            if uiSize > textSize then
+                _textUI.FontSize = curSize
+                
+                break
             end
-        )
+            curSize = curSize - 1
+        end
     end
+    _textUI:SetActive(true)
     --print('文字自适应', _textUI, _textUI.FontSize)
 end
 
 --- 根据ID返回当前游戏语言对应的文本信息，并设置文字大小自适应
-function LanguageUtil.SetText(_textUI, _id, _isAuto, _minSize)
+function LanguageUtil.SetText(_textUI, _id, _isAuto, _minSize, _maxSize)
     _textUI:SetActive(false)
     _textUI.Text = this.GetText(_id)
     if _isAuto then
-        this.TextAutoSize(_textUI, _minSize)
+        this.TextAutoSize(_textUI, _minSize, _maxSize)
     end
     _textUI:SetActive(true)
 end
