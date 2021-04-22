@@ -23,6 +23,11 @@ end
 --节点引用
 function GuiCoinInfo:NodeRef()
     coinInfoGUI = localPlayer.Local.SpecialBottomUI.GetCoinInfoGUI
+
+    this.player = localPlayer
+    this.coinEffect = this.player.Local.Effect.GetCoinEffect.ConstraintFree.Fx
+    this.coinTree = this.player.Independent.GetCoinEffect.ConstraintFree
+
     for i = 1, 6 do
         rollInfoPanel[i] = coinInfoGUI["Panel" .. i]
     end
@@ -64,7 +69,7 @@ function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
 		--[[
         for k, v in pairs(localPlayer.Effect.GetCoinEffect:GetChildren()) do
             v:Emit(math.floor(tonumber(v.Name)))
-        end]]
+        end
 		if _num >= 1000 then
 			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1000)
 		elseif _num >= 100 then
@@ -73,9 +78,50 @@ function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
 			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n10)
 		else
 			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1)
-		end
+		end]]
     end
 end
+
+function GuiCoinInfo:UpdateCoinEventHandler(_num, _bool, _pos)
+    if _pos ~= nil then
+        this.coinEffect.Position = _pos
+        this.coinEffect:SetActive(true)
+        invoke(function()
+            this.coinEffect:SetActive(false)       
+        end, 3)
+    else
+        if _num > 0 then
+            if _num >= 1000 then
+                this:CoinPer(this.coinTree.n1000)
+            elseif _num >= 100 then
+                this:CoinPer(this.coinTree.n100)
+            elseif _num >= 10 then
+                this:CoinPer(this.coinTree.n10)
+            else
+                this:CoinPer(this.coinTree.n1)
+            end
+        end
+    end
+end
+
+function GuiCoinInfo:CoinPer(_effect)
+    local Tweener
+    _effect.Position = this.player.Position + Vector3(0,1.7,0)
+    this.coinTree.Fx.Position = this.player.Position + Vector3(0,2,0)
+    _effect:SetActive(true)
+    
+    if Tweener then Tweener:Complete() end
+    Tweener = Tween:TweenProperty(_effect, { Position = _effect.Position + Vector3(0,1.7,0) }, 1.5, 1)
+    Tweener:Play()
+    Tweener.OnComplete:Connect(function()
+        _effect:SetActive(false)
+        this.coinTree.Fx:SetActive(true)
+    end)
+    invoke(function()
+        this.coinTree.Fx:SetActive(false)
+    end, 0.2)
+end
+
 
 function GuiCoinInfo:GetCoinEffct(_effect)
 	_effect.LocalPosition = Vector3(0,0,0)

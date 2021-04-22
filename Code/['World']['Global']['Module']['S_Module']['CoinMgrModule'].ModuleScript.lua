@@ -104,12 +104,12 @@ function CoinMgr:GetCoin(_pool, _coinObj, _oldVal, _newVal)
     _coinObj.Block = false
     local uid = _coinObj.CoinUID.Value
     assert(not string.isnilorempty(uid), string.format('[CoinMgr] uid为空, pool = %s, coinObj = %s', _pool, _coinObj))
-    NetUtil.Fire_C('UpdateCoinEvent', world:GetPlayerByUserId(uid), _coinObj.CoinNum.Value)
+    NetUtil.Fire_C('UpdateCoinEvent', world:GetPlayerByUserId(uid), _coinObj.CoinNum.Value, false, _coinObj.Position)
     invoke(
         function()
-            _coinObj.LinearVelocity =
-                (world:GetPlayerByUserId(uid).Position + Vector3.Up - _coinObj.Position).Normalized * 10
-            wait(COIN_DESPAWN_DELAY)
+            -- _coinObj.LinearVelocity =
+            --     (world:GetPlayerByUserId(uid).Position + Vector3.Up - _coinObj.Position).Normalized * 10
+            -- wait(COIN_DESPAWN_DELAY)
             if string.sub(_pool, 1, 1) == 'P' then
                 _coinObj.Block = true
             end
