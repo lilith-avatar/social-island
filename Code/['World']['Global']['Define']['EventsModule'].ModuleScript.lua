@@ -47,7 +47,8 @@ Events.ServerEvents = {
     'SProjectileHitEvent', -- @param _player,_projectileID,_projectileOBJ,_hitObj,_hitPos
     'PlayerEatFoodEvent',
     'SInteractOnPlayerColBeginEvent',
-    'SInteractOnPlayerColEndEvent'
+    'SInteractOnPlayerColEndEvent',
+    'PotShakeEvent'
 }
 
 -- 客户端事件列表
@@ -139,7 +140,8 @@ Events.ClientEvents = {
     'CInteractOnPlayerColEndEvent',
     'SetCamDistanceEvent',
     'ResetTentCamEvent',
-    'SwitchTeleportFilterEvent'
+    'SwitchTeleportFilterEvent',
+    'ShowFoodEvent'
 }
 
 return Events
