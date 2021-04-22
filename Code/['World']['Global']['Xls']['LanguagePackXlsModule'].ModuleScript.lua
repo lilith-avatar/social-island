@@ -130,241 +130,241 @@ local LanguagePackXls = {
         ID = 'CookMenu_Name_1',
         CHS = '蔬菜馅饼',
         CHT = '',
-        EN = '',
+        EN = 'Veggie Pies',
         JP = '',
-        YN = ''
+        YN = 'Pai Sayuran'
     },
     CookMenu_Name_2 = {
         ID = 'CookMenu_Name_2',
         CHS = '特制馅饼',
         CHT = '',
-        EN = '',
+        EN = 'Special Pies',
         JP = '',
-        YN = ''
+        YN = 'Pai Spesial'
     },
     CookMenu_Name_3 = {
         ID = 'CookMenu_Name_3',
         CHS = '南瓜蛋糕',
         CHT = '',
-        EN = '',
+        EN = 'Pumpkin Cake',
         JP = '',
-        YN = ''
+        YN = 'Kue Labu'
     },
     CookMenu_Name_4 = {
         ID = 'CookMenu_Name_4',
         CHS = '猛兽料理',
         CHT = '',
-        EN = '',
+        EN = 'Beast Stew',
         JP = '',
-        YN = ''
+        YN = 'Daging Rebus'
     },
     CookMenu_Name_5 = {
         ID = 'CookMenu_Name_5',
         CHS = '不可名状的料理',
         CHT = '',
-        EN = '',
+        EN = 'Unnameable Dish',
         JP = '',
-        YN = ''
+        YN = 'Hidangan Tanpa Nama'
     },
     CookMenu_Name_6 = {
         ID = 'CookMenu_Name_6',
         CHS = '什锦肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Daging Campur'
     },
     CookMenu_Name_7 = {
         ID = 'CookMenu_Name_7',
         CHS = '煮鸟肉',
         CHT = '',
-        EN = '',
+        EN = 'Boiled Bird Meat',
         JP = '',
-        YN = ''
+        YN = 'Daging Burung Rebus'
     },
     CookMenu_Name_8 = {
         ID = 'CookMenu_Name_8',
         CHS = '蔬菜沙拉',
         CHT = '',
-        EN = '',
+        EN = 'Veggie Salad',
         JP = '',
-        YN = ''
+        YN = 'Veggie Salad'
     },
     CookMenu_Name_9 = {
         ID = 'CookMenu_Name_9',
         CHS = '咖喱鹿肉',
         CHT = '',
-        EN = '',
+        EN = 'Curry Venison',
         JP = '',
-        YN = ''
+        YN = 'Kari Daging Rusa'
     },
     CookMenu_Name_10 = {
         ID = 'CookMenu_Name_10',
         CHS = '煎饺',
         CHT = '',
-        EN = '',
+        EN = 'Fried Dumplings',
         JP = '',
-        YN = ''
+        YN = 'Pangsit Goreng'
     },
     CookMenu_Name_11 = {
         ID = 'CookMenu_Name_11',
         CHS = '混合果汁',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Juice',
         JP = '',
-        YN = ''
+        YN = 'Jus Campur'
     },
     CookMenu_Name_12 = {
         ID = 'CookMenu_Name_12',
         CHS = '鸡肉串',
         CHT = '',
-        EN = '',
+        EN = 'Chicken Skewers',
         JP = '',
-        YN = ''
+        YN = 'Tusuk Sate Ayam'
     },
     CookMenu_Name_13 = {
         ID = 'CookMenu_Name_13',
         CHS = '煎猪排',
         CHT = '',
-        EN = '',
+        EN = 'Fried Pork Chops',
         JP = '',
-        YN = ''
+        YN = 'Potongan Daging Babi Goreng'
     },
     CookMenu_Name_14 = {
         ID = 'CookMenu_Name_14',
         CHS = '白煮鹿肉',
         CHT = '',
-        EN = '',
+        EN = 'Blanched Venison',
         JP = '',
-        YN = ''
+        YN = 'Daging Rusa Rebus'
     },
     CookMenu_Name_15 = {
         ID = 'CookMenu_Name_15',
         CHS = '口味奇怪的料理',
         CHT = '',
-        EN = '',
+        EN = 'Strange-tasting Dish',
         JP = '',
-        YN = ''
+        YN = 'Hidangan yang Rasanya Aneh'
     },
     CookMenu_Name_16 = {
         ID = 'CookMenu_Name_16',
         CHS = '萝卜肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Carrot and Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Wortel dan Daging'
     },
     CookMenu_Name_17 = {
         ID = 'CookMenu_Name_17',
         CHS = '萝卜肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Carrot and Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Wortel dan Daging'
     },
     CookMenu_Name_18 = {
         ID = 'CookMenu_Name_18',
         CHS = '萝卜肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Carrot and Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Wortel dan Daging'
     },
     CookMenu_Name_19 = {
         ID = 'CookMenu_Name_19',
         CHS = '萝卜肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Carrot and Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Wortel dan Daging'
     },
     CookMenu_Name_20 = {
         ID = 'CookMenu_Name_20',
         CHS = '特制馅饼',
         CHT = '',
-        EN = '',
+        EN = 'Special Pies',
         JP = '',
-        YN = ''
+        YN = 'Pai Spesial'
     },
     CookMenu_Name_21 = {
         ID = 'CookMenu_Name_21',
         CHS = '特制馅饼',
         CHT = '',
-        EN = '',
+        EN = 'Special Pies',
         JP = '',
-        YN = ''
+        YN = 'Pai Spesial'
     },
     CookMenu_Name_22 = {
         ID = 'CookMenu_Name_22',
         CHS = '特制馅饼',
         CHT = '',
-        EN = '',
+        EN = 'Special Pies',
         JP = '',
-        YN = ''
+        YN = 'Pai Spesial'
     },
     CookMenu_Name_23 = {
         ID = 'CookMenu_Name_23',
         CHS = '特制馅饼',
         CHT = '',
-        EN = '',
+        EN = 'Special Pies',
         JP = '',
-        YN = ''
+        YN = 'Pai Spesial'
     },
     CookMenu_Name_24 = {
         ID = 'CookMenu_Name_24',
         CHS = '南瓜蛋糕',
         CHT = '',
-        EN = '',
+        EN = 'Pumpkin Cake',
         JP = '',
-        YN = ''
+        YN = 'Kue Labu'
     },
     CookMenu_Name_25 = {
         ID = 'CookMenu_Name_25',
         CHS = '什锦肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Daging Campur'
     },
     CookMenu_Name_26 = {
         ID = 'CookMenu_Name_26',
         CHS = '什锦肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Daging Campur'
     },
     CookMenu_Name_27 = {
         ID = 'CookMenu_Name_27',
         CHS = '什锦肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Daging Campur'
     },
     CookMenu_Name_28 = {
         ID = 'CookMenu_Name_28',
         CHS = '什锦肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Daging Campur'
     },
     CookMenu_Name_29 = {
         ID = 'CookMenu_Name_29',
         CHS = '什锦肉汤',
         CHT = '',
-        EN = '',
+        EN = 'Mixed Meat Soup',
         JP = '',
-        YN = ''
+        YN = 'Sup Daging Campur'
     },
     CookMenu_Name_30 = {
         ID = 'CookMenu_Name_30',
         CHS = '蔬菜沙拉',
         CHT = '',
-        EN = '',
+        EN = 'Veggie Salad',
         JP = '',
-        YN = ''
+        YN = 'Veggie Salad'
     },
     GuiText_Txt_1 = {
         ID = 'GuiText_Txt_1',
@@ -1306,17 +1306,17 @@ local LanguagePackXls = {
         ID = 'Item_Name_3001',
         CHS = '泡泡手枪',
         CHT = '',
-        EN = '',
+        EN = 'Bubble Gun',
         JP = '',
-        YN = ''
+        YN = 'Pistol Gelembung'
     },
     Item_Des_3001 = {
         ID = 'Item_Des_3001',
         CHS = '能够发出泡泡',
         CHT = '',
-        EN = '',
+        EN = 'Shoots bubbles.',
         JP = '',
-        YN = ''
+        YN = 'Menembakkan gelembung.'
     },
     Item_Name_4001 = {
         ID = 'Item_Name_4001',
@@ -1370,17 +1370,17 @@ local LanguagePackXls = {
         ID = 'Item_Name_5001',
         CHS = '宇航员套装',
         CHT = '',
-        EN = '',
+        EN = 'Space Suit',
         JP = '',
-        YN = ''
+        YN = 'Baju Luar Angkasa'
     },
     Item_Name_5002 = {
         ID = 'Item_Name_5002',
         CHS = '游泳圈',
         CHT = '',
-        EN = '',
+        EN = 'I have a dream.',
         JP = '',
-        YN = ''
+        YN = 'Keselamatan paling penting.'
     },
     Item_Name_6001 = {
         ID = 'Item_Name_6001',
@@ -2570,33 +2570,33 @@ local LanguagePackXls = {
         ID = 'Item_Des_5001',
         CHS = '我有一个梦想。',
         CHT = '',
-        EN = '',
+        EN = 'Lifesaver',
         JP = '',
-        YN = ''
+        YN = 'Penyelamat'
     },
     Item_Des_5002 = {
         ID = 'Item_Des_5002',
         CHS = '安全第一。',
         CHT = '',
-        EN = '',
+        EN = 'Safety first.',
         JP = '',
-        YN = ''
+        YN = 'Keselamatan paling penting.'
     },
     Item_Name_5003 = {
         ID = 'Item_Name_5003',
         CHS = '畸变水晶',
         CHT = '',
-        EN = '',
+        EN = 'Mutated Crystal',
         JP = '',
-        YN = ''
+        YN = 'Kristal Bermutasi'
     },
     Item_Des_5003 = {
         ID = 'Item_Des_5003',
         CHS = '触摸会发生意想不到的事情。',
         CHT = '',
-        EN = '',
+        EN = 'Touch it and something surprising will happen.',
         JP = '',
-        YN = ''
+        YN = 'Sentuh dan sesuatu yang mengejutkan akan terjadi.'
     },
     GuiText_Txt_InfoGui_1 = {
         ID = 'GuiText_Txt_InfoGui_1',
@@ -2716,7 +2716,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Champion:',
         JP = '',
-        YN = ''
+        YN = 'Juara'
     },
     GuiText_Txt_SnailGui_11 = {
         ID = 'GuiText_Txt_SnailGui_11',
@@ -2834,121 +2834,121 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_NpcGui_1',
         CHS = '进入游戏',
         CHT = '',
-        EN = '',
+        EN = 'Snail Race',
         JP = '',
-        YN = ''
+        YN = 'Balapan Siput'
     },
     GuiText_Txt_NpcGui_2 = {
         ID = 'GuiText_Txt_NpcGui_2',
         CHS = '离开',
         CHT = '',
-        EN = '',
+        EN = 'Leave',
         JP = '',
-        YN = ''
+        YN = 'Keluar'
     },
     GuiText_Txt_NpcGui_3 = {
         ID = 'GuiText_Txt_NpcGui_3',
         CHS = '购买',
         CHT = '',
-        EN = '',
+        EN = 'Buy',
         JP = '',
-        YN = ''
+        YN = 'Beli'
     },
     GuiText_Txt_ShopGui_2 = {
         ID = 'GuiText_Txt_ShopGui_2',
         CHS = '金币不足',
         CHT = '',
-        EN = '',
+        EN = 'Not enough coins',
         JP = '',
-        YN = ''
+        YN = 'Koin tidak cukup'
     },
     GuiText_Txt_ShopGui_3 = {
         ID = 'GuiText_Txt_ShopGui_3',
         CHS = '购买',
         CHT = '',
-        EN = '',
+        EN = 'Buy',
         JP = '',
-        YN = ''
+        YN = 'Beli'
     },
     GuiText_Txt_CookGui_1 = {
         ID = 'GuiText_Txt_CookGui_1',
         CHS = '来做饭吧',
         CHT = '',
-        EN = '',
+        EN = 'Let’s Cook',
         JP = '',
-        YN = ''
+        YN = 'Ayo Memasak'
     },
     GuiText_Txt_CookGui_2 = {
         ID = 'GuiText_Txt_CookGui_2',
         CHS = '选用食材',
         CHT = '',
-        EN = '',
+        EN = 'Ingredients',
         JP = '',
-        YN = ''
+        YN = 'Bahan'
     },
     GuiText_Txt_CookGui_3 = {
         ID = 'GuiText_Txt_CookGui_3',
         CHS = '你做出了%s',
         CHT = '',
-        EN = '',
+        EN = 'You made %s!',
         JP = '',
-        YN = ''
+        YN = 'Kamu membuat %s!'
     },
     GuiText_Txt_CookGui_4 = {
         ID = 'GuiText_Txt_CookGui_4',
         CHS = '吃掉它',
         CHT = '',
-        EN = '',
+        EN = 'Eat',
         JP = '',
-        YN = ''
+        YN = 'Makan'
     },
     GuiText_Txt_CookGui_5 = {
         ID = 'GuiText_Txt_CookGui_5',
         CHS = '放到桌上',
         CHT = '',
-        EN = '',
+        EN = 'Put on table',
         JP = '',
-        YN = ''
+        YN = 'Letakkan di meja'
     },
     GuiText_Txt_CookGui_6 = {
         ID = 'GuiText_Txt_CookGui_6',
         CHS = '打赏',
         CHT = '',
-        EN = '',
+        EN = 'Tip',
         JP = '',
-        YN = ''
+        YN = 'Kiat'
     },
     GuiText_Txt_ShopGui_4 = {
         ID = 'GuiText_Txt_ShopGui_4',
         CHS = '已拥有',
         CHT = '',
-        EN = '',
+        EN = 'Owned',
         JP = '',
-        YN = ''
+        YN = 'Dimiliki'
     },
     GuiText_Txt_CookGui_7 = {
         ID = 'GuiText_Txt_CookGui_7',
         CHS = '宴会还没有开始，晚上再来吧。',
         CHT = '',
-        EN = '',
+        EN = 'The party has not started yet, come back in the evening.',
         JP = '',
-        YN = ''
+        YN = 'Pestanya belum dimulai, kembalilah di sore hari.'
     },
     GuiText_Txt_CookGui_8 = {
         ID = 'GuiText_Txt_CookGui_8',
         CHS = '你要打赏%s多少金币呢？',
         CHT = '',
-        EN = '',
+        EN = 'How many coins do you want to tip %s?',
         JP = '',
-        YN = ''
+        YN = 'Berapa banyak koin yang ingin kamu berikan tip %s?'
     },
     GuiText_Txt_CookGui_9 = {
         ID = 'GuiText_Txt_CookGui_9',
         CHS = '你为%s的%s支付了%s小费。',
         CHT = '',
-        EN = '',
+        EN = 'You tipped%s %s coins for his %s.',
         JP = '',
-        YN = ''
+        YN = 'Kamu memberi tip%s %s koin untuk %s.'
     }
 }
 
