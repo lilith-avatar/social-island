@@ -242,6 +242,13 @@ function PlayerCtrl:PlayerSwim()
                     1
                 )
             end
+        else
+            if
+                FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
+                    FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
+             then
+                isSwim = false
+            end
         end
     end
 end
