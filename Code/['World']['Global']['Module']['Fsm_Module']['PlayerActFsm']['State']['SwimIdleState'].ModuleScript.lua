@@ -4,7 +4,11 @@ function SwimIdle:OnEnter()
     PlayerActState.OnEnter(self)
     localPlayer:MoveTowards(Vector2.Zero)
     localPlayer.GravityScale = 0
-    localPlayer.LinearVelocity = Vector3(0, 0.01, 0)
+    if localPlayer.Position.y <= -15.7 then
+        localPlayer.LinearVelocity = Vector3(0, 0.01, 0)
+    else
+        localPlayer.LinearVelocity = Vector3.Zero
+    end
     --localPlayer.Avatar:PlayAnimation("SwimIdle", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation('SwimIdle', 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar.Position = localPlayer.Position + Vector3(0, 0.8, 0)
@@ -15,6 +19,9 @@ function SwimIdle:OnUpdate(dt)
     FsmMgr.playerActFsm:TriggerMonitor({'Idle', 'Fly'})
     self:MoveMonitor()
     self:JumpMonitor()
+    if localPlayer.Position.y > -15.7 then
+        localPlayer.LinearVelocity = Vector3.Zero
+    end
 end
 
 function SwimIdle:OnLeave()
