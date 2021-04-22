@@ -43,8 +43,8 @@ function CreateNpcs()
             world:CreateInstance(npcInfo.Model, 'NPC_' .. npcInfo.ID, npcFolder, npcInfo.SpawnPos, npcInfo.SpawnRot)
         npcObj.Rotation = npcInfo.SpawnRot
         local id = world:CreateObject('IntValueObject', 'ID', npcObj)
-        world:CreateObject('IntValueObject', 'InteractID', npcObj)
-        npcObj.InteractID.Value = 12
+        local interactID = world:CreateObject('IntValueObject', 'InteractID', npcObj.CollisionArea)
+        interactID.Value = 12
         id.Value = npcInfo.ID
         -- 创建当前玩家
         local state = world:CreateObject('IntValueObject', 'NpcState', npcObj) -- 当前NPC面对的玩家
@@ -296,14 +296,14 @@ end
 function NpcMgr:CInteractOnPlayerColBeginEventHandler(_obj, _id)
     if _id == 12 then
         print('CInteractOnPlayerColBeginEvent', 12)
-        OnEnterNpc(localPlayer, _obj.ID.Value)
+        OnEnterNpc(localPlayer, _obj.Parent.ID.Value)
     end
 end
 
 --- 玩家碰撞结束
 function NpcMgr:CInteractOnPlayerColEndEventHandler(_obj, _id)
     if _id == 12 then
-        OnExitNpc(localPlayer, _obj.ID.Value)
+        OnExitNpc(localPlayer, _obj.Parent.ID.Value)
     end
 end
 

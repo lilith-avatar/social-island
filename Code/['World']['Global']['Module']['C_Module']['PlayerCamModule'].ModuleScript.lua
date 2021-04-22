@@ -154,6 +154,13 @@ function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
     world.CurrentCamera = this.curCamera
 end
 
+-- 转变为FPS相机
+function PlayerCam:SetFPSCamEventHandler(_lookAt)
+    this.curCamera = this.fpsCam
+    this.curCamera.LookAt = _lookAt
+    world.CurrentCamera = this.curCamera
+end
+
 -- 推远或推近玩家镜头
 function PlayerCam:SetCamDistanceEventHandler(_distance, _duration, _triggerBlock)
     if this.distanceTweener then

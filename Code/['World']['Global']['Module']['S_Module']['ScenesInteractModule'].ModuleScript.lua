@@ -66,6 +66,14 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(Config.ScenesInteract) do
         this:InstanceInteractOBJ(v.ID)
     end
+    for k, v in pairs(world.TelescopeInteract:GetChildren()) do
+        telescopeOBJ[v.Name] = {
+            obj = v,
+            aroundPlayers = {}
+        }
+        world:CreateObject('IntValueObject', 'InteractID', v)
+        v.InteractID.Value = 14
+    end
     for k, v in pairs(world.SeatInteract:GetChildren()) do
         seatOBJ[v.Name] = {
             obj = v,
@@ -391,6 +399,40 @@ do
     end
 end
 
+--望远镜交互
+do
+    function ScenesInteract:TelescopeInteractColBeginFunc(_player, _obj)
+        NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 14)
+        telescopeOBJ[_obj.Name].aroundPlayers[_player.UserId] = _player.UserId
+    end
+
+    function ScenesInteract:TelescopeInteractColEndFunc(_player, _obj)
+        NetUtil.Fire_C('CloseDynamicEvent', _player)
+        telescopeOBJ[_obj.Name].aroundPlayers[_player.UserId] = nil
+    end
+    function ScenesInteract:EnterTelescopeInteract(_player)
+        for k1, v1 in pairs(telescopeOBJ) do
+            for k2, v2 in pairs(v1.aroundPlayers) do
+                if v2 == _player.UserId then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 14)
+                    NetUtil.Fire_C('SetFPSCamEvent', _player)
+                end
+            end
+        end
+    end
+
+    function ScenesInteract:LeaveTelescopeInteract(_player)
+        for k1, v1 in pairs(radioOBJ) do
+            for k2, v2 in pairs(v1.aroundPlayers) do
+                if v2 == _player.UserId then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                    NetUtil.Fire_C('SetCurCamEvent', _player)
+                end
+            end
+        end
+    end
+end
+
 --座位交互
 do
     function ScenesInteract:SeatInteractColBeginFunc(_player, _obj)
@@ -606,7 +648,7 @@ do
                     if this.TentList[v.obj.Name].num == 0 then
                         this.TentList[v.obj.Name] = nil
                         v.obj.Effect:SetActive(false)
-                        v.obj.Mesh = ResourceManager.GetMesh('Game/Tent/Tent'..v.obj.ColorStr.Value..'Open')
+                        v.obj.Mesh = ResourceManager.GetMesh('Game/Tent/Tent' .. v.obj.ColorStr.Value .. 'Open')
                     end
                     --离开帐篷玩家的表现
                     _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
@@ -641,7 +683,7 @@ function ScenesInteract:TentNumEffect(_num, _model)
         _model.Effect:SetActive(true)
         _model.Effect.Sleep:SetActive(true)
         _model.Effect.MakeLove:SetActive(false)
-        _model.Mesh = ResourceManager.GetMesh('Game/Tent/Tent'.._model.ColorStr.Value..'Close')
+        _model.Mesh = ResourceManager.GetMesh('Game/Tent/Tent' .. _model.ColorStr.Value .. 'Close')
         this:TentBreath(_model)
     elseif distanceTweener1 then
         distanceTweener1:Pause()
