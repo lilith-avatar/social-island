@@ -3,18 +3,31 @@
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
 ---@module GuiCoinInfo
-local GuiCoinInfo, this = ModuleUtil.New("GuiCoinInfo", ClientBase)
+local GuiCoinInfo, this = ModuleUtil.New('GuiCoinInfo', ClientBase)
 
 --gui
 local coinInfoGUI
 local rollInfoPanel = {}
 local curCoinInfoPanel
 
+--Effect
+local coinEffect = {}
+local blastEffect
+
+--特效刷新间隔
+local EFFECT_INTERVAL = 0.5
+
+--特效最大上限
+local EFFECT_EMI_MAX = 20
+
+--特效梯度系数
+local EFFECT_GRADIENT = 3
+
 --待显示的金币数量
 local remainingCoinNum = 0
 
 function GuiCoinInfo:Init()
-    print("GuiCoinInfo:Init")
+    print('GuiCoinInfo:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -22,11 +35,17 @@ end
 
 --节点引用
 function GuiCoinInfo:NodeRef()
+    --[[
     coinInfoGUI = localPlayer.Local.SpecialBottomUI.GetCoinInfoGUI
     for i = 1, 6 do
         rollInfoPanel[i] = coinInfoGUI["Panel" .. i]
     end
     curCoinInfoPanel = rollInfoPanel[1]
+    ]]
+    coinEffect['1'] = localPlayer.Effect.GetCoinEffect.Coin1
+    coinEffect['10'] = localPlayer.Effect.GetCoinEffect.Coin10
+    coinEffect['100'] = localPlayer.Effect.GetCoinEffect.Coin100
+    blastEffect = localPlayer.Effect.GetCoinEffect.Blast
 end
 
 --数据变量声明
@@ -39,7 +58,7 @@ end
 
 --信息UI滚动
 function GuiCoinInfo:RollInfoUI()
-    for k, v in pairs(rollInfoPanel) do--[[
+    for k, v in pairs(rollInfoPanel) do
         if v.Offset.y <= 175 then
             v.Offset = v.Offset + Vector2(0, 3)
             v.CoinNum.Alpha = v.CoinNum.Alpha - 0.01
@@ -50,21 +69,21 @@ function GuiCoinInfo:RollInfoUI()
             curCoinInfoPanel = v
             if remainingCoinNum > 0 then
                 curCoinInfoPanel:SetActive(true)
-                v.CoinNum.Text = "+" .. remainingCoinNum
+                v.CoinNum.Text = '+' .. remainingCoinNum
                 remainingCoinNum = 0
             end
-        end]]
+        end
     end
 end
 
 --显示获得金币
 function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
-    if _num > 0 then
+    --[[if _num > 0 then
         remainingCoinNum = remainingCoinNum + _num
-		--[[
+    
         for k, v in pairs(localPlayer.Effect.GetCoinEffect:GetChildren()) do
             v:Emit(math.floor(tonumber(v.Name)))
-        end]]
+        end
 		if _num >= 1000 then
 			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1000)
 		elseif _num >= 100 then
@@ -74,34 +93,64 @@ function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
 		else
 			this:GetCoinEffct(localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.n1)
 		end
+    end]]
+end
+
+function GuiCoinInfo:UpdateCoinEventHandler(_num, _fromBag, _pos)
+    if _pos == nil then
+        if _num > 0 then
+            remainingCoinNum = remainingCoinNum + _num
+        end
     end
 end
 
-function GuiCoinInfo:GetCoinEffct(_effect)
-	_effect.LocalPosition = Vector3(0,0,0)
-	_effect.LinearVelocity = _effect.LinearVelocity + Vector3(0,localPlayer.LinearVelocity.y,0)
-	_effect:SetActive(true)
-	invoke(function()
-		if _effect.LocalPosition.y >= 0.15 then
-			localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(false)
-			_effect.LinearVelocity = Vector3(0,0,0)
-			wait(0.2)
-			if _effect.LinearVelocity == Vector3(0,0,0) then
-				_effect.LinearVelocity = Vector3(0,-1,0)
-			end
-			wait(0.2)
-			if _effect.LinearVelocity == Vector3(0,-1,0) then
-				localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx.Position = _effect.Position 
-				localPlayer.Local.Effect.GetCoinEffect.ConstraintFree.Fx:SetActive(true)
-				_effect.LinearVelocity = Vector3(0,4,0)
-			end
-			_effect:SetActive(false)
-		end
-	end,0.15)
+local timer = 0
+function GuiCoinInfo:CalculateNum(dt)
+    if remainingCoinNum > 0 then
+        if timer < EFFECT_INTERVAL then
+            timer = timer + dt
+        else
+            timer = 0
+            if remainingCoinNum < 1 * EFFECT_EMI_MAX * EFFECT_GRADIENT then
+                this:PlayEffect(1)
+            elseif remainingCoinNum < 10 * EFFECT_EMI_MAX * EFFECT_GRADIENT then
+                this:PlayEffect(10)
+            elseif remainingCoinNum < 100 * EFFECT_EMI_MAX * EFFECT_GRADIENT then
+                this:PlayEffect(100)
+            else
+                this:PlayEffect(100)
+            end
+        end
+    end
+end
+
+function GuiCoinInfo:PlayEffect(_type)
+    print('remainingCoinNum', remainingCoinNum)
+    if remainingCoinNum > _type * EFFECT_EMI_MAX then
+        this:Emit(_type, EFFECT_EMI_MAX)
+        remainingCoinNum = remainingCoinNum - _type * EFFECT_EMI_MAX
+    else
+        if math.floor(remainingCoinNum / _type) > 0 then
+            this:Emit(_type, math.floor(remainingCoinNum / _type))
+        else
+            this:Emit(_type, 1)
+        end
+        remainingCoinNum = 0
+    end
+end
+
+function GuiCoinInfo:Emit(_type, _num)
+    print('_type', _type)
+    print('num', _num)
+    coinEffect[tostring(_type)].Coin:Emit(_num)
+    for k, v in pairs(blastEffect:GetChildren()) do
+        v:Emit(_num)
+    end
 end
 
 function GuiCoinInfo:Update(dt)
-    this:RollInfoUI()
+    this:CalculateNum(dt)
+    --this:RollInfoUI()
 end
 
 return GuiCoinInfo
