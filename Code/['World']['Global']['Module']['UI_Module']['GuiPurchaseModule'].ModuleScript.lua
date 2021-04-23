@@ -84,7 +84,7 @@ function GuiPurchase:SliderPurchaseEventHandler(_interactID, _text, _min, _max)
     sliderMin = _min or 1
     sliderMax = _max or Data.Player.coin
     scrollPanel.MinText.Text = _min or 1
-    scrollPanel.MaxText.Text = _max or Data.Player.coin
+    --scrollPanel.MaxText.Text = _max or Data.Player.coin
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.LockImg:SetActive(false)
     purchaseCoin = math.floor((sliderMax - sliderMin) * (100 - scrollPanel.Slider.ScrollScale) / 100 + sliderMin)
     scrollPanel.CurText.Text = purchaseCoin
