@@ -399,7 +399,7 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foo
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = 'By ' .. _cookName
     this.detailIcon.Texture = ResourceManager.GetTexture('UI/MealIco/' .. Config.CookMenu[_foodId].Ico)
-    this.detailIcon.Size = Vector2(128, 128)
+    this.detailIcon.Size = Vector2(170,170)
     this.cookUserId = _cookUserId
     this.foodId = _foodId
     this.foodLocation = _foodLocation

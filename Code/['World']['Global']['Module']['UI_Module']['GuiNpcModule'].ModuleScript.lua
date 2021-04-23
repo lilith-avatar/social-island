@@ -44,8 +44,8 @@ function GuiNpc:InitGui()
     shopBtn.ShopTxt.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_3.Txt)
     leaveBtn = npcGui.LeaveBtn
     leaveBtn.LeaveTxt.Text = LanguageUtil.GetText(Config.GuiText.NpcGui_2.Txt)
-    dialogTxt = npcGui.DialogTxt
-    NameTxt = npcGui.NameTxt
+    dialogTxt = npcGui.DialogBG.DialogTxt
+    NameTxt = npcGui.DialogBG.NameTxt
 end
 
 --- 初始化表格
