@@ -5,11 +5,13 @@
 [![](https://img.shields.io/github/v/release/lilith-avatar/social-island)](https://github.com/lilith-avatar/social-island/releases)
 [![](https://img.shields.io/badge/smap-download-success)](https://github.com/lilith-avatar/social-island/raw/main/Smap/Social%20Island.smap)
 
-:cn: 中文译名：野营社交岛
+:cn: 中文译名：森林大派对（暂定）
 
 :sunrise_over_mountains: 游戏类型：社交休闲
 
 :key: 关键词：社交、互动、休闲
+
+![A1002_Social Island_720P](https://user-images.githubusercontent.com/64057282/115857977-fb9b3280-a460-11eb-972a-4673b907694b.png)
 
 ## 游戏介绍
 
