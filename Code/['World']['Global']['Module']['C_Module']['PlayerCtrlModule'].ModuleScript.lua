@@ -248,6 +248,16 @@ function PlayerCtrl:PlayerSwim()
                     FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
              then
                 isSwim = false
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+                NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
+                local effect =
+                    world:CreateInstance('LandWater', 'LandWater', world, localPlayer.Position + Vector3(0, 2, 0))
+                invoke(
+                    function()
+                        effect:Destroy()
+                    end,
+                    1
+                )
             end
         end
     end

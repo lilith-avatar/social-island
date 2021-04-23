@@ -181,7 +181,23 @@ end
 --- 更新金币显示
 function GuiControl:UpdateCoinNum(_num)
     NetUtil.Fire_C('ShowGetCoinNumEvent', localPlayer, _num)
-    gui.Menu.CoinNum.Text = Data.Player.coin
+    gui.Menu.CoinInfoBG.CoinNum.Text = Data.Player.coin
+end
+
+--- 金币UI震动
+function GuiControl:CoinUIShake(_num)
+    local strength = 0
+    if _num < 10 then
+        strength = 1
+    elseif _num < 100 then
+        strength = 5
+    elseif _num < 500 then
+        strength = 10
+    else
+        strength = 20
+    end
+    local uiTweener = Tween:ShakeProperty(gui.Menu.CoinInfoBG, {'Offset'}, 0.2, strength)
+    uiTweener:Play()
 end
 
 --- 进入小游戏修改UI

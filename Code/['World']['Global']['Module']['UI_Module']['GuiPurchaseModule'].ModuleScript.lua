@@ -61,7 +61,7 @@ function GuiPurchase:PurchaseConfirmEventHandler(_coinNUm, _interactID, _text)
     gui.PurchasePanel.PurchaseBgImg.PurchaseBtn.LockImg:SetActive(Data.Player.coin < _coinNUm)
     gui.PurchasePanel.PurchaseBgImg.DesText:SetActive(false)
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
-    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText, 40, 60)
+    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText, 20, 60)
     confirmPanel:SetActive(true)
     confirmPanel.PriceText.Text = _coinNUm
     confirmPanel.PlayerCoinText.Text = '/' .. Data.Player.coin
@@ -80,7 +80,7 @@ function GuiPurchase:SliderPurchaseEventHandler(_interactID, _text, _min, _max)
     interactID = _interactID
     gui.PurchasePanel.PurchaseBgImg.DesText:SetActive(false)
     gui.PurchasePanel.PurchaseBgImg.DesText.Text = _text
-    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText, 40, 60)
+    LanguageUtil.TextAutoSize(gui.PurchasePanel.PurchaseBgImg.DesText, 20, 60)
     sliderMin = _min or 1
     sliderMax = _max or Data.Player.coin
     scrollPanel.MinText.Text = _min or 1

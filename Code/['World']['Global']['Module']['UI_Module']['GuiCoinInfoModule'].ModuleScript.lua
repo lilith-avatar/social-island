@@ -101,6 +101,8 @@ function GuiCoinInfo:UpdateCoinEventHandler(_num, _fromBag, _pos)
         if _num > 0 then
             remainingCoinNum = remainingCoinNum + _num
         end
+    else
+        GuiControl:CoinUIShake(_num)
     end
 end
 
