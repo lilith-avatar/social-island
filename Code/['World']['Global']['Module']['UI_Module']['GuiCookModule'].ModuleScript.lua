@@ -11,7 +11,10 @@ function GuiCook:Init()
 end
 
 function GuiCook:Test()
-    NetUtil.Fire_C('GetItemEvent', localPlayer, 6043)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, 7001)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, 7002)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, 7003)
+    NetUtil.Fire_C('GetItemEvent', localPlayer, 7004)
 end
 
 function GuiCook:DataInit()
@@ -72,6 +75,8 @@ function GuiCook:NodeDef()
     this.authorName = this.detailPanel.AuthorTxt
     this.detailEatBtn = this.detailPanel.EatBtn
     this.detailReward = this.detailPanel.RewardBtn
+    --* 黑幕
+    this.black = this.root.Black
 end
 
 function GuiCook:EventBind()
@@ -204,8 +209,9 @@ function GuiCook:StartCook()
     --开始烹饪
     this.gui:SetActive(false)
     --打开进度条
-    this.progressPanel:SetActive(true)
-    this.startUpdate = true
+    --this.progressPanel:SetActive(true)
+    --this.startUpdate = true
+    NetUtil.Fire_S('PotShakeEvent',world.Pot.Pot1.Model3,localPlayer)
 end
 
 function GuiCook:GetFinalFoodEventHandler(_foodId)
@@ -333,21 +339,35 @@ function GuiCook:RefreshPageBar(_pageIndex)
     end
 end
 
-function GuiCook:ShowFood()
+local blackTween,showTween
+function GuiCook:ShowFoodEventHandler()
     if not this.foodId then
         invoke(
             function()
-                this:ShowFood()
+                this:ShowFoodEventHandler()
             end,
             0.5
         )
         return
     end
+    this.detailPanel:SetActive(false)
+    this.gui:SetActive(false)
+    this.gui:SetActive(false)
+    this.root:SetActive(true)
+    this.black:SetActive(true)
+    blackTween = Tween:TweenProperty(this.black,{Color=Color(0,0,0,255)},1,1)
+    blackTween:Play()
+    blackTween:WaitForComplete()
+    wait(0.5)
+    showTween = Tween:TweenProperty(this.black,{Color=Color(0,0,0,0)},0.5,1)
+    showTween:Play()
     this:ConsumeMaterial()
     this.titleTxt.Text = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
     this.foodIcon.Texture = ResourceManager.GetTexture('UI/MealIco/' .. Config.CookMenu[this.foodId].Ico)
     this.foodIcon.Size = Vector2(350, 350)
     this.foodPanel:SetActive(true)
+    showTween:WaitForComplete()
+    this.black:SetActive(false)
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
@@ -389,9 +409,10 @@ function GuiCook:EatFood()
         Config.CookMenu[this.foodId].BuffId,
         Config.CookMenu[this.foodId].BuffDur
     )
+    localPlayer.Local.ControlGui:SetActive(false)
     NetUtil.Fire_C('EatFoodEvent', localPlayer, this.foodId)
     this:HideGui()
-    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+    --
     if this.foodLocation then
         NetUtil.Fire_S('PlayerEatFoodEvent', this.foodLocation)
     end
@@ -406,18 +427,6 @@ function GuiCook:PutOnDesk()
 end
 
 function GuiCook:Update(dt)
-    if this.startUpdate then
-        this.timer = this.timer + dt
-        this.progress.FillAmount = this.timer / 5
-        if this.progress.FillAmount >= 1 then
-            this.startUpdate = false
-            this.progressPanel:SetActive(false)
-            --this.gui:SetActive(true)
-            this.progress.FillAmount = 0
-            this.timer = 0
-            this:ShowFood()
-        end
-    end
 end
 
 function GuiCook:SycnTimeCEventHandler(_clock)

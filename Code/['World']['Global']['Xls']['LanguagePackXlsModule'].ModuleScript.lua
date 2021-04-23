@@ -1968,7 +1968,7 @@ local LanguagePackXls = {
     },
     NpcInfo_Name_6 = {
         ID = 'NpcInfo_Name_6',
-        CHS = '内蒂里',
+        CHS = '马诺雷特',
         CHT = '',
         EN = 'Tony',
         JP = '',
@@ -2040,7 +2040,7 @@ local LanguagePackXls = {
     },
     NpcInfo_Name_12 = {
         ID = 'NpcInfo_Name_12',
-        CHS = '马克·波罗',
+        CHS = '内蒂里',
         CHT = '',
         EN = 'Neytiri',
         JP = '',

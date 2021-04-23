@@ -68,6 +68,7 @@ function CookS:PutFood(_foodId, _player)
                     end
                 end
             )
+            --让该玩家摄像头转动看向食物
             return
         end
     end

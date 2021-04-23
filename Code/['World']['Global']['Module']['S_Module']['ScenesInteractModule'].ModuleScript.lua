@@ -759,6 +759,57 @@ do
         end
     end
 
+    local potTweener1, potTweener2, potTweener3, potTweener4, potTweener5,aniEvent
+    function ScenesInteract:PotShakeEventHandler(_model,_player)
+        potTweener1 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 3)
+        potTweener2 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 4)
+        potTweener3 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 5)
+        potTweener4 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 6)
+        potTweener5 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 7)
+        potTweener1.OnComplete:Connect(
+            function()
+                _model.Blast:SetActive(false)
+                potTweener2:Play()
+            end
+        )
+        potTweener2.OnComplete:Connect(
+            function()
+                potTweener3:Play()
+                _model.Effect:SetActive(true)
+            end
+        )
+        potTweener3.OnComplete:Connect(
+            function()
+                potTweener4:Play()
+            end
+        )
+        potTweener4.OnComplete:Connect(
+            function()
+                potTweener5:Play()
+            end
+        )
+        potTweener5.OnComplete:Connect(
+            function()
+                --potTweener1:Play()
+                _model.Effect:SetActive(false)
+                _model.Blast:SetActive(true)
+                invoke(function()
+                    NetUtil.Fire_C('ShowFoodEvent',_player)
+                    _player.Avatar:StopAnimation('SocialDoubt',2)
+                    aniEvent:Clear()
+                end, 0.5)
+            end
+        )
+        aniEvent = _player.Avatar:AddAnimationEvent('SocialDoubt', 0.71)
+        aniEvent:Connect(function()
+            _player.Avatar:StopAnimation('SocialDoubt',2)
+            _player.Avatar:PlayAnimation('SocialDoubt',2,1,0,true,true,0.5)
+        end)
+        _player.Avatar:PlayAnimation('SocialDoubt',2,1,0,true,true,0.5)
+
+        potTweener1:Play()
+    end
+
     function ScenesInteract:LeaveCook(_player)
         for k1, v1 in pairs(potOBJ) do
             for k2, v2 in pairs(v1.aroundPlayers) do
@@ -767,8 +818,8 @@ do
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                     print('table.nums(v1.aroundPlayers)', table.nums(v1.aroundPlayers))
                     if table.nums(v1.aroundPlayers) <= 0 then
-                        v1.obj.Off:SetActive(true)
-                        v1.obj.On:SetActive(false)
+                    --v1.obj.Off:SetActive(true)
+                    --v1.obj.On:SetActive(false)
                     end
                 end
             end
