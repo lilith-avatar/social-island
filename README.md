@@ -11,6 +11,8 @@
 
 :key: 关键词：社交、互动、休闲
 
+![A1002_Social Island_720P](https://user-images.githubusercontent.com/64057282/115857977-fb9b3280-a460-11eb-972a-4673b907694b.png)
+
 ## 游戏介绍
 
 （暂时无）
