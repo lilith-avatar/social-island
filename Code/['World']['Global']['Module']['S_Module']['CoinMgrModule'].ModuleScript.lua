@@ -60,7 +60,7 @@ function CoinMgr:SpawnCoin(_pool, _pos, _dur)
     local coinObj = coinPool[_pool]:Spawn(_pos)
     if string.sub(_pool, 1, 1) == 'P' then
         coinObj.LinearVelocity = Vector3(math.random(-5, 5), 5, math.random(-5, 5))
-        coinObj.Rotation = EulerDegree(0, math.random(0, 180), 0)
+        coinObj.Rotation = EulerDegree(90, math.random(0, 180), 0)
     end
     coinObj.CoinUID.Value = ''
     coinObj.CoinUID.OnValueChanged:Connect(
