@@ -78,6 +78,7 @@ Events.ClientEvents = {
     'TouchNpcEvent', -- @param _npcId, _npcObj
     -- 修改玩家当前相机
     'SetCurCamEvent', -- @param _cam
+    'SetFPSCamEvent',
     -- 显示小游戏的GUI
     'SetMiniGameGuiEvent', -- @param  _gameId, _selfActive, _ctrlGuiActive
     --- 状态机改变触发

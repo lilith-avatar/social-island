@@ -23,7 +23,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = nil,
-        PortraitRes = ''
+        PortraitRes = 'Big_Learze'
     },
     [2] = {
         ID = 2,
@@ -42,7 +42,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = 2,
-        PortraitRes = ''
+        PortraitRes = 'Big_Johnny'
     },
     [3] = {
         ID = 3,
@@ -61,7 +61,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = nil,
-        PortraitRes = ''
+        PortraitRes = 'Big_Zander'
     },
     [4] = {
         ID = 4,
@@ -99,7 +99,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = 5,
-        PortraitRes = ''
+        PortraitRes = 'Big_Jake'
     },
     [6] = {
         ID = 6,
@@ -118,7 +118,7 @@ local NpcInfoXls = {
         GameId = 8,
         PetBattleSwitch = false,
         ShopId = nil,
-        PortraitRes = ''
+        PortraitRes = 'Big_Manolete'
     },
     [7] = {
         ID = 7,
@@ -137,7 +137,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = nil,
-        PortraitRes = ''
+        PortraitRes = 'Big_Boy'
     },
     [8] = {
         ID = 8,
@@ -156,7 +156,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = nil,
-        PortraitRes = ''
+        PortraitRes = 'Big_Girl'
     },
     [9] = {
         ID = 9,
@@ -213,7 +213,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = 11,
-        PortraitRes = ''
+        PortraitRes = 'Big_Bob'
     },
     [12] = {
         ID = 12,
@@ -232,7 +232,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = 12,
-        PortraitRes = ''
+        PortraitRes = 'Big_Neytiri'
     },
     [13] = {
         ID = 13,

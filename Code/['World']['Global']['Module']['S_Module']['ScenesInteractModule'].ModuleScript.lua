@@ -66,6 +66,14 @@ function ScenesInteract:NodeRef()
     for k, v in pairs(Config.ScenesInteract) do
         this:InstanceInteractOBJ(v.ID)
     end
+    for k, v in pairs(world.TelescopeInteract:GetChildren()) do
+        telescopeOBJ[v.Name] = {
+            obj = v,
+            aroundPlayers = {}
+        }
+        world:CreateObject('IntValueObject', 'InteractID', v)
+        v.InteractID.Value = 14
+    end
     for k, v in pairs(world.SeatInteract:GetChildren()) do
         seatOBJ[v.Name] = {
             obj = v,
@@ -385,6 +393,40 @@ do
                     end
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                     return
+                end
+            end
+        end
+    end
+end
+
+--望远镜交互
+do
+    function ScenesInteract:TelescopeInteractColBeginFunc(_player, _obj)
+        NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 14)
+        telescopeOBJ[_obj.Name].aroundPlayers[_player.UserId] = _player.UserId
+    end
+
+    function ScenesInteract:TelescopeInteractColEndFunc(_player, _obj)
+        NetUtil.Fire_C('CloseDynamicEvent', _player)
+        telescopeOBJ[_obj.Name].aroundPlayers[_player.UserId] = nil
+    end
+    function ScenesInteract:EnterTelescopeInteract(_player)
+        for k1, v1 in pairs(telescopeOBJ) do
+            for k2, v2 in pairs(v1.aroundPlayers) do
+                if v2 == _player.UserId then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 14)
+                    NetUtil.Fire_C('SetFPSCamEvent', _player)
+                end
+            end
+        end
+    end
+
+    function ScenesInteract:LeaveTelescopeInteract(_player)
+        for k1, v1 in pairs(radioOBJ) do
+            for k2, v2 in pairs(v1.aroundPlayers) do
+                if v2 == _player.UserId then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                    NetUtil.Fire_C('SetCurCamEvent', _player)
                 end
             end
         end
@@ -800,12 +842,16 @@ end
 
 function ScenesInteract:InteractSEventHandler(_player, _id)
     print('InteractSEventHandler', _id)
-    EnterInteractFunc[_id](_player)
+    if EnterInteractFunc[_id] then
+        EnterInteractFunc[_id](_player)
+    end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     print('LeaveInteractSEventHandler', _id)
-    LeaveInteractFunc[_id](_player)
+    if LeaveInteractFunc[_id] then
+        LeaveInteractFunc[_id](_player)
+    end
 end
 
 -- 重置交互物体
