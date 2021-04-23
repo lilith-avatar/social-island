@@ -211,7 +211,9 @@ function GuiCook:StartCook()
     --打开进度条
     --this.progressPanel:SetActive(true)
     --this.startUpdate = true
-    NetUtil.Fire_S('PotShakeEvent',world.Pot.Pot1.Model3,localPlayer)
+    NetUtil.Fire_S('PotShakeEvent', world.Pot.Pot1.Model3, localPlayer)
+    world.ScenesAudio.BGM_Party.Volume = 0
+    SoundUtil.Play2DSE(localPlayer.UserId, 121)
 end
 
 function GuiCook:GetFinalFoodEventHandler(_foodId)
@@ -339,7 +341,7 @@ function GuiCook:RefreshPageBar(_pageIndex)
     end
 end
 
-local blackTween,showTween
+local blackTween, showTween
 function GuiCook:ShowFoodEventHandler()
     if not this.foodId then
         invoke(
@@ -355,11 +357,12 @@ function GuiCook:ShowFoodEventHandler()
     this.gui:SetActive(false)
     this.root:SetActive(true)
     this.black:SetActive(true)
-    blackTween = Tween:TweenProperty(this.black,{Color=Color(0,0,0,255)},1,1)
+    blackTween = Tween:TweenProperty(this.black, {Color = Color(0, 0, 0, 255)}, 1, 1)
     blackTween:Play()
     blackTween:WaitForComplete()
     wait(0.5)
-    showTween = Tween:TweenProperty(this.black,{Color=Color(0,0,0,0)},0.5,1)
+    SoundUtil.Play2DSE(localPlayer.UserId, 122)
+    showTween = Tween:TweenProperty(this.black, {Color = Color(0, 0, 0, 0)}, 0.5, 1)
     showTween:Play()
     this:ConsumeMaterial()
     this.titleTxt.Text = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name)
@@ -368,6 +371,12 @@ function GuiCook:ShowFoodEventHandler()
     this.foodPanel:SetActive(true)
     showTween:WaitForComplete()
     this.black:SetActive(false)
+    invoke(
+        function()
+            world.ScenesAudio.BGM_Party.Volume = 60
+        end,
+        3
+    )
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
@@ -390,7 +399,7 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foo
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = 'By ' .. _cookName
     this.detailIcon.Texture = ResourceManager.GetTexture('UI/MealIco/' .. Config.CookMenu[_foodId].Ico)
-    this.detailIcon.Size = Vector2(128,128)
+    this.detailIcon.Size = Vector2(128, 128)
     this.cookUserId = _cookUserId
     this.foodId = _foodId
     this.foodLocation = _foodLocation

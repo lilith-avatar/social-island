@@ -194,7 +194,7 @@ local NpcInfoXls = {
         GameId = nil,
         PetBattleSwitch = false,
         ShopId = 10,
-        PortraitRes = ''
+        PortraitRes = 'Big_AI'
     },
     [11] = {
         ID = 11,
