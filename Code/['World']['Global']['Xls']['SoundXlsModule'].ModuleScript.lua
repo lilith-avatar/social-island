@@ -1205,6 +1205,26 @@ local SoundXls = {
         MaxDistance = 30,
         Path = 'Audio/Throw',
         Info = '苹果掉下'
+    },
+    [121] = {
+        ID = 121,
+        Name = 'Cooking',
+        IsLoop = false,
+        Volume = 80.0,
+        MinDistance = 1,
+        MaxDistance = 1,
+        Path = 'Audio/Cooking',
+        Info = '做饭过程中的声音'
+    },
+    [122] = {
+        ID = 122,
+        Name = 'CookDon',
+        IsLoop = false,
+        Volume = 80.0,
+        MinDistance = 1,
+        MaxDistance = 1,
+        Path = 'Audio/CookDon',
+        Info = '做饭完成的声音'
     }
 }
 
