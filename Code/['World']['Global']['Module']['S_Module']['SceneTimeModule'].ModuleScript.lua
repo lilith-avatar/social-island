@@ -19,15 +19,43 @@ function SceneTime:Init()
     this:NodeDef()
     invoke(
         function()
+            this:DefaultTime()
             this.startUpdate = true
         end,
         5
     )
 end
 
+function SceneTime:DefaultTime()
+    local data, configData = {}, Config.TimeSkySetting[this.clock]
+    if not configData then
+        return
+    end
+    this.sky.ShowSun = configData.ShowSun
+    this.sky.Style = configData.Style
+    this.sky.Brightness = configData.Brightness
+    this.sky.Latitude = configData.Latitude
+    this.sky.SunAngular = configData.SunAngular
+    this.sky.ShadowDistance = configData.ShadowDistance
+    this.sky.ShadowIntensity = configData.ShadowIntensity
+    this.sky.Ambient = configData.Ambient
+    this.sky.SunColor = configData.SunColor
+    this.sky.EquatorColor = configData.EquatorColor
+    this.sky.GroundColor = configData.GroundColor
+    this.sky.SunIntensity = configData.SunIntensity
+    this.sky.SkyboxIntensity = configData.SkyboxIntensity
+    this.sky.FogColor = configData.FogColor
+    this.sky.FogStart = configData.FogStart
+    this.sky.FogEnd = configData.FogEnd
+    this.sky.FogColor = configData.FogColor
+    this.sky.FogHeightFadeStart = configData.FogHeightFadeStart
+    this.sky.FogHeightFadeEnd = configData.FogHeightFadeEnd
+    this:RealTimeSycnSkyData()
+end
+
 function SceneTime:DataInit()
     this.timer = 0
-    this.clock = 13 -- 当前游戏内时间
+    this.clock = 10 -- 当前游戏内时间
     this.timeSpeed = 12.5 -- 几秒1个小时
     this.tweener = nil
     this.startUpdate = false
@@ -150,23 +178,11 @@ function SceneTime:Update(dt)
         end
         if Config.TimeSkySetting[this.clock] then
             if this.clock == 10 then
-                NetUtil.Broadcast(
-                    'InsertInfoEvent',
-                    LanguageUtil.GetText(Config.GuiText.InfoGui_1.Txt),
-                    10
-                )
+                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_1.Txt), 10)
             elseif this.clock == 18 then
-                NetUtil.Broadcast(
-                    'InsertInfoEvent',
-                    LanguageUtil.GetText(Config.GuiText.InfoGui_2.Txt),
-                    10
-                )
+                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_2.Txt), 10)
             elseif this.clock == 20 then
-                NetUtil.Broadcast(
-                    'InsertInfoEvent',
-                    LanguageUtil.GetText(Config.GuiText.InfoGui_3.Txt),
-                    10
-                )
+                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_3.Txt), 10)
             end
         end
         NetUtil.Broadcast('SycnTimeCEvent', this.clock)
