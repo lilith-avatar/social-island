@@ -97,16 +97,7 @@ function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
 end
 
 function GuiCoinInfo:UpdateCoinEventHandler(_num, _fromBag, _pos)
-    if _pos then
-        this.coinEffect.Position = _pos
-        this.coinEffect:SetActive(true)
-        invoke(
-            function()
-                this.coinEffect:SetActive(false)
-            end,
-            3
-        )
-    else
+    if _pos == nil then
         if _num > 0 then
             remainingCoinNum = remainingCoinNum + _num
         end
@@ -151,10 +142,8 @@ end
 function GuiCoinInfo:Emit(_type, _num)
     print('_type', _type)
     print('num', _num)
-    --coinEffect[tostring(_type)].Coin.EmissionRate = _num - 1
     coinEffect[tostring(_type)].Coin:Emit(_num)
     for k, v in pairs(blastEffect:GetChildren()) do
-        --v.EmissionRate = _num - 1
         v:Emit(_num)
     end
 end

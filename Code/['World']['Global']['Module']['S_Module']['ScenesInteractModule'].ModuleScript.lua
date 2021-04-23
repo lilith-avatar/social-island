@@ -323,7 +323,7 @@ function ScenesInteract:TrojanShake(dt)
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
             -- 给钱
-            NetUtil.Fire_C('UpdateCoinEvent', v.player, 500, false)
+            NetUtil.Fire_C('UpdateCoinEvent', v.player, 1, false)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3

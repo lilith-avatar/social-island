@@ -97,6 +97,13 @@ function CoinMgr:DespawnCoin(_pool, _coinObj)
     end
     _coinObj.LinearVelocity = Vector3(0, 0, 0)
     coinPool[_pool]:Despawn(_coinObj)
+    local despawnEffect = world:CreateInstance('CoinDespawnEffect', 'CoinDespawnEffect', world, _coinObj.Position)
+    invoke(
+        function()
+            despawnEffect:Destroy()
+        end,
+        1
+    )
 end
 
 --- 获得金币
