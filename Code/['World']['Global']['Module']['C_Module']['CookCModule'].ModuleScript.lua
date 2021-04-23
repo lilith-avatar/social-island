@@ -17,6 +17,7 @@ function CookC:EventBind()
     this.foodDestroyTime:Connect(
         function()
             this:DestroyFood()
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
         end
     )
 end
@@ -47,7 +48,6 @@ function CookC:EatFoodEventHandler(_foodId)
         world:CreateInstance(Config.CookMenu[_foodId].Model, 'Food', localPlayer.Avatar.Bone_R_Hand.RHandWeaponNode)
     foodModel.LocalPosition = Vector3.Zero
     foodModel.LocalRotation = EulerDegree(3.0258, 12.924, -4.0823)
-
     localPlayer.Avatar:PlayAnimation('Drink', 2, 1, 0, true, false, 1)
 end
 
