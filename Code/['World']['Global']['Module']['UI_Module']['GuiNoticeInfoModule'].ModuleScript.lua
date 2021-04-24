@@ -100,6 +100,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
     if #remainingNoticeInfo > 0 then
         if this:GetFreeNoticeUI() then
             local tmpUI = this:GetFreeNoticeUI()
+            tmpUI.profile.Texture = ResourceManager.GetTexture('UI/NPCTalk/' .. remainingNoticeInfo[1].profileImg)
             tmpUI.Info:SetActive(false)
             tmpUI.Info.Text = remainingNoticeInfo[1].text
             LanguageUtil.TextAutoSize(tmpUI.Info, 10, 50)
@@ -113,11 +114,21 @@ function GuiNoticeInfo:RollInfoUI(dt)
             )
             table.remove(remainingNoticeInfo, 1)
             tmpUI.Join.OnClick:Clear()
+            if tempData.callBack then
+                tmpUI.Join:SetActive(true)
+            else
+                tmpUI.Join:SetActive(false)
+            end
             tmpUI.Join.OnClick:Connect(
                 function()
-                    localPlayer.Position = tempData.pos
                     this:PopUpNotice(tmpUI, false)
                     tempData.t = 0.5
+                    print(type(tempData.callBack))
+                    if type(tempData.callBack) == 'function' then
+                        tempData.callBack()
+                    elseif type(tempData.callBack) == 'userdata' then
+                        localPlayer.Position = tempData.callBack
+                    end
                 end
             )
             tmpUI.Close.OnClick:Clear()
@@ -200,13 +211,16 @@ function GuiNoticeInfo:InsertInfoEventHandler(_text, _t)
 end
 
 --显示通知信息
-function GuiNoticeInfo:ShowNoticeInfoEventHandler(_text, _t, _pos)
+function GuiNoticeInfo:ShowNoticeInfoEventHandler(_noticeInfoID, _callBack)
+    local info = Config.NoticeInfo[_noticeInfoID]
+    print(table.dump(info))
     table.insert(
         remainingNoticeInfo,
         {
-            text = _text,
-            t = _t + 1,
-            pos = _pos
+            text = LanguageUtil.GetText(Config.GuiText[info.TextID].Txt),
+            t = info.Dur + 1,
+            profileImg = info.ProfileImg,
+            callBack = _callBack or nil
         }
     )
 end

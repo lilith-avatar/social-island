@@ -56,12 +56,7 @@ end
 function UFOMgr:ActiveUFO()
     durUFO = 45
     UFO:SetActive(true)
-    NetUtil.Broadcast(
-        'ShowNoticeInfoEvent',
-        LanguageUtil.GetText(Config.GuiText.InfoGui_4.Txt),
-        10,
-        Vector3(54.3585, 66.6861, 24.6156)
-    )
+    NetUtil.Broadcast('ShowNoticeInfoEvent', 4, Vector3(54.3585, 66.6861, 24.6156))
 end
 
 --- UFO计时

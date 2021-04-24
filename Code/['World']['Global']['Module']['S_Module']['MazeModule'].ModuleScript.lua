@@ -979,13 +979,7 @@ function Maze:EnterMiniGameEventHandler(_player, _gameId)
             MazeShow()
             for _, player in pairs(world:FindPlayers()) do
                 table.shuffle(corners)
-                NetUtil.Fire_C(
-                    'ShowNoticeInfoEvent',
-                    player,
-                    LanguageUtil.GetText(Config.GuiText.InfoGui_5.Txt),
-                    10,
-                    corners[1]
-                )
+                NetUtil.Fire_C('ShowNoticeInfoEvent', player, 1, corners[1])
             end
         end
     end
