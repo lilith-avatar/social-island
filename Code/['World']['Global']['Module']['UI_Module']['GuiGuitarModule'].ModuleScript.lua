@@ -28,9 +28,9 @@ end
 
 function GuiGuitar:NodeDef()
     this.gui = localPlayer.Local.GuitarGui
-    this.fret = this.gui.FretPanel:GetChildren()
-    this.string = this.gui.StringPanel:GetChildren()
-    this.chordBtn = this.gui.ChordPanel:GetChildren()
+    this.fret = this.gui.BGImg.FretPanel:GetChildren()
+    this.string = this.gui.BGImg.StringPanel:GetChildren()
+    this.chordBtn = this.gui.BGImg.ChordPanel:GetChildren()
     this.chordModeBtn = this.gui.ModePanel.ChordModeBtn
     this.proModeBtn = this.gui.ModePanel.ProModeBtn
     this.closeBtn = this.gui.CloseBtn
@@ -106,11 +106,15 @@ end
 function GuiGuitar:ChangeMode(_isChordMode)
     --this.practiceMode = not this.practiceMode
     --this.practiceBtn.Color = this.practiceMode and Color(85, 85, 127) or Color(255, 255, 255)
-    this.gui.ChordPanel:SetActive(_isChordMode)
+    this.gui.BGImg.ChordPanel:SetActive(_isChordMode)
+    this.chordModeBtn.Color= _isChordMode and Color(0, 85, 255, 255) or Color(255, 255, 255, 255)
+    this.proModeBtn.Color= _isChordMode and Color(255, 255, 255, 255) or Color(0, 85, 255, 255)
     if _isChordMode then
         this:ChangeChord(this.chordBtn[1].Name)
         this.chordBtn[1].Color = Color(0, 85, 255, 255)
+        this.gui.BGImg.ChordDisable:SetActive(true)
     else
+        this.gui.BGImg.ChordDisable:SetActive(false)
         this:StringInit()
     end
 end
