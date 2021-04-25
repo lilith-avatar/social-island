@@ -142,7 +142,8 @@ Events.ClientEvents = {
     'SetCamDistanceEvent',
     'ResetTentCamEvent',
     'SwitchTeleportFilterEvent',
-    'ShowFoodEvent'
+    'ShowFoodEvent',
+    'FoodOnDeskActionEvent'
 }
 
 return Events
