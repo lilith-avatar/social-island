@@ -155,14 +155,17 @@ function StartUpdate()
         dt = curr - prev
         tt = tt + dt
         prev = curr
-        xpcall(
+        UpdateServer(dt, tt)
+        --[[xpcall(
             function()
-                UpdateServer(dt, tt)
+                --local a = 10 / nil
+               
             end,
             function(err)
                 ErrorShow(err)
+                error(err)
             end
-        )
+        )]]
     end
 end
 

@@ -34,7 +34,7 @@ local LeaveStateFunc = {}
 
 --- 初始化
 function Hunt:Init()
-    --[[print('Hunt:Init')
+    print('Hunt:Init')
     this:NodeRef()
     invoke(
         function()
@@ -44,7 +44,7 @@ function Hunt:Init()
             this:InitAnimalData()
         end,
         5
-    )]]
+    )
 end
 
 --- 节点引用
@@ -565,7 +565,7 @@ function Hunt:AnimalUpdate(dt)
 end
 
 function Hunt:Update(dt)
-    --this:AnimalUpdate(dt)
+    this:AnimalUpdate(dt)
 end
 
 return Hunt

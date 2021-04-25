@@ -161,7 +161,7 @@ function Snail:StartRaceCD(dt)
             this:StartSnailRace()
         else
             if startCD == 10 then
-                SoundUtil.Play3DSE(startPoints[1].Position, 9)
+                --SoundUtil.Play3DSE(startPoints[1].Position, 9)
                 NetUtil.Broadcast('ShowNoticeInfoEvent', 2, Vector3(-30.1, -11.3, -29.7))
             end
             startCD = startCD - dt
