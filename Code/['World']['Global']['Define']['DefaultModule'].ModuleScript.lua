@@ -33,6 +33,9 @@ Data.Default.Player = {
     coin = 0,
     -- 背包
     bag = {},
+    -- 宠物
+    petID = 0,
+    petName = '',
     -- 小游戏相关
     mini = {},
     -- 统计数据
