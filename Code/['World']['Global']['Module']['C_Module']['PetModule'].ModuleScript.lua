@@ -4,9 +4,6 @@
 --- @author Dead Ratman
 local Pet, this = ModuleUtil.New('Pet', ClientBase)
 
---宠物ID
-local petID = 0
-
 --宠物物体
 local petOBJ = nil
 
@@ -68,8 +65,8 @@ function Pet:EventBind()
     gui.Panel.BgImg.ConfirmBtn.OnClick:Connect(
         function()
             this:NamedPet(gui.Panel.BgImg.InputText.Text)
-            this:InstancePet(petID)
-            this:GetPetData(petID)
+            this:InstancePet(Data.Player.petID)
+            this:GetPetData(Data.Player.petID)
             gui:SetActive(false)
         end
     )
@@ -91,7 +88,7 @@ end
 
 --- 弹出宠物命名面板
 function Pet:OpenNamedPetUI(_id)
-    petID = _id
+    Data.Player.petID = _id
     LanguageUtil.SetText(gui.Panel.BgImg.DesText, 'GuiText_Txt_PetGui_6', true, 20, 40)
     gui:SetActive(true)
 end
@@ -99,7 +96,7 @@ end
 --- 宠物命名
 function Pet:NamedPet(_name)
     if _name ~= '' and _name ~= nil then
-        petData.name = ':' .. _name
+        Data.Player.petName = ':' .. _name
     else
         _name = ''
     end
@@ -162,8 +159,8 @@ function Pet:GetPetData(_id)
         math.random(Config.PetEntry2[petEntry2ID].SpeedRange[1], Config.PetEntry2[petEntry2ID].SpeedRange[2])
     petData.strength = petData.strength > 0 and petData.strength or 1
     petData.speed = petData.speed > 0 and petData.speed or 1
-    petOBJ.NameGUI.Panel.NameBGText.Text = localPlayer.Name .. '的宠物' .. petData.name
-    petOBJ.NameGUI.Panel.NameText.Text = localPlayer.Name .. '的宠物' .. petData.name
+    petOBJ.NameGUI.Panel.NameBGText.Text = localPlayer.Name .. '的宠物' .. Data.Player.petName
+    petOBJ.NameGUI.Panel.NameText.Text = localPlayer.Name .. '的宠物' .. Data.Player.petName
     petOBJ.NameGUI.Panel.TypeBGText.Text =
         Config.PetEntry1[petEntry1ID].Name .. Config.PetEntry2[petEntry2ID].Name .. Config.Pet[_id].Name
     petOBJ.NameGUI.Panel.TypeText.Text =
@@ -182,7 +179,9 @@ do
     function Pet:EnterState1()
         petOBJ:SetActive(true)
         petOBJ.AnimatedMesh:PlayAnimation(
-            Config.Animal[petID].IdleAnimationName[math.random(#Config.Animal[petID].IdleAnimationName)],
+            Config.Animal[Data.Player.petID].IdleAnimationName[
+                math.random(#Config.Animal[Data.Player.petID].IdleAnimationName)
+            ],
             2,
             1,
             0.1,
@@ -196,13 +195,15 @@ do
     function Pet:EnterState2()
         petOBJ:SetActive(true)
         petOBJ.AnimatedMesh:PlayAnimation(
-            Config.Animal[petID].MoveAnimationName[math.random(#Config.Animal[petID].MoveAnimationName)],
+            Config.Animal[Data.Player.petID].MoveAnimationName[
+                math.random(#Config.Animal[Data.Player.petID].MoveAnimationName)
+            ],
             2,
             1,
             0.1,
             true,
             true,
-            6 / Config.Animal[petID].DefMoveSpeed
+            6 / Config.Animal[Data.Player.petID].DefMoveSpeed
         )
         petOBJ.WalkSpeed = 6
         this:GetMoveTable(localPlayer.Position - localPlayer.Forward)
@@ -284,6 +285,15 @@ function Pet:PetMove()
     else
         petOBJ:MoveTowards(Vector2.Zero)
         EnterStateFunc[petStateEum.IDLE]()
+    end
+end
+
+--- 长期存储成功读取后
+function Pet:LoadPlayerDataSuccessEventHandler(_hasData)
+    print('[Pet] 读取长期存储成功')
+    if _hasData and Data.Player.petID ~= 0 then
+        this:InstancePet(Data.Player.petID)
+        this:GetPetData(Data.Player.petID)
     end
 end
 
