@@ -14,7 +14,7 @@ function MaterialItem:UseInBag()
     print("使用", self.id)
     ItemBase.UseInBag(self)
     NetUtil.Fire_C("UpdateCoinEvent", localPlayer, self.derivedData.GetCoin, true)
-    if self.typeConfig.IsConsum then
+    if self.typeConfig.IsConsume then
         NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
     end
 end

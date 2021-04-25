@@ -14,7 +14,7 @@ local ItemTypeXls = {
         IsStack = false,
         IsGetRepeatedly = false,
         IsUseable = true,
-        IsConsum = false,
+        IsConsume = false,
         IsEquip = true
     },
     [2] = {
@@ -24,7 +24,7 @@ local ItemTypeXls = {
         IsStack = false,
         IsGetRepeatedly = false,
         IsUseable = true,
-        IsConsum = false,
+        IsConsume = false,
         IsEquip = true
     },
     [3] = {
@@ -34,7 +34,7 @@ local ItemTypeXls = {
         IsStack = false,
         IsGetRepeatedly = false,
         IsUseable = true,
-        IsConsum = false,
+        IsConsume = false,
         IsEquip = true
     },
     [4] = {
@@ -44,7 +44,7 @@ local ItemTypeXls = {
         IsStack = true,
         IsGetRepeatedly = true,
         IsUseable = true,
-        IsConsum = true,
+        IsConsume = true,
         IsEquip = true
     },
     [5] = {
@@ -54,7 +54,7 @@ local ItemTypeXls = {
         IsStack = false,
         IsGetRepeatedly = false,
         IsUseable = true,
-        IsConsum = false,
+        IsConsume = false,
         IsEquip = true
     },
     [6] = {
@@ -64,7 +64,7 @@ local ItemTypeXls = {
         IsStack = false,
         IsGetRepeatedly = false,
         IsUseable = false,
-        IsConsum = false,
+        IsConsume = false,
         IsEquip = false
     },
     [7] = {
@@ -74,7 +74,7 @@ local ItemTypeXls = {
         IsStack = true,
         IsGetRepeatedly = true,
         IsUseable = true,
-        IsConsum = true,
+        IsConsume = true,
         IsEquip = false
     }
 }
