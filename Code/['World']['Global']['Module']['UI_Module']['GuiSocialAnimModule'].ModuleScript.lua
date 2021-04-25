@@ -107,4 +107,10 @@ function GuiSocialAnim:UIStartTween()
     zoomTweener:Play()
 end
 
+function GuiSocialAnim:Update(dt)
+    if switchBtn.ActiveSelf == false and SocialAnimationGUI.ActiveSelf == true then
+        SocialAnimationGUI:SetActive(false)
+    end
+end
+
 return GuiSocialAnim

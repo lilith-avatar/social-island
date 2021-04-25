@@ -209,6 +209,11 @@ function GuiControl:ChangeMiniGameUIEventHandler(_id)
     gui.Menu:SetActive(config.MenuActive)
     gui.Ctrl:SetActive(config.CtrlActive)
     this:UpdateTakeOffBtn()
+    if config.MenuActive then
+        gui.Menu.BagBtn:SetActive(config.BagBtnActive)
+        gui.Menu.ResetBtn:SetActive(config.ResetBtnActive)
+        gui.Menu.CoinInfoBG:SetActive(config.CoinInfoBGActive)
+    end
     if config.CtrlActive then
         gui.Ctrl.UseBtn:SetActive(config.UseBtnActive)
         gui.Ctrl.JumpBtn:SetActive(config.JumpBtnActive)
