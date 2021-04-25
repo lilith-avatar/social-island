@@ -309,7 +309,7 @@ function GuiCook:ShowItemByIndex(_index, _itemId)
     this.slotList[_index].ItemImg.IMGNormal.Texture =
         ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[_itemId].Icon)
     -- 显示数量
-    this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
+    this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(184, 184)
     this.slotList[_index].NameTxt.Text = LanguageUtil.GetText(Config.Item[_itemId].Name)
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
