@@ -115,7 +115,7 @@ function SoundUtil.Play2DSE(_uid, _SEID)
         index = table.nums(audioSourcePool.SE2D[_uid]) + 1
         source = Init2DAudioSource(table.nums(audioSourcePool.SE2D[_uid]) + 1, _uid)
     end
-    --print('[SoundUtil] 播放2D音频', _SEID)
+    print('[SoundUtil] 播放2D音频', _SEID)
     source.MinDistance = clipTable[_SEID].minDistance
     source.MaxDistance = clipTable[_SEID].maxDistance
     source.Loop = clipTable[_SEID].isLoop
@@ -141,7 +141,7 @@ function SoundUtil.Play3DSE(_pos, _SEID)
         index = table.nums(audioSourcePool.SE3D) + 1
         source = Init3DAudioSource(table.nums(audioSourcePool.SE3D) + 1)
     end
-    --print('[SoundUtil] 播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
+    print('[SoundUtil] 播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
     source.Position = _pos
     source.MinDistance = clipTable[_SEID].minDistance
     source.MaxDistance = clipTable[_SEID].maxDistance
