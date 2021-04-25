@@ -58,7 +58,7 @@ function ItemMgr:NewBagData(_id)
             count = 0,
             lastestTime = 0,
             isNew = true,
-            isConst = typeConfig.IsConsum
+            isConst = typeConfig.IsConsume
         }
         Data.Player.bag[_id] = tempBag
     end
