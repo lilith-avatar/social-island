@@ -75,13 +75,17 @@ function GuiNoticeInfo:GetFreeNoticeUI()
     return nil
 end
 
+local itemRollTimer = 0
 --信息UI滚动
 function GuiNoticeInfo:RollInfoUI(dt)
+    itemRollTimer = itemRollTimer + dt
     for k, v in pairs(rollItemInfoPanel) do
+        local rate = (v.Offset.y + 160) / 400 + 0.3
+        local speed = rate * rate * rate + 0.1
         if v.Offset.y <= 240 then
-            v.Offset = v.Offset + Vector2(0, 3)
+            v.Offset = v.Offset + Vector2(0, 20 * speed)
             for _, ui in pairs(v:GetChildren()) do
-                ui.Alpha = ui.Alpha - 0.01
+                ui.Alpha = ui.Alpha - 0.1 * speed
             end
         else
             v.Offset = Vector2(v.Offset.x, -160)
@@ -90,8 +94,10 @@ function GuiNoticeInfo:RollInfoUI(dt)
                 ui.Alpha = 1
             end
             curItemInfoPanel = v
-            if #remainingItemID > 0 then
+            if #remainingItemID > 0 and itemRollTimer > 1 then
+                itemRollTimer = 0
                 curItemInfoPanel:SetActive(true)
+                v.Icon.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[remainingItemID[1]].Icon)
                 LanguageUtil.SetText(v.InfoText, Config.Item[remainingItemID[1]].Name, true, 20, 40)
                 table.remove(remainingItemID, 1)
             end

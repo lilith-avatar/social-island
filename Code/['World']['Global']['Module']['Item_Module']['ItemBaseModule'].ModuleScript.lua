@@ -89,7 +89,7 @@ function ItemBase:Unequip()
     )
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
     --wait(self.baseData.TakeOutTime)
-    self:PutIntoBag()
+    Data.Player.bag[self.baseData.ItemID].count = Data.Player.bag[self.baseData.ItemID].count + 1
     GuiControl:UpdateTakeOffBtn()
     GuiControl:UpdateUseBtnIcon()
 end
