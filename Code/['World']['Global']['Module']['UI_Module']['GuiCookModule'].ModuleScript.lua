@@ -430,9 +430,10 @@ function GuiCook:EatFood()
 end
 
 function GuiCook:PutOnDesk()
-    NetUtil.Fire_S('FoodOnDeskEvent', this.foodId, localPlayer)
+    NetUtil.Fire_C('FoodOnDeskActionEvent',localPlayer,this.foodId)
     this.foodId = nil
-    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+    this.root:SetActive(false)
+    --NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
 function GuiCook:Update(dt)

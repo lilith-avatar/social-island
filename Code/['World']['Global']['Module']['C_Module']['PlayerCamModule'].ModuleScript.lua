@@ -174,6 +174,16 @@ function PlayerCam:SetCamDistanceEventHandler(_distance, _duration, _triggerBloc
     this.curCamera.PhysicalBlock = _triggerBlock or false
 end
 
+local actionFovTweener
+function PlayerCam:FoodOnDeskActionEventHandler(_foodId)
+    this.actionCam.FieldOfView = 60
+    NetUtil.Fire_C('SetCurCamEvent', localPlayer, this.actionCam)
+    actionFovTweener = Tween:TweenProperty(this.actionCam, {FieldOfView = 50}, 1.5, 1)
+    actionFovTweener:Play()
+    actionFovTweener:WaitForComplete()
+    NetUtil.Fire_S('FoodOnDeskEvent', _foodId, localPlayer)
+end
+
 function PlayerCam:ResetTentCamEventHandler(_distance)
     this.curCamera.LookAt = localPlayer
     wait()
