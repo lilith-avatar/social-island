@@ -4,7 +4,7 @@
 -- @author Dead Ratman
 ---@module BuffMgr
 
-local BuffMgr, this = ModuleUtil.New("BuffMgr", ClientBase)
+local BuffMgr, this = ModuleUtil.New('BuffMgr', ClientBase)
 
 local BuffDataList = {}
 
@@ -15,7 +15,9 @@ local defPlayerData = {
     AvatarHeight = 1,
     HeadEffect = {},
     BodyEffect = {},
+    HandEffect = {},
     FootEffect = {},
+    EntiretyEffect = {},
     WalkSpeed = 6,
     JumpUpVelocity = 8,
     GravityScale = 2,
@@ -24,7 +26,7 @@ local defPlayerData = {
 }
 
 function BuffMgr:Init()
-    print("BuffMgr:Init")
+    print('BuffMgr:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -52,10 +54,10 @@ end
 --获得Buff
 function BuffMgr:GetBuffEventHandler(_buffID, _dur)
     if _buffID ~= 0 then
-		if Config.Buff[_buffID].NeedSound == true then
-			SoundUtil.Play2DSE(localPlayer.UserId, 109)
-		end
-		
+        if Config.Buff[_buffID].NeedSound == true then
+            SoundUtil.Play2DSE(localPlayer.UserId, 109)
+        end
+
         if BuffDataList[_buffID] then
             BuffDataList[_buffID].curTime = _dur
         else
@@ -67,8 +69,8 @@ function BuffMgr:GetBuffEventHandler(_buffID, _dur)
         end
         buffDataTable = table.deepcopy(defPlayerData)
         for k, v in pairs(Config.Buff[_buffID]) do
-            if string.find(tostring(k), "_Cover") and defPlayerData[string.gsub(k, "_Cover", "")] then ---覆盖
-                buffDataTable[string.gsub(k, "_Cover", "")] = v
+            if string.find(tostring(k), '_Cover') and defPlayerData[string.gsub(k, '_Cover', '')] then ---覆盖
+                buffDataTable[string.gsub(k, '_Cover', '')] = v
             --print(string.gsub(k, "_Cover", ""))
             --print(buffDataTable[string.gsub(k, "_Cover", "")])
             end
@@ -111,14 +113,14 @@ end
 function BuffMgr:GetAllBuffData()
     for buffID, buffData in pairs(BuffDataList) do
         for k, v in pairs(Config.Buff[buffID]) do
-            if string.find(tostring(k), "_Overlay") and defPlayerData[string.gsub(k, "_Overlay", "")] then ---叠加
-                if type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "table" then ---表类型
+            if string.find(tostring(k), '_Overlay') and defPlayerData[string.gsub(k, '_Overlay', '')] then ---叠加
+                if type(Data.Player.attr[string.gsub(k, '_Overlay', '')]) == 'table' then ---表类型
                     --print(v, buffID)
-                    if v ~= "" then
-                        table.insert(buffDataTable[string.gsub(k, "_Overlay", "")], v)
+                    if v ~= '' then
+                        table.insert(buffDataTable[string.gsub(k, '_Overlay', '')], v)
                     end
-                elseif type(Data.Player.attr[string.gsub(k, "_Overlay", "")]) == "number" then ---数值类型
-                    buffDataTable[string.gsub(k, "_Overlay", "")] = buffDataTable[string.gsub(k, "_Overlay", "")] * v
+                elseif type(Data.Player.attr[string.gsub(k, '_Overlay', '')]) == 'number' then ---数值类型
+                    buffDataTable[string.gsub(k, '_Overlay', '')] = buffDataTable[string.gsub(k, '_Overlay', '')] * v
                 end
             end
         end
