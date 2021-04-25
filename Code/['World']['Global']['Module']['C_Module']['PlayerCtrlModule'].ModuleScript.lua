@@ -284,7 +284,9 @@ function PlayerCtrl:PlayerAttrUpdate()
     localPlayer.CharacterHeight = localPlayer.Avatar.Height * 1.7
     this:PlayerHeadEffectUpdate(Data.Player.attr.HeadEffect)
     this:PlayerBodyEffectUpdate(Data.Player.attr.BodyEffect)
+    this:PlayerHandEffectUpdate(Data.Player.attr.HandEffect)
     this:PlayerFootEffectUpdate(Data.Player.attr.FootEffect)
+    this:PlayerEntiretyEffectUpdate(Data.Player.attr.EntiretyEffect)
     --this:PlayerSkinUpdate(Data.Player.attr.SkinID)
     if not Data.Player.attr.EnableEquipable then
         NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
@@ -328,17 +330,36 @@ function PlayerCtrl:PlayerBodyEffectUpdate(_effectList)
         --localPlayer.Avatar.Bone_Pelvis.BodyEffect[v]:SetActive(true)
     end
 end
+
+function PlayerCtrl:PlayerHandEffectUpdate(_effectList)
+    for k, v in pairs(localPlayer.Avatar.Bone_R_Hand.HandEffect:GetChildren()) do
+        v:Destroy()
+    end
+    for k, v in pairs(localPlayer.Avatar.Bone_L_Hand.HandEffect:GetChildren()) do
+        v:Destroy()
+    end
+    for k, v in pairs(_effectList) do
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.Bone_R_Hand.HandEffect,
+            localPlayer.Avatar.Bone_R_Hand.HandEffect.Position,
+            localPlayer.Avatar.Bone_R_Hand.HandEffect.Rotation
+        )
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.Bone_L_Hand.HandEffect,
+            localPlayer.Avatar.Bone_L_Hand.HandEffect.Position,
+            localPlayer.Avatar.Bone_L_Hand.HandEffect.Rotation
+        )
+    end
+end
 function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
     for k, v in pairs(localPlayer.Avatar.Bone_R_Foot.FootEffect:GetChildren()) do
-        --[[if v.ActiveSelf then
-            v:SetActive(false)
-        end]]
         v:Destroy()
     end
     for k, v in pairs(localPlayer.Avatar.Bone_L_Foot.FootEffect:GetChildren()) do
-        --[[if v.ActiveSelf then
-            v:SetActive(false)
-        end]]
         v:Destroy()
     end
     for k, v in pairs(_effectList) do
@@ -356,8 +377,21 @@ function PlayerCtrl:PlayerFootEffectUpdate(_effectList)
             localPlayer.Avatar.Bone_L_Foot.FootEffect.Position,
             localPlayer.Avatar.Bone_L_Foot.FootEffect.Rotation
         )
-        --localPlayer.Avatar.Bone_R_Foot.FootEffect[v]:SetActive(true)
-        --localPlayer.Avatar.Bone_L_Foot.FootEffect[v]:SetActive(true)
+    end
+end
+
+function PlayerCtrl:PlayerEntiretyEffectUpdate(_effectList)
+    for k, v in pairs(localPlayer.Avatar.EntiretyEffect:GetChildren()) do
+        v:Destroy()
+    end
+    for k, v in pairs(_effectList) do
+        world:CreateInstance(
+            v,
+            v,
+            localPlayer.Avatar.EntiretyEffect,
+            localPlayer.Avatar.EntiretyEffect.Position,
+            localPlayer.Avatar.EntiretyEffect.Rotation
+        )
     end
 end
 

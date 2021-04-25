@@ -92,6 +92,7 @@ end
 --- 弹出宠物命名面板
 function Pet:OpenNamedPetUI(_id)
     petID = _id
+    LanguageUtil.SetText(gui.Panel.BgImg.DesText, 'GuiText_Txt_PetGui_6', true, 20, 40)
     gui:SetActive(true)
 end
 
@@ -125,7 +126,7 @@ function Pet:GetMoveTable(_pos)
     local result = 0
     moveTable, result = petOBJ:GetWaypoints(petOBJ.Position, _pos, 0.1, 1, 3)
     if result > 2 then
-        --print('寻路失败', result, petOBJ, petData.state)
+    --print('寻路失败', result, petOBJ, petData.state)
     end
 end
 
@@ -201,9 +202,9 @@ do
             0.1,
             true,
             true,
-            1
+            6 / Config.Animal[petID].DefMoveSpeed
         )
-        petOBJ.WalkSpeed = Config.Animal[petID].DefMoveSpeed
+        petOBJ.WalkSpeed = 6
         this:GetMoveTable(localPlayer.Position - localPlayer.Forward)
     end
     --TELEPORT
@@ -222,22 +223,22 @@ do
     end
     --IDLE
     function Pet:UpdateState1()
-        if (petOBJ.Position - localPlayer.Position).Magnitude > 3 then
+        if (petOBJ.Position - localPlayer.Position).Magnitude > 5 then
             EnterStateFunc[petStateEum.MOVE]()
         end
     end
     --MOVE
     function Pet:UpdateState2()
-        if (petOBJ.Position - localPlayer.Position).Magnitude > 10 then
+        if (petOBJ.Position - localPlayer.Position).Magnitude > 15 then
             EnterStateFunc[petStateEum.TELEPORT]()
         end
         this:PetMove()
     end
     --TELEPORT
     function Pet:UpdateState3()
-        if (petOBJ.Position - localPlayer.Position).Magnitude < 3 then
+        if (petOBJ.Position - localPlayer.Position).Magnitude < 5 then
             EnterStateFunc[petStateEum.IDLE]()
-        elseif (petOBJ.Position - localPlayer.Position).Magnitude < 10 then
+        elseif (petOBJ.Position - localPlayer.Position).Magnitude < 15 then
             EnterStateFunc[petStateEum.MOVE]()
         end
     end
