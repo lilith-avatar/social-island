@@ -175,40 +175,28 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
         elseif _hitObject.Parent then
             if _dir == 'R' and _hitObject.Parent.Name =='grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 118)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'L' and _hitObject.Parent.Name =='grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 17)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'R' and _hitObject.Parent.Name =='cloth' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 122)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'L' and _hitObject.Parent.Name =='cloth' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 121)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'R' and _hitObject.Parent.Name =='stone' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 124)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'L' and _hitObject.Parent.Name =='stone' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 123)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'R' and _hitObject.Parent.Name =='cloud' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 130)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'L' and _hitObject.Parent.Name =='cloud' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 129)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'R' and _hitObject.Parent.Name =='wood' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 126)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'L' and _hitObject.Parent.Name =='wood' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 125)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'R' and _hitObject.Parent.Name =='metal' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 128)
-				print(_dir.._hitObject.Parent.Name)
             elseif _dir == 'L' and _hitObject.Parent.Name =='metal' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 127)
-				print(_dir.._hitObject.Parent.Name)
 			elseif _dir == 'R' then
 				SoundUtil.Play2DSE(localPlayer.UserId, 118)
 			else
@@ -224,7 +212,7 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
                     end
                 )
             end,
-            0.5
+            0.1
         )
     end
 end
