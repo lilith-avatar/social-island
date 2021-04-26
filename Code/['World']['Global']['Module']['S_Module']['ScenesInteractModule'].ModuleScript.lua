@@ -627,6 +627,7 @@ do
                             }
                         end
                         this.TentList[v1.obj.Name].num = this.TentList[v1.obj.Name].num + 1
+                        v1.obj.TentGUI.NumTxt.Text = string.format('%s/2', this.TentList[v1.obj.Name].num)
                         this:TentNumEffect(this.TentList[v1.obj.Name].num, v1.obj)
                     end
                 end
@@ -644,6 +645,7 @@ do
                         v.obj.UsingPlayerUid2.Value = ''
                     end
                     this.TentList[v.obj.Name].num = this.TentList[v.obj.Name].num - 1
+                    v.obj.TentGUI.NumTxt.Text = string.format('%s/2', this.TentList[v.obj.Name].num)
                     this:TentNumEffect(this.TentList[v.obj.Name].num, v.obj)
                     if this.TentList[v.obj.Name].num == 0 then
                         this.TentList[v.obj.Name] = nil
