@@ -119,8 +119,8 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
         ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[_itemId].Icon)
     -- 显示数量
     this.slotList[_index].ItemNumBg.NumText.Text =
-        Data.Player.bag[_itemId].count > 99 and 99 or Data.Player.bag[_itemId].count
-    this.slotList[_index].ItemNumBg:SetActive(Data.Player.bag[_itemId].count ~= 1)
+        Data.Player.bag[_itemId].count > 99 and 99 or this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num
+    this.slotList[_index].ItemNumBg:SetActive(this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num ~= 1)
     this.slotList[_index].ItemImg.IMGNormal.Size = Vector2(128, 128)
     this.slotList[_index]:SetActive(_itemId and true or false)
 end
@@ -142,6 +142,7 @@ end
 
 function GuiBag:ConsumeItem(_index)
     if Config.ItemType[Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].Type].IsConsume then
+        
         this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
             this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
         if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then
@@ -181,8 +182,8 @@ function GuiBag:ClickChangePage(_pageIndex)
     this:ClearSelect()
     this:GetMaxPageNum(#this.slotItem)
     _pageIndex = _pageIndex > this.maxPage and this.maxPage or _pageIndex
-    this:ShowItemsByPageIndex(_pageIndex)
     this:RefreshPageBar(_pageIndex)
+    this:ShowItemsByPageIndex(_pageIndex)
 end
 
 function GuiBag:RefreshPageBar(_pageIndex)
