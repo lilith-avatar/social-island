@@ -213,7 +213,7 @@ function GuiCook:StartCook()
     --this.startUpdate = true
     NetUtil.Fire_S('PotShakeEvent', world.Pot.Pot1.Model3, localPlayer)
     world.ScenesAudio.BGM_Party.Volume = 0
-    SoundUtil.Play2DSE(localPlayer.UserId, 121)
+    SoundUtil.Play2DSE(localPlayer.UserId, 135)
 end
 
 function GuiCook:GetFinalFoodEventHandler(_foodId)
@@ -361,7 +361,7 @@ function GuiCook:ShowFoodEventHandler()
     blackTween:Play()
     blackTween:WaitForComplete()
     wait(0.5)
-    SoundUtil.Play2DSE(localPlayer.UserId, 122)
+    SoundUtil.Play2DSE(localPlayer.UserId, 136)
     showTween = Tween:TweenProperty(this.black, {Color = Color(0, 0, 0, 0)}, 0.5, 1)
     showTween:Play()
     this:ConsumeMaterial()

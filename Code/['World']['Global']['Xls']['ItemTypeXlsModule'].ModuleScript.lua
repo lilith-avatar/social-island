@@ -15,7 +15,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = false,
         IsUseable = true,
         IsConsume = false,
-        IsEquip = true
+        IsEquip = true,
+        BgColor = 'Y'
     },
     [2] = {
         Type = 2,
@@ -25,7 +26,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = false,
         IsUseable = true,
         IsConsume = false,
-        IsEquip = true
+        IsEquip = true,
+        BgColor = 'Y'
     },
     [3] = {
         Type = 3,
@@ -35,7 +37,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = false,
         IsUseable = true,
         IsConsume = false,
-        IsEquip = true
+        IsEquip = true,
+        BgColor = 'Y'
     },
     [4] = {
         Type = 4,
@@ -45,7 +48,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = true,
         IsUseable = true,
         IsConsume = true,
-        IsEquip = true
+        IsEquip = true,
+        BgColor = 'O'
     },
     [5] = {
         Type = 5,
@@ -55,7 +59,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = false,
         IsUseable = true,
         IsConsume = false,
-        IsEquip = true
+        IsEquip = true,
+        BgColor = 'P'
     },
     [6] = {
         Type = 6,
@@ -65,7 +70,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = false,
         IsUseable = false,
         IsConsume = false,
-        IsEquip = false
+        IsEquip = false,
+        BgColor = 'SP'
     },
     [7] = {
         Type = 7,
@@ -75,7 +81,8 @@ local ItemTypeXls = {
         IsGetRepeatedly = true,
         IsUseable = true,
         IsConsume = true,
-        IsEquip = false
+        IsEquip = false,
+        BgColor = 'G'
     }
 }
 
