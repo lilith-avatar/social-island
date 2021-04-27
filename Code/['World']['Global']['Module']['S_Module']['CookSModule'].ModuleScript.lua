@@ -99,7 +99,7 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
     local rewardPlayer, cook = world:GetPlayerByUserId(_playerId), world:GetPlayerByUserId(_cookId)
     if rewardPlayer and cook then
         NetUtil.Fire_C('InsertInfoEvent', cook, rewardPlayer.Name .. '打赏了你' .. _coin, 2, false)
-        NetUtil.Fire_C('UpdateCoinEvent', cook, _coin)
+        NetUtil.Fire_C('UpdateCoinEvent', cook, _coin, false, 11)
     end
 end
 

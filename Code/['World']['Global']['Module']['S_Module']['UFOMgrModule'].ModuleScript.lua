@@ -54,6 +54,7 @@ end
 
 --- 开启UFO
 function UFOMgr:ActiveUFO()
+    CloudLogUtil.UploadLog('mole', 'mole_worldEvent_ufo', {online_player_num = #world:FindPlayers()})
     durUFO = 45
     UFO:SetActive(true)
     NetUtil.Broadcast('ShowNoticeInfoEvent', 4, Vector3(54.3585, 66.6861, 24.6156))
@@ -64,7 +65,7 @@ function UFOMgr:UFOCD(dt)
     if durUFO > 0 then
         durUFO = durUFO - dt
         if timer >= 2 then
-            NetUtil.Fire_S('SpawnCoinEvent', 'P', UFO.Position + Vector3(0, -10, 0), 500)
+            NetUtil.Fire_S('SpawnCoinEvent', 'P', UFO.Position + Vector3(0, -10, 0), 500, 8)
             timer = 0
         else
             timer = timer + dt

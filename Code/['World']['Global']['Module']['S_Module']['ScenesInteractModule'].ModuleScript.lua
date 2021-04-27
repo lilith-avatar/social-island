@@ -323,7 +323,7 @@ function ScenesInteract:TrojanShake(dt)
         v.totalTimer = v.totalTimer + dt
         if v.timer >= 1 then
             -- 给钱
-            NetUtil.Fire_C('UpdateCoinEvent', v.player, 1, false)
+            NetUtil.Fire_C('UpdateCoinEvent', v.player, 1, false, 5)
             v.timer = 0
         end
         v.model.Forward = v.originForward + Vector3.Up * math.sin(v.totalTimer) * 0.3
@@ -374,6 +374,11 @@ do
                             SoundUtil.Play3DSE(_player.Position, v1.interactAEID)
                         end
                         if v1.itemID ~= nil then
+                            CloudLogUtil.UploadLog(
+                                'pannel_actions',
+                                'dialog_icon_' .. 13 .. '_click',
+                                {scenes_interact__id = v1.id}
+                            )
                             NetUtil.Fire_C('GetItemEvent', _player, v1.itemID)
                             if v1.isUse then
                                 wait(.1)
@@ -761,8 +766,8 @@ do
         end
     end
 
-    local potTweener1, potTweener2, potTweener3, potTweener4, potTweener5,aniEvent
-    function ScenesInteract:PotShakeEventHandler(_model,_player)
+    local potTweener1, potTweener2, potTweener3, potTweener4, potTweener5, aniEvent
+    function ScenesInteract:PotShakeEventHandler(_model, _player)
         potTweener1 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 3)
         potTweener2 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 4)
         potTweener3 = Tween:ShakeProperty(_model, {'Rotation'}, 1, 5)
@@ -795,19 +800,24 @@ do
                 --potTweener1:Play()
                 _model.Effect:SetActive(false)
                 _model.Blast:SetActive(true)
-                invoke(function()
-                    NetUtil.Fire_C('ShowFoodEvent',_player)
-                    _player.Avatar:StopAnimation('SocialDoubt',2)
-                    aniEvent:Clear()
-                end, 0.5)
+                invoke(
+                    function()
+                        NetUtil.Fire_C('ShowFoodEvent', _player)
+                        _player.Avatar:StopAnimation('SocialDoubt', 2)
+                        aniEvent:Clear()
+                    end,
+                    0.5
+                )
             end
         )
         aniEvent = _player.Avatar:AddAnimationEvent('SocialDoubt', 0.71)
-        aniEvent:Connect(function()
-            _player.Avatar:StopAnimation('SocialDoubt',2)
-            _player.Avatar:PlayAnimation('SocialDoubt',2,1,0,true,true,0.5)
-        end)
-        _player.Avatar:PlayAnimation('SocialDoubt',2,1,0,true,true,0.5)
+        aniEvent:Connect(
+            function()
+                _player.Avatar:StopAnimation('SocialDoubt', 2)
+                _player.Avatar:PlayAnimation('SocialDoubt', 2, 1, 0, true, true, 0.5)
+            end
+        )
+        _player.Avatar:PlayAnimation('SocialDoubt', 2, 1, 0, true, true, 0.5)
 
         potTweener1:Play()
     end

@@ -51,7 +51,7 @@ function CoinMgr:InitCoinPool(_size)
 end
 
 --- 刷新一个金币
-function CoinMgr:SpawnCoin(_pool, _pos, _dur)
+function CoinMgr:SpawnCoin(_pool, _pos, _dur, _origin)
     -- 参数校验
     assert(coinPool[_pool], string.format('[CoinMgr] 不存在此类金币对象池，请检查type，type = %s', _pool))
     assert(_pos and type(_pos) == 'userdata', string.format('[CoinMgr] pos有误，pos = %s', _pos))
@@ -64,10 +64,11 @@ function CoinMgr:SpawnCoin(_pool, _pos, _dur)
     elseif coinObj.AnimatedMesh then
         coinObj.AnimatedMesh:PlayAnimation('idle', 2, 1, 0, true, true, 1)
     end
+    coinObj.Origin.Value = _origin or 0
     coinObj.CoinUID.Value = ''
     coinObj.CoinUID.OnValueChanged:Connect(
         function(_oldVal, _newVal)
-            print(coinObj, 'CoinUID.OnValueChanged', _oldVal, _newVal)
+            --print(coinObj, 'CoinUID.OnValueChanged', _oldVal, _newVal)
             this:GetCoin(_pool, coinObj, _oldVal, _newVal)
         end
     )
@@ -113,7 +114,14 @@ function CoinMgr:GetCoin(_pool, _coinObj, _oldVal, _newVal)
     _coinObj.Block = false
     local uid = _coinObj.CoinUID.Value
     assert(not string.isnilorempty(uid), string.format('[CoinMgr] uid为空, pool = %s, coinObj = %s', _pool, _coinObj))
-    NetUtil.Fire_C('UpdateCoinEvent', world:GetPlayerByUserId(uid), _coinObj.CoinNum.Value, false, _coinObj.Position)
+    NetUtil.Fire_C(
+        'UpdateCoinEvent',
+        world:GetPlayerByUserId(uid),
+        _coinObj.CoinNum.Value,
+        false,
+        _coinObj.Origin.Value,
+        _coinObj.Position
+    )
     invoke(
         function()
             -- _coinObj.LinearVelocity =
@@ -132,19 +140,19 @@ end
 -- @param _pos 金币生成时的Position
 -- @param _num 金币数量
 -- @param _dur 金币生命周期（秒），_dur <= 0 or _dur == nil 则为永久
-function CoinMgr:SpawnCoinEventHandler(_type, _pos, _num, _dur)
+function CoinMgr:SpawnCoinEventHandler(_type, _pos, _num, _dur, _origin)
     this:Log('刷新一堆金币', _num)
     for i = 1, _num % 10 do
-        this:SpawnCoin(_type .. '1', _pos, _dur)
+        this:SpawnCoin(_type .. '1', _pos, _dur, _origin)
     end
     for i = 1, (math.floor(_num / 10) % 10) do
-        this:SpawnCoin(_type .. '10', _pos, _dur)
+        this:SpawnCoin(_type .. '10', _pos, _dur, _origin)
     end
     for i = 1, (math.floor(_num / 100) % 10) do
-        this:SpawnCoin(_type .. '100', _pos, _dur)
+        this:SpawnCoin(_type .. '100', _pos, _dur, _origin)
     end
     for i = 1, (math.floor(_num / 1000)) do
-        this:SpawnCoin(_type .. '1000', _pos, _dur)
+        this:SpawnCoin(_type .. '1000', _pos, _dur, _origin)
     end
 end
 

@@ -16,7 +16,7 @@ end
 
 --从背包里扔掉
 function TaskItem:ThrowOutOfBag()
-	ItemBase.ThrowOutOfBag(self)
+    ItemBase.ThrowOutOfBag(self)
 end
 
 --获得任务奖励
@@ -24,7 +24,7 @@ function TaskItem:GetTaskReward()
     if self.derivedData.RewardItem and self.derivedData.RewardItem ~= 0 then
         NetUtil.Fire_C('GetItemEvent', localPlayer, self.derivedData.RewardItem)
     end
-    NetUtil.Fire_C("UpdateCoinEvent",localPlayer,self.derivedData.RewardGold)
+    NetUtil.Fire_C('UpdateCoinEvent', localPlayer, self.derivedData.RewardGold, false, 6)
     NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
 end
 

@@ -91,6 +91,7 @@ function GuiBag:TransItemTable()
 end
 
 function GuiBag:ShowBagUI()
+    CloudLogUtil.UploadLog('pannel_actions', 'window_bagGui_Show')
     this:ClearSelect()
     this.root:SetActive(true)
     -- 转表
