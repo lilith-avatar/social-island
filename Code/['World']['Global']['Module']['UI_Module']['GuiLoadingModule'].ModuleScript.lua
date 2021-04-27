@@ -39,7 +39,7 @@ end
 
 ---更新图标
 function GuiLoading:UpdateIcon(_t)
-    local x = (_t / loadingDur * 200) % 102
+    local x = (_t / loadingDur * 1000) % 102
     if x <= 51 then
         x = x
     else
