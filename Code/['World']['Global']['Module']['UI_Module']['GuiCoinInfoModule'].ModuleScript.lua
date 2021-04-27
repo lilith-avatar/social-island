@@ -96,7 +96,7 @@ function GuiCoinInfo:ShowGetCoinNumEventHandler(_num)
     end]]
 end
 
-function GuiCoinInfo:UpdateCoinEventHandler(_num, _fromBag, _pos)
+function GuiCoinInfo:UpdateCoinEventHandler(_num, _fromBag, _origin, _pos)
     if _pos == nil then
         if _num > 0 then
             remainingCoinNum = remainingCoinNum + _num

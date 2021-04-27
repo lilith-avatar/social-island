@@ -46,6 +46,9 @@ local snailEmo = {
     'Confused'
 }
 
+--上次获胜蜗牛
+local lastestWinner = 0
+
 --Billboard
 local championPanel
 local emoText = {}
@@ -135,6 +138,11 @@ end
 
 --- 投注
 function Snail:SnailBetEventHandler(_player, _index, _money)
+    CloudLogUtil.UploadLog(
+        'snail',
+        'snail_bet',
+        {snailId = _index, lastest_winner = lastestWinner, snail_mood = emoText[_index].Text, coin_num = _money}
+    )
     snailObjPool[_index].betPlayer[#snailObjPool[_index].betPlayer + 1] = {
         player = _player,
         money = _money
@@ -297,7 +305,7 @@ function Snail:GiveReward(_snailObjPool)
         reward = 3
     end
     for k, v in pairs(_snailObjPool.betPlayer) do
-        NetUtil.Fire_C('UpdateCoinEvent', v.player, v.money * reward)
+        NetUtil.Fire_C('UpdateCoinEvent', v.player, v.money * reward, false, 9)
         if _snailObjPool.ranking < 3 then
             NetUtil.Fire_C(
                 'InsertInfoEvent',
@@ -368,6 +376,7 @@ end
 
 --- 更新冠军显示
 function Snail:UpdateChampionUI(_index)
+    lastestWinner = _index
     for k, v in pairs(championPanel:GetChildren()) do
         v:SetActive(_index == k)
     end

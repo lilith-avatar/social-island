@@ -117,6 +117,11 @@ end
 --命中增加/移除buff
 function Projectile:HitBuff(_players, _buffData)
     for k, v in pairs(_players) do
+        CloudLogUtil.UploadLog(
+            'battle_actions',
+            'hit_event',
+            {hit_target_id = 1, target_detail = v, attack_target = localPlayer, attack_type = 2}
+        )
         NetUtil.Fire_S('SPlayerHitEvent', localPlayer, v, _buffData)
     end
 end

@@ -134,6 +134,13 @@ function GuiNoticeInfo:RollInfoUI(dt)
                         tempData.callBack()
                     elseif type(tempData.callBack) == 'userdata' then
                         localPlayer.Position = tempData.callBack
+                        if tempData.id == 1 then
+                            CloudLogUtil.UploadLog('pannel_actions', 'window_eventGui_maze_yes')
+                        elseif tempData.id == 3 then
+                            CloudLogUtil.UploadLog('pannel_actions', 'window_eventGui_snail_yes')
+                        elseif tempData.id == 4 then
+                            CloudLogUtil.UploadLog('pannel_actions', 'window_eventGui_ufo_yes')
+                        end
                     end
                 end
             )
@@ -223,12 +230,20 @@ function GuiNoticeInfo:ShowNoticeInfoEventHandler(_noticeInfoID, _callBack)
     table.insert(
         remainingNoticeInfo,
         {
+            id = _noticeInfoID,
             text = LanguageUtil.GetText(Config.GuiText[info.TextID].Txt),
             t = info.Dur + 1,
             profileImg = info.ProfileImg,
             callBack = _callBack or nil
         }
     )
+    if _noticeInfoID == 1 then
+        CloudLogUtil.UploadLog('pannel_actions', 'window_eventGui_maze_show')
+    elseif _noticeInfoID == 3 then
+        CloudLogUtil.UploadLog('pannel_actions', 'window_eventGui_snail_show')
+    elseif _noticeInfoID == 4 then
+        CloudLogUtil.UploadLog('pannel_actions', 'window_eventGui_ufo_show')
+    end
 end
 
 function GuiNoticeInfo:Update(dt)

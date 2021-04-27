@@ -1,7 +1,7 @@
 ---@module MoleHit
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local MoleHit, this = ModuleUtil.New("MoleHit", ServerBase)
+local MoleHit, this = ModuleUtil.New('MoleHit', ServerBase)
 
 local function SelectPit(_pitList, _num)
     local tmpPits = table.deepcopy(_pitList)
@@ -40,12 +40,12 @@ end
 
 ---初始化函数
 function MoleHit:Init()
-    print("[MoleHit] Init()")
+    print('[MoleHit] Init()')
     this:DataInit()
     this:NodeDef()
     this:PoolInit()
-    this:RefreashMole("ufo")
-    this:RefreashMole("maze")
+    this:RefreashMole('ufo')
+    this:RefreashMole('maze')
 end
 
 function MoleHit:DataInit()
@@ -73,7 +73,7 @@ function MoleHit:DataInit()
             UFOMgr:ActiveUFO()
         end,
         maze = function()
-            NetUtil.Fire_S("EnterMiniGameEvent", localPlayer, Const.GameEnum.MAZE)
+            NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
         end
     }
 end
@@ -99,22 +99,22 @@ function MoleHit:RefreashMole(_type)
         -- 绑定碰撞事件
         v.OnCollisionBegin:Connect(
             function(_hitObject)
-                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == "PlayerAvatarInstance" then
+                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
                     NetUtil.Fire_C(
-                        "GetMolePriceEvent",
+                        'GetMolePriceEvent',
                         _hitObject,
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
                         v
                     )
-                    NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 2)
+                    NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
                 end
             end
         )
         v.OnCollisionEnd:Connect(
             function(_hitObject)
-                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == "PlayerAvatarInstance" then
-                    NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
+                if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _hitObject)
                 end
             end
         )
@@ -135,18 +135,13 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         Config.MoleGlobalConfig.DropCoinRange.Value[
         SortDropCoinByWeight(Config.MoleGlobalConfig.DropCoinRange.Value).index
     ].num
-    NetUtil.Fire_S("SpawnCoinEvent", "P", _pit.Position + Vector3.Up, math.floor(coinNum))
+    NetUtil.Fire_S('SpawnCoinEvent', 'P', _pit.Position + Vector3.Up, math.floor(coinNum), 12)
     -- 增加数量
     this.hitTime[_type] = this.hitTime[_type] + 1
     -- 发送全局通知
-    NetUtil.Broadcast(
-        "InsertInfoEvent",
-        this.hitTime[_type]..'/'.. math.floor(this.hitNum[_type]),
-        2,
-        true
-    )
+    NetUtil.Broadcast('InsertInfoEvent', this.hitTime[_type] .. '/' .. math.floor(this.hitNum[_type]), 2, true)
     for i = 1, math.random(1, 3) do
-        NetUtil.Fire_C("GetItemFromPoolEvent", player, 9, 0)
+        NetUtil.Fire_C('GetItemFromPoolEvent', player, 9, 0)
     end
 
     -- 判断是否达到彩蛋条件
@@ -164,7 +159,7 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
     _pit.Mole.Mole.Block = false
-    local tweener = Tween:ShakeProperty(_pit.Mole, {"Rotation"}, 0.8, 30)
+    local tweener = Tween:ShakeProperty(_pit.Mole, {'Rotation'}, 0.8, 30)
     tweener:Play()
     invoke(
         function()
@@ -176,7 +171,7 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
         end,
         1
     )
-    SoundUtil.Play3DSE(_pit.Mole.Position,116)
+    SoundUtil.Play3DSE(_pit.Mole.Position, 116)
     --解除绑定
     _pit.OnCollisionBegin:Clear()
     _pit.OnCollisionEnd:Clear()

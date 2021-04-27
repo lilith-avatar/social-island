@@ -86,6 +86,7 @@ function this:SetAnimSlot(_data)
     slotBtnUI.Icon.Texture = ResourceManager.GetTexture('SocialAnimationIcon/' .. _data.Icon)
     slotBtnUI.OnClick:Connect(
         function()
+            CloudLogUtil.UploadLog('pannel_actions', 'movement_stickers_' .. _data.AnimName)
             SocialAnimationGUI:SetActive(false)
             localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, _data.LoopMode, 1)
         end

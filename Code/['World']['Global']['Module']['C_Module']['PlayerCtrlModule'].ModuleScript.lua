@@ -42,6 +42,7 @@ end
 
 --- 数据变量初始化
 function PlayerCtrl:DataInit()
+    CloudLogUtil.Init('Z1002')
     SoundUtil.Init(Config.Sound)
     SoundUtil.InitAudioSource(localPlayer.UserId)
     SoundUtil.Play2DSE(localPlayer.UserId, 2)
@@ -161,6 +162,7 @@ end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerHello()
+    CloudLogUtil.UploadLog('pannel_actions', 'movement_sayhi')
     localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
 end
 
@@ -396,14 +398,23 @@ function PlayerCtrl:PlayerEntiretyEffectUpdate(_effectList)
 end
 
 -- 更新金币
-function PlayerCtrl:UpdateCoinEventHandler(_num, _fromBag)
+function PlayerCtrl:UpdateCoinEventHandler(_num, _fromBag, _origin)
     if _num ~= 0 then
         if _num > 0 and _fromBag then
+            CloudLogUtil.UploadLog(
+                'game_item_flow',
+                'getCoin',
+                {coin_orgin = _origin, item_after = Data.Player.coin, item_count = Data.Player.coin + _num}
+            )
             SoundUtil.Play2DSE(localPlayer.UserId, 111)
         elseif _num > 0 then
+            CloudLogUtil.UploadLog(
+                'game_item_flow',
+                'getCoin',
+                {coin_orgin = _origin, item_after = Data.Player.coin, item_count = Data.Player.coin + _num}
+            )
             SoundUtil.Play2DSE(localPlayer.UserId, 4)
         end
-
         Data.Player.coin = Data.Player.coin + _num
         GuiControl:UpdateCoinNum(_num)
     end
@@ -422,6 +433,7 @@ end
 
 -- 角色重置
 function PlayerCtrl:PlayerReset()
+    CloudLogUtil.UploadLog('pannel_actions', 'movement_reset')
     BuffMgr:BuffClear()
     for k, v in pairs(Config.Interact) do
         NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, k)
