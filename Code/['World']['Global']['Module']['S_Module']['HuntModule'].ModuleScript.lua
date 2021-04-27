@@ -49,7 +49,7 @@ end
 
 --- 节点引用
 function Hunt:NodeRef()
-    Navigation.SetWalkableRoots(world.Scenes.Terrain:GetChildren())
+    Navigation.SetWalkableRoots(world.Scenes.grass:GetChildren())
     --Navigation.SetObstacleRoots(world.Water:GetChildren())
     Navigation.SetObstacleRoots(table.MergeTables(world.Stone:GetChildren(), world.Tree:GetChildren()))
     Navigation.SetAgent(1, 0.1, 0.2, 30.0)
