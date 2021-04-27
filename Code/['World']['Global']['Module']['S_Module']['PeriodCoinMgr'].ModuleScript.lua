@@ -50,12 +50,12 @@ end
 function PeriodCoinMgr:Update(dt)
 	this.tt = this.tt + dt
 	if this.tt > 1.5 then
-		this:CheckCoin(this.mashroomHighValue,3,Config.PeriodCoin[3].CoinType)
-		this:CheckCoin(this.mashroomMidValue,2,Config.PeriodCoin[2].CoinType)
-		this:CheckCoin(this.mashroomLowValue,1,Config.PeriodCoin[1].CoinType)
-		this:CheckCoin(this.cloud,4,Config.PeriodCoin[4].CoinType)
-		this:CheckCoin(this.sceneCoin,5,Config.PeriodCoin[5].CoinType)
-		this:CheckCoin(this.lutus,6,Config.PeriodCoin[6].CoinType)
+		this:CheckCoin(this.mashroomHighValue,3,Config.PeriodCoin[3].CoinType,2)
+		this:CheckCoin(this.mashroomMidValue,2,Config.PeriodCoin[2].CoinType,2)
+		this:CheckCoin(this.mashroomLowValue,1,Config.PeriodCoin[1].CoinType,2)
+		this:CheckCoin(this.cloud,4,Config.PeriodCoin[4].CoinType,4)
+		this:CheckCoin(this.sceneCoin,5,Config.PeriodCoin[5].CoinType,1)
+		this:CheckCoin(this.lutus,6,Config.PeriodCoin[6].CoinType,3)
 		this.tt=0
 	end
 	--
@@ -67,12 +67,12 @@ end
 
 --- 状态检查
 local PosId
-function PeriodCoinMgr:CheckCoin(_table,_fId,_CoinType)
+function PeriodCoinMgr:CheckCoin(_table,_fId,_CoinType,_origin)
 	for k,v in pairs(_table) do
 		if not v[2].ActiveSelf then
 			this:RandomPos(_table,_fId)
 			table.remove(_table,k)
-			this:FreshCoin(_table,_fId,PosId)
+			this:FreshCoin(_table,_fId,PosId_origin)
 		end
 	end
 end
@@ -94,7 +94,7 @@ local Coin
 local RadIndex
 function PeriodCoinMgr:FreshCoin(_table,_fId,_posId,_origin)
 	if Config.PeriodCoin[_fId][_posId].CoinType ~= "Random" then
-		Coin = CoinMgr:SpawnCoin(Config.PeriodCoin[_fId][_posId].CoinType,Config.PeriodCoin[_fId][_posId].Pos)
+		Coin = CoinMgr:SpawnCoin(Config.PeriodCoin[_fId][_posId].CoinType,Config.PeriodCoin[_fId][_posId].Pos,_origin)
 		CoinInfo = {_posId,Coin }
 		table.insert(_table,CoinInfo)
 	else
