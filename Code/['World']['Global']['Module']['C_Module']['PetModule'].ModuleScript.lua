@@ -57,7 +57,7 @@ function Pet:DataInit()
     Navigation.SetWalkableRoots(
         table.MergeTables(world.Scenes.grass:GetChildren(), world.Scenes.cloud:GetChildren())
     )
-    Navigation.SetObstacleRoots(table.MergeTables(world.Stone:GetChildren(), world.Tree:GetChildren()))
+    Navigation.SetObstacleRoots(table.MergeTables(world.Scenes.stone:GetChildren(), world.Tree:GetChildren()))
     Navigation.SetAgent(1, 0.1, 0.2, 30.0)
     Navigation.SetUpdateDelay(0)
 end

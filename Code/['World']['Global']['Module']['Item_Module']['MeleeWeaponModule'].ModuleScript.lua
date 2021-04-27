@@ -29,7 +29,7 @@ function MeleeWeapon:Equip()
             self.equipObj.Col.OnCollisionBegin:Connect(
                 function(_hitObj, _hitPoint)
                     print(_hitObj)
-                    if _hitObj ~= localPlayer and _hitObj.ClassName == 'PlayerInstance' then
+                    if _hitObj ~= localPlayer and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar then
                         if _hitObj.Avatar.ClassName == 'PlayerAvatarInstance' then
                             self:AddForceToHitPlayer(_hitObj)
                             self:HitBuff(_hitObj)
