@@ -41,10 +41,10 @@ local SoundXls = {
         ID = 4,
         Name = 'GetCoin',
         IsLoop = false,
-        Volume = 20.0,
-        MinDistance = 15,
-        MaxDistance = 20,
-        Path = 'Audio/GetItem',
+        Volume = 60.0,
+        MinDistance = 25,
+        MaxDistance = 50,
+        Path = 'Audio/GetCoin',
         Info = '吃金币的音效'
     },
     [5] = {

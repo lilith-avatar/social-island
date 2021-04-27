@@ -2725,7 +2725,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Mood:',
         JP = '',
-        YN = ''
+        YN = 'Mood:'
     },
     GuiText_Txt_SnailGui_12 = {
         ID = 'GuiText_Txt_SnailGui_12',
@@ -2733,7 +2733,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Normal',
         JP = '',
-        YN = ''
+        YN = 'Normal'
     },
     GuiText_Txt_SnailGui_13 = {
         ID = 'GuiText_Txt_SnailGui_13',
@@ -2741,7 +2741,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Happy',
         JP = '',
-        YN = ''
+        YN = 'Happy'
     },
     GuiText_Txt_SnailGui_14 = {
         ID = 'GuiText_Txt_SnailGui_14',
@@ -2749,7 +2749,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Sad',
         JP = '',
-        YN = ''
+        YN = 'Sad'
     },
     GuiText_Txt_SnailGui_15 = {
         ID = 'GuiText_Txt_SnailGui_15',
@@ -2757,7 +2757,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Excited',
         JP = '',
-        YN = ''
+        YN = 'Excited'
     },
     GuiText_Txt_SnailGui_16 = {
         ID = 'GuiText_Txt_SnailGui_16',
@@ -2765,7 +2765,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Confused',
         JP = '',
-        YN = ''
+        YN = 'Confused'
     },
     GuiText_Txt_PetGui_1 = {
         ID = 'GuiText_Txt_PetGui_1',
