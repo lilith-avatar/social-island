@@ -72,7 +72,7 @@ function PeriodCoinMgr:CheckCoin(_table,_fId,_CoinType,_origin)
 		if not v[2].ActiveSelf then
 			this:RandomPos(_table,_fId)
 			table.remove(_table,k)
-			this:FreshCoin(_table,_fId,PosId_origin)
+			this:FreshCoin(_table,_fId,PosId,_origin)
 		end
 	end
 end
