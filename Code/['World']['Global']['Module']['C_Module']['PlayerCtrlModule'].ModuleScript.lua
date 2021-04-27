@@ -174,11 +174,35 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
      then
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
-        else
-            if _dir == 'R' then
+        elseif _hitObject.Parent then
+            if _dir == 'R' and _hitObject.Parent.Name =='grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 118)
-            else
+            elseif _dir == 'L' and _hitObject.Parent.Name =='grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 17)
+            elseif _dir == 'R' and _hitObject.Parent.Name =='cloth' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 122)
+            elseif _dir == 'L' and _hitObject.Parent.Name =='cloth' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 121)
+            elseif _dir == 'R' and _hitObject.Parent.Name =='stone' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 124)
+            elseif _dir == 'L' and _hitObject.Parent.Name =='stone' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 123)
+            elseif _dir == 'R' and _hitObject.Parent.Name =='cloud' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 130)
+            elseif _dir == 'L' and _hitObject.Parent.Name =='cloud' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 129)
+            elseif _dir == 'R' and _hitObject.Parent.Name =='wood' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 126)
+            elseif _dir == 'L' and _hitObject.Parent.Name =='wood' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 125)
+            elseif _dir == 'R' and _hitObject.Parent.Name =='metal' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 128)
+            elseif _dir == 'L' and _hitObject.Parent.Name =='metal' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 127)
+			elseif _dir == 'R' then
+				SoundUtil.Play2DSE(localPlayer.UserId, 118)
+			else
+				SoundUtil.Play2DSE(localPlayer.UserId, 17)
             end
         end
         localPlayer.Avatar['Bone_' .. _dir .. '_Foot'].FootStep.OnCollisionEnd:Clear()
@@ -190,7 +214,7 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
                     end
                 )
             end,
-            0.5
+            0.1
         )
     end
 end
