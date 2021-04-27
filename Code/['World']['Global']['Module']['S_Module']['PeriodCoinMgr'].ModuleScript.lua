@@ -92,7 +92,7 @@ end
 local CoinInfo
 local Coin
 local RadIndex
-function PeriodCoinMgr:FreshCoin(_table,_fId,_posId)
+function PeriodCoinMgr:FreshCoin(_table,_fId,_posId,_origin)
 	if Config.PeriodCoin[_fId][_posId].CoinType ~= "Random" then
 		Coin = CoinMgr:SpawnCoin(Config.PeriodCoin[_fId][_posId].CoinType,Config.PeriodCoin[_fId][_posId].Pos)
 		CoinInfo = {_posId,Coin }
@@ -100,13 +100,13 @@ function PeriodCoinMgr:FreshCoin(_table,_fId,_posId)
 	else
 		RadIndex = math.random(0,10)
 		if RadIndex > 9.5 then
-			Coin = CoinMgr:SpawnCoin("N1000",Config.PeriodCoin[_fId][_posId].Pos)
+			Coin = CoinMgr:SpawnCoin("N1000",Config.PeriodCoin[_fId][_posId].Pos, _origin)
 		elseif RadIndex > 8 then
-			Coin = CoinMgr:SpawnCoin("N100",Config.PeriodCoin[_fId][_posId].Pos)
+			Coin = CoinMgr:SpawnCoin("N100",Config.PeriodCoin[_fId][_posId].Pos, _origin)
 		elseif RadIndex > 5 then
-			Coin = CoinMgr:SpawnCoin("N10",Config.PeriodCoin[_fId][_posId].Pos)
+			Coin = CoinMgr:SpawnCoin("N10",Config.PeriodCoin[_fId][_posId].Pos, _origin)
 		else
-			Coin = CoinMgr:SpawnCoin("N1",Config.PeriodCoin[_fId][_posId].Pos)
+			Coin = CoinMgr:SpawnCoin("N1",Config.PeriodCoin[_fId][_posId].Pos, _origin)
 		end
 		CoinInfo = {_posId,Coin }
 		table.insert(_table,CoinInfo)
@@ -118,30 +118,30 @@ function PeriodCoinMgr:InitCreat()
 	--- 蘑菇金币区
 	for i=0,this.mashroomHighValueNum,1 do
 		this:RandomPos(this.mashroomHighValue,3)
-		this:FreshCoin(this.mashroomHighValue,3,PosId)
+		this:FreshCoin(this.mashroomHighValue,3,PosId,2)
 	end
 	for i=0,this.mashroomMidValueNum,1 do
 		this:RandomPos(this.mashroomMidValue,2)
-		this:FreshCoin(this.mashroomMidValue,2,PosId)
+		this:FreshCoin(this.mashroomMidValue,2,PosId,2)
 	end
 	for i=0,this.mashroomLowValueNum,1 do
 		this:RandomPos(this.mashroomLowValue,1)
-		this:FreshCoin(this.mashroomLowValue,1,PosId)
+		this:FreshCoin(this.mashroomLowValue,1,PosId,2)
 	end
 	--- 云上金币区
 	for i=0,this.cloudNum,1 do
 		this:RandomPos(this.cloud,4)
-		this:FreshCoin(this.cloud,4,PosId)
+		this:FreshCoin(this.cloud,4,PosId,4)
 	end
 	--- 场景彩蛋金币
 	for i=0,this.sceneCoinNum,1 do
 		this:RandomPos(this.sceneCoin,5)
-		this:FreshCoin(this.sceneCoin,5,PosId)
+		this:FreshCoin(this.sceneCoin,5,PosId,1)
 	end
-		--- 场景彩蛋金币
+	--- 湖上荷叶金币
 	for i=0,this.lutusNum,1 do
 		this:RandomPos(this.lutus,6)
-		this:FreshCoin(this.lutus,6,PosId)
+		this:FreshCoin(this.lutus,6,PosId,3)
 	end
 	--[[ 湖上荷叶金币区
 	if #this.lotusHighValue < this.lotusLowValueNum then
