@@ -39,7 +39,13 @@ end
 
 ---更新图标
 function GuiLoading:UpdateIcon(_t)
-    icon.Size = Vector2((_t / loadingDur * 100) % 51, 51)
+    local x = (_t / loadingDur * 200) % 102
+    if x <= 51 then
+        x = x
+    else
+        x = 102 - x
+    end
+    icon.Size = Vector2(x, 51)
 end
 
 ---Update函数
