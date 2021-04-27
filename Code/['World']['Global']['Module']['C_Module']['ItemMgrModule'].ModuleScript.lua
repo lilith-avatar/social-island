@@ -143,6 +143,7 @@ end
 --使用在背包的道具
 function ItemMgr:UseItemInBagEventHandler(_id)
     print('[ItemMgr] 使用在背包的道具', _id)
+    CloudLogUtil.UploadLog('pannel_actions', 'eqip_' .. _id .. '_use')
     this.itemInstance[_id]:UseInBag()
 end
 

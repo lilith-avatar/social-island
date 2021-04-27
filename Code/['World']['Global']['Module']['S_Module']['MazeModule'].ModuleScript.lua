@@ -758,7 +758,7 @@ function CoinGen()
         pos =
             MAZE_CENTER_POS + CELL_LEFT_UP_POS + Vector3(col, 0, -row) * CELL_POS_OFFSET +
             Vector3.Up * WALL_HEIGHT * 1.3
-        NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL, TOTAL_TIME)
+        NetUtil.Fire_S('SpawnCoinEvent', 'N', pos, COIN_VAL, TOTAL_TIME, 7)
         if i % 3 == 0 then
             wait()
         end
@@ -974,6 +974,7 @@ function Maze:EnterMiniGameEventHandler(_player, _gameId)
             -- TODO: 反馈给NPC对话，说明此原因
             print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
         else
+            CloudLogUtil.UploadLog('mole', 'mole_worldEvent_maze', {online_player_num = #world:FindPlayers()})
             PlayerStartMaze(_player)
             MazeReset()
             MazeShow()

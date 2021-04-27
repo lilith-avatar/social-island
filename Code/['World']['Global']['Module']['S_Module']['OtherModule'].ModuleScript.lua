@@ -8,6 +8,7 @@ local Other, this = ModuleUtil.New("Other", ServerBase)
 
 function Other:Init()
     print("[Other] Init()")
+    CloudLogUtil.Init('Z1002')
     SoundUtil.Init(Config.Sound)
     SoundUtil.InitAudioSource()
 end

@@ -5,7 +5,7 @@
 local GuiNpc, this = ModuleUtil.New('GuiNpc', ClientBase)
 
 -- GUI
-local controlGui,  npcBtn
+local controlGui, npcBtn
 local npcGui, gameBtn, battleBtn, shopBtn, leaveBtn, dialogTxt
 
 -- Cache
@@ -34,7 +34,6 @@ end
 
 --- 初始化GUI结点
 function GuiNpc:InitGui()
-
     -- NPC GUI
     npcGui = localPlayer.Local.NpcGui
     portraitImg = npcGui.PortraitImg
@@ -119,6 +118,7 @@ function OpenNpcGui()
     if taskItemID == 0 then
         dialogTxt.Text = PickARandomDialog()
     else
+        CloudLogUtil.UploadLog('game_fte', 'talk_to_npc_' .. currNpcId)
         dialogTxt.Text = ItemMgr:GetNpcText(taskItemID)
         ItemMgr:RedeemTaskItemReward(taskItemID)
         taskItemID = 0
