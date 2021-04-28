@@ -57,12 +57,12 @@ function GuiTelescope:CamZoom(_multiple)
     PlayerCam.fpsCam.FieldOfView = 30 * _multiple
 end
 
-function GuiTelescope:InteractCEventHandler(_id)
+--[[function GuiTelescope:InteractCEventHandler(_id)
     if _id == 14 then
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 14)
         NetUtil.Fire_C('SetCurCamEvent', localPlayer, PlayerCam.fpsCam)
     end
-end
+end]]
 
 function GuiTelescope:LeaveInteractCEventHandler(_id)
     if _id == 14 then

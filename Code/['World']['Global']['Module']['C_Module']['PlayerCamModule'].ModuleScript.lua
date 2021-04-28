@@ -62,6 +62,7 @@ end
 -- 滑屏转向
 function PlayerCam:CameraMove(touchInfo)
     if #touchInfo == 1 then
+        print('PlayerCam', this:IsFreeMode())
         if this:IsFreeMode() then
             this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else

@@ -431,7 +431,7 @@ do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId then
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 14)
-                    NetUtil.Fire_C('SetFPSCamEvent', _player)
+                    NetUtil.Fire_C('SetFPSCamEvent', _player, _player)
                 end
             end
         end
