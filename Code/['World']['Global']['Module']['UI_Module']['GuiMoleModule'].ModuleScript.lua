@@ -47,6 +47,7 @@ end
 function GuiMole:PurchaseCEventHandler(_coin,_id)
     if _id == 2 then
         CloudLogUtil.UploadLog('pannel_actions', 'window_moleGui_payGui_yes')
+        CloudLogUtil.UploadLog('mole', 'mole_enter',{cur_coin = Data.Player.coin,type=this.curMoleType,rest_num=this.curRestNum})
         NetUtil.Fire_S('PlayerHitEvent',localPlayer.UserId,this.curMoleType,this.curPit)
     end
 end
