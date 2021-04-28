@@ -116,6 +116,8 @@ function GuiBag:ShowItemByIndex(_index, _itemId)
     end
     this.slotList[_index].ItemID.Value = _itemId
     -- 更换图片
+    this.slotList[_index].Texture =
+        ResourceManager.GetTexture('UI/Bag/' .. Config.ItemType[Config.Item[_itemId].Type].BgColor)
     this.slotList[_index].ItemImg.IMGNormal.Texture =
         ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[_itemId].Icon)
     -- 显示数量
@@ -143,7 +145,6 @@ end
 
 function GuiBag:ConsumeItem(_index)
     if Config.ItemType[Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].Type].IsConsume then
-        
         this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num =
             this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num - 1
         if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num <= 0 then

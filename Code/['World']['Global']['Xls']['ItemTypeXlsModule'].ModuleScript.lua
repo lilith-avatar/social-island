@@ -16,7 +16,8 @@ local ItemTypeXls = {
         IsUseable = true,
         IsConsume = false,
         IsEquip = true,
-        BgColor = 'Y'
+        BgColor = 'Img_SL_B_B',
+        SColor = 'Img_SL_B'
     },
     [2] = {
         Type = 2,
@@ -27,7 +28,8 @@ local ItemTypeXls = {
         IsUseable = true,
         IsConsume = false,
         IsEquip = true,
-        BgColor = 'Y'
+        BgColor = 'Img_SL_B_B',
+        SColor = 'Img_SL_B'
     },
     [3] = {
         Type = 3,
@@ -38,7 +40,8 @@ local ItemTypeXls = {
         IsUseable = true,
         IsConsume = false,
         IsEquip = true,
-        BgColor = 'Y'
+        BgColor = 'Img_SL_B_B',
+        SColor = 'Img_SL_B'
     },
     [4] = {
         Type = 4,
@@ -49,7 +52,8 @@ local ItemTypeXls = {
         IsUseable = true,
         IsConsume = true,
         IsEquip = true,
-        BgColor = 'O'
+        BgColor = 'Img_SL_B_O',
+        SColor = 'Img_SL_O'
     },
     [5] = {
         Type = 5,
@@ -60,7 +64,8 @@ local ItemTypeXls = {
         IsUseable = true,
         IsConsume = false,
         IsEquip = true,
-        BgColor = 'P'
+        BgColor = 'Img_SL_B_P',
+        SColor = 'Img_SL_P'
     },
     [6] = {
         Type = 6,
@@ -71,7 +76,8 @@ local ItemTypeXls = {
         IsUseable = false,
         IsConsume = false,
         IsEquip = false,
-        BgColor = 'SP'
+        BgColor = 'Img_SL_B_SP',
+        SColor = 'Img_SL_SP'
     },
     [7] = {
         Type = 7,
@@ -82,7 +88,8 @@ local ItemTypeXls = {
         IsUseable = true,
         IsConsume = true,
         IsEquip = false,
-        BgColor = 'G'
+        BgColor = 'Img_SL_B_G',
+        SColor = 'Img_SL_G'
     }
 }
 
