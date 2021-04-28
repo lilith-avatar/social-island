@@ -60,7 +60,7 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
                 CloudLogUtil.UploadLog(
                     'battle_actions',
                     'hit_event',
-                    {hit_target_id = 2, target_detail = _hitObj, attack_target = localPlayer, attack_type = 2}
+                    {hit_target_id = 2, target_detail = _hitObj, attack_target = localPlayer.UserId, attack_type = 2}
                 )
                 NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
@@ -130,7 +130,7 @@ function Projectile:HitBuff(_players, _buffData)
         CloudLogUtil.UploadLog(
             'battle_actions',
             'hit_event',
-            {hit_target_id = 1, target_detail = v, attack_target = localPlayer, attack_type = 2}
+            {hit_target_id = 1, target_detail = v.UserId, attack_target = localPlayer.UserId, attack_type = 2}
         )
         NetUtil.Fire_S('SPlayerHitEvent', localPlayer, v, _buffData)
     end

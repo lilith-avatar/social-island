@@ -53,7 +53,7 @@ function MeleeWeapon:HitBuff(_player)
     CloudLogUtil.UploadLog(
         'battle_actions',
         'hit_event',
-        {hit_target_id = 1, target_detail = _player, attack_target = localPlayer, attack_type = 1}
+        {hit_target_id = 1, target_detail = _player.UserId, attack_target = localPlayer.UserId, attack_type = 1}
     )
     NetUtil.Fire_S(
         'SPlayerHitEvent',
