@@ -525,6 +525,11 @@ do
         --NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 17)
         for k, v in pairs(bounceOBJ) do
             if v.obj == _obj then
+				CloudLogUtil.UploadLog(
+                    'pannel_actions',
+                    'movement_bounce_' .. v.obj.Name 
+                )
+				
                 this:ElasticDeformation(v, _player)
             end
         end
