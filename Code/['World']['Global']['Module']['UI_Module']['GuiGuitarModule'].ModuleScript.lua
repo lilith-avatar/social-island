@@ -100,6 +100,7 @@ end
 
 function GuiGuitar:PlayString(_string)
     --local playPos = not this.practiceMode and localPlayer.Position or nil
+    this.stringTime = this.stringTime + 1
     -- 播放对应弦的音效
     SoundUtil.Play3DSE(localPlayer.Position, Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret])
     local Tweener = Tween:ShakeProperty(this.string[_string].StringImg, {"Offset"}, 0.5, 2)
@@ -133,7 +134,7 @@ function GuiGuitar:PressFret(_string, _fret)
     else
         table.insert(this.stringPitch[_string].backFret, _fret)
     end
-    CloudLogUtil.UploadLog('guitar', 'choose_chord_'.._chord)
+    this.fretTime = this.fretTime + 1
     SortBackFret(this.stringPitch[_string].backFret)
 end
 
@@ -153,11 +154,12 @@ end
 
 function GuiGuitar:HideGui()
     this.gui:SetActive(false)
+    CloudLogUtil.UploadLog('guitar','leave',{string_num = this.stringTime,chord_num = this.chordTime,fret_num = this.fretTime})
     NetUtil.Fire_C("ChangeMiniGameUIEvent", localPlayer)
 end
 
 function GuiGuitar:ChangeChord(_chord)
-    CloudLogUtil.UploadLog('guitar', 'choose_chord_'.._chord)
+    this.chordTime = this.chordTime + 1
     --所有的按钮回复白色
     for k, v in pairs(this.chordBtn) do
         v.Color = Color(255, 255, 255, 255)
@@ -165,6 +167,9 @@ function GuiGuitar:ChangeChord(_chord)
     for k, v in pairs(Config.ChordFret[_chord].StringFret) do
         this.stringPitch[k].pitchFret = v
     end
+end
+
+function GuiGuitar:InteractCEventHandler()
 end
 
 return GuiGuitar

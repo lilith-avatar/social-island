@@ -605,6 +605,7 @@ do
         NetUtil.Fire_C('CloseDynamicEvent', _player)
     end
     function ScenesInteract:EnterGuitar(_player)
+        CloudLogUtil.UploadLog('guitar','enter')
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 21)
     end
     function ScenesInteract:LeaveGuitar(_player)
