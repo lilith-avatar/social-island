@@ -57,12 +57,22 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
                     projectileObj:Destroy()
                 end
             elseif _hitObj.AnimalID and projectileConfig.Hunt then
+                CloudLogUtil.UploadLog(
+                    'battle_actions',
+                    'hit_event',
+                    {hit_target_id = 2, target_detail = _hitObj, attack_target = localPlayer, attack_type = 2}
+                )
                 NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 _hitObj.AnimalDeadEvent:Fire()
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
             elseif _hitObj.Name == 'ArrowTargetCol' then
+                CloudLogUtil.UploadLog(
+                    'battle_actions',
+                    'hit_event',
+                    {hit_target_id = 3, target_detail = _hitObj.Parent, attack_target = localPlayer, attack_type = 2}
+                )
                 NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 _hitObj.Parent.ArrowTargetEvent:Fire(_hitPoint)

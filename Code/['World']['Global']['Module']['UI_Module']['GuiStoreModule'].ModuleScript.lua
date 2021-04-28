@@ -86,6 +86,7 @@ end
 --购买一个物品
 function GuiStore:BuyItem(_itemID)
     --Data.Player.coin = Data.Player.coin - Config.Shop[curNpcID][_itemID].Price
+    CloudLogUtil.UploadLog('pannel_actions', 'window_shopGui_payGui_' .. _itemID .. '_yes')
     NetUtil.Fire_C('GetItemEvent', localPlayer, _itemID)
     wait(0.1)
     this:UpdateStoreUI()
@@ -196,11 +197,13 @@ end
 function GuiStore:SwitchStoreUIEventHandler(_switch, _npcID)
     if _switch == 1 then
         print('开商店显示', _npcID)
+        CloudLogUtil.UploadLog('pannel_actions', 'window_shopGui_' .. _npcID .. '_show')
         curNpcID = _npcID
         this:GetItemData(Config.Shop[curNpcID])
         this:UpdateStoreUI(false)
         gui.Visible = true
     elseif _switch == 2 then
+        CloudLogUtil.UploadLog('pannel_actions', 'window_shopGui_close')
         this:UpdateStoreUI(true)
         curNpcID = 0
         gui.Visible = false

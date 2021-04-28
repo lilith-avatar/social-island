@@ -35,6 +35,11 @@ end
 
 --生成一个陷阱
 function Catch:InstanceTrap(_ItemID)
+    CloudLogUtil.UploadLog(
+        'pet',
+        'setTrapEvent',
+        {trap_id = _ItemID, set_position = localPlayer.Position + localPlayer.Forward}
+    )
     local archetTypeName = ''
     if _ItemID == 4001 then
         archetTypeName = 'Trap1'
@@ -55,7 +60,7 @@ function Catch:InstanceTrap(_ItemID)
     trap.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject.Parent.AnimalID and _hitObject.Parent.AnimalCaughtEvent then
-                this:TrapAnimal(trap.Rate.Value, trap, _hitObject.Parent)
+                this:TrapAnimal(trap.Rate.Value, trap, _hitObject.Parent, _ItemID)
             end
         end
     )
@@ -71,7 +76,7 @@ function Catch:TouchPrey(_animal, _isTouch)
 end
 
 --困住动物
-function Catch:TrapAnimal(_rate, _trap, _animal)
+function Catch:TrapAnimal(_rate, _trap, _animal, _id)
     if _animal.AnimalTrappedEvent then
         _animal.AnimalTrappedEvent:Fire(_rate)
         _trap.OnCollisionBegin:Clear()
@@ -79,6 +84,11 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
         invoke(
             function()
                 if _animal.AnimalState.Value == 6 then
+                    CloudLogUtil.UploadLog(
+                        'pet',
+                        'catchSuccessEvent',
+                        {trap_id = _id, animal_id = _animal.AnimalID.Value}
+                    )
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
                         localPlayer,
@@ -91,6 +101,11 @@ function Catch:TrapAnimal(_rate, _trap, _animal)
                     _trap.Open:SetActive(false)
                     _trap.Close:SetActive(true)
                 else
+                    CloudLogUtil.UploadLog(
+                        'pet',
+                        'catchFailEvent',
+                        {trap_id = _id, animal_id = _animal.AnimalID.Value}
+                    )
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
                         localPlayer,
@@ -163,6 +178,11 @@ function Catch:Search()
             wait(.5)
             NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             NetUtil.Fire_C('GetItemFromPoolEvent', localPlayer, Config.Animal[prey.AnimalID.Value].ItemPoolID, 0)
+            CloudLogUtil.UploadLog(
+                'inter',
+                'hunt_' .. prey.AnimalID.Value .. '_pickup',
+                Config.Animal[prey.AnimalID.Value].ItemPoolID
+            )
             --[[NetUtil.Fire_S(
                 "SpawnCoinEvent",
                 "P",

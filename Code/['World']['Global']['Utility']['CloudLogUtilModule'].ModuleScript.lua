@@ -13,13 +13,17 @@ end
 ---触发埋点相应的事件调用 CloudLogUtil.UploadLog('', '' .. )
 ---@param _key string 埋点的键
 function CloudLogUtil.UploadLog(_key, _action, _table)
-    local t = table.MergeTables({action = _action}, _table or {})
-    local arg = LuaJsonUtil:encode(t)
-    if localPlayer then
-        TrackService.CloudLogFromClient({_key, CloudLogUtil.gameId, arg})
-    else
-        TrackService.CloudLogFromServer({_key, CloudLogUtil.gameId, arg})
-    end
+    pcall(
+        function()
+            local t = table.MergeTables({action = _action}, _table or {})
+            local arg = LuaJsonUtil:encode(t)
+            if localPlayer then
+                TrackService.CloudLogFromClient({_key, CloudLogUtil.gameId, arg})
+            else
+                TrackService.CloudLogFromServer({_key, CloudLogUtil.gameId, arg})
+            end
+        end
+    )
 end
 
 return CloudLogUtil

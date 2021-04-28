@@ -855,6 +855,7 @@ end
 function ScenesInteract:InteractSEventHandler(_player, _id)
     print('InteractSEventHandler', _id)
     if EnterInteractFunc[_id] then
+        CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. _id .. '_click')
         EnterInteractFunc[_id](_player)
     end
 end
@@ -862,6 +863,7 @@ end
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     print('LeaveInteractSEventHandler', _id)
     if LeaveInteractFunc[_id] then
+        CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. _id .. 'close')
         LeaveInteractFunc[_id](_player)
     end
 end

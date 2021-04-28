@@ -56,6 +56,7 @@ function GuiLoading:Update(_dt)
             this:UpdateBar(timer)
             this:UpdateIcon(timer)
         else
+            CloudLogUtil.UploadLog('game_fte', 'loading_complete')
             gui:SetActive(false)
         end
     end
