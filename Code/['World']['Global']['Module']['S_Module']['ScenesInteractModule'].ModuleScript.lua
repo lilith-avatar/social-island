@@ -41,6 +41,9 @@ local radioOBJ = {}
 -- 锅
 local potOBJ = {}
 
+-- 地图
+local mapOBJ = {}
+
 -- 玩家碰撞开始命令函数
 local ColBeginFunc = {}
 
@@ -153,6 +156,14 @@ function ScenesInteract:NodeRef()
         }
         world:CreateObject('IntValueObject', 'InteractID', v)
         v.InteractID.Value = 26
+    end
+    for k, v in pairs(world.MapInteract:GetChildren()) do
+        mapOBJ[v.Name] = {
+            obj = v,
+            aroundPlayers = {}
+        }
+        world:CreateObject('IntValueObject', 'InteractID', v)
+        v.InteractID.Value = 29
     end
 end
 
@@ -838,6 +849,38 @@ do
                     --v1.obj.Off:SetActive(true)
                     --v1.obj.On:SetActive(false)
                     end
+                end
+            end
+        end
+    end
+end
+
+--地图交互
+do
+    function ScenesInteract:MapInteractColBeginFunc(_player, _obj)
+        NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 29)
+        mapOBJ[_obj.Name].aroundPlayers[_player.UserId] = _player.UserId
+    end
+
+    function ScenesInteract:MapInteractColEndFunc(_player, _obj)
+        NetUtil.Fire_C('CloseDynamicEvent', _player)
+        mapOBJ[_obj.Name].aroundPlayers[_player.UserId] = nil
+    end
+    function ScenesInteract:EnterMapInteract(_player)
+        for k1, v1 in pairs(mapOBJ) do
+            for k2, v2 in pairs(v1.aroundPlayers) do
+                if v2 == _player.UserId then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 29)
+                end
+            end
+        end
+    end
+
+    function ScenesInteract:LeaveMapInteract(_player)
+        for k1, v1 in pairs(mapOBJ) do
+            for k2, v2 in pairs(v1.aroundPlayers) do
+                if v2 == _player.UserId then
+                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 end
             end
         end
