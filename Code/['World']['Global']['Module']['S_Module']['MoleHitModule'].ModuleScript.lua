@@ -105,7 +105,8 @@ function MoleHit:RefreashMole(_type)
                         _hitObject,
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
-                        v
+                        v,
+                        this.hitTime[_type]
                     )
                     NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
                 end
