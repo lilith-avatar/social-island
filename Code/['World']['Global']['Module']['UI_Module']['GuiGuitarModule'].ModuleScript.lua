@@ -23,6 +23,9 @@ end
 function GuiGuitar:DataInit()
     this.stringAudio = {}
     this.stringPitch = {}
+    this.chordTime = 0
+    this.fretTime = 0
+    this.stringTime = 0
     this.practiceMode = false
 end
 
@@ -130,6 +133,7 @@ function GuiGuitar:PressFret(_string, _fret)
     else
         table.insert(this.stringPitch[_string].backFret, _fret)
     end
+    CloudLogUtil.UploadLog('guitar', 'choose_chord_'.._chord)
     SortBackFret(this.stringPitch[_string].backFret)
 end
 
@@ -153,6 +157,7 @@ function GuiGuitar:HideGui()
 end
 
 function GuiGuitar:ChangeChord(_chord)
+    CloudLogUtil.UploadLog('guitar', 'choose_chord_'.._chord)
     --所有的按钮回复白色
     for k, v in pairs(this.chordBtn) do
         v.Color = Color(255, 255, 255, 255)
