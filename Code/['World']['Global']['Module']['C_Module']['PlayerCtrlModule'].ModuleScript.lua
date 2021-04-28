@@ -175,34 +175,34 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
         elseif _hitObject.Parent then
-            if _dir == 'R' and _hitObject.Parent.Name =='grass' then
+            if _dir == 'R' and _hitObject.Parent.Name == 'grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 118)
-            elseif _dir == 'L' and _hitObject.Parent.Name =='grass' then
+            elseif _dir == 'L' and _hitObject.Parent.Name == 'grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 17)
-            elseif _dir == 'R' and _hitObject.Parent.Name =='cloth' then
+            elseif _dir == 'R' and _hitObject.Parent.Name == 'cloth' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 122)
-            elseif _dir == 'L' and _hitObject.Parent.Name =='cloth' then
+            elseif _dir == 'L' and _hitObject.Parent.Name == 'cloth' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 121)
-            elseif _dir == 'R' and _hitObject.Parent.Name =='stone' then
+            elseif _dir == 'R' and _hitObject.Parent.Name == 'stone' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 124)
-            elseif _dir == 'L' and _hitObject.Parent.Name =='stone' then
+            elseif _dir == 'L' and _hitObject.Parent.Name == 'stone' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 123)
-            elseif _dir == 'R' and _hitObject.Parent.Name =='cloud' then
+            elseif _dir == 'R' and _hitObject.Parent.Name == 'cloud' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 130)
-            elseif _dir == 'L' and _hitObject.Parent.Name =='cloud' then
+            elseif _dir == 'L' and _hitObject.Parent.Name == 'cloud' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 129)
-            elseif _dir == 'R' and _hitObject.Parent.Name =='wood' then
+            elseif _dir == 'R' and _hitObject.Parent.Name == 'wood' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 126)
-            elseif _dir == 'L' and _hitObject.Parent.Name =='wood' then
+            elseif _dir == 'L' and _hitObject.Parent.Name == 'wood' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 125)
-            elseif _dir == 'R' and _hitObject.Parent.Name =='metal' then
+            elseif _dir == 'R' and _hitObject.Parent.Name == 'metal' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 128)
-            elseif _dir == 'L' and _hitObject.Parent.Name =='metal' then
+            elseif _dir == 'L' and _hitObject.Parent.Name == 'metal' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 127)
-			elseif _dir == 'R' then
-				SoundUtil.Play2DSE(localPlayer.UserId, 118)
-			else
-				SoundUtil.Play2DSE(localPlayer.UserId, 17)
+            elseif _dir == 'R' then
+                SoundUtil.Play2DSE(localPlayer.UserId, 118)
+            else
+                SoundUtil.Play2DSE(localPlayer.UserId, 17)
             end
         end
         localPlayer.Avatar['Bone_' .. _dir .. '_Foot'].FootStep.OnCollisionEnd:Clear()
@@ -474,6 +474,7 @@ end
 function PlayerCtrl:ColFunc(_hitObject, _isBegin)
     if _hitObject.InteractID then
         if _isBegin then
+            print(_hitObject.InteractID.Value)
             NetUtil.Fire_S('SInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
             NetUtil.Fire_C('CInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         else

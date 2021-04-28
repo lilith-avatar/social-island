@@ -72,7 +72,7 @@ Const.InteractEnum = {
     Cook = 26,
     EatFood = 27,
     Lotus = 28,
-    Map = 29
+    MapInteract = 29
 }
 
 Const.SeatStateEnum = {
