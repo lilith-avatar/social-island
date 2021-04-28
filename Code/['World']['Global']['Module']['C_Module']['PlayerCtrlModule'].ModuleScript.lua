@@ -474,7 +474,6 @@ end
 function PlayerCtrl:ColFunc(_hitObject, _isBegin)
     if _hitObject.InteractID then
         if _isBegin then
-            print(_hitObject.InteractID.Value)
             NetUtil.Fire_S('SInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
             NetUtil.Fire_C('CInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         else
