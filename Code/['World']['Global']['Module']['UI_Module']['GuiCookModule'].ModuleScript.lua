@@ -109,21 +109,32 @@ function GuiCook:EventBind()
     )
     this.eatBtn.OnClick:Connect(
         function()
+            CloudLogUtil.UploadLog('cook', 'cook_main_eat', {meal_id = this.foodId, share_slot = this.curShareSlot})
             this:EatFood()
         end
     )
     this.deskBtn.OnClick:Connect(
         function()
+            CloudLogUtil.UploadLog('cook', 'cook_main_share', {meal_id = this.foodId, share_slot = this.curShareSlot})
             this:PutOnDesk()
         end
     )
     this.detailEatBtn.OnClick:Connect(
         function()
+            CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_no')
+            CloudLogUtil.UploadLog('cook', 'cook_reward_leave',{meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId})
             this:EatFood()
         end
     )
     this.detailReward.OnClick:Connect(
         function()
+            CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_yes')
+            CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_show')
+            CloudLogUtil.UploadLog(
+                'cook',
+                'cook_reward_enter',
+                {meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId}
+            )
             NetUtil.Fire_C(
                 'SliderPurchaseEvent',
                 localPlayer,
@@ -162,6 +173,7 @@ function GuiCook:ShowUI()
     this.root:SetActive(true)
     this.gui:SetActive(true)
     this:ClickChangePage(1)
+    CloudLogUtil.UploadLog('cook', 'cook_main_enter')
 end
 
 function GuiCook:ShowDetail()
@@ -177,6 +189,12 @@ function GuiCook:InteractCEventHandler(_gameId)
         this:ShowUI()
     elseif _gameId == 27 then
         if this.canEat then
+            CloudLogUtil.UploadLog(
+                'cook',
+                'cook_meal_enter',
+                {meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId}
+            )
+            CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_show')
             this:ShowDetail()
         else
             NetUtil.Fire_C('InsertInfoEvent', localPlayer, '宴会还没有开始，晚上再来吧', 2, false)
@@ -187,6 +205,17 @@ end
 function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
         this:HideGui()
+        CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_yes')
+        CloudLogUtil.UploadLog(
+            'cook',
+            'cook_reward_confirm',
+            {
+                meal_id = this.foodId,
+                customer_uid = localPlayer.UserId,
+                cooker_uid = this.cookUserId,
+                reward_num = _purchaseCoin
+            }
+        )
         NetUtil.Fire_S('FoodRewardEvent', localPlayer.UserId, this.cookUserId, _purchaseCoin)
     end
 end
@@ -194,6 +223,9 @@ end
 function GuiCook:LeaveInteractCEventHandler(_gameId)
     if _gameId == 26 then
         this:HideGui()
+    elseif _gameId == 27 then
+        CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_close')
+        CloudLogUtil.UploadLog('cook', 'cook_share_leave',{meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId})
     end
 end
 
@@ -224,6 +256,7 @@ function GuiCook:CancelMaterial(_index)
     if not this.UsingMaterial[_index] then
         return
     end
+    CloudLogUtil.UploadLog('cook', 'cook_recall_' .. this.UsingMaterial[_index].id)
     table.insert(this.BagMaterial, this.UsingMaterial[_index])
     table.remove(this.UsingMaterial, _index)
     table.sort(
@@ -241,6 +274,7 @@ function GuiCook:ChooseMaterial(_index)
     if #this.UsingMaterial >= 3 then
         return
     end
+    CloudLogUtil.UploadLog('cook', 'cook_select_' .. this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id)
     table.insert(this.UsingMaterial, {id = this.BagMaterial[(this.pageIndex - 1) * this.pageSize + _index].id})
     table.remove(this.BagMaterial, _index + (this.pageIndex - 1) * this.pageSize)
     this:ClickChangePage(this.pageIndex)
@@ -380,6 +414,7 @@ function GuiCook:ShowFoodEventHandler()
 end
 
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
+    this.curShareSlot = _cur
     this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
     if _cur >= _total then
         --禁止上桌
@@ -399,7 +434,7 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foo
     this.detailName.Text = LanguageUtil.GetText(Config.CookMenu[_foodId].Name)
     this.authorName.Text = 'By ' .. _cookName
     this.detailIcon.Texture = ResourceManager.GetTexture('UI/MealIco/' .. Config.CookMenu[_foodId].Ico)
-    this.detailIcon.Size = Vector2(170,170)
+    this.detailIcon.Size = Vector2(170, 170)
     this.cookUserId = _cookUserId
     this.foodId = _foodId
     this.foodLocation = _foodLocation
@@ -430,7 +465,7 @@ function GuiCook:EatFood()
 end
 
 function GuiCook:PutOnDesk()
-    NetUtil.Fire_C('FoodOnDeskActionEvent',localPlayer,this.foodId)
+    NetUtil.Fire_C('FoodOnDeskActionEvent', localPlayer, this.foodId)
     this.foodId = nil
     this.root:SetActive(false)
     --NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
