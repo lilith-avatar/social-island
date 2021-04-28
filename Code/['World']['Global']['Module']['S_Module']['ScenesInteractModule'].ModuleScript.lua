@@ -634,6 +634,8 @@ do
                         NetUtil.Fire_C('SetCurCamEvent', _player, nil, v1.obj)
                         NetUtil.Fire_C('SetCamDistanceEvent', _player, 6, 0.5)
                         _player.Avatar:SetActive(false)
+                        _player.NameGui:SetActive(false)
+                        _player.CollisionGroup = 3
                         _player.Position, _player.Rotation = v1.obj.LeaveLoc.Position, v1.obj.LeaveLoc.Rotation
                         if v1.obj.UsingPlayerUid1.Value == '' then
                             v1.obj.UsingPlayerUid1.Value = _player.UserId
@@ -677,6 +679,8 @@ do
                     --离开帐篷玩家的表现
                     _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
                     _player.Avatar:SetActive(true)
+                    _player.NameGui:SetActive(true)
+                    _player.CollisionGroup = 15
                     NetUtil.Fire_C('ResetTentCamEvent', _player, 3)
                 end
             end
