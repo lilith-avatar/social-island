@@ -632,10 +632,10 @@ do
                         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 22)
                         NetUtil.Fire_C('GetBuffEvent', _player, 20, 1)
                         NetUtil.Fire_C('SetCurCamEvent', _player, nil, v1.obj)
-                        NetUtil.Fire_C('SetCamDistanceEvent', _player, 6, 0.5)
+                        NetUtil.Fire_C('SetCamDistanceEvent', _player, 8, 0.5)
                         _player.Avatar:SetActive(false)
                         _player.NameGui:SetActive(false)
-                        _player.CollisionGroup = 3
+                        _player.CollisionGroup = 2
                         _player.Position, _player.Rotation = v1.obj.LeaveLoc.Position, v1.obj.LeaveLoc.Rotation
                         if v1.obj.UsingPlayerUid1.Value == '' then
                             v1.obj.UsingPlayerUid1.Value = _player.UserId
@@ -681,7 +681,7 @@ do
                     _player.Avatar:SetActive(true)
                     _player.NameGui:SetActive(true)
                     _player.CollisionGroup = 15
-                    NetUtil.Fire_C('ResetTentCamEvent', _player, 3)
+                    NetUtil.Fire_C('ResetTentCamEvent', _player, 5)
                 end
             end
         end
@@ -742,7 +742,7 @@ do
         for k1, v1 in pairs(radioOBJ) do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId then
-                    SoundUtil.Play3DSE(_player.Position, 104)
+                    SoundUtil.Play3DSE(Vector3(-55.4463, -8.199, -35.2276), 104)
                     this.RadioData.songIndex = this.RadioData.songIndex + 1
                     if this.RadioData.songIndex > #this.RadioData.songList then
                         this.RadioData.songIndex = 1
