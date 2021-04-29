@@ -138,15 +138,19 @@ end
 
 --- 投注
 function Snail:SnailBetEventHandler(_player, _index, _money)
-    CloudLogUtil.UploadLog(
-        'snail',
-        'snail_bet',
-        {snailId = _index, lastest_winner = lastestWinner, snail_mood = emoText[_index].Text, coin_num = _money}
-    )
-    snailObjPool[_index].betPlayer[#snailObjPool[_index].betPlayer + 1] = {
-        player = _player,
-        money = _money
-    }
+    if this:IsBetable(_player) then
+        CloudLogUtil.UploadLog(
+            'snail',
+            'snail_bet',
+            {snailId = _index, lastest_winner = lastestWinner, snail_mood = emoText[_index].Text, coin_num = _money}
+        )
+        snailObjPool[_index].betPlayer[#snailObjPool[_index].betPlayer + 1] = {
+            player = _player,
+            money = _money
+        }
+    else
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
+    end
 end
 
 --- 检查是否开始
