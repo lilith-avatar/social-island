@@ -62,7 +62,6 @@ end
 -- 滑屏转向
 function PlayerCam:CameraMove(touchInfo)
     if #touchInfo == 1 then
-        print('PlayerCam', this:IsFreeMode())
         if this:IsFreeMode() then
             this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
@@ -105,12 +104,14 @@ function PlayerCam:SwitchSwimFilter(_switch)
         this.playerGameCam.WaterAmbientOcclusion:SetActive(true)
         this.playerGameCam.WaterGrain:SetActive(true)
         this.playerGameCam.WaterColorGrading:SetActive(true)
+		this.playerGameCam.WaterEffect:SetActive(true)
     else
         this.playerGameCam.WaterVignette:SetActive(false)
         this.playerGameCam.WaterGaussionBlur:SetActive(false)
         this.playerGameCam.WaterAmbientOcclusion:SetActive(false)
         this.playerGameCam.WaterGrain:SetActive(false)
         this.playerGameCam.WaterColorGrading:SetActive(false)
+		this.playerGameCam.WaterEffect:SetActive(false)
     end
 end
 
