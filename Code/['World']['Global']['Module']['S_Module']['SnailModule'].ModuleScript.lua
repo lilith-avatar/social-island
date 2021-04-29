@@ -170,7 +170,7 @@ function Snail:StartRaceCD(dt)
         else
             if startCD == 10 then
                 --SoundUtil.Play3DSE(startPoints[1].Position, 9)
-                NetUtil.Broadcast('ShowNoticeInfoEvent', 2, Vector3(-30.1, -11.3, -29.7))
+                NetUtil.Broadcast('ShowNoticeInfoEvent', 2, Vector3(-27.3455, -12.3695, -28.3368))
             end
             startCD = startCD - dt
         end
@@ -179,7 +179,7 @@ end
 
 --- 开始比赛
 function Snail:StartSnailRace()
-    NetUtil.Broadcast('ShowNoticeInfoEvent', 3, Vector3(-30.1, -11.3, -29.7))
+    NetUtil.Broadcast('ShowNoticeInfoEvent', 3, Vector3(-27.3455, -12.3695, -28.3368))
     SoundUtil.Play3DSE(startPoints[1].Position, 10)
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
