@@ -19,21 +19,21 @@ local NoticeInfoXls = {
         Des = '蜗牛即将开始',
         TextID = 'SnailGui_1',
         Dur = 10.0,
-        ProfileImg = 'Tips_Neytiri'
+        ProfileImg = 'Tips_Manolete'
     },
     [3] = {
         ID = 3,
         Des = '蜗牛开始',
         TextID = 'SnailGui_2',
         Dur = 10.0,
-        ProfileImg = 'Tips_Neytiri'
+        ProfileImg = 'Tips_Manolete'
     },
     [4] = {
         ID = 4,
         Des = 'UFO',
         TextID = 'InfoGui_4',
         Dur = 10.0,
-        ProfileImg = 'Tips_Neytiri'
+        ProfileImg = 'Tips_Jake'
     }
 }
 
