@@ -30,7 +30,7 @@ local isSwim = false
 
 --- 初始化
 function PlayerCtrl:Init()
-    print('[PlayerCtrl] Init()')
+    --print('[PlayerCtrl] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -174,7 +174,7 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
      then
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
-        elseif _hitObject.Parent then
+        elseif _hitObject and _hitObject.Parent then
             if _dir == 'R' and _hitObject.Parent.Name == 'grass' then
                 SoundUtil.Play2DSE(localPlayer.UserId, 118)
             elseif _dir == 'L' and _hitObject.Parent.Name == 'grass' then
@@ -229,7 +229,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.4
          then
-            print('进入游泳')
+            --print('进入游泳')
             FsmMgr:FsmTriggerEventHandler('SwimIdle')
             if
                 FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
@@ -249,7 +249,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
-            print('退出游泳')
+            --print('退出游泳')
             FsmMgr:FsmTriggerEventHandler('Idle')
             if
                 FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
@@ -450,7 +450,7 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     FsmMgr:FsmTriggerEventHandler('BowHit')
     FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
     FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
-    print('角色受伤', table.dump(_data))
+    --print('角色受伤', table.dump(_data))
     BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
     BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end

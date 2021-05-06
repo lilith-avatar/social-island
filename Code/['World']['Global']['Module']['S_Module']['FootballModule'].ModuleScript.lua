@@ -20,9 +20,11 @@ function Football:EventBind()
     for k, v in pairs(this.goal:GetChildren()) do
         v.OnCollisionBegin:Connect(
             function(_hitObject)
-                if _hitObject.Name == "Ball" and _hitObject.ClassName == "Sphere" then
-                    this:FootballGoal(v)
-                end
+				if _hitObject then
+					if _hitObject.Name == "Ball" and _hitObject.ClassName == "Sphere" then
+						this:FootballGoal(v)
+					end
+				end
             end
         )
     end
