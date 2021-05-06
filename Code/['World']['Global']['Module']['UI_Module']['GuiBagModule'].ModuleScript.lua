@@ -104,6 +104,10 @@ function GuiBag:ShowBagUI()
     this.coinTxt.Text = math.floor(Data.Player.coin)
 end
 
+function GuiBag:ShowGetCoinNumEventHandler()
+    this.coinTxt.Text = math.floor(Data.Player.coin)
+end
+
 function GuiBag:HideBagUI()
     this.root:SetActive(false)
 end
