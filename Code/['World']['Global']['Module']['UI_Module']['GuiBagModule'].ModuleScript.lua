@@ -11,6 +11,7 @@ function GuiBag:Init()
 end
 
 function GuiBag:NodeDef()
+    this.bagBtn = localPlayer.Local.ControlGui.Menu.BagBtn
     this.root = localPlayer.Local.BagGui
     this.gui = this.root.BagPanel
     this.slotList = this.gui.DragPanel.SlotPanel:GetChildren()
@@ -37,6 +38,8 @@ function GuiBag:DataInit()
     --* 背包物品显示参数-------------
     this.pageSize = 15
 end
+
+
 
 function GuiBag:EventBind()
     this.closeBtn.OnClick:Connect(
@@ -69,6 +72,10 @@ function GuiBag:EventBind()
     end
 end
 
+function GuiBag:GetItemEventHandler()
+    this.bagBtn.RedPoint:SetActive(true)
+end
+
 function GuiBag:TransItemTable()
     --先清空表
     this.slotItem = {}
@@ -93,6 +100,7 @@ end
 function GuiBag:ShowBagUI()
     CloudLogUtil.UploadLog('pannel_actions', 'window_bagGui_Show')
     this:ClearSelect()
+    this.bagBtn.RedPoint:SetActive(false)
     this.root:SetActive(true)
     -- 转表
     this:TransItemTable()
