@@ -386,9 +386,9 @@ do
                         end
                         if v1.itemID ~= nil then
                             CloudLogUtil.UploadLog(
-                                'pannel_actions',
-                                'dialog_icon_' .. 13 .. '_click',
-                                {scenes_interact__id = v1.id}
+                                'inter',
+                                'pickup_item_' .. v1.id,
+                                {player_uid = _player.UserId, player_name = _player.Name}
                             )
                             NetUtil.Fire_C('GetItemEvent', _player, v1.itemID)
                             if v1.isUse then
@@ -525,11 +525,8 @@ do
         --NetUtil.Fire_C('OpenDynamicEvent', _player, 'Interact', 17)
         for k, v in pairs(bounceOBJ) do
             if v.obj == _obj then
-				CloudLogUtil.UploadLog(
-                    'pannel_actions',
-                    'movement_bounce_' .. v.obj.Name 
-                )
-				
+                CloudLogUtil.UploadLog('inter', 'movement_bounce_' .. v.obj.Name)
+
                 this:ElasticDeformation(v, _player)
             end
         end
@@ -605,7 +602,7 @@ do
         NetUtil.Fire_C('CloseDynamicEvent', _player)
     end
     function ScenesInteract:EnterGuitar(_player)
-        CloudLogUtil.UploadLog('guitar','enter')
+        CloudLogUtil.UploadLog('guitar', 'enter')
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 21)
     end
     function ScenesInteract:LeaveGuitar(_player)
@@ -908,7 +905,6 @@ end
 function ScenesInteract:InteractSEventHandler(_player, _id)
     print('InteractSEventHandler', _id)
     if EnterInteractFunc[_id] then
-        CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. _id .. '_click')
         EnterInteractFunc[_id](_player)
     end
 end
@@ -916,7 +912,6 @@ end
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
     print('LeaveInteractSEventHandler', _id)
     if LeaveInteractFunc[_id] then
-        CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. _id .. 'close')
         LeaveInteractFunc[_id](_player)
     end
 end

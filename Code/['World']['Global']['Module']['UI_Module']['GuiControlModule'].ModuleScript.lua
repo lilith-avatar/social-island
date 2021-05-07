@@ -70,6 +70,7 @@ function GuiControl:InitListener()
             print('LeaveBtnClick')
             NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, interactID)
             NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, interactID)
+            CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_close')
         end
     )
     menuFigure.BagBtn.OnClick:Connect(
@@ -89,6 +90,7 @@ function OnInteractBtnClick()
     dynamicFigure.InteractBtn:SetActive(false)
     NetUtil.Fire_S('InteractSEvent', localPlayer, interactID)
     NetUtil.Fire_C('InteractCEvent', localPlayer, interactID)
+    CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_click')
 end
 
 --- 点击拾取按钮
