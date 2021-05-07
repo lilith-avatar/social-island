@@ -50,7 +50,7 @@ function ItemBase:Equip()
 
             SoundUtil.Play3DSE(localPlayer.Position, self.baseData.TakeOutSoundID)
             NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
-            ItemMgr.curEquipmentID = self.baseData.ItemID
+            Data.Player.curEquipmentID = self.baseData.ItemID
 
             NetUtil.Fire_C('CTakeOutItemEvent', localPlayer, self.baseData.ItemID)
             NetUtil.Fire_S('STakeOutItemEvent', localPlayer, self.baseData.ItemID)
@@ -77,7 +77,7 @@ end
 
 --取下装备
 function ItemBase:Unequip()
-    ItemMgr.curEquipmentID = 0
+    Data.Player.curEquipmentID = 0
     local effect = world:CreateInstance('UnequipEffect', 'UnequipEffect', self.equipObj.Parent, self.equipObj.Position)
     invoke(
         function()

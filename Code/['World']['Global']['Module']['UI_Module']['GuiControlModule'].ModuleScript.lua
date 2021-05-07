@@ -53,8 +53,7 @@ function GuiControl:InitListener()
     )
     ctrlFigure.UseBtn.OnDown:Connect(
         function()
-            if ItemMgr.curEquipmentID ~= 0 then
-                --print('UseBtn', ItemMgr.curEquipmentID)
+            if Data.Player.curEquipmentID ~= 0 then
                 NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
                 return
             end
@@ -238,7 +237,7 @@ end
 
 --- 更新脱下Btn显示
 function GuiControl:UpdateTakeOffBtn()
-    if ItemMgr.curEquipmentID == 0 or ItemMgr.curEquipmentID == nil then
+    if Data.Player.curEquipmentID == 0 or Data.Player.curEquipmentID == nil then
         gui.Ctrl.TakeOffBtn:SetActive(false)
     else
         gui.Ctrl.TakeOffBtn:SetActive(true)

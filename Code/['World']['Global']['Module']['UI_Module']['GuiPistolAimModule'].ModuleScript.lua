@@ -3,10 +3,10 @@
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
 ---@module GuiPistolAim
-local GuiPistolAim, this = ModuleUtil.New("GuiPistolAim", ClientBase)
+local GuiPistolAim, this = ModuleUtil.New('GuiPistolAim', ClientBase)
 
 function GuiPistolAim:Init()
-    print("GuiPistolAim:Init")
+    print('GuiPistolAim:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -26,7 +26,7 @@ end
 function GuiPistolAim:EventBind()
     this.touchGui.AimStick.OnEnter:Connect(
         function()
-            NetUtil.Fire_C("UseItemInHandEvent", localPlayer)
+            NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
             this.touchGui.AimStick.Size = Vector2(1800, 1500)
         end
     )
@@ -38,7 +38,7 @@ function GuiPistolAim:EventBind()
     this.touchGui.AimStick.OnLeave:Connect(
         function()
             if ItemMgr.curWeaponID ~= 0 then
-                ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndFire()
+                ItemMgr.itemInstance[Data.Player.curEquipmentID]:EndFire()
                 this.touchGui.AimStick.Size = Vector2(164, 164)
             end
         end

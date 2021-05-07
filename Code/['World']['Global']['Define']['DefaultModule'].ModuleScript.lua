@@ -33,6 +33,8 @@ Data.Default.Player = {
     coin = 0,
     -- 背包
     bag = {},
+    -- 装备
+    curEquipmentID = 0,
     -- 宠物
     petID = 0,
     petName = '',

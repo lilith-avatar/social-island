@@ -22,9 +22,6 @@ function ItemMgr:DataInit()
     for k, v in pairs(Config.Item) do
         this.itemInstance[k] = this:InstantiateItem(k)
     end
-    this.curEquipmentID = 0
-
-    this.curEquipment = nil
 end
 
 -- 初始化默认背包数据
@@ -149,9 +146,9 @@ end
 
 --使用在手中的道具
 function ItemMgr:UseItemInHandEventHandler()
-    if this.curEquipmentID ~= 0 then
+    if Data.Player.curEquipmentID ~= 0 then
         print('[ItemMgr] 使用在手中的道具')
-        this.itemInstance[this.curEquipmentID]:UseInHand()
+        this.itemInstance[Data.Player.curEquipmentID]:UseInHand()
         NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 15)
         NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, 15)
     end
@@ -159,9 +156,9 @@ end
 
 --解除当前道具
 function ItemMgr:UnequipCurEquipmentEventHandler()
-    if this.curEquipmentID ~= 0 then
-        this.itemInstance[this.curEquipmentID]:Unequip()
-        this.curEquipmentID = 0
+    if Data.Player.curEquipmentID ~= 0 then
+        this.itemInstance[Data.Player.curEquipmentID]:Unequip()
+        Data.Player.curEquipmentID = 0
     end
 end
 
@@ -223,13 +220,16 @@ function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     print('[ItemMgr] 读取长期存储成功')
     if not _hasData then
         this:InitBagData()
+    elseif Data.Player.curEquipmentID ~= 0 then
+        NetUtil.Fire_C('GetItemEvent', localPlayer, Data.Player.curEquipmentID)
+        Data.Player.curEquipmentID = 0
     end
     GuiControl:UpdateCoinNum(Data.Player.coin)
 end
 
 function ItemMgr:Update(dt, tt)
-    if this.itemInstance[this.curEquipmentID] then
-        this.itemInstance[this.curEquipmentID]:Update(dt)
+    if this.itemInstance[Data.Player.curEquipmentID] then
+        this.itemInstance[Data.Player.curEquipmentID]:Update(dt)
     else
         GuiControl:UpdateUseBtnMask(0)
     end

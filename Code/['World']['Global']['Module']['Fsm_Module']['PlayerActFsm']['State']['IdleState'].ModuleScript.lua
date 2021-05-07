@@ -7,11 +7,11 @@ function IdleState:OnEnter()
     localPlayer.GravityScale = 2
     localPlayer.Avatar.Position = localPlayer.Position
     --localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
-    if ItemMgr.curEquipmentID == 0 then
+    if Data.Player.curEquipmentID == 0 then
         localPlayer.Avatar:PlayAnimation("Idle", 2, 1, 0.1, true, true, 1)
-    elseif Config.Item[ItemMgr.curEquipmentID].Type == 1 then
+    elseif Config.Item[Data.Player.curEquipmentID].Type == 1 then
         localPlayer.Avatar:PlayAnimation("OneHandedSwordIdle", 2, 1, 0.1, true, true, 1)
-    elseif Config.Item[ItemMgr.curEquipmentID].Type == 4 then
+    elseif Config.Item[Data.Player.curEquipmentID].Type == 4 then
         localPlayer.Avatar:PlayAnimation("ThrowIdle", 2, 1, 0.1, true, true, 1)
     end
 end

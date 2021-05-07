@@ -4,11 +4,11 @@ function RunState:OnEnter()
     PlayerActState.OnEnter(self)
     --localPlayer.Avatar:PlayAnimation("RunFront", 2, 1, 0.1, true, true, 1)
     localPlayer.Avatar:PlayAnimation('RunFront', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
-    if ItemMgr.curEquipmentID == 0 then
+    if Data.Player.curEquipmentID == 0 then
         localPlayer.Avatar:PlayAnimation('RunFront', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
-    elseif Config.Item[ItemMgr.curEquipmentID].Type == 1 then
+    elseif Config.Item[Data.Player.curEquipmentID].Type == 1 then
         localPlayer.Avatar:PlayAnimation('OneHandedSwordRun', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
-    elseif Config.Item[ItemMgr.curEquipmentID].Type == 4 then
+    elseif Config.Item[Data.Player.curEquipmentID].Type == 4 then
         localPlayer.Avatar:PlayAnimation('Jogging', 2, 1, 0.1, true, true, localPlayer.WalkSpeed / 6)
     end
 end

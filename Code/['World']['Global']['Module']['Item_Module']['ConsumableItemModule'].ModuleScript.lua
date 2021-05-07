@@ -2,11 +2,11 @@
 -- @module ConsumableItem
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local ConsumableItem = class("ConsumableItem", ItemBase)
+local ConsumableItem = class('ConsumableItem', ItemBase)
 
 function ConsumableItem:initialize(_baseData, _derivedData)
     ItemBase.initialize(self, _baseData, _derivedData)
-    print("ConsumableItem:initialize()")
+    print('ConsumableItem:initialize()')
 end
 
 --放入背包
@@ -21,7 +21,7 @@ end
 
 --在背包中使用
 function ConsumableItem:UseInBag()
-    print("使用", self.id)
+    print('使用', self.id)
     ItemBase.UseInBag(self)
     self:Equip()
 end
@@ -29,23 +29,23 @@ end
 --拿在手中使用
 function ConsumableItem:UseInHand()
     ItemBase.UseInHand(self)
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "UseItem")
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'UseItem')
     localPlayer.Avatar:PlayAnimation(self.baseData.UseAniName, 8, 1, 0.2, true, false, 1)
-    NetUtil.Fire_C("GetBuffEvent", localPlayer, self.derivedData.UseAddBuffID, self.derivedData.UseAddBuffDur)
-    NetUtil.Fire_C("RemoveBuffEvent", localPlayer, self.derivedData.UseRemoveBuffID)
+    NetUtil.Fire_C('GetBuffEvent', localPlayer, self.derivedData.UseAddBuffID, self.derivedData.UseAddBuffDur)
+    NetUtil.Fire_C('RemoveBuffEvent', localPlayer, self.derivedData.UseRemoveBuffID)
     invoke(
         function()
             localPlayer.Avatar:StopAnimation(self.baseData.UseAniName, 8)
-            NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+            NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
         end,
         self.baseData.UseTime
     )
-    ItemMgr.curEquipmentID = 0
+    Data.Player.curEquipmentID = 0
     if self.derivedData.IsPutBack then
         self:Unequip()
     else
         self.equipObj:Destroy()
-        NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
+        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
         GuiControl:UpdateUseBtnIcon()
         GuiControl:UpdateTakeOffBtn()
     end

@@ -83,9 +83,9 @@ function GuiBowAim:EventBind()
     )
     this.touchGui.AimStick.OnLeave:Connect(
         function()
-            if ItemMgr.curEquipmentID ~= 0 then
+            if Data.Player.curEquipmentID ~= 0 then
                 if isAble then
-                    ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndCharge()
+                    ItemMgr.itemInstance[Data.Player.curEquipmentID]:EndCharge()
                     this.touchGui.AimStick.Size = Vector2(144, 144)
                     isUse = false
                 end
@@ -95,9 +95,9 @@ function GuiBowAim:EventBind()
     Input.OnKeyUp:Connect(
         function()
             if Input.GetPressKeyData(Enum.KeyCode.F) == Enum.KeyState.KeyStateRelease then
-                if ItemMgr.curEquipmentID ~= 0 then
+                if Data.Player.curEquipmentID ~= 0 then
                     if isAble then
-                        ItemMgr.itemInstance[ItemMgr.curEquipmentID]:EndCharge()
+                        ItemMgr.itemInstance[Data.Player.curEquipmentID]:EndCharge()
                         this.touchGui.AimStick.Size = Vector2(144, 144)
                         isUse = false
                     end
