@@ -44,7 +44,9 @@ local FrameworkConfig = {
     --! Debug相关
     Debug = {
         -- 显示心跳日志
-        ShowHeartbeatLog = false
+        ShowHeartbeatLog = false,
+        -- 显示数据同步日志
+        ShowDataSyncLog = false
     }
 }
 
