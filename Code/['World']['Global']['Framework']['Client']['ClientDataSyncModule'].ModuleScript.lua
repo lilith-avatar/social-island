@@ -12,7 +12,7 @@ local rawDataGlobal = {}
 local rawDataPlayer = {}
 
 --- 打印数据同步日志
-local PrintLog = FrameworkConfig.DebugMode and function(...)
+local PrintLog = FrameworkConfig.DebugMode and FrameworkConfig.Debug.ShowDataSyncLog and function(...)
         print('[DataSync][Client]', ...)
     end or function()
     end

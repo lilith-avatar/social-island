@@ -20,7 +20,7 @@ local RELOAD_TIME = 1
 local sheet
 
 --- 打印数据同步日志
-local PrintLog = FrameworkConfig.DebugMode and function(...)
+local PrintLog = FrameworkConfig.DebugMode and FrameworkConfig.Debug.ShowDataSyncLog and function(...)
         print('[DataSync][Server]', ...)
     end or function()
     end
@@ -196,7 +196,7 @@ end
 function SaveGameDataAsyncCb(_val, _msg, _uid, _delete)
     -- 保存成功
     if _msg == 0 then
-        print('[DataSync][Server] 保存玩家数据成功', _uid)
+        print('[DataSync][Server] 保存玩家数据，成功', _uid)
         if _delete == true then
             print('[DataSync][Server] 删除服务器玩家数据', _uid)
             rawDataPlayers[_uid] = nil
@@ -223,7 +223,7 @@ function SaveAllGameDataAsync()
         print('[DataSync][Server] ServerSync未开始')
         return
     end
-
+    print('[DataSync][Server] 尝试保存全部玩家数据……')
     for uid, data in pairs(Data.Players) do
         if not string.isnilorempty(uid) and data then
             SaveGameDataAsync(uid, false)

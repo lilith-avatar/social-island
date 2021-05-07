@@ -3,7 +3,7 @@
 -- @copyright Lilith Games, Avatar Team
 
 -- Game Defines
-GAME_ID = "A1003"
+GAME_ID = 'Z1002'
 
 -- Utilities
 ModuleUtil = require(Utility.ModuleUtilModule)
@@ -35,7 +35,6 @@ ModuleUtil.LoadModules(Framework.Client)
 
 ModuleUtil.LoadModules(Define)
 ModuleUtil.LoadXlsModules(Xls, Config)
-
 
 -- Fsm
 ModuleUtil.LoadModules(Module.Fsm_Module)

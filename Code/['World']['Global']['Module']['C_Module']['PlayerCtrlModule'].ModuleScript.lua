@@ -31,21 +31,20 @@ local isSwim = false
 --- 初始化
 function PlayerCtrl:Init()
     --print('[PlayerCtrl] Init()')
-    this:NodeRef()
+    this:SoundInit()
     this:DataInit()
     this:EventBind()
 end
 
 --- 节点引用
-function PlayerCtrl:NodeRef()
+function PlayerCtrl:SoundInit()
+    SoundUtil.Init(Config.Sound)
+    SoundUtil.InitAudioSource(localPlayer.UserId)
+    SoundUtil.Play2DSE(localPlayer.UserId, 2)
 end
 
 --- 数据变量初始化
 function PlayerCtrl:DataInit()
-    CloudLogUtil.Init('Z1002')
-    SoundUtil.Init(Config.Sound)
-    SoundUtil.InitAudioSource(localPlayer.UserId)
-    SoundUtil.Play2DSE(localPlayer.UserId, 2)
     this.finalDir = Vector3.Zero
     this.isControllable = true
     localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.UpperBody, 8)
