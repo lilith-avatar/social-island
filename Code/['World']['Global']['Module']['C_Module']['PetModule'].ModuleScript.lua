@@ -195,7 +195,6 @@ do
     function Pet:EnterState3()
         petOBJ:SetActive(true)
         local s = Config.Pet[Data.Player.petID].MoveAnimation[math.random(#Config.Pet[Data.Player.petID].MoveAnimation)]
-        print(s)
         petOBJ.AnimatedMesh:PlayAnimation(s, 2, 1, 0.1, true, true, 1)
         petOBJ.WalkSpeed = Config.Pet[Data.Player.petID].DefMoveSpeed
         this:GetMoveTable(localPlayer.Position - localPlayer.Forward)
