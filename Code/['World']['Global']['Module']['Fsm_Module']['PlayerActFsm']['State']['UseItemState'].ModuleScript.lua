@@ -56,15 +56,12 @@ function UseItemState:IdleMonitor()
         if PlayerCam:IsFreeMode() then
             localPlayer:FaceToDir(dir, 4 * math.pi)
         end
-        print('移动')
         localPlayer:MoveTowards(Vector2(dir.x, dir.z))
         if isMove == false then
             localPlayer.Avatar:PlayAnimation('RunFront', 9, 2, 0.1, true, true, 1)
             isMove = true
         end
     else
-        print('静止')
-
         localPlayer.Avatar:StopAnimation('RunFront', 9)
         localPlayer:MoveTowards(Vector2.Zero)
         isMove = false

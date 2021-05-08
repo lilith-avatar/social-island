@@ -45,6 +45,19 @@ local ConsumableXls = {
         UseAddBuffID = 0,
         UseAddBuffDur = 0.0,
         UseRemoveBuffID = 0
+    },
+    [4004] = {
+        ItemID = 4004,
+        ModelName = 'MagicEgg_InHand',
+        IsPutBack = false,
+        UseEffectName = 'FX_Environment_effect_16',
+        ParentNode = 'Bone_R_Hand.RHandWeaponNode',
+        Offset = Vector3(0, 0.05, 0),
+        Angle = EulerDegree(299, 290, 192.5),
+        HealthChange = 0,
+        UseAddBuffID = 0,
+        UseAddBuffDur = 0.0,
+        UseRemoveBuffID = 0
     }
 }
 
