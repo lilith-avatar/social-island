@@ -1,7 +1,7 @@
 --- 音效播放模块
 ---@module SoundUtil
 ---@copyright Lilith Games, Avatar Team
----@author Sharif Ma,Dead Ratman
+---@author Sharif Ma, Dead Ratman
 ---@class SoundUtil
 local SoundUtil = {}
 
@@ -19,6 +19,15 @@ local SE3DMax = 8
 --2D音效对象池上限
 local SE2DMax = 3
 
+--! Debug模式
+local DebugMode = true
+
+--- 打印日志
+local PrintLog = DebugMode and function(...)
+        print('[SoundUtil]', ...)
+    end or function()
+    end
+
 --初始化音频表
 local function InitClipTable(_data)
     clipTable[_data.ID] = {
@@ -29,7 +38,7 @@ local function InitClipTable(_data)
         minDistance = _data.MinDistance,
         maxDistance = _data.MaxDistance
     }
-    --print('[SoundUtil]', table.dump(clipTable[_data.ID]))
+    --PrintLog(table.dump(clipTable[_data.ID]))
 end
 
 --初始化一个2D播放器
@@ -115,7 +124,7 @@ function SoundUtil.Play2DSE(_uid, _SEID)
         index = table.nums(audioSourcePool.SE2D[_uid]) + 1
         source = Init2DAudioSource(table.nums(audioSourcePool.SE2D[_uid]) + 1, _uid)
     end
-    print('[SoundUtil] 播放2D音频', _SEID)
+    PrintLog('播放2D音频', _SEID)
     source.MinDistance = clipTable[_SEID].minDistance
     source.MaxDistance = clipTable[_SEID].maxDistance
     source.Loop = clipTable[_SEID].isLoop
@@ -141,7 +150,7 @@ function SoundUtil.Play3DSE(_pos, _SEID)
         index = table.nums(audioSourcePool.SE3D) + 1
         source = Init3DAudioSource(table.nums(audioSourcePool.SE3D) + 1)
     end
-    print('[SoundUtil] 播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
+    PrintLog('播放3D音频', _SEID, table.dump(clipTable[_SEID]), _pos)
     source.Position = _pos
     source.MinDistance = clipTable[_SEID].minDistance
     source.MaxDistance = clipTable[_SEID].maxDistance

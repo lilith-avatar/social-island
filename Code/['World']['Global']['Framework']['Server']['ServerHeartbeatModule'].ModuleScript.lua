@@ -5,17 +5,17 @@
 local ServerHeartbeat = {}
 
 -- Localize global vars
-local Setting = FrameworkConfig.Server
+local FrameworkConfig = FrameworkConfig
 
 -- 心跳包间隔时间，单位：秒
-local HEARTBEAT_DELTA = Setting.HeartbeatDelta
+local HEARTBEAT_DELTA = FrameworkConfig.Server.HeartbeatDelta
 
 -- 心跳阈值，单位：秒，范围定义如下：
 --          0s -> threshold_1   : connected
 -- threshold_1 -> threshold_2   : disconnected, but player can rejoin
 -- threshold_2 -> longer        : disconnected, remove player
-local HEARTBEAT_THRESHOLD_1 = Setting.HeartbeatThreshold1 * 1000 -- second => ms
-local HEARTBEAT_THRESHOLD_2 = Setting.HeartbeatThreshold2 * 1000 -- second => ms
+local HEARTBEAT_THRESHOLD_1 = FrameworkConfig.Server.HeartbeatThreshold1 * 1000 -- second => ms
+local HEARTBEAT_THRESHOLD_2 = FrameworkConfig.Server.HeartbeatThreshold2 * 1000 -- second => ms
 
 -- 玩家心跳连接状态
 local HeartbeatEnum = {
@@ -34,7 +34,7 @@ local diff  -- 时间戳插值
 local sTmpTs, cTmpTs  -- 时间戳缓存
 
 --- 打印心跳日志
-local PrintHb = Setting.DebugMode and Setting.ShowHeartbeatLog and function(...)
+local PrintHb = FrameworkConfig.DebugMode and FrameworkConfig.Debug.ShowHeartbeatLog and function(...)
         print('[Heartbeat][Server]', ...)
     end or function()
     end
@@ -162,19 +162,21 @@ function CheckPlayerStates(_player, _sTimestam)
     end
     diff = _sTimestam - cache[_player].sTimestamp
     PrintHb(string.format('==========================================> diff = %s, %s', diff * .001, _player))
-
-    if cache[_player].state == HeartbeatEnum.CONNECT and diff > HEARTBEAT_THRESHOLD_1 then
-        --* 玩家断线 OnPlayerReconnectEvent
+    if diff < HEARTBEAT_THRESHOLD_1 then
+        --* 玩家在线
+        cache[_player].state = HeartbeatEnum.CONNECT
+    elseif cache[_player].state == HeartbeatEnum.CONNECT and diff >= HEARTBEAT_THRESHOLD_1 then
+        --* 玩家断线 OnPlayerDisconnectEvent
         print('[Heartbeat][Server] OnPlayerDisconnectEvent, 玩家离线, 等待断线重连,', _player, _player.UserId)
         NetUtil.Fire_S('OnPlayerDisconnectEvent', _player)
         cache[_player].state = HeartbeatEnum.DISCONNECT
-    elseif cache[_player].state == HeartbeatEnum.DISCONNECT and diff > HEARTBEAT_THRESHOLD_2 then
+    elseif cache[_player].state == HeartbeatEnum.DISCONNECT and diff >= HEARTBEAT_THRESHOLD_2 then
         --* 玩家彻底断线，剔除玩家
         local player = _player
         local uid = player.UserId
         print('[Heartbeat][Server] OnPlayerLeaveEvent, 剔除离线玩家,', player, uid)
         NetUtil.Fire_S('OnPlayerLeaveEvent', player, uid)
-        print('[Heartbeat][Server] OnPlayerLeave, 发送客户端离线事件,', player, uid)
+        print('[Heartbeat][Server] OnPlayerLeaveEvent, 发送客户端离线事件,', player, uid)
         NetUtil.Fire_C('OnPlayerLeaveEvent', player, uid)
         cache[player] = nil
     end

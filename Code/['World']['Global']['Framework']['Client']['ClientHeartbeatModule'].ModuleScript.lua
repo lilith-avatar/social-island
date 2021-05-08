@@ -5,17 +5,17 @@
 local ClientHeartbeat = {}
 
 -- Localize global vars
-local Setting = FrameworkConfig.Client
+local FrameworkConfig = FrameworkConfig
 
 -- 心跳包间隔时间，单位：秒
-local HEARTBEAT_DELTA = Setting.HeartbeatDelta
+local HEARTBEAT_DELTA = FrameworkConfig.Client.HeartbeatDelta
 
 -- 心跳阈值，单位：秒，范围定义如下：
 --          0s -> threshold_1   : connected
 -- threshold_1 -> threshold_2   : disconnected, weak network
 -- threshold_2 -> longer        : disconnected, quit server
-local HEARTBEAT_THRESHOLD_1 = Setting.HeartbeatThreshold1 * 1000 -- second => ms
-local HEARTBEAT_THRESHOLD_2 = Setting.HeartbeatThreshold2 * 1000 -- second => ms
+local HEARTBEAT_THRESHOLD_1 = FrameworkConfig.Client.HeartbeatThreshold1 * 1000 -- second => ms
+local HEARTBEAT_THRESHOLD_2 = FrameworkConfig.Client.HeartbeatThreshold2 * 1000 -- second => ms
 
 -- 玩家心跳连接状态
 local HeartbeatEnum = {
@@ -37,7 +37,7 @@ local diff  -- 时间戳插值
 local sTmpTs, cTmpTs  -- 时间戳缓存
 
 --- 打印心跳日志
-local PrintHb = Setting.DebugMode and Setting.ShowHeartbeatLog and function(...)
+local PrintHb = FrameworkConfig.DebugMode and FrameworkConfig.Debug.ShowHeartbeatLog and function(...)
         print('[Heartbeat][Client]', ...)
     end or function()
     end
@@ -145,15 +145,18 @@ function CheckPlayerState(_player, _cTimestamp)
     end
     diff = _cTimestamp - cache.cTimestamp
     PrintHb(string.format('==========================================> diff = %s, %s', diff * .001, localPlayer))
-    if cache.state == HeartbeatEnum.CONNECT and diff > HEARTBEAT_THRESHOLD_1 then
+    if diff < HEARTBEAT_THRESHOLD_1 then
+        --* 玩家在线
+        cache.state = HeartbeatEnum.CONNECT
+    elseif cache.state == HeartbeatEnum.CONNECT and diff >= HEARTBEAT_THRESHOLD_1 then
         --* 玩家断线，弱网环境
-        print('[Heartbeat][Client] OnPlayerDisconnectEvent, 玩家离线, 弱网环境,', localPlayer, localPlayer.UserId)
+        print('[Heartbeat][Client] OnPlayerDisconnectEvent, 玩家离线, 弱网环境,', localPlayer)
         NetUtil.Fire_C('OnPlayerDisconnectEvent', localPlayer)
         cache.state = HeartbeatEnum.DISCONNECT
-    elseif cache.state == HeartbeatEnum.DISCONNECT and diff > HEARTBEAT_THRESHOLD_2 then
+    elseif cache.state == HeartbeatEnum.DISCONNECT and diff >= HEARTBEAT_THRESHOLD_2 then
         --* 玩家断线, 退出游戏
         -- QuitGame()
-        NetUtil.Fire_C('OnPlayerLeaveEvent', localPlayer, localPlayer.UserId)
+        NetUtil.Fire_C('OnPlayerLeaveEvent', localPlayer)
     end
 end
 
