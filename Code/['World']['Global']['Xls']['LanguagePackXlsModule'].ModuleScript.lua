@@ -2950,6 +2950,30 @@ local LanguagePackXls = {
         EN = 'You tipped%s %s coins for his %s.',
         JP = '',
         YN = 'Kamu memberi tip%s %s koin untuk %s.'
+    },
+    GuiText_Txt_PetGui_7 = {
+        ID = 'GuiText_Txt_PetGui_7',
+        CHS = '%s的宠物',
+        CHT = '',
+        EN = '%s\'s pet',
+        JP = '',
+        YN = 'hewan peliharaan %s'
+    },
+    Item_Name_4004 = {
+        ID = 'Item_Name_4004',
+        CHS = '神奇宠物蛋',
+        CHT = '',
+        EN = 'Magic Pet Egg',
+        JP = '',
+        YN = 'Telur Hewan Peliharaan Ajaib'
+    },
+    Item_Des_4004 = {
+        ID = 'Item_Des_4004',
+        CHS = '使用后获得一个宠物',
+        CHT = '',
+        EN = 'Get a pet after use',
+        JP = '',
+        YN = 'Dapatkan hewan peliharaan setelah digunakan'
     }
 }
 
