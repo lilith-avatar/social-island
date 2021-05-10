@@ -73,7 +73,9 @@ function MoleHit:DataInit()
             UFOMgr:ActiveUFO()
         end,
         maze = function()
-            NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, Const.GameEnum.MAZE)
+            for _,p in pairs(world:FindPlayers()) do
+                NetUtil.Fire_S('EnterMiniGameEvent', p, Const.GameEnum.MAZE)
+            end
         end
     }
 end
