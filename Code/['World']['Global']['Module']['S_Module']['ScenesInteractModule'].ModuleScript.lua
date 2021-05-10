@@ -385,11 +385,7 @@ do
                             SoundUtil.Play3DSE(_player.Position, v1.interactAEID)
                         end
                         if v1.itemID ~= nil then
-                            CloudLogUtil.UploadLog(
-                                'inter',
-                                'pickup_item_' .. v1.id,
-                                {player_uid = _player.UserId, player_name = _player.Name}
-                            )
+							NetUtil.Fire_C('SInteractUploadEvent', _player,13, v1.id)
                             NetUtil.Fire_C('GetItemEvent', _player, v1.itemID)
                             if v1.isUse then
                                 wait(.1)
@@ -397,6 +393,7 @@ do
                             end
                         end
                         if v1.addBuffID then
+							NetUtil.Fire_C('SInteractUploadEvent', _player, 13,v1.id)
                             NetUtil.Fire_C('GetBuffEvent', _player, v1.addBuffID, v1.addBuffDur)
                         end
                         NetUtil.Fire_S('SpawnCoinEvent', 'P', v1.obj.Position + Vector3(0, 2.5, 0), v1.rewardCoin)
@@ -465,6 +462,7 @@ do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId and v1.obj.UsingPlayerUid.Value == '' then
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
+					NetUtil.Fire_C('SInteractUploadEvent', _player,15, v1.obj.Name)
                     v1.obj.UsingPlayerUid.Value = _player.UserId
                     v1.obj:Sit(_player)
                     _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
@@ -503,6 +501,7 @@ do
         for k1, v1 in pairs(bonfireOBJ) do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId then
+					NetUtil.Fire_C('SInteractUploadEvent', _player,16, v1.obj.Name)
                     if v1.obj.On.ActiveSelf then
                         v1.obj.On:SetActive(false)
                         v1.obj.Off:SetActive(true)
@@ -602,7 +601,6 @@ do
         NetUtil.Fire_C('CloseDynamicEvent', _player)
     end
     function ScenesInteract:EnterGuitar(_player)
-        CloudLogUtil.UploadLog('guitar', 'enter')
         NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 21)
     end
     function ScenesInteract:LeaveGuitar(_player)
@@ -903,14 +901,12 @@ function ScenesInteract:SInteractOnPlayerColEndEventHandler(_player, _obj, _id)
 end
 
 function ScenesInteract:InteractSEventHandler(_player, _id)
-    print('InteractSEventHandler', _id)
     if EnterInteractFunc[_id] then
         EnterInteractFunc[_id](_player)
     end
 end
 
 function ScenesInteract:LeaveInteractSEventHandler(_player, _id)
-    print('LeaveInteractSEventHandler', _id)
     if LeaveInteractFunc[_id] then
         LeaveInteractFunc[_id](_player)
     end

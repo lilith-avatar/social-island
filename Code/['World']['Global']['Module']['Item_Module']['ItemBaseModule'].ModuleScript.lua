@@ -45,7 +45,6 @@ function ItemBase:Equip()
 
     invoke(
         function()
-            print(self.typeConfig.FsmMode)
             NetUtil.Fire_C('FsmTriggerEvent', localPlayer, self.typeConfig.FsmMode)
 
             SoundUtil.Play3DSE(localPlayer.Position, self.baseData.TakeOutSoundID)

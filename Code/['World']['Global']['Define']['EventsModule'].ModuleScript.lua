@@ -143,7 +143,8 @@ Events.ClientEvents = {
     'ResetTentCamEvent',
     'SwitchTeleportFilterEvent',
     'ShowFoodEvent',
-    'FoodOnDeskActionEvent'
+    'FoodOnDeskActionEvent',
+	'SInteractUploadEvent'
 }
 
 return Events
