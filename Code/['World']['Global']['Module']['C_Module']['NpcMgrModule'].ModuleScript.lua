@@ -269,7 +269,6 @@ function NpcMgr:TalkToNpcEventHandler(_npcId)
     npc.obj.NpcState.Value = Const.NpcState.TALKING
     npc.obj.Avatar:PlayAnimation(npc.info.TalkAnim, 9, 1, 0.1, true, false, 1)
     BubbleHide(_npcId)
-    CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. '12' .. '_click', {npc_id = _npcId})
 end
 
 -- 玩家主动离开NPC

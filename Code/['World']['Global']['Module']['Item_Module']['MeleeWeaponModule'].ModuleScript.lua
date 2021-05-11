@@ -28,7 +28,6 @@ function MeleeWeapon:Equip()
             self.equipObj.Col:SetActive(false)
             self.equipObj.Col.OnCollisionBegin:Connect(
                 function(_hitObj, _hitPoint)
-                    print(_hitObj)
                     if _hitObj ~= localPlayer and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar then
                         if _hitObj.Avatar.ClassName == 'PlayerAvatarInstance' then
                             self:AddForceToHitPlayer(_hitObj)
@@ -53,7 +52,7 @@ function MeleeWeapon:HitBuff(_player)
     CloudLogUtil.UploadLog(
         'battle_actions',
         'hit_event',
-        {hit_target_id = 1, target_detail = _player.UserId, attack_target = localPlayer.UserId, attack_type = 1}
+        {hit_target_id = 'Player', target_detail = _player.Name, attack_target = localPlayer.Name, attack_type = 'Melee'}
     )
     NetUtil.Fire_S(
         'SPlayerHitEvent',

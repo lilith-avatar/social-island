@@ -100,6 +100,7 @@ function OpenNpcGui()
     if currNpcId == nil or NpcInfo[currNpcId] == nil then
         return
     end
+	CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. '12' .. '_click', {npc_id = currNpcId})
     print('[GuiNpc] OpenNpcGui()')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 12)
     NetUtil.Fire_C('TalkToNpcEvent', localPlayer, currNpcId)

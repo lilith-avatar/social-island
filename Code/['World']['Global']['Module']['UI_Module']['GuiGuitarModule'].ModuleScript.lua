@@ -172,4 +172,11 @@ end
 function GuiGuitar:InteractCEventHandler()
 end
 
+function GuiGuitar:ChangeMiniGameUIEventHandler(_id)
+	if _id == 21 then
+	    CloudLogUtil.UploadLog('guitar', 'enter')
+	end
+end
+
+
 return GuiGuitar

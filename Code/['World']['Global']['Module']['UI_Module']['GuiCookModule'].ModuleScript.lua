@@ -141,23 +141,20 @@ function GuiCook:EventBind()
     )
     this.detailEatBtn.OnClick:Connect(
         function()
-            CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_no')
-            CloudLogUtil.UploadLog(
-                'cook',
-                'cook_share_eat',
-                {meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId}
-            )
+			local cookerName = world:GetPlayerByUserId(this.cookUserId)
+			CloudLogUtil.UploadLog('cook', 'cook_share_eat',{meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId,customer_name = localPlayer.Name, cooker_name = this.cookerName})
             this:EatFood()
         end
     )
     this.detailReward.OnClick:Connect(
         function()
+			local cookerName = world:GetPlayerByUserId(this.cookUserId)
             CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_yes')
             CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_show')
             CloudLogUtil.UploadLog(
                 'cook',
                 'cook_reward_enter',
-                {meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId}
+				{meal_id = this.foodId, customer_uid = localPlayer.UserId,customer_name=localPlayer.Name, cooker_uid = this.cookUserId,cooker_name =cookerName}
             )
             NetUtil.Fire_C(
                 'SliderPurchaseEvent',
@@ -218,15 +215,11 @@ function GuiCook:InteractCEventHandler(_gameId)
             this:ShowUI()
         end
     elseif _gameId == 27 then
-        CloudLogUtil.UploadLog(
+		local cookerName = world:GetPlayerByUserId(this.cookUserId)
+	    CloudLogUtil.UploadLog(
             'cook',
             'cook_meal_enter',
-            {
-                meal_id = this.foodId,
-                customer_uid = localPlayer.UserId,
-                cooker_uid = this.cookUserId,
-                cur_time = world.Sky.ClockTime
-            }
+            {meal_id = this.foodId, customer_uid = localPlayer.UserId,customer_name=localPlayer.Name, cooker_uid = this.cookUserId,cooker_name =cookerName,cur_time = world.Sky.ClockTime}
         )
         if this.canEat then
             this:ShowDetail()
@@ -239,11 +232,14 @@ end
 function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
         this:HideGui()
+		local cookerName = world:GetPlayerByUserId(this.cookUserId)
         CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_yes')
         CloudLogUtil.UploadLog(
             'cook',
             'cook_reward_confirm',
             {
+				customer_name=localPlayer.Name,
+				cooker_name =cookerName,
                 meal_id = this.foodId,
                 customer_uid = localPlayer.UserId,
                 cooker_uid = this.cookUserId,
@@ -259,16 +255,16 @@ function GuiCook:LeaveInteractCEventHandler(_gameId)
         this:HideGui()
     elseif _gameId == 27 then
         CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_close')
-        CloudLogUtil.UploadLog(
-            'cook',
-            'cook_share_leave',
-            {meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId}
-        )
+		if this.cookUserId then
+			local cookerName = world:GetPlayerByUserId(this.cookUserId)
+		end
+        CloudLogUtil.UploadLog('cook', 'cook_share_leave',{meal_id = this.foodId, customer_uid = localPlayer.UserId, cooker_uid = this.cookUserId,customer_name = localPlayer.Name, cooker_name = this.cookerName})
     end
 end
 
 function GuiCook:HideGui()
     this.root:SetActive(false)
+	CloudLogUtil.UploadLog('cook', 'cook_main_leave')
 end
 
 function GuiCook:StartCook()

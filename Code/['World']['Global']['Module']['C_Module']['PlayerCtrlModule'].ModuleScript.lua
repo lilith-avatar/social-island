@@ -482,6 +482,17 @@ function PlayerCtrl:ColFunc(_hitObject, _isBegin)
     end
 end
 
+-- 埋需要明确子节点名的交互点
+function PlayerCtrl:SInteractUploadEventHandler(_interId,_subinterId)
+    CloudLogUtil.UploadLog(
+        'pannel_actions',
+        'dialog_icon_'.._interId..'_click',
+        {subinter_id = _subinterId}
+    )
+end
+
+
+
 function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()

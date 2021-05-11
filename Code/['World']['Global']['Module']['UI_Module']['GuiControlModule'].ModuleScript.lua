@@ -90,7 +90,9 @@ function OnInteractBtnClick()
     dynamicFigure.InteractBtn:SetActive(false)
     NetUtil.Fire_S('InteractSEvent', localPlayer, interactID)
     NetUtil.Fire_C('InteractCEvent', localPlayer, interactID)
-    CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_click')
+	if interactID ~= 13 or interactID ~= 15 or interactID ~= 16 then
+		CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_click')
+	end
 end
 
 --- 点击拾取按钮

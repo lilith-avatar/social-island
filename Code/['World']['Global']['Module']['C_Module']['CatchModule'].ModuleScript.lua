@@ -87,7 +87,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal, _id)
                     CloudLogUtil.UploadLog(
                         'pet',
                         'catchSuccessEvent',
-                        {trap_id = _id, animal_id = _animal.AnimalID.Value}
+                        {trap_id = _id, animal_id = _animal.Name}
                     )
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
@@ -104,7 +104,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal, _id)
                     CloudLogUtil.UploadLog(
                         'pet',
                         'catchFailEvent',
-                        {trap_id = _id, animal_id = _animal.AnimalID.Value}
+                        {trap_id = _id, animal_id = _animal.Name}
                     )
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
