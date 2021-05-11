@@ -239,6 +239,7 @@ end
 
 function GuiCook:HideGui()
     this.root:SetActive(false)
+	CloudLogUtil.UploadLog('cook', 'cook_main_leave')
 end
 
 function GuiCook:StartCook()
