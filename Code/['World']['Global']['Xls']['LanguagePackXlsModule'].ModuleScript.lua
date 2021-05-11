@@ -2974,6 +2974,46 @@ local LanguagePackXls = {
         EN = 'Get a pet after use',
         JP = '',
         YN = 'Dapatkan hewan peliharaan setelah digunakan'
+    },
+    GuiText_Txt_CookGuide_1 = {
+        ID = 'GuiText_Txt_CookGuide_1',
+        CHS = '让我们做一道菜吧！',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGuide_2 = {
+        ID = 'GuiText_Txt_CookGuide_2',
+        CHS = '你获得过的食材会显示在这里。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGuide_3 = {
+        ID = 'GuiText_Txt_CookGuide_3',
+        CHS = '这里会显示你准备使用的食材。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGuide_4 = {
+        ID = 'GuiText_Txt_CookGuide_4',
+        CHS = '点击食材将他们加入菜谱，一道菜一共需要三种食材。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_CookGuide_5 = {
+        ID = 'GuiText_Txt_CookGuide_5',
+        CHS = '选好了！现在让我们看看你会做出什么样的美食！',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 
