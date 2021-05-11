@@ -43,6 +43,7 @@ end
 function Football:FootballGoal(_goal)
     this.ball.IsStatic = true
     _goal.GoalEffect:SetActive(true)
+	CloudLogUtil.UploadLog('inter', 'Ball_Goal_'.._goal.Name)
     invoke(
         function()
             _goal.GoalEffect:SetActive(false)
