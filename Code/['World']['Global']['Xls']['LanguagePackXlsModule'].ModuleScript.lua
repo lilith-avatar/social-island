@@ -2961,7 +2961,7 @@ local LanguagePackXls = {
     },
     Item_Name_4004 = {
         ID = 'Item_Name_4004',
-        CHS = '神奇宠物蛋',
+        CHS = '神奇宠物箱',
         CHT = '',
         EN = 'Magic Pet Egg',
         JP = '',
@@ -3010,6 +3010,22 @@ local LanguagePackXls = {
     GuiText_Txt_CookGuide_5 = {
         ID = 'GuiText_Txt_CookGuide_5',
         CHS = '选好了！现在让我们看看你会做出什么样的美食！',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_MoleGui_2 = {
+        ID = 'GuiText_Txt_MoleGui_2',
+        CHS = '金币——金币——金币——',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_MoleGui_3 = {
+        ID = 'GuiText_Txt_MoleGui_3',
+        CHS = '石像给你留下了：',
         CHT = '',
         EN = '',
         JP = '',

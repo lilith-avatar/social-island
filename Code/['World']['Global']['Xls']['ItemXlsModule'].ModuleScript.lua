@@ -755,7 +755,7 @@ local ItemXls = {
         UseSoundID = 42,
         UseAniName = 'ThrowLowAttack',
         UseTime = 0.5,
-        UseBtnIcon = ''
+        UseBtnIcon = 'Icon_Trap'
     },
     [5001] = {
         ItemID = 5001,

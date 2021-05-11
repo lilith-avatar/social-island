@@ -30,19 +30,19 @@ local ShopXls = {
             NpcId = 2,
             Index = 4,
             ItemId = 4002,
-            Price = 500
+            Price = 300
         },
         [4003] = {
             NpcId = 2,
             Index = 5,
             ItemId = 4003,
-            Price = 1500
+            Price = 1000
         },
         [4004] = {
             NpcId = 2,
             Index = 6,
             ItemId = 4004,
-            Price = 2000
+            Price = 1500
         }
     },
     [5] = {
@@ -102,43 +102,25 @@ local ShopXls = {
             NpcId = 11,
             Index = 1,
             ItemId = 1003,
-            Price = 2500
+            Price = 1200
         },
-        [1005] = {
+        [1002] = {
             NpcId = 11,
             Index = 2,
-            ItemId = 1005,
+            ItemId = 1002,
             Price = 800
         },
-        [1006] = {
+        [1029] = {
             NpcId = 11,
             Index = 3,
-            ItemId = 1006,
+            ItemId = 1029,
             Price = 1200
         },
-        [1007] = {
+        [1033] = {
             NpcId = 11,
             Index = 4,
-            ItemId = 1007,
+            ItemId = 1033,
             Price = 800
-        },
-        [1009] = {
-            NpcId = 11,
-            Index = 5,
-            ItemId = 1009,
-            Price = 1200
-        },
-        [1011] = {
-            NpcId = 11,
-            Index = 6,
-            ItemId = 1011,
-            Price = 800
-        },
-        [1010] = {
-            NpcId = 11,
-            Index = 7,
-            ItemId = 1010,
-            Price = 1000
         }
     },
     [12] = {

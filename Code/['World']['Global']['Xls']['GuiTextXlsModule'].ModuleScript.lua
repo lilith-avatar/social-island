@@ -123,6 +123,14 @@ local GuiTextXls = {
         TextId = 'MoleGui_1',
         Txt = 'GuiText_Txt_MoleGui_1'
     },
+    MoleGui_2 = {
+        TextId = 'MoleGui_2',
+        Txt = 'GuiText_Txt_MoleGui_2'
+    },
+    MoleGui_3 = {
+        TextId = 'MoleGui_3',
+        Txt = 'GuiText_Txt_MoleGui_3'
+    },
     ShopGui_1 = {
         TextId = 'ShopGui_1',
         Txt = 'GuiText_Txt_ShopGui_1'
