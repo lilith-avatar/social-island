@@ -186,6 +186,26 @@ local GuiTextXls = {
     CookGui_9 = {
         TextId = 'CookGui_9',
         Txt = 'GuiText_Txt_CookGui_9'
+    },
+    CookGuide_1 = {
+        TextId = 'CookGuide_1',
+        Txt = 'GuiText_Txt_CookGuide_1'
+    },
+    CookGuide_2 = {
+        TextId = 'CookGuide_2',
+        Txt = 'GuiText_Txt_CookGuide_2'
+    },
+    CookGuide_3 = {
+        TextId = 'CookGuide_3',
+        Txt = 'GuiText_Txt_CookGuide_3'
+    },
+    CookGuide_4 = {
+        TextId = 'CookGuide_4',
+        Txt = 'GuiText_Txt_CookGuide_4'
+    },
+    CookGuide_5 = {
+        TextId = 'CookGuide_5',
+        Txt = 'GuiText_Txt_CookGuide_5'
     }
 }
 
