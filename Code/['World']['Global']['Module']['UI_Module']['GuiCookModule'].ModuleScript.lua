@@ -682,7 +682,6 @@ function GuiCook:GuideBoxChangeSize(_parent)
         guideBoxTweener = nil
     end
     this.guideBox = world:CreateInstance('GuideBox', 'GuideBox', _parent)
-    --wait()
     this.guideBox.Size = _parent.Size * 1.2
     this.guideBox.Offset = Vector2(0, 0)
     guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = _parent.Size}, 0.5, 1)
