@@ -40,7 +40,7 @@
 :1234: 开发语言：`Lua 5.3`
 
 ## 游戏视频
-![Wonder Forest](https://user-images.githubusercontent.com/64057282/117948762-07816280-b344-11eb-8d7e-3a8d9ef747a5.mp4)
+[![神奇森林](https://user-images.githubusercontent.com/4829591/117957164-5b904500-b34c-11eb-801c-8d60ba470085.jpg)](https://user-images.githubusercontent.com/64057282/117948762-07816280-b344-11eb-8d7e-3a8d9ef747a5.mp4)
 
 ## 游戏内截图
 ![screenshot_01](https://user-images.githubusercontent.com/64057282/111729128-557c6b80-88a9-11eb-987e-80f280d8eaae.png)
