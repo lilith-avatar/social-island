@@ -5,13 +5,13 @@
 [![](https://img.shields.io/github/v/release/lilith-avatar/social-island)](https://github.com/lilith-avatar/social-island/releases)
 [![](https://img.shields.io/badge/smap-download-success)](https://github.com/lilith-avatar/social-island/raw/main/Smap/Social%20Island.smap)
 
-:cn: 中文译名：森林大派对（暂定）
+:cn: 中文译名：神奇森林
 
 :sunrise_over_mountains: 游戏类型：社交休闲
 
 :key: 关键词：社交、互动、休闲
 
-![A1002_Social Island_720P](https://user-images.githubusercontent.com/64057282/115857977-fb9b3280-a460-11eb-972a-4673b907694b.png)
+![Z1002_神奇森林](https://user-images.githubusercontent.com/64057282/117948315-98a40980-b343-11eb-8096-72cffd03cd47.jpg)
 
 ## 游戏介绍
 
@@ -34,6 +34,9 @@
 :computer: 编辑器版本：`Version:0.9.0.48110`
 
 :1234: 开发语言：`Lua 5.3`
+
+## 游戏视频
+![Wonder Forest](https://user-images.githubusercontent.com/64057282/117948762-07816280-b344-11eb-8d7e-3a8d9ef747a5.mp4)
 
 ## 游戏内截图
 ![screenshot_01](https://user-images.githubusercontent.com/64057282/111729128-557c6b80-88a9-11eb-987e-80f280d8eaae.png)
