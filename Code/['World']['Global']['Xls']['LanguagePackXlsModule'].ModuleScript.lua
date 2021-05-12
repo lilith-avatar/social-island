@@ -1379,9 +1379,9 @@ local LanguagePackXls = {
         ID = 'Item_Name_5002',
         CHS = '游泳圈',
         CHT = '',
-        EN = 'I have a dream.',
+        EN = 'Lifesaver',
         JP = '',
-        YN = 'Keselamatan paling penting.'
+        YN = 'Penyelamat'
     },
     Item_Name_6001 = {
         ID = 'Item_Name_6001',
@@ -2571,7 +2571,7 @@ local LanguagePackXls = {
         ID = 'Item_Des_5001',
         CHS = '我有一个梦想。',
         CHT = '',
-        EN = 'Lifesaver',
+        EN = 'I have a dream.',
         JP = '',
         YN = 'Penyelamat'
     },
@@ -2581,7 +2581,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Safety first.',
         JP = '',
-        YN = 'Keselamatan paling penting.'
+        YN = 'Aku punya mimpi.'
     },
     Item_Name_5003 = {
         ID = 'Item_Name_5003',
@@ -3025,7 +3025,15 @@ local LanguagePackXls = {
     },
     GuiText_Txt_MoleGui_3 = {
         ID = 'GuiText_Txt_MoleGui_3',
-        CHS = '石像给你留下了：',
+        CHS = '你获得了',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_MoleGui_4 = {
+        ID = 'GuiText_Txt_MoleGui_4',
+        CHS = '神秘石像',
         CHT = '',
         EN = '',
         JP = '',

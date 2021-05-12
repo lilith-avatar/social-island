@@ -8,6 +8,7 @@ function GuiCook:Init()
     this:NodeDef()
     this:DataInit()
     this:EventBind()
+    this:LanguageInit()
 end
 
 function GuiCook:Test()
@@ -98,6 +99,7 @@ function GuiCook:NodeDef()
     }
     this.guideCook = this.guideMat.CookBtn
     this.guideTip = this.guidePanel.GuideTalk
+    this.guideArrow = this.guideCook.GuideArrow
 end
 
 function GuiCook:EventBind()
@@ -183,6 +185,16 @@ function GuiCook:EventBind()
     )
 end
 
+function GuiCook:LanguageInit()
+    this.guideDrag.TitleText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_1'].Txt)
+    this.guideMat.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_2'].Txt)
+    this.gui.DragPanel.TitleText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_1'].Txt)
+    this.gui.MaterialPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_2'].Txt)
+    this.foodPanel.EatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
+    this.detailReward.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
+    this.detailReward.Locked.Txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
+end
+
 function GuiCook:TransItemTable()
     --先清空表
     this.BagMaterial = {}
@@ -248,7 +260,7 @@ function GuiCook:InteractCEventHandler(_gameId)
         if this.canEat then
             this:ShowDetail()
         else
-            NetUtil.Fire_C('InsertInfoEvent', localPlayer, '宴会还没有开始，晚上再来吧', 2, false)
+            NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText['CookGui_7'].Txt), 2, false)
         end
     end
 end
@@ -488,6 +500,7 @@ end
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
     this.curShareSlot = _cur
     this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
+    this.deskBtn.Locked.Txt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
@@ -543,7 +556,10 @@ function GuiCook:PutOnDesk()
     --NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
-function GuiCook:Update(dt)
+function GuiCook:Update(dt,tt)
+    if this.guideArrow.ActiveSelf then
+        this.guideArrow.AnchorsY = Vector2(1.6 + 0.1*math.cos(tt*3), 1.6 + 0.1*math.cos(tt*3))
+    end
 end
 
 function GuiCook:SycnTimeCEventHandler(_clock)
@@ -648,6 +664,7 @@ function GuiCook:GuideStep7()
     this.guidePanel.ContinueBtn:ToTop()
     this.guideTip:ToTop()
     this.guideCook.Locked:SetActive(false)
+    this.guideArrow:SetActive(true)
     this.guideTip:SetActive(true)
     this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt)
     this.guideTip.Pivot = Vector2(0.9, 1.4)
@@ -665,9 +682,6 @@ function GuiCook:GuideStep8()
     this.foodLocation = nil
     --开始烹饪
     this.guidePanel:SetActive(false)
-    --打开进度条
-    --this.progressPanel:SetActive(true)
-    --this.startUpdate = true
     NetUtil.Fire_S('PotShakeEvent', world.Pot.Pot1.Model3, localPlayer)
     world.ScenesAudio.BGM_Party.Volume = 0
     SoundUtil.Play2DSE(localPlayer.UserId, 135)
@@ -682,9 +696,9 @@ function GuiCook:GuideBoxChangeSize(_parent)
         guideBoxTweener = nil
     end
     this.guideBox = world:CreateInstance('GuideBox', 'GuideBox', _parent)
-    this.guideBox.Size = _parent.Size * 1.2
+    this.guideBox.Size = _parent.FinalSize * 1.3
     this.guideBox.Offset = Vector2(0, 0)
-    guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = _parent.Size}, 0.5, 1)
+    guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = _parent.FinalSize * 1.1}, 0.3, 1)
     this.guideBox:SetActive(true)
     guideBoxTweener:Play()
     guideBoxTweener:WaitForComplete()
