@@ -168,17 +168,26 @@ function CConcert:SpotlightVerticalSwing(_spotlights, _dur, _strength, _forwardE
     end
 end
 
+-- 单一聚光灯闪烁
+local function SpotlightTurnOn(_light, _turnOn)
+    if not _light:IsNull() then
+        _light:SetActive(_turnOn)
+    end
+end
+
 --- 灯闪烁
 function CConcert:SpotlightFlashing(_spotlights, _dur)
     for k, v in pairs(_spotlights) do
-        v:SetActive(false)
+        SpotlightTurnOn(v, false)
         invoke(
             function()
-                v:SetActive(true)
+                SpotlightTurnOn(v, true)
             end,
             _dur
         )
     end
 end
+
+
 
 return CConcert
