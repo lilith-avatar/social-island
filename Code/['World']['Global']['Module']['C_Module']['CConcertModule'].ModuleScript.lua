@@ -168,20 +168,17 @@ function CConcert:SpotlightVerticalSwing(_spotlights, _dur, _strength, _forwardE
     end
 end
 
-
 --- 灯闪烁
 function CConcert:SpotlightFlashing(_spotlights, _dur)
     for k, v in pairs(_spotlights) do
         v:SetActive(false)
-        local obk = v
-        local func = function()
-            obk:SetActive(true)
-        end
-        TimeUtil.SetTimeout(func, _dur)
+        invoke(
+            function()
+                v:SetActive(true)
+            end,
+            _dur
+        )
     end
-end
-
-function CConcert:Update(dt)
 end
 
 return CConcert
