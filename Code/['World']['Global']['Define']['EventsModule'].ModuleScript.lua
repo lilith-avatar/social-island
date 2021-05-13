@@ -144,7 +144,9 @@ Events.ClientEvents = {
     'SwitchTeleportFilterEvent',
     'ShowFoodEvent',
     'FoodOnDeskActionEvent',
-	'SInteractUploadEvent'
+	'SInteractUploadEvent',
+    'PlayerTeleportEvent',
+    'GetBetRewardEvent'
 }
 
 return Events

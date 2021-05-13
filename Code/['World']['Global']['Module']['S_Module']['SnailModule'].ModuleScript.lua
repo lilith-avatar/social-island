@@ -141,8 +141,8 @@ function Snail:SnailBetEventHandler(_player, _index, _money)
     if this:IsBetable(_player) then
         CloudLogUtil.UploadLog(
             'snail',
-            'snail_bet',
-            {snailId = _index, lastest_winner = lastestWinner, snail_mood = emoText[_index].Text, coin_num = _money}
+            'bet_server',
+            {snailId = _index, lastest_winner = lastestWinner, snail_mood = emoText[_index].Text}
         )
         snailObjPool[_index].betPlayer[#snailObjPool[_index].betPlayer + 1] = {
             player = _player,
@@ -185,6 +185,7 @@ end
 function Snail:StartSnailRace()
     NetUtil.Broadcast('ShowNoticeInfoEvent', 3, Vector3(-27.3455, -12.3695, -28.3368))
     SoundUtil.Play3DSE(startPoints[1].Position, 10)
+    local betPlayers = 0
     for k, v in pairs(snailObjPool) do
         this:InitMoveData(v)
 
@@ -192,8 +193,10 @@ function Snail:StartSnailRace()
         v.obj.LinearVelocityController.TargetLinearVelocity = v.obj.Forward * v.moveData[v.moveStep].speed
         this:ChangeEffect(v, v.moveData[v.moveStep].speed)
         v.state = snailActState.MOVE
+        betPlayers = betPlayers + #v.betPlayer
     end
     gameState = snailGameState.RACE
+    CloudLogUtil.UploadLog('snail', 'game_start', {bet_player_num = betPlayers})
 end
 
 --- 生成移动数据
@@ -309,32 +312,7 @@ function Snail:GiveReward(_snailObjPool)
         reward = 3
     end
     for k, v in pairs(_snailObjPool.betPlayer) do
-        NetUtil.Fire_C('UpdateCoinEvent', v.player, v.money * reward, false, 9)
-        if _snailObjPool.ranking < 3 then
-            NetUtil.Fire_C(
-                'InsertInfoEvent',
-                v.player,
-                string.format(
-                    LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt),
-                    _snailObjPool.ranking,
-                    v.money * reward
-                ),
-                3,
-                false
-            )
-            SoundUtil.Play3DSE(v.player.Position, 11)
-        else
-            NetUtil.Fire_C(
-                'InsertInfoEvent',
-                v.player,
-                string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_5.Txt), _snailObjPool.ranking),
-                3,
-                false
-            )
-            SoundUtil.Play3DSE(v.player.Position, 12)
-        end
-
-        --NetUtil.Fire_C("GetItemEvent", v, 5011)
+        NetUtil.Fire_C('GetBetRewardEvent', v.player, v.money, _snailObjPool.ranking)
     end
 end
 

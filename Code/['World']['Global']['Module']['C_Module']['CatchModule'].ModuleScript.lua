@@ -84,11 +84,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal, _id)
         invoke(
             function()
                 if _animal.AnimalState.Value == 6 then
-                    CloudLogUtil.UploadLog(
-                        'pet',
-                        'catchSuccessEvent',
-                        {trap_id = _id, animal_id = _animal.Name}
-                    )
+                    CloudLogUtil.UploadLog('pet', 'catchSuccessEvent', {trap_id = _id, animal_id = _animal.Name})
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
                         localPlayer,
@@ -101,11 +97,7 @@ function Catch:TrapAnimal(_rate, _trap, _animal, _id)
                     _trap.Open:SetActive(false)
                     _trap.Close:SetActive(true)
                 else
-                    CloudLogUtil.UploadLog(
-                        'pet',
-                        'catchFailEvent',
-                        {trap_id = _id, animal_id = _animal.Name}
-                    )
+                    CloudLogUtil.UploadLog('pet', 'catchFailEvent', {trap_id = _id, animal_id = _animal.Name})
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
                         localPlayer,
@@ -157,6 +149,7 @@ function Catch:Catch()
     invoke(
         function()
             localPlayer.Avatar:PlayAnimation('PickUpLight', 2, 1, 0.1, true, false, 1)
+            CloudLogUtil.UploadLog('inter', 'hunt_' .. prey.AnimalID.Value .. '_catch')
             wait(.5)
             NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_4.Txt), 2, false)
             SoundUtil.Play2DSE(localPlayer.UserId, 13)
@@ -200,6 +193,7 @@ end
 --触摸
 function Catch:Touch()
     NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_5.Txt), 2, false)
+    CloudLogUtil.UploadLog('inter', 'hunt_' .. prey.AnimalID.Value .. '_touch')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 

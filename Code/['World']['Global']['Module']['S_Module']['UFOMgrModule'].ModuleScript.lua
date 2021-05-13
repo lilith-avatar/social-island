@@ -39,15 +39,16 @@ function UFOMgr:EventBind()
     portal1.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
-                CloudLogUtil.UploadLog('inter', 'ufo_enter')
-                this:Teleport(_hitObject, portal2.Position + _hitObject.Forward * 4)
+                NetUtil.Fire_C('PlayerTeleportEvent', _hitObject, portal2.Position + _hitObject.Forward * 4, true)
+            --this:Teleport(_hitObject, portal2.Position + _hitObject.Forward * 4)
             end
         end
     )
     portal2.OnCollisionBegin:Connect(
         function(_hitObject)
             if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
-                this:Teleport(_hitObject, portal1.Position + _hitObject.Forward * 4)
+                NetUtil.Fire_C('PlayerTeleportEvent', _hitObject, portal1.Position + _hitObject.Forward * 4)
+            --this:Teleport(_hitObject, portal1.Position + _hitObject.Forward * 4)
             end
         end
     )
