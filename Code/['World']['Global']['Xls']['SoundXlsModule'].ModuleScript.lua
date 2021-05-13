@@ -1406,6 +1406,16 @@ local SoundXls = {
         MaxDistance = 10,
         Path = 'Audio/Ridio_4',
         Info = '收音机的动静'
+    },
+    [141] = {
+        ID = 141,
+        Name = 'OneMoreTime',
+        IsLoop = false,
+        Volume = 40.0,
+        MinDistance = 140,
+        MaxDistance = 200,
+        Path = 'Audio/OneMoreTime',
+        Info = ''
     }
 }
 

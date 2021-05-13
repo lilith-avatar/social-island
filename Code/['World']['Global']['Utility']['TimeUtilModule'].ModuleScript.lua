@@ -93,13 +93,14 @@ function TimeUtil.SetTimeout(_func, _seconds)
         invoke(_func)
         return
     end
+    local func = _func
     local id = #eventList + 1
     local timestamp = _seconds + Timer.GetTime()
     table.insert(
         eventList,
         {
             id = id,
-            func = _func,
+            func = func,
             delay = _seconds,
             triggerTime = timestamp
         }

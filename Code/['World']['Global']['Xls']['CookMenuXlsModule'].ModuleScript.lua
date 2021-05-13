@@ -261,7 +261,7 @@ local CookMenuXls = {
     },
     [29] = {
         Id = 29,
-        Menu = {7004, 7008, 7008},
+        Menu = {7004, 7008, 7009},
         Name = 'CookMenu_Name_29',
         Ico = 'Meal_Ico_7',
         Model = 'Meal7',
