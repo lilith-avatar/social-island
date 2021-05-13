@@ -168,6 +168,7 @@ function CConcetr:SpotlightVerticalSwing(_spotlights, _dur, _strength, _forwardE
     end
 end
 
+
 --- 灯闪烁
 function CConcetr:SpotlightFlashing(_spotlights, _dur)
     for k, v in pairs(_spotlights) do
