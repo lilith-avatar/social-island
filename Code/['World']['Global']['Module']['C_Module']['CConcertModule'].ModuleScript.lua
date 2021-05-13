@@ -1,8 +1,8 @@
 --- 客户端演唱会模块
---- @module CConcetr Module
+--- @module CConcert Module
 --- @copyright Lilith Games, Avatar Team
 --- @author Dead Ratman
-local CConcetr, this = ModuleUtil.New('CConcetr', ClientBase)
+local CConcert, this = ModuleUtil.New('CConcert', ClientBase)
 
 --- 变量声明
 --歌曲速度 bpm
@@ -53,15 +53,15 @@ local topBreathingLight1 = {}
 local bottomSpotlight1 = {}
 
 --- 初始化
-function CConcetr:Init()
-    print('[CConcetr] Init()')
+function CConcert:Init()
+    print('[CConcert] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
 end
 
 --- 节点引用
-function CConcetr:NodeRef()
+function CConcert:NodeRef()
     concertRoot = localPlayer.Local.Independent.Concert
     ufoOBJ = concertRoot.UFO
     npc1 = concertRoot.DJ.Npc1
@@ -79,7 +79,7 @@ function CConcetr:NodeRef()
 end
 
 --- 数据变量初始化
-function CConcetr:DataInit()
+function CConcert:DataInit()
     note16thDur = 60 / (tempo * 16 / noteLength)
     print('note16thDur:', note16thDur)
     for k, v in pairs(Config.Sub) do
@@ -89,11 +89,11 @@ function CConcetr:DataInit()
 end
 
 --- 节点事件绑定
-function CConcetr:EventBind()
+function CConcert:EventBind()
 end
 
 --- 初始化一个小节事件组
-function CConcetr:RegisterSubFunc(_subIndex, _notes, _noteIndex, _func)
+function CConcert:RegisterSubFunc(_subIndex, _notes, _noteIndex, _func)
     local noteTime = 0
     if _noteIndex >= 2 then
         for i = 2, _noteIndex do
@@ -105,7 +105,7 @@ function CConcetr:RegisterSubFunc(_subIndex, _notes, _noteIndex, _func)
     return delayTime
 end
 
-function CConcetr:TestStart()
+function CConcert:TestStart()
     for subIndex, sub in pairs(Config.Sub) do
         if sub.SynthesizerNotes then
             for noteIndex, note in pairs(sub.SynthesizerNotes) do
@@ -142,7 +142,7 @@ function CConcetr:TestStart()
 end
 
 --- 射灯组垂直摆动
-function CConcetr:SpotlightVerticalSwing(_spotlights, _dur, _strength, _forwardEaseCurve, _backEaseCurve)
+function CConcert:SpotlightVerticalSwing(_spotlights, _dur, _strength, _forwardEaseCurve, _backEaseCurve)
     for k, v in pairs(_spotlights) do
         local originRot = v.Rotation
         local forwardTweener =
@@ -170,7 +170,7 @@ end
 
 
 --- 灯闪烁
-function CConcetr:SpotlightFlashing(_spotlights, _dur)
+function CConcert:SpotlightFlashing(_spotlights, _dur)
     for k, v in pairs(_spotlights) do
         v:SetActive(false)
         local obk = v
@@ -181,7 +181,7 @@ function CConcetr:SpotlightFlashing(_spotlights, _dur)
     end
 end
 
-function CConcetr:Update(dt)
+function CConcert:Update(dt)
 end
 
-return CConcetr
+return CConcert
