@@ -87,20 +87,20 @@ end
 function TimeUtil.SetTimeout(_func, _seconds)
     assert(_func, '[TimeUtil] TimeUtil.SetTimeout() _func 不能为空')
     assert(type(_func) == 'function', '[TimeUtil] TimeUtil.SetTimeout() _func 类型不是function')
+    assert(_seconds, '[TimeUtil] TimeUtil.SetTimeout() 缺少延迟时间')
     assert(_seconds >= 0, '[TimeUtil] TimeUtil.SetTimeout() 延迟时间需大于等于0')
     if _seconds == 0 then
         print('[TimeUtil] TimeUtil.SetTimeout() 事件立即执行')
         invoke(_func)
         return
     end
-    local func = _func
     local id = #eventList + 1
     local timestamp = _seconds + Timer.GetTime()
     table.insert(
         eventList,
         {
             id = id,
-            func = func,
+            func = _func,
             delay = _seconds,
             triggerTime = timestamp
         }
@@ -117,6 +117,7 @@ end
 function TimeUtil.SetInterval(_func, _seconds)
     assert(_func, '[TimeUtil] TimeUtil.SetInterval() _func 不能为空')
     assert(type(_func) == 'function', '[TimeUtil] TimeUtil.SetInterval() _func 类型不是function')
+    assert(_seconds, '[TimeUtil] TimeUtil.SetInterval() 缺少延迟时间')
     assert(_seconds > 0, '[TimeUtil] TimeUtil.SetInterval() 延迟时间需大于0')
     local id = #eventList + 1
     local timestamp = _seconds + Timer.GetTime()
