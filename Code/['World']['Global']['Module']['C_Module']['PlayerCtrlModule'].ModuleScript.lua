@@ -454,6 +454,34 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end
 
+-- 角色传送
+function PlayerCtrl:PlayerTeleportEventHandler(_pos, _isEnterUFO)
+    NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 31)
+    local effect1 = world:CreateInstance('TeleportEffect', 'TeleportEffect', localPlayer, localPlayer.Position)
+    SoundUtil.Play3DSE(localPlayer.Position, 108)
+    if _isEnterUFO then
+        CloudLogUtil.UploadLog('inter', 'ufo_enter')
+    end
+    invoke(
+        function()
+            NetUtil.Fire_C('SwitchTeleportFilterEvent', localPlayer, true)
+            localPlayer.Avatar:SetActive(false)
+            wait(1)
+            localPlayer.Position = _pos
+            local effect2 = world:CreateInstance('TeleportEffect', 'TeleportEffect', localPlayer, localPlayer.Position)
+            SoundUtil.Play3DSE(_pos, 108)
+            effect1:Destroy()
+            wait(1)
+            NetUtil.Fire_C('SwitchTeleportFilterEvent', localPlayer, false)
+            localPlayer.Avatar:SetActive(true)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+            wait(1)
+            effect2:Destroy()
+        end,
+        1
+    )
+end
+
 -- 角色重置
 function PlayerCtrl:PlayerReset()
     CloudLogUtil.UploadLog('pannel_actions', 'movement_reset')
@@ -483,15 +511,9 @@ function PlayerCtrl:ColFunc(_hitObject, _isBegin)
 end
 
 -- 埋需要明确子节点名的交互点
-function PlayerCtrl:SInteractUploadEventHandler(_interId,_subinterId)
-    CloudLogUtil.UploadLog(
-        'pannel_actions',
-        'dialog_icon_'.._interId..'_click',
-        {subinter_id = _subinterId}
-    )
+function PlayerCtrl:SInteractUploadEventHandler(_interId, _subinterId)
+    CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. _interId .. '_click', {subinter_id = _subinterId})
 end
-
-
 
 function PlayerCtrl:Update(dt)
     if this.isControllable then

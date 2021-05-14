@@ -47,6 +47,10 @@ local NpcTextXls = {
         ID = 1014,
         Text = 'NpcText_Text_1014'
     },
+    [1015] = {
+        ID = 1015,
+        Text = 'NpcText_Text_1015'
+    },
     [1021] = {
         ID = 1021,
         Text = 'NpcText_Text_1021'
@@ -82,6 +86,10 @@ local NpcTextXls = {
     [1044] = {
         ID = 1044,
         Text = 'NpcText_Text_1044'
+    },
+    [1045] = {
+        ID = 1045,
+        Text = 'NpcText_Text_1045'
     },
     [1051] = {
         ID = 1051,
@@ -143,6 +151,14 @@ local NpcTextXls = {
         ID = 1172,
         Text = 'NpcText_Text_1172'
     },
+    [1173] = {
+        ID = 1173,
+        Text = 'NpcText_Text_1173'
+    },
+    [1174] = {
+        ID = 1174,
+        Text = 'NpcText_Text_1174'
+    },
     [1181] = {
         ID = 1181,
         Text = 'NpcText_Text_1181'
@@ -159,6 +175,10 @@ local NpcTextXls = {
         ID = 1184,
         Text = 'NpcText_Text_1184'
     },
+    [1185] = {
+        ID = 1185,
+        Text = 'NpcText_Text_1185'
+    },
     [1191] = {
         ID = 1191,
         Text = 'NpcText_Text_1191'
@@ -174,6 +194,10 @@ local NpcTextXls = {
     [2012] = {
         ID = 2012,
         Text = 'NpcText_Text_2012'
+    },
+    [2013] = {
+        ID = 2013,
+        Text = 'NpcText_Text_2013'
     },
     [2021] = {
         ID = 2021,

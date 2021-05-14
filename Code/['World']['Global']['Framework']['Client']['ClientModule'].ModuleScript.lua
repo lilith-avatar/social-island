@@ -38,7 +38,6 @@ function InitClient()
     InitHeartbeat()
     InitDataSync()
     InitClientCustomEvents()
-    PreloadCsv()
     GenInitAndUpdateList()
     RunInitDefault()
     InitOtherModules()
@@ -113,14 +112,6 @@ end
 --- 初始化客户端随机种子
 function InitRandomSeed()
     math.randomseed(os.time())
-end
-
---- 预加载所有的CSV表格
-function PreloadCsv()
-    print('[Client] PreloadCsv()')
-    if Config.ClientPreload and #Config.ClientPreload > 0 then
-        CsvUtil.PreloadCsv(Config.ClientPreload, Csv, Config)
-    end
 end
 
 --- 初始化包含Init()方法的模块

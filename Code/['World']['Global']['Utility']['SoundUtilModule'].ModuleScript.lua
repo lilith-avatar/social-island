@@ -47,7 +47,8 @@ local function Init2DAudioSource(_index, _uid)
         world:CreateObject(
         'AudioSource',
         'AudioSource' .. _index,
-        world:GetPlayerByUserId(_uid).Local.Independent.GameCam.SENode
+        world:GetPlayerByUserId(_uid).Local.Independent.GameCam.SENode,
+		world:GetPlayerByUserId(_uid).Local.Independent.GameCam.SENode.Position
     )
     return audioSourcePool.SE2D[_uid][_index]
 end

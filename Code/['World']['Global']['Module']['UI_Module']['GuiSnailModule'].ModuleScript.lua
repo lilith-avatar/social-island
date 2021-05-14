@@ -81,7 +81,39 @@ function GuiSnail:BetMoney(_num)
         3,
         true
     )
+    CloudLogUtil.UploadLog('snail', 'bet_client', {snailId = snailIndex, coin_num = _num})
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+end
+
+-- 获得下注奖励
+function GuiSnail:GetBetRewardEventHandler(_num, _rank)
+    local reward = 0
+    if _rank == 2 then
+        reward = 2
+    elseif _rank == 1 then
+        reward = 3
+    end
+    NetUtil.Fire_C('UpdateCoinEvent', localPlayer, _num * reward, false, 9)
+    if _rank < 3 then
+        NetUtil.Fire_C(
+            'InsertInfoEvent',
+            localPlayer,
+            string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt), _rank, _num * reward),
+            3,
+            false
+        )
+        SoundUtil.Play3DSE(localPlayer.Position, 11)
+    else
+        NetUtil.Fire_C(
+            'InsertInfoEvent',
+            localPlayer,
+            string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_5.Txt), _rank),
+            3,
+            false
+        )
+        SoundUtil.Play3DSE(localPlayer.Position, 12)
+    end
+    CloudLogUtil.UploadLog('snail', 'game_reward', {rank = _rank, coin_num = _num})
 end
 
 -- 重置

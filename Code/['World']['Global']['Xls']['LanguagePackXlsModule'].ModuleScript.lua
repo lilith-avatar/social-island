@@ -2465,7 +2465,7 @@ local LanguagePackXls = {
     },
     NpcText_Text_1184 = {
         ID = 'NpcText_Text_1184',
-        CHS = '这个岛会不会是外星人的杰作呢。',
+        CHS = '饿了嘛？我的左手边可以做一些料理哦，和大家一起准备晚宴吧。',
         CHT = '',
         EN = 'The landscape of this forest is peculiar. Could it be the work of aliens?',
         JP = '',
@@ -3034,6 +3034,54 @@ local LanguagePackXls = {
     GuiText_Txt_MoleGui_4 = {
         ID = 'GuiText_Txt_MoleGui_4',
         CHS = '神秘石像',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    NpcText_Text_1015 = {
+        ID = 'NpcText_Text_1015',
+        CHS = '驯兽时要先布置陷阱，然后引导动物踩到你的陷阱上。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    NpcText_Text_1045 = {
+        ID = 'NpcText_Text_1045',
+        CHS = '这片森林有一些东西非常神奇，碰到别人的时候可能会赋予他神奇的能量哦',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    NpcText_Text_1173 = {
+        ID = 'NpcText_Text_1173',
+        CHS = '如果要打猎的话用弓箭更容易一击毙命。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    NpcText_Text_1174 = {
+        ID = 'NpcText_Text_1174',
+        CHS = '有经验的猎人会把动物赶到捕兽夹上来抓捕它，很厉害呢。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    NpcText_Text_1185 = {
+        ID = 'NpcText_Text_1185',
+        CHS = '湖边有一个峡谷，蘑菇比人还要高，你可以去看看。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    NpcText_Text_2013 = {
+        ID = 'NpcText_Text_2013',
+        CHS = '小心别踩到捕兽夹！',
         CHT = '',
         EN = '',
         JP = '',
