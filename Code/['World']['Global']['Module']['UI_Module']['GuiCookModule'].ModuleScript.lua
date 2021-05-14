@@ -98,7 +98,11 @@ function GuiCook:NodeDef()
         this.guidePanel.MaterialPanel.Material3
     }
     this.guideCook = this.guideMat.CookBtn
-    this.guideTip = this.guidePanel.GuideTalk
+    this.guideTip = {
+        left = this.guidePanel.GuideTalkLeft,
+        right = this.guidePanel.GuideTalkRight,
+        middle = this.guidePanel.GuideTalkMiddle
+    }
     this.guideArrow = this.guideCook.GuideArrow
 end
 
@@ -595,40 +599,40 @@ function GuiCook:TestGuide()
     this:GuideStep1()
 end
 
+function GuiCook:GuideTipShow(_pivot,_type,_txt)
+    this.guideTip.left:SetActive(false)
+    this.guideTip.right:SetActive(false)
+    this.guideTip.middle:SetActive(false)
+    this.guideTip[_type].Pivot = _pivot or this.guideTip.Pivot
+    this.guideTip[_type].TipText.Text = _txt
+    this.guideTip[_type]:ToTop()
+    this.guideTip[_type]:SetActive(true)
+end
+
 function GuiCook:GuideStep1()
     this.guideBlack:SetActive(true)
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_1'].Txt)
+    this:GuideTipShow(Vector2(0.5, 0.5),'middle',LanguageUtil.GetText(Config.GuiText['CookGuide_1'].Txt))
 end
 
 function GuiCook:GuideStep2()
     this.guideDrag:ToTop()
-    this.guideTip:ToTop()
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_2'].Txt)
-    this.guideTip.Pivot = Vector2(0.02, 0.5)
-    this.guideTip:SetActive(true)
+    this:GuideTipShow(Vector2(0.02, 0.5),'left',LanguageUtil.GetText(Config.GuiText['CookGuide_2'].Txt))
     this:GuideBoxChangeSize(this.guideDrag)
 end
 
 function GuiCook:GuideStep3()
     this.guideDrag:ToBottom()
     this.guideMat:ToTop()
-    this.guideTip:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_3'].Txt)
-    this.guideTip.Pivot = Vector2(0.9, 0.5)
+    this:GuideTipShow(Vector2(0.9, 0.5),'right',LanguageUtil.GetText(Config.GuiText['CookGuide_3'].Txt))
     this:GuideBoxChangeSize(this.guideMat)
 end
 
 function GuiCook:GuideStep4()
     this.guideDrag:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this.guideTip:ToTop()
     this.guidePanel.ContinueBtn:SetActive(false)
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_4'].Txt)
-    this.guideTip.Pivot = Vector2(0.75, 0)
+    this:GuideTipShow(Vector2(0.9, -0.3),'left',LanguageUtil.GetText(Config.GuiText['CookGuide_4'].Txt))
     this:GuideBoxChangeSize(this.guideMatSlot[1])
     this.guideMatSlot[1].ItemImg.SelectBtn.OnClick:Connect(
         function()
@@ -662,13 +666,10 @@ function GuiCook:GuideStep7()
     this.guideDrag:ToBottom()
     this.guideMat:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this.guideTip:ToTop()
     this.guideCook.Locked:SetActive(false)
     this.guideArrow:SetActive(true)
     this.guideArrow:ToTop()
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt)
-    this.guideTip.Pivot = Vector2(0.9, 1.4)
+    this:GuideTipShow(Vector2(0.6, 1.5),'right',LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt))
     this:GuideBoxCookBtnSize(this.guideCook)
     this.guideCook.OnClick:Connect(
         function()
