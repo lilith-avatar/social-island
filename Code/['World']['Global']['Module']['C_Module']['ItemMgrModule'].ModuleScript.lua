@@ -163,7 +163,7 @@ function ItemMgr:UnequipCurEquipmentEventHandler()
 end
 
 --交互掉落道具
-function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin)
+function ItemMgr:GetItemFromPoolEventHandler(_poolID, _coin, _interactID)
     if _poolID ~= 0 then
         local tempTable = {}
         for k, v in pairs(Config.ItemPool[_poolID]) do

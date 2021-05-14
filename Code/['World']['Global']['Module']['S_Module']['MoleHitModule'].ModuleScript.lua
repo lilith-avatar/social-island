@@ -73,7 +73,7 @@ function MoleHit:DataInit()
             UFOMgr:ActiveUFO()
         end,
         maze = function()
-            for _,p in pairs(world:FindPlayers()) do
+            for _, p in pairs(world:FindPlayers()) do
                 NetUtil.Fire_S('EnterMiniGameEvent', p, Const.GameEnum.MAZE)
             end
         end
@@ -129,9 +129,11 @@ function MoleHit:DayAndNightChange(_dayOrNight)
 end
 
 local player
+local getItemList = {}
 --- 玩家击中地鼠事件
 function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     player = world:GetPlayerByUserId(_uid)
+    getItemList[_uid] = {}
     this:HitMoleAction(_uid, _type, _pit)
     -- 抽奖
     local coinNum =
@@ -144,9 +146,9 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     -- 发送全局通知
     NetUtil.Broadcast('InsertInfoEvent', this.hitTime[_type] .. '/' .. math.floor(this.hitNum[_type]), 2, true)
     for i = 1, math.random(1, 3) do
-        NetUtil.Fire_C('GetItemFromPoolEvent', player, 9, 0)
+        table.insert(getItemList[_uid], this:MoleItemPool(9, player))
     end
-
+    NetUtil.Fire_C('GetMoleRewardEvent', player,getItemList[_uid])
     -- 判断是否达到彩蛋条件
     if this.hitTime[_type] >= this.hitNum[_type] then
         this.startUpdate, this.hitTime[_type] = true, 0
@@ -155,6 +157,34 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
         }
         -- 开启对应彩蛋
         this.bonusScene[_type]()
+    end
+end
+
+function MoleHit:MoleItemPool(_poolID, _player)
+    if _poolID ~= 0 then
+        local tempTable = {}
+        for k, v in pairs(Config.ItemPool[_poolID]) do
+            if
+                Data.Players[_player.UserId].bag[v.ItemId] and
+                    Config.ItemType[Config.Item[v.ItemId].Type].IsGetRepeatedly == false
+             then
+            else
+                tempTable[k] = v
+            end
+        end
+        local weightSum = 0
+        for _, v in pairs(tempTable) do
+            weightSum = weightSum + v.Weight
+        end
+        local randomNum = math.random(weightSum)
+        local tempWeightSum = 0
+        for _, v in pairs(tempTable) do
+            tempWeightSum = tempWeightSum + v.Weight
+            if randomNum < tempWeightSum then
+                NetUtil.Fire_C('GetItemEvent', _player, v.ItemId)
+                return v.ItemId
+            end
+        end
     end
 end
 

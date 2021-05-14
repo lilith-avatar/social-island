@@ -8,6 +8,7 @@ function GuiCook:Init()
     this:NodeDef()
     this:DataInit()
     this:EventBind()
+    this:LanguageInit()
 end
 
 function GuiCook:Test()
@@ -97,7 +98,12 @@ function GuiCook:NodeDef()
         this.guidePanel.MaterialPanel.Material3
     }
     this.guideCook = this.guideMat.CookBtn
-    this.guideTip = this.guidePanel.GuideTalk
+    this.guideTip = {
+        left = this.guidePanel.GuideTalkLeft,
+        right = this.guidePanel.GuideTalkRight,
+        middle = this.guidePanel.GuideTalkMiddle
+    }
+    this.guideArrow = this.guideCook.GuideArrow
 end
 
 function GuiCook:EventBind()
@@ -183,6 +189,16 @@ function GuiCook:EventBind()
     )
 end
 
+function GuiCook:LanguageInit()
+    this.guideDrag.TitleText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_1'].Txt)
+    this.guideMat.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_2'].Txt)
+    this.gui.DragPanel.TitleText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_1'].Txt)
+    this.gui.MaterialPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_2'].Txt)
+    this.foodPanel.EatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
+    this.detailReward.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
+    this.detailReward.Locked.Txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
+end
+
 function GuiCook:TransItemTable()
     --先清空表
     this.BagMaterial = {}
@@ -248,7 +264,7 @@ function GuiCook:InteractCEventHandler(_gameId)
         if this.canEat then
             this:ShowDetail()
         else
-            NetUtil.Fire_C('InsertInfoEvent', localPlayer, '宴会还没有开始，晚上再来吧', 2, false)
+            NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText['CookGui_7'].Txt), 2, false)
         end
     end
 end
@@ -488,6 +504,7 @@ end
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
     this.curShareSlot = _cur
     this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
+    this.deskBtn.Locked.Txt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
@@ -543,7 +560,10 @@ function GuiCook:PutOnDesk()
     --NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
-function GuiCook:Update(dt)
+function GuiCook:Update(dt,tt)
+    if this.guideArrow.ActiveSelf then
+        this.guideArrow.AnchorsY = Vector2(1.6 + 0.1*math.cos(tt*5), 1.6 + 0.1*math.cos(tt*5))
+    end
 end
 
 function GuiCook:SycnTimeCEventHandler(_clock)
@@ -581,40 +601,40 @@ function GuiCook:TestGuide()
     this:GuideStep1()
 end
 
+function GuiCook:GuideTipShow(_pivot,_type,_txt)
+    this.guideTip.left:SetActive(false)
+    this.guideTip.right:SetActive(false)
+    this.guideTip.middle:SetActive(false)
+    this.guideTip[_type].Pivot = _pivot or this.guideTip.Pivot
+    this.guideTip[_type].TipText.Text = _txt
+    this.guideTip[_type]:ToTop()
+    this.guideTip[_type]:SetActive(true)
+end
+
 function GuiCook:GuideStep1()
     this.guideBlack:SetActive(true)
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_1'].Txt)
+    this:GuideTipShow(Vector2(0.5, 0.5),'middle',LanguageUtil.GetText(Config.GuiText['CookGuide_1'].Txt))
 end
 
 function GuiCook:GuideStep2()
     this.guideDrag:ToTop()
-    this.guideTip:ToTop()
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_2'].Txt)
-    this.guideTip.Pivot = Vector2(0.02, 0.5)
-    this.guideTip:SetActive(true)
+    this:GuideTipShow(Vector2(0.02, 0.5),'left',LanguageUtil.GetText(Config.GuiText['CookGuide_2'].Txt))
     this:GuideBoxChangeSize(this.guideDrag)
 end
 
 function GuiCook:GuideStep3()
     this.guideDrag:ToBottom()
     this.guideMat:ToTop()
-    this.guideTip:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_3'].Txt)
-    this.guideTip.Pivot = Vector2(0.9, 0.5)
+    this:GuideTipShow(Vector2(0.9, 0.5),'right',LanguageUtil.GetText(Config.GuiText['CookGuide_3'].Txt))
     this:GuideBoxChangeSize(this.guideMat)
 end
 
 function GuiCook:GuideStep4()
     this.guideDrag:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this.guideTip:ToTop()
     this.guidePanel.ContinueBtn:SetActive(false)
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_4'].Txt)
-    this.guideTip.Pivot = Vector2(0.75, 0)
+    this:GuideTipShow(Vector2(0.9, -0.3),'left',LanguageUtil.GetText(Config.GuiText['CookGuide_4'].Txt))
     this:GuideBoxChangeSize(this.guideMatSlot[1])
     this.guideMatSlot[1].ItemImg.SelectBtn.OnClick:Connect(
         function()
@@ -649,12 +669,11 @@ function GuiCook:GuideStep7()
     this.guideDrag:ToBottom()
     this.guideMat:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this.guideTip:ToTop()
     this.guideCook.Locked:SetActive(false)
-    this.guideTip:SetActive(true)
-    this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt)
-    this.guideTip.Pivot = Vector2(0.9, 1.4)
-    this:GuideBoxChangeSize(this.guideCook)
+    this.guideArrow:SetActive(true)
+    this.guideArrow:ToTop()
+    this:GuideTipShow(Vector2(0.6, 1.5),'right',LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt))
+    this:GuideBoxCookBtnSize(this.guideCook)
     this.guideCook.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
@@ -669,9 +688,6 @@ function GuiCook:GuideStep8()
     this.foodLocation = nil
     --开始烹饪
     this.guidePanel:SetActive(false)
-    --打开进度条
-    --this.progressPanel:SetActive(true)
-    --this.startUpdate = true
     NetUtil.Fire_S('PotShakeEvent', world.Pot.Pot1.Model3, localPlayer)
     world.ScenesAudio.BGM_Party.Volume = 0
     SoundUtil.Play2DSE(localPlayer.UserId, 135)
@@ -686,9 +702,25 @@ function GuiCook:GuideBoxChangeSize(_parent)
         guideBoxTweener = nil
     end
     this.guideBox = world:CreateInstance('GuideBox', 'GuideBox', _parent)
-    this.guideBox.Size = _parent.Size * 1.2
+    this.guideBox.Size = _parent.FinalSize * 1.3
     this.guideBox.Offset = Vector2(0, 0)
-    guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = _parent.Size}, 0.5, 1)
+    guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = _parent.FinalSize * 1.1}, 0.3, 1)
+    this.guideBox:SetActive(true)
+    guideBoxTweener:Play()
+    guideBoxTweener:WaitForComplete()
+end
+
+function GuiCook:GuideBoxCookBtnSize(_parent)
+    if guideBoxTweener then
+        guideBoxTweener:Pause()
+        guideBoxTweener:Destroy()
+        this.guideBox:Destroy()
+        guideBoxTweener = nil
+    end
+    this.guideBox = world:CreateInstance('GuideBox', 'GuideBox', _parent)
+    this.guideBox.Size = Vector2(513, 240)
+    this.guideBox.Offset = Vector2(0, 0)
+    guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = Vector2(428, 200)}, 0.3, 1)
     this.guideBox:SetActive(true)
     guideBoxTweener:Play()
     guideBoxTweener:WaitForComplete()
