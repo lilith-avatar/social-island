@@ -587,10 +587,12 @@ function GuiCook:StartGuide()
     this.guidePanel:SetActive(true)
     --NetUtil.Fire_C('PlayerCookEvent', localPlayer, this.UsingMaterial)
     this:GuideStep1()
+    CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
     this.guidePanel.ContinueBtn.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
+            CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
         end
     )
 end
@@ -638,6 +640,7 @@ function GuiCook:GuideStep4()
         function()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
+            CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
         end
     )
 end
@@ -675,6 +678,7 @@ function GuiCook:GuideStep7()
         function()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
+            CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
         end
     )
 end

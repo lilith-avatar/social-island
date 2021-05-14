@@ -2963,9 +2963,9 @@ local LanguagePackXls = {
         ID = 'Item_Name_4004',
         CHS = '神奇宠物箱',
         CHT = '',
-        EN = 'Magic Pet Egg',
+        EN = 'Magic pet box',
         JP = '',
-        YN = 'Telur Hewan Peliharaan Ajaib'
+        YN = 'Kotak peliharaan ajaib'
     },
     Item_Des_4004 = {
         ID = 'Item_Des_4004',
