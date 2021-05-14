@@ -558,7 +558,7 @@ end
 
 function GuiCook:Update(dt,tt)
     if this.guideArrow.ActiveSelf then
-        this.guideArrow.AnchorsY = Vector2(1.6 + 0.1*math.cos(tt*3), 1.6 + 0.1*math.cos(tt*3))
+        this.guideArrow.AnchorsY = Vector2(1.6 + 0.1*math.cos(tt*5), 1.6 + 0.1*math.cos(tt*5))
     end
 end
 
@@ -665,10 +665,11 @@ function GuiCook:GuideStep7()
     this.guideTip:ToTop()
     this.guideCook.Locked:SetActive(false)
     this.guideArrow:SetActive(true)
+    this.guideArrow:ToTop()
     this.guideTip:SetActive(true)
     this.guideTip.TipText.Text = LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt)
     this.guideTip.Pivot = Vector2(0.9, 1.4)
-    this:GuideBoxChangeSize(this.guideCook)
+    this:GuideBoxCookBtnSize(this.guideCook)
     this.guideCook.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
@@ -699,6 +700,22 @@ function GuiCook:GuideBoxChangeSize(_parent)
     this.guideBox.Size = _parent.FinalSize * 1.3
     this.guideBox.Offset = Vector2(0, 0)
     guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = _parent.FinalSize * 1.1}, 0.3, 1)
+    this.guideBox:SetActive(true)
+    guideBoxTweener:Play()
+    guideBoxTweener:WaitForComplete()
+end
+
+function GuiCook:GuideBoxCookBtnSize(_parent)
+    if guideBoxTweener then
+        guideBoxTweener:Pause()
+        guideBoxTweener:Destroy()
+        this.guideBox:Destroy()
+        guideBoxTweener = nil
+    end
+    this.guideBox = world:CreateInstance('GuideBox', 'GuideBox', _parent)
+    this.guideBox.Size = Vector2(513, 240)
+    this.guideBox.Offset = Vector2(0, 0)
+    guideBoxTweener = Tween:TweenProperty(this.guideBox, {Size = Vector2(428, 200)}, 0.3, 1)
     this.guideBox:SetActive(true)
     guideBoxTweener:Play()
     guideBoxTweener:WaitForComplete()

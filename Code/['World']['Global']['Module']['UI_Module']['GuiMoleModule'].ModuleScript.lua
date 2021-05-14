@@ -3,9 +3,9 @@
 ---@author Yen Yuan
 local GuiMole, this = ModuleUtil.New('GuiMole', ClientBase)
 local GuiStateEnum = {
-    Close = 1,
-    Pre = 2,
-    Reward = 3
+    close = 'Close',
+    pre = 'Pre',
+    reward = 'Reward'
 }
 
 ---初始化函数
@@ -19,10 +19,20 @@ end
 
 ---节点定义
 function GuiMole:NodeDef()
-    this.gui = localPlayer.Local.MoleGui
+    this.gui = localPlayer.Local.SpecialTopUI.MoleGui
     this.preGui = this.gui.PrePanel
+    this.rewardGui = this.gui.RewardPanel
+
     this.preContinue = this.preGui.ContinueBtn
-    this.arrow = this.preContinue.Arrow
+    this.preArrow = this.preContinue.Arrow
+    this.rewardQueue = {}
+    this.rewardArrow = this.rewardGui.ItemBG.Arrow
+    this.rewardContinue = this.rewardGui.ContinueBtn
+    this.rewardAccept = this.rewardGui.ItemBG.AcceptBtn
+    this.rewardLight = this.rewardGui.ItemBG.Info.Light
+    this.rewardIcon = this.rewardGui.ItemBG.Info.ItemIcon
+    this.rewardName = this.rewardGui.ItemBG.Info.ItemName
+    this.rewardStar = this.rewardGui.ItemBG.Info.Star
 end
 
 function GuiMole:LanguageInit()
@@ -44,6 +54,21 @@ function GuiMole:EventBind()
             )
         end
     )
+    this.rewardContinue.OnClick:Connect(
+        function()
+            this.queueIndex = this.queueIndex + 1
+            this:ShowRewardItem(this.queueIndex)
+        end
+    )
+    this.rewardAccept.OnClick:Connect(
+        function()
+            this.queueIndex = {}
+            this.queueIndex = 1
+            this.gui:SetActive(false)
+            this.rewardGui:SetActive(false)
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+        end
+    )
 end
 
 ---数据初始化
@@ -52,11 +77,12 @@ function GuiMole:DataInit()
     this.curMoleType = nil
     this.curPit = nil
     this.curPrice = 0
-    this.state = GuiStateEnum.Close
+    this.state = GuiStateEnum.close
+    this.queueIndex = 1
 end
 
 function GuiMole:Test()
-    this.state = GuiStateEnum.Pre
+    this.state = GuiStateEnum.reward
 end
 
 function GuiMole:PurchaseCEventHandler(_coin, _id)
@@ -68,6 +94,7 @@ function GuiMole:PurchaseCEventHandler(_coin, _id)
             {cur_coin = Data.Player.coin, type = this.curMoleType, rest_num = this.curRestNum}
         )
         NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, this.curMoleType, this.curPit)
+        this.state = GuiStateEnum.reward
     end
 end
 
@@ -87,18 +114,71 @@ function GuiMole:InteractCEventHandler(_gameId)
             'mole_enter',
             {cur_coin = Data.Player.coin, type = this.curMoleType, rest_num = this.curRestNum}
         )
+        this.gui:SetActive(true)
         this.preGui:SetActive(true)
-        this.state = GuiStateEnum.Pre
+        this.state = GuiStateEnum.pre
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 2)
     end
 end
 
-function GuiMole:ResetDefUIEventHandler()
+local rewardTweener
+function GuiMole:ShowRewardItem(_index)
+    -- 先进行缩放表现
+    this:RewardPres()
+    -- 显示物品名字和icon
+    this.rewardArrow:SetActive(_index ~= table.nums(this.rewardQueue))
+    this.rewardContinue:SetActive(_index ~= table.nums(this.rewardQueue))
+    this.rewardAccept:SetActive(_index == table.nums(this.rewardQueue))
+    this.rewardName.Text = LanguageUtil.GetText(Config.Item[this.rewardQueue[_index]].Name)
+    this.rewardIcon.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[this.rewardQueue[_index]].Icon)
+    this.rewardGui.ItemBG.Info:SetActive(true)
+    -- 回弹表现
+    rewardTweener = Tween:TweenProperty(this.rewardGui.ItemBG, {Size = Vector2(873, 535)}, 0.05, 1)
+    rewardTweener:Play()
+    rewardTweener:WaitForComplete()
+end
+
+function GuiMole:RewardPres()
+    if rewardTweener then
+        rewardTweener:Pause()
+        rewardTweener:Destroy()
+    end
+    this.rewardContinue:SetActive(false)
+    this.rewardAccept:SetActive(false)
+    this.rewardGui.ItemBG.Info:SetActive(false)
+    this.rewardGui:SetActive(true)
+    this.rewardGui.ItemBG.Size = Vector2(523.8, 321)
+    rewardTweener = Tween:TweenProperty(this.rewardGui.ItemBG, {Size = Vector2(960, 588.5)}, 0.1, 1)
+    rewardTweener:Play()
+    rewardTweener:WaitForComplete()
+end
+
+function GuiMole:GetMoleRewardEventHandler(_rewardList)
+    this.rewardQueue = _rewardList
+    this:ShowRewardItem(this.queueIndex)
 end
 
 ---Update函数
 function GuiMole:Update(dt, tt)
-    if this.state == GuiStateEnum.Pre then
-        this.arrow.AnchorsY = Vector2(0.055 + 0.01 * math.cos(tt * 3), 0.055 + 0.01 * math.cos(tt * 3))
+    this[this.state .. 'Update'](self, dt, tt)
+end
+
+function GuiMole:CloseUpdate()
+end
+
+function GuiMole:PreUpdate(dt, tt)
+    this.preArrow.AnchorsY = Vector2(0.055 + 0.01 * math.cos(tt * 3), 0.055 + 0.01 * math.cos(tt * 3))
+end
+
+function GuiMole:RewardUpdate(dt, tt)
+    if this.rewardArrow.ActiveSelf then
+        this.rewardArrow.AnchorsY = Vector2(-0.02 + 0.01 * math.cos(tt * 5), -0.02 + 0.01 * math.cos(tt * 5))
+    end
+    if this.rewardLight.ActiveSelf then
+        this.rewardLight.Angle = this.rewardLight.Angle + dt * 10
+    end
+    if this.rewardStar.ActiveSelf then
+        this.rewardStar.Alpha = 0.35 * math.cos(tt) + 0.65
     end
 end
 
