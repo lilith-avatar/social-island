@@ -176,121 +176,121 @@ local ItemPoolXls = {
             PoolId = 9,
             InnerId = 1,
             ItemId = 7001,
-            Weight = 1000
+            Weight = 750
         },
         [2] = {
             PoolId = 9,
             InnerId = 2,
             ItemId = 7002,
-            Weight = 1000
+            Weight = 750
         },
         [3] = {
             PoolId = 9,
             InnerId = 3,
             ItemId = 7003,
-            Weight = 1000
+            Weight = 750
         },
         [4] = {
             PoolId = 9,
             InnerId = 4,
             ItemId = 7004,
-            Weight = 1000
+            Weight = 750
         },
         [5] = {
             PoolId = 9,
             InnerId = 5,
             ItemId = 7005,
-            Weight = 1000
+            Weight = 750
         },
         [6] = {
             PoolId = 9,
             InnerId = 6,
             ItemId = 7006,
-            Weight = 1000
+            Weight = 750
         },
         [7] = {
             PoolId = 9,
             InnerId = 7,
             ItemId = 7007,
-            Weight = 1000
+            Weight = 750
         },
         [8] = {
             PoolId = 9,
             InnerId = 8,
             ItemId = 7008,
-            Weight = 1000
+            Weight = 750
         },
         [9] = {
             PoolId = 9,
             InnerId = 9,
             ItemId = 7009,
-            Weight = 1000
+            Weight = 750
         },
         [10] = {
             PoolId = 9,
             InnerId = 10,
             ItemId = 7010,
-            Weight = 1000
+            Weight = 750
         },
         [11] = {
             PoolId = 9,
             InnerId = 11,
             ItemId = 7011,
-            Weight = 1000
+            Weight = 750
         },
         [12] = {
             PoolId = 9,
             InnerId = 12,
             ItemId = 7012,
-            Weight = 1000
+            Weight = 750
         },
         [13] = {
             PoolId = 9,
             InnerId = 13,
             ItemId = 7013,
-            Weight = 1000
+            Weight = 750
         },
         [14] = {
             PoolId = 9,
             InnerId = 14,
             ItemId = 7014,
-            Weight = 1000
+            Weight = 750
         },
         [15] = {
             PoolId = 9,
             InnerId = 15,
             ItemId = 7015,
-            Weight = 1000
+            Weight = 750
         },
         [16] = {
             PoolId = 9,
             InnerId = 16,
             ItemId = 7016,
-            Weight = 1000
+            Weight = 750
         },
         [17] = {
             PoolId = 9,
             InnerId = 17,
             ItemId = 7017,
-            Weight = 1000
+            Weight = 750
         },
         [18] = {
             PoolId = 9,
             InnerId = 18,
             ItemId = 7018,
-            Weight = 1000
+            Weight = 750
         },
         [19] = {
             PoolId = 9,
             InnerId = 19,
             ItemId = 7019,
-            Weight = 1000
+            Weight = 750
         },
         [20] = {
             PoolId = 9,
             InnerId = 20,
             ItemId = 7020,
-            Weight = 1000
+            Weight = 750
         },
         [21] = {
             PoolId = 9,
