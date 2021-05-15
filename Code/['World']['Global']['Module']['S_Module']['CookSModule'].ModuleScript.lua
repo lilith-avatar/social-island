@@ -133,7 +133,7 @@ end
 
 function CookS:SycnTimeSEventHandler(_clock)
     if _clock == 6 then
-        this:DestroyAllFood()
+        --this:DestroyAllFood()
     end
 end
 
