@@ -59,15 +59,9 @@ function MoleHit:DataInit()
         ufo = {},
         maze = {}
     }
-    this.hitTime = {
-        ufo = 0,
-        maze = 0
-    }
+    this.hitTime = 0
     -- 读表
-    this.hitNum = {
-        ufo = Config.MoleGlobalConfig.UFOPitNum.Value,
-        maze = Config.MoleGlobalConfig.MazePitNum.Value
-    }
+    this.hitNum = 15
     this.bonusScene = {
         ufo = function()
             UFOMgr:ActiveUFO()
@@ -94,7 +88,7 @@ function MoleHit:PoolInit()
 end
 
 function MoleHit:RefreashMole(_type)
-    this.pitList[_type] = SelectPit(this.pitFolder[_type], this.hitNum[_type])
+    this.pitList[_type] = SelectPit(this.pitFolder[_type], math.floor(this.hitNum / 2) + 3)
     -- 遍历对应坑位
     for k, v in pairs(this.pitList[_type]) do
         v.Mole:SetActive(true)
@@ -108,7 +102,7 @@ function MoleHit:RefreashMole(_type)
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
                         v,
-                        this.hitTime[_type]
+                        this.hitTime
                     )
                     NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
                 end
@@ -142,21 +136,25 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     ].num
     NetUtil.Fire_S('SpawnCoinEvent', 'P', _pit.Position + Vector3.Up, math.floor(coinNum), 12)
     -- 增加数量
-    this.hitTime[_type] = this.hitTime[_type] + 1
+    this.hitTime = this.hitTime + 1
     -- 发送全局通知
-    NetUtil.Broadcast('InsertInfoEvent', this.hitTime[_type] .. '/' .. math.floor(this.hitNum[_type]), 2, true)
+    NetUtil.Broadcast('InsertInfoEvent', this.hitTime .. '/15', 2, true)
     for i = 1, math.random(1, 3) do
         table.insert(getItemList[_uid], this:MoleItemPool(9, player))
     end
-    NetUtil.Fire_C('GetMoleRewardEvent', player,getItemList[_uid])
+    NetUtil.Fire_C('GetMoleRewardEvent', player, getItemList[_uid])
     -- 判断是否达到彩蛋条件
-    if this.hitTime[_type] >= this.hitNum[_type] then
-        this.startUpdate, this.hitTime[_type] = true, 0
+    if this.hitTime >= this.hitNum then
+        this.startUpdate, this.hitTime = true, 0
+        -- 先关闭所有地鼠
+        this:DestroyAllMole()
+        -- 关闭特效
+        _pit.Effect:SetActive(false)
         this.RefreshList[_type] = {
             timer = 0
         }
-        -- 开启对应彩蛋
-        this.bonusScene[_type]()
+        -- 随机开启彩蛋
+        this.bonusScene[math.random(1, 2) == 1 and 'ufo' or 'maze']()
     end
 end
 
@@ -188,6 +186,21 @@ function MoleHit:MoleItemPool(_poolID, _player)
     end
 end
 
+function MoleHit:DestroyAllMole()
+    for k, v in pairs(this.pitList.maze) do
+        v.Mole:SetActive(false)
+        v.Mole.Mole.Block = false
+        v.OnCollisionBegin:Clear()
+        v.OnCollisionEnd:Clear()
+    end
+    for k, v in pairs(this.pitList.ufo) do
+        v.Mole:SetActive(false)
+        v.Mole.Mole.Block = false
+        v.OnCollisionBegin:Clear()
+        v.OnCollisionEnd:Clear()
+    end
+end
+
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
     _pit.Effect:SetActive(true)
@@ -198,7 +211,7 @@ function MoleHit:HitMoleAction(_uid, _type, _pit)
         function()
             -- 摧毁地鼠
             _pit.Mole:SetActive(false)
-            _pit.Mole.Mole.Block = true
+            _pit.Mole.Mole.Block = false
             -- 关闭特效
             _pit.Effect:SetActive(false)
         end,
