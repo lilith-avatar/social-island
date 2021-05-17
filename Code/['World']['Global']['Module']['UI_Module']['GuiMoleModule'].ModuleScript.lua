@@ -38,6 +38,7 @@ end
 function GuiMole:LanguageInit()
     this.preGui.TalkBG.NameTxt.Text = LanguageUtil.GetText(Config.GuiText['MoleGui_4'].Txt)
     this.preGui.TalkBG.DescTxt.Text = LanguageUtil.GetText(Config.GuiText['MoleGui_2'].Txt)
+    this.rewardGui.Info.GetText.Text = LanguageUtil.GetText(Config.GuiText['MoleGui_3'].Txt)
 end
 
 ---事件绑定

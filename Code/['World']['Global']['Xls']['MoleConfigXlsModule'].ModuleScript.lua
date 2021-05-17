@@ -11,14 +11,14 @@ local MoleConfigXls = {
         ID = 'M1',
         Archetype = 'Test1',
         Type = 'ufo',
-        MoneyNum = 500,
+        MoneyNum = 300,
         RewardPool = 1
     },
     M2 = {
         ID = 'M2',
         Archetype = 'Test2',
         Type = 'maze',
-        MoneyNum = 500,
+        MoneyNum = 300,
         RewardPool = 1
     }
 }
