@@ -5,7 +5,7 @@
 local PeriodCoinMgr, this = ModuleUtil.New("PeriodCoinMgr", ServerBase)
 local Config = Config
 function PeriodCoinMgr:Init()
-	print("[Period] Init()")
+	--print("[Period] Init()")
 	this:NodeRef()
 	this:DataInit()
 	this:EventBind()
@@ -100,13 +100,13 @@ function PeriodCoinMgr:FreshCoin(_table,_fId,_posId,_origin)
 	else
 		RadIndex = math.random(0,10)
 		if RadIndex > 9.5 then
-			Coin = CoinMgr:SpawnCoin("N1000",Config.PeriodCoin[_fId][_posId].Pos, _origin)
+			Coin = CoinMgr:SpawnCoin("N1000",Config.PeriodCoin[_fId][_posId].Pos,nil, _origin)
 		elseif RadIndex > 8 then
-			Coin = CoinMgr:SpawnCoin("N100",Config.PeriodCoin[_fId][_posId].Pos, _origin)
+			Coin = CoinMgr:SpawnCoin("N100",Config.PeriodCoin[_fId][_posId].Pos,nil, _origin)
 		elseif RadIndex > 5 then
-			Coin = CoinMgr:SpawnCoin("N10",Config.PeriodCoin[_fId][_posId].Pos, _origin)
+			Coin = CoinMgr:SpawnCoin("N10",Config.PeriodCoin[_fId][_posId].Pos,nil, _origin)
 		else
-			Coin = CoinMgr:SpawnCoin("N1",Config.PeriodCoin[_fId][_posId].Pos, _origin)
+			Coin = CoinMgr:SpawnCoin("N1",Config.PeriodCoin[_fId][_posId].Pos,nil, _origin)
 		end
 		CoinInfo = {_posId,Coin }
 		table.insert(_table,CoinInfo)
