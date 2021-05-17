@@ -471,6 +471,12 @@ local ItemPoolXls = {
             InnerId = 50,
             ItemId = 4003,
             Weight = 250
+        },
+        [51] = {
+            PoolId = 9,
+            InnerId = 51,
+            ItemId = 4004,
+            Weight = 500
         }
     }
 }
