@@ -2979,113 +2979,113 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGuide_1',
         CHS = '让我们做一道菜吧！',
         CHT = '',
-        EN = '',
+        EN = 'Let\'s make a dish!',
         JP = '',
-        YN = ''
+        YN = 'Ayo buat hidangan!'
     },
     GuiText_Txt_CookGuide_2 = {
         ID = 'GuiText_Txt_CookGuide_2',
         CHS = '你获得过的食材会显示在这里。',
         CHT = '',
-        EN = '',
+        EN = 'The ingredients you have obtained will be displayed here.',
         JP = '',
-        YN = ''
+        YN = 'Bahan-bahan yang telah Anda peroleh akan ditampilkan di sini.'
     },
     GuiText_Txt_CookGuide_3 = {
         ID = 'GuiText_Txt_CookGuide_3',
         CHS = '这里会显示你准备使用的食材。',
         CHT = '',
-        EN = '',
+        EN = 'The ingredients you are going to use will be displayed here.',
         JP = '',
-        YN = ''
+        YN = 'Bahan-bahan yang akan Anda gunakan akan ditampilkan di sini.'
     },
     GuiText_Txt_CookGuide_4 = {
         ID = 'GuiText_Txt_CookGuide_4',
         CHS = '点击食材将他们加入菜谱，一道菜一共需要三种食材。',
         CHT = '',
-        EN = '',
+        EN = 'Click on the ingredients to add them to the recipe. A total of three ingredients are required for a dish.',
         JP = '',
-        YN = ''
+        YN = 'Klik pada bahan untuk menambahkannya ke resep. Total tiga bahan diperlukan untuk sebuah hidangan.'
     },
     GuiText_Txt_CookGuide_5 = {
         ID = 'GuiText_Txt_CookGuide_5',
         CHS = '选好了！现在让我们看看你会做出什么样的美食！',
         CHT = '',
-        EN = '',
+        EN = 'Well done! Now let us see what kind of dish you will make!',
         JP = '',
-        YN = ''
+        YN = 'sudah selesai dilakukan dengan baik! Sekarang mari kita lihat makanan apa yang akan Anda buat!'
     },
     GuiText_Txt_MoleGui_2 = {
         ID = 'GuiText_Txt_MoleGui_2',
         CHS = '金币——金币——金币——',
         CHT = '',
-        EN = '',
+        EN = 'Coins——Coins——Coins——',
         JP = '',
-        YN = ''
+        YN = 'Koin——Koin——Koin——'
     },
     GuiText_Txt_MoleGui_3 = {
         ID = 'GuiText_Txt_MoleGui_3',
         CHS = '你获得了',
         CHT = '',
-        EN = '',
+        EN = 'You got',
         JP = '',
-        YN = ''
+        YN = 'Anda punya'
     },
     GuiText_Txt_MoleGui_4 = {
         ID = 'GuiText_Txt_MoleGui_4',
         CHS = '神秘石像',
         CHT = '',
-        EN = '',
+        EN = 'Mysterious stone statue',
         JP = '',
-        YN = ''
+        YN = 'Patung batu misterius'
     },
     NpcText_Text_1015 = {
         ID = 'NpcText_Text_1015',
         CHS = '驯兽时要先布置陷阱，然后引导动物踩到你的陷阱上。',
         CHT = '',
-        EN = '',
+        EN = 'When taming an animal, you must first arrange a trap, and then guide the animal to step on your trap.',
         JP = '',
-        YN = ''
+        YN = 'Saat menjinakkan hewan, Anda harus membuat jebakan terlebih dahulu, lalu memandu hewan untuk menginjak jebakan Anda.'
     },
     NpcText_Text_1045 = {
         ID = 'NpcText_Text_1045',
         CHS = '这片森林有一些东西非常神奇，碰到别人的时候可能会赋予他神奇的能量哦',
         CHT = '',
-        EN = '',
+        EN = 'There are some things in this forest that are very magical, and they may give them magical energy when they meet others.',
         JP = '',
-        YN = ''
+        YN = 'Ada beberapa hal di hutan ini yang sangat ajaib, dan mungkin memberi mereka energi magis saat bertemu dengan yang lain.'
     },
     NpcText_Text_1173 = {
         ID = 'NpcText_Text_1173',
         CHS = '如果要打猎的话用弓箭更容易一击毙命。',
         CHT = '',
-        EN = '',
+        EN = 'If you want to hunt, it is easier to kill with a bow and arrow.',
         JP = '',
-        YN = ''
+        YN = 'Jika ingin berburu, lebih mudah membunuh dengan busur dan anak panah.'
     },
     NpcText_Text_1174 = {
         ID = 'NpcText_Text_1174',
         CHS = '有经验的猎人会把动物赶到捕兽夹上来抓捕它，很厉害呢。',
         CHT = '',
-        EN = '',
+        EN = 'An experienced hunter will rush the animal to the trap to catch it, very powerful.',
         JP = '',
-        YN = ''
+        YN = 'Seorang pemburu berpengalaman akan membawa hewan itu ke perangkap untuk menangkapnya, sangat kuat.'
     },
     NpcText_Text_1185 = {
         ID = 'NpcText_Text_1185',
         CHS = '湖边有一个峡谷，蘑菇比人还要高，你可以去看看。',
         CHT = '',
-        EN = '',
+        EN = 'There is a canyon by the lake, and the mushrooms are higher than people. You can go and see.',
         JP = '',
-        YN = ''
+        YN = 'Ada ngarai di tepi danau, dan jamur lebih tinggi dari manusia. Anda bisa pergi dan melihatnya.'
     },
     NpcText_Text_2013 = {
         ID = 'NpcText_Text_2013',
         CHS = '小心别踩到捕兽夹！',
         CHT = '',
-        EN = '',
+        EN = 'Be careful not to step on the trap!',
         JP = '',
-        YN = ''
+        YN = 'Berhati-hatilah untuk tidak menginjak jebakan!'
     }
 }
 
