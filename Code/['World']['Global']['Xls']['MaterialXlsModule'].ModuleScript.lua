@@ -55,52 +55,52 @@ local MaterialXls = {
     [7010] = {
         ItemID = 7010,
         MaterialType = '',
-        GetCoin = 40
+        GetCoin = 80
     },
     [7011] = {
         ItemID = 7011,
         MaterialType = '',
-        GetCoin = 35
+        GetCoin = 70
     },
     [7012] = {
         ItemID = 7012,
         MaterialType = '',
-        GetCoin = 60
+        GetCoin = 120
     },
     [7013] = {
         ItemID = 7013,
         MaterialType = '',
-        GetCoin = 25
+        GetCoin = 50
     },
     [7014] = {
         ItemID = 7014,
         MaterialType = '',
-        GetCoin = 45
+        GetCoin = 90
     },
     [7015] = {
         ItemID = 7015,
         MaterialType = '',
-        GetCoin = 80
+        GetCoin = 160
     },
     [7016] = {
         ItemID = 7016,
         MaterialType = '',
-        GetCoin = 65
+        GetCoin = 130
     },
     [7017] = {
         ItemID = 7017,
         MaterialType = '',
-        GetCoin = 120
+        GetCoin = 240
     },
     [7018] = {
         ItemID = 7018,
         MaterialType = '',
-        GetCoin = 80
+        GetCoin = 160
     },
     [7019] = {
         ItemID = 7019,
         MaterialType = '',
-        GetCoin = 65
+        GetCoin = 130
     },
     [7020] = {
         ItemID = 7020,
