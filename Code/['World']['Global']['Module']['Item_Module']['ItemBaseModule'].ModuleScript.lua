@@ -5,7 +5,7 @@
 local ItemBase = class('ItemBase')
 
 function ItemBase:initialize(_baseData, _derivedData)
-    print('ItemBase:initialize()')
+    --print('ItemBase:initialize()')
     self.baseData = _baseData
     self.typeConfig = Config.ItemType[_baseData.Type]
     self.derivedData = _derivedData
@@ -36,7 +36,7 @@ end
 
 --装备
 function ItemBase:Equip()
-    print('装备')
+    --print('装备')
     NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     wait(0.1)
@@ -55,7 +55,7 @@ function ItemBase:Equip()
             NetUtil.Fire_S('STakeOutItemEvent', localPlayer, self.baseData.ItemID)
 
             local node1, node2 = string.match(self.derivedData.ParentNode, '([%w_]+).([%w_]+)')
-            --print(node1, node1)
+            ----print(node1, node1)
             local pNode = localPlayer.Avatar[node1][node2]
             self.equipObj =
                 world:CreateInstance(
@@ -67,7 +67,7 @@ function ItemBase:Equip()
             )
             self.equipObj.LocalPosition = self.derivedData.Offset
             self.equipObj.LocalRotation = self.derivedData.Angle
-
+			self:ChangeNameColor()
             GuiControl:UpdateTakeOffBtn()
         end,
         self.baseData.TakeOutTime
@@ -83,6 +83,7 @@ function ItemBase:Unequip()
             self.equipObj:Destroy()
             wait(.3)
             effect:Destroy()
+			self:ChangeNameColor()
         end,
         0.2
     )
@@ -93,7 +94,28 @@ function ItemBase:Unequip()
     GuiControl:UpdateUseBtnIcon()
 end
 
+function ItemBase:ChangeNameColor()
+	NotReplicate(function()
+		if Data.Player.curEquipmentID == 0 then
+			for k,v in pairs (world:FindPlayers()) do
+				if v ~= localPlayer and v.NameGui.NameBarTxt2.Color ~= Color(255,255,255,255) then
+					v.NameGui.NameBarTxt2.Color = Color(255,255,255,255) 
+				end
+			end
+		else
+			for k,v in pairs (world:FindPlayers()) do
+				if v ~= localPlayer and v.NameGui.NameBarTxt2.Color ~= Color(255,0,0,255) then
+					v.NameGui.NameBarTxt2.Color = Color(255,0,0,255) 
+				end
+			end
+		end
+	end)
+end
+
+
+
 function ItemBase:Update(dt)
+	self:ChangeNameColor()
 end
 
 return ItemBase
