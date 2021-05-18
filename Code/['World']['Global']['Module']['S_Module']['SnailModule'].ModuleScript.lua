@@ -56,7 +56,7 @@ local championEffect
 
 --- 初始化
 function Snail:Init()
-    print('[Snail] Init()')
+    --print('[Snail] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -149,6 +149,7 @@ function Snail:SnailBetEventHandler(_player, _index, _money)
             money = _money
         }
     else
+		NetUtil.Fire_C('BetFailEvent', _player)
         NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
     end
 end
@@ -219,7 +220,7 @@ function Snail:InitMoveData(_snailObjPool)
             speed = disTable[i] / tempTime
         }
     end
-    --print(table.dump(_snailObjPool.moveData))
+    ----print(table.dump(_snailObjPool.moveData))
 end
 
 --- 蜗牛移动
@@ -231,7 +232,7 @@ function Snail:SnailMove(dt)
                 if v.moveStep > #v.moveData or (v.obj.Position - startPoints[v.index].Position).Magnitude > 19.5 then
                     this:SnailFinish(v)
                 else
-                    --print(v.obj, "改变速度", v.moveData[v.moveStep].speed)
+                    ----print(v.obj, "改变速度", v.moveData[v.moveStep].speed)
                     v.obj.LinearVelocityController.TargetLinearVelocity = v.obj.Forward * v.moveData[v.moveStep].speed
                     this:ChangeEffect(v, v.moveData[v.moveStep].speed)
                 end
@@ -265,7 +266,7 @@ function Snail:SnailFinish(_snailObjPool)
     end
     _snailObjPool.obj.FinishEffect:SetActive(true)
     if _snailObjPool.state == snailActState.MOVE then
-        print('[Snail]', _snailObjPool.obj, '到达终点')
+        --print('[Snail]', _snailObjPool.obj, '到达终点')
         _snailObjPool.state = snailActState.FINISH
         _snailObjPool.obj.LinearVelocityController.TargetLinearVelocity = Vector3.Zero
         _snailObjPool.ranking = 0

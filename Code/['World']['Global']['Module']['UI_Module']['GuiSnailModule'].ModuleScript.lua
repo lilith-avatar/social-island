@@ -9,7 +9,7 @@ local snailIndex = 0
 local arrowEffect = {}
 
 function GuiSnail:Init()
-    print('[GuiSnail] Init()')
+    --print('[GuiSnail] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -83,6 +83,11 @@ function GuiSnail:BetMoney(_num)
     )
     CloudLogUtil.UploadLog('snail', 'bet_client', {snailId = snailIndex, coin_num = _num})
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+end
+
+-- 检查上传失败的下注尝试
+function GuiSnail:BetFailEventHandler()
+	CloudLogUtil.UploadLog('snail', 'bet_fail')
 end
 
 -- 获得下注奖励

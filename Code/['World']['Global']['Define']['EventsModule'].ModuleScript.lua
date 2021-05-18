@@ -147,7 +147,9 @@ Events.ClientEvents = {
 	'SInteractUploadEvent',
     'GetMoleRewardEvent',
     'PlayerTeleportEvent',
-    'GetBetRewardEvent'
+    'GetBetRewardEvent',
+	'BetFailEvent'
+	
 }
 
 return Events
