@@ -27,12 +27,15 @@ function CookC:PlayerCookEventHandler(_materialList)
     for k, v in pairs(Config.CookMenu) do
         if this:JudgeMaterialInMenu(_materialList, v.Menu) then
             NetUtil.Fire_C('GetFinalFoodEvent', localPlayer, v.Id)
-            CloudLogUtil.UploadLog('cook', 'cook_main_confirm',{meal_id = v.Id,menu = _materialList})
             return
         end
     end
     NetUtil.Fire_C('GetFinalFoodEvent', localPlayer, 5)
-    CloudLogUtil.UploadLog('cook', 'cook_main_confirm',{meal_id = 5,menu = _materialList})
+	local foodList = {}
+	for k,v in pairs(_materialList) do
+		table.insert(foodList, v.id)
+	end
+	CloudLogUtil.UploadLog('cook', 'cook_main_confirm',{meal_id = 5,menu = foodList})
 end
 
 function CookC:JudgeMaterialInMenu(_materialList, _menu)

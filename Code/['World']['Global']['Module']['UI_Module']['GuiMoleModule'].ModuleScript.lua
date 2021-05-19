@@ -89,11 +89,6 @@ end
 function GuiMole:PurchaseCEventHandler(_coin, _id)
     if _id == 2 then
         CloudLogUtil.UploadLog('pannel_actions', 'window_moleGui_payGui_yes')
-        CloudLogUtil.UploadLog(
-            'mole',
-            'mole_confirm',
-            {cur_coin = Data.Player.coin, type = this.curMoleType, rest_num = this.curRestNum}
-        )
         NetUtil.Fire_S('PlayerHitEvent', localPlayer.UserId, this.curMoleType, this.curPit)
         this.state = GuiStateEnum.reward
     end
@@ -113,7 +108,7 @@ function GuiMole:InteractCEventHandler(_gameId)
         CloudLogUtil.UploadLog(
             'mole',
             'mole_enter',
-            {cur_coin = Data.Player.coin, type = this.curMoleType, rest_num = this.curRestNum}
+            {cur_coin = Data.Player.coin, rest_num = this.curRestNum}
         )
         this.gui:SetActive(true)
         this.preGui:SetActive(true)
@@ -157,6 +152,11 @@ end
 function GuiMole:GetMoleRewardEventHandler(_rewardList)
     this.rewardQueue = _rewardList
     this:ShowRewardItem(this.queueIndex)
+    CloudLogUtil.UploadLog(
+        'mole',
+        'mole_confirm',
+        {cur_coin = Data.Player.coin, rest_num = this.curRestNum,item_list = _rewardList}
+    )
 end
 
 ---Update函数
