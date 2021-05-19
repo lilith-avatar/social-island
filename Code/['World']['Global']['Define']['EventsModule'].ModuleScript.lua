@@ -148,8 +148,8 @@ Events.ClientEvents = {
     'GetMoleRewardEvent',
     'PlayerTeleportEvent',
     'GetBetRewardEvent',
-	'BetFailEvent'
-	
+	'BetFailEvent',
+	'OutlineCtrlEvent'
 }
 
 return Events

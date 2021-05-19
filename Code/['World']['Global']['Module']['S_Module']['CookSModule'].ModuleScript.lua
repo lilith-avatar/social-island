@@ -66,6 +66,7 @@ function CookS:PutFood(_foodId, _player)
                             i
                         )
                         NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 27)
+						NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,world.FoodLocation['Location' .. i],true)
                     end
                 end
             )
@@ -73,6 +74,7 @@ function CookS:PutFood(_foodId, _player)
                 function(_hitObject)
                     if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
                         NetUtil.Fire_C('ChangeMiniGameUIEvent', _hitObject)
+						NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,world.FoodLocation['Location' .. i],false)
                     end
                 end
             )

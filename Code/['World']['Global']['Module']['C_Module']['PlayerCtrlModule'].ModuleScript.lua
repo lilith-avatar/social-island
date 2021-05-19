@@ -501,11 +501,11 @@ end
 function PlayerCtrl:ColFunc(_hitObject, _isBegin)
     if _hitObject.InteractID then
         if _isBegin then
-			this:OutlineCtrl(_hitObject,true)
+			NetUtil.Fire_C('OutlineCtrlEvent', localPlayer,_hitObject,true)
             NetUtil.Fire_S('SInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
             NetUtil.Fire_C('CInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         else
-			this:OutlineCtrl(_hitObject,false)
+			NetUtil.Fire_C('OutlineCtrlEvent', localPlayer,_hitObject,false)
             NetUtil.Fire_S('SInteractOnPlayerColEndEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
             NetUtil.Fire_C('CInteractOnPlayerColEndEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         end
@@ -513,7 +513,7 @@ function PlayerCtrl:ColFunc(_hitObject, _isBegin)
 end
 
 -- 描边的开关
-function PlayerCtrl:OutlineCtrl(_hitObject, _switch)
+function PlayerCtrl:OutlineCtrlEventHandler(_hitObject, _switch)
 	if _switch == true then
 		if _hitObject.isModel then
 			_hitObject:ShowOutline(Color(255,255,0,255), 5, false)

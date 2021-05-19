@@ -40,7 +40,7 @@ end
 
 ---初始化函数
 function MoleHit:Init()
-    print('[MoleHit] Init()')
+    --print('[MoleHit] Init()')
     this:DataInit()
     this:NodeDef()
     this:PoolInit()
@@ -105,6 +105,7 @@ function MoleHit:RefreashMole(_type)
                         this.hitTime
                     )
                     NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
+					NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,v,true)
                 end
             end
         )
@@ -112,6 +113,7 @@ function MoleHit:RefreashMole(_type)
             function(_hitObject)
                 if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _hitObject)
+					NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,v,false)
                 end
             end
         )
