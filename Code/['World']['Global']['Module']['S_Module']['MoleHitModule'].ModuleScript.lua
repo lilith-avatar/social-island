@@ -205,8 +205,10 @@ end
 
 function MoleHit:HitMoleAction(_uid, _type, _pit)
     -- 打击表现
+	local hitPlayer = world:GetPlayerByUserId(_uid)
     _pit.Effect:SetActive(true)
     _pit.Mole.Mole.Block = false
+	NetUtil.Fire_C('OutlineCtrlEvent', hitPlayer,_pit,false)
     local tweener = Tween:ShakeProperty(_pit.Mole, {'Rotation'}, 0.8, 30)
     tweener:Play()
     invoke(
