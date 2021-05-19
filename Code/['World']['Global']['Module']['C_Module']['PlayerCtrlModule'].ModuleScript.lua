@@ -30,7 +30,7 @@ local isSwim = false
 
 --- 初始化
 function PlayerCtrl:Init()
-    --print('[PlayerCtrl] Init()')
+    ----print('[PlayerCtrl] Init()')
     this:SoundInit()
     this:DataInit()
     this:EventBind()
@@ -228,7 +228,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.4
          then
-            --print('进入游泳')
+            ----print('进入游泳')
             FsmMgr:FsmTriggerEventHandler('SwimIdle')
             if
                 FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
@@ -248,7 +248,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
-            --print('退出游泳')
+            ----print('退出游泳')
             FsmMgr:FsmTriggerEventHandler('Idle')
             if
                 FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
@@ -449,7 +449,7 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     FsmMgr:FsmTriggerEventHandler('BowHit')
     FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
     FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
-    --print('角色受伤', table.dump(_data))
+    ----print('角色受伤', table.dump(_data))
     BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
     BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end
@@ -501,13 +501,50 @@ end
 function PlayerCtrl:ColFunc(_hitObject, _isBegin)
     if _hitObject.InteractID then
         if _isBegin then
+			this:OutlineCtrl(_hitObject,true)
             NetUtil.Fire_S('SInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
             NetUtil.Fire_C('CInteractOnPlayerColBeginEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         else
+			this:OutlineCtrl(_hitObject,false)
             NetUtil.Fire_S('SInteractOnPlayerColEndEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
             NetUtil.Fire_C('CInteractOnPlayerColEndEvent', localPlayer, _hitObject, _hitObject.InteractID.Value)
         end
     end
+end
+
+-- 描边的开关
+function PlayerCtrl:OutlineCtrl(_hitObject, _switch)
+	if _switch == true then
+		if _hitObject.isModel then
+			_hitObject:ShowOutline(Color(255,255,0,255), 5, false)
+			return
+		end
+		if _hitObject.Parent.NpcAvatar then
+			_hitObject.Parent.NpcAvatar:ShowOutline(Color(255,255,0,255), 5, false)
+			return
+		end
+		for k,v in pairs(_hitObject:GetDescendants()) do
+			if v.isModel then
+				v:ShowOutline(Color(255,255,0,255), 5, true)
+				return
+			end
+		end
+	else
+		if _hitObject.isModel then
+			_hitObject:HideOutline(Color(255,255,0,255), 5, false)
+			return
+		end
+		if _hitObject.Parent.NpcAvatar then
+			_hitObject.Parent.NpcAvatar:HideOutline(Color(255,255,0,255), 5, false)
+			return
+		end
+		for k,v in pairs(_hitObject:GetDescendants()) do
+			if v.isModel then
+				v:HideOutline(Color(255,255,0,255), 5, true)
+				return
+			end
+		end
+	end
 end
 
 -- 埋需要明确子节点名的交互点
