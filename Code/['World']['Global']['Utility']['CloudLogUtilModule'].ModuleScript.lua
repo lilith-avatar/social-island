@@ -16,8 +16,11 @@ function CloudLogUtil.UploadLog(_key, _action, _table)
     pcall(
         function()
             --table.MergeTables({action = _action}, _table or {})
-			table.merge(_action, _table)
-            local arg = LuaJsonUtil:encode(_action)
+			local action = {action = _action}
+			if _table then
+				table.merge(action, _table)
+			end
+            local arg = LuaJsonUtil:encode(action)
             if localPlayer then
                 TrackService.CloudLogFromClient({_key, CloudLogUtil.gameId, arg})
             else
