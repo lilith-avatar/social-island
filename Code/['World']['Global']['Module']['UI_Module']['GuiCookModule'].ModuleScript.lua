@@ -79,6 +79,10 @@ function GuiCook:NodeDef()
     --* 黑幕
     this.black = this.root.Black
 
+    --* 光和星星
+    this.resultLight = this.foodPanel.IconBg
+    this.resultStar = this.foodPanel.IconStar
+
     --* 强引导相关
     this.guidePanel = this.root.GuidePanel
     this.guideBox = this.guidePanel.GuideBox
@@ -563,6 +567,10 @@ end
 function GuiCook:Update(dt,tt)
     if this.guideArrow.ActiveSelf then
         this.guideArrow.AnchorsY = Vector2(1.6 + 0.1*math.cos(tt*5), 1.6 + 0.1*math.cos(tt*5))
+    end
+    if this.foodPanel.ActiveSelf then
+        this.resultLight.Angle = this.resultLight.Angle + dt * 10
+        this.resultStar.Alpha = 0.35 * math.cos(tt) + 0.65
     end
 end
 
