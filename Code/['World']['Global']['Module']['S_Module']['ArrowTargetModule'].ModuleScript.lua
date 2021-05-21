@@ -94,7 +94,7 @@ end
 
 function ArrowTarget:HitReaction2(_target)
     _target.obj:SetActive(false)
-    ScenesInteract:InstanceInteractOBJ(36, _target.obj.Position)
+    ScenesInteract:InstanceInteractOBJ(35, _target.obj.Position)
     SoundUtil.Play3DSE(_target.obj.Position, 120)
     _target.resetCD = 0
 end
@@ -102,7 +102,7 @@ end
 function ArrowTarget:HitReaction3(_target)
     print('_target.obj', _target.obj)
     _target.obj:SetActive(false)
-    ScenesInteract:InstanceInteractOBJ(37, _target.obj.Position)
+    ScenesInteract:InstanceInteractOBJ(36, _target.obj.Position)
     SoundUtil.Play3DSE(_target.obj.Position, 119)
     _target.resetCD = 0
 end
