@@ -38,7 +38,7 @@ function Catch:InstanceTrap(_ItemID)
     CloudLogUtil.UploadLog(
         'pet',
         'setTrapEvent',
-        {trap_id = _ItemID, set_position = localPlayer.Position + localPlayer.Forward}
+        {trap_id = _ItemID, set_position = tostring(localPlayer.Position + localPlayer.Forward)}
     )
     local archetTypeName = ''
     if _ItemID == 4001 then
