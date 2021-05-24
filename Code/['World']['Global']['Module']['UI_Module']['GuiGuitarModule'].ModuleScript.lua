@@ -102,7 +102,7 @@ function GuiGuitar:PlayString(_string)
     --local playPos = not this.practiceMode and localPlayer.Position or nil
     this.stringTime = this.stringTime + 1
     -- 播放对应弦的音效
-    SoundUtil.Play3DSE(localPlayer.Position, Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret])
+    SoundUtil.Play2DSE(localPlayer.UserId, Config.GuitarPitch[_string].Pitch[this.stringPitch[_string].pitchFret])
     local Tweener = Tween:ShakeProperty(this.string[_string].StringImg, {"Offset"}, 0.5, 2)
     Tweener:Play()
 end
