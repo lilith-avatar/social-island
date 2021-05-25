@@ -149,13 +149,13 @@ function GuiMole:RewardPres()
     rewardTweener:WaitForComplete()
 end
 
-function GuiMole:GetMoleRewardEventHandler(_rewardList)
+function GuiMole:GetMoleRewardEventHandler(_rewardList,_rewardCoin)
     this.rewardQueue = _rewardList
     this:ShowRewardItem(this.queueIndex)
     CloudLogUtil.UploadLog(
         'mole',
         'mole_confirm',
-        {cur_coin = Data.Player.coin, rest_num = this.curRestNum,item_list = _rewardList}
+        {cur_coin = Data.Player.coin, rest_num = this.curRestNum,item_list = _rewardList,drop_coin = _rewardCoin}
     )
 end
 

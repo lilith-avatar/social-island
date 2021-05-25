@@ -102,7 +102,7 @@ function MoleHit:RefreashMole(_type)
                         Config.MoleConfig[this.molePool[_type].objId].MoneyNum,
                         _type,
                         v,
-                        this.hitTime
+                        this.hitNum - this.hitTime
                     )
                     NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 2)
 					NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,v,true)
@@ -144,7 +144,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     for i = 1, math.random(1, 3) do
         table.insert(getItemList[_uid], this:MoleItemPool(9, player))
     end
-    NetUtil.Fire_C('GetMoleRewardEvent', player, getItemList[_uid])
+    NetUtil.Fire_C('GetMoleRewardEvent', player, getItemList[_uid],coinNum)
     -- 判断是否达到彩蛋条件
     if this.hitTime >= this.hitNum then
         this.startUpdate, this.hitTime = true, 0
