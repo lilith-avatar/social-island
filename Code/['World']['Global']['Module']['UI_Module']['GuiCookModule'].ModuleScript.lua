@@ -187,7 +187,7 @@ function GuiCook:EventBind()
                 'SliderPurchaseEvent',
                 localPlayer,
                 27,
-                string.format(LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt),cookerName)
+                string.format(LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt), cookerName)
             )
         end
     )
@@ -269,7 +269,13 @@ function GuiCook:InteractCEventHandler(_gameId)
         if this.canEat then
             this:ShowDetail()
         else
-            NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText['CookGui_7'].Txt), 2, false)
+            NetUtil.Fire_C(
+                'InsertInfoEvent',
+                localPlayer,
+                LanguageUtil.GetText(Config.GuiText['CookGui_7'].Txt),
+                2,
+                false
+            )
         end
     end
 end
@@ -278,6 +284,17 @@ function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
         this:HideGui()
         local cookerName = world:GetPlayerByUserId(this.cookUserId)
+        NetUtil.Fire_C(
+            'InsertInfoEvent',
+            localPlayer,
+            string.format(
+                LanguageUtil.GetText(Config.GuiText['CookGui_9'].Txt),
+                cookerName,
+                LanguageUtil.GetText(Config.CookMenu[this.foodId].Name),
+                _purchaseCoin
+            ),
+            1
+        )
         CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_yes')
         CloudLogUtil.UploadLog(
             'cook',
@@ -292,6 +309,7 @@ function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
             }
         )
         NetUtil.Fire_S('FoodRewardEvent', localPlayer.UserId, this.cookUserId, _purchaseCoin)
+        this:EatFood()
     end
 end
 
@@ -509,7 +527,8 @@ end
 function GuiCook:SycnDeskFoodNumEventHandler(_cur, _total)
     this.curShareSlot = _cur
     this.deskBtn.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
-    this.deskBtn.Locked.Txt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
+    this.deskBtn.Locked.Txt.Text =
+        string.format(LanguageUtil.GetText(Config.GuiText['CookGui_5'].Txt) .. '(%s/%s)', _cur, _total)
     if _cur >= _total then
         --禁止上桌
         this.deskBtn.Locked:SetActive(true)
@@ -565,9 +584,9 @@ function GuiCook:PutOnDesk()
     --NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 end
 
-function GuiCook:Update(dt,tt)
+function GuiCook:Update(dt, tt)
     if this.guideArrow.ActiveSelf then
-        this.guideArrow.AnchorsY = Vector2(1.6 + 0.1*math.cos(tt*5), 1.6 + 0.1*math.cos(tt*5))
+        this.guideArrow.AnchorsY = Vector2(1.6 + 0.1 * math.cos(tt * 5), 1.6 + 0.1 * math.cos(tt * 5))
     end
     if this.foodPanel.ActiveSelf then
         this.resultLight.Angle = this.resultLight.Angle + dt * 10
@@ -583,12 +602,6 @@ function GuiCook:SycnTimeCEventHandler(_clock)
     end
 end
 
-function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
-    if _interactID == 27 then
-        this:EatFood()
-    end
-end
-
 --************* 强引导相关
 function GuiCook:StartGuide()
     this.guideStep = 1
@@ -596,12 +609,12 @@ function GuiCook:StartGuide()
     this.guidePanel:SetActive(true)
     --NetUtil.Fire_C('PlayerCookEvent', localPlayer, this.UsingMaterial)
     this:GuideStep1()
-    CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
+    CloudLogUtil.UploadLog('game_fte', 'cook_fte_' .. this.guideStep)
     this.guidePanel.ContinueBtn.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
-            CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
+            CloudLogUtil.UploadLog('game_fte', 'cook_fte_' .. this.guideStep)
         end
     )
 end
@@ -610,7 +623,7 @@ function GuiCook:TestGuide()
     this:GuideStep1()
 end
 
-function GuiCook:GuideTipShow(_pivot,_type,_txt)
+function GuiCook:GuideTipShow(_pivot, _type, _txt)
     this.guideTip.left:SetActive(false)
     this.guideTip.right:SetActive(false)
     this.guideTip.middle:SetActive(false)
@@ -622,12 +635,12 @@ end
 
 function GuiCook:GuideStep1()
     this.guideBlack:SetActive(true)
-    this:GuideTipShow(Vector2(0.5, 0.5),'middle',LanguageUtil.GetText(Config.GuiText['CookGuide_1'].Txt))
+    this:GuideTipShow(Vector2(0.5, 0.5), 'middle', LanguageUtil.GetText(Config.GuiText['CookGuide_1'].Txt))
 end
 
 function GuiCook:GuideStep2()
     this.guideDrag:ToTop()
-    this:GuideTipShow(Vector2(0.02, 0.5),'left',LanguageUtil.GetText(Config.GuiText['CookGuide_2'].Txt))
+    this:GuideTipShow(Vector2(0.02, 0.5), 'left', LanguageUtil.GetText(Config.GuiText['CookGuide_2'].Txt))
     this:GuideBoxChangeSize(this.guideDrag)
 end
 
@@ -635,7 +648,7 @@ function GuiCook:GuideStep3()
     this.guideDrag:ToBottom()
     this.guideMat:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
-    this:GuideTipShow(Vector2(0.9, 0.5),'right',LanguageUtil.GetText(Config.GuiText['CookGuide_3'].Txt))
+    this:GuideTipShow(Vector2(0.9, 0.5), 'right', LanguageUtil.GetText(Config.GuiText['CookGuide_3'].Txt))
     this:GuideBoxChangeSize(this.guideMat)
 end
 
@@ -643,13 +656,13 @@ function GuiCook:GuideStep4()
     this.guideDrag:ToTop()
     this.guidePanel.ContinueBtn:ToTop()
     this.guidePanel.ContinueBtn:SetActive(false)
-    this:GuideTipShow(Vector2(0.9, -0.3),'left',LanguageUtil.GetText(Config.GuiText['CookGuide_4'].Txt))
+    this:GuideTipShow(Vector2(0.9, -0.3), 'left', LanguageUtil.GetText(Config.GuiText['CookGuide_4'].Txt))
     this:GuideBoxChangeSize(this.guideMatSlot[1])
     this.guideMatSlot[1].ItemImg.SelectBtn.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
-            CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
+            CloudLogUtil.UploadLog('game_fte', 'cook_fte_' .. this.guideStep)
         end
     )
 end
@@ -681,13 +694,13 @@ function GuiCook:GuideStep7()
     this.guideCook.Locked:SetActive(false)
     this.guideArrow:SetActive(true)
     this.guideArrow:ToTop()
-    this:GuideTipShow(Vector2(0.6, 1.5),'right',LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt))
+    this:GuideTipShow(Vector2(0.6, 1.5), 'right', LanguageUtil.GetText(Config.GuiText['CookGuide_5'].Txt))
     this:GuideBoxCookBtnSize(this.guideCook)
     this.guideCook.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
-            CloudLogUtil.UploadLog('game_fte', 'cook_fte_'..this.guideStep)
+            CloudLogUtil.UploadLog('game_fte', 'cook_fte_' .. this.guideStep)
         end
     )
 end

@@ -66,7 +66,7 @@ function CookS:PutFood(_foodId, _player)
                             i
                         )
                         NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 27)
-						NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,world.FoodLocation['Location' .. i],true)
+                        NetUtil.Fire_C('OutlineCtrlEvent', _hitObject, world.FoodLocation['Location' .. i], true)
                     end
                 end
             )
@@ -74,7 +74,7 @@ function CookS:PutFood(_foodId, _player)
                 function(_hitObject)
                     if _hitObject and _hitObject.Avatar and _hitObject.Avatar.ClassName == 'PlayerAvatarInstance' then
                         NetUtil.Fire_C('ChangeMiniGameUIEvent', _hitObject)
-						NetUtil.Fire_C('OutlineCtrlEvent', _hitObject,world.FoodLocation['Location' .. i],false)
+                        NetUtil.Fire_C('OutlineCtrlEvent', _hitObject, world.FoodLocation['Location' .. i], false)
                     end
                 end
             )
@@ -100,8 +100,7 @@ end
 function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
     local rewardPlayer, cook = world:GetPlayerByUserId(_playerId), world:GetPlayerByUserId(_cookId)
     if rewardPlayer and cook then
-        --NetUtil.Fire_C('InsertInfoEvent', cook, rewardPlayer.Name .. '打赏了你' .. _coin, 2, false)
-        NetUtil.Fire_C('UpdateCoinEvent', cook, _coin, false, 11)
+        NetUtil.Fire_C('UpdateCoinEvent', cook, _coin)
     end
 end
 
@@ -135,7 +134,7 @@ end
 
 function CookS:SycnTimeSEventHandler(_clock)
     if _clock == 6 then
-        --this:DestroyAllFood()
+    --this:DestroyAllFood()
     end
 end
 
