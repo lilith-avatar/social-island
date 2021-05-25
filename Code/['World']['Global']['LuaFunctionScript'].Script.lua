@@ -701,6 +701,16 @@ function string.replace(str, index, char)
     return table.concat {str:sub(1, index - 1), char, str:sub(index + 1)}
 end
 
+--- 按key，value替换字符串
+function string.kyformat(str,kvTable)
+	for k,v in pairs(kvTable) do
+		str = string.gsub(str,"{"..tostring(k).."}", tostring(v))
+	end
+	return str
+end
+
+
+
 --- 检查字符串是否为指定字符串开头
 -- @param @string target
 -- @param @string start

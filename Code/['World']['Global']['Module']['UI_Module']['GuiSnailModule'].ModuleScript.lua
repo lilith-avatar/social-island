@@ -77,7 +77,7 @@ function GuiSnail:BetMoney(_num)
     NetUtil.Fire_C(
         'InsertInfoEvent',
         localPlayer,
-        string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_8.Txt), snailIndex, _num),
+        string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_8.Txt), snailIndex),
         3,
         true
     )
@@ -103,7 +103,7 @@ function GuiSnail:GetBetRewardEventHandler(_num, _rank)
         NetUtil.Fire_C(
             'InsertInfoEvent',
             localPlayer,
-            string.format(LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt), _rank, _num * reward),
+            string.kyformat(LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt), {rank = _rank, coin = _num * reward)},
             3,
             false
         )

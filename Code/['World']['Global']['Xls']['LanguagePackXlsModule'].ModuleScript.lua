@@ -2667,7 +2667,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_SnailGui_4',
         CHS = '你投注的蜗牛获得了第%d名，为你赢得了%d枚金币。',
         CHT = '',
-        EN = 'The snail you betted on obtained a rank of %d, and you won %d coins.',
+        EN = 'The snail you betted on obtained a rank of {rank}, and you won {coin} coins.',
         JP = '',
         YN = 'Siput yang kamu pilih meraih peringkat %d, dan kamu memenangkan %d koin.'
     },
@@ -2699,9 +2699,9 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_SnailGui_8',
         CHS = '你成功给%d号蜗牛投注%d',
         CHT = '',
-        EN = 'You successfully placed a bet on Snail %d number %d.',
+        EN = 'You successfully placed a bet on Snail number %d.',
         JP = '',
-        YN = 'Kamu berhasil memasang taruhan pada Siput %d nomor %d.'
+        YN = 'Kamu berhasil memasang taruhan pada Siput nomor %d.'
     },
     GuiText_Txt_SnailGui_9 = {
         ID = 'GuiText_Txt_SnailGui_9',
@@ -2947,9 +2947,9 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGui_9',
         CHS = '你为%s的%s支付了%s小费。',
         CHT = '',
-        EN = 'You tipped%s %s coins for his %s.',
+        EN = 'You tipped {cooker} {coin} coins for his {meal}.',
         JP = '',
-        YN = 'Kamu memberi tip%s %s koin untuk %s.'
+        YN = 'Kamu memberi tip {cooker} {coin} koin untuk {meal}.'
     },
     GuiText_Txt_PetGui_7 = {
         ID = 'GuiText_Txt_PetGui_7',
@@ -2963,7 +2963,7 @@ local LanguagePackXls = {
         ID = 'Item_Name_4004',
         CHS = '神奇宠物箱',
         CHT = '',
-        EN = 'Magic pet box',
+        EN = 'Mystery Pet Box',
         JP = '',
         YN = 'Kotak peliharaan ajaib'
     },
@@ -2971,7 +2971,7 @@ local LanguagePackXls = {
         ID = 'Item_Des_4004',
         CHS = '使用后获得一个宠物',
         CHT = '',
-        EN = 'Get a pet after use',
+        EN = 'Use to receive a pet',
         JP = '',
         YN = 'Dapatkan hewan peliharaan setelah digunakan'
     },
@@ -2979,7 +2979,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGuide_1',
         CHS = '让我们做一道菜吧！',
         CHT = '',
-        EN = 'Let\'s make a dish!',
+        EN = 'Let’s make some food!',
         JP = '',
         YN = 'Ayo buat hidangan!'
     },
@@ -2987,7 +2987,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGuide_2',
         CHS = '你获得过的食材会显示在这里。',
         CHT = '',
-        EN = 'The ingredients you have obtained will be displayed here.',
+        EN = 'The ingredients you’ve obtained will be shown here',
         JP = '',
         YN = 'Bahan-bahan yang telah Anda peroleh akan ditampilkan di sini.'
     },
@@ -2995,7 +2995,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGuide_3',
         CHS = '这里会显示你准备使用的食材。',
         CHT = '',
-        EN = 'The ingredients you are going to use will be displayed here.',
+        EN = 'The ingredients you’re going to use will be shown here',
         JP = '',
         YN = 'Bahan-bahan yang akan Anda gunakan akan ditampilkan di sini.'
     },
@@ -3003,7 +3003,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGuide_4',
         CHS = '点击食材将他们加入菜谱，一道菜一共需要三种食材。',
         CHT = '',
-        EN = 'Click on the ingredients to add them to the recipe. A total of three ingredients are required for a dish.',
+        EN = 'Tap on an ingredient to add it to a recipe; a recipe needs 3 ingredients',
         JP = '',
         YN = 'Klik pada bahan untuk menambahkannya ke resep. Total tiga bahan diperlukan untuk sebuah hidangan.'
     },
@@ -3011,7 +3011,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_CookGuide_5',
         CHS = '选好了！现在让我们看看你会做出什么样的美食！',
         CHT = '',
-        EN = 'Well done! Now let us see what kind of dish you will make!',
+        EN = 'Beautiful! Now let’s see what delicacy you are going to create!',
         JP = '',
         YN = 'sudah selesai dilakukan dengan baik! Sekarang mari kita lihat makanan apa yang akan Anda buat!'
     },
@@ -3019,7 +3019,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_MoleGui_2',
         CHS = '金币——金币——金币——',
         CHT = '',
-        EN = 'Coins——Coins——Coins——',
+        EN = 'Gold... gold... gold...',
         JP = '',
         YN = 'Koin——Koin——Koin——'
     },
@@ -3035,7 +3035,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_MoleGui_4',
         CHS = '神秘石像',
         CHT = '',
-        EN = 'Mysterious stone statue',
+        EN = 'Mysterious Stone Golem',
         JP = '',
         YN = 'Patung batu misterius'
     },
@@ -3051,7 +3051,7 @@ local LanguagePackXls = {
         ID = 'NpcText_Text_1045',
         CHS = '这片森林有一些东西非常神奇，碰到别人的时候可能会赋予他神奇的能量哦',
         CHT = '',
-        EN = 'There are some things in this forest that are very magical, and they may give them magical energy when they meet others.',
+        EN = 'This forest has some wonderful things that can grant wonderful powers when they touch someone.',
         JP = '',
         YN = 'Ada beberapa hal di hutan ini yang sangat ajaib, dan mungkin memberi mereka energi magis saat bertemu dengan yang lain.'
     },
@@ -3059,7 +3059,7 @@ local LanguagePackXls = {
         ID = 'NpcText_Text_1173',
         CHS = '如果要打猎的话用弓箭更容易一击毙命。',
         CHT = '',
-        EN = 'If you want to hunt, it is easier to kill with a bow and arrow.',
+        EN = 'If you are going to hunt, it’s easier to kill using bow and arrows.',
         JP = '',
         YN = 'Jika ingin berburu, lebih mudah membunuh dengan busur dan anak panah.'
     },
@@ -3067,7 +3067,7 @@ local LanguagePackXls = {
         ID = 'NpcText_Text_1174',
         CHS = '有经验的猎人会把动物赶到捕兽夹上来抓捕它，很厉害呢。',
         CHT = '',
-        EN = 'An experienced hunter will rush the animal to the trap to catch it, very powerful.',
+        EN = 'Experienced hunters lure animals into the trap they’ve set.',
         JP = '',
         YN = 'Seorang pemburu berpengalaman akan membawa hewan itu ke perangkap untuk menangkapnya, sangat kuat.'
     },
@@ -3075,7 +3075,7 @@ local LanguagePackXls = {
         ID = 'NpcText_Text_1185',
         CHS = '湖边有一个峡谷，蘑菇比人还要高，你可以去看看。',
         CHT = '',
-        EN = 'There is a canyon by the lake, and the mushrooms are higher than people. You can go and see.',
+        EN = 'There’s a valley by the lake, and the mushrooms there are taller than people. Go check it out!',
         JP = '',
         YN = 'Ada ngarai di tepi danau, dan jamur lebih tinggi dari manusia. Anda bisa pergi dan melihatnya.'
     },
@@ -3083,9 +3083,17 @@ local LanguagePackXls = {
         ID = 'NpcText_Text_2013',
         CHS = '小心别踩到捕兽夹！',
         CHT = '',
-        EN = 'Be careful not to step on the trap!',
+        EN = 'Careful not to step on a trap!',
         JP = '',
         YN = 'Berhati-hatilah untuk tidak menginjak jebakan!'
+    },
+    GuiText_Txt_CookGui_10 = {
+        ID = 'GuiText_Txt_CookGui_10',
+        CHS = '你的%s收到了%s的%s枚金币的小费。',
+        CHT = '',
+        EN = 'Your {meal} received a tip of {coin} coins from {customer}.',
+        JP = '',
+        YN = '{Meal} Anda menerima tip {coin} koin dari {customer}.'
     }
 }
 
