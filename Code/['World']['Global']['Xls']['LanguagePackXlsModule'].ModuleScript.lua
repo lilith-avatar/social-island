@@ -2665,7 +2665,7 @@ local LanguagePackXls = {
     },
     GuiText_Txt_SnailGui_4 = {
         ID = 'GuiText_Txt_SnailGui_4',
-        CHS = '你投注的蜗牛获得了第%d名，为你赢得了%d枚金币。',
+        CHS = '你投注的蜗牛获得了第{rank}名，为你赢得了{coin}枚金币。',
         CHT = '',
         EN = 'The snail you betted on obtained a rank of {rank}, and you won {coin} coins.',
         JP = '',
@@ -2697,7 +2697,7 @@ local LanguagePackXls = {
     },
     GuiText_Txt_SnailGui_8 = {
         ID = 'GuiText_Txt_SnailGui_8',
-        CHS = '你成功给%d号蜗牛投注%d',
+        CHS = '你成功给%d号蜗牛投注.',
         CHT = '',
         EN = 'You successfully placed a bet on Snail number %d.',
         JP = '',
@@ -2945,7 +2945,7 @@ local LanguagePackXls = {
     },
     GuiText_Txt_CookGui_9 = {
         ID = 'GuiText_Txt_CookGui_9',
-        CHS = '你为%s的%s支付了%s小费。',
+        CHS = '你为{cooker}的{meal}支付了{coin}小费。',
         CHT = '',
         EN = 'You tipped {cooker} {coin} coins for his {meal}.',
         JP = '',
@@ -3089,7 +3089,7 @@ local LanguagePackXls = {
     },
     GuiText_Txt_CookGui_10 = {
         ID = 'GuiText_Txt_CookGui_10',
-        CHS = '你的%s收到了%s的%s枚金币的小费。',
+        CHS = '你的{meal}收到了{customer}的{coin}枚金币的小费。',
         CHT = '',
         EN = 'Your {meal} received a tip of {coin} coins from {customer}.',
         JP = '',
