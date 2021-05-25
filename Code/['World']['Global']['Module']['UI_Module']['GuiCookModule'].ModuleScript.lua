@@ -201,6 +201,7 @@ function GuiCook:LanguageInit()
     this.foodPanel.EatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
     this.detailReward.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
     this.detailReward.Locked.Txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
+	this.FoodPanel.DesTxt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_3'].Txt),'')
 end
 
 function GuiCook:TransItemTable()
