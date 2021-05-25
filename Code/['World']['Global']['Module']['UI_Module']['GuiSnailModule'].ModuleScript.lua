@@ -103,7 +103,7 @@ function GuiSnail:GetBetRewardEventHandler(_num, _rank)
         NetUtil.Fire_C(
             'InsertInfoEvent',
             localPlayer,
-            string.kyformat(LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt), {rank = _rank, coin = _num * reward)},
+            string.kyformat(LanguageUtil.GetText(Config.GuiText.SnailGui_4.Txt), {rank = _rank, coin = _num * reward}),
             3,
             false
         )
