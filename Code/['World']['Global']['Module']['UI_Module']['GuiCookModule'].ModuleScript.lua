@@ -187,7 +187,7 @@ function GuiCook:EventBind()
                 'SliderPurchaseEvent',
                 localPlayer,
                 27,
-                LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt)
+                string.format(LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt),cookerName)
             )
         end
     )
@@ -535,7 +535,7 @@ function GuiCook:SetSelectFoodEventHandler(_foodId, _cookName, _cookUserId, _foo
     if this.cookUserId == localPlayer.UserId or Data.Player.coin <= 0 then
         this.detailReward.Locked:SetActive(true)
     else
-        this.detailReward.Locked:SetActive(true)
+        this.detailReward.Locked:SetActive(false)
     end
 end
 
