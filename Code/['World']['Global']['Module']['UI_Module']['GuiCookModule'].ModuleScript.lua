@@ -201,7 +201,7 @@ function GuiCook:LanguageInit()
     this.foodPanel.EatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
     this.detailReward.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
     this.detailReward.Locked.Txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
-	this.foodPanel.DesTxt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_3'].Txt),'')
+    this.foodPanel.DesTxt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_3'].Txt), '')
 end
 
 function GuiCook:TransItemTable()
@@ -287,11 +287,13 @@ function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
         NetUtil.Fire_C(
             'InsertInfoEvent',
             localPlayer,
-            string.format(
+            string.kyformat(
                 LanguageUtil.GetText(Config.GuiText['CookGui_9'].Txt),
-                cookerName,
-                LanguageUtil.GetText(Config.CookMenu[this.foodId].Name),
-                _purchaseCoin
+                {
+                    cooker = cookerName,
+                    meal = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name),
+                    coin = _purchaseCoin
+                }
             ),
             1
         )
