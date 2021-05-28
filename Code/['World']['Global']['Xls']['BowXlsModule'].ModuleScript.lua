@@ -37,7 +37,7 @@ local BowXls = {
     },
     [2003] = {
         ItemID = 2003,
-        ModelName = 'Arrow',
+        ModelName = 'S_Arch_Wood_01',
         ParentNode = 'Bone_L_Hand.LHandWeaponNode',
         Offset = Vector3(0, 0, 0),
         Angle = EulerDegree(0, -30, 0),
