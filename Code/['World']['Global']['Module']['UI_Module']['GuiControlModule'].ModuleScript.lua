@@ -57,6 +57,7 @@ function GuiControl:InitListener()
                 NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
                 return
             end
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
             PlayerCtrl:PlayerHello()
         end
     )
@@ -68,6 +69,7 @@ function GuiControl:InitListener()
     ctrlFigure.LeaveBtn.OnDown:Connect(
         function()
             print('LeaveBtnClick')
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
             NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, interactID)
             NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, interactID)
             CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_close')
@@ -80,6 +82,7 @@ function GuiControl:InitListener()
     )
     menuFigure.ResetBtn.OnClick:Connect(
         function()
+			SoundUtil.Play2DSE(localPlayer.UserId, 34)
             PlayerCtrl:PlayerReset()
         end
     )

@@ -27,10 +27,19 @@ end
 function GuiMap:EventBind()
     closeBtn.OnClick:Connect(
         function()
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
             NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 29)
         end
     )
 end
+
+function GuiMap:InteractCEventHandler(_id)
+    if _id == 29 then
+		SoundUtil.Play2DSE(localPlayer.UserId, 5)
+	end
+end
+
+
 ---Update函数
 function GuiMap:Update(_dt)
 end

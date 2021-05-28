@@ -56,7 +56,8 @@ end
 function GuiNoticeInfo:PopUpNotice(_panel, _right)
     local x = _right and 0 or -700
     local moveTween = Tween:TweenProperty(_panel, {Offset = Vector2(x, _panel.Offset.y)}, 0.5, Enum.EaseCurve.Linear)
-    moveTween:Play()
+	SoundUtil.Play2DSE(localPlayer.UserId, 36)
+	moveTween:Play()
     moveTween.OnComplete:Connect(
         function()
             moveTween:Destroy()
@@ -97,6 +98,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
             if #remainingItemID > 0 and itemRollTimer > 1 then
                 itemRollTimer = 0
                 curItemInfoPanel:SetActive(true)
+				SoundUtil.Play2DSE(localPlayer.UserId, 109)
                 v.Icon.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[remainingItemID[1]].Icon)
                 LanguageUtil.SetText(v.InfoText, Config.Item[remainingItemID[1]].Name, true, 20, 40)
                 table.remove(remainingItemID, 1)
@@ -125,9 +127,11 @@ function GuiNoticeInfo:RollInfoUI(dt)
             else
                 tmpUI.Join:SetActive(false)
             end
+			SoundUtil.Play2DSE(localPlayer.UserId, 3)
             tmpUI.Join.OnClick:Connect(
                 function()
                     this:PopUpNotice(tmpUI, false)
+					SoundUtil.Play2DSE(localPlayer.UserId, 108)
                     tempData.t = 0.5
                     print(type(tempData.callBack))
                     if type(tempData.callBack) == 'function' then
@@ -147,6 +151,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
             tmpUI.Close.OnClick:Clear()
             tmpUI.Close.OnClick:Connect(
                 function()
+					SoundUtil.Play2DSE(localPlayer.UserId, 6)
                     this:PopUpNotice(tmpUI, false)
                     tempData.t = 0.5
                 end

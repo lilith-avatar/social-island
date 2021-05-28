@@ -131,7 +131,7 @@ function EnterMiniGame()
     if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].GameId == nil then
         return
     end
-
+	SoundUtil.Play2DSE(localPlayer.UserId, 5)
     local gameId = NpcInfo[currNpcId].GameId
     NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
     --! Test only
@@ -144,6 +144,7 @@ function EnterShop()
     if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].ShopId == nil then
         return
     end
+	SoundUtil.Play2DSE(localPlayer.UserId, 5)
     -- TODO: 商店相关逻辑
     npcGui.Visible = false
     NetUtil.Fire_C('SwitchStoreUIEvent', localPlayer, 1, currNpcId)

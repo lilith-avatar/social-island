@@ -30,6 +30,7 @@ end
 function GuiTelescope:EventBind()
     gui.Panel.ZoomInBtn.OnClick:Connect(
         function()
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
             if zoomMultiple >= 0.2 then
                 zoomMultiple = zoomMultiple - 0.1
                 this:CamZoom(zoomMultiple)
@@ -38,6 +39,7 @@ function GuiTelescope:EventBind()
     )
     gui.Panel.ZoomOutBtn.OnClick:Connect(
         function()
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
             if zoomMultiple <= 1.5 then
                 zoomMultiple = zoomMultiple + 0.1
                 this:CamZoom(zoomMultiple)
@@ -46,6 +48,7 @@ function GuiTelescope:EventBind()
     )
     gui.Panel.LeaveBtn.OnClick:Connect(
         function()
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
             NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 14)
             NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, 14)
         end

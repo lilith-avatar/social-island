@@ -107,6 +107,7 @@ function GuiPurchase:OnClickPurchaseLaterBtn()
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     interactID = 0
     purchaseCoin = 0
+	SoundUtil.Play2DSE(localPlayer.UserId, 6)
 end
 
 --点击购买

@@ -45,27 +45,32 @@ function GuiBag:EventBind()
     this.closeBtn.OnClick:Connect(
         function()
             this:HideBagUI()
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
         end
     )
     this.useBtn.OnClick:Connect(
         function()
             this:ClickUseBtn(this.selectIndex)
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
     this.prevBtn.OnClick:Connect(
         function()
             this:ClickChangePage(this.pageIndex - 1)
+			SoundUtil.Play2DSE(localPlayer.UserId, 23)
         end
     )
     this.nextBtn.OnClick:Connect(
         function()
             this:ClickChangePage(this.pageIndex + 1)
+			SoundUtil.Play2DSE(localPlayer.UserId, 23)
         end
     )
     --单元格按键事件绑定
     for k, v in pairs(this.slotList) do
         v.ItemImg.SelectBtn.OnClick:Connect(
             function()
+				SoundUtil.Play2DSE(localPlayer.UserId, 101)
                 this:SelectItem(k)
             end
         )
@@ -110,6 +115,7 @@ function GuiBag:ShowBagUI()
     this:GetMaxPageNum(#this.slotItem)
     -- 显示金钱
     this.coinTxt.Text = math.floor(Data.Player.coin)
+	SoundUtil.Play2DSE(localPlayer.UserId, 5)
 end
 
 function GuiBag:ShowGetCoinNumEventHandler()
@@ -149,10 +155,17 @@ function GuiBag:ClickUseBtn(_index)
     NetUtil.Fire_C('UseItemInBagEvent', localPlayer, itemId)
     -- 物品消耗判定
     this:ConsumeItem(_index)
+    -- 清除选择
+	if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num > 0 and Config.ItemType[Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].Type].IsConsume then
+		this:SelectItem(_index)
+	end
     -- 重新展示当前页面物品信息
     this:ClickChangePage(this.pageIndex)
-    -- 清除选择
-    this:ClearSelect()
+end
+
+---装备好道具后关闭背包
+function GuiBag:CTakeOutItemEventHandler(_itemId)
+	this:HideBagUI()
 end
 
 function GuiBag:ConsumeItem(_index)

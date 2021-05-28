@@ -116,6 +116,7 @@ function GuiCook:EventBind()
         v.ItemImg.SelectBtn.OnClick:Connect(
             function()
                 this:ChooseMaterial(k)
+				SoundUtil.Play2DSE(localPlayer.UserId, 101)
             end
         )
     end
@@ -123,6 +124,7 @@ function GuiCook:EventBind()
         v.ItemImg.SelectBtn.OnClick:Connect(
             function()
                 this:CancelMaterial(k)
+				SoundUtil.Play2DSE(localPlayer.UserId, 6)
             end
         )
     end
@@ -130,24 +132,28 @@ function GuiCook:EventBind()
         function()
             this:StartCook()
             NetUtil.Fire_C('PlayerCookEvent', localPlayer, this.UsingMaterial)
+			SoundUtil.Play2DSE(localPlayer.UserId, 7)
         end
     )
     this.closeBtn.OnClick:Connect(
         function()
             NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 26)
             this:HideGui()
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
         end
     )
     this.eatBtn.OnClick:Connect(
         function()
             CloudLogUtil.UploadLog('cook', 'cook_main_eat', {meal_id = this.foodId, share_slot = this.curShareSlot})
             this:EatFood()
+			SoundUtil.Play2DSE(localPlayer.UserId, 26)
         end
     )
     this.deskBtn.OnClick:Connect(
         function()
             CloudLogUtil.UploadLog('cook', 'cook_main_share', {meal_id = this.foodId, share_slot = this.curShareSlot})
             this:PutOnDesk()
+			SoundUtil.Play2DSE(localPlayer.UserId, 7)
         end
     )
     this.detailEatBtn.OnClick:Connect(
@@ -165,6 +171,7 @@ function GuiCook:EventBind()
                 }
             )
             this:EatFood()
+			SoundUtil.Play2DSE(localPlayer.UserId, 26)
         end
     )
     this.detailReward.OnClick:Connect(
@@ -189,6 +196,7 @@ function GuiCook:EventBind()
                 27,
                 string.format(LanguageUtil.GetText(Config.GuiText['CookGui_8'].Txt), cookerName)
             )
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
 end
@@ -233,6 +241,7 @@ function GuiCook:ShowUI()
     this.gui:SetActive(true)
     this:ClickChangePage(1)
     CloudLogUtil.UploadLog('cook', 'cook_main_enter')
+	SoundUtil.Play2DSE(localPlayer.UserId, 5)
 end
 
 function GuiCook:ShowDetail()
@@ -242,6 +251,7 @@ function GuiCook:ShowDetail()
     this.gui:SetActive(false)
     this.root:SetActive(true)
     CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_show')
+	SoundUtil.Play2DSE(localPlayer.UserId, 5)
 end
 
 function GuiCook:InteractCEventHandler(_gameId)
@@ -615,6 +625,7 @@ function GuiCook:StartGuide()
     this.guidePanel.ContinueBtn.OnClick:Connect(
         function()
             this.guideStep = this.guideStep + 1
+			SoundUtil.Play2DSE(localPlayer.UserId, 3)
             this['GuideStep' .. this.guideStep](self)
             CloudLogUtil.UploadLog('game_fte', 'cook_fte_' .. this.guideStep)
         end
@@ -665,6 +676,7 @@ function GuiCook:GuideStep4()
             this.guideStep = this.guideStep + 1
             this['GuideStep' .. this.guideStep](self)
             CloudLogUtil.UploadLog('game_fte', 'cook_fte_' .. this.guideStep)
+			SoundUtil.Play2DSE(localPlayer.UserId, 5)
         end
     )
 end
@@ -714,6 +726,7 @@ function GuiCook:GuideStep8()
     this.guidePanel:SetActive(false)
     NetUtil.Fire_S('PotShakeEvent', world.Pot.Pot1.Model3, localPlayer)
     world.ScenesAudio.BGM_Party.Volume = 0
+	SoundUtil.Play2DSE(localPlayer.UserId, 7)
     SoundUtil.Play2DSE(localPlayer.UserId, 135)
 end
 

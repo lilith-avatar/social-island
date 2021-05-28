@@ -31,6 +31,7 @@ function GuiSnail:EventBind()
         v.OnDown:Connect(
             function()
                 if Data.Player.coin >= 1 then
+					SoundUtil.Play2DSE(localPlayer.UserId, 101)
                     snailIndex = k
                     gui.SnailPanel:SetActive(false)
                     NetUtil.Fire_C(
@@ -40,6 +41,7 @@ function GuiSnail:EventBind()
                         LanguageUtil.GetText(Config.GuiText.SnailGui_6.Txt)
                     )
                 else
+					SoundUtil.Play2DSE(localPlayer.UserId, 6)
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
                         localPlayer,
@@ -87,6 +89,7 @@ end
 
 -- 检查上传失败的下注尝试
 function GuiSnail:BetFailEventHandler()
+	SoundUtil.Play2DSE(localPlayer.UserId, 6)
 	CloudLogUtil.UploadLog('snail', 'bet_fail')
 end
 
@@ -132,6 +135,7 @@ end
 
 function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then
+		SoundUtil.Play2DSE(localPlayer.UserId, 5)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 8)
         NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.SnailGui_9.Txt), 1, false)
         gui:SetActive(true)

@@ -18,7 +18,7 @@ local ItemPoolXls = {
             PoolId = 1,
             InnerId = 2,
             ItemId = 7021,
-            Weight = 300
+            Weight = 100
         },
         [3] = {
             PoolId = 1,
@@ -44,7 +44,7 @@ local ItemPoolXls = {
             PoolId = 2,
             InnerId = 3,
             ItemId = 7021,
-            Weight = 1000
+            Weight = 300
         }
     },
     [3] = {
@@ -64,7 +64,7 @@ local ItemPoolXls = {
             PoolId = 3,
             InnerId = 3,
             ItemId = 7021,
-            Weight = 1000
+            Weight = 300
         },
         [4] = {
             PoolId = 3,
@@ -90,7 +90,7 @@ local ItemPoolXls = {
             PoolId = 4,
             InnerId = 3,
             ItemId = 7021,
-            Weight = 1000
+            Weight = 300
         },
         [4] = {
             PoolId = 4,
@@ -104,7 +104,7 @@ local ItemPoolXls = {
             PoolId = 5,
             InnerId = 1,
             ItemId = 7021,
-            Weight = 1000
+            Weight = 300
         },
         [2] = {
             PoolId = 5,
@@ -136,7 +136,7 @@ local ItemPoolXls = {
             PoolId = 6,
             InnerId = 4,
             ItemId = 7021,
-            Weight = 800
+            Weight = 500
         },
         [5] = {
             PoolId = 6,
@@ -150,7 +150,7 @@ local ItemPoolXls = {
             PoolId = 7,
             InnerId = 1,
             ItemId = 7008,
-            Weight = 1000
+            Weight = 650
         },
         [2] = {
             PoolId = 7,
@@ -168,7 +168,7 @@ local ItemPoolXls = {
             PoolId = 7,
             InnerId = 4,
             ItemId = 7021,
-            Weight = 1000
+            Weight = 300
         }
     },
     [9] = {

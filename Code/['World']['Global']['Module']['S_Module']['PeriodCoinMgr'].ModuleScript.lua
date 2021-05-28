@@ -94,7 +94,7 @@ local Coin
 local RadIndex
 function PeriodCoinMgr:FreshCoin(_table,_fId,_posId,_origin)
 	if Config.PeriodCoin[_fId][_posId].CoinType ~= "Random" then
-		Coin = CoinMgr:SpawnCoin(Config.PeriodCoin[_fId][_posId].CoinType,Config.PeriodCoin[_fId][_posId].Pos,_origin)
+		Coin = CoinMgr:SpawnCoin(Config.PeriodCoin[_fId][_posId].CoinType,Config.PeriodCoin[_fId][_posId].Pos,nil,_origin)
 		CoinInfo = {_posId,Coin }
 		table.insert(_table,CoinInfo)
 	else

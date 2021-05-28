@@ -84,16 +84,19 @@ function GuiGuitar:EventBind()
         function()
             this:StringInit()
             this:HideGui()
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
         end
     )
     this.chordModeBtn.OnClick:Connect(
         function()
             this:ChangeMode(true)
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
     this.proModeBtn.OnClick:Connect(
         function()
             this:ChangeMode(false)
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
 end
@@ -175,6 +178,7 @@ end
 function GuiGuitar:ChangeMiniGameUIEventHandler(_id)
 	if _id == 21 then
 	    CloudLogUtil.UploadLog('guitar', 'enter')
+		SoundUtil.Play2DSE(localPlayer.UserId, 5)
 	end
 end
 

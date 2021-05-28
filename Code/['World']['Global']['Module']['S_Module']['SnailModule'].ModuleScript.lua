@@ -116,6 +116,7 @@ function Snail:EnterMiniGameEventHandler(_player, _gameId)
         if this:IsBetable(_player) then
             NetUtil.Fire_C('InteractCEvent', _player, 8)
         else
+			NetUtil.Fire_C('BetFailEvent', _player)
             NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
         end
     end

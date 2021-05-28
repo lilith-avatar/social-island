@@ -57,7 +57,6 @@ end
 
 --攻击
 function BowWeapon:Attack(_force)
-    print('攻击')
     self.useCT = self.baseData.UseCD
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowAttack')
     self:ShootArrow(_force)
@@ -138,7 +137,6 @@ function BowWeapon:ShootArrow(_force)
             wait(_force)
             if arrow then
                 arrow.GravityEnable = true
-                print(_force)
                 wait(3 - _force)
             end
             if arrow then

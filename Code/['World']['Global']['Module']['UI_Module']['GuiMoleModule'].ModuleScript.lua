@@ -63,6 +63,7 @@ function GuiMole:EventBind()
     )
     this.rewardAccept.OnClick:Connect(
         function()
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
             this.queueIndex = {}
             this.queueIndex = 1
             this.gui:SetActive(false)
@@ -113,6 +114,7 @@ function GuiMole:InteractCEventHandler(_gameId)
         this.gui:SetActive(true)
         this.preGui:SetActive(true)
         this.state = GuiStateEnum.pre
+		SoundUtil.Play2DSE(localPlayer.UserId, 3)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 2)
     end
 end
@@ -135,6 +137,7 @@ function GuiMole:ShowRewardItem(_index)
 end
 
 function GuiMole:RewardPres()
+	SoundUtil.Play2DSE(localPlayer.UserId, 110)
     if rewardTweener then
         rewardTweener:Pause()
         rewardTweener:Destroy()

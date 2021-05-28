@@ -35,11 +35,13 @@ function GuiStore:EventBind()
         function()
             NetUtil.Fire_C('SwitchStoreUIEvent', localPlayer, 2)
             NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+			SoundUtil.Play2DSE(localPlayer.UserId, 6)
         end
     )
     gui.ShopPanel.BuyBtn.OnClick:Connect(
         function()
             this:OnClickBuyBtn()
+			SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
 end

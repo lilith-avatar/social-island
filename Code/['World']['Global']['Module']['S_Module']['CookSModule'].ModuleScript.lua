@@ -47,6 +47,7 @@ function CookS:PutFood(_foodId, _player)
                 world.FoodLocation['Location' .. i].Position
             )
             wait(0.5)
+			SoundUtil.Play3DSE(world.FoodLocation['Location' .. i].Position, 107)
             world:CreateInstance(
                 Config.CookMenu[_foodId].Model,
                 'Food',

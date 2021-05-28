@@ -64,7 +64,9 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
                 )
                 NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
-                _hitObj.AnimalDeadEvent:Fire()
+				if _hitObj.AnimalDeadEvent then
+					_hitObj.AnimalDeadEvent:Fire()
+				end
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
             elseif _hitObj.Name == 'ArrowTargetCol' then

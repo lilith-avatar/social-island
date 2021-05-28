@@ -12,7 +12,7 @@ local rootNode = world.MiniGames.Game_01_Hunt
 local animalArea = {}
 
 -- 动物数量上限
-local animalAmountMax = 1
+local animalAmountMax = 8
 
 -- 动物运动状态枚举
 local animalActState = {

@@ -78,6 +78,7 @@ end
 function ItemBase:Unequip()
     Data.Player.curEquipmentID = 0
     local effect = world:CreateInstance('UnequipEffect', 'UnequipEffect', self.equipObj.Parent, self.equipObj.Position)
+	SoundUtil.Play2DSE(localPlayer.UserId, 34)
     invoke(
         function()
             self.equipObj:Destroy()
