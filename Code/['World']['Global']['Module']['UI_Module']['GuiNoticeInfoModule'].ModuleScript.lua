@@ -192,6 +192,7 @@ function GuiNoticeInfo:ShowInfo(dt)
     if #playerInfoList > 0 then
         noticeInfoGUI.Info.PlayerInfoBG:SetActive(true)
         if noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text ~= playerInfoList[1].text then
+            SoundUtil.Play2DSE(localPlayer.UserId, 3)
             noticeInfoGUI.Info.PlayerInfoBG.BG.Info:SetActive(false)
             noticeInfoGUI.Info.PlayerInfoBG.BG.Info.Text = playerInfoList[1].text
             LanguageUtil.TextAutoSize(noticeInfoGUI.Info.PlayerInfoBG.BG.Info, 10, 40)
