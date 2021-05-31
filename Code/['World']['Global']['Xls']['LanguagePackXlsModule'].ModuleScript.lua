@@ -2965,7 +2965,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Mystery Pet Box',
         JP = '',
-        YN = 'Kotak peliharaan ajaib'
+        YN = 'Kotak Hewan Peliharaan'
     },
     Item_Des_4004 = {
         ID = 'Item_Des_4004',
@@ -2973,7 +2973,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Use to receive a pet',
         JP = '',
-        YN = 'Dapatkan hewan peliharaan setelah digunakan'
+        YN = 'Gunakan untuk menerima hewan peliharaan'
     },
     GuiText_Txt_CookGuide_1 = {
         ID = 'GuiText_Txt_CookGuide_1',
@@ -2981,7 +2981,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Let’s make some food!',
         JP = '',
-        YN = 'Ayo buat hidangan!'
+        YN = 'Ayo kita buat makanan!'
     },
     GuiText_Txt_CookGuide_2 = {
         ID = 'GuiText_Txt_CookGuide_2',
@@ -2989,7 +2989,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'The ingredients you’ve obtained will be shown here',
         JP = '',
-        YN = 'Bahan-bahan yang telah Anda peroleh akan ditampilkan di sini.'
+        YN = 'Bahan-bahan yang kamu peroleh akan ditampilkan di sini'
     },
     GuiText_Txt_CookGuide_3 = {
         ID = 'GuiText_Txt_CookGuide_3',
@@ -2997,7 +2997,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'The ingredients you’re going to use will be shown here',
         JP = '',
-        YN = 'Bahan-bahan yang akan Anda gunakan akan ditampilkan di sini.'
+        YN = 'Bahan-bahan yang akan kamu gunakan akan ditampilkan di sini'
     },
     GuiText_Txt_CookGuide_4 = {
         ID = 'GuiText_Txt_CookGuide_4',
@@ -3005,7 +3005,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Tap on an ingredient to add it to a recipe; a recipe needs 3 ingredients',
         JP = '',
-        YN = 'Klik pada bahan untuk menambahkannya ke resep. Total tiga bahan diperlukan untuk sebuah hidangan.'
+        YN = 'Ketuk bahan untuk menambahkannya ke resep; satu resep memerlukan 3 bahan'
     },
     GuiText_Txt_CookGuide_5 = {
         ID = 'GuiText_Txt_CookGuide_5',
@@ -3013,7 +3013,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Beautiful! Now let’s see what delicacy you are going to create!',
         JP = '',
-        YN = 'sudah selesai dilakukan dengan baik! Sekarang mari kita lihat makanan apa yang akan Anda buat!'
+        YN = 'Cantiknya! Sekarang mari kita tes seberapa lezat makanan buatanmu!'
     },
     GuiText_Txt_MoleGui_2 = {
         ID = 'GuiText_Txt_MoleGui_2',
@@ -3021,7 +3021,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Gold... gold... gold...',
         JP = '',
-        YN = 'Koin——Koin——Koin——'
+        YN = 'Emas... emas... emas...'
     },
     GuiText_Txt_MoleGui_3 = {
         ID = 'GuiText_Txt_MoleGui_3',
@@ -3029,7 +3029,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You got',
         JP = '',
-        YN = 'Anda punya'
+        YN = 'Kamu mendapat'
     },
     GuiText_Txt_MoleGui_4 = {
         ID = 'GuiText_Txt_MoleGui_4',
@@ -3037,15 +3037,15 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Mysterious Stone Golem',
         JP = '',
-        YN = 'Patung batu misterius'
+        YN = 'Golem Batu Misterius'
     },
     NpcText_Text_1015 = {
         ID = 'NpcText_Text_1015',
         CHS = '驯兽时要先布置陷阱，然后引导动物踩到你的陷阱上。',
         CHT = '',
-        EN = 'When taming an animal, you must first arrange a trap, and then guide the animal to step on your trap.',
+        EN = 'When you are trying to catch a beast, you need to set a trap and lure the beast into it.',
         JP = '',
-        YN = 'Saat menjinakkan hewan, Anda harus membuat jebakan terlebih dahulu, lalu memandu hewan untuk menginjak jebakan Anda.'
+        YN = 'Saat kamu mencoba menangkap binatang, kamu harus memasang jebakan dan memancing binatang itu ke dalamnya.'
     },
     NpcText_Text_1045 = {
         ID = 'NpcText_Text_1045',
@@ -3053,7 +3053,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'This forest has some wonderful things that can grant wonderful powers when they touch someone.',
         JP = '',
-        YN = 'Ada beberapa hal di hutan ini yang sangat ajaib, dan mungkin memberi mereka energi magis saat bertemu dengan yang lain.'
+        YN = 'Hutan ini memiliki beberapa hal indah yang bisa memberikan kekuatan luar biasa saat menyentuh seseorang.'
     },
     NpcText_Text_1173 = {
         ID = 'NpcText_Text_1173',
@@ -3069,7 +3069,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Experienced hunters lure animals into the trap they’ve set.',
         JP = '',
-        YN = 'Seorang pemburu berpengalaman akan membawa hewan itu ke perangkap untuk menangkapnya, sangat kuat.'
+        YN = 'Pemburu berpengalaman memancing hewan ke jebakan yang mereka pasang.'
     },
     NpcText_Text_1185 = {
         ID = 'NpcText_Text_1185',
@@ -3077,7 +3077,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'There’s a valley by the lake, and the mushrooms there are taller than people. Go check it out!',
         JP = '',
-        YN = 'Ada ngarai di tepi danau, dan jamur lebih tinggi dari manusia. Anda bisa pergi dan melihatnya.'
+        YN = 'Ada lembah di tepi danau, dan jamur di sana lebih tinggi dari manusia. Ayo lihat!'
     },
     NpcText_Text_2013 = {
         ID = 'NpcText_Text_2013',
