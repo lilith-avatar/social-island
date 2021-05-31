@@ -31,17 +31,12 @@ function GuiSnail:EventBind()
         v.OnDown:Connect(
             function()
                 if Data.Player.coin >= 1 then
-					SoundUtil.Play2DSE(localPlayer.UserId, 101)
+                    SoundUtil.Play2DSE(localPlayer.UserId, 101)
                     snailIndex = k
+                    NetUtil.Fire_S('SnailBetEvent', localPlayer, snailIndex)
                     gui.SnailPanel:SetActive(false)
-                    NetUtil.Fire_C(
-                        'SliderPurchaseEvent',
-                        localPlayer,
-                        8,
-                        LanguageUtil.GetText(Config.GuiText.SnailGui_6.Txt)
-                    )
                 else
-					SoundUtil.Play2DSE(localPlayer.UserId, 6)
+                    SoundUtil.Play2DSE(localPlayer.UserId, 6)
                     NetUtil.Fire_C(
                         'InsertInfoEvent',
                         localPlayer,
@@ -60,10 +55,8 @@ function GuiSnail:Update(dt)
 end
 
 --确认支付事件
-function GuiSnail:PurchaseCEventHandler(_purchaseCoin, _interactID)
-    if _interactID == 8 then
-        this:BetMoney(_purchaseCoin)
-    end
+function GuiSnail:BetSuccessEventHandler(_num)
+    this:BetMoney(_num)
 end
 
 -- 下注
@@ -73,8 +66,6 @@ function GuiSnail:BetMoney(_num)
             arrowEffect[snailIndex]:SetActive(true)
         end
     )
-    NetUtil.Fire_S('SnailBetEvent', localPlayer, snailIndex, _num)
-    --NetUtil.Fire_C("UpdateCoinEvent", localPlayer, -1 * _num)
     SoundUtil.Play2DSE(localPlayer.UserId, 8)
     NetUtil.Fire_C(
         'InsertInfoEvent',
@@ -89,8 +80,8 @@ end
 
 -- 检查上传失败的下注尝试
 function GuiSnail:BetFailEventHandler()
-	SoundUtil.Play2DSE(localPlayer.UserId, 6)
-	CloudLogUtil.UploadLog('snail', 'bet_fail')
+    SoundUtil.Play2DSE(localPlayer.UserId, 6)
+    CloudLogUtil.UploadLog('snail', 'bet_fail')
 end
 
 -- 获得下注奖励
@@ -135,7 +126,7 @@ end
 
 function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then
-		SoundUtil.Play2DSE(localPlayer.UserId, 5)
+        SoundUtil.Play2DSE(localPlayer.UserId, 5)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 8)
         NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.SnailGui_9.Txt), 1, false)
         gui:SetActive(true)
