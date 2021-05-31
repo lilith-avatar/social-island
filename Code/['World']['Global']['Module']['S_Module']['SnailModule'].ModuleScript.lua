@@ -116,7 +116,7 @@ function Snail:EnterMiniGameEventHandler(_player, _gameId)
         if this:IsBetable(_player) then
             NetUtil.Fire_C('InteractCEvent', _player, 8)
         else
-			NetUtil.Fire_C('BetFailEvent', _player)
+            NetUtil.Fire_C('BetFailEvent', _player)
             NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
         end
     end
@@ -138,31 +138,51 @@ function Snail:IsBetable(_player)
 end
 
 --- 投注
-function Snail:SnailBetEventHandler(_player, _index, _money)
+function Snail:SnailBetEventHandler(_player, _index)
     if this:IsBetable(_player) then
-        CloudLogUtil.UploadLog(
-            'snail',
-            'bet_server',
-            {snailId = _index, lastest_winner = lastestWinner, snail_mood = emoText[_index].Text}
-        )
         snailObjPool[_index].betPlayer[#snailObjPool[_index].betPlayer + 1] = {
             player = _player,
-            money = _money
+            money = 0
         }
+        NetUtil.Fire_C('SliderPurchaseEvent', _player, 8, LanguageUtil.GetText(Config.GuiText.SnailGui_6.Txt))
     else
-		NetUtil.Fire_C('BetFailEvent', _player)
+        NetUtil.Fire_C('BetFailEvent', _player)
         NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
+    end
+end
+
+--确认支付事件
+function Snail:PurchaseSEventHandler(_player, _purchaseCoin, _interactID)
+    if _interactID == 8 then
+        for index, snail in pairs(snailObjPool) do
+            for _, betData in pairs(snail.betPlayer) do
+                if betData.player == _player then
+                    CloudLogUtil.UploadLog(
+                        'snail',
+                        'bet_server',
+                        {snailId = index, lastest_winner = lastestWinner, snail_mood = emoText[index].Text}
+                    )
+                    betData.money = _purchaseCoin
+                end
+            end
+        end
+        NetUtil.Fire_C('BetSuccessEvent', _player, _purchaseCoin)
     end
 end
 
 --- 检查是否开始
 function Snail:IsStartRace()
     if gameState == snailGameState.WAIT then
-        for k, v in pairs(snailObjPool) do
-            if #v.betPlayer > 0 then
-                return true
+        local num = 0
+        for _, snail in pairs(snailObjPool) do
+            for _, betData in pairs(snail.betPlayer) do
+                num = num + 1
+                if betData.money == 0 then
+                    return false
+                end
             end
         end
+        return num > 0
     end
     return false
 end
