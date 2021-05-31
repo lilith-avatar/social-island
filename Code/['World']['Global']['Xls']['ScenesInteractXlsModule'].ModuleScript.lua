@@ -616,7 +616,7 @@ local ScenesInteractXls = {
         UseCount = 1,
         ResetTime = 30.0,
         AnitName = '',
-        InteractAEID = 24,
+        InteractAEID = 107,
         IsPre = true
     },
     [35] = {
