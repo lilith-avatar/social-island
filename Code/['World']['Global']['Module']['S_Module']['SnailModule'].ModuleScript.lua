@@ -169,7 +169,7 @@ function Snail:PurchaseSEventHandler(_player, _purchaseCoin, _interactID)
             end
             NetUtil.Fire_C('BetSuccessEvent', _player, _purchaseCoin)
         else
-            NetUtil.Fire_C('UpdateCoinEvent', localPlayer, _purchaseCoin)
+            NetUtil.Fire_C('UpdateCoinEvent', _player, _purchaseCoin)
             NetUtil.Fire_C('BetFailEvent', _player)
             NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
         end
