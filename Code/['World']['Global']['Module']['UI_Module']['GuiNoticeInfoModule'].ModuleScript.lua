@@ -219,14 +219,38 @@ function GuiNoticeInfo:ShowInfo(dt)
 end
 
 --- 插入玩家信息文字
-function GuiNoticeInfo:InsertInfoEventHandler(_text, _t)
-    table.insert(
-        playerInfoList,
-        {
-            text = _text,
-            t = _t + 0.4
-        }
-    )
+function GuiNoticeInfo:InsertInfoEventHandler(_text, _t,_isTop)
+	if GuiNoticeInfo:CheckInfoUnique(_text,playerInfoList) then
+		if _isTop then
+		table.insert(
+			playerInfoList,
+			{
+				text = _text,
+				1,
+				t = _t + 0.4
+			}
+		)
+		else
+		table.insert(
+			playerInfoList,
+			{
+				text = _text,
+				t = _t + 0.4
+			}
+		)
+		end
+	end
+end
+
+--- 检查消息队列唯一性
+function GuiNoticeInfo:CheckInfoUnique(_text,_table)
+	local res = true
+	for k ,v in pairs(_table) do
+		if v.text == _text then
+			res = false
+		end
+	end
+	return res
 end
 
 --显示通知信息

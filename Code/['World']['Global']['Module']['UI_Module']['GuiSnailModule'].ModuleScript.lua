@@ -128,7 +128,7 @@ function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then
         SoundUtil.Play2DSE(localPlayer.UserId, 5)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 8)
-        NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.SnailGui_9.Txt), 1, false)
+        NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.SnailGui_9.Txt), 1, true)
         gui:SetActive(true)
         gui.SnailPanel:SetActive(true)
     end

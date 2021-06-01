@@ -178,11 +178,11 @@ function SceneTime:Update(dt)
         end
         if Config.TimeSkySetting[this.clock] then
             if this.clock == 10 then
-                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_1.Txt), 10)
+                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_1.Txt), 10,false)
             elseif this.clock == 18 then
-                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_2.Txt), 10)
+                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_2.Txt), 10,false)
             elseif this.clock == 20 then
-                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_3.Txt), 10)
+                NetUtil.Broadcast('InsertInfoEvent', LanguageUtil.GetText(Config.GuiText.InfoGui_3.Txt), 10,false)
             end
         end
         NetUtil.Broadcast('SycnTimeCEvent', this.clock)

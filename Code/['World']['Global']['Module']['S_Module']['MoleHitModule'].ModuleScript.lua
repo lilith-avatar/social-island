@@ -140,7 +140,7 @@ function MoleHit:PlayerHitEventHandler(_uid, _type, _pit)
     -- 增加数量
     this.hitTime = this.hitTime + 1
     -- 发送全局通知
-    NetUtil.Broadcast('InsertInfoEvent', this.hitTime .. '/15', 2, true)
+    NetUtil.Broadcast('InsertInfoEvent', this.hitTime .. '/15', 2, false)
     for i = 1, math.random(1, 3) do
         table.insert(getItemList[_uid], this:MoleItemPool(9, player))
     end
