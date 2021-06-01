@@ -9,7 +9,7 @@ local tt = 0
 
 ---初始化函数
 function GuiClock:Init()
-    print('[GuiClock] Init()')
+    --print('[GuiClock] Init()')
     this:NodeDef()
     this:DataInit()
     this:EventBind()
@@ -54,9 +54,15 @@ function GuiClock:Update(_dt)
 	end
 end
 
-
+--整数转60进制
 function GuiClock:CheckFormat(_clockTime)
-	if string.len(tostring(math.floor(math.fmod( _clockTime, math.floor(_clockTime) )* 60))) == 1 then
+	if math.floor(_clockTime) == 0 then
+		if string.len(tostring(tonumber(_clockTime* 60))) == 1 then
+			return '0'..tostring(tonumber(_clockTime* 60))
+		else
+			return tostring(tonumber(_clockTime* 60))
+		end
+	elseif string.len(tostring(math.floor(math.fmod( _clockTime, math.floor(_clockTime) )* 60))) == 1 then
 		return '0'..tostring(math.floor(math.fmod( _clockTime, math.floor(_clockTime) )* 60))
 	else
 		return tostring(math.floor(math.fmod( _clockTime, math.floor(_clockTime) )* 60))
