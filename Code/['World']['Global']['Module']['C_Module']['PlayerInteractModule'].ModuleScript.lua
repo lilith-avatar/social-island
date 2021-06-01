@@ -145,7 +145,7 @@ function PlayerInteract:OnBtnDown(_btnName)
 		local str = string.sub(_btnName, 1, -4)
 		tips.InfoClick.Text = clickText[str]
 		tips.InfoDrag.Text = dragText[str]
-		tips:SetActive(true)
+		--tips:SetActive(true)
 		TouchHandle:EndTouch()
 		this.curMode = Const.ControlModeEnum[str]
 		return
