@@ -48,7 +48,29 @@ Events.ServerEvents = {
     'PlayerEatFoodEvent',
     'SInteractOnPlayerColBeginEvent',
     'SInteractOnPlayerColEndEvent',
-    'PotShakeEvent'
+    'PotShakeEvent',
+    'TryCreateRoomEvent',
+    'TryChangeRoomEvent',
+    'TryEnterRoomEvent',
+    'TryLeaveRoomEvent',
+    'TryChangeLockEvent',
+    'AllowEnterEvent',
+    'TryChangeStateEvent',
+    'TryCreateElementEvent',
+    'TryDestroyElementEvent',
+    'TrySelectUnitEvent',
+    'TryCancelElementEvent',
+    'TryMoveElementEvent',
+    'TryRotateElementEvent',
+    'TryCreateStackEvent',
+    'TryDestroyStackEvent',
+    'TrySelectStackEvent',
+    'TryCancelStackEvent',
+    'TryMoveStackEvent',
+    'TryRotateStackEvent',
+    'TryAddStackEvent',
+    'TryRemoveStackEvent',
+    'TryAdsorbEvent',
 }
 
 -- 客户端事件列表
@@ -150,7 +172,34 @@ Events.ClientEvents = {
     'GetBetRewardEvent',
     'BetFailEvent',
     'BetSuccessEvent',
-    'OutlineCtrlEvent'
+    'OutlineCtrlEvent',
+    --通知事件
+    'NoticeEvent',
+    'ElementSyncEvent',
+    'ElementCreateEvent',
+    'ElementDestroyEvent',
+    'ElementSelectEvent',
+    'ElementCancelEvent',
+    'ElementHandEvent',
+    'ElementOutHandEvent',
+    'StackSyncEvent',
+    'StackCreateEvent',
+    'StackDestroyEvent',
+    'StackSelectEvent',
+    'StackCancelEvent',
+    'StackAddEvent',
+    'StackRemoveEvent',
+    'RoomCreatedEvent',
+    'RoomGameChangedEvent',
+    'RoomOwnerChangedEvent',
+    'EnterRoomEvent',
+    'LeaveRoomEvent',
+    'LockChangeEvent',
+    'StateChangedEvent',
+    'RoomDestroyEvent',
+    'EnterRoomSyncEvent', ---玩家进入房间后服务端同步给这个玩家这个房间当前的信息
+    'EnterGameSyncEvent',
+    'RequestEnterEvent'
 }
 
 return Events

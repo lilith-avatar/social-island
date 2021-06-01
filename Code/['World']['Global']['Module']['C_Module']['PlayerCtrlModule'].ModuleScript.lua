@@ -30,7 +30,7 @@ local isSwim = false
 
 --- 初始化
 function PlayerCtrl:Init()
-    ----print('[PlayerCtrl] Init()')
+    ------print('[PlayerCtrl] Init()')
     this:SoundInit()
     this:DataInit()
     this:EventBind()
@@ -228,7 +228,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
                 localPlayer.Position.y < -15.4
          then
-            ----print('进入游泳')
+            ------print('进入游泳')
             FsmMgr:FsmTriggerEventHandler('SwimIdle')
             if
                 FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
@@ -248,7 +248,7 @@ function PlayerCtrl:PlayerSwim()
                 localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
                 localPlayer.Position.y > -15.4
          then
-            ----print('退出游泳')
+            ------print('退出游泳')
             FsmMgr:FsmTriggerEventHandler('Idle')
             if
                 FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
@@ -449,7 +449,7 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     FsmMgr:FsmTriggerEventHandler('BowHit')
     FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
     FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
-    ----print('角色受伤', table.dump(_data))
+    ------print('角色受伤', table.dump(_data))
     BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
     BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
 end
@@ -557,6 +557,24 @@ function PlayerCtrl:Update(dt)
         GetMoveDir()
     end
     this:PlayerSwim()
+end
+
+function PlayerCtrl:StartTTS()
+	--localPlayer.Avatar:SetActive(false)
+	Input.OnKeyDown:Clear()
+	world.OnRenderStepped:Disconnect(this.Update)
+	--localPlayer.Local.ControlGUI:SetActive(false)
+end
+
+function PlayerCtrl:QuitTTS()
+	--localPlayer.Avatar:SetActive(true)
+	Input.OnKeyDown:Connect(function()
+        if Input.GetPressKeyData(JUMP_KEY) == 1 then
+            PlayerJump()
+        end
+    end)
+	world.OnRenderStepped:Connect(this.Update)
+	--localPlayer.Local.ControlGUI:SetActive(true)
 end
 
 return PlayerCtrl

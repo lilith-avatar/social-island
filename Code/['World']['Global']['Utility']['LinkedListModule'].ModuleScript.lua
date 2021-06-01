@@ -247,7 +247,7 @@ end
 --移除头部节点
 function LinkedList:RemoveFirst()
     if self.First == nil then
-        print('[LinkedList] list is empty.')
+        --print('[LinkedList] list is empty.')
     else
         InternalRemoveNode(self, self.First)
     end
@@ -256,7 +256,7 @@ end
 --移除尾部节点
 function LinkedList:RemoveLast()
     if self.First == nil then
-        print('[LinkedList] list is empty.')
+        --print('[LinkedList] list is empty.')
     else
         InternalRemoveNode(self, self.First.Prev)
     end
@@ -371,7 +371,7 @@ end
 function LinkedList:Reverse()
     local tmp
     if not self.First then
-        print('[LinkedList] list is empty')
+        --print('[LinkedList] list is empty')
         return
     end
     self.First = self.First.Prev
@@ -395,7 +395,7 @@ end
 --返回第index个节点
 function LinkedList:GetNode(index)
     if index < 1 or index > self.Count then
-        print('[LinkedList] Index out of range')
+        --print('[LinkedList] Index out of range')
         return
     end
     local ptrnode = self.First.Prev

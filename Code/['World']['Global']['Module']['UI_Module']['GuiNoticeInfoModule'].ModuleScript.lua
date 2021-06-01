@@ -26,7 +26,7 @@ local uiFadeTween = nil
 local playerInfoList = {}
 
 function GuiNoticeInfo:Init()
-    print('GuiNoticeInfo:Init')
+    --print('GuiNoticeInfo:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -133,7 +133,7 @@ function GuiNoticeInfo:RollInfoUI(dt)
                     this:PopUpNotice(tmpUI, false)
 					SoundUtil.Play2DSE(localPlayer.UserId, 108)
                     tempData.t = 0.5
-                    print(type(tempData.callBack))
+                    --print(type(tempData.callBack))
                     if type(tempData.callBack) == 'function' then
                         tempData.callBack()
                     elseif type(tempData.callBack) == 'userdata' then
@@ -256,7 +256,7 @@ end
 --显示通知信息
 function GuiNoticeInfo:ShowNoticeInfoEventHandler(_noticeInfoID, _callBack)
     local info = Config.NoticeInfo[_noticeInfoID]
-    print(table.dump(info))
+    --print(table.dump(info))
     table.insert(
         remainingNoticeInfo,
         {

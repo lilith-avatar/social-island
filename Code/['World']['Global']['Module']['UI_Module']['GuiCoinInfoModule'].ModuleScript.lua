@@ -27,7 +27,7 @@ local EFFECT_GRADIENT = 3
 local remainingCoinNum = 0
 
 function GuiCoinInfo:Init()
-    print('GuiCoinInfo:Init')
+    --print('GuiCoinInfo:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -127,7 +127,7 @@ function GuiCoinInfo:CalculateNum(dt)
 end
 
 function GuiCoinInfo:PlayEffect(_type)
-    print('remainingCoinNum', remainingCoinNum)
+    --print('remainingCoinNum', remainingCoinNum)
     if remainingCoinNum > _type * EFFECT_EMI_MAX then
         this:Emit(_type, EFFECT_EMI_MAX)
         remainingCoinNum = remainingCoinNum - _type * EFFECT_EMI_MAX
@@ -142,8 +142,8 @@ function GuiCoinInfo:PlayEffect(_type)
 end
 
 function GuiCoinInfo:Emit(_type, _num)
-    print('_type', _type)
-    print('num', _num)
+    --print('_type', _type)
+    --print('num', _num)
     coinEffect[tostring(_type)].Coin:Emit(_num)
     for k, v in pairs(blastEffect:GetChildren()) do
         v:Emit(_num)

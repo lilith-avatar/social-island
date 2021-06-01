@@ -6,12 +6,12 @@ local ClothingItem = class('ClothingItem', ItemBase)
 
 function ClothingItem:initialize(_baseData, _derivedData)
     ItemBase.initialize(self, _baseData, _derivedData)
-    print('ClothingItem:initialize()')
+    --print('ClothingItem:initialize()')
 end
 
 --在背包中使用
 function ClothingItem:UseInBag()
-    print('使用', self.id)
+    --print('使用', self.id)
     ItemBase.UseInBag(self)
     NetUtil.Fire_C('GetBuffEvent', localPlayer, self.derivedData.UseAddBuffID, self.derivedData.UseAddBuffDur)
     NetUtil.Fire_C('RemoveBuffEvent', localPlayer, self.derivedData.UseRemoveBuffID)

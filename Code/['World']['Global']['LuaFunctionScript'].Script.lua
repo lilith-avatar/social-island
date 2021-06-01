@@ -189,7 +189,7 @@ end
 -- @return index or false
 -- @usage example
 -- local array = {"a", "b", "c"}
--- print(table.indexof(array, "b"))
+-- --print(table.indexof(array, "b"))
 -- >> 2
 function table.indexof(array, value, begin)
     if array ~= nil then
@@ -246,7 +246,7 @@ end
 -- @return @table array table
 -- @usage example
 -- local array = {"a", "b", "c", "d"}
--- print(table.subArray(array, 2, 2))
+-- --print(table.subArray(array, 2, 2))
 -- >> {"b", "c"}
 function table.subArray(array, startIndex, length)
     if array ~= nil then
@@ -284,7 +284,7 @@ end
 -- @return key of value
 -- @usage
 -- local hashtable = {name = "dualface", comp = "chukong"}
--- print(table.keyof(hashtable, "chukong"))
+-- --print(table.keyof(hashtable, "chukong"))
 -- >> comp
 function table.keyof(hashtable, value)
     for k, v in pairs(hashtable) do
@@ -298,7 +298,7 @@ end
 --- 从表格中删除指定值，返回删除的值的个数
 -- @usage
 -- local array = {"a", "b", "c", "c"}
--- print(table.removebyvalue(array, "c", true))
+-- --print(table.removebyvalue(array, "c", true))
 -- >> 输出 2
 function table.removebyvalue(array, value, removeall)
     local c, i, max = 0, 1, #array
@@ -341,7 +341,7 @@ end
 -- end)
 -- 输出修改后的表格内容
 -- for k, v in pairs(t) do
---     print(k, v)
+--     --print(k, v)
 -- end
 -- >> 输出
 -- name [dualface]
@@ -362,7 +362,7 @@ end
 -- local t = {name = "dualface", comp = "chukong"}
 -- table.walk(t, function(v, k)
 --     -- 输出每一个值
---     print(v)
+--     --print(v)
 -- end)
 function table.walk(t, fn)
     for k, v in pairs(t) do
@@ -384,7 +384,7 @@ end
 -- end)
 -- 输出修改后的表格内容
 -- for k, v in pairs(t) do
---     print(k, v)
+--     --print(k, v)
 -- end
 -- >> 输出 comp chukong
 function table.filter(t, fn)
@@ -444,7 +444,7 @@ end
 -- local t = {"a", "a", "b", "c"} -- 重复的 a 会被过滤掉
 -- local n = table.unique(t)
 -- for k, v in pairs(n) do
---     print(v)
+--     --print(v)
 -- end
 -- >> 输出 a b c
 function table.unique(t, bArray)
@@ -575,10 +575,37 @@ function table.dump(data, showMetatable)
     end
     _dump(data, showMetatable, 0)
 
-    -- print('dump: \n' .. table.concat(result))
+    -- --print('dump: \n' .. table.concat(result))
     return 'dump: \n' .. table.concat(result)
 end
 
+
+function table.readRandomValueInTable(Table)
+    local tmpKeyT = {}
+    local n = 1
+    for k in pairs(Table) do
+        tmpKeyT[n] = k
+        n = n + 1
+    end
+    --math.randomseed(os.time())
+    return Table[tmpKeyT[math.random(1, n - 1)]]
+end
+
+---将数组倒序,不改变原数据
+function table.reverse(_table)
+    if type(_table) ~= 'table' then
+        return
+    end
+    local count = #_table
+    if count == 0 then
+        return
+    end
+    local res = {}
+    for i = 1, count do
+        res[i] = _table[count - i + 1]
+    end
+    return res
+end
 --- 用指定字符或字符串分割输入字符串，返回包含分割结果的数组
 -- @param @string input 输入的字符串
 -- @param @string delimiter 分隔符
@@ -620,7 +647,7 @@ end
 -- @return @string
 -- @usage example
 -- local input = "  ABC"
--- print(string.ltrim(input))
+-- --print(string.ltrim(input))
 -- >> 输出 ABC，输入字符串前面的两个空格被去掉了
 -- 空白字符包括：
 -- -   空格
@@ -636,7 +663,7 @@ end
 -- @return @string
 -- @usage example
 -- local input = "ABC  "
--- print(string.rtrim(input))
+-- --print(string.rtrim(input))
 -- >> 输出 ABC，输入字符串最后的两个空格被去掉了
 function string.rtrim(input)
     return string.gsub(input, '[ \t\n\r]+$', '')
@@ -655,7 +682,7 @@ end
 -- @return @string
 -- @usage example
 -- local input = "hello"
--- print(string.ucfirst(input))
+-- --print(string.ucfirst(input))
 -- >> 输出 Hello
 function string.ucfirst(input)
     return string.upper(string.sub(input, 1, 1)) .. string.sub(input, 2)
@@ -670,7 +697,7 @@ end
 -- @return @number cnt
 -- @usage example
 -- local input = "你好World"
--- print(string.utf8len(input))
+-- --print(string.utf8len(input))
 -- >> 输出 7
 function string.utf8len(input)
     local len = string.len(input)
@@ -776,7 +803,7 @@ end
 -- myQueue:Enqueue('b')
 -- myQueue:Enqueue('c')
 -- myQueue:PrintElement()
--- print(myQueue:Dequeue())
+-- --print(myQueue:Dequeue())
 -- myQueue:PrintElement()
 -- myQueue:Clear()
 -- myQueue:PrintElement()
@@ -814,7 +841,7 @@ end
 
 function Queue:Dequeue()
     if self:IsEmpty() then
-        print('Error: the queue is empty')
+        --print('Error: the queue is empty')
         return
     end
     self._size = self._size - 1
@@ -837,7 +864,7 @@ end
 
 function Queue:PrintElement()
     if self._size == 0 then
-        print('{}')
+        --print('{}')
     else
         local f = self._first + 1
         local l = self._last
@@ -854,13 +881,13 @@ function Queue:PrintElement()
             end
         end
         str = str .. ',' .. tostring(self._queue[l]) .. '}'
-        print(str)
+        --print(str)
     end
 end
 
 function Queue:GetValue(index)
     if self:IsEmpty() or index == nil or index == 0 then
-        print('Error: Get Value Failure!')
+        --print('Error: Get Value Failure!')
         return
     end
     if index > 0 then
@@ -888,7 +915,7 @@ end
 -- myStack:Push("b")
 -- myStack:Push("c")
 -- myStack:PrintElement()
--- print(myStack:Pop())
+-- --print(myStack:Pop())
 -- myStack:PrintElement()
 -- myStack:Clear()
 -- myStack:PrintElement()
@@ -917,7 +944,7 @@ end
 
 function Stack:Pop()
     if self:IsEmpty() then
-        --print("Error: the stack is empty")
+        ----print("Error: the stack is empty")
         return
     end
     local value = self._stack[self._last]
@@ -964,5 +991,5 @@ function Stack:PrintElement()
         str = str .. tostring(self._stack[i]) .. ','
     end
     str = str .. '}'
-    print(str)
+    --print(str)
 end

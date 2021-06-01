@@ -26,7 +26,7 @@ local defPlayerData = {
 }
 
 function BuffMgr:Init()
-    print('BuffMgr:Init')
+    --print('BuffMgr:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -38,7 +38,7 @@ end
 
 --数据变量声明
 function BuffMgr:DataInit()
-    print(table.dump(Data.Player.attr))
+    --print(table.dump(Data.Player.attr))
     --[[invoke(
         function()
             this:GetBuffEventHandler(1, 10)
@@ -71,8 +71,8 @@ function BuffMgr:GetBuffEventHandler(_buffID, _dur)
         for k, v in pairs(Config.Buff[_buffID]) do
             if string.find(tostring(k), '_Cover') and defPlayerData[string.gsub(k, '_Cover', '')] then ---覆盖
                 buffDataTable[string.gsub(k, '_Cover', '')] = v
-            --print(string.gsub(k, "_Cover", ""))
-            --print(buffDataTable[string.gsub(k, "_Cover", "")])
+            ----print(string.gsub(k, "_Cover", ""))
+            ----print(buffDataTable[string.gsub(k, "_Cover", "")])
             end
         end
         this:GetAllBuffData()
@@ -115,7 +115,7 @@ function BuffMgr:GetAllBuffData()
         for k, v in pairs(Config.Buff[buffID]) do
             if string.find(tostring(k), '_Overlay') and defPlayerData[string.gsub(k, '_Overlay', '')] then ---叠加
                 if type(Data.Player.attr[string.gsub(k, '_Overlay', '')]) == 'table' then ---表类型
-                    --print(v, buffID)
+                    ----print(v, buffID)
                     if v ~= '' then
                         table.insert(buffDataTable[string.gsub(k, '_Overlay', '')], v)
                     end
@@ -128,7 +128,7 @@ function BuffMgr:GetAllBuffData()
     for k, v in pairs(buffDataTable) do
         Data.Player.attr[k] = v
     end
-    --print(table.dump(buffDataTable))
+    ----print(table.dump(buffDataTable))
 end
 
 --按时间消退Buff

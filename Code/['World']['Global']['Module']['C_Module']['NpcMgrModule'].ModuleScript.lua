@@ -18,7 +18,7 @@ local npcs = {}
 
 --- 初始化
 function NpcMgr:Init()
-    print('[NpcMgr] Init()')
+    --print('[NpcMgr] Init()')
     assert(bubbleShowTime < bubbleIntervalMin, '[NpcMgr] NpcBubbleShowTime需要小于NpcBubbleIntervalTime，请检查GlobalSetting表')
     -- Cache
     ItemMgr = ItemMgr
@@ -121,7 +121,7 @@ function InitNpcIdleAction(_npcObj, _npcInfo)
     end
     -- 绑定idle动画序列
     for i, anim in ipairs(_npcInfo.Anim) do
-        --print(_npcObj)
+        ----print(_npcObj)
         local ani = _npcObj.Avatar:AddAnimationEvent(anim, 1)
         local idx = i ~= #_npcInfo.Anim and i + 1 or 1
         ani:Connect(
@@ -295,7 +295,7 @@ end
 --- 玩家碰撞开始
 function NpcMgr:CInteractOnPlayerColBeginEventHandler(_obj, _id)
     if _id == 12 then
-        print('CInteractOnPlayerColBeginEvent', 12)
+        --print('CInteractOnPlayerColBeginEvent', 12)
         OnEnterNpc(localPlayer, _obj.Parent.ID.Value)
     end
 end

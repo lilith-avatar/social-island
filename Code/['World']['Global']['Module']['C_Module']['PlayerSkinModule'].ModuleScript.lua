@@ -10,7 +10,7 @@ local gender
 
 --- 初始化
 function PlayerSkin:Init()
-    print('[PlayerSkin] Init()')
+    --print('[PlayerSkin] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -34,7 +34,7 @@ function PlayerSkin:InitDefSkin()
     invoke(
         function()
             gender = localPlayer.Avatar.Gender
-            print('角色性别', gender)
+            --print('角色性别', gender)
             for k, v in pairs(Config.Skin[1][gender]) do
                 defSkin[k] = localPlayer.Avatar[k]
             end
@@ -50,13 +50,13 @@ function PlayerSkin:PlayerSkinUpdateEventHandler(_skinID)
         for k, v in pairs(Config.Skin[_skinID][gender]) do
             if localPlayer.Avatar[k] then
                 if v ~= '' then
-                    print(k, '->>>')
+                    --print(k, '->>>')
                     localPlayer.Avatar[k] = v
-                    print(defSkin[k])
+                    --print(defSkin[k])
                 else
-                    print(k, '->>>')
+                    --print(k, '->>>')
                     localPlayer.Avatar[k] = defSkin[k]
-                    print(defSkin[k])
+                    --print(defSkin[k])
                 end
             end
         end

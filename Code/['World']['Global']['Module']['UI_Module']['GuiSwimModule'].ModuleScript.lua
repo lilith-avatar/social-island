@@ -7,7 +7,7 @@ local jumpBtn
 
 ---初始化函数
 function GuiSwim:Init()
-    print('[GuiSwim] Init()')
+    --print('[GuiSwim] Init()')
     this:NodeDef()
     this:DataInit()
     this:EventBind()

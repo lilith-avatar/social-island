@@ -156,7 +156,7 @@ function SceneTime:GetNextClockData()
     )
     for k, v in pairs(tmpTable) do
         if this.clock == v.ClockTime then
-            --print(tmpTable[k + 1].ClockTime or Config.TimeSkySetting[6].ClockTime)
+            ----print(tmpTable[k + 1].ClockTime or Config.TimeSkySetting[6].ClockTime)
             return tmpTable[k + 1] or tmpTable[1]
         end
     end
@@ -210,7 +210,7 @@ function SceneTime:SycnTimeSEventHandler(_clock)
             end
         end
     end
-    print(string.format('[SceneTime] 当前时间 %s 点', math.floor(_clock))) --! 上线删除
+    --print(string.format('[SceneTime] 当前时间 %s 点', math.floor(_clock))) --! 上线删除
 end
 
 function SceneTime:OnPlayerJoinEventHandler(_player)

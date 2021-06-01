@@ -9,7 +9,7 @@ local isAble = true
 local isUse = false
 
 function GuiBowAim:Init()
-    print('GuiBowAim:Init')
+    --print('GuiBowAim:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -51,10 +51,10 @@ function GuiBowAim:EventBind()
         function(touchInfo)
             if isAble then
                 if isUse then
-                    print('isUse is true')
+                    --print('isUse is true')
                     PlayerCam:CameraMove(touchInfo)
                 else
-                    print('isUse is false')
+                    --print('isUse is false')
                     NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
                     this.touchGui.AimStick.Size = Vector2(1800, 1500)
                     isUse = true

@@ -34,7 +34,7 @@ local LeaveStateFunc = {}
 
 --- 初始化
 function Hunt:Init()
-    print('Hunt:Init')
+    --print('Hunt:Init')
     this:NodeRef()
     invoke(
         function()
@@ -313,7 +313,7 @@ function Hunt:GetMoveTable(_animalData, _pos)
     end
     --_animalData.obj.SurfaceGUI.Result.Text = result
     if result > 2 then
-    --print('寻路失败', result, _animalData.obj, _animalData.state)
+    ----print('寻路失败', result, _animalData.obj, _animalData.state)
     end
 end
 
@@ -558,7 +558,7 @@ function Hunt:AnimalUpdate(dt)
         for k2, v2 in pairs(v1.animalData) do
             --[[v2.obj.TestGUI.TestText.Text =
                 v2.state .. '/' .. v2.stateTime .. '/' .. v2.moveStep .. '/' .. #v2.moveTable or 'nil'
-            print(v2.state, v2.stateTime, v2.moveStep, #v2.moveTable or 'nil')]]
+            --print(v2.state, v2.stateTime, v2.moveStep, #v2.moveTable or 'nil')]]
             UpdateStateFunc[v2.state](v2, dt)
         end
     end

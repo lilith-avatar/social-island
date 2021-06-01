@@ -90,7 +90,7 @@ end
 -- @param hwaddr (optional) string containing a unique hex value (e.g.: `00:0c:29:69:41:c6`), to be used to compensate for the lesser `math_random()` function. Use a mac address for solid results. If omitted, a fully randomized uuid will be generated, but then you must ensure that the random seed is set properly!
 -- @usage
 -- local uuid = require("uuid")
--- print("here's a new uuid: ",uuid())
+-- --print("here's a new uuid: ",uuid())
 function M.new(hwaddr)
     -- bytes are treated as 8bit unsigned bytes.
     local bytes = {
@@ -181,7 +181,7 @@ end
 -- local uuid = require("uuid")
 -- -- see also example at uuid.seed()
 -- uuid.randomseed(socket.gettime()*10000)
--- print("here's a new uuid: ",uuid())
+-- --print("here's a new uuid: ",uuid())
 function M.randomseed(seed)
     seed = math_floor(math_abs(seed))
     if seed >= (2 ^ bitsize) then
@@ -210,7 +210,7 @@ end
 -- local socket = require("socket")  -- gettime() has higher precision than os.time()
 -- -- LuaSocket loaded, so below line does the same as the example from randomseed()
 -- uuid.seed()
--- print("here's a new uuid: ",uuid())
+-- --print("here's a new uuid: ",uuid())
 function M.seed()
     -- if package.loaded['socket'] and package.loaded['socket'].gettime then
     --     return M.randomseed(package.loaded['socket'].gettime() * 10000)

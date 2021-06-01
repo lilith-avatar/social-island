@@ -10,7 +10,7 @@ local player
 local nameGUI
 
 function GuiDefault:Init()
-    print("[GuiDefault] Init()")
+    --print("[GuiDefault] Init()")
     -- 获取本地玩家
     player = localPlayer
     self:InitNameGui()

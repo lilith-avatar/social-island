@@ -15,7 +15,7 @@ function ModuleUtil.LoadModules(_root, _scope)
     for _, v in pairs(tmp) do
         if v.ClassName == "ModuleScriptObject" then
             name = (v.Name):gsub("Module", "")
-            print("[ModuleUtil] Load Module: " .. name)
+            --print("[ModuleUtil] Load Module: " .. name)
             _scope[name] = require(v)
         end
     end
@@ -29,7 +29,7 @@ function ModuleUtil.LoadXlsModules(_root, _config)
     local tmp = _root:GetChildren()
     for _, v in pairs(tmp) do
         name = (v.Name):gsub("XlsModule", "")
-        print("[ModuleUtil] Load XLS: " .. name)
+        --print("[ModuleUtil] Load XLS: " .. name)
         _config[name] = require(v)
     end
 end

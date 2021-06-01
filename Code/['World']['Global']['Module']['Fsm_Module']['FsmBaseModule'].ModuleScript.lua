@@ -5,7 +5,7 @@
 local FsmBase = class("FsmBase")
 
 function FsmBase:initialize()
-    print("FsmBase:initialize()")
+    --print("FsmBase:initialize()")
     self.states = {}
     self.stateEnum = {}
     self.stateTrigger = {}
@@ -15,7 +15,7 @@ function FsmBase:initialize()
 end
 
 function FsmBase:DebugLog()
-    print("DebugLog()")
+    --print("DebugLog()")
 end
 
 --向状态机添加状态
@@ -84,14 +84,14 @@ function FsmBase:ConnectStateFunc(_statesT, _stateModuleFolder)
                 local tempStateClass = require(module)
                 local tempState = tempStateClass:new(state.Name, state.NextName, state.Dur)
                 self:AddState(tempState)
-                print("绑定失败:" .. state.Name)
+                --print("绑定失败:" .. state.Name)
             end
         end
         --[[if
             _module[v.Name .. "StateOnEnterFunc"] and _module[v.Name .. "StateOnUpdateFunc"] and
                 _module[v.Name .. "StateOnLeaveFunc"]
          then
-            --print("绑定成功:" .. v.Name)
+            ----print("绑定成功:" .. v.Name)
             local tempState = StateBase:new(v.Name, v.NextName, v.Dur)
             tempState.OnEnter = function()
                 self:ResetTrigger()

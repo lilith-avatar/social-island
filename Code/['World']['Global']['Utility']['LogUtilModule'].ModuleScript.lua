@@ -26,19 +26,19 @@ LogUtil.debugMode = true
 
 function LogUtil.Test(...)
     if LogUtil.debugMode and LogUtil.level <= LogUtil.LevelEnum.DEBUG then
-        print('[TEST]', ...)
+        --print('[TEST]', ...)
     end
 end
 
 function LogUtil.Debug(...)
     if LogUtil.debugMode and LogUtil.level <= LogUtil.LevelEnum.DEBUG then
-        print('[DEBUG]', ...)
+        --print('[DEBUG]', ...)
     end
 end
 
 function LogUtil.Info(...)
     if LogUtil.debugMode and LogUtil.level <= LogUtil.LevelEnum.INFO then
-        print('[INFO]', ...)
+        --print('[INFO]', ...)
     end
 end
 

@@ -45,6 +45,17 @@ function NetUtil.Fire_C(_eventName, _player, ...)
     PrintEventLog(FireEnum.CLIENT, _eventName, _player, args)
 end
 
+--- 指定玩家广播
+--- @param _players table 玩家列表
+function NetUtil.R_Broadcast(_eventName, _players, ...)
+    ValidateArgs(FireEnum.BROADCAST, _eventName, ...)
+    local args = {...}
+    for i, v in pairs(_players) do
+        v.C_Event[_eventName]:Fire(table.unpack(args))
+    end
+    PrintEventLog(FireEnum.BROADCAST, _eventName, nil, args)
+end
+
 --- 客户端广播
 -- @param @string _eventName 事件的名字(严格对应)
 -- @param ... 事件参数
@@ -118,7 +129,7 @@ PrintEventLog =
             )
         elseif _fireEnum == FireEnum.BROADCAST then
             --* Broadcast 参数打印
-            print(string.format('[NetUtil][发出客户端广播事件] %s, 参数 = %s, %s', _eventName, #_args, table.dump(_args)))
+            --print(string.format('[NetUtil][发出客户端广播事件] %s, 参数 = %s, %s', _eventName, #_args, table.dump(_args)))
         end
     end or
     function()

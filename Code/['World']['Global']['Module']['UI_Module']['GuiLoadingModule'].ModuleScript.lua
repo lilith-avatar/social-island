@@ -10,7 +10,7 @@ local timer = 0
 
 ---初始化函数
 function GuiLoading:Init()
-    print('[GuiLoading] Init()')
+    --print('[GuiLoading] Init()')
     this:NodeDef()
     this:DataInit()
     this:EventBind()

@@ -22,7 +22,7 @@ function ObjPoolUtil.static.Newpool(_folderName, _objName, _maxCount)
     realPool.static.folder = _folderName
     realPool.static.maxCount = _maxCount
     realPool.pool = {}
-    print(string.format('[ObjPoolUtil] 创建了一个%s的对象池，目录为%s', _objName, _folderName))
+    --print(string.format('[ObjPoolUtil] 创建了一个%s的对象池，目录为%s', _objName, _folderName))
     return realPool
 end
 
@@ -66,7 +66,7 @@ function ObjPoolUtil:Despawn(_obj)
     if _obj == nil then
         error('[ObjPoolUtil] 传入对象为空')
     elseif #self.pool > self.maxCount then
-        print(string.format('[ObjPoolUtil] %s对象池已满，该对象会永久销毁', self.obj))
+        --print(string.format('[ObjPoolUtil] %s对象池已满，该对象会永久销毁', self.obj))
         _obj:Destroy()
     else
         table.insert(self.pool, _obj)

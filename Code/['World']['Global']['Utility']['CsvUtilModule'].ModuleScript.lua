@@ -228,16 +228,16 @@ PrintGlobalKV =
             color = 'Color'
         }
         if showTypes[_type] then
-            print(string.format('[CsvUtil][GlobalSetting] %s = %s%s ', _key, showTypes[_type], _value))
+            --print(string.format('[CsvUtil][GlobalSetting] %s = %s%s ', _key, showTypes[_type], _value))
         else
-            print(string.format('[CsvUtil][GlobalSetting] %s = %s ', _key, _value))
+            --print(string.format('[CsvUtil][GlobalSetting] %s = %s ', _key, _value))
         end
     end or
     function()
     end
 
 PrintLog = showLog and function(...)
-        print(...)
+        --print(...)
     end or function()
     end
 

@@ -12,7 +12,7 @@ local CHAR_SIZE = 0.8
 --- 设置当前语言
 function LanguageUtil.SetLanguage(_lang)
     assert(Const.LanguageEnum[_lang], string.format('[LanguageUtil] %s 语言码不存在，请检查ConstModule', _lang))
-    print(string.format('[LanguageUtil] 更改当前语言：%s => %s', lang, _lang))
+    --print(string.format('[LanguageUtil] 更改当前语言：%s => %s', lang, _lang))
     lang = _lang
 end
 
@@ -89,7 +89,7 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize, _maxSize)
     local minStrLenth, maxStrLenth, sizeLength = 0, 0, 0
     --计算最小/最大字号字符串的实际长度
     for i = 1, textLength do
-        --print(textTable[i], string.byte(textTable[i]))
+        ----print(textTable[i], string.byte(textTable[i]))
         if string.byte(textTable[i]) > 127 then
             sizeLength = sizeLength + CHAR_SIZE * 2
         else
@@ -98,8 +98,8 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize, _maxSize)
     end
     minStrLenth = sizeLength * minSize
     maxStrLenth = sizeLength * maxSize
-    --print('文字自适应', _textUI, maxSize, minSize, textLength)
-    --print(minUILenth, maxUILenth, minStrLenth, maxStrLenth)
+    ----print('文字自适应', _textUI, maxSize, minSize, textLength)
+    ----print(minUILenth, maxUILenth, minStrLenth, maxStrLenth)
     if maxUILenth > maxStrLenth then --最大字号
         _textUI.FontSize = maxSize
     elseif minUILenth < minStrLenth then --最小字号
@@ -134,9 +134,9 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize, _maxSize)
                     1) *
                 curSize
             textSize = curSize * sizeLength
-            --print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
-            --print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
-            --print(uiSize, textSize, sizeLength, curSize)
+            ----print('ui x', math.floor(_textUI.FinalSize.x / (CHAR_SIZE * curSize)))
+            ----print('ui y', math.ceil(math.floor(_textUI.FinalSize.y / (CHAR_SIZE * curSize)) / 2))
+            ----print(uiSize, textSize, sizeLength, curSize)
             if uiSize > textSize then
                 _textUI.FontSize = curSize
                 
@@ -146,7 +146,7 @@ function LanguageUtil.TextAutoSize(_textUI, _minSize, _maxSize)
         end
     end
     _textUI:SetActive(true)
-    --print('文字自适应', _textUI, _textUI.FontSize)
+    ----print('文字自适应', _textUI, _textUI.FontSize)
 end
 
 --- 根据ID返回当前游戏语言对应的文本信息，并设置文字大小自适应

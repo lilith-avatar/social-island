@@ -68,7 +68,7 @@ function CoinMgr:SpawnCoin(_pool, _pos, _dur, _origin)
     coinObj.CoinUID.Value = ''
     coinObj.CoinUID.OnValueChanged:Connect(
         function(_oldVal, _newVal)
-            --print(coinObj, 'CoinUID.OnValueChanged', _oldVal, _newVal)
+            ----print(coinObj, 'CoinUID.OnValueChanged', _oldVal, _newVal)
             this:GetCoin(_pool, coinObj, _oldVal, _newVal)
         end
     )

@@ -58,7 +58,7 @@ local LeaveInteractFunc = {}
 
 --- 初始化
 function ScenesInteract:Init()
-    print('[ScenesInteract] Init()')
+    --print('[ScenesInteract] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -844,7 +844,7 @@ do
                 if v2 == _player.UserId then
                     v1.aroundPlayers[_player.UserId] = nil
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
-                    print('table.nums(v1.aroundPlayers)', table.nums(v1.aroundPlayers))
+                    --print('table.nums(v1.aroundPlayers)', table.nums(v1.aroundPlayers))
                     if table.nums(v1.aroundPlayers) <= 0 then
                     --v1.obj.Off:SetActive(true)
                     --v1.obj.On:SetActive(false)

@@ -5,7 +5,7 @@
 local PeriodCoinMgr, this = ModuleUtil.New("PeriodCoinMgr", ServerBase)
 local Config = Config
 function PeriodCoinMgr:Init()
-	--print("[Period] Init()")
+	----print("[Period] Init()")
 	this:NodeRef()
 	this:DataInit()
 	this:EventBind()

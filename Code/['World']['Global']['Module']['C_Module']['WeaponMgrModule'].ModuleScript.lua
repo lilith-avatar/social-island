@@ -7,7 +7,7 @@
 local WeaponMgr, this = ModuleUtil.New("WeaponMgr", ClientBase)
 
 function WeaponMgr:Init()
-    print("WeaponMgr:Init")
+    --print("WeaponMgr:Init")
     this:NodeRef()
     this:DataInit()
     this:EventBind()

@@ -6,7 +6,7 @@ local ConsumableItem = class('ConsumableItem', ItemBase)
 
 function ConsumableItem:initialize(_baseData, _derivedData)
     ItemBase.initialize(self, _baseData, _derivedData)
-    print('ConsumableItem:initialize()')
+    --print('ConsumableItem:initialize()')
 end
 
 --放入背包
@@ -21,7 +21,7 @@ end
 
 --在背包中使用
 function ConsumableItem:UseInBag()
-    print('使用', self.id)
+    --print('使用', self.id)
     ItemBase.UseInBag(self)
     self:Equip()
 end

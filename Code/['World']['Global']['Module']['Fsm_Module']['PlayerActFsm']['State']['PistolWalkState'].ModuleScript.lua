@@ -55,7 +55,7 @@ function PistolRun:OnUpdate(dt)
     self:IdleMonitor()
     self:RunMonitor("Pistol")
     self:JumpMonitor("Pistol")
-    print(curDirState)
+    --print(curDirState)
 end
 
 function PistolRun:OnLeave()

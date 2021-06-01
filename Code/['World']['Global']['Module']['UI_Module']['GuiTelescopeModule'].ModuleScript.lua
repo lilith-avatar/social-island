@@ -11,7 +11,7 @@ local gui
 local zoomMultiple = 1
 
 function GuiTelescope:Init()
-    print('GuiTelescope:Init')
+    --print('GuiTelescope:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

@@ -6,7 +6,7 @@ local PistolWeapon = class("PistolWeapon", WeaponBase)
 
 function PistolWeapon:initialize(_data, _derivedData)
     WeaponBase.initialize(self, _data, _derivedData)
-    print("PistolWeapon:initialize()")
+    --print("PistolWeapon:initialize()")
     self.isFire = false
     self.projectileConfig = Config.Projectile[self.derivedData.ProjectileID]
     self.fireDT = 0
@@ -60,7 +60,7 @@ end
 --发射子弹
 function PistolWeapon:ShootBullet()
     localPlayer.Avatar:PlayAnimation("PistolAttack", 8, 1, 0.1, true, false, 1)
-    print("发射子弹")
+    --print("发射子弹")
     local endPos = PlayerCam:TPSGetRayDir()
     local bullet =
         Projectile:CreateAvailableProjectile(

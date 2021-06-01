@@ -40,7 +40,7 @@ end
 
 ---初始化函数
 function MoleHit:Init()
-    --print('[MoleHit] Init()')
+    ----print('[MoleHit] Init()')
     this:DataInit()
     this:NodeDef()
     this:PoolInit()

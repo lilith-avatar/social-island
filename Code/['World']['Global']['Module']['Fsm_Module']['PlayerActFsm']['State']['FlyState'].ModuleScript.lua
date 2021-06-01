@@ -31,7 +31,7 @@ function FlyState:IdleMonitor()
 end
 
 function FlyState:UpdateAnim()
-    --print(localPlayer.LinearVelocity.y, animState)
+    ----print(localPlayer.LinearVelocity.y, animState)
     if localPlayer.LinearVelocity.y > 0 then
         if animState == 0 then
             localPlayer.Avatar:PlayAnimation('Jump02', 2, 1, 0, true, false, 1)

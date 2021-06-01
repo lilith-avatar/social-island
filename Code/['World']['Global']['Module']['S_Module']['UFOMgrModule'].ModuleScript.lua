@@ -17,7 +17,7 @@ local timer = 0
 
 --- 初始化
 function UFOMgr:Init()
-    print('[UFOMgr] Init()')
+    --print('[UFOMgr] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

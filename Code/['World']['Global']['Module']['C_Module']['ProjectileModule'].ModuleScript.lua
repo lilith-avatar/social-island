@@ -6,7 +6,7 @@ local Projectile, this = ModuleUtil.New('Projectile', ClientBase)
 
 --- 初始化
 function Projectile:Init()
-    print('Projectile:Init')
+    --print('Projectile:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

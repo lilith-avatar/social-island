@@ -9,7 +9,7 @@ local swimFilterSwitch = false
 
 --- 初始化
 function PlayerCam:Init()
-    print('[PlayerCam] Init()')
+    --print('[PlayerCam] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -88,7 +88,7 @@ function PlayerCam:TPSGetRayDir()
                 hitResult:GetHitObjAll()[i].Parent.Name ~= 'Water' and
                 hitResult:GetHitObjAll()[i].Parent.Name ~= 'ColBox'
          then
-            --print(hitResult:GetHitObjAll()[i])
+            ----print(hitResult:GetHitObjAll()[i])
             return v
         end
     end

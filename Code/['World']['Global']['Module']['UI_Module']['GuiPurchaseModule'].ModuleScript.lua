@@ -18,7 +18,7 @@ local purchaseCoin = 0
 local sliderMin, sliderMax = 0, 0
 
 function GuiPurchase:Init()
-    print('GuiPurchase:Init')
+    --print('GuiPurchase:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
