@@ -58,9 +58,9 @@ end
 function GuiClock:CheckFormat(_clockTime)
 	if math.floor(_clockTime) == 0 then
 		if string.len(tostring(tonumber(_clockTime* 60))) == 1 then
-			return '0'..tostring(tonumber(_clockTime* 60))
+			return '0'..tostring(math.floor(tonumber(_clockTime* 60)))
 		else
-			return tostring(tonumber(_clockTime* 60))
+			return tostring(math.floor(tonumber(_clockTime* 60)))
 		end
 	elseif string.len(tostring(math.floor(math.fmod( _clockTime, math.floor(_clockTime) )* 60))) == 1 then
 		return '0'..tostring(math.floor(math.fmod( _clockTime, math.floor(_clockTime) )* 60))
