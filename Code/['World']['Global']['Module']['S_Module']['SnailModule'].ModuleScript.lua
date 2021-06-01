@@ -154,35 +154,36 @@ end
 --确认支付事件
 function Snail:PurchaseSEventHandler(_player, _purchaseCoin, _interactID)
     if _interactID == 8 then
-        for index, snail in pairs(snailObjPool) do
-            for _, betData in pairs(snail.betPlayer) do
-                if betData.player == _player then
-                    CloudLogUtil.UploadLog(
-                        'snail',
-                        'bet_server',
-                        {snailId = index, lastest_winner = lastestWinner, snail_mood = emoText[index].Text}
-                    )
-                    betData.money = _purchaseCoin
+        if gameState == snailGameState.WAIT then
+            for index, snail in pairs(snailObjPool) do
+                for _, betData in pairs(snail.betPlayer) do
+                    if betData.player == _player then
+                        CloudLogUtil.UploadLog(
+                            'snail',
+                            'bet_server',
+                            {snailId = index, lastest_winner = lastestWinner, snail_mood = emoText[index].Text}
+                        )
+                        betData.money = _purchaseCoin
+                    end
                 end
             end
+            NetUtil.Fire_C('BetSuccessEvent', _player, _purchaseCoin)
+        else
+            NetUtil.Fire_C('UpdateCoinEvent', localPlayer, _purchaseCoin)
+            NetUtil.Fire_C('BetFailEvent', _player)
+            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
         end
-        NetUtil.Fire_C('BetSuccessEvent', _player, _purchaseCoin)
     end
 end
 
 --- 检查是否开始
 function Snail:IsStartRace()
     if gameState == snailGameState.WAIT then
-        local num = 0
         for _, snail in pairs(snailObjPool) do
-            for _, betData in pairs(snail.betPlayer) do
-                num = num + 1
-                if betData.money == 0 then
-                    return false
-                end
+            if #snail.betPlayer > 0 then
+                return true
             end
         end
-        return num > 0
     end
     return false
 end
