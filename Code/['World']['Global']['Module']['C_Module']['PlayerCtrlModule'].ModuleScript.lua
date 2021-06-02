@@ -498,42 +498,46 @@ function PlayerCtrl:PlayerReset()
 end
 
 -- 进入桌游的3C处理
-function PlayerCtrl:EnterRoomEventHandler()
-    BuffMgr:BuffClear()
-    for k, v in pairs(Config.Interact) do
-        NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, k)
-        NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, k)
-    end
-    localPlayer.LinearVelocity = Vector3.Zero
-    if ItemMgr.curWeaponID ~= 0 then
-        NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
-    end
-	localPlayer.Local.ControlGui.TouchFig:SetActive(false)
-	invoke(function()NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 32)end,0.5)
-	
-	--挂起碰撞检测
-	localPlayer.PlayerCol.OnCollisionBegin:Clear()
-    localPlayer.PlayerCol.OnCollisionEnd::Clear()
+function PlayerCtrl:EnterRoomEventHandler(_uuid, _player)
+	if _player == localPlayer then
+		BuffMgr:BuffClear()
+		for k, v in pairs(Config.Interact) do
+			NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, k)
+			NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, k)
+		end
+		localPlayer.LinearVelocity = Vector3.Zero
+		if ItemMgr.curWeaponID ~= 0 then
+			NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
+		end
+		localPlayer.Local.ControlGui.TouchFig:SetActive(false)
+		invoke(function()NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 32)end,0.5)
+		
+		--挂起碰撞检测
+		localPlayer.PlayerCol.OnCollisionBegin:Clear()
+		localPlayer.PlayerCol.OnCollisionEnd:Clear()
+	end
 end
 
 -- 离开桌游的3C处理
-function PlayerCtrl:LeaveRoomEventHandler()
-	NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-	localPlayer.Local.ControlGui.TouchFig:SetActive(true)
-	localPlayer.PlayerCol.OnCollisionBegin:Connect(
-        function(_hitObject)
-            if _hitObject then
-                this:ColFunc(_hitObject, true)
-            end
-        end
-    )
-    localPlayer.PlayerCol.OnCollisionEnd:Connect(
-        function(_hitObject)
-            if _hitObject then
-                this:ColFunc(_hitObject, false)
-            end
-        end
-    )
+function PlayerCtrl:LeaveRoomEventHandler(_uuid, _playerUid)
+	if _playerUid == localPlayer.UserId then
+		NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+		localPlayer.Local.ControlGui.TouchFig:SetActive(true)
+		localPlayer.PlayerCol.OnCollisionBegin:Connect(
+			function(_hitObject)
+				if _hitObject then
+					this:ColFunc(_hitObject, true)
+				end
+			end
+		)
+		localPlayer.PlayerCol.OnCollisionEnd:Connect(
+			function(_hitObject)
+				if _hitObject then
+					this:ColFunc(_hitObject, false)
+				end
+			end
+		)
+	end
 end
 
 -- 碰到场景交互

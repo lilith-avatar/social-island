@@ -246,6 +246,10 @@ local GuiTextXls = {
     BoardGame_6 = {
         TextId = 'BoardGame_6',
         Txt = 'GuiText_Txt_BoardGame_6'
+    },
+    BoardGame_7 = {
+        TextId = 'BoardGame_7',
+        Txt = 'GuiText_Txt_BoardGame_7'
     }
 }
 

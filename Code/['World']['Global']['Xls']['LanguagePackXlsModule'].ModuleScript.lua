@@ -3142,6 +3142,14 @@ local LanguagePackXls = {
         EN = '',
         JP = '',
         YN = ''
+    },
+    GuiText_Txt_BoardGame_7 = {
+        ID = 'GuiText_Txt_BoardGame_7',
+        CHS = '你需要先退出这个桌子。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 
