@@ -13,13 +13,14 @@ function GameFlow:Enter(_pos)
 	if(self.inGame) then
 		return
 	end
+	self.inGame = true
+	print(_pos)
 	self:OutClear()
 	self.lastCamera = world.CurrentCamera
 	world.CurrentCamera = localPlayer.Local.Independent.TableCam
 	localPlayer.Local.MainGui:SetActive(true)
 	--localPlayer.Local.ScreenGUI1:SetActive(true)
 	PlayerInteract:InitListener()
-	self.inGame = true
 	CameraControl:LookAt(_pos)
 end
 

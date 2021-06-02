@@ -63,22 +63,26 @@ end
 
 ---玩家开始创建，需要初始化，如果中途退出则不通知服务端
 function RoomGui:StartCreateRoom()
-	print('RoomGui:StartCreateRoom()')
-	self.settingGui:SetActive(true)
+	--print('RoomGui:StartCreateRoom()')
+	--self.settingGui:SetActive(true)
+	LocalRooms:TryCreateRoom(4, false)
+	invoke(function() LocalRooms:TryChangeRoom(1000) end,0.2)
+	invoke(function()LocalRooms:TrySwitchState(Const.GamingStateEnum.Gaming) end,0.5)
 end
 
 function ConfirmCreateRoom()
-	local isLocked = self.settingGui.ImgSettingBG.BtnLock.ImgLock.ActiveSelf
+	local isLocked = false
 	self.settingGui:SetActive(false)
 	LocalRooms:TryCreateRoom(curNum, isLocked)
 	isCreating = true
 end
 
 function RoomGui:RoomCreatedEventHandler(_uuid, _player, _pos, _lock)
+	--[[
 	if(_player == localPlayer) then
 		ResetGameList()
 		self.gameListGui:SetActive(true)
-	end
+	end]]
 end
 
 function ResetSettingGUI()

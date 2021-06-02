@@ -181,14 +181,16 @@ end
 
 ---玩家进入一个房间事件,进入房间后自动弹出选择座位界面
 function LocalRooms:EnterRoomEventHandler(_uuid, _player)
-    local room = self:GetRoomByUuid(_uuid)
-    if not room then
-        return
-    end
-    if _player == localPlayer then
-        self.room_localPlayer = room
-    end
-    room:EnterRoom(_player)
+	if FsmMgr.playerActFsm.curState.stateName == "Idle" or FsmMgr.playerActFsm.curState.stateName == "BowIdle" then
+		local room = self:GetRoomByUuid(_uuid)
+		if not room then
+			return
+		end
+		if _player == localPlayer then
+			self.room_localPlayer = room
+		end
+		room:EnterRoom(_player)
+	end
 end
 
 --- 房间中玩家状态更改事件

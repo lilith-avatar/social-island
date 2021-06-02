@@ -70,7 +70,7 @@ function GameRoomBase:initialize(_parent, _player, _pos, _maxNum, _lock)
     ---每个房间实例化后都会通知给所有的玩家
     NetUtil.Broadcast('RoomCreatedEvent', self.str_uuid, _player, _pos, _lock)
     self:TryEnter(_player)
-    self.model_worldTable.GameName.NameTxt.Text = '准备中'
+    self.model_worldTable.GameName.NameTxt.Text = LanguageUtil.GetText(Config.GuiText.BoardGame_4.Txt), 3, true
     ---埋点
     UploadLog('creat_event', {
         user_id = _player.UserId,
@@ -104,11 +104,11 @@ end
 --- 玩家尝试进入房间,直接进入观战,相应的客户端弹出选择座位界面
 function GameRoomBase:TryEnter(_player)
     if self:GetGameNum() + self:GetWatchNum() >= self.num_max then
-        print('房间人满')
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_5.Txt), 3, true)
         return
     end
     if BoardGameMgr:GetPlayerRoom(_player) then
-        print('玩家已经在一个房间中了')
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_5.Txt), 6, true)
         return
     end
     self.arr_watchingPlayers[_player.UserId] = _player

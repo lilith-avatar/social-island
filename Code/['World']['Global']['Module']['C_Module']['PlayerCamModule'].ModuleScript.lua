@@ -61,7 +61,7 @@ end
 
 -- 滑屏转向
 function PlayerCam:CameraMove(touchInfo)
-    if #touchInfo == 1 then
+    if #touchInfo == 1 and not(GameFlow.inGame) then
         if this:IsFreeMode() then
             this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
@@ -151,9 +151,11 @@ end
 
 -- 修改玩家当前相机
 function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
-    this.curCamera = _cam or this.playerGameCam
-    this.curCamera.LookAt = _lookAt or localPlayer
-    world.CurrentCamera = this.curCamera
+	if not(GameFlow.inGame) then
+		this.curCamera = _cam or this.playerGameCam
+		this.curCamera.LookAt = _lookAt or localPlayer
+		world.CurrentCamera = this.curCamera
+	end
 end
 
 -- 转变为FPS相机

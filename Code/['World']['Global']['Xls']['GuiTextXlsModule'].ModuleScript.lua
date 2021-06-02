@@ -222,6 +222,30 @@ local GuiTextXls = {
     CookGuide_5 = {
         TextId = 'CookGuide_5',
         Txt = 'GuiText_Txt_CookGuide_5'
+    },
+    BoardGame_1 = {
+        TextId = 'BoardGame_1',
+        Txt = 'GuiText_Txt_BoardGame_1'
+    },
+    BoardGame_2 = {
+        TextId = 'BoardGame_2',
+        Txt = 'GuiText_Txt_BoardGame_2'
+    },
+    BoardGame_3 = {
+        TextId = 'BoardGame_3',
+        Txt = 'GuiText_Txt_BoardGame_3'
+    },
+    BoardGame_4 = {
+        TextId = 'BoardGame_4',
+        Txt = 'GuiText_Txt_BoardGame_4'
+    },
+    BoardGame_5 = {
+        TextId = 'BoardGame_5',
+        Txt = 'GuiText_Txt_BoardGame_5'
+    },
+    BoardGame_6 = {
+        TextId = 'BoardGame_6',
+        Txt = 'GuiText_Txt_BoardGame_6'
     }
 }
 

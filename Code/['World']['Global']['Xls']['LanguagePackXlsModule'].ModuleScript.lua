@@ -3094,6 +3094,54 @@ local LanguagePackXls = {
         EN = 'Your {meal} received a tip of {coin} coins from {customer}.',
         JP = '',
         YN = '{Meal} Anda menerima tip {coin} koin dari {customer}.'
+    },
+    GuiText_Txt_BoardGame_1 = {
+        ID = 'GuiText_Txt_BoardGame_1',
+        CHS = '你不能在这里使用这个道具。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_2 = {
+        ID = 'GuiText_Txt_BoardGame_2',
+        CHS = '你不能在运动时使用这个道具。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_3 = {
+        ID = 'GuiText_Txt_BoardGame_3',
+        CHS = '你离其他桌子太近了！',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_4 = {
+        ID = 'GuiText_Txt_BoardGame_4',
+        CHS = '准备中',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_5 = {
+        ID = 'GuiText_Txt_BoardGame_5',
+        CHS = '这个桌子的人已经满了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_6 = {
+        ID = 'GuiText_Txt_BoardGame_6',
+        CHS = '你已经在一个桌子上了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 

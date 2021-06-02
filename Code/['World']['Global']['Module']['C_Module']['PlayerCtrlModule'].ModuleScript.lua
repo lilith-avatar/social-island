@@ -497,6 +497,24 @@ function PlayerCtrl:PlayerReset()
     end
 end
 
+-- 进入桌游的3C处理
+function PlayerCtrl:EnterRoomEventHandler()
+    BuffMgr:BuffClear()
+    for k, v in pairs(Config.Interact) do
+        NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, k)
+        NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, k)
+    end
+    localPlayer.LinearVelocity = Vector3.Zero
+    if ItemMgr.curWeaponID ~= 0 then
+        NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
+    end
+end
+
+-- 离开桌游的3C处理
+function PlayerCtrl:LeaveRoomEventHandler()
+	
+end
+
 -- 碰到场景交互
 function PlayerCtrl:ColFunc(_hitObject, _isBegin)
     if _hitObject.InteractID then

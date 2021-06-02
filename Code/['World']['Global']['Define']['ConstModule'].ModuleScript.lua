@@ -119,4 +119,6 @@ Const.GameAniEnum = {
     InHand = 3,
     OutHand = 4,
 }
+
+
 return Const

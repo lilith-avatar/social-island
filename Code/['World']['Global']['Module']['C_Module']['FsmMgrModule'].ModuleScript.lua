@@ -61,7 +61,7 @@ end
 
 function FsmMgr:Update(dt)
     --this.playerActFsm:Update(dt)
-    ----print(this.playerActFsm.curState.stateName)
+    --print(FsmMgr.playerActFsm.curState.stateName)
     ----print(this.playerActFsm.stateTrigger.BowAttack)
 end
 

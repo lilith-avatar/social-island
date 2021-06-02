@@ -12,13 +12,14 @@ local Config = FrameworkConfig.Client
 local initialized, running = false, false
 
 -- 含有InitDefault(),Init(),Update()的模块列表
-local initDefaultList, initList, updateList = {}, {}, {}
+local initDefaultList, initList, updateList, fixUpdateList = {}, {}, {}, {}
 
 --- 运行客户端
 function Client:Run()
-    --print('[Client] Run()')
+    print('[Client] Run()')
     InitClient()
-    StartUpdate()
+	StartFixUpdate()
+	StartUpdate()
 end
 
 --- 停止Update
@@ -94,6 +95,7 @@ function GenInitAndUpdateList()
     -- Update
     ModuleUtil.GetModuleListWithFunc(Module.UI_Module, 'Update', updateList)
     ModuleUtil.GetModuleListWithFunc(Module.C_Module, 'Update', updateList)
+	ModuleUtil.GetModuleListWithFunc(Module.C_Module, 'FixUpdate', fixUpdateList)
     -- Plugin
     for _, m in pairs(Config.PluginModules) do
         ModuleUtil.GetModuleListWithFunc(m, 'InitDefault', initDefaultList)
@@ -121,10 +123,15 @@ function InitOtherModules()
     end
 end
 
+function StartFixUpdate()
+print(2)
+    world.OnRenderStepped:Connect(Client.FixUpdateClient)
+end
+
 --- 开始Update
 function StartUpdate()
     --print('[Client] StartUpdate()')
-    assert(not running, '[Client] StartUpdate() 正在运行')
+    --assert(not running, '[Client] StartUpdate() 正在运行')
 
     running = true
 
@@ -158,4 +165,16 @@ function UpdateClient(_dt, _tt)
     end
 end
 
+---FixUpdate函数
+function Client.FixUpdateClient(_dt)
+    --AnimationMain:FixUpdate(_dt)
+    for _, m in ipairs(fixUpdateList) do
+        m:FixUpdate(_dt)
+    end
+    --[[for i, v in pairs(UIBase.uiList) do
+        if v.Update then
+            v:Update(_dt)
+        end
+    end]]
+end
 return Client
