@@ -510,12 +510,30 @@ function PlayerCtrl:EnterRoomEventHandler()
     end
 	localPlayer.Local.ControlGui.TouchFig:SetActive(false)
 	invoke(function()NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 32)end,0.5)
+	
+	--挂起碰撞检测
+	localPlayer.PlayerCol.OnCollisionBegin:Clear()
+    localPlayer.PlayerCol.OnCollisionEnd::Clear()
 end
 
 -- 离开桌游的3C处理
 function PlayerCtrl:LeaveRoomEventHandler()
 	NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 	localPlayer.Local.ControlGui.TouchFig:SetActive(true)
+	localPlayer.PlayerCol.OnCollisionBegin:Connect(
+        function(_hitObject)
+            if _hitObject then
+                this:ColFunc(_hitObject, true)
+            end
+        end
+    )
+    localPlayer.PlayerCol.OnCollisionEnd:Connect(
+        function(_hitObject)
+            if _hitObject then
+                this:ColFunc(_hitObject, false)
+            end
+        end
+    )
 end
 
 -- 碰到场景交互
