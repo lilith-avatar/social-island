@@ -508,11 +508,14 @@ function PlayerCtrl:EnterRoomEventHandler()
     if ItemMgr.curWeaponID ~= 0 then
         NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     end
+	localPlayer.Local.ControlGui.TouchFig:SetActive(false)
+	invoke(function()NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 32)end,0.5)
 end
 
 -- 离开桌游的3C处理
 function PlayerCtrl:LeaveRoomEventHandler()
-	
+	NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+	localPlayer.Local.ControlGui.TouchFig:SetActive(true)
 end
 
 -- 碰到场景交互
@@ -586,11 +589,22 @@ end
 
 function PlayerCtrl:QuitTTS()
 	--localPlayer.Avatar:SetActive(true)
-	Input.OnKeyDown:Connect(function()
-        if Input.GetPressKeyData(JUMP_KEY) == 1 then
-            PlayerJump()
+	Input.OnKeyDown:Connect(
+        function()
+            if Input.GetPressKeyData(JUMP_KEY) == 1 then
+                this:PlayerJump()
+            end
+            if Input.GetPressKeyData(Enum.KeyCode.P) == 1 then
+                ItemMgr.itemInstance[1001]:Use()
+            end
+            if Input.GetPressKeyData(Enum.KeyCode.O) == 1 then
+                ItemMgr.itemInstance[2001]:Use()
+            end
+            if Input.GetPressKeyData(Enum.KeyCode.Mouse2) == 1 and ItemMgr.curWeaponID ~= 0 then
+                ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
+            end
         end
-    end)
+	)
 	world.OnRenderStepped:Connect(this.Update)
 	--localPlayer.Local.ControlGUI:SetActive(true)
 end

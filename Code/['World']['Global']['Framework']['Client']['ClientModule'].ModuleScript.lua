@@ -124,7 +124,6 @@ function InitOtherModules()
 end
 
 function StartFixUpdate()
-print(2)
     world.OnRenderStepped:Connect(Client.FixUpdateClient)
 end
 

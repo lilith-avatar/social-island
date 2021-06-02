@@ -582,6 +582,24 @@ local InteractXls = {
         SocialAnimActive = false,
         InteractBtnIcon = '',
         OpenGui = ''
+    },
+    [32] = {
+        ID = 32,
+        Name = 'BoardGame',
+        IsEnterByNPC = false,
+        JoystickActive = false,
+        MenuActive = false,
+        BagBtnActive = false,
+        ResetBtnActive = false,
+        CoinInfoBGActive = false,
+        CtrlActive = false,
+        UseBtnActive = false,
+        JumpBtnActive = false,
+        LeaveBtnActive = false,
+        TakeOffBtnActive = false,
+        SocialAnimActive = false,
+        InteractBtnIcon = 'Icon_Control',
+        OpenGui = 'MainGui'
     }
 }
 

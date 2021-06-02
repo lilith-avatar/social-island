@@ -14,7 +14,6 @@ function GameFlow:Enter(_pos)
 		return
 	end
 	self.inGame = true
-	print(_pos)
 	self:OutClear()
 	self.lastCamera = world.CurrentCamera
 	world.CurrentCamera = localPlayer.Local.Independent.TableCam
