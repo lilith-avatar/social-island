@@ -82,10 +82,6 @@ function BoardGameMgr:TryEnterRoomEventHandler(_player, _uuid)
     if not room then
         return
     end
-	if _player.Position.x > 2000 then 
-			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_1.Txt), 3, true)
-		return 
-	end
     room:TryEnter(_player)
 end
 

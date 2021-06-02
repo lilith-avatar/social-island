@@ -108,18 +108,16 @@ function OptionGui:Open()
 end
 
 function OptionGui:EnterRoomEventHandler(_uuid, _player)
-	if FsmMgr.playerActFsm.curState.stateName == "Idle" or FsmMgr.playerActFsm.curState.stateName == "BowIdle" then
-		if(_player == localPlayer) then
-			wait();wait()
-			if(not GetIsWatching()) then
-				return
-			end
-			if(GetIsOwner() or not HasEmptySeat()) then
-				return
-			end
-			autoGame = true
-			SeatGui:Open()
+	if(_player == localPlayer) then
+		wait();wait()
+		if(not GetIsWatching()) then
+			return
 		end
+		if(GetIsOwner() or not HasEmptySeat()) then
+			return
+		end
+		autoGame = true
+		SeatGui:Open()
 	end
 end
 

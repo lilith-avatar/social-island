@@ -160,16 +160,12 @@ function MainGui:RoomOwnerChangedEventHandler()
 end
 
 function MainGui:EnterRoomEventHandler(_roomUuid)
-	if FsmMgr.playerActFsm.curState.stateName == "Idle" or FsmMgr.playerActFsm.curState.stateName == "BowIdle" then
-		if not LocalRooms:GetLPRoom() then return end
-		wait()
-		if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
-			return 
-		end
-		print('here!');self:UpdateInfo()
-	else
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_2.Txt), 3, true)
+	if not LocalRooms:GetLPRoom() then return end
+	wait()
+	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
+		return 
 	end
+	print('here!');self:UpdateInfo()
 end
 
 function MainGui:LeaveRoomEventHandler(_roomUuid)
