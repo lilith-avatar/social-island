@@ -562,7 +562,7 @@ function PlayerCtrl:OutlineCtrlEventHandler(_hitObject, _switch)
 			_hitObject:ShowOutline(Color(255,255,0,255), 5, false)
 			return
 		end
-		if _hitObject.Parent.NpcAvatar then
+		if _hitObject.Parent and _hitObject.Parent.NpcAvatar then
 			_hitObject.Parent.NpcAvatar:ShowOutline(Color(255,255,0,255), 5, false)
 			return
 		end

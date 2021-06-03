@@ -65,7 +65,7 @@ end
 function RoomGui:StartCreateRoom()
 --不在飞碟上，或是不在Idle状态就不许打牌
 	if FsmMgr.playerActFsm.curState.stateName == "Idle" or FsmMgr.playerActFsm.curState.stateName == "BowIdle" then
-		if _player.Position.x > 2000 then 
+		if localPlayer.Position.x > 2000 then 
 			NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.BoardGame_1.Txt), 3, true)
 			return 
 		end

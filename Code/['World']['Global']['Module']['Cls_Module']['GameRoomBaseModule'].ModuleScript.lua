@@ -121,6 +121,8 @@ function GameRoomBase:TryEnter(_player)
         user_id = _player.UserId,
         gameroot_id = CloudLogUtil.gameId,
     })
+	
+	self:SwitchState(_player, Const.GamingStateEnum.Gaming)
 end
 
 --- 房主允许玩家进入游戏
@@ -129,16 +131,16 @@ function GameRoomBase:AllowEnter(_player, _enter_player, _index)
         return
     end
     if self.player_owner ~= _player then
-        print('只有房主才可以同意玩家进入游戏')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_8.Txt), 3, true)
         return
     end
     ---房主允许,按照传的座位索引尝试进入游戏
     if self.arr_gamingPlayers[_enter_player.UserId] then
-        print('已经游戏中了')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_9.Txt), 3, true)
         return
     end
     if self:GetGameNum() >= self.t_config.GameMaxNum then
-        print('游戏中玩家达上限,不能参与游戏')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
         return
     end
     if TakeSeat(self, _enter_player, _index) then
@@ -151,15 +153,15 @@ end
 --- 玩家尝试对房间上锁状态进行更改
 function GameRoomBase:TryChangeLock(_player, _lock)
     if self.player_owner ~= _player then
-        print('只有房主才可以对房间上锁状态进行更改')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_11.Txt), 3, true)
         return
     end
     if self.bool_locked and _lock then
-        print('房间已经被上锁了')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_12.Txt), 3, true)
         return
     end
     if not self.bool_locked and not _lock then
-        print('房间已经解锁了')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_13.Txt), 3, true)
         return
     end
     self.bool_locked = _lock
@@ -170,7 +172,7 @@ end
 ---@param _index number 若是切换到游戏状态,则选择的座位号,不填会随机选择一个
 function GameRoomBase:SwitchState(_player, _state, _index)
     if not self:CheckPlayer(_player) then
-        print('玩家不在该房间中,不能进行操作')
+		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_14.Txt), 3, true)
         return
     end
     if self.num_id == -1 then
@@ -180,7 +182,7 @@ function GameRoomBase:SwitchState(_player, _state, _index)
     if _state == Const.GamingStateEnum.Watching then
         ---切换到观战状态
         if self.arr_watchingPlayers[_player.UserId] then
-            print('已经观战中了')
+			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_15.Txt), 3, true)
             return
         end
         self.arr_gamingPlayers[_player.UserId] = nil
@@ -190,11 +192,11 @@ function GameRoomBase:SwitchState(_player, _state, _index)
     elseif _state == Const.GamingStateEnum.Gaming then
         ---切换到游戏状态
         if self.arr_gamingPlayers[_player.UserId] then
-            print('已经游戏中了')
+			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_16.Txt), 3, true)
             return
         end
         if self:GetGameNum() >= self.t_config.GameMaxNum then
-            print('游戏中玩家达上限,不能参与游戏')
+			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
             return
         end
         if not _index then
@@ -206,7 +208,7 @@ function GameRoomBase:SwitchState(_player, _state, _index)
             end
         end
         if not _index then
-            print('座位满了')
+            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_17.Txt), 3, true)
             return
         end
         if self.bool_locked and _player ~= self.player_owner then
@@ -226,7 +228,7 @@ end
 --- 玩家尝试离开房间
 function GameRoomBase:TryLeave(_player)
     if not self:CheckPlayer(_player) then
-        print('玩家不在这个房间里')
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_14.Txt), 3, true)
         return
     end
     ---需要先取消选中自己选择的东西
@@ -927,7 +929,7 @@ function TakeSeat(self, _player, _index)
         return false
     end
     if seat.Model.Seat.Occupant then
-        print('该座位已经有玩家坐了')
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_18.Txt), 3, true)
         return false
     end
     invoke(function()

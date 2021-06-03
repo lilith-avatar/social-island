@@ -13,7 +13,7 @@ function LocalRoomBase:initialize(_uuid, _player, _pos, _lock)
     ---房主
     self.player_owner = _player
     ---桌游区域的触发器
-    self.model_trigger = world:CreateInstance(Config.GlobalConfig.WorldTable, '桌游区域触发器', localPlayer.Local.Independent, _pos)
+    self.model_trigger = world:CreateInstance(Config.GlobalConfig.WorldTable, 'model_trigger', localPlayer.Local.Independent, _pos)
     self.model_trigger.Color = Color(0, 0, 0, 0)
     self.model_trigger.Block = false
     self.model_trigger.CollisionGroup = localPlayer.CollisionGroup
@@ -25,7 +25,14 @@ function LocalRoomBase:initialize(_uuid, _player, _pos, _lock)
             self:EnterRange()
         end
     end
+    local function Leave(_obj)
+        if _obj == localPlayer then
+            self:LeaveRange()
+			NetUtil.Fire_C('OutlineCtrlEvent', _obj, self.model_trigger, false)
+        end
+    end
     self.model_trigger.OnCollisionBegin:Connect(Enter)
+	self.model_trigger.OnCollisionEnd:Connect(Leave)
     ---玩家本地的桌子
     self.local_table = nil
     ---本地桌子的默认焦点
@@ -87,6 +94,25 @@ end
 function LocalRoomBase:EnterRange()
     print('玩家靠近游戏区域, ', self.str_uuid)
     GameGui.m_roomUuid = self.str_uuid
+	--- 打开交互按钮
+	for k,v in pairs(world.WorldTables:GetChildren()) do
+		if v.Name == self.str_uuid then
+			NetUtil.Fire_C('OutlineCtrlEvent', localPlayer, v, true)
+		end
+	end
+	NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 32)
+end
+
+--- 玩家进入房间的区域内
+function LocalRoomBase:LeaveRange()
+	for k,v in pairs(world.WorldTables:GetChildren()) do
+		if v.Name == self.str_uuid then
+			NetUtil.Fire_C('OutlineCtrlEvent', localPlayer, v, false)
+		end
+	end
+    GameGui.m_roomUuid = ''
+	--- 关闭交互按钮
+	NetUtil.Fire_C('CloseDynamicEvent', localPlayer, 'Interact')
 end
 
 ---玩家进入房间,进入观战列表,若进入玩家为本地玩家,则需要进行摄像机处理和本地的桌子创建

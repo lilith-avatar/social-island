@@ -96,6 +96,9 @@ function OnInteractBtnClick()
 	if interactID ~= 13 or interactID ~= 15 or interactID ~= 16 then
 		CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_click')
 	end
+	if interactID == 32 then
+		LocalRooms:TryEnterRoom(GameGui.m_roomUuid)
+	end
 end
 
 --- 点击拾取按钮

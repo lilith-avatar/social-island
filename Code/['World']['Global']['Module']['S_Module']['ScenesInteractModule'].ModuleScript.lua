@@ -887,6 +887,9 @@ do
     end
 end
 
+
+
+
 --- 玩家碰撞开始
 function ScenesInteract:SInteractOnPlayerColBeginEventHandler(_player, _obj, _id)
     if ColBeginFunc[_id] then
