@@ -9,7 +9,7 @@ local prey = nil
 
 --- 初始化
 function Catch:Init()
-    print('[Catch] Init()')
+    --print('[Catch] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

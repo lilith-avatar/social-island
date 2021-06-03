@@ -24,7 +24,7 @@ end
 --- @param _eventTable table 数值改变事件表（不响应时不传）
 function ValueChangeUtil.ChangeValue(_table, _index, _value, _eventTable)
 	if type(_table) ~= "table" then
-		print("[error]传入的目标表类型错误")
+		--print("[error]传入的目标表类型错误")
 		return
 	end
 	
@@ -80,7 +80,7 @@ function ValueChangeUtil.ChangeValue(_table, _index, _value, _eventTable)
 	else
 		-- 参数无索引时，从目标表根目录开始同步
 		if type(_value) ~= "table" then
-			print("[error]传入的新值类型错误")
+			--print("[error]传入的新值类型错误")
 			return
 		end
 	end

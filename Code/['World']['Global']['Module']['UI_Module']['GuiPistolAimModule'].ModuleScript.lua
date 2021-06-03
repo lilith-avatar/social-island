@@ -6,7 +6,7 @@
 local GuiPistolAim, this = ModuleUtil.New('GuiPistolAim', ClientBase)
 
 function GuiPistolAim:Init()
-    print('GuiPistolAim:Init')
+    --print('GuiPistolAim:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

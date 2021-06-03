@@ -13,7 +13,7 @@ local curNpcID
 local chosenItemID = 0
 
 function GuiStore:Init()
-    print('GuiStore:Init')
+    --print('GuiStore:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -198,7 +198,7 @@ end
 --GuiStore:SwitchStoreUIEventHandler(1, 1)
 function GuiStore:SwitchStoreUIEventHandler(_switch, _npcID)
     if _switch == 1 then
-        print('开商店显示', _npcID)
+        --print('开商店显示', _npcID)
         CloudLogUtil.UploadLog('pannel_actions', 'window_shopGui_' .. _npcID .. '_show')
         curNpcID = _npcID
         this:GetItemData(Config.Shop[curNpcID])

@@ -58,6 +58,32 @@ local ConsumableXls = {
         UseAddBuffID = 0,
         UseAddBuffDur = 0.0,
         UseRemoveBuffID = 0
+    },
+    [4005] = {
+        ItemID = 4005,
+        ModelName = 'item_GoStack_Black',
+        IsPutBack = true,
+        UseEffectName = 'FX_Environment_effect_16',
+        ParentNode = 'Bone_R_Hand.RHandWeaponNode',
+        Offset = Vector3(0.021, 0.0236, -0.0459),
+        Angle = EulerDegree(25.6346, 45.1995, 98.461),
+        HealthChange = 0,
+        UseAddBuffID = 0,
+        UseAddBuffDur = 0.0,
+        UseRemoveBuffID = 0
+    },
+    [4006] = {
+        ItemID = 4006,
+        ModelName = 'item_GoStack_White',
+        IsPutBack = true,
+        UseEffectName = 'FX_Environment_effect_16',
+        ParentNode = 'Bone_R_Hand.RHandWeaponNode',
+        Offset = Vector3(0.021, 0.0236, -0.0459),
+        Angle = EulerDegree(25.6346, 45.1995, 98.461),
+        HealthChange = 0,
+        UseAddBuffID = 0,
+        UseAddBuffDur = 0.0,
+        UseRemoveBuffID = 0
     }
 }
 

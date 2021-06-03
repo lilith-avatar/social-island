@@ -222,6 +222,114 @@ local GuiTextXls = {
     CookGuide_5 = {
         TextId = 'CookGuide_5',
         Txt = 'GuiText_Txt_CookGuide_5'
+    },
+    BoardGame_1 = {
+        TextId = 'BoardGame_1',
+        Txt = 'GuiText_Txt_BoardGame_1'
+    },
+    BoardGame_2 = {
+        TextId = 'BoardGame_2',
+        Txt = 'GuiText_Txt_BoardGame_2'
+    },
+    BoardGame_3 = {
+        TextId = 'BoardGame_3',
+        Txt = 'GuiText_Txt_BoardGame_3'
+    },
+    BoardGame_4 = {
+        TextId = 'BoardGame_4',
+        Txt = 'GuiText_Txt_BoardGame_4'
+    },
+    BoardGame_5 = {
+        TextId = 'BoardGame_5',
+        Txt = 'GuiText_Txt_BoardGame_5'
+    },
+    BoardGame_6 = {
+        TextId = 'BoardGame_6',
+        Txt = 'GuiText_Txt_BoardGame_6'
+    },
+    BoardGame_7 = {
+        TextId = 'BoardGame_7',
+        Txt = 'GuiText_Txt_BoardGame_7'
+    },
+    BoardGame_8 = {
+        TextId = 'BoardGame_8',
+        Txt = 'GuiText_Txt_BoardGame_8'
+    },
+    BoardGame_9 = {
+        TextId = 'BoardGame_9',
+        Txt = 'GuiText_Txt_BoardGame_9'
+    },
+    BoardGame_10 = {
+        TextId = 'BoardGame_10',
+        Txt = 'GuiText_Txt_BoardGame_10'
+    },
+    BoardGame_11 = {
+        TextId = 'BoardGame_11',
+        Txt = 'GuiText_Txt_BoardGame_11'
+    },
+    BoardGame_12 = {
+        TextId = 'BoardGame_12',
+        Txt = 'GuiText_Txt_BoardGame_12'
+    },
+    BoardGame_13 = {
+        TextId = 'BoardGame_13',
+        Txt = 'GuiText_Txt_BoardGame_13'
+    },
+    BoardGame_14 = {
+        TextId = 'BoardGame_14',
+        Txt = 'GuiText_Txt_BoardGame_14'
+    },
+    BoardGame_15 = {
+        TextId = 'BoardGame_15',
+        Txt = 'GuiText_Txt_BoardGame_15'
+    },
+    BoardGame_16 = {
+        TextId = 'BoardGame_16',
+        Txt = 'GuiText_Txt_BoardGame_16'
+    },
+    BoardGame_17 = {
+        TextId = 'BoardGame_17',
+        Txt = 'GuiText_Txt_BoardGame_17'
+    },
+    BoardGame_18 = {
+        TextId = 'BoardGame_18',
+        Txt = 'GuiText_Txt_BoardGame_18'
+    },
+    BoardGame_19 = {
+        TextId = 'BoardGame_19',
+        Txt = 'GuiText_Txt_BoardGame_19'
+    },
+    BoardGame_20 = {
+        TextId = 'BoardGame_20',
+        Txt = 'GuiText_Txt_BoardGame_20'
+    },
+    BoardGame_21 = {
+        TextId = 'BoardGame_21',
+        Txt = 'GuiText_Txt_BoardGame_21'
+    },
+    BoardGame_22 = {
+        TextId = 'BoardGame_22',
+        Txt = 'GuiText_Txt_BoardGame_22'
+    },
+    BoardGame_23 = {
+        TextId = 'BoardGame_23',
+        Txt = 'GuiText_Txt_BoardGame_23'
+    },
+    BoardGame_24 = {
+        TextId = 'BoardGame_24',
+        Txt = 'GuiText_Txt_BoardGame_24'
+    },
+    BoardGame_25 = {
+        TextId = 'BoardGame_25',
+        Txt = 'GuiText_Txt_BoardGame_25'
+    },
+    BoardGame_26 = {
+        TextId = 'BoardGame_26',
+        Txt = 'GuiText_Txt_BoardGame_26'
+    },
+    BoardGame_27 = {
+        TextId = 'BoardGame_27',
+        Txt = 'GuiText_Txt_BoardGame_27'
     }
 }
 

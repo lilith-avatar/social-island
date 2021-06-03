@@ -7,7 +7,7 @@ local DataMgr, this = ModuleUtil.New("DataMgr", ServerBase)
 --! 初始化
 
 function DataMgr:Init()
-    print("[DataMgr] Init()")
+    --print("[DataMgr] Init()")
 end
 
 --! Event handlers

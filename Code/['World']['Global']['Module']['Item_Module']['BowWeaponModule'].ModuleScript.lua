@@ -6,7 +6,7 @@ local BowWeapon = class('BowWeapon', WeaponBase)
 
 function BowWeapon:initialize(_data, _derivedData)
     WeaponBase.initialize(self, _data, _derivedData)
-    print('BowWeapon:initialize()')
+    --print('BowWeapon:initialize()')
     self.isCharge = false
     self.chargeForce = 0
     self.projectileConfig = Config.Projectile[self.derivedData.ProjectileID]

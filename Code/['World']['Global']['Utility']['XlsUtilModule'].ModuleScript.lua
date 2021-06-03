@@ -146,16 +146,16 @@ PrintGlobalKV =
             color = 'Color'
         }
         if showTypes[_type] then
-            print(string.format('[XlsUtil][GlobalSetting] %s = %s%s ', _key, showTypes[_type], _value))
+            --print(string.format('[XlsUtil][GlobalSetting] %s = %s%s ', _key, showTypes[_type], _value))
         else
-            print(string.format('[XlsUtil][GlobalSetting] %s = %s ', _key, _value))
+            --print(string.format('[XlsUtil][GlobalSetting] %s = %s ', _key, _value))
         end
     end or
     function()
     end
 
 PrintLog = showLog and function(...)
-        print(...)
+        --print(...)
     end or function()
     end
 

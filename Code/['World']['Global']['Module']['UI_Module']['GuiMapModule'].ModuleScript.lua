@@ -7,7 +7,7 @@ local gui, closeBtn
 
 ---初始化函数
 function GuiMap:Init()
-    print('[GuiMap] Init()')
+    --print('[GuiMap] Init()')
     this:NodeDef()
     this:DataInit()
     this:EventBind()

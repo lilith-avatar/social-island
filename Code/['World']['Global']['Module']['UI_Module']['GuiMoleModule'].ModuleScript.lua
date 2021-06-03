@@ -10,7 +10,7 @@ local GuiStateEnum = {
 
 ---初始化函数
 function GuiMole:Init()
-    print('[GuiMole] Init()')
+    --print('[GuiMole] Init()')
     this:DataInit()
     this:NodeDef()
     this:EventBind()

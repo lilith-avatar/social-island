@@ -16,7 +16,7 @@ local flyChestRad = 50
 
 --- 初始化
 function ArrowTarget:Init()
-    print('[ArrowTarget] Init()')
+    --print('[ArrowTarget] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -100,7 +100,7 @@ function ArrowTarget:HitReaction2(_target)
 end
 
 function ArrowTarget:HitReaction3(_target)
-    print('_target.obj', _target.obj)
+    --print('_target.obj', _target.obj)
     _target.obj:SetActive(false)
     ScenesInteract:InstanceInteractOBJ(36, _target.obj.Position)
     SoundUtil.Play3DSE(_target.obj.Position, 119)

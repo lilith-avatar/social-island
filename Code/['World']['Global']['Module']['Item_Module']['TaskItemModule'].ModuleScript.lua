@@ -6,7 +6,7 @@ local TaskItem = class('TaskItem', ItemBase)
 
 function TaskItem:initialize(_baseData, _derivedData)
     ItemBase.initialize(self, _baseData, _derivedData)
-    print('TaskItem:initialize()')
+    --print('TaskItem:initialize()')
 end
 
 --放入背包

@@ -4,7 +4,7 @@
 --- @author Yuancheng Zhang
 local FrameworkConfig = {
     --! Debug模式
-    DebugMode = true,
+    DebugMode = false,
     -- 启动心跳
     HeartbeatStart = true,
     -- 长期存储：玩家数据定时保存时间间隔（秒）

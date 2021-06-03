@@ -7,7 +7,7 @@
 local ItemMgr, this = ModuleUtil.New('ItemMgr', ClientBase)
 
 function ItemMgr:Init()
-    print('[ItemMgr] ItemMgr:Init')
+    --print('[ItemMgr] ItemMgr:Init')
     this:NodeRef()
     this:DataInit()
 end
@@ -110,24 +110,24 @@ end
 function ItemMgr:GetItemEventHandler(_id)
     -- 初始化默认背包数据
     if Data.Player.bag[_id] == nil then
-        print('[ItemMgr] 新建道具', _id)
+        --print('[ItemMgr] 新建道具', _id)
         this:NewBagData(_id)
     end
     local typeConfig = Config.ItemType[Config.Item[_id].Type]
     if typeConfig.IsGetRepeatedly == false and Data.Player.bag[_id].count > 0 then
-        print('[ItemMgr] 已有道具', _id)
+        --print('[ItemMgr] 已有道具', _id)
         return
     end
     Data.Player.bag[_id].count = Data.Player.bag[_id].count + 1
     GuiNoticeInfo:ShowGetItem(_id)
     SoundUtil.Play2DSE(localPlayer.UserId, 110)
-    print('[ItemMgr] 获得道具', _id)
+    --print('[ItemMgr] 获得道具', _id)
     return
 end
 
 --移除道具
 function ItemMgr:RemoveItemEventHandler(_id)
-    print('[ItemMgr] 移除道具', _id)
+    --print('[ItemMgr] 移除道具', _id)
     Data.Player.bag[_id].count = Data.Player.bag[_id].count - 1
 end
 
@@ -139,7 +139,7 @@ end
 
 --使用在背包的道具
 function ItemMgr:UseItemInBagEventHandler(_id)
-    print('[ItemMgr] 使用在背包的道具', _id)
+    --print('[ItemMgr] 使用在背包的道具', _id)
     CloudLogUtil.UploadLog('pannel_actions', 'eqip_' .. _id .. '_use')
     this.itemInstance[_id]:UseInBag()
 end
@@ -147,7 +147,7 @@ end
 --使用在手中的道具
 function ItemMgr:UseItemInHandEventHandler()
     if Data.Player.curEquipmentID ~= 0 then
-        print('[ItemMgr] 使用在手中的道具')
+        --print('[ItemMgr] 使用在手中的道具')
         this.itemInstance[Data.Player.curEquipmentID]:UseInHand()
         NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, 15)
         NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, 15)
@@ -217,7 +217,7 @@ end
 
 --- 长期存储成功读取后
 function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
-    print('[ItemMgr] 读取长期存储成功')
+    --print('[ItemMgr] 读取长期存储成功')
     if not _hasData then
         this:InitBagData()
     elseif Data.Player.curEquipmentID ~= 0 then

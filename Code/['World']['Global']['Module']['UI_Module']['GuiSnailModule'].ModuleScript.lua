@@ -9,7 +9,7 @@ local snailIndex = 0
 local arrowEffect = {}
 
 function GuiSnail:Init()
-    --print('[GuiSnail] Init()')
+    ----print('[GuiSnail] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()

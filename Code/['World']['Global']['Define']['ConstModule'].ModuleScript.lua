@@ -80,5 +80,45 @@ Const.SeatStateEnum = {
     Free = 1,
     Used = 2
 }
+---PC端交互按键
+Const.KeyEnum = {
+    FORWARD_KEY = Enum.KeyCode.W,
+    BACK_KEY = Enum.KeyCode.S,
+    LEFT_KEY = Enum.KeyCode.A,
+    RIGHT_KEY = Enum.KeyCode.D
+}
+
+---元素类型
+Const.ElementsTypeEnum = {
+    Poker = 1,
+    Dice = 2,
+    Counter = 3,
+    UnlimitedStack = 9999,
+}
+
+---操作模式
+Const.ControlModeEnum = {
+	None = 0,
+	Select = 1,
+	Split = 2,
+	Rotate = 3,
+	Camera = 4,
+	Pile = 5
+}
+
+---玩家游戏状态
+Const.GamingStateEnum = {
+    Watching = 1,
+    Gaming = 2,
+}
+
+---玩家游戏动画枚举
+Const.GameAniEnum = {
+    Select = 1,
+    Cancel = 2,
+    InHand = 3,
+    OutHand = 4,
+}
+
 
 return Const

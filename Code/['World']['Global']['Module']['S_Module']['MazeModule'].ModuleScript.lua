@@ -188,7 +188,7 @@ local DEBUG_ALPHA = debug and 0x10 or 0x00
 
 -- 初始化
 function Maze:Init()
-    print('[Maze] Init()')
+    --print('[Maze] Init()')
     InitMazeWallSpace()
     InitPillarSpace()
     InitMazeCheckerSpace()
@@ -330,7 +330,7 @@ function InitWallPool()
     -- 内墙数 = (NUM_ROWS - 1) * (NUM_COLS - 1)
     -- 出入口 = -2
     local wallNeeded = NUM_ROWS * 2 + NUM_COLS * 2 + (NUM_ROWS - 1) * (NUM_COLS - 1)
-    print('[Maze] InitWallPool() 需要墙数', wallNeeded)
+    --print('[Maze] InitWallPool() 需要墙数', wallNeeded)
     local rot = EulerDegree(0, 0, 0)
     local name
     for i = 1, wallNeeded do
@@ -343,7 +343,7 @@ function InitWallPool()
         end
     end
     wallPoolDone = true
-    print('[Maze] InitWallPool() done 迷宫墙壁对象池初始化完毕')
+    --print('[Maze] InitWallPool() done 迷宫墙壁对象池初始化完毕')
 end
 
 -- 初始化对象池 - 柱子
@@ -356,7 +356,7 @@ function InitPillarPool()
     assert(PILLAR_SPACE and not PILLAR_SPACE:IsNull(), '[Maze] PILLAR_SPACE 为空')
     -- 总共需要多少柱子
     local pillarNeeded = (NUM_ROWS + 1) * (NUM_COLS + 1)
-    print('[Maze] InitPillarPool() 需要柱子数', pillarNeeded)
+    --print('[Maze] InitPillarPool() 需要柱子数', pillarNeeded)
     local rot = EulerDegree(0, 0, 0)
     local name
     for i = 1, pillarNeeded do
@@ -369,7 +369,7 @@ function InitPillarPool()
         end
     end
     pillarPoolDone = true
-    print('[Maze] InitPillarPool() done 迷宫柱子对象池初始化完毕')
+    --print('[Maze] InitPillarPool() done 迷宫柱子对象池初始化完毕')
 end
 
 -- 初始化对象池 - 积分点
@@ -395,7 +395,7 @@ function InitCheckerPool()
         wait()
     end
     checkerPoolDone = true
-    print('[Maze] InitCheckerPool() done 迷宫积分点对象池初始化完毕')
+    --print('[Maze] InitCheckerPool() done 迷宫积分点对象池初始化完毕')
 end
 
 --! 对象池生成和回收，墙壁
@@ -507,7 +507,7 @@ function MazeReset()
         error('[Maze] 对象池初始化未完成，MazeReset() 不能执行')
         return
     end
-    print('[Maze] MazeReset() 迷宫重置')
+    --print('[Maze] MazeReset() 迷宫重置')
     -- reset
     MazeFloorReset()
     MazeEntraceAndExitReset()
@@ -767,7 +767,7 @@ end
 
 -- 迷宫显示
 function MazeShow()
-    print('[Maze] MazeShow')
+    --print('[Maze] MazeShow')
     WALL_SPACE:SetActive(true)
     PILLAR_SPACE:SetActive(true)
     CHECKER_SPACE:SetActive(true)
@@ -776,7 +776,7 @@ end
 
 -- 迷宫隐藏
 function MazeHide()
-    print('[Maze] MazeHide')
+    --print('[Maze] MazeHide')
     WALL_SPACE:SetActive(false)
     PILLAR_SPACE:SetActive(false)
     CHECKER_SPACE:SetActive(false)
@@ -864,7 +864,7 @@ end
 
 -- 玩家开始迷宫
 function PlayerStartMaze(_player)
-    print('[Maze] PlayerStartMaze')
+    --print('[Maze] PlayerStartMaze')
     -- NetUtil.Fire_C('InsertInfoEvent', _player, '在规定时间内找到迷宫的出口', 5, true)
     playerData = {}
     playerData.player = _player
@@ -887,7 +887,7 @@ end
 -- 玩家抵达终点
 function PlayerReachExit(_hitObj)
     if GlobalFunc.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
-        print('[Maze] PlayerReachExit')
+        --print('[Maze] PlayerReachExit')
         MazeHide()
         playerData.checker = TOTAL_CHECKER
         GetResult()
@@ -908,7 +908,7 @@ end
 
 -- 玩家中途离开或者时间用完
 function PlayerQuitMaze()
-    print('[Maze] PlayerQuitMaze')
+    --print('[Maze] PlayerQuitMaze')
     MazeHide()
     GetResult()
     if CheckPlayerExists() then
@@ -945,7 +945,7 @@ end
 function PlayerHitChecker(_hitObj, _checkObj)
     if GlobalFunc.CheckHitObjIsPlayer(_hitObj) and CheckPlayerExists() and playerData.player == _hitObj then
         playerData.checker = playerData.checker + 1
-        print('[Maze] PlayerHitChecker()', playerData.checker)
+        --print('[Maze] PlayerHitChecker()', playerData.checker)
         DespawnChecker(_checkObj)
     end
 end
@@ -966,13 +966,13 @@ end
 -- @param _gameId 游戏ID
 function Maze:EnterMiniGameEventHandler(_player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE and not playerData then
-        print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
+        --print('[Maze] EnterMiniGameEventHandler', _player, _gameId)
         if not wallPoolDone or not pillarPoolDone or not checkerPoolDone then
             -- TODO: 反馈给NPC对话，说明此原因
-            print('[Maze] EnterMiniGameEventHandler 迷宫初始化未完成，请等待')
+            --print('[Maze] EnterMiniGameEventHandler 迷宫初始化未完成，请等待')
         elseif playerData then
             -- TODO: 反馈给NPC对话，说明此原因
-            print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
+            --print('[Maze] EnterMiniGameEventHandler 有玩家正在进行游戏，请等待')
         else
             CloudLogUtil.UploadLog('mole', 'mole_worldEvent_maze', {online_player_num = #world:FindPlayers()})
             PlayerStartMaze(_player)
@@ -991,7 +991,7 @@ end
 -- @param _gameId 游戏ID
 function Maze:ExitMiniGameEventHandler(_player, _gameId)
     if _player and _gameId == Const.GameEnum.MAZE then
-        print('[Maze] ExitMiniGameEventHandler', _player, _gameId)
+        --print('[Maze] ExitMiniGameEventHandler', _player, _gameId)
         PlayerQuitMaze()
     end
 end
@@ -1002,18 +1002,18 @@ end
 PrintMazeData = debug and function()
         for row = 1, NUM_ROWS do
             for col = 1, NUM_COLS do
-                print(table.dump(M[row][col]))
+                --print(table.dump(M[row][col]))
             end
-            print('============================')
+            --print('============================')
         end
     end or function()
     end
 
 -- 打印寻路结果
 PrintNodePath = debug and function()
-        print('打印寻路结果')
+        --print('打印寻路结果')
         for k, n in pairs(path) do
-            print(string.format('[%02d] %s (%s, %s) %s', k, WALL_DICT[n[3]].symbol, n[1], n[2], WALL_DICT[n[4]].symbol))
+            --print(string.format('[%02d] %s (%s, %s) %s', k, WALL_DICT[n[3]].symbol, n[1], n[2], WALL_DICT[n[4]].symbol))
         end
     end or function()
     end

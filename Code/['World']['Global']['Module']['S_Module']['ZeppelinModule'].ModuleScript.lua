@@ -37,7 +37,7 @@ local zeppelinStateEnum = {
 
 --- 初始化
 function Zeppelin:Init()
-    print("[Zeppelin] Init()")
+    --print("[Zeppelin] Init()")
     this:NodeRef()
     this:DataInit()
     this:EventBind()

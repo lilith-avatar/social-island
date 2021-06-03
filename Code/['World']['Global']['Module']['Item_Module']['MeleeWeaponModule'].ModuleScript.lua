@@ -6,7 +6,7 @@ local MeleeWeapon = class('MeleeWeapon', WeaponBase)
 
 function MeleeWeapon:initialize(_data, _config)
     WeaponBase.initialize(self, _data, _config)
-    print('MeleeWeapon:initialize()')
+    --print('MeleeWeapon:initialize()')
 end
 
 --攻击

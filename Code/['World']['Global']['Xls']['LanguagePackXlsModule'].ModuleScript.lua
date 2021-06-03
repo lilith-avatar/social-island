@@ -3094,6 +3094,302 @@ local LanguagePackXls = {
         EN = 'Your {meal} received a tip of {coin} coins from {customer}.',
         JP = '',
         YN = '{Meal} Anda menerima tip {coin} koin dari {customer}.'
+    },
+    GuiText_Txt_BoardGame_1 = {
+        ID = 'GuiText_Txt_BoardGame_1',
+        CHS = '你不能在这里使用这个道具。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_2 = {
+        ID = 'GuiText_Txt_BoardGame_2',
+        CHS = '你不能在运动时使用这个道具。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_3 = {
+        ID = 'GuiText_Txt_BoardGame_3',
+        CHS = '你离其他桌子太近了！',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_4 = {
+        ID = 'GuiText_Txt_BoardGame_4',
+        CHS = '准备中',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_5 = {
+        ID = 'GuiText_Txt_BoardGame_5',
+        CHS = '这个桌子的人已经满了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_6 = {
+        ID = 'GuiText_Txt_BoardGame_6',
+        CHS = '你已经在一个桌子上了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_7 = {
+        ID = 'GuiText_Txt_BoardGame_7',
+        CHS = '你需要先退出这个桌子。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_8 = {
+        ID = 'GuiText_Txt_BoardGame_8',
+        CHS = '只有房主才可以同意玩家进入游戏。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_9 = {
+        ID = 'GuiText_Txt_BoardGame_9',
+        CHS = '你已经在游戏中了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_10 = {
+        ID = 'GuiText_Txt_BoardGame_10',
+        CHS = '参与游戏的玩家已经达到上限。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_11 = {
+        ID = 'GuiText_Txt_BoardGame_11',
+        CHS = '只有房主才可以对房间上锁状态进行更改。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_12 = {
+        ID = 'GuiText_Txt_BoardGame_12',
+        CHS = '房间已经被上锁了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_13 = {
+        ID = 'GuiText_Txt_BoardGame_13',
+        CHS = '房间已经解锁了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_14 = {
+        ID = 'GuiText_Txt_BoardGame_14',
+        CHS = '你已经退出了这个桌子。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_15 = {
+        ID = 'GuiText_Txt_BoardGame_15',
+        CHS = '你已经在观战了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_16 = {
+        ID = 'GuiText_Txt_BoardGame_16',
+        CHS = '你已经参与了游戏。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_17 = {
+        ID = 'GuiText_Txt_BoardGame_17',
+        CHS = '座位已经满了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_18 = {
+        ID = 'GuiText_Txt_BoardGame_18',
+        CHS = '这个座位已经有一个玩家了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Name_4005 = {
+        ID = 'Item_Name_4005',
+        CHS = '五子棋套装',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Des_4005 = {
+        ID = 'Item_Des_4005',
+        CHS = '随时与你的伙伴下五子棋。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Name_4006 = {
+        ID = 'Item_Name_4006',
+        CHS = '围棋套装',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Des_4006 = {
+        ID = 'Item_Des_4006',
+        CHS = '随时与你的伙伴下围棋。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Name_1000 = {
+        ID = 'Game_Name_1000',
+        CHS = '五子棋',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Des_1000 = {
+        ID = 'Game_Des_1000',
+        CHS = '建议人数\n2人',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Name_1001 = {
+        ID = 'Game_Name_1001',
+        CHS = '扑克',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Des_1001 = {
+        ID = 'Game_Des_1001',
+        CHS = '建议人数\n2-4人',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Name_1002 = {
+        ID = 'Game_Name_1002',
+        CHS = '围棋',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Des_1002 = {
+        ID = 'Game_Des_1002',
+        CHS = '建议人数\n2人',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_19 = {
+        ID = 'GuiText_Txt_BoardGame_19',
+        CHS = '重置游戏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_20 = {
+        ID = 'GuiText_Txt_BoardGame_20',
+        CHS = '房间上锁',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_21 = {
+        ID = 'GuiText_Txt_BoardGame_21',
+        CHS = '房间解锁',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_22 = {
+        ID = 'GuiText_Txt_BoardGame_22',
+        CHS = '观战',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_23 = {
+        ID = 'GuiText_Txt_BoardGame_23',
+        CHS = '加入游戏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_24 = {
+        ID = 'GuiText_Txt_BoardGame_24',
+        CHS = '退出',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_25 = {
+        ID = 'GuiText_Txt_BoardGame_25',
+        CHS = '取消',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_26 = {
+        ID = 'GuiText_Txt_BoardGame_26',
+        CHS = '游戏中',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_27 = {
+        ID = 'GuiText_Txt_BoardGame_27',
+        CHS = '观战中',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 

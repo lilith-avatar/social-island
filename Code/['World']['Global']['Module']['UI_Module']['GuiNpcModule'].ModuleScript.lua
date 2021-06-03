@@ -22,7 +22,7 @@ local taskItemID = 0
 
 --- 初始化
 function GuiNpc:Init()
-    --print('[GuiNpc] Init()')
+    ----print('[GuiNpc] Init()')
     -- Cache
     ItemMgr = ItemMgr
 
@@ -57,7 +57,7 @@ function GuiNpc:InitResource()
     for _, npc in pairs(NpcInfo) do
         if npc.PortraitRes then
             npc.Portrait = ResourceManager.GetTexture('UI/NPCTalk/' .. npc.PortraitRes)
-        -- --print('[GuiNpc] InitResource()', npc.PortraitRes)
+        -- ----print('[GuiNpc] InitResource()', npc.PortraitRes)
         end
     end
 end
@@ -76,7 +76,7 @@ function FoundNpc(_npcId, _npcObj)
     if _npcId == nil then
         return
     end
-    --print('[GuiNpc] FoundNpc()', _npcId)
+    ----print('[GuiNpc] FoundNpc()', _npcId)
     NetUtil.Fire_C('OpenDynamicEvent', localPlayer, 'Interact', 12)
     currNpcId = _npcId
     currNpcObj = _npcObj
@@ -84,7 +84,7 @@ end
 
 --- 离开NPC
 function BeyondNpc()
-    --print('[GuiNpc] BeyondNpc()')
+    ----print('[GuiNpc] BeyondNpc()')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
     if currNpcId then
         NetUtil.Fire_C('LeaveNpcEvent', localPlayer, currNpcId)
@@ -101,7 +101,7 @@ function OpenNpcGui()
         return
     end
 	CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. '12' .. '_click', {subinter_id = currNpcId})
-    --print('[GuiNpc] OpenNpcGui()')
+    ----print('[GuiNpc] OpenNpcGui()')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 12)
     NetUtil.Fire_C('TalkToNpcEvent', localPlayer, currNpcId)
     -- 音效
@@ -135,12 +135,12 @@ function EnterMiniGame()
     local gameId = NpcInfo[currNpcId].GameId
     NetUtil.Fire_S('EnterMiniGameEvent', localPlayer, gameId)
     --! Test only
-    --print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
+    ----print('[GuiNpc] EnterMiniGameEvent', localPlayer, gameId)
 end
 
 --- 打开商城
 function EnterShop()
-    --print('[GuiNpc] EnterShop()')
+    ----print('[GuiNpc] EnterShop()')
     if currNpcId == nil or NpcInfo[currNpcId] == nil or NpcInfo[currNpcId].ShopId == nil then
         return
     end

@@ -43,7 +43,7 @@ local LeaveStateFunc = {}
 
 --- 初始化
 function Pet:Init()
-    print('[Pet] Init()')
+    --print('[Pet] Init()')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -125,7 +125,7 @@ function Pet:GetMoveTable(_pos)
     local result = 0
     moveTable, result = petOBJ:GetWaypoints(petOBJ.Position, _pos, 0.1, 1, 3)
     if result > 2 then
-    --print('寻路失败', result, petOBJ, petData.state)
+    ----print('寻路失败', result, petOBJ, petData.state)
     end
 end
 
@@ -145,7 +145,7 @@ function Pet:GetPetData(_id)
         if Config.Pet[_id].ToMoveAnimation ~= '' then
             table.insert(petData.animTable, Config.Pet[_id].ToMoveAnimation)
         end
-        print(table.dump(petData.animTable))
+        --print(table.dump(petData.animTable))
         for k, v in pairs(petData.animTable) do
             local animaion =
                 ResourceManager.GetAnimation('Mesh/Pet/' .. Config.Pet[_id].AnimationPath .. '/Animation/' .. v)
@@ -353,7 +353,7 @@ end
 
 --- 长期存储成功读取后
 function Pet:LoadPlayerDataSuccessEventHandler(_hasData)
-    print('[Pet] 读取长期存储成功')
+    --print('[Pet] 读取长期存储成功')
     if _hasData and Data.Player.petID ~= 0 then
         this:InstancePet(Data.Player.petID)
         this:GetPetData(Data.Player.petID)

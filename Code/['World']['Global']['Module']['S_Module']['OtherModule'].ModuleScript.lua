@@ -7,7 +7,7 @@ local Other, this = ModuleUtil.New('Other', ServerBase)
 --! 初始化
 
 function Other:Init()
-    print('[Other] Init()')
+    --print('[Other] Init()')
     SoundUtil.Init(Config.Sound)
     SoundUtil.InitAudioSource()
 end

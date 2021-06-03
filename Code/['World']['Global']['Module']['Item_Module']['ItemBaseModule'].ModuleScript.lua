@@ -5,7 +5,7 @@
 local ItemBase = class('ItemBase')
 
 function ItemBase:initialize(_baseData, _derivedData)
-    --print('ItemBase:initialize()')
+    ----print('ItemBase:initialize()')
     self.baseData = _baseData
     self.typeConfig = Config.ItemType[_baseData.Type]
     self.derivedData = _derivedData
@@ -36,7 +36,7 @@ end
 
 --装备
 function ItemBase:Equip()
-    --print('装备')
+    ----print('装备')
     NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     wait(0.1)
@@ -55,7 +55,7 @@ function ItemBase:Equip()
             NetUtil.Fire_S('STakeOutItemEvent', localPlayer, self.baseData.ItemID)
 
             local node1, node2 = string.match(self.derivedData.ParentNode, '([%w_]+).([%w_]+)')
-            ----print(node1, node1)
+            ------print(node1, node1)
             local pNode = localPlayer.Avatar[node1][node2]
             self.equipObj =
                 world:CreateInstance(

@@ -12,7 +12,7 @@ function MolePool:initialize(_objName, poolSize, _objId)
     self.maxSize = poolSize
     self.objName = _objName
     self.objId = _objId
-    print("[MolePool] initialize()", _objName, poolSize)
+    --print("[MolePool] initialize()", _objName, poolSize)
 end
 
 function MolePool:Destroy(_obj)

@@ -33,7 +33,7 @@ local startTime, totalTime, now = 0, 0, Timer.GetTime
 local hour, minute, second, milliseconds = 0, 0, 0, 0
 
 function GuiMaze:Init()
-    print('[GuiMaze] Init()')
+    --print('[GuiMaze] Init()')
     -- 获取本地玩家
     player = localPlayer
     self:InitGui()
@@ -49,7 +49,7 @@ end
 
 -- 进入迷宫
 function EnterMaze(_enterPos, _playerDir, _totalTime, _waitTime)
-    print('[GuiMaze] EnterMaze')
+    --print('[GuiMaze] EnterMaze')
     -- cache player info
     origin.pos = player.Position
     origin.camDist = world.CurrentCamera.Distance
@@ -79,13 +79,13 @@ end
 
 -- 完成迷宫
 function FinishMaze(_score, _time)
-    print('[GuiMaze] FinishMaze')
+    --print('[GuiMaze] FinishMaze')
     QuitMaze(_score, _time)
 end
 
 -- 中途退出迷宫
 function QuitMaze(_score, _time)
-    print('[GuiMaze] QuitMaze')
+    --print('[GuiMaze] QuitMaze')
     -- stop updating
     inMaze = false
     -- resume player info
@@ -99,7 +99,7 @@ function QuitMaze(_score, _time)
 
     -- GUI
     DisableMazeGui()
-    print(string.format('[GuiMaze] 迷宫结束, 用时: %s, 分数: %s', _time, _score))
+    --print(string.format('[GuiMaze] 迷宫结束, 用时: %s, 分数: %s', _time, _score))
 end
 
 --! GUI
@@ -152,14 +152,14 @@ end
 function GuiMaze:ClientMazeEventHandler(_eventEnum, ...)
     local args = {...}
     if _eventEnum == Const.MazeEventEnum.JOIN and #args > 0 then
-        print(table.dump(args))
+        --print(table.dump(args))
         local enterPos = args[1]
         local playerDir = args[2]
         local totalTime = args[3]
         local waitTime = args[4]
         EnterMaze(enterPos, playerDir, totalTime, waitTime)
     elseif _eventEnum == Const.MazeEventEnum.FINISH and #args > 1 then
-        print(table.dump(args))
+        --print(table.dump(args))
         local score = args[1]
         local usedTime = args[2]
         FinishMaze(score, usedTime)

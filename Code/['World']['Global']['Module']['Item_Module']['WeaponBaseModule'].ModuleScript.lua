@@ -6,7 +6,7 @@ local WeaponBase = class("WeaponBase", ItemBase)
 
 function WeaponBase:initialize(_baseData, _derivedData)
     ItemBase.initialize(self, _baseData, _derivedData)
-    print("WeaponBase:initialize()")
+    --print("WeaponBase:initialize()")
     self.useCT = self.baseData.UseCD
 end
 
@@ -22,7 +22,7 @@ end
 
 --在背包中使用
 function WeaponBase:UseInBag()
-    print("使用", self.id)
+    --print("使用", self.id)
     ItemBase.UseInBag(self)
     self:Equip()
 end

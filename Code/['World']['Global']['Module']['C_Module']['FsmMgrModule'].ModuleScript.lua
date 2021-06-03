@@ -25,7 +25,7 @@ local playerActStateEnum = {
 
 --- 初始化
 function FsmMgr:Init()
-    print('FsmMgr:Init')
+    --print('FsmMgr:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -55,14 +55,14 @@ end
 
 --- 状态机改变触发器
 function FsmMgr:FsmTriggerEventHandler(_state)
-    --print('状态机改变触发器', _state)
+    ----print('状态机改变触发器', _state)
     this.playerActFsm:ContactTrigger(_state)
 end
 
 function FsmMgr:Update(dt)
     --this.playerActFsm:Update(dt)
-    --print(this.playerActFsm.curState.stateName)
-    --print(this.playerActFsm.stateTrigger.BowAttack)
+    --print(FsmMgr.playerActFsm.curState.stateName)
+    ----print(this.playerActFsm.stateTrigger.BowAttack)
 end
 
 return FsmMgr

@@ -14,7 +14,7 @@ local interactID = 0
 local pickItemObj = 0
 
 function GuiControl:Init()
-    print('[GuiControl] Init()')
+    --print('[GuiControl] Init()')
     self:InitGui()
     self:InitListener()
 end
@@ -68,7 +68,7 @@ function GuiControl:InitListener()
     )
     ctrlFigure.LeaveBtn.OnDown:Connect(
         function()
-            print('LeaveBtnClick')
+            --print('LeaveBtnClick')
 			SoundUtil.Play2DSE(localPlayer.UserId, 6)
             NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, interactID)
             NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, interactID)
@@ -95,6 +95,9 @@ function OnInteractBtnClick()
     NetUtil.Fire_C('InteractCEvent', localPlayer, interactID)
 	if interactID ~= 13 or interactID ~= 15 or interactID ~= 16 then
 		CloudLogUtil.UploadLog('pannel_actions', 'dialog_icon_' .. interactID .. '_click')
+	end
+	if interactID == 32 then
+		LocalRooms:TryEnterRoom(GameGui.m_roomUuid)
 	end
 end
 
@@ -138,7 +141,7 @@ end
 --- 重置通用UI事件
 function GuiControl:ResetDefUIEventHandler()
     if interactID == 0 then
-        print('重置通用UI事件')
+        --print('重置通用UI事件')
         gui.Joystick:SetActive(true)
         dynamicFigure:SetActive(false)
         menuFigure:SetActive(true)
@@ -209,7 +212,7 @@ end
 --- 进入小游戏修改UI
 function GuiControl:ChangeMiniGameUIEventHandler(_id)
     _id = _id or 0
-    print('进入小游戏修改UI', _id)
+    --print('进入小游戏修改UI', _id)
     local config = Config.Interact[_id]
     gui.Joystick:SetActive(config.JoystickActive)
     gui.Menu:SetActive(config.MenuActive)
