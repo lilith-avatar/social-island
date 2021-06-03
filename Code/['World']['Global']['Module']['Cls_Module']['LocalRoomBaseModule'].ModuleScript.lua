@@ -177,7 +177,6 @@ function LocalRoomBase:LeaveRoom(_uid)
 			end
 		end
     end
-    print('玩家退出这个房间', _uid)
     if _uid == localPlayer.UserId then
         RestoreCam(self)
         DestroyUnits(self)
@@ -297,7 +296,6 @@ function LocalRoomBase:StackDestroy(_uuid)
 end
 
 function LocalRoomBase:UnitSelect(_player, _uuid)
-    print('对象选中事件', _player, _uuid)
     ---@type C_UnitBase
     local obj = self.arr_units[_uuid]
     if not obj then
@@ -307,7 +305,6 @@ function LocalRoomBase:UnitSelect(_player, _uuid)
 end
 
 function LocalRoomBase:UnitCancel(_playerUid, _uuid, _pos)
-    print('对象取消选中事件', _playerUid, _uuid, _pos)
     ---@type C_UnitBase
     local obj = self.arr_units[_uuid]
     if not obj then

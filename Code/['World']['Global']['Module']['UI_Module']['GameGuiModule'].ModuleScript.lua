@@ -111,9 +111,6 @@ function GameGui:LeaveRoomEventHandler(_room_uuid, _uid)
     if not room then
         return
     end
-    if _uid == localPlayer.UserId then
-        localPlayer.Local.ScreenGUI1:SetActive(true)
-    end
 end
 
 ---玩家进入一个房间事件,进入房间后自动弹出选择座位界面
@@ -121,9 +118,6 @@ function GameGui:EnterRoomEventHandler(_uuid, _player)
 	local room = LocalRooms:GetRoomByUuid(_uuid)
 	if not room then
 		return
-	end
-	if _player == localPlayer then
-		localPlayer.Local.ScreenGUI1:SetActive(false)
 	end
 end
 

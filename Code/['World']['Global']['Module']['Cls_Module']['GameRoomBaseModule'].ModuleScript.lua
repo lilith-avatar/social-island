@@ -488,11 +488,9 @@ end
 function ChangeGame(self, _id)
 	print(_id)
     if _id == -1 then
-        print('当前房间未选择游戏,不可以重置游戏')
         return
     end
     if not Config.Game[_id].Enable then
-        print('此游戏暂未开启')
         return
     end
     self.num_id = _id
@@ -508,7 +506,6 @@ function ChangeGame(self, _id)
     end
     ---游戏状态的玩家切换状态为观战
     for i, v in pairs(self.arr_gamingPlayers) do
-        print('游戏状态的玩家切换状态为观战', v)
         self:SwitchState(v, Const.GamingStateEnum.Watching)
     end
     NetUtil.Broadcast('RoomGameChangedEvent', self.str_uuid, _id)

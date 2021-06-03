@@ -149,14 +149,14 @@ function MainGui:RoomCreatedEventHandler(_roomUuid)
 	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
 		return 
 	end
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 end
 
 ---TODO：房主和普通人的区别
 function MainGui:RoomOwnerChangedEventHandler()
 	if not LocalRooms:GetLPRoom() then return end
 	wait()
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 end
 
 function MainGui:EnterRoomEventHandler(_roomUuid)
@@ -165,7 +165,7 @@ function MainGui:EnterRoomEventHandler(_roomUuid)
 	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
 		return 
 	end
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 end
 
 function MainGui:LeaveRoomEventHandler(_roomUuid)
@@ -173,7 +173,7 @@ function MainGui:LeaveRoomEventHandler(_roomUuid)
 	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
 		return 
 	end
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 end
 
 function MainGui:StateChangedEventHandler(_roomUuid)
@@ -182,7 +182,7 @@ function MainGui:StateChangedEventHandler(_roomUuid)
 	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
 		return 
 	end
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 	invoke(function()
 		self:UpdateInfo()
 	end, 0.1)
@@ -194,14 +194,14 @@ function MainGui:EnterRoomSyncEventHandler(_roomUuid)
 	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
 		return 
 	end
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 end
 
 function MainGui:EnterRoomSyncEventHandler(_player, _roomUuid)
 	if not LocalRooms:GetLPRoom() then return end
 	wait()
 	if(_player == localPlayer) then
-		print('here!');self:UpdateInfo()
+		self:UpdateInfo()
 	end
 end
 
@@ -216,7 +216,7 @@ function MainGui:RequestEnterEventHandler(_roomUuid, _requester, _index)
 	end
 	self.arr_request[uid] = _index
 	
-	print('here!');self:UpdateInfo()
+	self:UpdateInfo()
 end
 
 function MainGui:CreateNode()

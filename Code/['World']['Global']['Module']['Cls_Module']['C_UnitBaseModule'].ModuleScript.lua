@@ -121,7 +121,6 @@ function C_UnitBase:FixUpdate(_dt)
                 if self.player_selected then
                     self.obj_model.Position = self.obj_model.Position + GlobalData.SelectHigh * Vector3.Up
                 end
-                print('当前队列中所有帧全部同步完毕,将物体位置设置为最后一帧的位置', self.obj_model.Position)
             end
         end
     end
@@ -236,7 +235,6 @@ end
 
 ---选中
 function C_UnitBase:Select(_player)
-    print('C_UnitBase:Select', _player, self.player_selected)
     if not self.player_selected then
         self.obj_model.Position = self.obj_model.Position + Vector3.Up * GlobalData.SelectHigh
     end
@@ -247,7 +245,6 @@ end
 ---取消选中
 function C_UnitBase:CancelSelect(_playerUid, _pos)
     if self.player_selected then
-        print('取消选中', self.obj_model, _pos)
         self.obj_model.Position = self.obj_model.Position - Vector3.Up * GlobalData.SelectHigh
     end
     if _pos and self.player_selected ~= localPlayer.UserId then
@@ -285,7 +282,6 @@ end
 
 ---对象进入玩家的手牌区
 function C_UnitBase:InHand(_player)
-    print('对象进入玩家的手牌区', _player)
     self.player_hand = _player
     if localPlayer ~= _player then
         ---需要在本地将这个对象的贴图更改为问号

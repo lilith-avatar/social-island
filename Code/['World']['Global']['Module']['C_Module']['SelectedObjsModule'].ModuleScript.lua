@@ -34,7 +34,6 @@ end
 ---选择对象
 ---@param _isAll boolean 若选择的为容器,是否全选容器,否则只选择容器上面的一个元素
 function SelectedObjs:Select(_uuid, _isAll)
-    print(_uuid)
     local room = LocalRooms:GetLPRoom()
     if not room then
         return
