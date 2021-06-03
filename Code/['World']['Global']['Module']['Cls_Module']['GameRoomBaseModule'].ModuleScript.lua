@@ -177,6 +177,7 @@ function GameRoomBase:SwitchState(_player, _state, _index)
     end
     if self.num_id == -1 then
         print('房主还未选择游戏')
+		invoke(function() self:SwitchState(_player, _state, _index) end,1)
         return
     end
     if _state == Const.GamingStateEnum.Watching then

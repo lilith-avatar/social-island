@@ -70,7 +70,7 @@ function RoomGui:StartCreateRoom(_gameId)
 			return 
 		end
 		LocalRooms:TryCreateRoom(4, false)
-		invoke(function() LocalRooms:TryChangeRoom(_gameId) end,0.2)
+		invoke(function() LocalRooms:TryChangeRoom(_gameId) end,0.5)
 		invoke(function()LocalRooms:TrySwitchState(Const.GamingStateEnum.Gaming) end,0.5)
 	else
 		NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.BoardGame_2.Txt), 3, true)

@@ -6,34 +6,6 @@ local self = GameGui
 
 --- 初始化
 function GameGui:Init()
-    self.m_joyStick = localPlayer.Local.ScreenGUI1.MoveJs
-    self.m_createStackBtn = localPlayer.Local.ScreenGUI1.CreateStackBtn
-    self.m_createStackBtn.OnClick:Connect(CreateUnlimited)
-    self.m_createBtn = localPlayer.Local.ScreenGUI1.CreateBtn
-    self.m_createBtn.OnClick:Connect(CreateElementBtn)
-    self.m_lockBtn = localPlayer.Local.ScreenGUI1.LockBtn
-    self.m_enterRoomBtn = localPlayer.Local.ScreenGUI1.EnterRoomBtn
-    self.m_lockBtn.OnClick:Connect(function()
-        self:LockBtnClick()
-    end)
-    localPlayer.Local.ScreenGUI1.UnLockBtn.OnClick:Connect(function()
-        self:UnLockBtnClick()
-    end)
-    self.m_enterRoomBtn.OnClick:Connect(EnterRoomClick)
-    self.m_deleteBtn = localPlayer.Local.ScreenGUI1.DeleteBtn
-    self.m_gameBtn = localPlayer.Local.ScreenGUI1.GameBtn
-    self.m_changeGameBtn = localPlayer.Local.ScreenGUI1.ChangeGameBtn
-    self.m_deleteBtn.OnClick:Connect(DeleteBtnClick)
-    self.m_gameBtn.OnClick:Connect(GameBtnClick)
-    self.m_changeGameBtn.OnClick:Connect(ChangeGameBtnClick)
-    self.m_watchBtn = localPlayer.Local.ScreenGUI1.WatchBtn
-    self.m_watchBtn.OnClick:Connect(WatchBtnClick)
-    self.m_creatStackBtn = localPlayer.Local.ScreenGUI1.CreatStackBtn
-    self.m_creatStackBtn.OnClick:Connect(CreatStackBtnClick)
-    localPlayer.Local.ScreenGUI1.CreateRoomBtn.OnClick:Connect(function()
-		RoomGui:StartCreateRoom()
-	end)
-    localPlayer.Local.ScreenGUI1.LeaveRoomBtn.OnClick:Connect(LeaveRoom)
     self.m_roomUuid = ''
 end
 
