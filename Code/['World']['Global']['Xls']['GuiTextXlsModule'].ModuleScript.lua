@@ -294,6 +294,42 @@ local GuiTextXls = {
     BoardGame_18 = {
         TextId = 'BoardGame_18',
         Txt = 'GuiText_Txt_BoardGame_18'
+    },
+    BoardGame_19 = {
+        TextId = 'BoardGame_19',
+        Txt = 'GuiText_Txt_BoardGame_19'
+    },
+    BoardGame_20 = {
+        TextId = 'BoardGame_20',
+        Txt = 'GuiText_Txt_BoardGame_20'
+    },
+    BoardGame_21 = {
+        TextId = 'BoardGame_21',
+        Txt = 'GuiText_Txt_BoardGame_21'
+    },
+    BoardGame_22 = {
+        TextId = 'BoardGame_22',
+        Txt = 'GuiText_Txt_BoardGame_22'
+    },
+    BoardGame_23 = {
+        TextId = 'BoardGame_23',
+        Txt = 'GuiText_Txt_BoardGame_23'
+    },
+    BoardGame_24 = {
+        TextId = 'BoardGame_24',
+        Txt = 'GuiText_Txt_BoardGame_24'
+    },
+    BoardGame_25 = {
+        TextId = 'BoardGame_25',
+        Txt = 'GuiText_Txt_BoardGame_25'
+    },
+    BoardGame_26 = {
+        TextId = 'BoardGame_26',
+        Txt = 'GuiText_Txt_BoardGame_26'
+    },
+    BoardGame_27 = {
+        TextId = 'BoardGame_27',
+        Txt = 'GuiText_Txt_BoardGame_27'
     }
 }
 

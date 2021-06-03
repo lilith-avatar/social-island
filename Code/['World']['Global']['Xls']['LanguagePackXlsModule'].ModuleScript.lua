@@ -3318,6 +3318,78 @@ local LanguagePackXls = {
         EN = '',
         JP = '',
         YN = ''
+    },
+    GuiText_Txt_BoardGame_19 = {
+        ID = 'GuiText_Txt_BoardGame_19',
+        CHS = '重置游戏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_20 = {
+        ID = 'GuiText_Txt_BoardGame_20',
+        CHS = '房间上锁',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_21 = {
+        ID = 'GuiText_Txt_BoardGame_21',
+        CHS = '房间解锁',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_22 = {
+        ID = 'GuiText_Txt_BoardGame_22',
+        CHS = '观战',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_23 = {
+        ID = 'GuiText_Txt_BoardGame_23',
+        CHS = '加入游戏',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_24 = {
+        ID = 'GuiText_Txt_BoardGame_24',
+        CHS = '退出',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_25 = {
+        ID = 'GuiText_Txt_BoardGame_25',
+        CHS = '取消',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_26 = {
+        ID = 'GuiText_Txt_BoardGame_26',
+        CHS = '游戏中',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_27 = {
+        ID = 'GuiText_Txt_BoardGame_27',
+        CHS = '观战中',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 
