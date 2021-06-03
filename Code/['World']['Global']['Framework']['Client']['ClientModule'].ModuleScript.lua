@@ -16,7 +16,7 @@ local initDefaultList, initList, updateList, fixUpdateList = {}, {}, {}, {}
 
 --- 运行客户端
 function Client:Run()
-    print('[Client] Run()')
+    --print('[Client] Run()')
     InitClient()
 	StartFixUpdate()
 	StartUpdate()
@@ -43,6 +43,7 @@ function InitClient()
     RunInitDefault()
     InitOtherModules()
     initialized = true
+	StatsManager.EnableTrafficControl = false
 end
 
 --- 初始化心跳包
@@ -130,7 +131,8 @@ end
 --- 开始Update
 function StartUpdate()
     --print('[Client] StartUpdate()')
-    --assert(not running, '[Client] StartUpdate() 正在运行')
+
+    assert(not running, '[Client] StartUpdate() 正在运行')
 
     running = true
 
