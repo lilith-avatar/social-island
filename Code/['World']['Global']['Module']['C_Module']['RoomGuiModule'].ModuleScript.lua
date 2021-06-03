@@ -62,7 +62,7 @@ function RoomGui:CreateGui()
 end
 
 ---玩家开始创建，需要初始化，如果中途退出则不通知服务端
-function RoomGui:StartCreateRoom()
+function RoomGui:StartCreateRoom(_gameId)
 --不在飞碟上，或是不在Idle状态就不许打牌
 	if FsmMgr.playerActFsm.curState.stateName == "Idle" or FsmMgr.playerActFsm.curState.stateName == "BowIdle" then
 		if localPlayer.Position.x > 2000 then 
@@ -70,11 +70,19 @@ function RoomGui:StartCreateRoom()
 			return 
 		end
 		LocalRooms:TryCreateRoom(4, false)
-		invoke(function() LocalRooms:TryChangeRoom(1000) end,0.2)
+		invoke(function() LocalRooms:TryChangeRoom(_gameId) end,0.2)
 		invoke(function()LocalRooms:TrySwitchState(Const.GamingStateEnum.Gaming) end,0.5)
 	else
 		NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.BoardGame_2.Txt), 3, true)
 	end
+end
+
+function RoomGui:CUseItemEventHandler(_id)
+    if _id == 4005 then
+        self:StartCreateRoom(1000)
+    elseif _id == 4006 then
+        self:StartCreateRoom(1002)
+    end
 end
 
 function ConfirmCreateRoom()

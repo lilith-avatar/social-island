@@ -485,6 +485,7 @@ end
 
 --- 更改游戏,销毁房间中所有对象,所有玩家离开游戏状态,进入观战状态,然后房主进入一号位游戏
 function ChangeGame(self, _id)
+	print(_id)
     if _id == -1 then
         print('当前房间未选择游戏,不可以重置游戏')
         return

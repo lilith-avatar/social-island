@@ -3150,6 +3150,126 @@ local LanguagePackXls = {
         EN = '',
         JP = '',
         YN = ''
+    },
+    GuiText_Txt_BoardGame_8 = {
+        ID = 'GuiText_Txt_BoardGame_8',
+        CHS = '只有房主才可以同意玩家进入游戏。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_9 = {
+        ID = 'GuiText_Txt_BoardGame_9',
+        CHS = '你已经在游戏中了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_10 = {
+        ID = 'GuiText_Txt_BoardGame_10',
+        CHS = '参与游戏的玩家已经达到上限。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_11 = {
+        ID = 'GuiText_Txt_BoardGame_11',
+        CHS = '只有房主才可以对房间上锁状态进行更改。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_12 = {
+        ID = 'GuiText_Txt_BoardGame_12',
+        CHS = '房间已经被上锁了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_13 = {
+        ID = 'GuiText_Txt_BoardGame_13',
+        CHS = '房间已经解锁了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_14 = {
+        ID = 'GuiText_Txt_BoardGame_14',
+        CHS = '你已经退出了这个桌子。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_15 = {
+        ID = 'GuiText_Txt_BoardGame_15',
+        CHS = '你已经在观战了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_16 = {
+        ID = 'GuiText_Txt_BoardGame_16',
+        CHS = '你已经参与了游戏。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_17 = {
+        ID = 'GuiText_Txt_BoardGame_17',
+        CHS = '座位已经满了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    GuiText_Txt_BoardGame_18 = {
+        ID = 'GuiText_Txt_BoardGame_18',
+        CHS = '这个座位已经有一个玩家了。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Name_4005 = {
+        ID = 'Item_Name_4005',
+        CHS = '五子棋套装',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Des_4005 = {
+        ID = 'Item_Des_4005',
+        CHS = '随时与你的伙伴下五子棋。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Name_4006 = {
+        ID = 'Item_Name_4006',
+        CHS = '围棋套装',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Item_Des_4006 = {
+        ID = 'Item_Des_4006',
+        CHS = '随时与你的伙伴下围棋。',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 

@@ -11,7 +11,7 @@ local TaskXls = {
         ItemID = 6001,
         TaskDes = '跟导游打个招呼吧。',
         Npc = {12},
-        RewardItem = 0,
+        RewardItem = 4005,
         RewardGold = 150,
         NpcText = 'Task_NpcText_6001'
     },
@@ -27,7 +27,7 @@ local TaskXls = {
         ItemID = 6003,
         TaskDes = '跟热气球技师询问怎么乘坐热气球，他在河对岸的山上。',
         Npc = {3},
-        RewardItem = 0,
+        RewardItem = 4006,
         RewardGold = 150,
         NpcText = 'Task_NpcText_6003'
     },
