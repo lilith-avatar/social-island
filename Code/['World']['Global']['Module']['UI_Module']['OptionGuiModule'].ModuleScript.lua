@@ -87,22 +87,25 @@ function OptionGui:Open()
 	end
 	
 	if(GetIsLocked()) then
-		self.optionGui.ImgSettingBG.BtnLock.Text = '房间解锁'
+		self.optionGui.ImgSettingBG.BtnLock.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_21'].Txt)
 	else
-		self.optionGui.ImgSettingBG.BtnLock.Text = '房间上锁'
+		self.optionGui.ImgSettingBG.BtnLock.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_20'].Txt)
 	end
 	
 	if(GetIsWatching()) then
-		self.optionGui.ImgSettingBG.BtnWatch.Text = '游戏'
+		self.optionGui.ImgSettingBG.BtnWatch.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_23'].Txt)
 		if(not HasEmptySeat()) then
 			self.optionGui.ImgSettingBG.BtnWatch.Alpha = 0.3
 		else
 			self.optionGui.ImgSettingBG.BtnWatch.Alpha = 1.0
 		end
 	else
-		self.optionGui.ImgSettingBG.BtnWatch.Text = '观战'
+		self.optionGui.ImgSettingBG.BtnWatch.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_22'].Txt)
 		self.optionGui.ImgSettingBG.BtnWatch.Alpha = 1.0
 	end
+	self.optionGui.ImgSettingBG.BtnReset.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_19'].Txt)
+	self.optionGui.ImgSettingBG.BtnExit.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_24'].Txt)
+	self.optionGui.ImgSettingBG.BtnCancle.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_25'].Txt)
 	
 	self.optionGui:SetActive(true)
 end

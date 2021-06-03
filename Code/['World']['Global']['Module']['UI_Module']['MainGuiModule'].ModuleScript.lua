@@ -46,6 +46,9 @@ function MainGui:CreateGui()
 		self.listInfo.ImgSide.ImgArrow.Angle = 180 - self.listInfo.ImgSide.ImgArrow.Angle
 		self.listInfo.Size = Vector2(263 - self.listInfo.Size.x, self.listInfo.Size.y)
 	end)
+	
+	self.listInfo.PnlList.ImgGaming.TxtContent.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_26'].Txt)
+	self.listInfo.PnlList.ImgWatch.TxtContent.Text = LanguageUtil.GetText(Config.GuiText['BoardGame_27'].Txt)
 end
 
 function MainGui:UpdateInfo()

@@ -3270,6 +3270,54 @@ local LanguagePackXls = {
         EN = '',
         JP = '',
         YN = ''
+    },
+    Game_Name_1000 = {
+        ID = 'Game_Name_1000',
+        CHS = '五子棋',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Des_1000 = {
+        ID = 'Game_Des_1000',
+        CHS = '建议人数\n2人',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Name_1001 = {
+        ID = 'Game_Name_1001',
+        CHS = '扑克',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Des_1001 = {
+        ID = 'Game_Des_1001',
+        CHS = '建议人数\n2-4人',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Name_1002 = {
+        ID = 'Game_Name_1002',
+        CHS = '围棋',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
+    },
+    Game_Des_1002 = {
+        ID = 'Game_Des_1002',
+        CHS = '建议人数\n2人',
+        CHT = '',
+        EN = '',
+        JP = '',
+        YN = ''
     }
 }
 
