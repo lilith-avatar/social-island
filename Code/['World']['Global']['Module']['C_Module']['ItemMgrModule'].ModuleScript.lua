@@ -42,6 +42,12 @@ function ItemMgr:InitBagData()
     }
     for _, v in pairs(defaultItems) do
         NetUtil.Fire_C('GetItemEvent', localPlayer, v)
+    end    
+	if Data.Player.bag[6001] == nil and Data.Player.bag[4005] == nil then
+        NetUtil.Fire_C('GetItemEvent', localPlayer, 4005)
+    end
+	if Data.Player.bag[6003] == nil and Data.Player.bag[4006] == nil then
+        NetUtil.Fire_C('GetItemEvent', localPlayer, 4006)
     end
 end
 

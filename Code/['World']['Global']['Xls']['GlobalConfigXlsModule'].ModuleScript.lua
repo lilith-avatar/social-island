@@ -7,30 +7,12 @@
 --- source file: .//Global_Config.xls
 
 local GlobalConfigXls = {
-    DefaultLanguage = {
-        Key = 'DefaultLanguage',
-        Value = "EN"
-    },
-    GameMaxNum = {
-        Key = 'GameMaxNum',
-        Value = 12.0
-    },
-    GameMinNum = {
-        Key = 'GameMinNum',
-        Value = 1.0
-    },
-    WorldTable = {
-        Key = 'WorldTable',
-        Value = "G_Table_Wood_World"
-    },
-    LocalDefaultTable = {
-        Key = 'LocalDefaultTable',
-        Value = "G_Table_Wood_Default"
-    },
-    LocalTableOffset = {
-        Key = 'LocalTableOffset',
-        Value = Vector3(0, 4.3, 0)
-    }
+    DefaultLanguage = "CHS",
+    GameMaxNum = 12.0,
+    GameMinNum = 1.0,
+    WorldTable = "G_Table_Wood_World",
+    LocalDefaultTable = "G_Table_Wood_Default",
+    LocalTableOffset = Vector3(0, 4.3, 0)
 }
 
 return GlobalConfigXls
