@@ -70,7 +70,7 @@ Events.ServerEvents = {
     'TryRotateStackEvent',
     'TryAddStackEvent',
     'TryRemoveStackEvent',
-    'TryAdsorbEvent',
+    'TryAdsorbEvent'
 }
 
 -- 客户端事件列表
@@ -199,7 +199,8 @@ Events.ClientEvents = {
     'RoomDestroyEvent',
     'EnterRoomSyncEvent', ---玩家进入房间后服务端同步给这个玩家这个房间当前的信息
     'EnterGameSyncEvent',
-    'RequestEnterEvent'
+    'RequestEnterEvent',
+    'PlayerInvincibleEvent'
 }
 
 return Events
