@@ -43,7 +43,9 @@ function InitServer()
     RunInitDefault()
     InitOtherModules()
     initialized = true
-	StatsManager.EnableTrafficControl = false
+	if StatsManager then
+		StatsManager.EnableTrafficControl = false
+	end
 end
 
 --- 初始化服务器的CustomEvent

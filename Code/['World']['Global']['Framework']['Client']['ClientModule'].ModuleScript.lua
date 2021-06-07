@@ -43,7 +43,9 @@ function InitClient()
     RunInitDefault()
     InitOtherModules()
     initialized = true
-	StatsManager.EnableTrafficControl = false
+	if StatsManager then
+		StatsManager.EnableTrafficControl = false
+	end
 end
 
 --- 初始化心跳包
