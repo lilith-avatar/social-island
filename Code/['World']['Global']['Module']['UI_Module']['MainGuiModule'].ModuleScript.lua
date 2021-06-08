@@ -172,6 +172,7 @@ function MainGui:EnterRoomEventHandler(_roomUuid)
 end
 
 function MainGui:LeaveRoomEventHandler(_roomUuid)
+	wait()
 	if not LocalRooms:GetLPRoom() then return end
 	if(_roomUuid ~= LocalRooms:GetLPRoom().str_uuid) then
 		return 
@@ -186,9 +187,6 @@ function MainGui:StateChangedEventHandler(_roomUuid)
 		return 
 	end
 	self:UpdateInfo()
-	invoke(function()
-		self:UpdateInfo()
-	end, 0.1)
 end
 
 function MainGui:EnterRoomSyncEventHandler(_roomUuid)
