@@ -566,16 +566,16 @@ end
 function PlayerCtrl:OutlineCtrlEventHandler(_hitObject, _switch)
     if _switch == true then
         if _hitObject.isModel then
-            _hitObject:ShowOutline(Color(255, 255, 0, 255), 5, false)
+            _hitObject:ShowOutline(Color(255, 255, 0, 255), 5, false,true)
             return
         end
         if _hitObject.Parent and _hitObject.Parent.NpcAvatar then
-            _hitObject.Parent.NpcAvatar:ShowOutline(Color(255, 255, 0, 255), 5, false)
+            _hitObject.Parent.NpcAvatar:ShowOutline(Color(255, 255, 0, 255), 5, false,true)
             return
         end
         for k, v in pairs(_hitObject:GetDescendants()) do
             if v.isModel then
-                v:ShowOutline(Color(255, 255, 0, 255), 5, true)
+                v:ShowOutline(Color(255, 255, 0, 255), 5, true,true)
                 return
             end
         end
