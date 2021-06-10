@@ -93,7 +93,7 @@ function this:SetAnimSlot(_data)
 			SoundUtil.Play2DSE(localPlayer.UserId, 101)
             CloudLogUtil.UploadLog('pannel_actions', 'movement_stickers_' .. _data.AnimName)
             SocialAnimationGUI:SetActive(false)
-            localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, _data.LoopMode, 1)
+            localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, false, 1)
         end
     )
 end
