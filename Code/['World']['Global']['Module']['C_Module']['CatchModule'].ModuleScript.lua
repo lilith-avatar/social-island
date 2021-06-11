@@ -169,7 +169,7 @@ function Catch:Search()
         function()
             localPlayer.Avatar:PlayAnimation('PickUpLight', 2, 1, 0.1, true, false, 1)
             wait(.5)
-			SoundUtil.Stop2DSE(localPlayer.UserId,24)
+			SoundUtil.Play2DSE(localPlayer.UserId,24)
             NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             NetUtil.Fire_C('GetItemFromPoolEvent', localPlayer, Config.Animal[prey.AnimalID.Value].ItemPoolID, 0)
             CloudLogUtil.UploadLog(
@@ -197,7 +197,7 @@ function Catch:Touch()
     NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_5.Txt), 2, false)
     CloudLogUtil.UploadLog('inter', 'hunt_' .. prey.AnimalID.Value .. '_touch')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-    SoundUtil.Stop2DSE(localPlayer.UserId,6)
+    SoundUtil.Play2DSE(localPlayer.UserId,6)
 end
 
 --更新捕捉互动UI
