@@ -1,79 +1,52 @@
-local Swimming = class('Swimming', PlayerActState)
+local SwimmingState = class('SwimmingState', PlayerActState)
 
-local timer = 0
+local isSufaceWater = true
 
-function Swimming:OnEnter()
-    timer = 0
+function SwimmingState:initialize(_controller, _stateName)
+    PlayerActState.initialize(self, _controller, _stateName)
+    PlayerAnimMgr:CreateSingleClipNode('anim_human_swim_freestyle_01', 1, _stateName .. 'Freestyle')
+    PlayerAnimMgr:CreateSingleClipNode('anim_human_swim_breaststroke_01', 1, _stateName .. 'Breaststroke')
+end
+
+function SwimmingState:InitData()
+    self:AddTransition(
+        'ToSwimmingEndState',
+        self.controller.states['SwimmingEndState'],
+        -1,
+        function()
+            return not self:MoveMonitor()
+        end
+    )
+    self:AddTransition(
+        'ToSwimEndState',
+        self.controller.states['SwimEndState'],
+        -1,
+        function()
+            return not self:SwimMonitor()
+        end
+    )
+end
+
+function SwimmingState:OnEnter()
     PlayerActState.OnEnter(self)
-    --localPlayer.Avatar:PlayAnimation("Swimming", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation('Swimming', 2, 1, 0.1, true, true, 1)
+    isSufaceWater = self:IsWaterSuface()
+    if isSufaceWater then
+        PlayerAnimMgr:Play(self.stateName .. 'Freestyle', 0, 1, 0.3, 0.3, true, true, 1)
+    else
+        PlayerAnimMgr:Play(self.stateName .. 'Breaststroke', 0, 1, 0.3, 0.3, true, true, 1)
+    end
 end
 
-function Swimming:OnUpdate(dt)
+function SwimmingState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({'Idle', 'Fly'})
-    self:IdleMonitor()
-    self:JumpMonitor()
-    self:Splash(dt)
+    self:Swim()
+    if isSufaceWater ~= self:IsWaterSuface() then
+        self:OnEnter()
+    end
 end
 
-function Swimming:OnLeave()
+function SwimmingState:OnLeave()
     PlayerActState.OnLeave(self)
 end
 
----监听静止
-function Swimming:IdleMonitor()
-    local dir = PlayerCtrl.finalDir
-    dir.y = 0
-    if dir.Magnitude > 0 then
-        if PlayerCam:IsFreeMode() then
-            localPlayer:FaceToDir(dir, 4 * math.pi)
-        end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-        local LVy = (PlayerCam.playerGameCam.Forward.y + 0.2) * 7
-        if localPlayer.Position.y > -15.7 then
-            if LVy > 0 then
-                LVy = 0
-            else
-                LVy = LVy
-            end
-        else
-            LVy = LVy
-        end
-        localPlayer.LinearVelocity = Vector3(localPlayer.LinearVelocity.x, LVy, localPlayer.LinearVelocity.z)
-        if localPlayer.State == 1 and PlayerCam.playerGameCam.Forward.y > 0 then
-            localPlayer.Position = localPlayer.Position + Vector3(0, 0.1, 0)
-        end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z).Normalized)
-    else
-        FsmMgr.playerActFsm:Switch('SwimIdle')
-    end
-end
-
---水花
-function Swimming:Splash(dt)
-    if localPlayer.Position.y > -15.7 then
-        if timer < 0.5 then
-            timer = timer + dt
-        else
-            local effect = world:CreateInstance('FootStep', 'FootStep', world, localPlayer.Position + Vector3(0, 1, 0))
-            invoke(
-                function()
-                    effect:Destroy()
-                end,
-                1
-            )
-            timer = 0
-        end
-    end
-end
-
-function Swimming:JumpMonitor()
-    if FsmMgr.playerActFsm.stateTrigger.Jump then
-        if localPlayer.Position.y > -15.7 then
-            FsmMgr.playerActFsm:Switch('Jump')
-        end
-    end
-end
-
-return Swimming
+return SwimmingState

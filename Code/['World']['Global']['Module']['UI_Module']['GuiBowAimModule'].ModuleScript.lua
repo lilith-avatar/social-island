@@ -59,9 +59,6 @@ function GuiBowAim:EventBind()
                     this.touchGui.AimStick.Size = Vector2(1800, 1500)
                     isUse = true
                 end
-            --[[if FsmMgr.playerActFsm.curState.stateName ~= 'BowChargeIdle' then
-                  
-                end]]
             end
         end
     )
@@ -69,13 +66,13 @@ function GuiBowAim:EventBind()
         function()
             if Input.GetPressKeyData(Enum.KeyCode.F) == Enum.KeyState.KeyStateHold then
                 if isAble then
-                    if FsmMgr.playerActFsm.curState.stateName ~= 'BowChargeIdle' then
+                    --[[if FsmMgr.playerActFsm.curState.stateName ~= 'BowChargeIdle' then
                         --PlayerCam:CameraMove(touchInfo)
                     else
                         NetUtil.Fire_C('UseItemInHandEvent', localPlayer)
                         this.touchGui.AimStick.Size = Vector2(1800, 1500)
                         isUse = true
-                    end
+                    end]]
                 --PlayerCam:CameraMove(touchInfo)
                 end
             end

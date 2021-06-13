@@ -1,31 +1,78 @@
-local BowIdle = class("BowIdle", PlayerActState)
+local BowIdleState = class('BowIdleState', PlayerActState)
 
-function BowIdle:OnEnter()
-    PlayerActState.OnEnter(self)
-    PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
-    localPlayer:MoveTowards(Vector2.Zero)
-    --localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("BowEquipIdle", 2, 1, 0.2, true, true, 1)
+function BowIdleState:initialize(_controller, _stateName)
+    PlayerActState.initialize(self, _controller, _stateName)
+    PlayerAnimMgr:CreateSingleClipNode('BowEquipIdle', 1, _stateName)
 end
 
-function BowIdle:OnUpdate(dt)
-    PlayerActState.OnUpdate(self, dt)
-    localPlayer:MoveTowards(Vector2.Zero)
-    FsmMgr.playerActFsm:TriggerMonitor(
-        {
-            "Idle",
-            "SwimIdle",
-            "BowHit",
-            "BowChargeIdle",
-            "TakeOutItem"
-        }
+function BowIdleState:InitData()
+    self:AddTransition(
+        'ToBowMoveState',
+        self.controller.states['BowMoveState'],
+        -1,
+        function()
+            return self:MoveMonitor()
+        end
     )
-    self:MoveMonitor("Bow")
-    self:JumpMonitor("Bow")
+    self:AddTransition(
+        'ToIdleState',
+        self.controller.states['IdleState'],
+        -1,
+        function()
+            return self.controller.triggers['IdleState']
+        end
+    )
+    self:AddTransition(
+        'ToBowChargeState',
+        self.controller.states['BowChargeState'],
+        -1,
+        function()
+            return self.controller.triggers['BowChargeState']
+        end
+    )
+    self:AddTransition(
+        'ToTakeOutItemState',
+        self.controller.states['TakeOutItemState'],
+        -1,
+        function()
+            return self.controller.triggers['TakeOutItemState']
+        end
+    )
+    self:AddTransition(
+        'ToBowHitState',
+        self.controller.states['BowHitState'],
+        -1,
+        function()
+            return self.controller.triggers['BowHitState']
+        end
+    )
+    self:AddTransition(
+        'ToBowJumpBeginState',
+        self.controller.states['BowJumpBeginState'],
+        -1,
+        function()
+            return self.controller.triggers['BowJumpBeginState']
+        end
+    )
 end
 
-function BowIdle:OnLeave()
+function BowIdleState:OnEnter()
+    PlayerActState.OnEnter(self)
+    localPlayer.CharacterWidth = 0.5
+    localPlayer.CharacterHeight = 1.7
+    localPlayer.Avatar.LocalPosition = Vector3.Zero
+    localPlayer.RotationRate = EulerDegree(0, 540, 0)
+    localPlayer:SetMovementMode(Enum.MovementMode.MOVE_Walking)
+    PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
+end
+
+function BowIdleState:OnUpdate(dt)
+    PlayerActState.OnUpdate(self, dt)
+    self:FallMonitor()
+end
+
+function BowIdleState:OnLeave()
     PlayerActState.OnLeave(self)
 end
 
-return BowIdle
+return BowIdleState

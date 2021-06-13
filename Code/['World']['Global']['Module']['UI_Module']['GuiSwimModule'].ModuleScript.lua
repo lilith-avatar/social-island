@@ -31,7 +31,7 @@ end
 
 ---Update函数 test
 function GuiSwim:Update(_dt)
-    if FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or FsmMgr.playerActFsm.curState.stateName == 'Swimming' then
+    if localPlayer:IsSwimming() then
         if localPlayer.Position.y > -15.7 and not jumpBtn.ActiveSelf then
             jumpBtn:SetActive(true)
         elseif localPlayer.Position.y < -15.7 and jumpBtn.ActiveSelf then

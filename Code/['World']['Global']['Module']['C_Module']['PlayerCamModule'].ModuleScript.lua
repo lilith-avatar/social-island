@@ -56,12 +56,13 @@ end
 function PlayerCam:IsFreeMode()
     return (this.curCamera.CameraMode == Enum.CameraMode.Social and this.curCamera.Distance >= 0) or
         this.curCamera.CameraMode == Enum.CameraMode.Orbital or
-        this.curCamera.CameraMode == Enum.CameraMode.Custom
+        this.curCamera.CameraMode == Enum.CameraMode.Custom or
+        this.curCamera.CameraMode == Enum.CameraMode.Smart
 end
 
 -- 滑屏转向
 function PlayerCam:CameraMove(touchInfo)
-    if #touchInfo == 1 and not(GameFlow.inGame) then
+    if #touchInfo == 1 and not (GameFlow.inGame) then
         if this:IsFreeMode() then
             this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
@@ -95,6 +96,16 @@ function PlayerCam:TPSGetRayDir()
     return this.tpsCam.Position + this.tpsCam.Forward * 100
 end
 
+-- Fov缩放
+function PlayerCam:CameraFOVZoom(_fovChange, _maxFov)
+    if _fovChange > 0 and this.curCamera.FieldOfView > _maxFov + 1 then
+        _fovChange = -0.2
+    elseif _fovChange > 0 and this.curCamera.FieldOfView > _maxFov then
+        _fovChange = 0
+    end
+    this.curCamera.FieldOfView = math.clamp(this.curCamera.FieldOfView + _fovChange, 60, 90)
+end
+
 ---开关游泳滤镜
 function PlayerCam:SwitchSwimFilter(_switch)
     swimFilterSwitch = _switch
@@ -104,14 +115,14 @@ function PlayerCam:SwitchSwimFilter(_switch)
         this.playerGameCam.WaterAmbientOcclusion:SetActive(true)
         this.playerGameCam.WaterGrain:SetActive(true)
         this.playerGameCam.WaterColorGrading:SetActive(true)
-		this.playerGameCam.WaterEffect:SetActive(true)
+        this.playerGameCam.WaterEffect:SetActive(true)
     else
         this.playerGameCam.WaterVignette:SetActive(false)
         this.playerGameCam.WaterGaussionBlur:SetActive(false)
         this.playerGameCam.WaterAmbientOcclusion:SetActive(false)
         this.playerGameCam.WaterGrain:SetActive(false)
         this.playerGameCam.WaterColorGrading:SetActive(false)
-		this.playerGameCam.WaterEffect:SetActive(false)
+        this.playerGameCam.WaterEffect:SetActive(false)
     end
 end
 
@@ -132,7 +143,7 @@ end
 
 ---游泳滤镜检测
 function PlayerCam:UpdateSwimFilter()
-    if FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and FsmMgr.playerActFsm.curState.stateName ~= 'Swimming' then
+    if localPlayer:IsSwimming() then
         if swimFilterSwitch == true then
             this:SwitchSwimFilter(false)
         end
@@ -151,11 +162,11 @@ end
 
 -- 修改玩家当前相机
 function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
-	if not(GameFlow.inGame) then
-		this.curCamera = _cam or this.playerGameCam
-		this.curCamera.LookAt = _lookAt or localPlayer
-		world.CurrentCamera = this.curCamera
-	end
+    if not (GameFlow.inGame) then
+        this.curCamera = _cam or this.playerGameCam
+        this.curCamera.LookAt = _lookAt or localPlayer
+        world.CurrentCamera = this.curCamera
+    end
 end
 
 -- 转变为FPS相机

@@ -29,14 +29,13 @@ end
 --拿在手中使用
 function ConsumableItem:UseInHand()
     ItemBase.UseInHand(self)
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'UseItem')
-    localPlayer.Avatar:PlayAnimation(self.baseData.UseAniName, 8, 1, 0.2, true, false, 1)
+    PlayerAnimMgr:CreateSingleClipNode(self.baseData.UseAniName, 1, 'UseConsumableItem', 1)
+    PlayerAnimMgr:Play('UseConsumableItem', 1, 1, 0.2, 0.2, true, false, 1)
     NetUtil.Fire_C('GetBuffEvent', localPlayer, self.derivedData.UseAddBuffID, self.derivedData.UseAddBuffDur)
     NetUtil.Fire_C('RemoveBuffEvent', localPlayer, self.derivedData.UseRemoveBuffID)
     invoke(
         function()
-            localPlayer.Avatar:StopAnimation(self.baseData.UseAniName, 8)
-            NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
+            localPlayer.Avatar:StopBlendSpaceNode(1)
         end,
         self.baseData.UseTime
     )
@@ -45,7 +44,6 @@ function ConsumableItem:UseInHand()
         self:Unequip()
     else
         self.equipObj:Destroy()
-        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
         GuiControl:UpdateUseBtnIcon()
         GuiControl:UpdateTakeOffBtn()
     end

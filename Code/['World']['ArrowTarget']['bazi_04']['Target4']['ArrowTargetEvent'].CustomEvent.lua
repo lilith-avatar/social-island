@@ -1,0 +1,2 @@
+--自定义事件脚本, 由该对象的Fire或者BroadcastEvent函数触发的
+--参数(arg1, arg2, arg3 ...) : 为各个事件参数
