@@ -38,8 +38,7 @@ function PlayerActState:Move(_isSprint)
             localPlayer:AddMovementInput(dir, 0.5)
         end
     else
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z))
-        --localPlayer:AddMovementInput(dir, 0.5)
+        localPlayer:AddMovementInput(dir, 0.5)
     end
 end
 
@@ -110,8 +109,10 @@ function PlayerActState:SpeedMonitor(_maxSpeed)
         math.clamp((velocity.Magnitude / (_maxSpeed or localPlayer.MaxWalkSpeed)), 0, 1)
     )
     --print(math.clamp((velocity.Magnitude / (_maxSpeed or 9)), 0, 1))
-    velocity = math.cos(math.rad(Vector3.Angle(velocity, localPlayer.Left))) * velocity.Magnitude
-    localPlayer.Avatar:SetParamValue('speedX', math.clamp((velocity / (_maxSpeed or localPlayer.MaxWalkSpeed)), -1, 1))
+    local vX = math.cos(math.rad(Vector3.Angle(velocity, localPlayer.Left))) * velocity.Magnitude
+    localPlayer.Avatar:SetParamValue('speedX', math.clamp((vX / (_maxSpeed or localPlayer.MaxWalkSpeed)), -1, 1))
+    local vZ = math.cos(math.rad(Vector3.Angle(velocity, localPlayer.Forward))) * velocity.Magnitude
+    localPlayer.Avatar:SetParamValue('speedZ', math.clamp((vZ / (_maxSpeed or localPlayer.MaxWalkSpeed)), -1, 1))
 end
 
 ---监听下落状态

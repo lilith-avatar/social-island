@@ -151,12 +151,15 @@ end
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
     FsmMgr:FsmTriggerEventHandler('JumpBeginState')
+    FsmMgr:FsmTriggerEventHandler('BowJumpBeginState')
 end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerHello()
     CloudLogUtil.UploadLog('pannel_actions', 'movement_sayhi')
-    localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
+    --localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
+    PlayerAnimMgr:CreateSingleClipNode('SocialHello', 1, 'SocialHello')
+    PlayerAnimMgr:Play('SocialHello', 0, 1, 0.2, 0.2, true, false, 1)
 end
 
 --脚步声
@@ -437,10 +440,8 @@ end
 -- 角色受伤
 function PlayerCtrl:CPlayerHitEventHandler(_data)
     if GameFlow.inGame == false then
-        FsmMgr:FsmTriggerEventHandler('Hit')
-        FsmMgr:FsmTriggerEventHandler('BowHit')
-        FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
-        FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
+        FsmMgr:FsmTriggerEventHandler('HitState')
+        FsmMgr:FsmTriggerEventHandler('BowHitState')
         ------print('角色受伤', table.dump(_data))
         BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
         BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)

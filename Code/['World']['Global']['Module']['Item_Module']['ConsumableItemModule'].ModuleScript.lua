@@ -29,7 +29,7 @@ end
 --拿在手中使用
 function ConsumableItem:UseInHand()
     ItemBase.UseInHand(self)
-    PlayerAnimMgr:CreateSingleClipNode(self.baseData.UseAniName, 1, 'UseConsumableItem', 1)
+    PlayerAnimMgr:CreateSingleClipNode(self.baseData.UseAniName, 1, 'UseConsumableItem')
     PlayerAnimMgr:Play('UseConsumableItem', 1, 1, 0.2, 0.2, true, false, 1)
     NetUtil.Fire_C('GetBuffEvent', localPlayer, self.derivedData.UseAddBuffID, self.derivedData.UseAddBuffDur)
     NetUtil.Fire_C('RemoveBuffEvent', localPlayer, self.derivedData.UseRemoveBuffID)

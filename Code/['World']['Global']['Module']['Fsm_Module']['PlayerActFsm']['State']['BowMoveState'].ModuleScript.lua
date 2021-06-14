@@ -1,26 +1,16 @@
-local BowIdleState = class('BowIdleState', PlayerActState)
+local BowMoveState = class('BowMoveState', PlayerActState)
 
-function BowIdleState:initialize(_controller, _stateName)
+function BowMoveState:initialize(_controller, _stateName)
     PlayerActState.initialize(self, _controller, _stateName)
-    local animsM = {
-        {'anim_man_idle_01', 0.0, 1.0},
-        {'anim_man_walkfront_01', 0.25, 1.0},
-        {'anim_man_runfront_01', 0.5, 1.0},
-        {'anim_man_sprint_01', 1, 1.0}
+    local anims = {
+        {'BowEquipIdle', 0.0, 1.0},
+        {'WalkingFront', 0.25, 1.0},
+        {'BowRun', 0.5, 1.0}
     }
-
-    local animsW = {
-        {'anim_woman_idle_01', 0.0, 1.0},
-        {'anim_woman_walkfront_01', 0.25, 1.0},
-        {'anim_woman_runfront_01', 0.5, 1.0},
-        {'anim_woman_sprint_01', 1, 1.0}
-    }
-    PlayerAnimMgr:Create1DClipNode(animsM, 'speedXZ', _stateName .. 'LowerBody', 1)
-    PlayerAnimMgr:Create1DClipNode(animsW, 'speedXZ', _stateName .. 'LowerBody', 2)
-    PlayerAnimMgr:CreateSingleClipNode('BowChargeIdle', 1, _stateName .. 'UpperBody')
+    PlayerAnimMgr:Create1DClipNode(anims, 'speedXZ', _stateName)
 end
 
-function BowIdleState:InitData()
+function BowMoveState:InitData()
     self:AddTransition(
         'ToIdleState',
         self.controller.states['IdleState'],
@@ -30,38 +20,53 @@ function BowIdleState:InitData()
         end
     )
     self:AddTransition(
+        'ToBowIdleState',
+        self.controller.states['BowIdleState'],
+        -1,
+        function()
+            return not self:MoveMonitor()
+        end
+    )
+    self:AddTransition(
+        'ToBowChargeState',
+        self.controller.states['BowChargeState'],
+        -1,
+        function()
+            return self.controller.triggers['BowChargeState']
+        end
+    )
+    --[[self:AddTransition(
         'ToBowHitState',
         self.controller.states['BowHitState'],
         -1,
         function()
             return self.controller.triggers['BowHitState']
         end
-    )
+    )]]
     self:AddTransition(
-        'ToBowAttackState',
-        self.controller.states['BowAttackState'],
+        'ToBowJumpBeginState',
+        self.controller.states['BowJumpBeginState'],
         -1,
         function()
-            return self.controller.triggers['BowAttackState']
+            return self.controller.triggers['BowJumpBeginState']
         end
     )
 end
 
-function BowIdleState:OnEnter()
+function BowMoveState:OnEnter()
     PlayerActState.OnEnter(self)
-    PlayerAnimMgr:Play(self.stateName .. 'UpperBody', 1, 1, 0.2, 0.2, true, true, 1)
-    PlayerAnimMgr:Play(self.stateName .. 'LowerBody', 2, 1, 0.2, 0.2, true, true, 1)
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
 end
 
-function BowIdleState:OnUpdate(dt)
+function BowMoveState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     self:SpeedMonitor()
     self:Move()
     self:FallMonitor()
 end
 
-function BowIdleState:OnLeave()
+function BowMoveState:OnLeave()
     PlayerActState.OnLeave(self)
 end
 
-return BowIdleState
+return BowMoveState

@@ -150,6 +150,28 @@ function PlayerAnimMgr:Play(_animNode, _layer, _weight, _transIn, _transOut, _is
     )
 end
 
+function PlayerAnimMgr:PlayAnimationEventHandler(
+    _animName,
+    _layer,
+    _weight,
+    _transIn,
+    _transOut,
+    _isInterrupt,
+    _isLoop,
+    _speedScale)
+    this:CreateSingleClipNode(_animName, 1, _animName)
+    this:Play(
+        _animName,
+        _layer or 0,
+        _weight or 1,
+        _transIn or 0.2,
+        _transOut or 0.2,
+        _isInterrupt or true,
+        _isLoop or false,
+        _speedScale or 1
+    )
+end
+
 function PlayerAnimMgr:Update(dt)
 end
 

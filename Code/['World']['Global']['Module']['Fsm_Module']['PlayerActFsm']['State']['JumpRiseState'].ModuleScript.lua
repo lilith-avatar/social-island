@@ -20,7 +20,6 @@ end
 function JumpRiseState:OnEnter()
     PlayerActState.OnEnter(self)
     PlayerAnimMgr:Play(self.stateName, 0, 1, 0.1, 0.1, true, true, 1)
-    self.controller.jumpCount = self.controller.jumpCount - 1
 end
 
 function JumpRiseState:OnUpdate(dt)

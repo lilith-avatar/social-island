@@ -30,22 +30,14 @@ function BowIdleState:InitData()
             return self.controller.triggers['BowChargeState']
         end
     )
-    self:AddTransition(
-        'ToTakeOutItemState',
-        self.controller.states['TakeOutItemState'],
-        -1,
-        function()
-            return self.controller.triggers['TakeOutItemState']
-        end
-    )
-    self:AddTransition(
+    --[[self:AddTransition(
         'ToBowHitState',
         self.controller.states['BowHitState'],
         -1,
         function()
             return self.controller.triggers['BowHitState']
         end
-    )
+    )]]
     self:AddTransition(
         'ToBowJumpBeginState',
         self.controller.states['BowJumpBeginState'],
@@ -64,6 +56,8 @@ function BowIdleState:OnEnter()
     localPlayer.RotationRate = EulerDegree(0, 540, 0)
     localPlayer:SetMovementMode(Enum.MovementMode.MOVE_Walking)
     PlayerCam:SetCurCamEventHandler(PlayerCam.tpsCam)
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
+    localPlayer.Avatar:StopBlendSpaceNode(1)
 end
 
 function BowIdleState:OnUpdate(dt)

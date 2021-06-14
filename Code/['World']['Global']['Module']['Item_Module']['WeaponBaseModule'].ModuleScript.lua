@@ -49,7 +49,7 @@ end
 
 --攻击
 function WeaponBase:Attack()
-    PlayerAnimMgr:CreateSingleClipNode(self.baseData.UseAniName, 1, 'WeaponAttack', 1)
+    PlayerAnimMgr:CreateSingleClipNode(self.baseData.UseAniName, 1, 'WeaponAttack')
     PlayerAnimMgr:Play('WeaponAttack', 1, 1, 0.2, 0.2, true, false, 1)
     self.useCT = self.baseData.UseCD
     invoke(

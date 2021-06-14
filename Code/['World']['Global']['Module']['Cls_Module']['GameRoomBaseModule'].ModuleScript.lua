@@ -72,11 +72,14 @@ function GameRoomBase:initialize(_parent, _player, _pos, _maxNum, _lock)
     self:TryEnter(_player)
     self.model_worldTable.GameName.NameTxt.Text = LanguageUtil.GetText(Config.GuiText.BoardGame_4.Txt), 3, true
     ---埋点
-    UploadLog('creat_event', {
-        user_id = _player.UserId,
-        gameroot_id = CloudLogUtil.gameId,
-        player_count = _maxNum
-    })
+    UploadLog(
+        'creat_event',
+        {
+            user_id = _player.UserId,
+            gameroot_id = CloudLogUtil.gameId,
+            player_count = _maxNum
+        }
+    )
 end
 
 ---房间的更新函数
@@ -98,7 +101,6 @@ function GameRoomBase:Change(_id, _player)
         return
     end
     ChangeGame(self, _id)
-
 end
 
 --- 玩家尝试进入房间,直接进入观战,相应的客户端弹出选择座位界面
@@ -117,12 +119,15 @@ function GameRoomBase:TryEnter(_player)
     -- NetUtil.Broadcast('StateChangedEvent', self.str_uuid, _player, Const.GamingStateEnum.Watching)
     SyncRoomInfo(self, _player)
     ---埋点
-    UploadLog('join_event', {
-        user_id = _player.UserId,
-        gameroot_id = CloudLogUtil.gameId,
-    })
-	
-	self:SwitchState(_player, Const.GamingStateEnum.Gaming)
+    UploadLog(
+        'join_event',
+        {
+            user_id = _player.UserId,
+            gameroot_id = CloudLogUtil.gameId
+        }
+    )
+
+    self:SwitchState(_player, Const.GamingStateEnum.Gaming)
 end
 
 --- 房主允许玩家进入游戏
@@ -131,16 +136,16 @@ function GameRoomBase:AllowEnter(_player, _enter_player, _index)
         return
     end
     if self.player_owner ~= _player then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_8.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_8.Txt), 3, true)
         return
     end
     ---房主允许,按照传的座位索引尝试进入游戏
     if self.arr_gamingPlayers[_enter_player.UserId] then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_9.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_9.Txt), 3, true)
         return
     end
     if self:GetGameNum() >= self.t_config.GameMaxNum then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
         return
     end
     if TakeSeat(self, _enter_player, _index) then
@@ -153,15 +158,15 @@ end
 --- 玩家尝试对房间上锁状态进行更改
 function GameRoomBase:TryChangeLock(_player, _lock)
     if self.player_owner ~= _player then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_11.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_11.Txt), 3, true)
         return
     end
     if self.bool_locked and _lock then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_12.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_12.Txt), 3, true)
         return
     end
     if not self.bool_locked and not _lock then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_13.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_13.Txt), 3, true)
         return
     end
     self.bool_locked = _lock
@@ -172,18 +177,23 @@ end
 ---@param _index number 若是切换到游戏状态,则选择的座位号,不填会随机选择一个
 function GameRoomBase:SwitchState(_player, _state, _index)
     if not self:CheckPlayer(_player) then
-		NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_14.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_14.Txt), 3, true)
         return
     end
     if self.num_id == -1 then
         print('房主还未选择游戏')
-		invoke(function() self:SwitchState(_player, _state, _index) end,1)
+        invoke(
+            function()
+                self:SwitchState(_player, _state, _index)
+            end,
+            1
+        )
         return
     end
     if _state == Const.GamingStateEnum.Watching then
         ---切换到观战状态
         if self.arr_watchingPlayers[_player.UserId] then
-			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_15.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_15.Txt), 3, true)
             return
         end
         self.arr_gamingPlayers[_player.UserId] = nil
@@ -193,11 +203,11 @@ function GameRoomBase:SwitchState(_player, _state, _index)
     elseif _state == Const.GamingStateEnum.Gaming then
         ---切换到游戏状态
         if self.arr_gamingPlayers[_player.UserId] then
-			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_16.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_16.Txt), 3, true)
             return
         end
         if self:GetGameNum() >= self.t_config.GameMaxNum then
-			NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
             return
         end
         if not _index then
@@ -259,9 +269,12 @@ function GameRoomBase:TryLeave(_player)
         end
     end
     ---埋点
-    UploadLog('quit_event', {
-        user_id = _player.UserId,
-    })
+    UploadLog(
+        'quit_event',
+        {
+            user_id = _player.UserId
+        }
+    )
 end
 
 --- 获取观战人数
@@ -412,7 +425,7 @@ function GameRoomBase:TryAdsorb(_player, _uuid)
                 unit:Select(_player)
                 v:Select(_player)
                 ---@type S_StackBase
-                local stack = S_StackBase:new({ v, unit })
+                local stack = S_StackBase:new({v, unit})
                 local uuid = stack.str_uuid
                 self.arr_stacks[uuid] = stack
                 stack:Select(_player)
@@ -422,7 +435,6 @@ function GameRoomBase:TryAdsorb(_player, _uuid)
             end
         else
             ---没有形成的堆叠和对象,只能追加选择,不做任何其他操作
-
         end
     end
 end
@@ -486,7 +498,7 @@ end
 
 --- 更改游戏,销毁房间中所有对象,所有玩家离开游戏状态,进入观战状态,然后房主进入一号位游戏
 function ChangeGame(self, _id)
-	print(_id)
+    print(_id)
     if _id == -1 then
         return
     end
@@ -495,7 +507,7 @@ function ChangeGame(self, _id)
     end
     self.num_id = _id
     self.t_config = Config.Game[_id]
-	local game_Name = LanguageUtil.GetText(Config.Game[_id].Name)
+    local game_Name = LanguageUtil.GetText(Config.Game[_id].Name)
     self.model_worldTable.GameName.NameTxt.Text = game_Name
     ---销毁所有堆叠
     for i, v in pairs(self.arr_stacks) do
@@ -519,9 +531,12 @@ function ChangeGame(self, _id)
     self.ins_ani:ChangeGame(_id)
     self:SwitchState(self.player_owner, Const.GamingStateEnum.Gaming, 1)
     ---埋点
-    UploadLog('select_event', {
-        game_id = _id,
-    })
+    UploadLog(
+        'select_event',
+        {
+            game_id = _id
+        }
+    )
 end
 
 ---检查所有对象上一帧的位置和旋转并进行同步
@@ -548,7 +563,7 @@ function TrySync(self)
             unit:TrySyncRot()
             isSync = true
         end
-        :: Continue ::
+        ::Continue::
     end
     if isSync then
         Broadcast('ElementSyncEvent', self, syncData)
@@ -729,7 +744,7 @@ function CreateStack(self, _player, _type, _shuffle)
             info[type] = info[type] or {}
             table.insert(info[type], i)
         end
-        :: Continue ::
+        ::Continue::
     end
     for i, v in pairs(arr_selectedStacks) do
         local type = v:GetType()
@@ -864,7 +879,7 @@ function PreCreateSeat(self)
         local seat = world:CreateInstance(self.t_config.WorldSeat, '世界下椅子_' .. tostring(i), self.model_worldTable)
         seat.LocalPosition = Vector3(x, 0, z)
         seat.Forward = self.model_worldTable.Position - seat.Position
-        table.insert(self.arr_seats, { Model = seat, Player = nil })
+        table.insert(self.arr_seats, {Model = seat, Player = nil})
     end
 end
 
@@ -882,7 +897,13 @@ function PreCreateStack(self)
         local pos = v.Position
         local units = {}
         for index, unit_id in ipairs(v.Units) do
-            local unit_uuid = CreateElement(self, unit_id, pos + self.t_config.Focus + self.model_worldTable.Position + (index - 1) * Vector3.Up * Config.Unit[unit_id].Height)
+            local unit_uuid =
+                CreateElement(
+                self,
+                unit_id,
+                pos + self.t_config.Focus + self.model_worldTable.Position +
+                    (index - 1) * Vector3.Up * Config.Unit[unit_id].Height
+            )
             table.insert(units, self.arr_units[unit_uuid])
         end
         ---@type S_StackBase
@@ -932,14 +953,17 @@ function TakeSeat(self, _player, _index)
         NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_18.Txt), 3, true)
         return false
     end
-    invoke(function()
-        wait()
-        if self.arr_gamingPlayers and not seat.Model:IsNull() then
-            seat.Model.Seat:Sit(_player)
+    invoke(
+        function()
+            wait()
+            if self.arr_gamingPlayers and not seat.Model:IsNull() then
+                seat.Model.Seat:Sit(_player)
+            end
         end
-    end)
+    )
     seat.Player = _player
-    _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+    --_player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 0, 1, 0.2, 0.2, true, false, 1)
     self.ins_ani:Seat(_player.UserId)
     return true
 end
@@ -952,7 +976,8 @@ function LeaveSeat(self, _player)
             local player = v.Model.Seat.Occupant
             v.Model.Seat:Leave()
             if player then
-                player.Avatar:StopAnimation('SitIdle', 2)
+                --player.Avatar:StopAnimation('SitIdle', 2)
+                player.Avatar:StopBlendSpaceNode(0)
                 player.Position = player.Position + player.Back + Vector3.Up * 0.5
                 self.ins_ani:LeaveSeat(player.UserId)
             end
@@ -961,7 +986,8 @@ function LeaveSeat(self, _player)
         for i, v in ipairs(self.arr_seats) do
             if v.Model.Seat.Occupant == _player then
                 v.Model.Seat:Leave()
-                _player.Avatar:StopAnimation('SitIdle', 2)
+                --_player.Avatar:StopAnimation('SitIdle', 2)
+                _player.Avatar:StopBlendSpaceNode(0)
                 _player.Position = _player.Position + _player.Back + Vector3.Up * 0.5
             end
         end
@@ -1006,7 +1032,7 @@ function SyncRoomInfo(self, _player)
             Stack = v:GetStack() and v:GetStack().str_uuid or nil,
             Rotation = v:GetLatestRotData(),
             Position = v:GetLatestPosData(),
-            HandPlayer = v:GetHandPlayer(),
+            HandPlayer = v:GetHandPlayer()
         }
         unitsInfo[i] = info
     end
@@ -1014,7 +1040,7 @@ function SyncRoomInfo(self, _player)
         local info = {
             Uuid = v.str_uuid,
             Owner = v.player_owner,
-            Units = {},
+            Units = {}
         }
         for _, s_unit in pairs(v:GetUnits()) do
             table.insert(info.Units, s_unit.m_uuid)
@@ -1033,7 +1059,7 @@ end
 ---桌游模拟器自带埋点函数
 function UploadLog(_key, _table)
     local arg = LuaJsonUtil:encode(_table)
-    TrackService.CloudLogFromServer({ _key, 'Z1004', arg })
+    TrackService.CloudLogFromServer({_key, 'Z1004', arg})
 end
 
 return GameRoomBase

@@ -25,7 +25,7 @@ end
 ---事件绑定
 function GuiSwim:EventBind()
     jumpBtn.OnClick:Connect(function()
-        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Jump')
+        NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'JumpBeginState')
     end)
 end
 

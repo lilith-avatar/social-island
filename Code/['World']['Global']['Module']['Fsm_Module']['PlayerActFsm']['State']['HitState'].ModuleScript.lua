@@ -1,14 +1,21 @@
-local HitState = class("HitState", PlayerActState)
+local HitState = class('HitState', PlayerActState)
+
+function HitState:initialize(_controller, _stateName)
+    PlayerActState.initialize(self, _controller, _stateName)
+    PlayerAnimMgr:CreateSingleClipNode('HitForward', 1, _stateName)
+end
+
+function HitState:InitData()
+    self:AddTransition('ToIdleState', self.controller.states['IdleState'], 0.5)
+end
 
 function HitState:OnEnter()
     PlayerActState.OnEnter(self)
-    --localPlayer.Avatar:PlayAnimation("HitFront", 2, 1, 0.1, true, true, 1)
-    localPlayer.Avatar:PlayAnimation("HitForward", 2, 1, 0.1, true, true, 1)
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
 end
 
 function HitState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"SwimIdle"})
 end
 function HitState:OnLeave()
     PlayerActState.OnLeave(self)

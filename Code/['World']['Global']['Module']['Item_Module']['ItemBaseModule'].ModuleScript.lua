@@ -36,12 +36,11 @@ end
 
 --装备
 function ItemBase:Equip()
-    ----print('装备')
     NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
+    wait(0.1)
     Data.Player.curEquipmentID = self.baseData.ItemID
     NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
     NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItemState')
-    wait(0.1)
     GuiControl:UpdateUseBtnIcon(self.baseData.UseBtnIcon)
     invoke(
         function()

@@ -42,11 +42,11 @@ function ItemMgr:InitBagData()
     }
     for _, v in pairs(defaultItems) do
         NetUtil.Fire_C('GetItemEvent', localPlayer, v)
-    end    
-	if Data.Player.bag[6001] == nil and Data.Player.bag[4005] == nil then
+    end
+    if Data.Player.bag[6001] == nil and Data.Player.bag[4005] == nil then
         NetUtil.Fire_C('GetItemEvent', localPlayer, 4005)
     end
-	if Data.Player.bag[6003] == nil and Data.Player.bag[4006] == nil then
+    if Data.Player.bag[6003] == nil and Data.Player.bag[4006] == nil then
         NetUtil.Fire_C('GetItemEvent', localPlayer, 4006)
     end
 end
@@ -163,6 +163,7 @@ end
 --解除当前道具
 function ItemMgr:UnequipCurEquipmentEventHandler()
     if Data.Player.curEquipmentID ~= 0 then
+        print('解除当前道具', Data.Player.curEquipmentID)
         this.itemInstance[Data.Player.curEquipmentID]:Unequip()
         Data.Player.curEquipmentID = 0
     end

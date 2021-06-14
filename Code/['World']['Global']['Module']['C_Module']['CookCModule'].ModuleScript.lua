@@ -31,11 +31,11 @@ function CookC:PlayerCookEventHandler(_materialList)
         end
     end
     NetUtil.Fire_C('GetFinalFoodEvent', localPlayer, 5)
-	local foodList = {}
-	for k,v in pairs(_materialList) do
-		table.insert(foodList, v.id)
-	end
-	CloudLogUtil.UploadLog('cook', 'cook_main_confirm',{meal_id = 5,menu = foodList})
+    local foodList = {}
+    for k, v in pairs(_materialList) do
+        table.insert(foodList, v.id)
+    end
+    CloudLogUtil.UploadLog('cook', 'cook_main_confirm', {meal_id = 5, menu = foodList})
 end
 
 function CookC:JudgeMaterialInMenu(_materialList, _menu)
@@ -53,7 +53,9 @@ function CookC:EatFoodEventHandler(_foodId)
         world:CreateInstance(Config.CookMenu[_foodId].Model, 'Food', localPlayer.Avatar.Bone_R_Hand.RHandWeaponNode)
     foodModel.LocalPosition = Vector3.Zero
     foodModel.LocalRotation = EulerDegree(3.0258, 12.924, -4.0823)
-    localPlayer.Avatar:PlayAnimation('Drink', 2, 1, 0, true, false, 1)
+    --localPlayer.Avatar:PlayAnimation('Drink', 2, 1, 0, true, false, 1)
+    PlayerAnimMgr:CreateSingleClipNode('Drink', 1, 'Drink')
+    PlayerAnimMgr:Play('Drink', 0, 1, 0.2, 0.2, true, false, 1)
 end
 
 function CookC:DestroyFood()

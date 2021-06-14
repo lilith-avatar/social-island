@@ -1,79 +1,79 @@
-local BowChargeIdle = class("BowChargeIdle", PlayerActState)
+local BowChargeState = class('BowChargeState', PlayerActState)
 
-local dirStateEnum = {
-    Forward = 1,
-    Back = 2,
-    Right = 3,
-    Left = 4
-}
-
-local curDirState = 0
-
-local function Turn(_dir)
-    if _dir ~= curDirState then
-        curDirState = _dir
-        if _dir == dirStateEnum.Forward then
-            localPlayer.Avatar:PlayAnimation("WalkingFront", 9, 1, 0.1, true, true, 1)
-        elseif _dir == dirStateEnum.Right then
-            localPlayer.Avatar:PlayAnimation("WalkingRight", 9, 1, 0.1, true, true, 1)
-        elseif _dir == dirStateEnum.Left then
-            localPlayer.Avatar:PlayAnimation("WalkingLeft", 9, 1, 0.1, true, true, 1)
-        elseif _dir == dirStateEnum.Back then
-            localPlayer.Avatar:PlayAnimation("WalkingBack", 9, 1, 0.1, true, true, 1)
-        end
-    end
+function BowChargeState:initialize(_controller, _stateName)
+    PlayerActState.initialize(self, _controller, _stateName)
+    local anims = {
+        {'BowEquipIdle', 0.0, 1.0},
+        {'WalkingFront', 0.25, 1.0},
+        {'BowRun', 0.5, 1.0}
+    }
+    PlayerAnimMgr:Create1DClipNode(anims, 'speedXZ', _stateName)
+    PlayerAnimMgr:CreateSingleClipNode('BowChargeIdle', 1, _stateName .. 'UpperBody', 1)
 end
 
-function BowChargeIdle:OnEnter()
+function BowChargeState:InitData()
+    self:AddTransition(
+        'ToIdleState',
+        self.controller.states['IdleState'],
+        -1,
+        function()
+            return self.controller.triggers['IdleState']
+        end
+    )
+    --[[self:AddTransition(
+        'ToBowHitState',
+        self.controller.states['BowHitState'],
+        -1,
+        function()
+            return self.controller.triggers['BowHitState']
+        end
+    )]]
+    self:AddTransition(
+        'ToBowAttackState',
+        self.controller.states['BowAttackState'],
+        -1,
+        function()
+            return self.controller.triggers['BowAttackState']
+        end
+    )
+end
+
+function BowChargeState:OnEnter()
     PlayerActState.OnEnter(self)
-    localPlayer.Avatar:SetBlendSubtree(Enum.BodyPart.LowerBody, 9)
-    localPlayer.Avatar:PlayAnimation("BowChargeIdle", 2, 1, 0.4, true, true, 1)
-    local dir = PlayerCtrl.finalDir
-    curDirState = 0
-    if Vector3.Angle(dir, localPlayer.Forward) < 30 then
-        Turn(dirStateEnum.Forward)
-    elseif Vector3.Angle(dir, localPlayer.Right) < 75 then
-        Turn(dirStateEnum.Right)
-    elseif Vector3.Angle(dir, localPlayer.Left) < 75 then
-        Turn(dirStateEnum.Left)
-    else
-        Turn(dirStateEnum.Back)
-    end
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
+    PlayerAnimMgr:Play(self.stateName .. 'UpperBody', 1, 1, 0.2, 0.2, true, true, 1)
 end
 
-function BowChargeIdle:OnUpdate(dt)
+function BowChargeState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"Idle", "BowHit", "SwimIdle", "BowAttack"})
+    self:SpeedMonitor()
+    self:Move()
+    self:FallMonitor()
+end
+
+local isAim = false
+---移动
+function BowChargeState:Move()
     local dir = PlayerCtrl.finalDir
+    local forward = PlayerCam.curCamera.Forward
+    forward.y = 0
     dir.y = 0
-    if dir.Magnitude > 0 then
-        if localPlayer.LinearVelocity.Magnitude > 0 then
-            if Vector3.Angle(dir, localPlayer.Forward) < 30 then
-                Turn(dirStateEnum.Forward)
-            elseif Vector3.Angle(dir, localPlayer.Right) < 75 then
-                Turn(dirStateEnum.Right)
-            elseif Vector3.Angle(dir, localPlayer.Left) < 75 then
-                Turn(dirStateEnum.Left)
-            else
-                Turn(dirStateEnum.Back)
-            end
-        end
-        localPlayer:MoveTowards(Vector2(dir.x, dir.z) * 0.4)
+    if Vector3.Angle(forward, localPlayer.Forward) < 15 then
+        isAim = true
     else
-        localPlayer:MoveTowards(Vector2.Zero)
-        localPlayer.Avatar:StopAnimation("WalkingFront", 9)
-        localPlayer.Avatar:StopAnimation("WalkingRight", 9)
-        localPlayer.Avatar:StopAnimation("WalkingLeft", 9)
-        localPlayer.Avatar:StopAnimation("WalkingBack", 9)
+        isAim = false
+    end
+    if dir.Magnitude > 0 then
+        localPlayer:AddMovementInput(dir, 0.3)
+    elseif isAim == false then
+        localPlayer:AddMovementInput(forward, 0.01)
+        print(Vector3.Angle(forward, localPlayer.Forward))
     end
 end
 
-function BowChargeIdle:OnLeave()
+function BowChargeState:OnLeave()
     PlayerActState.OnLeave(self)
-    localPlayer.Avatar:StopAnimation("WalkingFront", 9)
-    localPlayer.Avatar:StopAnimation("WalkingRight", 9)
-    localPlayer.Avatar:StopAnimation("WalkingLeft", 9)
-    localPlayer.Avatar:StopAnimation("WalkingBack", 9)
+    --localPlayer.Avatar:StopBlendSpaceNode(1)
 end
 
-return BowChargeIdle
+return BowChargeState

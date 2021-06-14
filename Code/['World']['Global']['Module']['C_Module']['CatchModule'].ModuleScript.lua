@@ -148,7 +148,8 @@ end
 function Catch:Catch()
     invoke(
         function()
-            localPlayer.Avatar:PlayAnimation('PickUpLight', 2, 1, 0.1, true, false, 1)
+            PlayerAnimMgr:CreateSingleClipNode('PickUpLight', 1, 'PickUpLight')
+            PlayerAnimMgr:Play('PickUpLight', 0, 1, 0.2, 0.2, true, false, 1)
             CloudLogUtil.UploadLog('inter', 'hunt_' .. prey.AnimalID.Value .. '_catch')
             wait(.5)
             NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_4.Txt), 2, false)
@@ -167,9 +168,10 @@ end
 function Catch:Search()
     invoke(
         function()
-            localPlayer.Avatar:PlayAnimation('PickUpLight', 2, 1, 0.1, true, false, 1)
+            PlayerAnimMgr:CreateSingleClipNode('PickUpLight', 1, 'PickUpLight')
+            PlayerAnimMgr:Play('PickUpLight', 0, 1, 0.2, 0.2, true, false, 1)
             wait(.5)
-			SoundUtil.Play2DSE(localPlayer.UserId,24)
+            SoundUtil.Play2DSE(localPlayer.UserId, 24)
             NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
             NetUtil.Fire_C('GetItemFromPoolEvent', localPlayer, Config.Animal[prey.AnimalID.Value].ItemPoolID, 0)
             CloudLogUtil.UploadLog(
@@ -177,7 +179,7 @@ function Catch:Search()
                 'hunt_' .. prey.AnimalID.Value .. '_pickup',
                 Config.Animal[prey.AnimalID.Value].ItemPoolID
             )
-			
+
             --[[NetUtil.Fire_S(
                 "SpawnCoinEvent",
                 "P",
@@ -197,7 +199,7 @@ function Catch:Touch()
     NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.PetGui_5.Txt), 2, false)
     CloudLogUtil.UploadLog('inter', 'hunt_' .. prey.AnimalID.Value .. '_touch')
     NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-    SoundUtil.Play2DSE(localPlayer.UserId,6)
+    SoundUtil.Play2DSE(localPlayer.UserId, 6)
 end
 
 --更新捕捉互动UI

@@ -58,7 +58,7 @@ end
 --攻击
 function BowWeapon:Attack(_force)
     self.useCT = self.baseData.UseCD
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowAttack')
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowAttackState')
     self:ShootArrow(_force)
     self.equipObj.ChargeNode:SetActive(false)
     self.equipObj.ShootNode:SetActive(true)
@@ -75,7 +75,7 @@ end
 --开始蓄力
 function BowWeapon:StartCharge()
     self.isCharge = true
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowChargeIdle')
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'BowChargeState')
     self.equipObj.ChargeNode:SetActive(true)
 end
 

@@ -66,6 +66,7 @@ function PlayerCam:CameraMove(touchInfo)
         if this:IsFreeMode() then
             this.curCamera:CameraMove(touchInfo[1].DeltaPosition)
         else
+            print(this.curCamera)
             this.curCamera.LookAt:Rotate(0, touchInfo[1].DeltaPosition.x * 0.2, 0)
             this.curCamera:CameraMove(Vector2(0, touchInfo[1].DeltaPosition.y))
         end
