@@ -32,6 +32,7 @@ function IdleState:OnEnter()
     localPlayer.Avatar.LocalPosition = Vector3.Zero
     localPlayer.RotationRate = EulerDegree(0, 540, 0)
     localPlayer:SetMovementMode(Enum.MovementMode.MOVE_Walking)
+    PlayerCam:SetCurCamEventHandler()
     PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
     self:FallMonitor()
 end

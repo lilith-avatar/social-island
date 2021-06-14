@@ -10,7 +10,8 @@ function SwimBeginState:InitData()
         'ToSwimBeginState',
         -1,
         function()
-            return self:SwimMonitor() and not localPlayer:IsSwimming()
+            return self:SwimMonitor() and not localPlayer:IsSwimming() and
+                self.controller.curState.stateName ~= 'SwimEndState'
         end
     )
     self:AddTransition('ToSwimmingState', self.controller.states['SwimmingState'], 1)
