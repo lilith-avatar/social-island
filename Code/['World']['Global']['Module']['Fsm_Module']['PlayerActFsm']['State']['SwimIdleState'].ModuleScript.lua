@@ -42,6 +42,7 @@ end
 function SwimIdleState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     self:SpeedMonitor()
+    self:Swim()
 end
 
 function SwimIdleState:OnLeave()

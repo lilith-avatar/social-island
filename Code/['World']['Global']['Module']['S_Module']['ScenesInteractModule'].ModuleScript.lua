@@ -480,9 +480,10 @@ do
             if v.obj.UsingPlayerUid.Value == _player.UserId then
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 v.obj.UsingPlayerUid.Value = ''
+                print(v.obj.Occupant)
                 v.obj:Leave(_player)
+                print(v.obj.Occupant)
                 NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
-                _player.Position = _player.Position + Vector3(0, 2, 0)
             end
         end
     end
