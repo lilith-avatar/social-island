@@ -12,7 +12,7 @@ local SocialAnimXls = {
         ShowName = 'Afraid',
         AnimName = 'SocialFear',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SFear'
     },
     [2] = {
@@ -20,7 +20,7 @@ local SocialAnimXls = {
         ShowName = 'Confuse',
         AnimName = 'SocialDoubt',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDoubt'
     },
     [3] = {
@@ -28,7 +28,7 @@ local SocialAnimXls = {
         ShowName = 'Happy',
         AnimName = 'SocialHappy',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SHappy'
     },
     [4] = {
@@ -36,7 +36,7 @@ local SocialAnimXls = {
         ShowName = 'Clap',
         AnimName = 'SocialApplause',
         BodyPart = 8,
-        LoopMode = nil,
+        LoopMode = true,
         Icon = 'Icon-SApplause'
     },
     [5] = {
@@ -44,7 +44,7 @@ local SocialAnimXls = {
         ShowName = 'Hellow',
         AnimName = 'SocialHello',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SHello'
     },
     [6] = {
@@ -52,7 +52,7 @@ local SocialAnimXls = {
         ShowName = 'Fail',
         AnimName = 'SocialFail',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SFail'
     },
     [7] = {
@@ -60,7 +60,7 @@ local SocialAnimXls = {
         ShowName = 'ComeHere',
         AnimName = 'SocialComeHere',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = true,
         Icon = 'Icon-SComeHere'
     },
     [8] = {
@@ -68,7 +68,7 @@ local SocialAnimXls = {
         ShowName = 'PretendDeath',
         AnimName = 'SocialPlayDead',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SPretendDeath'
     },
     [9] = {
@@ -76,7 +76,7 @@ local SocialAnimXls = {
         ShowName = 'Provocation',
         AnimName = 'SocialProvocation',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SProvocation'
     },
     [10] = {
@@ -84,7 +84,7 @@ local SocialAnimXls = {
         ShowName = 'WarmUp',
         AnimName = 'SocialWarmUp',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = true,
         Icon = 'Icon-SWarmUp'
     },
     [11] = {
@@ -92,7 +92,7 @@ local SocialAnimXls = {
         ShowName = 'Laugh',
         AnimName = 'SocialLaughing',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SLaughing'
     },
     [12] = {
@@ -100,7 +100,7 @@ local SocialAnimXls = {
         ShowName = 'ComeOn',
         AnimName = 'SocialComeOn',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SComeOn'
     },
     [13] = {
@@ -108,7 +108,7 @@ local SocialAnimXls = {
         ShowName = 'Bow',
         AnimName = 'SocialBow',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SBow'
     },
     [14] = {
@@ -116,7 +116,7 @@ local SocialAnimXls = {
         ShowName = 'Boxing',
         AnimName = 'SocialPracticeBoxing',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = true,
         Icon = 'Icon-SPracticeBoxing'
     },
     [15] = {
@@ -124,7 +124,7 @@ local SocialAnimXls = {
         ShowName = 'Upset',
         AnimName = 'SocialDejected',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDejected'
     },
     [16] = {
@@ -132,7 +132,7 @@ local SocialAnimXls = {
         ShowName = 'Cheer',
         AnimName = 'SocialCheer',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SCheer'
     },
     [17] = {
@@ -140,7 +140,7 @@ local SocialAnimXls = {
         ShowName = 'Angry',
         AnimName = 'SocialAnger',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SAnger'
     },
     [18] = {
@@ -148,7 +148,7 @@ local SocialAnimXls = {
         ShowName = 'Fashion01',
         AnimName = 'Dance01',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance01'
     },
     [19] = {
@@ -156,7 +156,7 @@ local SocialAnimXls = {
         ShowName = 'Modern',
         AnimName = 'Dance02',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance02'
     },
     [20] = {
@@ -164,7 +164,7 @@ local SocialAnimXls = {
         ShowName = 'SuperStar01',
         AnimName = 'Dance03',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance03'
     },
     [21] = {
@@ -172,7 +172,7 @@ local SocialAnimXls = {
         ShowName = 'Fashion02',
         AnimName = 'Dance04',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance04'
     },
     [22] = {
@@ -180,7 +180,7 @@ local SocialAnimXls = {
         ShowName = 'Hiphop01',
         AnimName = 'Dance05',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance05'
     },
     [23] = {
@@ -188,7 +188,7 @@ local SocialAnimXls = {
         ShowName = 'SuperStar02',
         AnimName = 'Dance06',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance06'
     },
     [24] = {
@@ -196,7 +196,7 @@ local SocialAnimXls = {
         ShowName = 'Hiphop02',
         AnimName = 'Dance07',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance07'
     },
     [25] = {
@@ -204,7 +204,7 @@ local SocialAnimXls = {
         ShowName = 'Gangnamstyle',
         AnimName = 'Dance08',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance08'
     },
     [26] = {
@@ -212,7 +212,7 @@ local SocialAnimXls = {
         ShowName = 'Breaking',
         AnimName = 'Dance09',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance09'
     },
     [27] = {
@@ -220,7 +220,7 @@ local SocialAnimXls = {
         ShowName = 'Steps',
         AnimName = 'Dance10',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance10'
     },
     [28] = {
@@ -228,7 +228,7 @@ local SocialAnimXls = {
         ShowName = 'Shake',
         AnimName = 'Dance11',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance11'
     },
     [29] = {
@@ -236,7 +236,7 @@ local SocialAnimXls = {
         ShowName = 'AirWalking',
         AnimName = 'Dance12',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance12'
     },
     [30] = {
@@ -244,7 +244,7 @@ local SocialAnimXls = {
         ShowName = 'Hiphop03',
         AnimName = 'Dance13',
         BodyPart = 2,
-        LoopMode = nil,
+        LoopMode = false,
         Icon = 'Icon-SDance13'
     }
 }

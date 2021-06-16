@@ -94,7 +94,7 @@ function this:SetAnimSlot(_data)
             CloudLogUtil.UploadLog('pannel_actions', 'movement_stickers_' .. _data.AnimName)
             SocialAnimationGUI:SetActive(false)
             --localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, false, 1)
-            NetUtil.Fire_C('PlayAnimationEvent', localPlayer, _data.AnimName, 0, 1, 0.2, 0.2, true, false, 1)
+            NetUtil.Fire_C('PlayAnimationEvent', localPlayer, _data.AnimName, 0, 1, 0.2, 0.2, true, _data.LoopMode, 1)
         end
     )
 end
