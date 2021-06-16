@@ -163,7 +163,7 @@ end
 
 -- 修改玩家当前相机
 function PlayerCam:SetCurCamEventHandler(_cam, _lookAt)
-    if not (GameFlow.inGame) then
+    if not (GameFlow.inGame) and this.curCamera then
         this.curCamera = _cam or this.playerGameCam
         this.curCamera.LookAt = _lookAt or localPlayer
         world.CurrentCamera = this.curCamera
