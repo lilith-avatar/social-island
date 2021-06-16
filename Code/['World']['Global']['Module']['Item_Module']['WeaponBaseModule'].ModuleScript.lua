@@ -2,7 +2,7 @@
 -- @module WeaponBase
 -- @copyright Lilith Games, Avatar Team
 -- @author Dead Ratman
-local WeaponBase = class("WeaponBase", ItemBase)
+local WeaponBase = class('WeaponBase', ItemBase)
 
 function WeaponBase:initialize(_baseData, _derivedData)
     ItemBase.initialize(self, _baseData, _derivedData)
@@ -49,17 +49,12 @@ end
 
 --攻击
 function WeaponBase:Attack()
-    NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "UseItem")
-    localPlayer.Avatar:PlayAnimation(self.baseData.UseAniName, 8, 1, 0.2, true, false, 1)
+    PlayerAnimMgr:CreateSingleClipNode(self.baseData.UseAniName, 1, 'WeaponAttack')
+    PlayerAnimMgr:Play('WeaponAttack', 1, 1, 0.2, 0.2, true, false, 1)
     self.useCT = self.baseData.UseCD
     invoke(
         function()
-            localPlayer.Avatar:StopAnimation(self.baseData.UseAniName, 8)
-            if self.typeConfig.FsmMode then
-                NetUtil.Fire_C("FsmTriggerEvent", localPlayer, self.typeConfig.FsmMode)
-            else
-                NetUtil.Fire_C("FsmTriggerEvent", localPlayer, "Idle")
-            end
+            localPlayer.Avatar:StopBlendSpaceNode(1)
         end,
         self.baseData.UseTime
     )

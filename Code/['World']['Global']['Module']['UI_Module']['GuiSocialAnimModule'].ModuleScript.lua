@@ -43,9 +43,9 @@ function GuiSocialAnim:EventBind()
         function()
             if SocialAnimationGUI.ActiveSelf then
                 SocialAnimationGUI:SetActive(false)
-				SoundUtil.Play2DSE(localPlayer.UserId, 6)
+                SoundUtil.Play2DSE(localPlayer.UserId, 6)
             else
-				SoundUtil.Play2DSE(localPlayer.UserId, 36)
+                SoundUtil.Play2DSE(localPlayer.UserId, 36)
                 this:SetCurGroupAnimSlot(curGroup)
                 this:UIStartTween()
             end
@@ -60,7 +60,7 @@ function GuiSocialAnim:EventBind()
                 curGroup = curGroup - 1
             end
             this:SetCurGroupAnimSlot(curGroup)
-			SoundUtil.Play2DSE(localPlayer.UserId, 101)
+            SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
 
@@ -72,7 +72,7 @@ function GuiSocialAnim:EventBind()
                 curGroup = curGroup + 1
             end
             this:SetCurGroupAnimSlot(curGroup)
-			SoundUtil.Play2DSE(localPlayer.UserId, 101)
+            SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
 end
@@ -90,10 +90,11 @@ function this:SetAnimSlot(_data)
     slotBtnUI.Icon.Texture = ResourceManager.GetTexture('SocialAnimationIcon/' .. _data.Icon)
     slotBtnUI.OnClick:Connect(
         function()
-			SoundUtil.Play2DSE(localPlayer.UserId, 101)
+            SoundUtil.Play2DSE(localPlayer.UserId, 101)
             CloudLogUtil.UploadLog('pannel_actions', 'movement_stickers_' .. _data.AnimName)
             SocialAnimationGUI:SetActive(false)
-            localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, false, 1)
+            --localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, false, 1)
+            NetUtil.Fire_C('PlayAnimationEvent', localPlayer, _data.AnimName, 0, 1, 0.2, 0.2, true, false, 1)
         end
     )
 end

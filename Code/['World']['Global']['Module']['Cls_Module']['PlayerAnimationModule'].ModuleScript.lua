@@ -38,7 +38,7 @@ end
 function PlayerAnimation:Play(speedScale, weight, transitionDuration, interrupt)
     self.Player.Avatar:SetBlendSubtree(self.BodyPart, self.Layer)
     self.Weight = weight or 0
-    self.Player.Avatar:PlayAnimation(
+    --[[self.Player.Avatar:PlayAnimation(
         self.AnimName,
         self.Layer,
         weight or 1,
@@ -46,13 +46,16 @@ function PlayerAnimation:Play(speedScale, weight, transitionDuration, interrupt)
         interrupt or true,
         self.LoopMode > 1,
         self.speedScale or 1
-    )
+    )]]
+    PlayerAnimMgr:CreateSingleClipNode(self.AnimName, 1, self.AnimName)
+    PlayerAnimMgr:Play(self.AnimName, 0, 1, 0.2, 0.2, interrupt or true, self.LoopMode > 1, self.speedScale or 1)
     self.Playing = true
 end
 
 function PlayerAnimation:Stop()
     self.Weight = 0
-    self.Player.Avatar:StopAnimation(self.AnimName, self.Layer)
+    --self.Player.Avatar:StopAnimation(self.AnimName, self.Layer)
+    self.Player.Avatar:StopBlendSpaceNode(0)
     self.Playing = false
 end
 

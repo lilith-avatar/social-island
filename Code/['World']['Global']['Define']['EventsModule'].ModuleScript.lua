@@ -200,7 +200,8 @@ Events.ClientEvents = {
     'EnterRoomSyncEvent', ---玩家进入房间后服务端同步给这个玩家这个房间当前的信息
     'EnterGameSyncEvent',
     'RequestEnterEvent',
-    'PlayerInvincibleEvent'
+    'PlayerInvincibleEvent',
+    'PlayAnimationEvent'
 }
 
 return Events

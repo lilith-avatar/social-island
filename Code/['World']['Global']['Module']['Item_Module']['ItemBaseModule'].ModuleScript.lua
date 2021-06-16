@@ -36,21 +36,14 @@ end
 
 --装备
 function ItemBase:Equip()
-    ----print('装备')
     NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItem')
     wait(0.1)
-    localPlayer.Avatar:PlayAnimation(self.baseData.TakeOutAniName, 8, 1, 0.2, true, false, 1)
+    Data.Player.curEquipmentID = self.baseData.ItemID
+    NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'TakeOutItemState')
     GuiControl:UpdateUseBtnIcon(self.baseData.UseBtnIcon)
-
     invoke(
         function()
-            NetUtil.Fire_C('FsmTriggerEvent', localPlayer, self.typeConfig.FsmMode)
-
-            SoundUtil.Play3DSE(localPlayer.Position, self.baseData.TakeOutSoundID)
-            NetUtil.Fire_C('RemoveItemEvent', localPlayer, self.baseData.ItemID)
-            Data.Player.curEquipmentID = self.baseData.ItemID
-
             NetUtil.Fire_C('CTakeOutItemEvent', localPlayer, self.baseData.ItemID)
             NetUtil.Fire_S('STakeOutItemEvent', localPlayer, self.baseData.ItemID)
 
@@ -67,7 +60,7 @@ function ItemBase:Equip()
             )
             self.equipObj.LocalPosition = self.derivedData.Offset
             self.equipObj.LocalRotation = self.derivedData.Angle
-			self:ChangeNameColor()
+            self:ChangeNameColor()
             GuiControl:UpdateTakeOffBtn()
         end,
         self.baseData.TakeOutTime
@@ -78,17 +71,17 @@ end
 function ItemBase:Unequip()
     Data.Player.curEquipmentID = 0
     local effect = world:CreateInstance('UnequipEffect', 'UnequipEffect', self.equipObj.Parent, self.equipObj.Position)
-	SoundUtil.Play2DSE(localPlayer.UserId, 34)
+    SoundUtil.Play2DSE(localPlayer.UserId, 34)
     invoke(
         function()
             self.equipObj:Destroy()
             wait(.3)
             effect:Destroy()
-			self:ChangeNameColor()
+            self:ChangeNameColor()
         end,
         0.2
     )
-    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'Idle')
+    NetUtil.Fire_C('FsmTriggerEvent', localPlayer, 'IdleState')
     --wait(self.baseData.TakeOutTime)
     Data.Player.bag[self.baseData.ItemID].count = Data.Player.bag[self.baseData.ItemID].count + 1
     GuiControl:UpdateTakeOffBtn()
@@ -96,27 +89,27 @@ function ItemBase:Unequip()
 end
 
 function ItemBase:ChangeNameColor()
-	NotReplicate(function()
-		if Data.Player.curEquipmentID == 0 then
-			for k,v in pairs (world:FindPlayers()) do
-				if v ~= localPlayer and v.NameGui.NameBarTxt2.Color ~= Color(255,255,255,255) then
-					v.NameGui.NameBarTxt2.Color = Color(255,255,255,255) 
-				end
-			end
-		else
-			for k,v in pairs (world:FindPlayers()) do
-				if v ~= localPlayer and v.NameGui.NameBarTxt2.Color ~= Color(255,0,0,255) then
-					v.NameGui.NameBarTxt2.Color = Color(255,0,0,255) 
-				end
-			end
-		end
-	end)
+    NotReplicate(
+        function()
+            if Data.Player.curEquipmentID == 0 then
+                for k, v in pairs(world:FindPlayers()) do
+                    if v ~= localPlayer and v.NameGui.NameBarTxt2.Color ~= Color(255, 255, 255, 255) then
+                        v.NameGui.NameBarTxt2.Color = Color(255, 255, 255, 255)
+                    end
+                end
+            else
+                for k, v in pairs(world:FindPlayers()) do
+                    if v ~= localPlayer and v.NameGui.NameBarTxt2.Color ~= Color(255, 0, 0, 255) then
+                        v.NameGui.NameBarTxt2.Color = Color(255, 0, 0, 255)
+                    end
+                end
+            end
+        end
+    )
 end
 
-
-
 function ItemBase:Update(dt)
-	self:ChangeNameColor()
+    self:ChangeNameColor()
 end
 
 return ItemBase

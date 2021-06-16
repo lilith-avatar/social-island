@@ -60,20 +60,30 @@ function Projectile:CreateAvailableProjectile(_id, _pos, _rot, _targetPos, _forc
                 CloudLogUtil.UploadLog(
                     'battle_actions',
                     'hit_event',
-                    {hit_target_id = 'Animal', target_detail = _hitObj.Name, attack_target = localPlayer.Name, attack_type = 'Arrow'}
+                    {
+                        hit_target_id = 'Animal',
+                        target_detail = _hitObj.Name,
+                        attack_target = localPlayer.Name,
+                        attack_type = 'Arrow'
+                    }
                 )
                 NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
-				if _hitObj.AnimalDeadEvent then
-					_hitObj.AnimalDeadEvent:Fire()
-				end
+                if _hitObj.AnimalDeadEvent then
+                    _hitObj.AnimalDeadEvent:Fire()
+                end
                 this:PlayHitSoundEffect(_hitPoint, projectileConfig.HitSoundID, projectileConfig.HitEffectName)
                 projectileObj:Destroy()
             elseif _hitObj.Name == 'ArrowTargetCol' then
                 CloudLogUtil.UploadLog(
                     'battle_actions',
                     'hit_event',
-                    {hit_target_id = 'ArrowTarget', target_detail = _hitObj.Parent.Name, attack_target = localPlayer.Name, attack_type = 'Arrow'}
+                    {
+                        hit_target_id = 'ArrowTarget',
+                        target_detail = _hitObj.Parent.Name,
+                        attack_target = localPlayer.Name,
+                        attack_type = 'Arrow'
+                    }
                 )
                 NetUtil.Fire_S('SProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
                 NetUtil.Fire_C('CProjectileHitEvent', localPlayer, _id, projectileObj, _hitObj, _hitPoint)
@@ -118,10 +128,12 @@ end
 function Projectile:AddForceToHitPlayer(_projectile, _type, _force, _pos, _players)
     for k, v in pairs(_players) do
         if _type == 1 then
-            v.LinearVelocity =
-                Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force
+            v:AddImpulse(Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force)
+            --[[v.LinearVelocity =
+                Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force]]
         elseif _type == 2 then
-            v.LinearVelocity = (v.Position - _pos).Normalized * _force
+            v:AddImpulse((v.Position - _pos).Normalized * _force)
+            --v.LinearVelocity = (v.Position - _pos).Normalized * _force
         end
     end
 end

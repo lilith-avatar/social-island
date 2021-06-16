@@ -270,10 +270,10 @@ function ScenesInteract:ElasticDeformation(_bounce, _player)
         invoke(
             function()
                 _bounce.tweener1:Play()
-                _player.LinearVelocity = Vector3(0, 20, 0)
+                _player:AddImpulse(_player.Up * 2000)
                 SoundUtil.Play3DSE(_bounce.obj.Position, 22)
                 wait(0.1)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Fly')
+                NetUtil.Fire_C('FsmTriggerEvent', _player, 'BounceState')
                 _bounce.tweener1:Destroy()
                 _bounce.tweener2:Play()
                 wait(0.1)
@@ -379,13 +379,14 @@ do
                 if v2 == _player.UserId then
                     if v1.useCount > 0 then
                         if v1.anitName then
-                            _player.Avatar:PlayAnimation(v1.anitName, 2, 1, 0.1, true, false, 1)
+                            --_player.Avatar:PlayAnimation(v1.anitName, 2, 1, 0.1, true, false, 1)
+                            NetUtil.Fire_C('PlayAnimationEvent', _player, v1.anitName, 0, 1, 0.2, 0.2, true, false, 1)
                         end
                         if v1.interactAEID then
                             SoundUtil.Play3DSE(_player.Position, v1.interactAEID)
                         end
                         if v1.itemID ~= nil then
-							NetUtil.Fire_C('SInteractUploadEvent', _player,13, v1.id)
+                            NetUtil.Fire_C('SInteractUploadEvent', _player, 13, v1.id)
                             NetUtil.Fire_C('GetItemEvent', _player, v1.itemID)
                             if v1.isUse then
                                 wait(.1)
@@ -393,7 +394,7 @@ do
                             end
                         end
                         if v1.addBuffID then
-							NetUtil.Fire_C('SInteractUploadEvent', _player, 13,v1.id)
+                            NetUtil.Fire_C('SInteractUploadEvent', _player, 13, v1.id)
                             NetUtil.Fire_C('GetBuffEvent', _player, v1.addBuffID, v1.addBuffDur)
                         end
                         NetUtil.Fire_S('SpawnCoinEvent', 'P', v1.obj.Position + Vector3(0, 2.5, 0), v1.rewardCoin)
@@ -462,10 +463,11 @@ do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId and v1.obj.UsingPlayerUid.Value == '' then
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
-					NetUtil.Fire_C('SInteractUploadEvent', _player,15, v1.obj.Name)
+                    NetUtil.Fire_C('SInteractUploadEvent', _player, 15, v1.obj.Name)
                     v1.obj.UsingPlayerUid.Value = _player.UserId
                     v1.obj:Sit(_player)
-                    _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
+                    --_player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
+                    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 0, 1, 0.2, 0.2, true, true, 1)
                     -- 音效
                     SoundUtil.Play3DSE(_player.Position, 14)
                 end
@@ -478,8 +480,10 @@ do
             if v.obj.UsingPlayerUid.Value == _player.UserId then
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 v.obj.UsingPlayerUid.Value = ''
+                print(v.obj.Occupant)
                 v.obj:Leave(_player)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
+                print(v.obj.Occupant)
+                NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
             end
         end
     end
@@ -501,7 +505,7 @@ do
         for k1, v1 in pairs(bonfireOBJ) do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId then
-					NetUtil.Fire_C('SInteractUploadEvent', _player,16, v1.obj.Name)
+                    NetUtil.Fire_C('SInteractUploadEvent', _player, 16, v1.obj.Name)
                     if v1.obj.On.ActiveSelf then
                         v1.obj.On:SetActive(false)
                         v1.obj.Off:SetActive(true)
@@ -558,8 +562,10 @@ do
                     v1.obj.UsingPlayerUid.Value = _player.UserId
                     v1.obj.Seat:Sit(_player)
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
-                    _player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
-                    _player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+                    --_player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
+                    --_player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+                    NetUtil.Fire_C('PlayAnimationEvent', _player, 'HTRide', 1, 1, 0.2, 0.2, true, true, 1)
+                    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 2, 1, 0.2, 0.2, true, true, 1)
                     -- 音效
                     this.TrojanList[v1.obj.Name] = {
                         model = v1.obj,
@@ -580,9 +586,12 @@ do
             if v.obj.UsingPlayerUid.Value == _player.UserId then
                 v.obj.Seat:Leave(_player)
                 v.obj.UsingPlayerUid.Value = ''
-                _player.Avatar:StopAnimation('HTRide', 3)
-                _player.Avatar:StopAnimation('SitIdle', 2)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'Jump')
+                --_player.Avatar:StopAnimation('HTRide', 3)
+                --_player.Avatar:StopAnimation('SitIdle', 2)
+                _player.Avatar:StopBlendSpaceNode(1)
+                _player.Avatar:StopBlendSpaceNode(2)
+                NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
+                _player.Position = _player.Position + Vector3(0, 2, 0)
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 --SoundUtil.Stop3DSE(this.TrojanList[v.obj.Name].sound)
                 v.obj.Forward = this.TrojanList[v.obj.Name].originForward
@@ -672,7 +681,8 @@ do
                         v.obj.Mesh = ResourceManager.GetMesh('Game/Tent/Tent' .. v.obj.ColorStr.Value .. 'Open')
                     end
                     --离开帐篷玩家的表现
-                    _player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
+                    --_player.Avatar:PlayAnimation('SocialWarmUp', 2, 1, 0, true, false, 1)
+                    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SocialWarmUp', 0, 1, 0.2, 0.2, true, false, 1)
                     _player.Avatar:SetActive(true)
                     _player.NameGui:SetActive(true)
                     _player.CollisionGroup = 15
@@ -819,7 +829,8 @@ do
                 invoke(
                     function()
                         NetUtil.Fire_C('ShowFoodEvent', _player)
-                        _player.Avatar:StopAnimation('SocialDoubt', 2)
+                        --_player.Avatar:StopAnimation('SocialDoubt', 2)
+                        _player.Avatar:StopBlendSpaceNode(0)
                         aniEvent:Clear()
                     end,
                     0.5
@@ -829,12 +840,14 @@ do
         aniEvent = _player.Avatar:AddAnimationEvent('SocialDoubt', 0.71)
         aniEvent:Connect(
             function()
-                _player.Avatar:StopAnimation('SocialDoubt', 2)
-                _player.Avatar:PlayAnimation('SocialDoubt', 2, 1, 0, true, true, 0.5)
+                --_player.Avatar:StopAnimation('SocialDoubt', 2)
+                --_player.Avatar:PlayAnimation('SocialDoubt', 2, 1, 0, true, true, 0.5)
+                _player.Avatar:StopBlendSpaceNode(0)
+                NetUtil.Fire_C('PlayAnimationEvent', _player, 'SocialDoubt', 0, 1, 0.2, 0.2, true, true, 0.5)
             end
         )
-        _player.Avatar:PlayAnimation('SocialDoubt', 2, 1, 0, true, true, 0.5)
-
+        --_player.Avatar:PlayAnimation('SocialDoubt', 2, 1, 0, true, true, 0.5)
+        NetUtil.Fire_C('PlayAnimationEvent', _player, 'SocialDoubt', 0, 1, 0.2, 0.2, true, true, 0.5)
         potTweener1:Play()
     end
 
@@ -886,9 +899,6 @@ do
         end
     end
 end
-
-
-
 
 --- 玩家碰撞开始
 function ScenesInteract:SInteractOnPlayerColBeginEventHandler(_player, _obj, _id)

@@ -1,13 +1,21 @@
-local BowHitState = class("BowHitState", PlayerActState)
+local BowHitState = class('BowHitState', PlayerActState)
+
+function BowHitState:initialize(_controller, _stateName)
+    PlayerActState.initialize(self, _controller, _stateName)
+    PlayerAnimMgr:CreateSingleClipNode('HitForward', 1, _stateName)
+end
+
+function BowHitState:InitData()
+    self:AddTransition('ToBowIdleState', self.controller.states['BowIdleState'], 0.5)
+end
 
 function BowHitState:OnEnter()
     PlayerActState.OnEnter(self)
-    localPlayer.Avatar:PlayAnimation("HitForward", 2, 1, 0.1, true, true, 1)
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
 end
 
 function BowHitState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
-    FsmMgr.playerActFsm:TriggerMonitor({"SwimIdle"})
 end
 function BowHitState:OnLeave()
     PlayerActState.OnLeave(self)

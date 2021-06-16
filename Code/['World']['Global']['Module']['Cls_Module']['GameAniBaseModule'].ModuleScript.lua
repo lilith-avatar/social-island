@@ -43,7 +43,7 @@ function GameAniBase:LeaveSeat(_uid)
     player.Avatar:SetBlendSubtree(Enum.BodyPart.FullBody, 15)
     local playingAni = self.arr_aniPlaying[_uid]
     if playingAni then
-        player.Avatar:StopAnimation(playingAni, 15)
+        player.Avatar:StopBlendSpaceNode(0)
     end
 end
 
@@ -65,7 +65,8 @@ function GameAniBase:Play(_uid, _enum)
     elseif _enum == Const.GameAniEnum.OutHand then
         ani = self.t_config.OutHand
     end
-    player.Avatar:PlayAnimation(ani, 15, 1, 0, true, false, 1)
+    --player.Avatar:PlayAnimation(ani, 15, 1, 0, true, false, 1)
+    NetUtil.Fire_C('PlayAnimationEvent', player, ani, 0, 1, 0.2, 0.2, true, false, 1)
     self.arr_time[_uid] = 6
 end
 
@@ -86,7 +87,8 @@ function RandPlay(self, _uid)
             return
         end
         if ani then
-            player.Avatar:PlayAnimation(ani, 15, 1, 0, true, false, 1)
+            --player.Avatar:PlayAnimation(ani, 15, 1, 0, true, false, 1)
+            NetUtil.Fire_C('PlayAnimationEvent', player, ani, 0, 1, 0.2, 0.2, true, false, 1)
             self.arr_aniPlaying[_uid] = ani
         end
     end

@@ -15,7 +15,7 @@ function MeleeWeapon:Attack()
     invoke(
         function()
             self.equipObj.Col:SetActive(true)
-            wait(1)
+            wait(self.baseData.UseTime)
             self.equipObj.Col:SetActive(false)
         end
     )
@@ -44,7 +44,8 @@ end
 
 --对命中玩家施加力
 function MeleeWeapon:AddForceToHitPlayer(_player)
-    _player.LinearVelocity = (_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce
+    _player:AddImpulse((_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce)
+    --_player.LinearVelocity = (_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce
 end
 
 --命中增加/移除buff
@@ -52,7 +53,12 @@ function MeleeWeapon:HitBuff(_player)
     CloudLogUtil.UploadLog(
         'battle_actions',
         'hit_event',
-        {hit_target_id = 'Player', target_detail = _player.Name, attack_target = localPlayer.Name, attack_type = 'Melee'}
+        {
+            hit_target_id = 'Player',
+            target_detail = _player.Name,
+            attack_target = localPlayer.Name,
+            attack_type = 'Melee'
+        }
     )
     NetUtil.Fire_S(
         'SPlayerHitEvent',

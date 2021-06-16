@@ -1,16 +1,16 @@
 ---@module ChairClass
 ---@copyright Lilith Games, Avatar Team
 ---@author Yen Yuan
-local ChairClass = class("ChairClass")
+local ChairClass = class('ChairClass')
 local Config = Config
 
 -- 状态枚举
 local StateEnum = {
-    free = "Free", --空闲
-    flying = "Flying", --喷射过程
-    jeting = "Jeting", --游戏过程中
-    returning = "Returning", --返程中
-    trojan = "Trojan"
+    free = 'Free', --空闲
+    flying = 'Flying', --喷射过程
+    jeting = 'Jeting', --游戏过程中
+    returning = 'Returning', --返程中
+    trojan = 'Trojan'
 }
 
 ---椅子的构造函数
@@ -43,16 +43,16 @@ end
 function ChairClass:CollisionBind()
     self.model.CollisionArea.OnCollisionBegin:Connect(
         function(_hitObject)
-            if _hitObject and _hitObject.ClassName == "PlayerInstance" and not self.owner then
-                NetUtil.Fire_C("ChangeChairIdEvent", _hitObject, self.id)
-                NetUtil.Fire_C("OpenDynamicEvent", _hitObject, "Interact", 10)
+            if _hitObject and _hitObject.ClassName == 'PlayerInstance' and not self.owner then
+                NetUtil.Fire_C('ChangeChairIdEvent', _hitObject, self.id)
+                NetUtil.Fire_C('OpenDynamicEvent', _hitObject, 'Interact', 10)
             end
         end
     )
     self.model.CollisionArea.OnCollisionEnd:Connect(
         function(_hitObject)
-            if _hitObject and _hitObject.ClassName == "PlayerInstance" then
-                NetUtil.Fire_C("ChangeMiniGameUIEvent", _hitObject)
+            if _hitObject and _hitObject.ClassName == 'PlayerInstance' then
+                NetUtil.Fire_C('ChangeMiniGameUIEvent', _hitObject)
             end
         end
     )
@@ -63,7 +63,8 @@ end
 function ChairClass:Sit(_player)
     self.owner = _player
     self.model.Seat:Sit(_player)
-    self.owner.Avatar:PlayAnimation("SitIdle", 2, 1, 0, true, true, 1)
+    --self.owner.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
+    NetUtil.Fire_C('PlayAnimationEvent', self.owner, 'SitIdle', 0, 1, 0.2, 0.2, true, true, 1)
     self.model.Seat:SetActive(true)
     self.owner.CollisionGroup = 15
     _player.Position = self.model.Seat.Position
@@ -75,7 +76,7 @@ function ChairClass:Stand()
     if self.owner then
         self.model.Seat:Leave(self.owner)
         self.owner.CollisionGroup = 1
-        NetUtil.Fire_C("FsmTriggerEvent", self.owner, "Jump")
+        NetUtil.Fire_C('FsmTriggerEvent', self.owner, 'JumpBeginState')
     end
     self.model.Seat:SetActive(false)
     self:Return()
@@ -102,7 +103,7 @@ function ChairClass:Update(dt)
         return
     end
     if self.state then
-        self[self.state .. "Update"](self, dt)
+        self[self.state .. 'Update'](self, dt)
     end
 end
 
@@ -116,7 +117,7 @@ function ChairClass:FlyingUpdate(dt)
         self.timer = 0
         self.model.LinearVelocity = Vector3.Zero
         self.state = StateEnum.jeting
-        NetUtil.Fire_C("StartJetEvent", self.owner)
+        NetUtil.Fire_C('StartJetEvent', self.owner)
     end
 end
 
@@ -159,7 +160,6 @@ end
 
 --***** 木马Update函数 *****
 function ChairClass:TrojanUpdate(dt)
-    
 end
 
 return ChairClass

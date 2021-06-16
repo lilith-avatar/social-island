@@ -64,12 +64,6 @@ function PlayerCtrl:EventBind()
             if Input.GetPressKeyData(JUMP_KEY) == 1 then
                 this:PlayerJump()
             end
-            if Input.GetPressKeyData(Enum.KeyCode.P) == 1 then
-                ItemMgr.itemInstance[1001]:Use()
-            end
-            if Input.GetPressKeyData(Enum.KeyCode.O) == 1 then
-                ItemMgr.itemInstance[2001]:Use()
-            end
             if Input.GetPressKeyData(Enum.KeyCode.Mouse2) == 1 and ItemMgr.curWeaponID ~= 0 then
                 ItemMgr.itemInstance[ItemMgr.curWeaponID]:Attack()
             end
@@ -141,7 +135,7 @@ end
 
 -- 获取移动方向
 function GetMoveDir()
-    forwardDir = PlayerCam:IsFreeMode() and PlayerCam.curCamera.Forward or localPlayer.Forward
+    forwardDir = PlayerCam:IsFreeMode() and PlayerCam.curCamera:GetDeferredForward() or localPlayer.Forward
     forwardDir.y = 0
     rightDir = Vector3(0, 1, 0):Cross(forwardDir)
     horizontal = GuiControl.joystick.Horizontal
@@ -156,21 +150,21 @@ end
 
 -- 跳跃逻辑
 function PlayerCtrl:PlayerJump()
-    FsmMgr:FsmTriggerEventHandler('Jump')
+    FsmMgr:FsmTriggerEventHandler('JumpBeginState')
+    FsmMgr:FsmTriggerEventHandler('BowJumpBeginState')
 end
 
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerHello()
     CloudLogUtil.UploadLog('pannel_actions', 'movement_sayhi')
-    localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
+    --localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
+    PlayerAnimMgr:CreateSingleClipNode('SocialHello', 1, 'SocialHello')
+    PlayerAnimMgr:Play('SocialHello', 0, 1, 0.2, 0.2, true, false, 1)
 end
 
 --脚步声
 function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
-    if
-        _hitPoint.y < localPlayer.Position.y + 0.1 and FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
-            FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
-     then
+    if _hitPoint.y < localPlayer.Position.y + 0.1 and localPlayer:IsSwimming() then
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
         elseif _hitObject and _hitObject.Parent then
@@ -446,10 +440,8 @@ end
 -- 角色受伤
 function PlayerCtrl:CPlayerHitEventHandler(_data)
     if GameFlow.inGame == false then
-        FsmMgr:FsmTriggerEventHandler('Hit')
-        FsmMgr:FsmTriggerEventHandler('BowHit')
-        FsmMgr:FsmTriggerEventHandler('OneHandedSwordHit')
-        FsmMgr:FsmTriggerEventHandler('TwoHandedSwordHit')
+        FsmMgr:FsmTriggerEventHandler('HitState')
+        FsmMgr:FsmTriggerEventHandler('BowHitState')
         ------print('角色受伤', table.dump(_data))
         BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
         BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
@@ -566,16 +558,16 @@ end
 function PlayerCtrl:OutlineCtrlEventHandler(_hitObject, _switch)
     if _switch == true then
         if _hitObject.isModel then
-            _hitObject:ShowOutline(Color(255, 255, 0, 255), 5, false,true)
+            _hitObject:ShowOutline(Color(255, 255, 0, 255), 5, false, true)
             return
         end
         if _hitObject.Parent and _hitObject.Parent.NpcAvatar then
-            _hitObject.Parent.NpcAvatar:ShowOutline(Color(255, 255, 0, 255), 5, false,true)
+            _hitObject.Parent.NpcAvatar:ShowOutline(Color(255, 255, 0, 255), 5, false, true)
             return
         end
         for k, v in pairs(_hitObject:GetDescendants()) do
             if v.isModel then
-                v:ShowOutline(Color(255, 255, 0, 255), 5, true,true)
+                v:ShowOutline(Color(255, 255, 0, 255), 5, true, true)
                 return
             end
         end
@@ -606,7 +598,7 @@ function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()
     end
-    this:PlayerSwim()
+    --this:PlayerSwim()
 end
 
 function PlayerCtrl:StartTTS()
