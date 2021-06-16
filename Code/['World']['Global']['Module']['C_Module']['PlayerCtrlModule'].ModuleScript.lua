@@ -164,7 +164,7 @@ end
 
 --脚步声
 function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
-    if _hitPoint.y < localPlayer.Position.y + 0.1 and localPlayer:IsSwimming() then
+    if _hitPoint.y < localPlayer.Position.y + 0.1 then
         if isOnWater then
             SoundUtil.Play2DSE(localPlayer.UserId, 19)
         elseif _hitObject and _hitObject.Parent then
