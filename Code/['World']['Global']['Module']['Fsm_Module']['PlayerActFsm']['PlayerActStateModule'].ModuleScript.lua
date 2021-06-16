@@ -46,15 +46,15 @@ end
 function PlayerActState:Swim(_multiple)
     local lvY = self:MoveMonitor() and math.clamp((PlayerCam.playerGameCam.Forward.y + 0.2), -1, 1) or 0
     if self:IsWaterSuface() and lvY > 0 then
-        lvY = -1 * localPlayer.Velocity.y
+        lvY = -3 * localPlayer.Velocity.y
     elseif localPlayer.Position.y > waterData.rangeMax.y - 0.5 and lvY >= 0 then
-        lvY = -1 * localPlayer.Velocity.y
+        lvY = -3 * localPlayer.Velocity.y
     end
     if self:FloorMonitor(3) and lvY < 0 then
         lvY = 0
     end
     local dir = Vector3(PlayerCtrl.finalDir.x, lvY, PlayerCtrl.finalDir.z)
-    print(dir, localPlayer.Velocity.y)
+    --print(dir, localPlayer.Velocity.y)
     localPlayer:AddMovementInput(dir, _multiple or 1)
 end
 
@@ -118,15 +118,15 @@ end
 
 ---监听下落状态
 function PlayerActState:FallMonitor()
-    if not self:FloorMonitor(0.5) and localPlayer.Velocity.y < 0.5 then
+    if not self:FloorMonitor(0.5) and localPlayer.Velocity.y < 0.5 and not localPlayer.IsOnGround then
         self.controller:CallTrigger('JumpHighestState')
         self.controller:CallTrigger('BowJumpHighestState')
     end
 end
 
 ---是否在水面
-function PlayerActState:IsWaterSuface()
-    if localPlayer.Position.y > waterData.rangeMax.y - 0.25 then
+function PlayerActState:IsWaterSuface(_dis)
+    if localPlayer.Position.y > waterData.rangeMax.y - (_dis or 0.25) then
         return true
     else
         return false

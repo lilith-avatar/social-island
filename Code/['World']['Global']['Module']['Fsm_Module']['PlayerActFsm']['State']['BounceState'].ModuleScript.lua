@@ -29,12 +29,13 @@ function BounceState:InitData()
             return self.controller.triggers['BowFallState']
         end
     )
-    self:AddTransition('ToIdleState', self.controller.states['IdleState'], 2)
+    --self:AddTransition('ToIdleState', self.controller.states['IdleState'], 2)
 end
 
 function BounceState:OnEnter()
     PlayerActState.OnEnter(self)
     PlayerAnimMgr:Play(self.stateName, 0, 1, 0.1, 0.1, true, false, 1)
+    localPlayer:LaunchCharacter(localPlayer.Up * 20, false, false)
 end
 
 function BounceState:OnUpdate(dt)

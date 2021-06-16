@@ -29,7 +29,7 @@ end
 
 function SwimmingState:OnEnter()
     PlayerActState.OnEnter(self)
-    isSufaceWater = self:IsWaterSuface()
+    isSufaceWater = self:IsWaterSuface(0.5)
     if isSufaceWater then
         PlayerAnimMgr:Play(self.stateName .. 'Freestyle', 0, 1, 0.3, 0.3, true, true, 1)
     else
@@ -40,7 +40,7 @@ end
 function SwimmingState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     self:Swim()
-    if isSufaceWater ~= self:IsWaterSuface() then
+    if isSufaceWater ~= self:IsWaterSuface(0.5) then
         self:OnEnter()
     end
 end
