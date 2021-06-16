@@ -15,6 +15,14 @@ function JumpHighestState:initialize(_controller, _stateName)
 end
 function JumpHighestState:InitData()
     self:AddTransition('ToFallState', self.controller.states['FallState'], 0.5)
+    self:AddTransition(
+        'ToLandState',
+        self.controller.states['LandState'],
+        -1,
+        function()
+            return self:FloorMonitor(0.5)
+        end
+    )
 end
 
 function JumpHighestState:OnEnter()

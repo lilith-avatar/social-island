@@ -19,7 +19,7 @@ function FallState:InitData()
         self.controller.states['LandState'],
         -1,
         function()
-            return not localPlayer:IsFalling()
+            return self:FloorMonitor(0.5)
         end
     )
 end
