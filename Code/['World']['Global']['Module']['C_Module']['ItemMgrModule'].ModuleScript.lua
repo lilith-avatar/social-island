@@ -164,6 +164,7 @@ end
 function ItemMgr:UnequipCurEquipmentEventHandler()
     if Data.Player.curEquipmentID ~= 0 then
         print('解除当前道具', Data.Player.curEquipmentID)
+        localPlayer.Avatar:StopBlendSpaceNode(1)
         this.itemInstance[Data.Player.curEquipmentID]:Unequip()
         Data.Player.curEquipmentID = 0
     end
