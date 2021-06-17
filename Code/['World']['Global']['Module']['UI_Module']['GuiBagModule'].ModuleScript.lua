@@ -156,9 +156,11 @@ function GuiBag:ClickUseBtn(_index)
     -- 物品消耗判定
     this:ConsumeItem(_index)
     -- 清除选择
-	if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num > 0 and Config.ItemType[Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].Type].IsConsume then
-		this:SelectItem(_index)
-	end
+	pcall(function()
+		if this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].num > 0 and Config.ItemType[Config.Item[this.slotItem[(this.pageIndex - 1) * this.pageSize + _index].id].Type].IsConsume then
+			this:SelectItem(_index)
+		end
+	end)
     -- 重新展示当前页面物品信息
     this:ClickChangePage(this.pageIndex)
 end
