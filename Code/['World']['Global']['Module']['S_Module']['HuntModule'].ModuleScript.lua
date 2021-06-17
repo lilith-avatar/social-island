@@ -51,7 +51,18 @@ end
 function Hunt:NodeRef()
     Navigation.SetWalkableRoots(world.Scenes.grass:GetChildren())
     --Navigation.SetObstacleRoots(world.Water:GetChildren())
-    Navigation.SetObstacleRoots(table.MergeTables(world.Scenes.stone:GetChildren(), world.Tree:GetChildren()))
+    Navigation.SetObstacleRoots(
+        table.MergeTables(
+            world.Scenes.stone:GetChildren(),
+            world.Tree:GetChildren(),
+            world.Scenes.cloth:GetChildren(),
+            world.Scenes.metal:GetChildren(),
+            world.Scenes.wood:GetChildren(),
+            world.BonfireInteract:GetChildren(),
+            world.BounceInteract:GetChildren(),
+            world.Tent:GetChildren()
+        )
+    )
     Navigation.SetAgent(1, 0.1, 0.2, 30.0)
     Navigation.SetUpdateDelay(0)
 end

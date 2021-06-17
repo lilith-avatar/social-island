@@ -212,76 +212,6 @@ function PlayerCtrl:FeetStepEffect(_dir, _hitObject, _hitPoint)
     end
 end
 
---游泳检测
-function PlayerCtrl:PlayerSwim()
-    if isSwim == false then
-        if
-            localPlayer.Position.x < world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 and
-                localPlayer.Position.x > world.Water.DeepWaterCol.Position.x - world.Water.DeepWaterCol.Size.x / 2 and
-                localPlayer.Position.z < world.Water.DeepWaterCol.Position.z + world.Water.DeepWaterCol.Size.z / 2 and
-                localPlayer.Position.z > world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 and
-                localPlayer.Position.y < -15.4
-         then
-            ------print('进入游泳')
-            FsmMgr:FsmTriggerEventHandler('SwimIdle')
-            if
-                FsmMgr.playerActFsm.curState.stateName == 'SwimIdle' or
-                    FsmMgr.playerActFsm.curState.stateName == 'Swimming'
-             then
-                isSwim = true
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 30)
-                NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
-                SoundUtil.Play2DSE(localPlayer.UserId, 20)
-            end
-        end
-    else
-        if
-            localPlayer.Position.x > world.Water.DeepWaterCol.Position.x + world.Water.DeepWaterCol.Size.x / 2 or
-                localPlayer.Position.x < world.Water.DeepWaterCol.Position.x - world.Water.DeepWaterCol.Size.x / 2 or
-                localPlayer.Position.z > world.Water.DeepWaterCol.Position.z + world.Water.DeepWaterCol.Size.z / 2 or
-                localPlayer.Position.z < world.Water.DeepWaterCol.Position.z - world.Water.DeepWaterCol.Size.z / 2 or
-                localPlayer.Position.y > -15.4
-         then
-            ------print('退出游泳')
-            FsmMgr:FsmTriggerEventHandler('Idle')
-            if
-                FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
-                    FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
-             then
-                isSwim = false
-                localPlayer.GravityScale = 2
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-                NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
-                local effect =
-                    world:CreateInstance('LandWater', 'LandWater', world, localPlayer.Position + Vector3(0, 2, 0))
-                invoke(
-                    function()
-                        effect:Destroy()
-                    end,
-                    1
-                )
-            end
-        else
-            if
-                FsmMgr.playerActFsm.curState.stateName ~= 'SwimIdle' and
-                    FsmMgr.playerActFsm.curState.stateName ~= 'Swimming'
-             then
-                isSwim = false
-                NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
-                NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
-                local effect =
-                    world:CreateInstance('LandWater', 'LandWater', world, localPlayer.Position + Vector3(0, 2, 0))
-                invoke(
-                    function()
-                        effect:Destroy()
-                    end,
-                    1
-                )
-            end
-        end
-    end
-end
-
 -- 修改是否能控制角色
 function PlayerCtrl:SetPlayerControllableEventHandler(_bool)
     this.isControllable = _bool
@@ -294,8 +224,9 @@ end
 
 -- 角色属性更新
 function PlayerCtrl:PlayerAttrUpdate()
-    localPlayer.WalkSpeed = Data.Player.attr.WalkSpeed
+    localPlayer.MaxWalkSpeed = Data.Player.attr.MaxWalkSpeed
     localPlayer.JumpUpVelocity = Data.Player.attr.JumpUpVelocity
+    localPlayer.CharacterGravityScale = Data.Player.attr.CharacterGravityScale
     localPlayer.Avatar.HeadSize = Data.Player.attr.AvatarHeadSize
     localPlayer.Avatar.Height = Data.Player.attr.AvatarHeight
     localPlayer.Avatar.Width = Data.Player.attr.AvatarWidth
@@ -598,7 +529,6 @@ function PlayerCtrl:Update(dt)
     if this.isControllable then
         GetMoveDir()
     end
-    --this:PlayerSwim()
 end
 
 function PlayerCtrl:StartTTS()
