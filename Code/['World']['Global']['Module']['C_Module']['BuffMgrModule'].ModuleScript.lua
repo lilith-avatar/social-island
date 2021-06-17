@@ -18,9 +18,9 @@ local defPlayerData = {
     HandEffect = {},
     FootEffect = {},
     EntiretyEffect = {},
-    WalkSpeed = 6,
+    MaxWalkSpeed = 12,
     JumpUpVelocity = 8,
-    GravityScale = 2,
+    CharacterGravityScale = 2,
     SkinID = 0,
     EnableEquipable = true
 }
@@ -128,7 +128,7 @@ function BuffMgr:GetAllBuffData()
     for k, v in pairs(buffDataTable) do
         Data.Player.attr[k] = v
     end
-    ----print(table.dump(buffDataTable))
+    print(table.dump(buffDataTable))
 end
 
 --按时间消退Buff

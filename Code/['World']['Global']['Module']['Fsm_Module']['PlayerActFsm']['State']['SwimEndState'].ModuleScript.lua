@@ -11,11 +11,13 @@ end
 
 function SwimEndState:OnEnter()
     PlayerActState.OnEnter(self)
-
     PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, false, 1)
+    local effect = world:CreateInstance('LandWater', 'LandWater', world, localPlayer.Position + Vector3(0, 1, 0))
     invoke(
         function()
             localPlayer:StopMovementImmediately()
+            wait(0.5)
+            effect:Destroy()
         end,
         0.3
     )
@@ -28,6 +30,7 @@ end
 function SwimEndState:OnLeave()
     PlayerActState.OnLeave(self)
     localPlayer:SetSwimming(false)
+    NetUtil.Fire_C('RemoveBuffEvent', localPlayer, 5)
 end
 
 return SwimEndState

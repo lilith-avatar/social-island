@@ -65,12 +65,20 @@ end
 function BounceState:OnUpdate(dt)
     PlayerActState.OnUpdate(self, dt)
     if not self:FloorMonitor(0.5) and localPlayer.Velocity.y < 0.5 then
-        self.controller:CallTrigger('FallState')
-        self.controller:CallTrigger('BowFallState')
+        if Data.Player.curEquipmentID == 0 then
+            self.controller:CallTrigger('FallState')
+        elseif ItemMgr.itemInstance[Data.Player.curEquipmentID].baseData.Type == 2 then
+            self.controller:CallTrigger('BowFallState')
+        end
+        localPlayer.Avatar:StopBlendSpaceNode(1)
     end
     if self:FloorMonitor(0.5) and isLandMonitor then
-        self.controller:CallTrigger('LandState')
-        self.controller:CallTrigger('BowLandState')
+        if Data.Player.curEquipmentID == 0 then
+            self.controller:CallTrigger('LandState')
+        elseif ItemMgr.itemInstance[Data.Player.curEquipmentID].baseData.Type == 2 then
+            self.controller:CallTrigger('BowLandState')
+            localPlayer.Avatar:StopBlendSpaceNode(1)
+        end
     end
     self:Move()
 end

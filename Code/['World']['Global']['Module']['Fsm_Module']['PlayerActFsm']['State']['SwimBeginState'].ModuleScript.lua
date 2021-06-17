@@ -29,6 +29,8 @@ function SwimBeginState:OnEnter()
     PlayerActState.OnEnter(self)
     if not localPlayer:IsSwimming() then
         localPlayer:SetSwimming(true)
+        NetUtil.Fire_C('GetBuffEvent', localPlayer, 5, -1)
+        SoundUtil.Play2DSE(localPlayer.UserId, 20)
         localPlayer.RotationRate = EulerDegree(0, 240, 0)
     end
     PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, false, 1)

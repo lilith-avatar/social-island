@@ -1,5 +1,8 @@
 local BowMoveState = class('BowMoveState', PlayerActState)
 
+local speedScale = 1
+local curSpeedScale = 1
+
 function BowMoveState:initialize(_controller, _stateName)
     PlayerActState.initialize(self, _controller, _stateName)
     local anims = {
@@ -55,7 +58,8 @@ end
 
 function BowMoveState:OnEnter()
     PlayerActState.OnEnter(self)
-    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
+    curSpeedScale = localPlayer.MaxWalkSpeed / 12
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, curSpeedScale)
 end
 
 function BowMoveState:OnUpdate(dt)
@@ -63,6 +67,11 @@ function BowMoveState:OnUpdate(dt)
     self:SpeedMonitor()
     self:Move()
     self:FallMonitor()
+    speedScale = localPlayer.MaxWalkSpeed / 12
+    if curSpeedScale ~= speedScale then
+        curSpeedScale = speedScale
+        PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, curSpeedScale)
+    end
 end
 
 function BowMoveState:OnLeave()

@@ -57,7 +57,18 @@ end
 --- 数据变量初始化
 function Pet:DataInit()
     Navigation.SetWalkableRoots(table.MergeTables(world.Scenes.grass:GetChildren(), world.Scenes.cloud:GetChildren()))
-    Navigation.SetObstacleRoots(table.MergeTables(world.Scenes.stone:GetChildren(), world.Tree:GetChildren()))
+    Navigation.SetObstacleRoots(
+        table.MergeTables(
+            world.Scenes.stone:GetChildren(),
+            world.Tree:GetChildren(),
+            world.Scenes.cloth:GetChildren(),
+            world.Scenes.metal:GetChildren(),
+            world.Scenes.wood:GetChildren(),
+            world.BonfireInteract:GetChildren(),
+            world.BounceInteract:GetChildren(),
+            world.Tent:GetChildren()
+        )
+    )
     Navigation.SetAgent(1, 0.1, 0.2, 30.0)
     Navigation.SetUpdateDelay(0)
 end
@@ -113,7 +124,7 @@ function Pet:InstancePet(_id)
         world:CreateInstance(
         Config.Pet[_id].ArchetypeName,
         Config.Pet[_id].Name,
-        world,
+        localPlayer.Independent,
         localPlayer.Position - localPlayer.Forward * 2 + Vector3(0, 1, 0)
     )
     --this:GetPetData(_id)

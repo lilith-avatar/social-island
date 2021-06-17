@@ -63,6 +63,7 @@ end
 
 --进入状态
 function StateBase:OnEnter()
+    print('进入' .. self.stateName)
     self:Reset()
 end
 

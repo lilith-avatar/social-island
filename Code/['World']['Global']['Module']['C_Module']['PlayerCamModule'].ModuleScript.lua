@@ -144,7 +144,7 @@ end
 
 ---游泳滤镜检测
 function PlayerCam:UpdateSwimFilter()
-    if localPlayer:IsSwimming() then
+    if not localPlayer:IsSwimming() then
         if swimFilterSwitch == true then
             this:SwitchSwimFilter(false)
         end

@@ -1,5 +1,8 @@
 local MoveState = class('MoveState', PlayerActState)
 
+local speedScale = 1
+local curSpeedScale = 1
+
 function MoveState:initialize(_controller, _stateName)
     PlayerActState.initialize(self, _controller, _stateName)
     local animsM = {
@@ -47,7 +50,8 @@ end
 
 function MoveState:OnEnter()
     PlayerActState.OnEnter(self)
-    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, 1)
+    curSpeedScale = localPlayer.MaxWalkSpeed / 12
+    PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, curSpeedScale)
 end
 
 function MoveState:OnUpdate()
@@ -55,6 +59,11 @@ function MoveState:OnUpdate()
     self:SpeedMonitor()
     self:Move()
     self:FallMonitor()
+    speedScale = localPlayer.MaxWalkSpeed / 12
+    if curSpeedScale ~= speedScale then
+        curSpeedScale = speedScale
+        PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, true, curSpeedScale)
+    end
 end
 
 function MoveState:OnLeave()
