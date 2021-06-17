@@ -16,7 +16,9 @@ function MeleeWeapon:Attack()
         function()
             self.equipObj.Col:SetActive(true)
             wait(self.baseData.UseTime)
-            self.equipObj.Col:SetActive(false)
+			if self.equipObj.Col then
+				self.equipObj.Col:SetActive(false)
+			end
         end
     )
 end
