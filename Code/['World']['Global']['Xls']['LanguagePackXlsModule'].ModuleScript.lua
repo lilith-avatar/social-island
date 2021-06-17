@@ -3099,7 +3099,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_1',
         CHS = '你不能在这里使用这个道具。',
         CHT = '',
-        EN = '',
+        EN = 'You can’t use this item here',
         JP = '',
         YN = ''
     },
@@ -3107,7 +3107,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_2',
         CHS = '你不能在运动时使用这个道具。',
         CHT = '',
-        EN = '',
+        EN = 'You can’t use this item while you are moving',
         JP = '',
         YN = ''
     },
@@ -3115,7 +3115,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_3',
         CHS = '你离其他桌子太近了！',
         CHT = '',
-        EN = '',
+        EN = 'You are too close to the other tables',
         JP = '',
         YN = ''
     },
@@ -3123,7 +3123,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_4',
         CHS = '准备中',
         CHT = '',
-        EN = '',
+        EN = 'Ready',
         JP = '',
         YN = ''
     },
@@ -3131,7 +3131,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_5',
         CHS = '这个桌子的人已经满了。',
         CHT = '',
-        EN = '',
+        EN = 'This table is full',
         JP = '',
         YN = ''
     },
@@ -3139,7 +3139,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_6',
         CHS = '你已经在一个桌子上了。',
         CHT = '',
-        EN = '',
+        EN = 'You are already seated at a table',
         JP = '',
         YN = ''
     },
@@ -3147,7 +3147,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_7',
         CHS = '你需要先退出这个桌子。',
         CHT = '',
-        EN = '',
+        EN = 'You need to leave this table first',
         JP = '',
         YN = ''
     },
@@ -3155,7 +3155,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_8',
         CHS = '只有房主才可以同意玩家进入游戏。',
         CHT = '',
-        EN = '',
+        EN = 'Only the room host can approve players to enter',
         JP = '',
         YN = ''
     },
@@ -3163,7 +3163,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_9',
         CHS = '你已经在游戏中了。',
         CHT = '',
-        EN = '',
+        EN = 'You are already in a game',
         JP = '',
         YN = ''
     },
@@ -3171,7 +3171,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_10',
         CHS = '参与游戏的玩家已经达到上限。',
         CHT = '',
-        EN = '',
+        EN = 'The game already has a maximum number of players',
         JP = '',
         YN = ''
     },
@@ -3179,7 +3179,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_11',
         CHS = '只有房主才可以对房间上锁状态进行更改。',
         CHT = '',
-        EN = '',
+        EN = 'Only the room host can lock or unlock the room',
         JP = '',
         YN = ''
     },
@@ -3187,7 +3187,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_12',
         CHS = '房间已经被上锁了。',
         CHT = '',
-        EN = '',
+        EN = 'The room is already locked',
         JP = '',
         YN = ''
     },
@@ -3195,7 +3195,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_13',
         CHS = '房间已经解锁了。',
         CHT = '',
-        EN = '',
+        EN = 'The room is already unlocked',
         JP = '',
         YN = ''
     },
@@ -3203,7 +3203,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_14',
         CHS = '你已经退出了这个桌子。',
         CHT = '',
-        EN = '',
+        EN = 'You already left this table',
         JP = '',
         YN = ''
     },
@@ -3211,7 +3211,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_15',
         CHS = '你已经在观战了。',
         CHT = '',
-        EN = '',
+        EN = 'You are already spectating',
         JP = '',
         YN = ''
     },
@@ -3219,7 +3219,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_16',
         CHS = '你已经参与了游戏。',
         CHT = '',
-        EN = '',
+        EN = 'You already joined the game',
         JP = '',
         YN = ''
     },
@@ -3227,7 +3227,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_17',
         CHS = '座位已经满了。',
         CHT = '',
-        EN = '',
+        EN = 'There are no more seats',
         JP = '',
         YN = ''
     },
@@ -3235,7 +3235,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_18',
         CHS = '这个座位已经有一个玩家了。',
         CHT = '',
-        EN = '',
+        EN = 'Someone is already sitting here',
         JP = '',
         YN = ''
     },
@@ -3243,7 +3243,7 @@ local LanguagePackXls = {
         ID = 'Item_Name_4005',
         CHS = '五子棋套装',
         CHT = '',
-        EN = '',
+        EN = 'Gomoku Set',
         JP = '',
         YN = ''
     },
@@ -3251,7 +3251,7 @@ local LanguagePackXls = {
         ID = 'Item_Des_4005',
         CHS = '随时与你的伙伴下五子棋。',
         CHT = '',
-        EN = '',
+        EN = 'Play Gomoku with your friends any time',
         JP = '',
         YN = ''
     },
@@ -3259,7 +3259,7 @@ local LanguagePackXls = {
         ID = 'Item_Name_4006',
         CHS = '围棋套装',
         CHT = '',
-        EN = '',
+        EN = 'Go Set',
         JP = '',
         YN = ''
     },
@@ -3267,7 +3267,7 @@ local LanguagePackXls = {
         ID = 'Item_Des_4006',
         CHS = '随时与你的伙伴下围棋。',
         CHT = '',
-        EN = '',
+        EN = 'Play Go with your friends any time',
         JP = '',
         YN = ''
     },
@@ -3275,7 +3275,7 @@ local LanguagePackXls = {
         ID = 'Game_Name_1000',
         CHS = '五子棋',
         CHT = '',
-        EN = '',
+        EN = 'Gomoku Set',
         JP = '',
         YN = ''
     },
@@ -3323,7 +3323,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_19',
         CHS = '重置游戏',
         CHT = '',
-        EN = '',
+        EN = 'Reset game',
         JP = '',
         YN = ''
     },
@@ -3331,7 +3331,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_20',
         CHS = '房间上锁',
         CHT = '',
-        EN = '',
+        EN = 'Lock room',
         JP = '',
         YN = ''
     },
@@ -3339,7 +3339,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_21',
         CHS = '房间解锁',
         CHT = '',
-        EN = '',
+        EN = 'Unlock room',
         JP = '',
         YN = ''
     },
@@ -3347,7 +3347,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_22',
         CHS = '观战',
         CHT = '',
-        EN = '',
+        EN = 'Spectate',
         JP = '',
         YN = ''
     },
@@ -3355,7 +3355,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_23',
         CHS = '加入游戏',
         CHT = '',
-        EN = '',
+        EN = 'Join game',
         JP = '',
         YN = ''
     },
@@ -3363,7 +3363,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_24',
         CHS = '退出',
         CHT = '',
-        EN = '',
+        EN = 'Quit',
         JP = '',
         YN = ''
     },
@@ -3371,7 +3371,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_25',
         CHS = '取消',
         CHT = '',
-        EN = '',
+        EN = 'Cancel',
         JP = '',
         YN = ''
     },
@@ -3379,7 +3379,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_26',
         CHS = '游戏中',
         CHT = '',
-        EN = '',
+        EN = 'In a game',
         JP = '',
         YN = ''
     },
@@ -3387,7 +3387,7 @@ local LanguagePackXls = {
         ID = 'GuiText_Txt_BoardGame_27',
         CHS = '观战中',
         CHT = '',
-        EN = '',
+        EN = 'Spectating...',
         JP = '',
         YN = ''
     }
