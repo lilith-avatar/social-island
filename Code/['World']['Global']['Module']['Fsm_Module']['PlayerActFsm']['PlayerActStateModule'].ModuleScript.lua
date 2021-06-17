@@ -8,7 +8,6 @@ local PlayerActState = class('PlayerActState', StateBase)
 local waterData = {}
 
 function PlayerActState:initialize(_controller, _stateName)
-    print('ControllerBase:initialize()')
     StateBase.initialize(self, _controller, _stateName)
     waterData = {
         rangeMin = world.Water.DeepWaterCol.Position -
@@ -73,7 +72,7 @@ end
 function PlayerActState:FloorMonitor(_dis)
     local startPos = localPlayer.Position
     local endPos = localPlayer.Position + Vector3.Down * (_dis or 0.03)
-    local hitResult = Physics:RaycastAll(startPos, endPos, true)
+    local hitResult = Physics:RaycastAll(startPos, endPos, false)
     for i, v in pairs(hitResult.HitObjectAll) do
         if v.Block and v ~= localPlayer then
             return true

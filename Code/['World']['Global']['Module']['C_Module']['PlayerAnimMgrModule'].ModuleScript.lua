@@ -10,7 +10,6 @@ local clipNodes = {
 }
 --- 初始化
 function PlayerAnimMgr:Init()
-    print('PlayerAnimMgr:Init')
     this:NodeRef()
     this:DataInit()
     this:EventBind()
@@ -91,7 +90,6 @@ end
 --创建一个包含单个动作的混合空间节点,并设置动作速率
 function PlayerAnimMgr:CreateSingleClipNode(_animName, _speed, _nodeName, _gender)
     _gender = _gender or 0
-    print(_gender, table.dump(clipNodes))
     local node = localPlayer.Avatar:AddBlendSpaceSingleNode(false)
     node:AddClipSingle(_animName, _speed or 1)
     if _nodeName then

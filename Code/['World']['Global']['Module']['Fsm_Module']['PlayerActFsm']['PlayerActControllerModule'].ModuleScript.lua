@@ -5,7 +5,6 @@
 local PlayerActController = class('PlayerActController', ControllerBase)
 
 function PlayerActController:initialize(_stateMachineNode, _folder)
-    print('PlayerActController:initialize()')
     ControllerBase.initialize(self, _stateMachineNode, _folder)
     self.triggers = {}
     for k, v in pairs(self.states) do

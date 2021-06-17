@@ -5,7 +5,6 @@
 local TransitonBase = class('TransitonBase')
 
 function TransitonBase:initialize(_transitonName, _nextState, _dur)
-    print(_transitonName, 'initialize()')
     self.transitonName = _transitonName
     self.nextState = _nextState
     self.dur = _dur or -1

@@ -5,7 +5,6 @@
 local StateBase = class('StateBase')
 
 function StateBase:initialize(_controller, _stateName)
-    print(_stateName, 'initialize()')
     self.stateName = _stateName
     self.controller = _controller
 
@@ -64,7 +63,6 @@ end
 
 --进入状态
 function StateBase:OnEnter()
-    print('进入' .. self.stateName)
     self:Reset()
 end
 

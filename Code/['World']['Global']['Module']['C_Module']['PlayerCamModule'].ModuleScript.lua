@@ -82,7 +82,7 @@ end
 
 --- TPS相机射线检测目标
 function PlayerCam:TPSGetRayDir()
-    local hitResult = Physics:RaycastAll(this.tpsCam.Position, this.tpsCam.Position + this.tpsCam.Forward * 100, true)
+    local hitResult = Physics:RaycastAll(this.tpsCam.Position, this.tpsCam.Position + this.tpsCam.Forward * 100, false)
     for i, v in ipairs(hitResult:GetHitPosAll()) do --获取所有碰到的物体
         if
             (v - localPlayer.Position).Magnitude > 4 and
