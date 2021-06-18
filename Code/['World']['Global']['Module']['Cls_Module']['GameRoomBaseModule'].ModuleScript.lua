@@ -213,7 +213,7 @@ function GameRoomBase:SwitchState(_player, _state, _index)
         if not _index then
             ---未传座位索引,需要在没有人的座位中随机一个
             for i, v in pairs(self.arr_seats) do
-                if not v.Model.Seat.Occupant then
+                if not v.Player then
                     _index = i
                 end
             end
@@ -949,10 +949,11 @@ function TakeSeat(self, _player, _index)
         print('该索引座位不存在', _index)
         return false
     end
-    if seat.Model.Seat.Occupant then
+    if seat.Player then
         NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_18.Txt), 3, true)
         return false
     end
+	--[[
     invoke(
         function()
             wait()
@@ -960,10 +961,10 @@ function TakeSeat(self, _player, _index)
                 seat.Model.Seat:Sit(_player)
             end
         end
-    )
+    )]]
     seat.Player = _player
     --_player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
-    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 0, 1, 0.2, 0.2, true, false, 1)
+    --NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 0, 1, 0.2, 0.2, true, false, 1)
     self.ins_ani:Seat(_player.UserId)
     return true
 end
@@ -973,8 +974,8 @@ end
 function LeaveSeat(self, _player)
     if not _player then
         for i, v in ipairs(self.arr_seats) do
-            local player = v.Model.Seat.Occupant
-            v.Model.Seat:Leave()
+            local player = v.Player
+            --v.Model.Seat:Leave()
             if player then
                 --player.Avatar:StopAnimation('SitIdle', 2)
                 player.Avatar:StopBlendSpaceNode(0)
@@ -984,8 +985,8 @@ function LeaveSeat(self, _player)
         end
     else
         for i, v in ipairs(self.arr_seats) do
-            if v.Model.Seat.Occupant == _player then
-                v.Model.Seat:Leave()
+            if v.Player == _player then
+                --v.Model.Seat:Leave()
                 --_player.Avatar:StopAnimation('SitIdle', 2)
                 _player.Avatar:StopBlendSpaceNode(0)
                 _player.Position = _player.Position + _player.Back + Vector3.Up * 0.5
