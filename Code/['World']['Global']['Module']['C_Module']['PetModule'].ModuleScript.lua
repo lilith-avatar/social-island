@@ -102,6 +102,7 @@ end
 --- 弹出宠物命名面板
 function Pet:OpenNamedPetUI(_id)
     Data.Player.petID = _id
+	gui.Panel.BgImg.InputText.Text = ''
     LanguageUtil.SetText(gui.Panel.BgImg.DesText, 'GuiText_Txt_PetGui_6', true, 20, 40)
     gui:SetActive(true)
 end
