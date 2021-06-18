@@ -124,6 +124,23 @@ function GuiSnail:CSnailResetEventHandler()
     )
 end
 
+-- 比赛开始关闭界面
+function GuiSnail:ShowNoticeInfoEventHandler(_eventId)
+	if _eventId == 3 and (gui.ActiveSelf or localPlayer.Local.SpecialTopUI.PurchaseGUI.PurchaseBgImg.ScrollPanel.ActiveSelf) then
+        SoundUtil.Play2DSE(localPlayer.UserId, 6)
+        NetUtil.Fire_C(
+            'InsertInfoEvent',
+            localPlayer,
+            LanguageUtil.GetText(Config.GuiText.SnailGui_17.Txt),
+            3,
+            true
+        )
+		localPlayer.Local.SpecialTopUI.PurchaseGUI.PurchasePanel:SetActive(false)
+        NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+	end
+end
+
+
 function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then
         SoundUtil.Play2DSE(localPlayer.UserId, 5)
