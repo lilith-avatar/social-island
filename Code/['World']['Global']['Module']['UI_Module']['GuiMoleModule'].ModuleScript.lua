@@ -121,19 +121,26 @@ end
 
 local rewardTweener
 function GuiMole:ShowRewardItem(_index)
-    -- 先进行缩放表现
-    this:RewardPres()
-    -- 显示物品名字和icon
-    this.rewardArrow:SetActive(_index ~= table.nums(this.rewardQueue))
-    this.rewardContinue:SetActive(_index ~= table.nums(this.rewardQueue))
-    this.rewardAccept:SetActive(_index == table.nums(this.rewardQueue))
-    this.rewardName.Text = LanguageUtil.GetText(Config.Item[this.rewardQueue[_index]].Name)
-    this.rewardIcon.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[this.rewardQueue[_index]].Icon)
-    this.rewardGui.ItemBG.Info:SetActive(true)
-    -- 回弹表现
-    rewardTweener = Tween:TweenProperty(this.rewardGui.ItemBG, {Size = Vector2(873, 535)}, 0.05, 1)
-    rewardTweener:Play()
-    rewardTweener:WaitForComplete()
+	if _index > #this.rewardQueue then
+		return
+	end
+	-- 先进行缩放表现
+	this:RewardPres()
+	-- 显示物品名字和icon
+	this.rewardArrow:SetActive(_index ~= table.nums(this.rewardQueue))
+	this.rewardContinue:SetActive(_index ~= table.nums(this.rewardQueue))
+	this.rewardAccept:SetActive(_index == table.nums(this.rewardQueue))
+	printTable(this.rewardQueue)
+	print(_index)
+	print(this.rewardQueue[_index])
+	print(LanguageUtil.GetText(Config.Item[this.rewardQueue[_index]].Name))
+	this.rewardName.Text = LanguageUtil.GetText(Config.Item[this.rewardQueue[_index]].Name)
+	this.rewardIcon.Texture = ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[this.rewardQueue[_index]].Icon)
+	this.rewardGui.ItemBG.Info:SetActive(true)
+	-- 回弹表现
+	rewardTweener = Tween:TweenProperty(this.rewardGui.ItemBG, {Size = Vector2(873, 535)}, 0.05, 1)
+	rewardTweener:Play()
+	rewardTweener:WaitForComplete()
 end
 
 function GuiMole:RewardPres()
