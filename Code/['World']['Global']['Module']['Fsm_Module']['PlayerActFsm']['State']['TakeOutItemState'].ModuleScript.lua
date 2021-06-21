@@ -16,7 +16,7 @@ function TakeOutItemState:OnEnter()
     local animDur = ItemMgr.itemInstance[Data.Player.curEquipmentID].baseData.TakeOutTime
     local nextState = ItemMgr.itemInstance[Data.Player.curEquipmentID].typeConfig.FsmMode
 
-    PlayerAnimMgr:CreateSingleClipNode(animName, 1, self.stateName, 1)
+    PlayerAnimMgr:CreateSingleClipNode(animName, 1, self.stateName)
     PlayerAnimMgr:Play(self.stateName, 0, 1, 0.2, 0.2, true, false, 1)
     SoundUtil.Play3DSE(localPlayer.Position, ItemMgr.itemInstance[Data.Player.curEquipmentID].baseData.TakeOutSoundID)
 

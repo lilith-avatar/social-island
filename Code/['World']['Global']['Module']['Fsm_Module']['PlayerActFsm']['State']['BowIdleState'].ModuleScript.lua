@@ -2,7 +2,8 @@ local BowIdleState = class('BowIdleState', PlayerActState)
 
 function BowIdleState:initialize(_controller, _stateName)
     PlayerActState.initialize(self, _controller, _stateName)
-    PlayerAnimMgr:CreateSingleClipNode('BowEquipIdle', 1, _stateName)
+    PlayerAnimMgr:CreateSingleClipNode('anim_man_idle_01', 1, _stateName, 1)
+    PlayerAnimMgr:CreateSingleClipNode('anim_woman_idle_01', 1, _stateName, 2)
 end
 
 function BowIdleState:InitData()

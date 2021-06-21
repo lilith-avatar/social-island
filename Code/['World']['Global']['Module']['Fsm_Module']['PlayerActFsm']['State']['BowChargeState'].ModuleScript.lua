@@ -8,7 +8,7 @@ function BowChargeState:initialize(_controller, _stateName)
         {'BowRun', 0.5, 1.0}
     }
     PlayerAnimMgr:Create1DClipNode(anims, 'speedXZ', _stateName)
-    PlayerAnimMgr:CreateSingleClipNode('BowChargeIdle', 1, _stateName .. 'UpperBody', 1)
+    PlayerAnimMgr:CreateSingleClipNode('BowChargeIdle', 1, _stateName .. 'UpperBody')
 end
 
 function BowChargeState:InitData()
