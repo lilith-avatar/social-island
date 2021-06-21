@@ -56,21 +56,18 @@ end
 
 --- 数据变量初始化
 function Pet:DataInit()
-    Navigation.SetWalkableRoots(table.MergeTables(world.Scenes.grass:GetChildren(), world.Scenes.cloud:GetChildren()))
+    Navigation.SetWalkableRoots({world.Scenes.grass, world.Scenes.cloud})
     Navigation.SetObstacleRoots(
-        table.MergeTables(
-            world.Scenes.stone:GetChildren(),
-            world.Tree:GetChildren(),
-            world.Scenes.cloth:GetChildren(),
-            world.Scenes.metal:GetChildren(),
-            world.Scenes.wood:GetChildren(),
-            world.BonfireInteract:GetChildren(),
-            world.BounceInteract:GetChildren(),
-            world.Tent:GetChildren()
-        )
+        {
+            world.Scenes.stone,
+            world.Tree
+        }
     )
     Navigation.SetAgent(1, 0.1, 0.2, 30.0)
     Navigation.SetUpdateDelay(0)
+
+    --[[]]
+    localPlayer:GetWaypoints(Vector3.Zero, Vector3.Zero)
 end
 
 --- 节点事件绑定
@@ -86,11 +83,13 @@ function Pet:EventBind()
 
     for k, v in pairs(petStateEum) do
         LeaveStateFunc[v] = function()
+            --print('Leave', v)
             this['LeaveState' .. v](self)
         end
         EnterStateFunc[v] = function()
             LeaveStateFunc[v]()
             petData.state = v
+            --print('Enter', v)
             this['EnterState' .. v](self)
         end
         UpdateStateFunc[v] = function(dt)
@@ -129,6 +128,7 @@ function Pet:InstancePet(_id)
         localPlayer.Position - localPlayer.Forward * 2 + Vector3(0, 1, 0)
     )
     --this:GetPetData(_id)
+    this:GetMoveTable(localPlayer.Position - localPlayer.Forward)
 end
 
 -- 获取移动点
@@ -139,6 +139,7 @@ function Pet:GetMoveTable(_pos)
     if result > 2 then
     ----print('寻路失败', result, petOBJ, petData.state)
     end
+    print('寻路成功', result)
 end
 
 --- 获取宠物数据
