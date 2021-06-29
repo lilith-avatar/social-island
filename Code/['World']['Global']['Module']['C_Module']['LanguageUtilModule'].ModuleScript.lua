@@ -24,7 +24,7 @@ function LanguageUtil.GetText(_id)
         Config.LanguagePack[_id],
         string.format('[LanguageUtil] LanguagePack[%s] 不存在对应翻译ID，请检查策划表和LanguagePack', _id)
     )
-    local text = Config.LanguagePack[_id][lang]
+    local text = Config.LanguagePack[_id][Localization:GetLanguage()]
     if string.isnilorempty(text) then
         text = '*' .. Config.LanguagePack[_id][defaultLang]
     end

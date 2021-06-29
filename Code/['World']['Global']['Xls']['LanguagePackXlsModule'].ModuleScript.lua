@@ -3101,7 +3101,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You can’t use this item here',
         JP = '',
-        YN = ''
+        YN = 'Kamu tidak dapat menggunakan item ini di sini'
     },
     GuiText_Txt_BoardGame_2 = {
         ID = 'GuiText_Txt_BoardGame_2',
@@ -3109,7 +3109,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You can’t use this item while you are moving',
         JP = '',
-        YN = ''
+        YN = 'Kamu tidak dapat menggunakan item ini saat bergerak'
     },
     GuiText_Txt_BoardGame_3 = {
         ID = 'GuiText_Txt_BoardGame_3',
@@ -3117,7 +3117,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You are too close to the other tables',
         JP = '',
-        YN = ''
+        YN = 'Kamu terlalu dekat dengan meja lainnya'
     },
     GuiText_Txt_BoardGame_4 = {
         ID = 'GuiText_Txt_BoardGame_4',
@@ -3125,7 +3125,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Ready',
         JP = '',
-        YN = ''
+        YN = 'Siap'
     },
     GuiText_Txt_BoardGame_5 = {
         ID = 'GuiText_Txt_BoardGame_5',
@@ -3133,7 +3133,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'This table is full',
         JP = '',
-        YN = ''
+        YN = 'Meja ini penuh'
     },
     GuiText_Txt_BoardGame_6 = {
         ID = 'GuiText_Txt_BoardGame_6',
@@ -3141,7 +3141,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You are already seated at a table',
         JP = '',
-        YN = ''
+        YN = 'Kamu sudah duduk di meja'
     },
     GuiText_Txt_BoardGame_7 = {
         ID = 'GuiText_Txt_BoardGame_7',
@@ -3149,7 +3149,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You need to leave this table first',
         JP = '',
-        YN = ''
+        YN = 'Kamu harus meninggalkan meja ini terlebih dahulu'
     },
     GuiText_Txt_BoardGame_8 = {
         ID = 'GuiText_Txt_BoardGame_8',
@@ -3157,7 +3157,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Only the room host can approve players to enter',
         JP = '',
-        YN = ''
+        YN = 'Hanya tuan rumah ruangan yang bisa menyetujui pemain untuk masuk'
     },
     GuiText_Txt_BoardGame_9 = {
         ID = 'GuiText_Txt_BoardGame_9',
@@ -3165,7 +3165,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You are already in a game',
         JP = '',
-        YN = ''
+        YN = 'Kamu sudah dalam game'
     },
     GuiText_Txt_BoardGame_10 = {
         ID = 'GuiText_Txt_BoardGame_10',
@@ -3173,7 +3173,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'The game already has a maximum number of players',
         JP = '',
-        YN = ''
+        YN = 'Game ini sudah mencakapi jumlah pemain maksimum'
     },
     GuiText_Txt_BoardGame_11 = {
         ID = 'GuiText_Txt_BoardGame_11',
@@ -3181,7 +3181,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Only the room host can lock or unlock the room',
         JP = '',
-        YN = ''
+        YN = 'Hanya tuan rumah ruangan yang bisa mengunci atau membuka kunci ruangan'
     },
     GuiText_Txt_BoardGame_12 = {
         ID = 'GuiText_Txt_BoardGame_12',
@@ -3189,7 +3189,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'The room is already locked',
         JP = '',
-        YN = ''
+        YN = 'Ruangan sudah terkunci'
     },
     GuiText_Txt_BoardGame_13 = {
         ID = 'GuiText_Txt_BoardGame_13',
@@ -3197,7 +3197,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'The room is already unlocked',
         JP = '',
-        YN = ''
+        YN = 'Kunci ruangan sudah dibuka'
     },
     GuiText_Txt_BoardGame_14 = {
         ID = 'GuiText_Txt_BoardGame_14',
@@ -3205,7 +3205,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You already left this table',
         JP = '',
-        YN = ''
+        YN = 'Kamu sudah meninggalkan meja ini'
     },
     GuiText_Txt_BoardGame_15 = {
         ID = 'GuiText_Txt_BoardGame_15',
@@ -3213,7 +3213,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You are already spectating',
         JP = '',
-        YN = ''
+        YN = 'Kamu sudah menonton'
     },
     GuiText_Txt_BoardGame_16 = {
         ID = 'GuiText_Txt_BoardGame_16',
@@ -3221,7 +3221,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'You already joined the game',
         JP = '',
-        YN = ''
+        YN = 'Kamu sudah bergabung dalam game'
     },
     GuiText_Txt_BoardGame_17 = {
         ID = 'GuiText_Txt_BoardGame_17',
@@ -3229,7 +3229,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'There are no more seats',
         JP = '',
-        YN = ''
+        YN = 'Tidak ada kursi lagi'
     },
     GuiText_Txt_BoardGame_18 = {
         ID = 'GuiText_Txt_BoardGame_18',
@@ -3237,7 +3237,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Someone is already sitting here',
         JP = '',
-        YN = ''
+        YN = 'Seseorang sudah duduk di sini'
     },
     Item_Name_4005 = {
         ID = 'Item_Name_4005',
@@ -3245,7 +3245,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Gomoku Set',
         JP = '',
-        YN = ''
+        YN = 'Gomoku Set'
     },
     Item_Des_4005 = {
         ID = 'Item_Des_4005',
@@ -3253,7 +3253,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Play Gomoku with your friends any time',
         JP = '',
-        YN = ''
+        YN = 'Mainkan Gomoku dengan teman kamu kapan saja'
     },
     Item_Name_4006 = {
         ID = 'Item_Name_4006',
@@ -3261,7 +3261,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Go Set',
         JP = '',
-        YN = ''
+        YN = 'Go Set'
     },
     Item_Des_4006 = {
         ID = 'Item_Des_4006',
@@ -3269,15 +3269,15 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Play Go with your friends any time',
         JP = '',
-        YN = ''
+        YN = 'Mainkan Go dengan teman kamu kapan saja'
     },
     Game_Name_1000 = {
         ID = 'Game_Name_1000',
         CHS = '五子棋',
         CHT = '',
-        EN = 'Gomoku Set',
+        EN = 'Go',
         JP = '',
-        YN = ''
+        YN = 'Go'
     },
     Game_Des_1000 = {
         ID = 'Game_Des_1000',
@@ -3307,9 +3307,9 @@ local LanguagePackXls = {
         ID = 'Game_Name_1002',
         CHS = '围棋',
         CHT = '',
-        EN = '',
+        EN = 'Gomoku',
         JP = '',
-        YN = ''
+        YN = 'Gomoku'
     },
     Game_Des_1002 = {
         ID = 'Game_Des_1002',
@@ -3325,7 +3325,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Reset game',
         JP = '',
-        YN = ''
+        YN = 'Atur ulang game'
     },
     GuiText_Txt_BoardGame_20 = {
         ID = 'GuiText_Txt_BoardGame_20',
@@ -3333,7 +3333,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Lock room',
         JP = '',
-        YN = ''
+        YN = 'Kunci ruangan'
     },
     GuiText_Txt_BoardGame_21 = {
         ID = 'GuiText_Txt_BoardGame_21',
@@ -3341,7 +3341,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Unlock room',
         JP = '',
-        YN = ''
+        YN = 'Buka kunci ruangan'
     },
     GuiText_Txt_BoardGame_22 = {
         ID = 'GuiText_Txt_BoardGame_22',
@@ -3349,7 +3349,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Spectate',
         JP = '',
-        YN = ''
+        YN = 'Tonton'
     },
     GuiText_Txt_BoardGame_23 = {
         ID = 'GuiText_Txt_BoardGame_23',
@@ -3357,7 +3357,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Join game',
         JP = '',
-        YN = ''
+        YN = 'Bergabung dalam game'
     },
     GuiText_Txt_BoardGame_24 = {
         ID = 'GuiText_Txt_BoardGame_24',
@@ -3365,7 +3365,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Quit',
         JP = '',
-        YN = ''
+        YN = 'Keluar'
     },
     GuiText_Txt_BoardGame_25 = {
         ID = 'GuiText_Txt_BoardGame_25',
@@ -3373,7 +3373,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Cancel',
         JP = '',
-        YN = ''
+        YN = 'Batal'
     },
     GuiText_Txt_BoardGame_26 = {
         ID = 'GuiText_Txt_BoardGame_26',
@@ -3381,7 +3381,7 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'In a game',
         JP = '',
-        YN = ''
+        YN = 'Dalam game'
     },
     GuiText_Txt_BoardGame_27 = {
         ID = 'GuiText_Txt_BoardGame_27',
@@ -3389,7 +3389,15 @@ local LanguagePackXls = {
         CHT = '',
         EN = 'Spectating...',
         JP = '',
-        YN = ''
+        YN = 'Menonton...'
+    },
+    GuiText_Txt_SnailGui_17 = {
+        ID = 'GuiText_Txt_SnailGui_17',
+        CHS = '你下注的太迟了，比赛已经开始了。',
+        CHT = '',
+        EN = 'You bet too late, the game has already started.',
+        JP = '',
+        YN = 'Anda bertaruh terlambat, permainan sudah dimulai.'
     }
 }
 

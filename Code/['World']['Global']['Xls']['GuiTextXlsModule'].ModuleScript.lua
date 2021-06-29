@@ -91,6 +91,10 @@ local GuiTextXls = {
         TextId = 'SnailGui_16',
         Txt = 'GuiText_Txt_SnailGui_16'
     },
+    SnailGui_17 = {
+        TextId = 'SnailGui_17',
+        Txt = 'GuiText_Txt_SnailGui_17'
+    },
     PetGui_1 = {
         TextId = 'PetGui_1',
         Txt = 'GuiText_Txt_PetGui_1'
