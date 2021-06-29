@@ -43,12 +43,6 @@ function ItemMgr:InitBagData()
     for _, v in pairs(defaultItems) do
         NetUtil.Fire_C('GetItemEvent', localPlayer, v)
     end
-    if Data.Player.bag[6001] == nil and Data.Player.bag[4005] == nil then
-        NetUtil.Fire_C('GetItemEvent', localPlayer, 4005)
-    end
-    if Data.Player.bag[6003] == nil and Data.Player.bag[4006] == nil then
-        NetUtil.Fire_C('GetItemEvent', localPlayer, 4006)
-    end
 end
 
 --新建背包数据
@@ -226,12 +220,21 @@ end
 --- 长期存储成功读取后
 function ItemMgr:LoadPlayerDataSuccessEventHandler(_hasData)
     --print('[ItemMgr] 读取长期存储成功')
+	if Data.Player.bag[6001] == nil and Data.Player.bag[4005] == nil then
+        NetUtil.Fire_C('GetItemEvent', localPlayer, 4005)
+    end
+    if Data.Player.bag[6003] == nil and Data.Player.bag[4006] == nil then
+        NetUtil.Fire_C('GetItemEvent', localPlayer, 4006)
+    end
+	
     if not _hasData then
         this:InitBagData()
     elseif Data.Player.curEquipmentID ~= 0 then
         NetUtil.Fire_C('GetItemEvent', localPlayer, Data.Player.curEquipmentID)
         Data.Player.curEquipmentID = 0
     end
+
+
     GuiControl:UpdateCoinNum(Data.Player.coin)
 end
 

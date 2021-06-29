@@ -13,7 +13,7 @@ local CHAR_SIZE = 0.8
 function LanguageUtil.SetLanguage(_lang)
     assert(Const.LanguageEnum[_lang], string.format('[LanguageUtil] %s 语言码不存在，请检查ConstModule', _lang))
     --print(string.format('[LanguageUtil] 更改当前语言：%s => %s', lang, _lang))
-    lang = _lang
+    lang = Localization:GetLanguage()
 end
 
 --- 根据ID返回当前游戏语言对应的文本信息，如果对应语言为空，默认返回'*'+中文内容
@@ -26,7 +26,7 @@ function LanguageUtil.GetText(_id)
     )
     local text = Config.LanguagePack[_id][Localization:GetLanguage()]
     if string.isnilorempty(text) then
-        text = '*' .. Config.LanguagePack[_id][defaultLang]
+        text = '*' .. Config.LanguagePack[_id][Localization:GetLanguage()]
     end
     assert(
         not (valid and string.isnilorempty(text)),
