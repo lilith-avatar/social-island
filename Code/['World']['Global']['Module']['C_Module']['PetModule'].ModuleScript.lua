@@ -139,7 +139,7 @@ function Pet:GetMoveTable(_pos)
     if result > 2 then
     ----print('寻路失败', result, petOBJ, petData.state)
     end
-    print('寻路成功', result)
+    --print('寻路成功', result)
 end
 
 --- 获取宠物数据

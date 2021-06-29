@@ -30,7 +30,7 @@ end
 function GuiSwim:Update(_dt)
     if localPlayer:IsSwimming() and ctrlFig.ActiveSelf then
         ctrlFig:SetActive(false)
-    elseif not localPlayer:IsSwimming() and not ctrlFig.ActiveSelf then
+    elseif not localPlayer:IsSwimming() and not ctrlFig.ActiveSelf and not GameFlow.inGame then
         ctrlFig:SetActive(true)
     end
 end

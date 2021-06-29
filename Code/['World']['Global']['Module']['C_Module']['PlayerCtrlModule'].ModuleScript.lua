@@ -434,10 +434,12 @@ function PlayerCtrl:EnterRoomEventHandler(_uuid, _player)
         if ItemMgr.curWeaponID ~= 0 then
             NetUtil.Fire_C('UnequipCurEquipmentEvent', localPlayer)
         end
-        localPlayer.Local.ControlGui.TouchFig:SetActive(false)
         invoke(
             function()
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 32)
+				wait(0.5)
+				localPlayer.Local.ControlGui.TouchFig:SetActive(false)
+				localPlayer.Local.ControlGui.Ctrl:SetActive(false)
             end,
             0.5
         )
@@ -453,6 +455,7 @@ function PlayerCtrl:LeaveRoomEventHandler(_uuid, _playerUid)
     if _playerUid == localPlayer.UserId then
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
         localPlayer.Local.ControlGui.TouchFig:SetActive(true)
+		localPlayer.Local.ControlGui.Ctrl:SetActive(true)
         localPlayer.PlayerCol.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject then
