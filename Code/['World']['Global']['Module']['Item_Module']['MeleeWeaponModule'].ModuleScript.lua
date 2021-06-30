@@ -30,6 +30,7 @@ function MeleeWeapon:Equip()
                 function(_hitObj, _hitPoint)
                     if _hitObj ~= localPlayer and _hitObj.ClassName == 'PlayerInstance' and _hitObj.Avatar then
                         if _hitObj.Avatar.ClassName == 'PlayerAvatarInstance' then
+                            print('击中玩家', _hitObj)
                             self:AddForceToHitPlayer(_hitObj)
                             self:HitBuff(_hitObj)
                             self:PlayHitSoundEffect(_hitPoint)
@@ -42,9 +43,10 @@ function MeleeWeapon:Equip()
     )
 end
 
---对命中玩家施加力
+--对命中玩家施加力F
 function MeleeWeapon:AddForceToHitPlayer(_player)
-    _player:AddImpulse((_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce)
+    NetUtil.Fire_C('PlayerGetForceEvent',_player,(_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce * 10)
+    --_player:AddImpulse((_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce * 100)
     --_player.LinearVelocity = (_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce
 end
 
@@ -67,7 +69,8 @@ function MeleeWeapon:HitBuff(_player)
         {
             addBuffID = self.derivedData.HitAddBuffID,
             addDur = self.derivedData.HitAddBuffDur,
-            removeBuffID = self.derivedData.HitRemoveBuffID
+            removeBuffID = self.derivedData.HitRemoveBuffID,
+            force = (_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce
         }
     )
 end

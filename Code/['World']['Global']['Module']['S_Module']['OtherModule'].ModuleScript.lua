@@ -17,6 +17,7 @@ end
 -- 玩家受伤事件
 function Other:SPlayerHitEventHandler(_attackPlayer, _hitPlayer, _data)
     if _hitPlayer.Avatar.ClassName == 'PlayerAvatarInstance' then
+        print('玩家受伤事件')
         NetUtil.Fire_C('CPlayerHitEvent', _hitPlayer, _data)
     end
 end

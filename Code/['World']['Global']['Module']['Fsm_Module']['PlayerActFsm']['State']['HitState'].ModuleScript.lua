@@ -7,6 +7,13 @@ end
 
 function HitState:InitData()
     self:AddTransition('ToIdleState', self.controller.states['IdleState'], 0.5)
+    self:AddAnyState(
+        'ToHitState',
+        -1,
+        function()
+            return self.controller.triggers['HitState']
+        end
+    )
 end
 
 function HitState:OnEnter()

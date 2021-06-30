@@ -201,7 +201,9 @@ Events.ClientEvents = {
     'EnterGameSyncEvent',
     'RequestEnterEvent',
     'PlayerInvincibleEvent',
-    'PlayAnimationEvent'
+    'PlayAnimationEvent',
+    'PlayerSitEvent',
+    'PlayerGetForceEvent'
 }
 
 return Events

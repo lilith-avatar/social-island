@@ -157,9 +157,18 @@ end
 -- 鼓掌逻辑
 function PlayerCtrl:PlayerHello()
     CloudLogUtil.UploadLog('pannel_actions', 'movement_sayhi')
-    --localPlayer.Avatar:PlayAnimation('SocialHello', 8, 1, 0, true, false, 1)
-    PlayerAnimMgr:CreateSingleClipNode('SocialHello', 1, 'SocialHello')
-    PlayerAnimMgr:Play('SocialHello', 0, 1, 0.2, 0.2, true, false, 1)
+    GuiSocialAnim:PlayActAnim(Config.SocialAnim[5])
+end
+
+-- 坐下逻辑
+function PlayerCtrl:PlayerSitEventHandler(_sitPoint)
+    if _sitPoint then
+        FsmMgr.playerActCtrl.seatObj = _sitPoint
+        FsmMgr.playerActCtrl:CallTrigger('SitBeginState')
+    else
+        FsmMgr.playerActCtrl.seatObj = nil
+        FsmMgr.playerActCtrl:CallTrigger('SitEndState')
+    end
 end
 
 --脚步声
@@ -370,13 +379,19 @@ end
 
 -- 角色受伤
 function PlayerCtrl:CPlayerHitEventHandler(_data)
+    print(GameFlow.inGame)
     if GameFlow.inGame == false then
         FsmMgr:FsmTriggerEventHandler('HitState')
         FsmMgr:FsmTriggerEventHandler('BowHitState')
-        ------print('角色受伤', table.dump(_data))
+        print('角色受伤', table.dump(_data))
         BuffMgr:GetBuffEventHandler(_data.addBuffID, _data.addDur)
         BuffMgr:RemoveBuffEventHandler(_data.removeBuffID)
     end
+end
+
+-- 角色受力
+function PlayerCtrl:PlayerGetForceEventHandler(_force)
+    localPlayer:AddImpulse(_force)
 end
 
 -- 角色传送
@@ -437,9 +452,9 @@ function PlayerCtrl:EnterRoomEventHandler(_uuid, _player)
         invoke(
             function()
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer, 32)
-				wait(0.5)
-				localPlayer.Local.ControlGui.TouchFig:SetActive(false)
-				localPlayer.Local.ControlGui.Ctrl:SetActive(false)
+                wait(0.5)
+                localPlayer.Local.ControlGui.TouchFig:SetActive(false)
+                localPlayer.Local.ControlGui.Ctrl:SetActive(false)
             end,
             0.5
         )
@@ -455,7 +470,7 @@ function PlayerCtrl:LeaveRoomEventHandler(_uuid, _playerUid)
     if _playerUid == localPlayer.UserId then
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
         localPlayer.Local.ControlGui.TouchFig:SetActive(true)
-		localPlayer.Local.ControlGui.Ctrl:SetActive(true)
+        localPlayer.Local.ControlGui.Ctrl:SetActive(true)
         localPlayer.PlayerCol.OnCollisionBegin:Connect(
             function(_hitObject)
                 if _hitObject then
