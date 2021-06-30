@@ -67,7 +67,7 @@ function UFOMgr:UFOCD(dt)
     if durUFO > 0 then
         durUFO = durUFO - dt
         if timer >= 2 then
-            NetUtil.Fire_S('SpawnCoinEvent', 'P', UFO.Position + Vector3(0, -10, 0), 500, 8)
+            NetUtil.Fire_S('SpawnCoinEvent', 'P', UFO.Position + Vector3(0, -10, 0), 500, 18,8)
             timer = 0
         else
             timer = timer + dt
