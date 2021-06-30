@@ -128,7 +128,7 @@ function BuffMgr:GetAllBuffData()
     for k, v in pairs(buffDataTable) do
         Data.Player.attr[k] = v
     end
-    print(table.dump(buffDataTable))
+    --print(table.dump(buffDataTable))
 end
 
 --按时间消退Buff
