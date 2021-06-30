@@ -67,7 +67,6 @@ function BowChargeState:Move()
         localPlayer:AddMovementInput(dir, 0.3)
     elseif isAim == false then
         localPlayer:AddMovementInput(forward, 0.01)
-        print(Vector3.Angle(forward, localPlayer.Forward))
     end
 end
 

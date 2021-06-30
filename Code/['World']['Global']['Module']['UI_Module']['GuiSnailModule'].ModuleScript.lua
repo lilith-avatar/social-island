@@ -126,7 +126,7 @@ end
 
 -- 比赛开始关闭界面
 function GuiSnail:ShowNoticeInfoEventHandler(_eventId)
-	if _eventId == 3 and (gui.ActiveSelf or localPlayer.Local.SpecialTopUI.PurchaseGUI.PurchaseBgImg.ScrollPanel.ActiveSelf) then
+	if _eventId == 3 and (gui.ActiveSelf or localPlayer.Local.SpecialTopUI.PurchaseGUI.PurchasePanel.PurchaseBgImg.ScrollPanel.ActiveSelf) then
         SoundUtil.Play2DSE(localPlayer.UserId, 6)
         NetUtil.Fire_C(
             'InsertInfoEvent',
