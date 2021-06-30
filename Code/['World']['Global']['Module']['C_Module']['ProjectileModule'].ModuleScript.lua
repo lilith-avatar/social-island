@@ -128,12 +128,15 @@ end
 function Projectile:AddForceToHitPlayer(_projectile, _type, _force, _pos, _players)
     for k, v in pairs(_players) do
         if _type == 1 then
-            v:AddImpulse(Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force)
-            --[[v.LinearVelocity =
-                Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force]]
+            --v:AddImpulse(Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force)
+            NetUtil.Fire_C(
+                'PlayerGetForceEvent',
+                v,
+                Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force * 10
+            )
         elseif _type == 2 then
-            v:AddImpulse((v.Position - _pos).Normalized * _force)
-            --v.LinearVelocity = (v.Position - _pos).Normalized * _force
+            NetUtil.Fire_C('PlayerGetForceEvent', v, (v.Position - _pos).Normalized * _force * 10)
+        --v:AddImpulse((v.Position - _pos).Normalized * _force)
         end
     end
 end

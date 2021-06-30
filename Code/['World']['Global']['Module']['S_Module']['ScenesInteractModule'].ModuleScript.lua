@@ -464,9 +464,7 @@ do
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 15)
                     NetUtil.Fire_C('SInteractUploadEvent', _player, 15, v1.obj.Name)
                     v1.obj.UsingPlayerUid.Value = _player.UserId
-                    v1.obj:Sit(_player)
-                    --_player.Avatar:PlayAnimation('SitIdle', 2, 1, 0.1, true, true, 1)
-                    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 0, 1, 0.2, 0.2, true, true, 1)
+                    NetUtil.Fire_C('PlayerSitEvent', _player, v1.obj)
                     -- 音效
                     SoundUtil.Play3DSE(_player.Position, 14)
                 end
@@ -479,10 +477,8 @@ do
             if v.obj.UsingPlayerUid.Value == _player.UserId then
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 v.obj.UsingPlayerUid.Value = ''
-                print(v.obj.Occupant)
-                v.obj:Leave(_player)
-                print(v.obj.Occupant)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
+                NetUtil.Fire_C('PlayerSitEvent', _player)
+                --NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
             end
         end
     end
@@ -559,12 +555,10 @@ do
                 if v2 == _player.UserId and v1.obj.UsingPlayerUid.Value == '' then
                     NetUtil.Fire_C('UnequipCurEquipmentEvent', _player)
                     v1.obj.UsingPlayerUid.Value = _player.UserId
-                    v1.obj.Seat:Sit(_player)
+                    NetUtil.Fire_C('PlayerSitEvent', _player, v1.obj.Seat)
                     NetUtil.Fire_C('ChangeMiniGameUIEvent', _player, 20)
-                    --_player.Avatar:PlayAnimation('HTRide', 3, 1, 0, true, true, 1)
-                    --_player.Avatar:PlayAnimation('SitIdle', 2, 1, 0, true, true, 1)
                     NetUtil.Fire_C('PlayAnimationEvent', _player, 'HTRide', 1, 1, 0.2, 0.2, true, true, 1)
-                    NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 2, 1, 0.2, 0.2, true, true, 1)
+                    --NetUtil.Fire_C('PlayAnimationEvent', _player, 'SitIdle', 2, 1, 0.2, 0.2, true, true, 1)
                     -- 音效
                     this.TrojanList[v1.obj.Name] = {
                         model = v1.obj,
@@ -583,14 +577,10 @@ do
     function ScenesInteract:LeaveTrojan(_player)
         for k, v in pairs(trojanObj) do
             if v.obj.UsingPlayerUid.Value == _player.UserId then
-                v.obj.Seat:Leave(_player)
                 v.obj.UsingPlayerUid.Value = ''
-                --_player.Avatar:StopAnimation('HTRide', 3)
-                --_player.Avatar:StopAnimation('SitIdle', 2)
                 _player.Avatar:StopBlendSpaceNode(1)
-                _player.Avatar:StopBlendSpaceNode(2)
-                NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
-                _player.Position = _player.Position + Vector3(0, 2, 0)
+                --_player.Avatar:StopBlendSpaceNode(2)
+                NetUtil.Fire_C('PlayerSitEvent', _player)
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 --SoundUtil.Stop3DSE(this.TrojanList[v.obj.Name].sound)
                 v.obj.Forward = this.TrojanList[v.obj.Name].originForward

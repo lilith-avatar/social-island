@@ -19,9 +19,10 @@ local bgOffset
 -- Tween
 local zoomTweener
 
+local actAnimTable = {}
+
 function GuiSocialAnim:Init()
     this:InitGui()
-    this:InitListener()
     this:EventBind()
 end
 
@@ -41,14 +42,8 @@ end
 function GuiSocialAnim:EventBind()
     switchBtn.OnDown:Connect(
         function()
-            if SocialAnimationGUI.ActiveSelf then
-                SocialAnimationGUI:SetActive(false)
-                SoundUtil.Play2DSE(localPlayer.UserId, 6)
-            else
-                SoundUtil.Play2DSE(localPlayer.UserId, 36)
-                this:SetCurGroupAnimSlot(curGroup)
-                this:UIStartTween()
-            end
+            SocialAnimationGUI:SetActive(not SocialAnimationGUI.ActiveSelf)
+            self:ActiveChildActBtn()
         end
     )
 
@@ -77,32 +72,61 @@ function GuiSocialAnim:EventBind()
     )
 end
 
-function GuiSocialAnim:InitListener()
+function GuiSocialAnim:PlayActAnim(_data)
+    FsmMgr.playerActCtrl:GetActInfo(_data)
+    FsmMgr.playerActCtrl:CallTrigger('ActBeginState')
+end
+
+function GuiSocialAnim:ActiveChildActBtn()
+    if SocialAnimationGUI.ActiveSelf then
+        actAnimTable = {}
+        for k, v in pairs(Config.SocialAnim) do
+            if v.Mode == FsmMgr.playerActCtrl.actAnimMode then
+                table.insert(actAnimTable, v)
+            end
+        end
+        if #actAnimTable == 0 then
+            SocialAnimationGUI:SetActive(false)
+            SoundUtil.Play2DSE(localPlayer.UserId, 6)
+            return
+        end
+
+        SoundUtil.Play2DSE(localPlayer.UserId, 36)
+        this:SetCurGroupAnimSlot(curGroup)
+        this:UIStartTween()
+    end
+    return
 end
 
 --设置动作槽位UI
-function this:SetAnimSlot(_data)
-    local slot = _data.ID % 6 + 1
-    local slotBtnUI = bg['Btn' .. slot]
-    slotBtnUI.OnClick:Clear()
-    slotBtnUI.Info.TextSize = 20 - math.ceil(string.len(_data.ShowName) / 1.5)
-    slotBtnUI.Info.Text = _data.ShowName
-    slotBtnUI.Icon.Texture = ResourceManager.GetTexture('SocialAnimationIcon/' .. _data.Icon)
-    slotBtnUI.OnClick:Connect(
-        function()
-            SoundUtil.Play2DSE(localPlayer.UserId, 101)
-            CloudLogUtil.UploadLog('pannel_actions', 'movement_stickers_' .. _data.AnimName)
-            SocialAnimationGUI:SetActive(false)
-            --localPlayer.Avatar:PlayAnimation(_data.AnimName, _data.BodyPart, 1, 0.1, true, false, 1)
-            NetUtil.Fire_C('PlayAnimationEvent', localPlayer, _data.AnimName, 0, 1, 0.2, 0.2, true, _data.LoopMode, 1)
-        end
-    )
+function GuiSocialAnim:SetAnimSlot(_slot, _data)
+    local slotBtnUI = bg['Btn' .. _slot]
+    slotBtnUI:SetActive(false)
+    if _data then
+        slotBtnUI.OnClick:Clear()
+        slotBtnUI.Info.TextSize = 20 - math.ceil(string.len(_data.ShowName) / 1.5)
+        slotBtnUI.Info.Text = _data.ShowName
+        slotBtnUI.Icon.Texture = ResourceManager.GetTexture('SocialAnimationIcon/' .. _data.Icon)
+        slotBtnUI:SetActive(true)
+        slotBtnUI.OnClick:Connect(
+            function()
+                SoundUtil.Play2DSE(localPlayer.UserId, 101)
+                CloudLogUtil.UploadLog('pannel_actions', 'movement_stickers_' .. _data.anim[2])
+                SocialAnimationGUI:SetActive(false)
+                this:PlayActAnim(_data)
+            end
+        )
+    end
 end
 
 --设置当前组的槽位
 function GuiSocialAnim:SetCurGroupAnimSlot(_group)
     for i = 1, 6 do
-        this:SetAnimSlot(Config.SocialAnim[i + (_group - 1) * 6])
+        if Config.SocialAnim[i + (_group - 1) * 6] then
+            this:SetAnimSlot(i, Config.SocialAnim[i + (_group - 1) * 6])
+        else
+            this:SetAnimSlot(i)
+        end
     end
 end
 

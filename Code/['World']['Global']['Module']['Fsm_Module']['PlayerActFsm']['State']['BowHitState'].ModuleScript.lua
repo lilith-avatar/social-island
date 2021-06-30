@@ -7,6 +7,13 @@ end
 
 function BowHitState:InitData()
     self:AddTransition('ToBowIdleState', self.controller.states['BowIdleState'], 0.5)
+    self:AddAnyState(
+        'ToBowHitState',
+        -1,
+        function()
+            return self.controller.triggers['BowHitState']
+        end
+    )
 end
 
 function BowHitState:OnEnter()

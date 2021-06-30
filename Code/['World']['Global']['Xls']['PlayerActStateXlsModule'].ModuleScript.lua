@@ -7,143 +7,175 @@
 --- source file: .//PlayerActState.xlsx
 
 local PlayerActStateXls = {
-    [1] = {
+    IdleState = {
         ID = 1,
-        Name = 'Idle',
-        NextName = 'Idle',
-        Dur = 0.0
+        Name = 'IdleState',
+        Mode = 1
     },
-    [2] = {
+    MoveState = {
         ID = 2,
-        Name = 'Walk',
-        NextName = 'Walk',
-        Dur = 0.0
+        Name = 'MoveState',
+        Mode = 1
     },
-    [3] = {
+    MoveStopState = {
         ID = 3,
-        Name = 'Run',
-        NextName = 'Run',
-        Dur = 0.0
+        Name = 'MoveStopState',
+        Mode = 1
     },
-    [4] = {
+    JumpBeginState = {
         ID = 4,
-        Name = 'Jump',
-        NextName = 'Idle',
-        Dur = 0.6
+        Name = 'JumpBeginState',
+        Mode = 3
     },
-    [5] = {
+    JumpHighestState = {
         ID = 5,
-        Name = 'Fly',
-        NextName = 'Fly',
-        Dur = 0.0
+        Name = 'JumpHighestState',
+        Mode = 3
     },
-    [6] = {
+    JumpRiseState = {
         ID = 6,
-        Name = 'Hit',
-        NextName = 'Idle',
-        Dur = 0.2
+        Name = 'JumpRiseState',
+        Mode = 3
     },
-    [7] = {
+    HitState = {
         ID = 7,
-        Name = 'SwimIdle',
-        NextName = 'SwimIdle',
-        Dur = 0.0
+        Name = 'HitState',
+        Mode = 1
     },
-    [8] = {
+    FallState = {
         ID = 8,
-        Name = 'Swimming',
-        NextName = 'Swimming',
-        Dur = 0.0
+        Name = 'FallState',
+        Mode = 4
     },
-    [9] = {
+    LandState = {
         ID = 9,
-        Name = 'TakeOutItem',
-        NextName = 'TakeOutItem',
-        Dur = 0.0
+        Name = 'LandState',
+        Mode = 1
     },
-    [10] = {
+    SwimIdleState = {
         ID = 10,
-        Name = 'UseItem',
-        NextName = 'UseItem',
-        Dur = 0.0
+        Name = 'SwimIdleState',
+        Mode = 6
     },
-    [11] = {
+    SwimBeginState = {
         ID = 11,
-        Name = 'BowIdle',
-        NextName = 'BowIdle',
-        Dur = 0.0
+        Name = 'SwimBeginState',
+        Mode = 6
     },
-    [12] = {
+    SwimEndState = {
         ID = 12,
-        Name = 'BowWalk',
-        NextName = 'BowWalk',
-        Dur = 0.0
+        Name = 'SwimEndState',
+        Mode = 6
     },
-    [13] = {
+    SwimmingEndState = {
         ID = 13,
-        Name = 'BowRun',
-        NextName = 'BowRun',
-        Dur = 0.0
+        Name = 'SwimmingEndState',
+        Mode = 6
     },
-    [14] = {
+    SwimmingStartState = {
         ID = 14,
-        Name = 'BowJump',
-        NextName = 'BowIdle',
-        Dur = 0.6
+        Name = 'SwimmingStartState',
+        Mode = 6
     },
-    [15] = {
+    SwimmingState = {
         ID = 15,
-        Name = 'BowChargeIdle',
-        NextName = 'BowChargeIdle',
-        Dur = 0.0
+        Name = 'SwimmingState',
+        Mode = 6
     },
-    [16] = {
+    BounceState = {
         ID = 16,
-        Name = 'BowAttack',
-        NextName = 'BowIdle',
-        Dur = 0.35
+        Name = 'BounceState',
+        Mode = 3
     },
-    [17] = {
+    TakeOutItemState = {
         ID = 17,
-        Name = 'BowHit',
-        NextName = 'BowIdle',
-        Dur = 0.2
+        Name = 'TakeOutItemState',
+        Mode = 1
     },
-    [18] = {
+    UseItemState = {
         ID = 18,
-        Name = 'PistolIdle',
-        NextName = 'PistolIdle',
-        Dur = 0.0
+        Name = 'UseItemState',
+        Mode = 1
     },
-    [19] = {
+    BowIdleState = {
         ID = 19,
-        Name = 'PistolRun',
-        NextName = 'PistolRun',
-        Dur = 0.0
+        Name = 'BowIdleState',
+        Mode = 5
     },
-    [20] = {
+    BowMoveState = {
         ID = 20,
-        Name = 'PistolWalk',
-        NextName = 'PistolWalk',
-        Dur = 0.0
+        Name = 'BowMoveState',
+        Mode = 5
     },
-    [21] = {
+    BowJumpBeginState = {
         ID = 21,
-        Name = 'PistolJump',
-        NextName = 'PistolIdle',
-        Dur = 0.6
+        Name = 'BowJumpBeginState',
+        Mode = nil
     },
-    [22] = {
+    BowJumpHighestState = {
         ID = 22,
-        Name = 'PistolAttack',
-        NextName = 'PistolIdle',
-        Dur = 0.2
+        Name = 'BowJumpHighestState',
+        Mode = nil
     },
-    [23] = {
+    BowJumpRiseState = {
         ID = 23,
-        Name = 'PistolHit',
-        NextName = 'PistolIdle',
-        Dur = 0.2
+        Name = 'BowJumpRiseState',
+        Mode = nil
+    },
+    BowFallState = {
+        ID = 24,
+        Name = 'BowFallState',
+        Mode = nil
+    },
+    BowLandState = {
+        ID = 25,
+        Name = 'BowLandState',
+        Mode = 5
+    },
+    BowChargeState = {
+        ID = 26,
+        Name = 'BowChargeState',
+        Mode = nil
+    },
+    BowAttackState = {
+        ID = 27,
+        Name = 'BowAttackState',
+        Mode = nil
+    },
+    BowHitState = {
+        ID = 28,
+        Name = 'BowHitState',
+        Mode = nil
+    },
+    SitBeginState = {
+        ID = 29,
+        Name = 'SitBeginState',
+        Mode = 2
+    },
+    SitEndState = {
+        ID = 30,
+        Name = 'SitEndState',
+        Mode = 2
+    },
+    SitState = {
+        ID = 31,
+        Name = 'SitState',
+        Mode = 2
+    },
+    ActBeginState = {
+        ID = 32,
+        Name = 'ActBeginState',
+        Mode = nil
+    },
+    ActEndState = {
+        ID = 33,
+        Name = 'ActEndState',
+        Mode = nil
+    },
+    ActState = {
+        ID = 34,
+        Name = 'ActState',
+        Mode = nil
     }
 }
 
