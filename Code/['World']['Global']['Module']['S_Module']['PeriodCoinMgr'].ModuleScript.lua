@@ -27,8 +27,8 @@ function PeriodCoinMgr:DataInit()
 	this.cloud ={}
 	this.sceneCoin = {}
 	this.lutus = {}
-	this.mashroomHighValueNum = Config.PeriodCoin[3][1].Num
-	this.mashroomMidValueNum = Config.PeriodCoin[2][1].Num
+	--this.mashroomHighValueNum = Config.PeriodCoin[1][1].Num
+	--this.mashroomMidValueNum = Config.PeriodCoin[1][1].Num
 	this.mashroomLowValueNum = Config.PeriodCoin[1][1].Num
 	this.cloudNum = Config.PeriodCoin[4][1].Num
 	this.sceneCoinNum = Config.PeriodCoin[5][1].Num
@@ -50,8 +50,8 @@ end
 function PeriodCoinMgr:Update(dt)
 	this.tt = this.tt + dt
 	if this.tt > 1.5 then
-		this:CheckCoin(this.mashroomHighValue,3,Config.PeriodCoin[3].CoinType,2)
-		this:CheckCoin(this.mashroomMidValue,2,Config.PeriodCoin[2].CoinType,2)
+		--this:CheckCoin(this.mashroomHighValue,1,Config.PeriodCoin[1].CoinType,2)
+		--this:CheckCoin(this.mashroomMidValue,1,Config.PeriodCoin[1].CoinType,2)
 		this:CheckCoin(this.mashroomLowValue,1,Config.PeriodCoin[1].CoinType,2)
 		this:CheckCoin(this.cloud,4,Config.PeriodCoin[4].CoinType,4)
 		this:CheckCoin(this.sceneCoin,5,Config.PeriodCoin[5].CoinType,1)
@@ -116,14 +116,15 @@ end
 --- 首次创建
 function PeriodCoinMgr:InitCreat()
 	--- 蘑菇金币区
+	--[[
 	for i=0,this.mashroomHighValueNum,1 do
-		this:RandomPos(this.mashroomHighValue,3)
-		this:FreshCoin(this.mashroomHighValue,3,PosId,2)
+		this:RandomPos(this.mashroomHighValue,1)
+		this:FreshCoin(this.mashroomHighValue,1,PosId,2)
 	end
 	for i=0,this.mashroomMidValueNum,1 do
-		this:RandomPos(this.mashroomMidValue,2)
-		this:FreshCoin(this.mashroomMidValue,2,PosId,2)
-	end
+		this:RandomPos(this.mashroomMidValue,1)
+		this:FreshCoin(this.mashroomMidValue,1,PosId,2)
+	end]]
 	for i=0,this.mashroomLowValueNum,1 do
 		this:RandomPos(this.mashroomLowValue,1)
 		this:FreshCoin(this.mashroomLowValue,1,PosId,2)
