@@ -6,6 +6,12 @@ local this = GameFlow
 
 ---进入桌游相机模式
 ---@param _pos Vector3 进入时候默认看向的点
+function GameFlow:Init()
+	self.inGame = false
+end
+
+---进入桌游相机模式
+---@param _pos Vector3 进入时候默认看向的点
 function GameFlow:Enter(_pos)
 	if not _pos then
 		return
