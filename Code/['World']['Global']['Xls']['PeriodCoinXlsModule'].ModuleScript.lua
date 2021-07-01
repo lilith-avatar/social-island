@@ -199,22 +199,18 @@ local PeriodCoinXls = {
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
             CoinType = 'Random',
             Num = 5
-        }
-    },
-    [2] = {
-        [1] = {
-            Fid = 2,
-            Pid = 1,
+        },
+        [25] = {
+            Fid = 1,
+            Pid = 25,
             Pos = Vector3(94.366653, 6.261104, 9.657903),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
             CoinType = 'Random',
             Num = 2
-        }
-    },
-    [3] = {
-        [1] = {
-            Fid = 3,
-            Pid = 1,
+        },
+        [26] = {
+            Fid = 1,
+            Pid = 26,
             Pos = Vector3(126.199936, 8.288073, -19.070547),
             Rot = EulerDegree(0.000000, 0.000000, 0.000000),
             CoinType = 'Random',
