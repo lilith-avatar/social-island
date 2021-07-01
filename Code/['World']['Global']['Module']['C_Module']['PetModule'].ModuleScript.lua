@@ -13,6 +13,15 @@ local moveTable = {}
 --移动步速
 local moveStep = 0
 
+--卡死时间
+local stuckTime = 0
+
+--宠物上一帧位置
+local pPos = Vector3.Zero
+
+--宠物这一帧位置
+local cPos = Vector3.Zero
+
 --宠物数据
 local petData = {
     name = '',
@@ -101,7 +110,7 @@ end
 --- 弹出宠物命名面板
 function Pet:OpenNamedPetUI(_id)
     Data.Player.petID = _id
-	gui.Panel.BgImg.InputText.Text = ''
+    gui.Panel.BgImg.InputText.Text = ''
     LanguageUtil.SetText(gui.Panel.BgImg.DesText, 'GuiText_Txt_PetGui_6', true, 20, 40)
     gui:SetActive(true)
 end
@@ -285,6 +294,7 @@ do
             EnterStateFunc[petStateEum.FASTMOVE]()
         end
         this:PetMove()
+        this:PetPreventStuck()
     end
     --TOMOVE
     function Pet:UpdateState4()
@@ -295,6 +305,7 @@ do
             EnterStateFunc[petStateEum.TELEPORT]()
         end
         this:PetMove()
+        this:PetPreventStuck()
     end
     --TELEPORT
     function Pet:UpdateState6()
@@ -358,9 +369,35 @@ function Pet:PetMove()
     end
 end
 
+---宠物防止卡死
+function Pet:PetPreventStuck()
+    cPos = petOBJ.Position
+    if (pPos - cPos).Magnitude < 0.01 then
+        stuckTime = stuckTime + 1
+    else
+        stuckTime = 0
+    end
+    pPos = cPos
+    if stuckTime > 10 then
+        EnterStateFunc[petStateEum.TELEPORT]()
+    end
+end
+
 function Pet:CUseItemEventHandler(_id)
     if _id == 4004 then
-        this:OpenNamedPetUI(tonumber('10' .. math.random(7)))
+        local weightSum = 0
+        for k, v in pairs(Config.Pet) do
+            weightSum = weightSum + v.Weight
+        end
+        local randomNum = math.random(weightSum)
+        local tempWeightSum = 0
+        for k, v in pairs(Config.Pet) do
+            tempWeightSum = tempWeightSum + v.Weight
+            if randomNum < tempWeightSum then
+                this:OpenNamedPetUI(v.ID)
+                break
+            end
+        end
     end
 end
 
