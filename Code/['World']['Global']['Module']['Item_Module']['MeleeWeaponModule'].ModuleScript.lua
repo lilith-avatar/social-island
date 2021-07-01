@@ -43,9 +43,9 @@ function MeleeWeapon:Equip()
     )
 end
 
---对命中玩家施加力F
+--对命中玩家施加力
 function MeleeWeapon:AddForceToHitPlayer(_player)
-    NetUtil.Fire_C('PlayerGetForceEvent',_player,(_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce * 10)
+    NetUtil.Fire_C('PlayerGetForceEvent',_player,(_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce)
     --_player:AddImpulse((_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce * 100)
     --_player.LinearVelocity = (_player.Position - localPlayer.Position).Normalized * self.derivedData.HitForce
 end

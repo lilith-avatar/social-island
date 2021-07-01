@@ -361,14 +361,24 @@ function PlayerCtrl:UpdateCoinEventHandler(_num, _fromBag, _origin)
             CloudLogUtil.UploadLog(
                 'game_item_flow',
                 'getCoin',
-                {action = _origin, item_before = Data.Player.coin, item_after = Data.Player.coin + _num, item_count = num}
+                {
+                    action = _origin,
+                    item_before = Data.Player.coin,
+                    item_after = Data.Player.coin + _num,
+                    item_count = num
+                }
             )
             SoundUtil.Play2DSE(localPlayer.UserId, 111)
         elseif _num > 0 then
             CloudLogUtil.UploadLog(
                 'game_item_flow',
                 'getCoin',
-                {action = _origin, item_before = Data.Player.coin, item_after = Data.Player.coin + _num, item_count = num}
+                {
+                    action = _origin,
+                    item_before = Data.Player.coin,
+                    item_after = Data.Player.coin + _num,
+                    item_count = num
+                }
             )
             SoundUtil.Play2DSE(localPlayer.UserId, 4)
         end
@@ -379,7 +389,6 @@ end
 
 -- 角色受伤
 function PlayerCtrl:CPlayerHitEventHandler(_data)
-    print(GameFlow.inGame)
     if GameFlow.inGame == false then
         FsmMgr:FsmTriggerEventHandler('HitState')
         FsmMgr:FsmTriggerEventHandler('BowHitState')
@@ -389,9 +398,12 @@ function PlayerCtrl:CPlayerHitEventHandler(_data)
     end
 end
 
--- 角色受力
+-- 角色受力 PlayerCtrl:PlayerGetForceEventHandler(Vector3(0, 0, 1000))
 function PlayerCtrl:PlayerGetForceEventHandler(_force)
-    localPlayer:AddImpulse(_force)
+    if GameFlow.inGame == false then
+        localPlayer.Position = localPlayer.Position + Vector3(0, 1, 0)
+        localPlayer:LaunchCharacter(_force, false, false)
+    end
 end
 
 -- 角色传送
