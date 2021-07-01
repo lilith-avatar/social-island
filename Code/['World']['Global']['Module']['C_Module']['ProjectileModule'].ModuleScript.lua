@@ -132,10 +132,10 @@ function Projectile:AddForceToHitPlayer(_projectile, _type, _force, _pos, _playe
             NetUtil.Fire_C(
                 'PlayerGetForceEvent',
                 v,
-                Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force * 10
+                Vector3(_projectile.LinearVelocity.x, 0, _projectile.LinearVelocity.z).Normalized * _force
             )
         elseif _type == 2 then
-            NetUtil.Fire_C('PlayerGetForceEvent', v, (v.Position - _pos).Normalized * _force * 10)
+            NetUtil.Fire_C('PlayerGetForceEvent', v, (v.Position - _pos).Normalized * _force)
         --v:AddImpulse((v.Position - _pos).Normalized * _force)
         end
     end
