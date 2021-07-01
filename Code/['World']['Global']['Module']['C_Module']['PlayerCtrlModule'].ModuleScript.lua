@@ -361,14 +361,14 @@ function PlayerCtrl:UpdateCoinEventHandler(_num, _fromBag, _origin)
             CloudLogUtil.UploadLog(
                 'game_item_flow',
                 'getCoin',
-                {coin_orgin = _origin, item_after = Data.Player.coin, item_count = Data.Player.coin + _num}
+                {action = _origin, item_before = Data.Player.coin, item_after = Data.Player.coin + _num, item_count = num}
             )
             SoundUtil.Play2DSE(localPlayer.UserId, 111)
         elseif _num > 0 then
             CloudLogUtil.UploadLog(
                 'game_item_flow',
                 'getCoin',
-                {coin_orgin = _origin, item_after = Data.Player.coin, item_count = Data.Player.coin + _num}
+                {action = _origin, item_before = Data.Player.coin, item_after = Data.Player.coin + _num, item_count = num}
             )
             SoundUtil.Play2DSE(localPlayer.UserId, 4)
         end
