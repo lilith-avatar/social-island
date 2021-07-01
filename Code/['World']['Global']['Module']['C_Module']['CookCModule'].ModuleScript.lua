@@ -20,6 +20,11 @@ function CookC:EventBind()
             NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
         end
     )
+    local node = PlayerAnimMgr:CreateSingleClipNode('Drink', 1, 'Drink')
+	node:AddAnimationEvent(0.3):Connect(function()
+            this:DestroyFood()
+            NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
+        end)
 end
 
 --根据食材处理最后做出的菜
@@ -54,7 +59,8 @@ function CookC:EatFoodEventHandler(_foodId)
     foodModel.LocalPosition = Vector3.Zero
     foodModel.LocalRotation = EulerDegree(3.0258, 12.924, -4.0823)
     --localPlayer.Avatar:PlayAnimation('Drink', 2, 1, 0, true, false, 1)
-    PlayerAnimMgr:CreateSingleClipNode('Drink', 1, 'Drink')
+
+
     PlayerAnimMgr:Play('Drink', 0, 1, 0.2, 0.2, true, false, 1)
 end
 
