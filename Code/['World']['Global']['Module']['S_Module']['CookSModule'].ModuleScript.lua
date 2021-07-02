@@ -108,7 +108,7 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin,_mealName)
                 Config.GuiText['CookGui_10'].Txt,
                 {
                     customer = cook.Name,
-                    meal = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name),
+                    meal = LanguageUtil.GetText(Config.CookMenu[_mealName].Name),
                     coin = _coin
                 }
             ),
