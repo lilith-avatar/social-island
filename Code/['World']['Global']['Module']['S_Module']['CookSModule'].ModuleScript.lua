@@ -98,7 +98,7 @@ function CookS:OnPlayerJoinEventHandler(_player)
     NetUtil.Fire_C('SycnDeskFoodNumEvent', _player, this.curFoodNum, this.foodNum)
 end
 
-function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
+function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin,_mealName)
     local rewardPlayer, cook = world:GetPlayerByUserId(_playerId), world:GetPlayerByUserId(_cookId)
     if rewardPlayer and cook then
         NetUtil.Fire_C(
@@ -108,7 +108,7 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin)
                 LanguageUtil.GetText(Config.GuiText['CookGui_10'].Txt),
                 {
                     customer = cook.Name,
-                    meal = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name),
+                    meal = _mealName,
                     coin = _coin
                 }
             ),

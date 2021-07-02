@@ -320,7 +320,7 @@ function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
                 reward_num = _purchaseCoin
             }
         )
-        NetUtil.Fire_S('FoodRewardEvent', localPlayer.UserId, this.cookUserId, _purchaseCoin)
+        NetUtil.Fire_S('FoodRewardEvent', localPlayer.UserId, this.cookUserId, _purchaseCoin,LanguageUtil.GetText(Config.CookMenu[this.foodId].Name))
         this:EatFood()
     end
 end
