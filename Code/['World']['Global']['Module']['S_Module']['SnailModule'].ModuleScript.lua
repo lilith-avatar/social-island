@@ -117,7 +117,7 @@ function Snail:EnterMiniGameEventHandler(_player, _gameId)
             NetUtil.Fire_C('InteractCEvent', _player, 8)
         else
             NetUtil.Fire_C('BetFailEvent', _player)
-            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.SnailGui_3.Txt, 3, true)
         end
     end
 end
@@ -147,7 +147,7 @@ function Snail:SnailBetEventHandler(_player, _index)
         NetUtil.Fire_C('SliderPurchaseEvent', _player, 8, LanguageUtil.GetText(Config.GuiText.SnailGui_6.Txt))
     else
         NetUtil.Fire_C('BetFailEvent', _player)
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.SnailGui_3.Txt, 3, true)
     end
 end
 
@@ -171,7 +171,7 @@ function Snail:PurchaseSEventHandler(_player, _purchaseCoin, _interactID)
         else
             NetUtil.Fire_C('UpdateCoinEvent', _player, _purchaseCoin)
             NetUtil.Fire_C('BetFailEvent', _player)
-            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.SnailGui_3.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.SnailGui_3.Txt, 3, true)
         end
     end
 end

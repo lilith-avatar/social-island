@@ -70,7 +70,7 @@ function GameRoomBase:initialize(_parent, _player, _pos, _maxNum, _lock)
     ---每个房间实例化后都会通知给所有的玩家
     NetUtil.Broadcast('RoomCreatedEvent', self.str_uuid, _player, _pos, _lock)
     self:TryEnter(_player)
-    self.model_worldTable.GameName.NameTxt.Text = LanguageUtil.GetText(Config.GuiText.BoardGame_4.Txt), 3, true
+    self.model_worldTable.GameName.NameTxt.Text = Config.GuiText.BoardGame_4.Txt, 3, true
     ---埋点
     UploadLog(
         'creat_event',
@@ -106,11 +106,11 @@ end
 --- 玩家尝试进入房间,直接进入观战,相应的客户端弹出选择座位界面
 function GameRoomBase:TryEnter(_player)
     if self:GetGameNum() + self:GetWatchNum() >= self.num_max then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_5.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_5.Txt, 3, true)
         return
     end
     if BoardGameMgr:GetPlayerRoom(_player) then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_5.Txt), 6, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_5.Txt, 6, true)
         return
     end
     self.arr_watchingPlayers[_player.UserId] = _player
@@ -136,16 +136,16 @@ function GameRoomBase:AllowEnter(_player, _enter_player, _index)
         return
     end
     if self.player_owner ~= _player then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_8.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_8.Txt, 3, true)
         return
     end
     ---房主允许,按照传的座位索引尝试进入游戏
     if self.arr_gamingPlayers[_enter_player.UserId] then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_9.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_9.Txt, 3, true)
         return
     end
     if self:GetGameNum() >= self.t_config.GameMaxNum then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_10.Txt, 3, true)
         return
     end
     if TakeSeat(self, _enter_player, _index) then
@@ -158,15 +158,15 @@ end
 --- 玩家尝试对房间上锁状态进行更改
 function GameRoomBase:TryChangeLock(_player, _lock)
     if self.player_owner ~= _player then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_11.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_11.Txt, 3, true)
         return
     end
     if self.bool_locked and _lock then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_12.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_12.Txt, 3, true)
         return
     end
     if not self.bool_locked and not _lock then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_13.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_13.Txt, 3, true)
         return
     end
     self.bool_locked = _lock
@@ -177,7 +177,7 @@ end
 ---@param _index number 若是切换到游戏状态,则选择的座位号,不填会随机选择一个
 function GameRoomBase:SwitchState(_player, _state, _index)
     if not self:CheckPlayer(_player) then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_14.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_14.Txt, 3, true)
         return
     end
     if self.num_id == -1 then
@@ -193,7 +193,7 @@ function GameRoomBase:SwitchState(_player, _state, _index)
     if _state == Const.GamingStateEnum.Watching then
         ---切换到观战状态
         if self.arr_watchingPlayers[_player.UserId] then
-            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_15.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_15.Txt, 3, true)
             return
         end
         self.arr_gamingPlayers[_player.UserId] = nil
@@ -203,11 +203,11 @@ function GameRoomBase:SwitchState(_player, _state, _index)
     elseif _state == Const.GamingStateEnum.Gaming then
         ---切换到游戏状态
         if self.arr_gamingPlayers[_player.UserId] then
-            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_16.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_16.Txt, 3, true)
             return
         end
         if self:GetGameNum() >= self.t_config.GameMaxNum then
-            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_10.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_10.Txt, 3, true)
             return
         end
         if not _index then
@@ -219,7 +219,7 @@ function GameRoomBase:SwitchState(_player, _state, _index)
             end
         end
         if not _index then
-            NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_17.Txt), 3, true)
+            NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_17.Txt, 3, true)
             return
         end
         if self.bool_locked and _player ~= self.player_owner then
@@ -239,7 +239,7 @@ end
 --- 玩家尝试离开房间
 function GameRoomBase:TryLeave(_player)
     if not self:CheckPlayer(_player) then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_14.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_14.Txt, 3, true)
         return
     end
     ---需要先取消选中自己选择的东西
@@ -950,7 +950,7 @@ function TakeSeat(self, _player, _index)
         return false
     end
     if seat.Player then
-        NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_18.Txt), 3, true)
+        NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_18.Txt, 3, true)
         return false
     end
 	--[[

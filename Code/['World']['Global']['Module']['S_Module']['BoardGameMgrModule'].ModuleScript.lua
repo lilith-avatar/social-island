@@ -58,7 +58,7 @@ function BoardGameMgr:TryCreateRoomEventHandler(_player, _pos, _maxNum, _lock)
             if room.model_worldTable == v then
                 ---静态碰撞监测到了当前位置存在其他的桌子,不允许创建
                 print('当前位置已经有桌子了')
-				NetUtil.Fire_C('InsertInfoEvent', _player, LanguageUtil.GetText(Config.GuiText.BoardGame_3.Txt), 3, true)
+				NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.BoardGame_3.Txt, 3, true)
                 return
             end
         end

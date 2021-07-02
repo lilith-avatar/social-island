@@ -105,10 +105,10 @@ function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin,_mealName)
             'InsertInfoEvent',
             localPlayer,
             string.kyformat(
-                LanguageUtil.GetText(Config.GuiText['CookGui_10'].Txt),
+                Config.GuiText['CookGui_10'].Txt,
                 {
                     customer = cook.Name,
-                    meal = _mealName,
+                    meal = LanguageUtil.GetText(Config.CookMenu[this.foodId].Name),
                     coin = _coin
                 }
             ),

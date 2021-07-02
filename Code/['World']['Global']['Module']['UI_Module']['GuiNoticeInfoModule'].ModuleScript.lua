@@ -224,24 +224,30 @@ end
 
 --- 插入玩家信息文字
 function GuiNoticeInfo:InsertInfoEventHandler(_text, _t,_isTop)
-	if GuiNoticeInfo:CheckInfoUnique(_text,playerInfoList) then
+	if  LanguageUtil.GetText(_text) then
+		local infoText = LanguageUtil.GetText(_text)
+	else
+		local infoText = _text
+	end
+	
+	if GuiNoticeInfo:CheckInfoUnique(infoText,playerInfoList) then
 		if _isTop then
-		table.insert(
-			playerInfoList,
-			{
-				text = _text,
-				1,
-				t = _t + 0.4
-			}
-		)
+			table.insert(
+				playerInfoList,
+				{
+					text = infoText,
+					1,
+					t = _t + 0.4
+				}
+			)
 		else
-		table.insert(
-			playerInfoList,
-			{
-				text = _text,
-				t = _t + 0.4
-			}
-		)
+			table.insert(
+				playerInfoList,
+				{
+					text = infoText,
+					t = _t + 0.4
+				}
+			)
 		end
 	end
 end
