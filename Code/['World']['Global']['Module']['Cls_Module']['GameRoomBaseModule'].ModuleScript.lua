@@ -507,8 +507,8 @@ function ChangeGame(self, _id)
     end
     self.num_id = _id
     self.t_config = Config.Game[_id]
-    local game_Name = LanguageUtil.GetText(Config.Game[_id].Name)
-    self.model_worldTable.GameName.NameTxt.Text = game_Name
+	NetUtil.Broadcast('ShowTableGameNameEvent', self.model_worldTable, Config.Game[_id].Name)
+	
     ---销毁所有堆叠
     for i, v in pairs(self.arr_stacks) do
         DestroyStack(self, i)

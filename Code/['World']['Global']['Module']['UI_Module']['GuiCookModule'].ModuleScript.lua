@@ -764,4 +764,21 @@ function GuiCook:GuideBoxCookBtnSize(_parent)
     guideBoxTweener:WaitForComplete()
 end
 
+function GuiCook:GetFoodRewardEventHandler(_rewardPlayer,_num,_mealName)
+    NetUtil.Fire_C(
+        'InsertInfoEvent',
+        localPlayer,
+        string.kyformat(
+            LanguageUtil.GetText(Config.GuiText['CookGui_10'].Txt),
+            {
+                customer = _rewardPlayer.Name,
+                meal = _mealName,
+                coin = _num
+            }
+        ),
+        3
+    )
+	NetUtil.Fire_C('UpdateCoinEvent', localPlayer, _num)
+end
+
 return GuiCook

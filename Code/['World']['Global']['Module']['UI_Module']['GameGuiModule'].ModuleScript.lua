@@ -113,6 +113,13 @@ function GameGui:LeaveRoomEventHandler(_room_uuid, _uid)
     end
 end
 
+function GameGui:ShowTableGameNameEventHandler(_table,_Name)
+	NotReplicate(function() 
+		local game_Name = LanguageUtil.GetText(_Name)
+		_table.GameName.NameTxt.Text = game_Name
+	end)
+end
+
 ---玩家进入一个房间事件,进入房间后自动弹出选择座位界面
 function GameGui:EnterRoomEventHandler(_uuid, _player)
 	local room = LocalRooms:GetRoomByUuid(_uuid)

@@ -136,7 +136,7 @@ function Snail:SnailBetEventHandler(_player, _index)
             player = _player,
             money = 0
         }
-        NetUtil.Fire_C('SliderPurchaseEvent', _player, 8, LanguageUtil.GetText(Config.GuiText.SnailGui_6.Txt))
+        NetUtil.Fire_C('SliderPurchaseEvent', _player, 8, Config.GuiText.SnailGui_6.Txt)
     else
         NetUtil.Fire_C('BetFailEvent', _player)
         NetUtil.Fire_C('InsertInfoEvent', _player, Config.GuiText.SnailGui_3.Txt, 3, true)

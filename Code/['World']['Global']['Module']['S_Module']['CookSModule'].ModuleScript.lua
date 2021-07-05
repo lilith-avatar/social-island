@@ -101,20 +101,7 @@ end
 function CookS:FoodRewardEventHandler(_playerId, _cookId, _coin,_mealName)
     local rewardPlayer, cook = world:GetPlayerByUserId(_playerId), world:GetPlayerByUserId(_cookId)
     if rewardPlayer and cook then
-        NetUtil.Fire_C(
-            'InsertInfoEvent',
-            localPlayer,
-            string.kyformat(
-                Config.GuiText['CookGui_10'].Txt,
-                {
-                    customer = cook.Name,
-                    meal = LanguageUtil.GetText(Config.CookMenu[_mealName].Name),
-                    coin = _coin
-                }
-            ),
-            1
-        )
-        NetUtil.Fire_C('UpdateCoinEvent', cook, _coin)
+		NetUtil.Fire_C('GetFoodRewardEvent', cook,rewardPlayer, _coin,_mealName)
     end
 end
 
