@@ -601,6 +601,7 @@ function GuiCook:EatFood()
         Config.CookMenu[this.foodId].BuffDur
     )
     localPlayer.Local.ControlGui:SetActive(false)
+	this.detailPanel:SetActive(false)
     NetUtil.Fire_C('EatFoodEvent', localPlayer, this.foodId)
     this:HideGui()
     --
