@@ -40,8 +40,10 @@ function GuiNoticeInfo:NodeRef()
     end
     for i = 1, 2 do
         rollNoticeInfoPanel[i] = noticeInfoGUI.Info.NoticeInfoBG['Panel' .. i]
+		rollNoticeInfoPanel[i].Join.Text = LanguageUtil.GetText(Config.GuiText['InfoGui_6'].Txt)
     end
     curItemInfoPanel = rollItemInfoPanel[1]
+	
 end
 
 --数据变量声明

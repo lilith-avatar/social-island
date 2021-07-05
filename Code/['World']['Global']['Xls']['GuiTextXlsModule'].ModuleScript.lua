@@ -27,6 +27,10 @@ local GuiTextXls = {
         TextId = 'InfoGui_5',
         Txt = 'GuiText_Txt_InfoGui_5'
     },
+    InfoGui_6 = {
+        TextId = 'InfoGui_6',
+        Txt = 'GuiText_Txt_InfoGui_6'
+    },
     SnailGui_1 = {
         TextId = 'SnailGui_1',
         Txt = 'GuiText_Txt_SnailGui_1'
@@ -207,6 +211,14 @@ local GuiTextXls = {
         TextId = 'CookGui_10',
         Txt = 'GuiText_Txt_CookGui_10'
     },
+    CookGui_11 = {
+        TextId = 'CookGui_11',
+        Txt = 'GuiText_Txt_CookGui_11'
+    },
+    CookGui_12 = {
+        TextId = 'CookGui_12',
+        Txt = 'GuiText_Txt_CookGui_12'
+    },
     CookGuide_1 = {
         TextId = 'CookGuide_1',
         Txt = 'GuiText_Txt_CookGuide_1'
@@ -334,6 +346,10 @@ local GuiTextXls = {
     BoardGame_27 = {
         TextId = 'BoardGame_27',
         Txt = 'GuiText_Txt_BoardGame_27'
+    },
+    BagGui_1 = {
+        TextId = 'BagGui_1',
+        Txt = 'GuiText_Txt_BagGui_1'
     }
 }
 

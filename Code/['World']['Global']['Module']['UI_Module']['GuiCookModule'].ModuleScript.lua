@@ -54,6 +54,11 @@ function GuiCook:NodeDef()
         this.gui.MaterialPanel.Material2,
         this.gui.MaterialPanel.Material3
     }
+    this.GuideMaterialSlot = {
+        this.root.GuidePanel.MaterialPanel.Material1,
+        this.root.GuidePanel.MaterialPanel.Material2,
+        this.root.GuidePanel.MaterialPanel.Material3
+    }
     --* 进度条的slot
     --* Button------------------
     this.cookBtn = this.gui.MaterialPanel.CookBtn -- 烹饪按钮
@@ -208,9 +213,20 @@ function GuiCook:LanguageInit()
     this.gui.MaterialPanel.NameTextBox.NameText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_2'].Txt)
     this.foodPanel.EatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
     this.detailReward.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
+	this.foodPanel.EatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
     this.detailReward.Locked.Txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_6'].Txt)
 	this.detailEatBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_4'].Txt)
     this.foodPanel.DesTxt.Text = string.format(LanguageUtil.GetText(Config.GuiText['CookGui_3'].Txt), '')
+	this.cookBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_12'].Txt)
+	this.cookBtn.Locked.txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_12'].Txt)
+	this.root.GuidePanel.MaterialPanel.CookBtn.Text = LanguageUtil.GetText(Config.GuiText['CookGui_12'].Txt)
+	this.root.GuidePanel.MaterialPanel.CookBtn.Locked.txt.Text = LanguageUtil.GetText(Config.GuiText['CookGui_12'].Txt)
+    for k, v in ipairs(this.GuideMaterialSlot) do
+        v.ItemImg.IMGNormal.Texture = ResourceManager.GetTexture('UI/Cook/Result/CS_AVG_Icon_Food_1')
+        v.ItemImg.IMGNormal.Size = Vector2(138, 151)
+        v.ItemImg.ItemText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_11'].Txt)
+		LanguageUtil.TextAutoSize(v.ItemImg.ItemText, 24, 40)
+    end
 end
 
 function GuiCook:TransItemTable()
@@ -233,7 +249,6 @@ function GuiCook:TransItemTable()
 end
 
 function GuiCook:ShowUI()
-    this:ClearAllMaterial()
     this:TransItemTable()
     this.progressPanel:SetActive(false)
     this.foodPanel:SetActive(false)
@@ -261,6 +276,7 @@ function GuiCook:InteractCEventHandler(_gameId)
         if not Data.Player.notFirstCook then
             this:StartGuide()
         else
+			GuiCook:ClearAllMaterial()
             this:ShowUI()
         end
     elseif _gameId == 27 then
@@ -424,10 +440,15 @@ function GuiCook:ShowMaterialIcon()
                 ResourceManager.GetTexture('UI/ItemIcon/' .. Config.Item[this.UsingMaterial[k].id].Icon)
             v.ItemImg.IMGNormal.Size = Vector2(128, 128)
             v.ItemImg.ItemText.Text = LanguageUtil.GetText(Config.Item[this.UsingMaterial[k].id].Name)
+			LanguageUtil.TextAutoSize(v.ItemImg.ItemText, 24, 40)
         else
             v.ItemImg.IMGNormal.Texture = ResourceManager.GetTexture('UI/Cook/Result/CS_AVG_Icon_Food_1')
             v.ItemImg.IMGNormal.Size = Vector2(138, 151)
-            v.ItemImg.ItemText.Text = 'Pick One'
+            v.ItemImg.ItemText.Text = LanguageUtil.GetText(Config.GuiText['CookGui_11'].Txt)
+			print(k,v)
+			print(v.ItemImg.ItemText)
+			
+			LanguageUtil.TextAutoSize(v.ItemImg.ItemText, 24, 40)
         end
     end
 end

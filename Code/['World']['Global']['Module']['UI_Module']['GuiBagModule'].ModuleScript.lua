@@ -54,6 +54,8 @@ function GuiBag:EventBind()
 			SoundUtil.Play2DSE(localPlayer.UserId, 101)
         end
     )
+	this.useBtn.Text = LanguageUtil.GetText(Config.GuiText['BagGui_1'].Txt)
+	
     this.prevBtn.OnClick:Connect(
         function()
             this:ClickChangePage(this.pageIndex - 1)

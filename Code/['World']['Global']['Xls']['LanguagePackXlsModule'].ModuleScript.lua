@@ -7,126 +7,6 @@
 --- source file: .//LanguagePack.xls
 
 local LanguagePackXls = {
-    lang_str_001 = {
-        ID = 'lang_str_001',
-        zh = '使用药品可以恢复生命',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    lang_str_002 = {
-        ID = 'lang_str_002',
-        zh = '在水中游泳会消耗体力，体力耗尽则消耗生命',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    lang_str_003 = {
-        ID = 'lang_str_003',
-        zh = '注意预警，预警之后岛屿会下沉',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    lang_str_004 = {
-        ID = 'lang_str_004',
-        zh = '宝箱会刷新不同等级的道具',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    lang_str_005 = {
-        ID = 'lang_str_005',
-        zh = '注意指示灯，桥会定期升降',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des1_1_house = {
-        ID = 'Example1_Des1_1_house',
-        zh = '我真的很想%s吃饭',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des2_1_house = {
-        ID = 'Example1_Des2_1_house',
-        zh = '做什么',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des1_1_MMM = {
-        ID = 'Example1_Des1_1_MMM',
-        zh = '我饿了',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des2_1_MMM = {
-        ID = 'Example1_Des2_1_MMM',
-        zh = '工作是什么',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des1_1_ddd = {
-        ID = 'Example1_Des1_1_ddd',
-        zh = '到底什么时候能吃饭',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des2_1_ddd = {
-        ID = 'Example1_Des2_1_ddd',
-        zh = '我是谁',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des1_2_farm = {
-        ID = 'Example1_Des1_2_farm',
-        zh = '今天晚上吃什么',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des2_2_farm = {
-        ID = 'Example1_Des2_2_farm',
-        zh = '我从哪里来',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des1_2_MMM = {
-        ID = 'Example1_Des1_2_MMM',
-        zh = '下班就去吃饭吧',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Example1_Des2_2_MMM = {
-        ID = 'Example1_Des2_2_MMM',
-        zh = '就这样吧',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
     CookMenu_Name_1 = {
         ID = 'CookMenu_Name_1',
         zh = '蔬菜馅饼',
@@ -134,70 +14,6 @@ local LanguagePackXls = {
         en = 'Veggie Pies',
         ja = '',
         id = 'Pai Sayuran'
-    },
-    CookMenu_Name_2 = {
-        ID = 'CookMenu_Name_2',
-        zh = '特制馅饼',
-        CHT = '',
-        en = 'Special Pies',
-        ja = '',
-        id = 'Pai Spesial'
-    },
-    CookMenu_Name_3 = {
-        ID = 'CookMenu_Name_3',
-        zh = '南瓜蛋糕',
-        CHT = '',
-        en = 'Pumpkin Cake',
-        ja = '',
-        id = 'Kue Labu'
-    },
-    CookMenu_Name_4 = {
-        ID = 'CookMenu_Name_4',
-        zh = '猛兽料理',
-        CHT = '',
-        en = 'Beast Stew',
-        ja = '',
-        id = 'Daging Rebus'
-    },
-    CookMenu_Name_5 = {
-        ID = 'CookMenu_Name_5',
-        zh = '不可名状的料理',
-        CHT = '',
-        en = 'Unnameable Dish',
-        ja = '',
-        id = 'Hidangan Tanpa Nama'
-    },
-    CookMenu_Name_6 = {
-        ID = 'CookMenu_Name_6',
-        zh = '什锦肉汤',
-        CHT = '',
-        en = 'Mixed Meat Soup',
-        ja = '',
-        id = 'Sup Daging Campur'
-    },
-    CookMenu_Name_7 = {
-        ID = 'CookMenu_Name_7',
-        zh = '煮鸟肉',
-        CHT = '',
-        en = 'Boiled Bird Meat',
-        ja = '',
-        id = 'Daging Burung Rebus'
-    },
-    CookMenu_Name_8 = {
-        ID = 'CookMenu_Name_8',
-        zh = '蔬菜沙拉',
-        CHT = '',
-        en = 'Veggie Salad',
-        ja = '',
-        id = 'Veggie Salad'
-    },
-    CookMenu_Name_9 = {
-        ID = 'CookMenu_Name_9',
-        zh = '咖喱鹿肉',
-        CHT = '',
-        en = 'Curry Venison',
-        ja = '',
-        id = 'Kari Daging Rusa'
     },
     CookMenu_Name_10 = {
         ID = 'CookMenu_Name_10',
@@ -279,6 +95,14 @@ local LanguagePackXls = {
         ja = '',
         id = 'Sup Wortel dan Daging'
     },
+    CookMenu_Name_2 = {
+        ID = 'CookMenu_Name_2',
+        zh = '特制馅饼',
+        CHT = '',
+        en = 'Special Pies',
+        ja = '',
+        id = 'Pai Spesial'
+    },
     CookMenu_Name_20 = {
         ID = 'CookMenu_Name_20',
         zh = '特制馅饼',
@@ -359,6 +183,14 @@ local LanguagePackXls = {
         ja = '',
         id = 'Sup Daging Campur'
     },
+    CookMenu_Name_3 = {
+        ID = 'CookMenu_Name_3',
+        zh = '南瓜蛋糕',
+        CHT = '',
+        en = 'Pumpkin Cake',
+        ja = '',
+        id = 'Kue Labu'
+    },
     CookMenu_Name_30 = {
         ID = 'CookMenu_Name_30',
         zh = '蔬菜沙拉',
@@ -367,6 +199,190 @@ local LanguagePackXls = {
         ja = '',
         id = 'Veggie Salad'
     },
+    CookMenu_Name_4 = {
+        ID = 'CookMenu_Name_4',
+        zh = '猛兽料理',
+        CHT = '',
+        en = 'Beast Stew',
+        ja = '',
+        id = 'Daging Rebus'
+    },
+    CookMenu_Name_5 = {
+        ID = 'CookMenu_Name_5',
+        zh = '不可名状的料理',
+        CHT = '',
+        en = 'Unnameable Dish',
+        ja = '',
+        id = 'Hidangan Tanpa Nama'
+    },
+    CookMenu_Name_6 = {
+        ID = 'CookMenu_Name_6',
+        zh = '什锦肉汤',
+        CHT = '',
+        en = 'Mixed Meat Soup',
+        ja = '',
+        id = 'Sup Daging Campur'
+    },
+    CookMenu_Name_7 = {
+        ID = 'CookMenu_Name_7',
+        zh = '煮鸟肉',
+        CHT = '',
+        en = 'Boiled Bird Meat',
+        ja = '',
+        id = 'Daging Burung Rebus'
+    },
+    CookMenu_Name_8 = {
+        ID = 'CookMenu_Name_8',
+        zh = '蔬菜沙拉',
+        CHT = '',
+        en = 'Veggie Salad',
+        ja = '',
+        id = 'Veggie Salad'
+    },
+    CookMenu_Name_9 = {
+        ID = 'CookMenu_Name_9',
+        zh = '咖喱鹿肉',
+        CHT = '',
+        en = 'Curry Venison',
+        ja = '',
+        id = 'Kari Daging Rusa'
+    },
+    Game_Des_1000 = {
+        ID = 'Game_Des_1000',
+        zh = '建议人数\n2人',
+        CHT = '',
+        en = 'Go',
+        ja = '',
+        id = 'Go'
+    },
+    Game_Des_1001 = {
+        ID = 'Game_Des_1001',
+        zh = '建议人数\n2-4人',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    Game_Des_1002 = {
+        ID = 'Game_Des_1002',
+        zh = '建议人数\n2人',
+        CHT = '',
+        en = 'Gomoku',
+        ja = '',
+        id = 'Gomoku'
+    },
+    Game_Name_1000 = {
+        ID = 'Game_Name_1000',
+        zh = '五子棋',
+        CHT = '',
+        en = 'Play Go with your friends any time',
+        ja = '',
+        id = 'Mainkan Go dengan teman kamu kapan saja'
+    },
+    Game_Name_1001 = {
+        ID = 'Game_Name_1001',
+        zh = '扑克',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    Game_Name_1002 = {
+        ID = 'Game_Name_1002',
+        zh = '围棋',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_1 = {
+        ID = 'GameInfo_GameName_1',
+        zh = '打猎',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_10 = {
+        ID = 'GameInfo_GameName_10',
+        zh = '摇摇椅',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_11 = {
+        ID = 'GameInfo_GameName_11',
+        zh = '斗怪物',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_2 = {
+        ID = 'GameInfo_GameName_2',
+        zh = '打地鼠',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_3 = {
+        ID = 'GameInfo_GameName_3',
+        zh = '迷宫',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_4 = {
+        ID = 'GameInfo_GameName_4',
+        zh = '人间大炮',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_5 = {
+        ID = 'GameInfo_GameName_5',
+        zh = '青蛙过河',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_6 = {
+        ID = 'GameInfo_GameName_6',
+        zh = '热气球',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_7 = {
+        ID = 'GameInfo_GameName_7',
+        zh = '种花',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_8 = {
+        ID = 'GameInfo_GameName_8',
+        zh = '赛蜗牛',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    GameInfo_GameName_9 = {
+        ID = 'GameInfo_GameName_9',
+        zh = '竞速',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
     GuiText_Txt_1 = {
         ID = 'GuiText_Txt_1',
         zh = '新的一天开始了',
@@ -374,70 +390,6 @@ local LanguagePackXls = {
         en = 'A new day has begun',
         ja = '',
         id = 'Hari baru telah dimulai'
-    },
-    GuiText_Txt_2 = {
-        ID = 'GuiText_Txt_2',
-        zh = '傍晚了，回去营地吧',
-        CHT = '',
-        en = 'It’s dusk, time to get back to the campground.',
-        ja = '',
-        id = 'Sudah petang, waktunya kembali ke kamp.'
-    },
-    GuiText_Txt_3 = {
-        ID = 'GuiText_Txt_3',
-        zh = '天黑了，准备狂欢吧！',
-        CHT = '',
-        en = 'It’s nighttime, time to party!',
-        ja = '',
-        id = 'Sudah malam, waktunya berpesta!'
-    },
-    GuiText_Txt_4 = {
-        ID = 'GuiText_Txt_4',
-        zh = '神秘的UFO出现了！',
-        CHT = '',
-        en = 'The mysterious UFO has appeared!',
-        ja = '',
-        id = 'UFO misterius telah muncul!'
-    },
-    GuiText_Txt_5 = {
-        ID = 'GuiText_Txt_5',
-        zh = '天空中出现了神秘的迷宫！',
-        CHT = '',
-        en = 'A mysterious maze has appeared in the sky!',
-        ja = '',
-        id = 'Labirin misterius muncul di langit!'
-    },
-    GuiText_Txt_6 = {
-        ID = 'GuiText_Txt_6',
-        zh = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
-        CHT = '',
-        en = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
-        ja = '',
-        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
-    },
-    GuiText_Txt_7 = {
-        ID = 'GuiText_Txt_7',
-        zh = '蜗牛赛跑开始了！',
-        CHT = '',
-        en = 'The snail race has begun!',
-        ja = '',
-        id = 'Balapan siput telah dimulai!'
-    },
-    GuiText_Txt_8 = {
-        ID = 'GuiText_Txt_8',
-        zh = '你不能多次投注或在比赛进行中投注',
-        CHT = '',
-        en = 'You cannot place multiple bets or place a bet while a race is underway.',
-        ja = '',
-        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
-    },
-    GuiText_Txt_9 = {
-        ID = 'GuiText_Txt_9',
-        zh = '你投注的蜗牛获得了第',
-        CHT = '',
-        en = 'The snail you betted on obtained a rank of',
-        ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat'
     },
     GuiText_Txt_10 = {
         ID = 'GuiText_Txt_10',
@@ -519,6 +471,14 @@ local LanguagePackXls = {
         ja = '',
         id = 'Ada hewan yang terjebak di perangkapmu.'
     },
+    GuiText_Txt_2 = {
+        ID = 'GuiText_Txt_2',
+        zh = '傍晚了，回去营地吧',
+        CHT = '',
+        en = 'It’s dusk, time to get back to the campground.',
+        ja = '',
+        id = 'Sudah petang, waktunya kembali ke kamp.'
+    },
     GuiText_Txt_20 = {
         ID = 'GuiText_Txt_20',
         zh = '你的陷阱被动物挣脱了',
@@ -583,13 +543,749 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kamu ingin membeli %s ?'
     },
-    Item_Name_1001 = {
-        ID = 'Item_Name_1001',
-        zh = '坚硬的树枝',
+    GuiText_Txt_3 = {
+        ID = 'GuiText_Txt_3',
+        zh = '天黑了，准备狂欢吧！',
         CHT = '',
-        en = 'Hard Branch',
+        en = 'It’s nighttime, time to party!',
         ja = '',
-        id = 'Cabang Keras'
+        id = 'Sudah malam, waktunya berpesta!'
+    },
+    GuiText_Txt_4 = {
+        ID = 'GuiText_Txt_4',
+        zh = '神秘的UFO出现了！',
+        CHT = '',
+        en = 'The mysterious UFO has appeared!',
+        ja = '',
+        id = 'UFO misterius telah muncul!'
+    },
+    GuiText_Txt_5 = {
+        ID = 'GuiText_Txt_5',
+        zh = '天空中出现了神秘的迷宫！',
+        CHT = '',
+        en = 'A mysterious maze has appeared in the sky!',
+        ja = '',
+        id = 'Labirin misterius muncul di langit!'
+    },
+    GuiText_Txt_6 = {
+        ID = 'GuiText_Txt_6',
+        zh = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
+        CHT = '',
+        en = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
+        ja = '',
+        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
+    },
+    GuiText_Txt_7 = {
+        ID = 'GuiText_Txt_7',
+        zh = '蜗牛赛跑开始了！',
+        CHT = '',
+        en = 'The snail race has begun!',
+        ja = '',
+        id = 'Balapan siput telah dimulai!'
+    },
+    GuiText_Txt_8 = {
+        ID = 'GuiText_Txt_8',
+        zh = '你不能多次投注或在比赛进行中投注',
+        CHT = '',
+        en = 'You cannot place multiple bets or place a bet while a race is underway.',
+        ja = '',
+        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
+    },
+    GuiText_Txt_9 = {
+        ID = 'GuiText_Txt_9',
+        zh = '你投注的蜗牛获得了第',
+        CHT = '',
+        en = 'The snail you betted on obtained a rank of',
+        ja = '',
+        id = 'Siput yang kamu pilih meraih peringkat'
+    },
+    GuiText_Txt_BagGui_1 = {
+        ID = 'GuiText_Txt_BagGui_1',
+        zh = '使用',
+        CHT = '',
+        en = 'Use',
+        ja = '',
+        id = 'Gunakan'
+    },
+    GuiText_Txt_BoardGame_1 = {
+        ID = 'GuiText_Txt_BoardGame_1',
+        zh = '你不能在这里使用这个道具。',
+        CHT = '',
+        en = 'You can’t use this item here',
+        ja = '',
+        id = 'Kamu tidak dapat menggunakan item ini di sini'
+    },
+    GuiText_Txt_BoardGame_10 = {
+        ID = 'GuiText_Txt_BoardGame_10',
+        zh = '参与游戏的玩家已经达到上限。',
+        CHT = '',
+        en = 'The game already has a maximum number of players',
+        ja = '',
+        id = 'Game ini sudah mencakapi jumlah pemain maksimum'
+    },
+    GuiText_Txt_BoardGame_11 = {
+        ID = 'GuiText_Txt_BoardGame_11',
+        zh = '只有房主才可以对房间上锁状态进行更改。',
+        CHT = '',
+        en = 'Only the room host can lock or unlock the room',
+        ja = '',
+        id = 'Hanya tuan rumah ruangan yang bisa mengunci atau membuka kunci ruangan'
+    },
+    GuiText_Txt_BoardGame_12 = {
+        ID = 'GuiText_Txt_BoardGame_12',
+        zh = '房间已经被上锁了。',
+        CHT = '',
+        en = 'The room is already locked',
+        ja = '',
+        id = 'Ruangan sudah terkunci'
+    },
+    GuiText_Txt_BoardGame_13 = {
+        ID = 'GuiText_Txt_BoardGame_13',
+        zh = '房间已经解锁了。',
+        CHT = '',
+        en = 'The room has been unlocked.',
+        ja = '',
+        id = 'Kamar telah dibuka kuncinya.'
+    },
+    GuiText_Txt_BoardGame_14 = {
+        ID = 'GuiText_Txt_BoardGame_14',
+        zh = '你已经退出了这个桌子。',
+        CHT = '',
+        en = 'You already left this table',
+        ja = '',
+        id = 'Kamu sudah meninggalkan meja ini'
+    },
+    GuiText_Txt_BoardGame_15 = {
+        ID = 'GuiText_Txt_BoardGame_15',
+        zh = '你已经在观战了。',
+        CHT = '',
+        en = 'You are already spectating',
+        ja = '',
+        id = 'Kamu sudah menonton'
+    },
+    GuiText_Txt_BoardGame_16 = {
+        ID = 'GuiText_Txt_BoardGame_16',
+        zh = '你已经参与了游戏。',
+        CHT = '',
+        en = 'You already joined the game',
+        ja = '',
+        id = 'Kamu sudah bergabung dalam game'
+    },
+    GuiText_Txt_BoardGame_17 = {
+        ID = 'GuiText_Txt_BoardGame_17',
+        zh = '座位已经满了。',
+        CHT = '',
+        en = 'There are no more seats',
+        ja = '',
+        id = 'Tidak ada kursi lagi'
+    },
+    GuiText_Txt_BoardGame_18 = {
+        ID = 'GuiText_Txt_BoardGame_18',
+        zh = '这个座位已经有一个玩家了。',
+        CHT = '',
+        en = 'There are no more seats',
+        ja = '',
+        id = 'Tidak ada kursi lagi'
+    },
+    GuiText_Txt_BoardGame_19 = {
+        ID = 'GuiText_Txt_BoardGame_19',
+        zh = '重置游戏',
+        CHT = '',
+        en = 'Reset game',
+        ja = '',
+        id = 'Atur ulang game'
+    },
+    GuiText_Txt_BoardGame_2 = {
+        ID = 'GuiText_Txt_BoardGame_2',
+        zh = '你不能在运动时使用这个道具。',
+        CHT = '',
+        en = 'You can’t use this item while you are moving',
+        ja = '',
+        id = 'Kamu tidak dapat menggunakan item ini saat bergerak'
+    },
+    GuiText_Txt_BoardGame_20 = {
+        ID = 'GuiText_Txt_BoardGame_20',
+        zh = '房间上锁',
+        CHT = '',
+        en = 'Lock room',
+        ja = '',
+        id = 'Kunci ruangan'
+    },
+    GuiText_Txt_BoardGame_21 = {
+        ID = 'GuiText_Txt_BoardGame_21',
+        zh = '房间解锁',
+        CHT = '',
+        en = 'Unlock room',
+        ja = '',
+        id = 'Buka kunci ruangan'
+    },
+    GuiText_Txt_BoardGame_22 = {
+        ID = 'GuiText_Txt_BoardGame_22',
+        zh = '观战',
+        CHT = '',
+        en = 'Spectate',
+        ja = '',
+        id = 'Tonton'
+    },
+    GuiText_Txt_BoardGame_23 = {
+        ID = 'GuiText_Txt_BoardGame_23',
+        zh = '加入游戏',
+        CHT = '',
+        en = 'Join game',
+        ja = '',
+        id = 'Bergabung dalam game'
+    },
+    GuiText_Txt_BoardGame_24 = {
+        ID = 'GuiText_Txt_BoardGame_24',
+        zh = '退出',
+        CHT = '',
+        en = 'Quit',
+        ja = '',
+        id = 'Keluar'
+    },
+    GuiText_Txt_BoardGame_25 = {
+        ID = 'GuiText_Txt_BoardGame_25',
+        zh = '取消',
+        CHT = '',
+        en = 'Cancel',
+        ja = '',
+        id = 'Batal'
+    },
+    GuiText_Txt_BoardGame_26 = {
+        ID = 'GuiText_Txt_BoardGame_26',
+        zh = '游戏中',
+        CHT = '',
+        en = 'In a game',
+        ja = '',
+        id = 'Dalam game'
+    },
+    GuiText_Txt_BoardGame_27 = {
+        ID = 'GuiText_Txt_BoardGame_27',
+        zh = '观战中',
+        CHT = '',
+        en = 'Spectating...',
+        ja = '',
+        id = 'Menonton...'
+    },
+    GuiText_Txt_BoardGame_3 = {
+        ID = 'GuiText_Txt_BoardGame_3',
+        zh = '你离其他桌子太近了！',
+        CHT = '',
+        en = 'You are too close to the other tables',
+        ja = '',
+        id = 'Kamu terlalu dekat dengan meja lainnya'
+    },
+    GuiText_Txt_BoardGame_4 = {
+        ID = 'GuiText_Txt_BoardGame_4',
+        zh = '准备中',
+        CHT = '',
+        en = 'Ready',
+        ja = '',
+        id = 'Siap'
+    },
+    GuiText_Txt_BoardGame_5 = {
+        ID = 'GuiText_Txt_BoardGame_5',
+        zh = '这个桌子的人已经满了。',
+        CHT = '',
+        en = 'This table is full',
+        ja = '',
+        id = 'Meja ini penuh'
+    },
+    GuiText_Txt_BoardGame_6 = {
+        ID = 'GuiText_Txt_BoardGame_6',
+        zh = '你已经在一个桌子上了。',
+        CHT = '',
+        en = 'You are already seated at a table',
+        ja = '',
+        id = 'Kamu sudah duduk di meja'
+    },
+    GuiText_Txt_BoardGame_7 = {
+        ID = 'GuiText_Txt_BoardGame_7',
+        zh = '你需要先退出这个桌子。',
+        CHT = '',
+        en = 'You need to leave this table first',
+        ja = '',
+        id = 'Kamu harus meninggalkan meja ini terlebih dahulu'
+    },
+    GuiText_Txt_BoardGame_8 = {
+        ID = 'GuiText_Txt_BoardGame_8',
+        zh = '只有房主才可以同意玩家进入游戏。',
+        CHT = '',
+        en = 'Only the room host can approve players to enter',
+        ja = '',
+        id = 'Hanya tuan rumah ruangan yang bisa menyetujui pemain untuk masuk'
+    },
+    GuiText_Txt_BoardGame_9 = {
+        ID = 'GuiText_Txt_BoardGame_9',
+        zh = '你已经在游戏中了。',
+        CHT = '',
+        en = 'You are already in a game',
+        ja = '',
+        id = 'Kamu sudah dalam game'
+    },
+    GuiText_Txt_CookGui_1 = {
+        ID = 'GuiText_Txt_CookGui_1',
+        zh = '来做饭吧',
+        CHT = '',
+        en = 'Let’s Cook',
+        ja = '',
+        id = 'Ayo Memasak'
+    },
+    GuiText_Txt_CookGui_10 = {
+        ID = 'GuiText_Txt_CookGui_10',
+        zh = '你的{meal}收到了{customer}的{coin}枚金币的小费。',
+        CHT = '',
+        en = 'Your {meal} received a tip of {coin} coins from {customer}.',
+        ja = '',
+        id = '{Meal} Anda menerima tip {coin} koin dari {customer}.'
+    },
+    GuiText_Txt_CookGui_11 = {
+        ID = 'GuiText_Txt_CookGui_11',
+        zh = '选择食材',
+        CHT = '',
+        en = 'Pick One',
+        ja = '',
+        id = 'Pilih satu'
+    },
+    GuiText_Txt_CookGui_12 = {
+        ID = 'GuiText_Txt_CookGui_12',
+        zh = '开始烹饪',
+        CHT = '',
+        en = 'Cook',
+        ja = '',
+        id = 'Memasak'
+    },
+    GuiText_Txt_CookGui_2 = {
+        ID = 'GuiText_Txt_CookGui_2',
+        zh = '选用食材',
+        CHT = '',
+        en = 'Ingredients',
+        ja = '',
+        id = 'Bahan'
+    },
+    GuiText_Txt_CookGui_3 = {
+        ID = 'GuiText_Txt_CookGui_3',
+        zh = '你做出了%s',
+        CHT = '',
+        en = 'You made %s!',
+        ja = '',
+        id = 'Kamu membuat %s!'
+    },
+    GuiText_Txt_CookGui_4 = {
+        ID = 'GuiText_Txt_CookGui_4',
+        zh = '吃掉它',
+        CHT = '',
+        en = 'Eat',
+        ja = '',
+        id = 'Makan'
+    },
+    GuiText_Txt_CookGui_5 = {
+        ID = 'GuiText_Txt_CookGui_5',
+        zh = '放到桌上',
+        CHT = '',
+        en = 'Put on table',
+        ja = '',
+        id = 'Letakkan di meja'
+    },
+    GuiText_Txt_CookGui_6 = {
+        ID = 'GuiText_Txt_CookGui_6',
+        zh = '打赏',
+        CHT = '',
+        en = 'Tip',
+        ja = '',
+        id = 'Kiat'
+    },
+    GuiText_Txt_CookGui_7 = {
+        ID = 'GuiText_Txt_CookGui_7',
+        zh = '宴会还没有开始，晚上再来吧。',
+        CHT = '',
+        en = 'The party has not started yet, come back in the evening.',
+        ja = '',
+        id = 'Pestanya belum dimulai, kembalilah di sore hari.'
+    },
+    GuiText_Txt_CookGui_8 = {
+        ID = 'GuiText_Txt_CookGui_8',
+        zh = '你要打赏%s多少金币呢？',
+        CHT = '',
+        en = 'How many coins do you want to tip %s?',
+        ja = '',
+        id = 'Berapa banyak koin yang ingin kamu berikan tip %s?'
+    },
+    GuiText_Txt_CookGui_9 = {
+        ID = 'GuiText_Txt_CookGui_9',
+        zh = '你为{cooker}的{meal}支付了{coin}小费。',
+        CHT = '',
+        en = 'You tipped {cooker} {coin} coins for his {meal}.',
+        ja = '',
+        id = 'Kamu memberi tip {cooker} {coin} koin untuk {meal}.'
+    },
+    GuiText_Txt_CookGuide_1 = {
+        ID = 'GuiText_Txt_CookGuide_1',
+        zh = '让我们做一道菜吧！',
+        CHT = '',
+        en = 'Let’s make some food!',
+        ja = '',
+        id = 'Ayo kita buat makanan!'
+    },
+    GuiText_Txt_CookGuide_2 = {
+        ID = 'GuiText_Txt_CookGuide_2',
+        zh = '你获得过的食材会显示在这里。',
+        CHT = '',
+        en = 'The ingredients you’ve obtained will be shown here',
+        ja = '',
+        id = 'Bahan-bahan yang kamu peroleh akan ditampilkan di sini'
+    },
+    GuiText_Txt_CookGuide_3 = {
+        ID = 'GuiText_Txt_CookGuide_3',
+        zh = '这里会显示你准备使用的食材。',
+        CHT = '',
+        en = 'The ingredients you’re going to use will be shown here',
+        ja = '',
+        id = 'Bahan-bahan yang akan kamu gunakan akan ditampilkan di sini'
+    },
+    GuiText_Txt_CookGuide_4 = {
+        ID = 'GuiText_Txt_CookGuide_4',
+        zh = '点击食材将他们加入菜谱，一道菜一共需要三种食材。',
+        CHT = '',
+        en = 'Tap on an ingredient to add it to a recipe; a recipe needs 3 ingredients',
+        ja = '',
+        id = 'Ketuk bahan untuk menambahkannya ke resep; satu resep memerlukan 3 bahan'
+    },
+    GuiText_Txt_CookGuide_5 = {
+        ID = 'GuiText_Txt_CookGuide_5',
+        zh = '选好了！现在让我们看看你会做出什么样的美食！',
+        CHT = '',
+        en = 'Beautiful! Now let’s see what delicacy you are going to create!',
+        ja = '',
+        id = 'Cantiknya! Sekarang mari kita tes seberapa lezat makanan buatanmu!'
+    },
+    GuiText_Txt_InfoGui_1 = {
+        ID = 'GuiText_Txt_InfoGui_1',
+        zh = '新的一天开始了',
+        CHT = '',
+        en = 'A new day has begun',
+        ja = '',
+        id = 'Hari baru telah dimulai'
+    },
+    GuiText_Txt_InfoGui_2 = {
+        ID = 'GuiText_Txt_InfoGui_2',
+        zh = '傍晚了，回去营地吧',
+        CHT = '',
+        en = 'It’s dusk, time to get back to the campground.',
+        ja = '',
+        id = 'Sudah petang, waktunya kembali ke kamp.'
+    },
+    GuiText_Txt_InfoGui_3 = {
+        ID = 'GuiText_Txt_InfoGui_3',
+        zh = '天黑了，准备狂欢吧！',
+        CHT = '',
+        en = 'It’s nighttime, time to party!',
+        ja = '',
+        id = 'Sudah malam, waktunya berpesta!'
+    },
+    GuiText_Txt_InfoGui_4 = {
+        ID = 'GuiText_Txt_InfoGui_4',
+        zh = '神秘的UFO出现了！',
+        CHT = '',
+        en = 'The mysterious UFO has appeared!',
+        ja = '',
+        id = 'UFO misterius telah muncul!'
+    },
+    GuiText_Txt_InfoGui_5 = {
+        ID = 'GuiText_Txt_InfoGui_5',
+        zh = '天空中出现了神秘的迷宫！',
+        CHT = '',
+        en = 'A mysterious maze has appeared in the sky!',
+        ja = '',
+        id = 'Labirin misterius muncul di langit!'
+    },
+    GuiText_Txt_InfoGui_6 = {
+        ID = 'GuiText_Txt_InfoGui_6',
+        zh = '加入',
+        CHT = '',
+        en = 'Join',
+        ja = '',
+        id = 'Ikuti'
+    },
+    GuiText_Txt_MoleGui_1 = {
+        ID = 'GuiText_Txt_MoleGui_1',
+        zh = '你需要向石像内塞入%s枚硬币来祈愿。',
+        CHT = '',
+        en = 'You need to put %s coins into the stone golem to make a wish.',
+        ja = '',
+        id = 'Kamu harus menaruh %s koin ke dalam golem batu untuk membuat permohonan.'
+    },
+    GuiText_Txt_MoleGui_2 = {
+        ID = 'GuiText_Txt_MoleGui_2',
+        zh = '金币——金币——金币——',
+        CHT = '',
+        en = 'Gold... gold... gold...',
+        ja = '',
+        id = 'Emas... emas... emas...'
+    },
+    GuiText_Txt_MoleGui_3 = {
+        ID = 'GuiText_Txt_MoleGui_3',
+        zh = '你获得了',
+        CHT = '',
+        en = 'You got',
+        ja = '',
+        id = 'Kamu mendapat'
+    },
+    GuiText_Txt_MoleGui_4 = {
+        ID = 'GuiText_Txt_MoleGui_4',
+        zh = '神秘石像',
+        CHT = '',
+        en = 'Mysterious Stone Golem',
+        ja = '',
+        id = 'Golem Batu Misterius'
+    },
+    GuiText_Txt_NpcGui_1 = {
+        ID = 'GuiText_Txt_NpcGui_1',
+        zh = '进入游戏',
+        CHT = '',
+        en = 'Snail Race',
+        ja = '',
+        id = 'Balapan Siput'
+    },
+    GuiText_Txt_NpcGui_2 = {
+        ID = 'GuiText_Txt_NpcGui_2',
+        zh = '离开',
+        CHT = '',
+        en = 'Leave',
+        ja = '',
+        id = 'Keluar'
+    },
+    GuiText_Txt_NpcGui_3 = {
+        ID = 'GuiText_Txt_NpcGui_3',
+        zh = '购买',
+        CHT = '',
+        en = 'Buy',
+        ja = '',
+        id = 'Beli'
+    },
+    GuiText_Txt_PetGui_1 = {
+        ID = 'GuiText_Txt_PetGui_1',
+        zh = '你的陷阱困住了一只动物',
+        CHT = '',
+        en = 'Your trap caught an animal.',
+        ja = '',
+        id = 'Ada hewan yang terjebak di perangkapmu.'
+    },
+    GuiText_Txt_PetGui_2 = {
+        ID = 'GuiText_Txt_PetGui_2',
+        zh = '你的陷阱被动物挣脱了',
+        CHT = '',
+        en = 'An animal broke free from your trap.',
+        ja = '',
+        id = 'Ada hewan yang lolos dari perangkapmu.'
+    },
+    GuiText_Txt_PetGui_3 = {
+        ID = 'GuiText_Txt_PetGui_3',
+        zh = '动物距离你太远了',
+        CHT = '',
+        en = 'You’re too close to the animal.',
+        ja = '',
+        id = 'Jarakmu dengan hewan terlalu dekat.'
+    },
+    GuiText_Txt_PetGui_4 = {
+        ID = 'GuiText_Txt_PetGui_4',
+        zh = '恭喜，你抓到了这只动物。',
+        CHT = '',
+        en = 'Congratulations, you’ve caught this animal.',
+        ja = '',
+        id = 'Selamat, kamu berhasil menangkap hewan ini.'
+    },
+    GuiText_Txt_PetGui_5 = {
+        ID = 'GuiText_Txt_PetGui_5',
+        zh = '尝试用陷阱把动物困住再捕捉吧',
+        CHT = '',
+        en = 'Try to get the animal stuck with the trap first.',
+        ja = '',
+        id = 'Cobalah jebak hewannya dengan perangkap dulu.'
+    },
+    GuiText_Txt_PetGui_6 = {
+        ID = 'GuiText_Txt_PetGui_6',
+        zh = '你抓到了一个宠物，给他起个名字吧！',
+        CHT = '',
+        en = 'You’ve caught a pet! Give your pet a name!',
+        ja = '',
+        id = 'Kamu berhasil mendapat piaraan! Beri dia nama!'
+    },
+    GuiText_Txt_PetGui_7 = {
+        ID = 'GuiText_Txt_PetGui_7',
+        zh = '%s的宠物',
+        CHT = '',
+        en = '%s\'s pet',
+        ja = '',
+        id = 'hewan peliharaan %s'
+    },
+    GuiText_Txt_ShopGui_1 = {
+        ID = 'GuiText_Txt_ShopGui_1',
+        zh = '是否购买%s',
+        CHT = '',
+        en = 'Do you want to purchase %s?',
+        ja = '',
+        id = 'Kamu ingin membeli %s?'
+    },
+    GuiText_Txt_ShopGui_2 = {
+        ID = 'GuiText_Txt_ShopGui_2',
+        zh = '金币不足',
+        CHT = '',
+        en = 'Not enough coins',
+        ja = '',
+        id = 'Koin tidak cukup'
+    },
+    GuiText_Txt_ShopGui_3 = {
+        ID = 'GuiText_Txt_ShopGui_3',
+        zh = '购买',
+        CHT = '',
+        en = 'Buy',
+        ja = '',
+        id = 'Beli'
+    },
+    GuiText_Txt_ShopGui_4 = {
+        ID = 'GuiText_Txt_ShopGui_4',
+        zh = '已拥有',
+        CHT = '',
+        en = 'Owned',
+        ja = '',
+        id = 'Dimiliki'
+    },
+    GuiText_Txt_SnailGui_1 = {
+        ID = 'GuiText_Txt_SnailGui_1',
+        zh = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
+        CHT = '',
+        en = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
+        ja = '',
+        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
+    },
+    GuiText_Txt_SnailGui_10 = {
+        ID = 'GuiText_Txt_SnailGui_10',
+        zh = '上轮冠军：',
+        CHT = '',
+        en = 'Champion:',
+        ja = '',
+        id = 'Juara'
+    },
+    GuiText_Txt_SnailGui_11 = {
+        ID = 'GuiText_Txt_SnailGui_11',
+        zh = '心情：',
+        CHT = '',
+        en = 'Mood:',
+        ja = '',
+        id = 'Mood:'
+    },
+    GuiText_Txt_SnailGui_12 = {
+        ID = 'GuiText_Txt_SnailGui_12',
+        zh = '普通',
+        CHT = '',
+        en = 'Normal',
+        ja = '',
+        id = 'Normal'
+    },
+    GuiText_Txt_SnailGui_13 = {
+        ID = 'GuiText_Txt_SnailGui_13',
+        zh = '开心',
+        CHT = '',
+        en = 'Happy',
+        ja = '',
+        id = 'Happy'
+    },
+    GuiText_Txt_SnailGui_14 = {
+        ID = 'GuiText_Txt_SnailGui_14',
+        zh = '难过',
+        CHT = '',
+        en = 'Sad',
+        ja = '',
+        id = 'Sad'
+    },
+    GuiText_Txt_SnailGui_15 = {
+        ID = 'GuiText_Txt_SnailGui_15',
+        zh = '兴奋',
+        CHT = '',
+        en = 'Excited',
+        ja = '',
+        id = 'Excited'
+    },
+    GuiText_Txt_SnailGui_16 = {
+        ID = 'GuiText_Txt_SnailGui_16',
+        zh = '迷惑',
+        CHT = '',
+        en = 'Confused',
+        ja = '',
+        id = 'Confused'
+    },
+    GuiText_Txt_SnailGui_17 = {
+        ID = 'GuiText_Txt_SnailGui_17',
+        zh = '你下注的太迟了，比赛已经开始了。',
+        CHT = '',
+        en = 'You bet too late, the game has already started.',
+        ja = '',
+        id = 'Anda bertaruh terlambat, permainan sudah dimulai.'
+    },
+    GuiText_Txt_SnailGui_2 = {
+        ID = 'GuiText_Txt_SnailGui_2',
+        zh = '蜗牛赛跑开始了！',
+        CHT = '',
+        en = 'The snail race has begun!',
+        ja = '',
+        id = 'Balapan siput telah dimulai!'
+    },
+    GuiText_Txt_SnailGui_3 = {
+        ID = 'GuiText_Txt_SnailGui_3',
+        zh = '你不能多次投注或在比赛进行中投注',
+        CHT = '',
+        en = 'You cannot place multiple bets or place a bet while a race is underway.',
+        ja = '',
+        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
+    },
+    GuiText_Txt_SnailGui_4 = {
+        ID = 'GuiText_Txt_SnailGui_4',
+        zh = '你投注的蜗牛获得了第{rank}名，为你赢得了{coin}枚金币。',
+        CHT = '',
+        en = 'The snail you betted on obtained a rank of {rank}, and you won {coin} coins.',
+        ja = '',
+        id = 'Siput yang kamu pilih meraih peringkat {rank}, dan kamu memenangkan  {coin} koin.'
+    },
+    GuiText_Txt_SnailGui_5 = {
+        ID = 'GuiText_Txt_SnailGui_5',
+        zh = '你投注的蜗牛获得了第%d名，你输掉了你的金币。',
+        CHT = '',
+        en = 'The snail you betted on obtained a rank of %d, and you lost your coins.',
+        ja = '',
+        id = 'Siput yang kamu pilih meraih peringkat %d, dan kamu kehilangan koin.'
+    },
+    GuiText_Txt_SnailGui_6 = {
+        ID = 'GuiText_Txt_SnailGui_6',
+        zh = '请选择投注数量',
+        CHT = '',
+        en = 'Place your bet.',
+        ja = '',
+        id = 'Pasang taruhanmu.'
+    },
+    GuiText_Txt_SnailGui_7 = {
+        ID = 'GuiText_Txt_SnailGui_7',
+        zh = '你没钱啦',
+        CHT = '',
+        en = 'You don’t have enough coins.',
+        ja = '',
+        id = 'Koinmu tidak cukup.'
+    },
+    GuiText_Txt_SnailGui_8 = {
+        ID = 'GuiText_Txt_SnailGui_8',
+        zh = '你成功给%d号蜗牛投注.',
+        CHT = '',
+        en = 'You successfully placed a bet on Snail number %d.',
+        ja = '',
+        id = 'Kamu berhasil memasang taruhan pada Siput nomor %d.'
+    },
+    GuiText_Txt_SnailGui_9 = {
+        ID = 'GuiText_Txt_SnailGui_9',
+        zh = '选择一个蜗牛',
+        CHT = '',
+        en = 'Bet on a snail by choosing its color.',
+        ja = '',
+        id = 'Pasang taruhan dengan memilih warna siput.'
     },
     Item_Des_1001 = {
         ID = 'Item_Des_1001',
@@ -599,14 +1295,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Cabang pohon yang bisa diayun.'
     },
-    Item_Name_1002 = {
-        ID = 'Item_Name_1002',
-        zh = '简易火把',
-        CHT = '',
-        en = 'Crude Torch',
-        ja = '',
-        id = 'Obor Kasar'
-    },
     Item_Des_1002 = {
         ID = 'Item_Des_1002',
         zh = '用森林中捡到的树枝制成的火把。',
@@ -614,14 +1302,6 @@ local LanguagePackXls = {
         en = 'A torch made from a forest tree branch.',
         ja = '',
         id = 'Obor dari cabang pohon hutan.'
-    },
-    Item_Name_1003 = {
-        ID = 'Item_Name_1003',
-        zh = '棒球棍',
-        CHT = '',
-        en = 'Baseball Bat',
-        ja = '',
-        id = 'Tongkat Bisbol'
     },
     Item_Des_1003 = {
         ID = 'Item_Des_1003',
@@ -631,14 +1311,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Dibuat dari cabang pohon yang dipoles.'
     },
-    Item_Name_1004 = {
-        ID = 'Item_Name_1004',
-        zh = '锄头',
-        CHT = '',
-        en = 'Hoe',
-        ja = '',
-        id = 'Cangkul'
-    },
     Item_Des_1004 = {
         ID = 'Item_Des_1004',
         zh = '普通的锄头。',
@@ -646,14 +1318,6 @@ local LanguagePackXls = {
         en = 'Just an ordinary hoe.',
         ja = '',
         id = 'Cangkul biasa.'
-    },
-    Item_Name_1005 = {
-        ID = 'Item_Name_1005',
-        zh = '大铁锤',
-        CHT = '',
-        en = 'Big Iron Hammer',
-        ja = '',
-        id = 'Palu Besi Besar'
     },
     Item_Des_1005 = {
         ID = 'Item_Des_1005',
@@ -663,14 +1327,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Beruangpun tak akan bisa kena pukulan palu ini.'
     },
-    Item_Name_1006 = {
-        ID = 'Item_Name_1006',
-        zh = '消防斧',
-        CHT = '',
-        en = 'Fireman Ax',
-        ja = '',
-        id = 'Kapak Damkar'
-    },
     Item_Des_1006 = {
         ID = 'Item_Des_1006',
         zh = '如果不砍厚重的东西就很是趁手。',
@@ -678,14 +1334,6 @@ local LanguagePackXls = {
         en = 'A handy tool for chopping things that aren’t too tough.',
         ja = '',
         id = 'Praktis untuk memotong barang yang tidak terlalu tebal.'
-    },
-    Item_Name_1007 = {
-        ID = 'Item_Name_1007',
-        zh = '轻便的匕首',
-        CHT = '',
-        en = 'Lightweight Dagger',
-        ja = '',
-        id = 'Belati Ringan'
     },
     Item_Des_1007 = {
         ID = 'Item_Des_1007',
@@ -695,14 +1343,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Praktis dipakai untuk bertahan hidup di hutan.'
     },
-    Item_Name_1008 = {
-        ID = 'Item_Name_1008',
-        zh = '损坏的钉鞋',
-        CHT = '',
-        en = 'Worn-out Climbing Shoes',
-        ja = '',
-        id = 'Sepatu Pendaki yang Usang'
-    },
     Item_Des_1008 = {
         ID = 'Item_Des_1008',
         zh = '加了钉子的登山鞋，已经破旧的没法穿了。',
@@ -710,14 +1350,6 @@ local LanguagePackXls = {
         en = 'A pair of shoes fitted with spikes for mountain climbing.',
         ja = '',
         id = 'Sepasang sepatu dengan sol berpaku untuk memanjat gunung.'
-    },
-    Item_Name_1009 = {
-        ID = 'Item_Name_1009',
-        zh = '登山斧',
-        CHT = '',
-        en = 'Ice Ax',
-        ja = '',
-        id = 'Kapak Es'
     },
     Item_Des_1009 = {
         ID = 'Item_Des_1009',
@@ -727,14 +1359,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Bisa ditancapkan di tebing dengan satu tangan.'
     },
-    Item_Name_1010 = {
-        ID = 'Item_Name_1010',
-        zh = '简易的斧头',
-        CHT = '',
-        en = 'Basic Ax',
-        ja = '',
-        id = 'Kapak Biasa'
-    },
     Item_Des_1010 = {
         ID = 'Item_Des_1010',
         zh = '砍柴用的斧头。',
@@ -742,14 +1366,6 @@ local LanguagePackXls = {
         en = 'Ax used for chopping wood.',
         ja = '',
         id = 'Kapak untuk menebang kayu.'
-    },
-    Item_Name_1011 = {
-        ID = 'Item_Name_1011',
-        zh = '旧斧头',
-        CHT = '',
-        en = 'Dull Ax',
-        ja = '',
-        id = 'Kapak Tumpul'
     },
     Item_Des_1011 = {
         ID = 'Item_Des_1011',
@@ -759,14 +1375,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Sudah tidak tajam lagi, tapi untungnya tidak berkarat.'
     },
-    Item_Name_1012 = {
-        ID = 'Item_Name_1012',
-        zh = '平底锅',
-        CHT = '',
-        en = 'Frying Pan',
-        ja = '',
-        id = 'Wajan'
-    },
     Item_Des_1012 = {
         ID = 'Item_Des_1012',
         zh = '居家旅行必备单品！',
@@ -774,14 +1382,6 @@ local LanguagePackXls = {
         en = 'A necessity whether or not you are traveling!',
         ja = '',
         id = 'Barang wajib, baik saat dalam perjalanan maupun tidak!'
-    },
-    Item_Name_1013 = {
-        ID = 'Item_Name_1013',
-        zh = '掣电光剑',
-        CHT = '',
-        en = 'Lightning Saber',
-        ja = '',
-        id = 'Pedang Cahaya'
     },
     Item_Des_1013 = {
         ID = 'Item_Des_1013',
@@ -791,14 +1391,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Pancaran cahaya terakhir di penghujung masa.'
     },
-    Item_Name_1014 = {
-        ID = 'Item_Name_1014',
-        zh = '暗能光剑',
-        CHT = '',
-        en = 'Dark Saber',
-        ja = '',
-        id = 'Pedang Gelap'
-    },
     Item_Des_1014 = {
         ID = 'Item_Des_1014',
         zh = '受到黑暗原力影响的光剑',
@@ -806,14 +1398,6 @@ local LanguagePackXls = {
         en = 'A sword corrupted by the power of darkness.',
         ja = '',
         id = 'Pedang yang ternoda oleh kekuatan kegelapan.'
-    },
-    Item_Name_1015 = {
-        ID = 'Item_Name_1015',
-        zh = '磁铁',
-        CHT = '',
-        en = 'Magnet',
-        ja = '',
-        id = 'Magnet'
     },
     Item_Des_1015 = {
         ID = 'Item_Des_1015',
@@ -823,14 +1407,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Sebagian orang meyakini bahwa alien menggunakan benda ini.'
     },
-    Item_Name_1016 = {
-        ID = 'Item_Name_1016',
-        zh = '皮搋子',
-        CHT = '',
-        en = 'Plunger',
-        ja = '',
-        id = 'Plunger'
-    },
     Item_Des_1016 = {
         ID = 'Item_Des_1016',
         zh = '马桶伴侣。',
@@ -838,14 +1414,6 @@ local LanguagePackXls = {
         en = 'Goes hand in hand with a toilet.',
         ja = '',
         id = 'Teman setia toilet.'
-    },
-    Item_Name_1017 = {
-        ID = 'Item_Name_1017',
-        zh = '溢能锄',
-        CHT = '',
-        en = 'Energized Pickax',
-        ja = '',
-        id = 'Beliung Berenergi'
     },
     Item_Des_1017 = {
         ID = 'Item_Des_1017',
@@ -855,14 +1423,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Beliung tambang yang memiliki energi misterius.'
     },
-    Item_Name_1018 = {
-        ID = 'Item_Name_1018',
-        zh = '耀光撬棍',
-        CHT = '',
-        en = 'Glowing Crowbar',
-        ja = '',
-        id = 'Linggis Berpendar'
-    },
     Item_Des_1018 = {
         ID = 'Item_Des_1018',
         zh = '影响着使用者的心智。',
@@ -870,14 +1430,6 @@ local LanguagePackXls = {
         en = 'It influences the mind of the user.',
         ja = '',
         id = 'Benda ini memengaruhi pikiran pemakainya.'
-    },
-    Item_Name_1019 = {
-        ID = 'Item_Name_1019',
-        zh = '奇异勺',
-        CHT = '',
-        en = 'Wicked Spoon',
-        ja = '',
-        id = 'Sendok Aneh'
     },
     Item_Des_1019 = {
         ID = 'Item_Des_1019',
@@ -887,14 +1439,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Memancarkan cahaya terang.'
     },
-    Item_Name_1020 = {
-        ID = 'Item_Name_1020',
-        zh = '聚能锹',
-        CHT = '',
-        en = 'Energized Shovel',
-        ja = '',
-        id = 'Sekop Berenergi'
-    },
     Item_Des_1020 = {
         ID = 'Item_Des_1020',
         zh = '仿佛在搜集地球环境的能量。',
@@ -902,14 +1446,6 @@ local LanguagePackXls = {
         en = 'It seems to be searching the planet for energy.',
         ja = '',
         id = 'Terlihat seperti mencari keberadaan energi di planet.'
-    },
-    Item_Name_1021 = {
-        ID = 'Item_Name_1021',
-        zh = '迷你松树',
-        CHT = '',
-        en = 'Minipine',
-        ja = '',
-        id = 'Pinus Mini'
     },
     Item_Des_1021 = {
         ID = 'Item_Des_1021',
@@ -919,14 +1455,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Sepertinya ada sesuatu yang membuat pohon ini menjadi kecil.'
     },
-    Item_Name_1022 = {
-        ID = 'Item_Name_1022',
-        zh = '鱼竿',
-        CHT = '',
-        en = 'Fishing Pole',
-        ja = '',
-        id = 'Joran Pancing'
-    },
     Item_Des_1022 = {
         ID = 'Item_Des_1022',
         zh = '一把高端鱼竿。',
@@ -934,14 +1462,6 @@ local LanguagePackXls = {
         en = 'A great pole for angling.',
         ja = '',
         id = 'Joran yang pas untuk memancing.'
-    },
-    Item_Name_1023 = {
-        ID = 'Item_Name_1023',
-        zh = '手持烟花',
-        CHT = '',
-        en = 'Handheld Firework',
-        ja = '',
-        id = 'Petasan'
     },
     Item_Des_1023 = {
         ID = 'Item_Des_1023',
@@ -951,14 +1471,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Perayaan tidak akan meriah tanpanya.'
     },
-    Item_Name_1024 = {
-        ID = 'Item_Name_1024',
-        zh = '雷鸣锤',
-        CHT = '',
-        en = 'Thunderous',
-        ja = '',
-        id = 'Guntur'
-    },
     Item_Des_1024 = {
         ID = 'Item_Des_1024',
         zh = '铭刻着雷电符文的石锤。',
@@ -966,14 +1478,6 @@ local LanguagePackXls = {
         en = 'A stone hammer engraved with the rune of thunder.',
         ja = '',
         id = 'Palu batu dengan ukiran sajak guntur.'
-    },
-    Item_Name_1025 = {
-        ID = 'Item_Name_1025',
-        zh = '月斧',
-        CHT = '',
-        en = 'Lunare',
-        ja = '',
-        id = 'Lunare'
     },
     Item_Des_1025 = {
         ID = 'Item_Des_1025',
@@ -983,14 +1487,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kapak yang bercahaya bagai bulan.'
     },
-    Item_Name_1026 = {
-        ID = 'Item_Name_1026',
-        zh = '过载手斧',
-        CHT = '',
-        en = 'Overloaded Handax',
-        ja = '',
-        id = 'Kapak Genggam Mutakhir'
-    },
     Item_Des_1026 = {
         ID = 'Item_Des_1026',
         zh = '被外星科技充能过的手斧。',
@@ -998,14 +1494,6 @@ local LanguagePackXls = {
         en = 'A handax energized by alien technology.',
         ja = '',
         id = 'Kapak genggam dengan energi dari teknologi alien.'
-    },
-    Item_Name_1027 = {
-        ID = 'Item_Name_1027',
-        zh = '异形之颚',
-        CHT = '',
-        en = 'Alien Jaw',
-        ja = '',
-        id = 'Rahang Alien'
     },
     Item_Des_1027 = {
         ID = 'Item_Des_1027',
@@ -1015,14 +1503,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Rahang dengan gigi-gigi tajam. Sangat langka!'
     },
-    Item_Name_1028 = {
-        ID = 'Item_Name_1028',
-        zh = '寒霜锤',
-        CHT = '',
-        en = 'Permafrost',
-        ja = '',
-        id = 'Es Abadi'
-    },
     Item_Des_1028 = {
         ID = 'Item_Des_1028',
         zh = '铭刻着冰霜符文的石锤。',
@@ -1030,14 +1510,6 @@ local LanguagePackXls = {
         en = 'A stone hammer engraved with the rune of frost.',
         ja = '',
         id = 'Palu batu dengan ukiran sajak es.'
-    },
-    Item_Name_1029 = {
-        ID = 'Item_Name_1029',
-        zh = '锋利的匕首',
-        CHT = '',
-        en = 'Sharp Dagger',
-        ja = '',
-        id = 'Belati Tajam'
     },
     Item_Des_1029 = {
         ID = 'Item_Des_1029',
@@ -1047,14 +1519,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kilatannya menakutkan.'
     },
-    Item_Name_1030 = {
-        ID = 'Item_Name_1030',
-        zh = '原子分割器',
-        CHT = '',
-        en = 'Atom Splitter',
-        ja = '',
-        id = 'Pemisah Atom'
-    },
     Item_Des_1030 = {
         ID = 'Item_Des_1030',
         zh = '看上去能够使接触到的所有东西一分为二。',
@@ -1062,14 +1526,6 @@ local LanguagePackXls = {
         en = 'Looks like something that can halve anything it comes into contact with.',
         ja = '',
         id = 'Sepertinya bisa memisahkan apa pun yang disentuhnya.'
-    },
-    Item_Name_1031 = {
-        ID = 'Item_Name_1031',
-        zh = '日斧',
-        CHT = '',
-        en = 'Sunfire',
-        ja = '',
-        id = 'Panas Surya'
     },
     Item_Des_1031 = {
         ID = 'Item_Des_1031',
@@ -1079,14 +1535,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kapak ini memanfaatkan api dari matahari.'
     },
-    Item_Name_1032 = {
-        ID = 'Item_Name_1032',
-        zh = '火星陨落',
-        CHT = '',
-        en = 'Mar-teor',
-        ja = '',
-        id = 'Mar-teor'
-    },
     Item_Des_1032 = {
         ID = 'Item_Des_1032',
         zh = '带有火星撞击一般的力量。',
@@ -1094,14 +1542,6 @@ local LanguagePackXls = {
         en = 'Get it? Powerful like a meteor the size ofMars...',
         ja = '',
         id = 'Dinamai begitu karena benda ini kuat seperti meteor yang berukuran planet Mars...'
-    },
-    Item_Name_1033 = {
-        ID = 'Item_Name_1033',
-        zh = '狼牙锤',
-        CHT = '',
-        en = 'Wolf Mace',
-        ja = '',
-        id = 'Gada Serigala'
     },
     Item_Des_1033 = {
         ID = 'Item_Des_1033',
@@ -1111,14 +1551,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Hanya perlu sekali ayun untuk membunuh hewan dan membuat lembut dagingnya!'
     },
-    Item_Name_1034 = {
-        ID = 'Item_Name_1034',
-        zh = '手持烟花',
-        CHT = '',
-        en = 'Handheld Firework',
-        ja = '',
-        id = 'Petasan'
-    },
     Item_Des_1034 = {
         ID = 'Item_Des_1034',
         zh = '庆典必不可少的道具。',
@@ -1126,14 +1558,6 @@ local LanguagePackXls = {
         en = 'A celebration isn’t festive without it.',
         ja = '',
         id = 'Perayaan tidak akan meriah tanpanya.'
-    },
-    Item_Name_1035 = {
-        ID = 'Item_Name_1035',
-        zh = '手持烟花',
-        CHT = '',
-        en = 'Handheld Firework',
-        ja = '',
-        id = 'Petasan'
     },
     Item_Des_1035 = {
         ID = 'Item_Des_1035',
@@ -1143,14 +1567,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Perayaan tidak akan meriah tanpanya.'
     },
-    Item_Name_1036 = {
-        ID = 'Item_Name_1036',
-        zh = '手持烟花',
-        CHT = '',
-        en = 'Handheld Firework',
-        ja = '',
-        id = 'Petasan'
-    },
     Item_Des_1036 = {
         ID = 'Item_Des_1036',
         zh = '庆典必不可少的道具。',
@@ -1158,14 +1574,6 @@ local LanguagePackXls = {
         en = 'A celebration isn’t festive without it.',
         ja = '',
         id = 'Perayaan tidak akan meriah tanpanya.'
-    },
-    Item_Name_1037 = {
-        ID = 'Item_Name_1037',
-        zh = '手持烟花',
-        CHT = '',
-        en = 'Handheld Firework',
-        ja = '',
-        id = 'Petasan'
     },
     Item_Des_1037 = {
         ID = 'Item_Des_1037',
@@ -1175,14 +1583,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Perayaan tidak akan meriah tanpanya.'
     },
-    Item_Name_1038 = {
-        ID = 'Item_Name_1038',
-        zh = '手持烟花',
-        CHT = '',
-        en = 'Handheld Firework',
-        ja = '',
-        id = 'Petasan'
-    },
     Item_Des_1038 = {
         ID = 'Item_Des_1038',
         zh = '庆典必不可少的道具。',
@@ -1190,14 +1590,6 @@ local LanguagePackXls = {
         en = 'A celebration isn’t festive without it.',
         ja = '',
         id = 'Perayaan tidak akan meriah tanpanya.'
-    },
-    Item_Name_2001 = {
-        ID = 'Item_Name_2001',
-        zh = '木弓',
-        CHT = '',
-        en = 'Wooden Bow',
-        ja = '',
-        id = 'Busur Kayu'
     },
     Item_Des_2001 = {
         ID = 'Item_Des_2001',
@@ -1207,14 +1599,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Busur untuk berburu yang diperoleh dari kamp.'
     },
-    Item_Name_2002 = {
-        ID = 'Item_Name_2002',
-        zh = '弹弓',
-        CHT = '',
-        en = 'Slingshot',
-        ja = '',
-        id = 'Katapel'
-    },
     Item_Des_2002 = {
         ID = 'Item_Des_2002',
         zh = '硕大的弹弓，打到自己会很疼。',
@@ -1222,14 +1606,6 @@ local LanguagePackXls = {
         en = 'It tends to backfire on you.',
         ja = '',
         id = 'Mungkin kamu akan terkena tembakannya.'
-    },
-    Item_Name_2003 = {
-        ID = 'Item_Name_2003',
-        zh = '烈焰弓',
-        CHT = '',
-        en = 'Phoenix',
-        ja = '',
-        id = 'Phoenix'
     },
     Item_Des_2003 = {
         ID = 'Item_Des_2003',
@@ -1239,14 +1615,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Menembakkan api.'
     },
-    Item_Name_2004 = {
-        ID = 'Item_Name_2004',
-        zh = '月芒',
-        CHT = '',
-        en = 'Lunarity',
-        ja = '',
-        id = 'Lunarity'
-    },
     Item_Des_2004 = {
         ID = 'Item_Des_2004',
         zh = '这把弓散发着月亮般柔和的光。',
@@ -1254,14 +1622,6 @@ local LanguagePackXls = {
         en = 'This bow emits the gentle glow akin to that of the moon.',
         ja = '',
         id = 'Busur ini memancarkan cahaya yang lembut seperti bulan.'
-    },
-    Item_Name_2005 = {
-        ID = 'Item_Name_2005',
-        zh = '星辉',
-        CHT = '',
-        en = 'Astra',
-        ja = '',
-        id = 'Astra'
     },
     Item_Des_2005 = {
         ID = 'Item_Des_2005',
@@ -1271,14 +1631,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Busur ini bisa memanfaatkan kekuatan petir.'
     },
-    Item_Name_2006 = {
-        ID = 'Item_Name_2006',
-        zh = '苍穹',
-        CHT = '',
-        en = 'Galaxy',
-        ja = '',
-        id = 'Galaksi'
-    },
     Item_Des_2006 = {
         ID = 'Item_Des_2006',
         zh = '这把弓带有浩瀚的宇宙能量。',
@@ -1286,14 +1638,6 @@ local LanguagePackXls = {
         en = 'This bow is suffused with the energy of the universe.',
         ja = '',
         id = 'Busur ini memiliki energi semesta.'
-    },
-    Item_Name_2007 = {
-        ID = 'Item_Name_2007',
-        zh = '阳焰',
-        CHT = '',
-        en = 'Solarity',
-        ja = '',
-        id = 'Solarity'
     },
     Item_Des_2007 = {
         ID = 'Item_Des_2007',
@@ -1303,14 +1647,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Busur ini dibuat dari api matahari yang membara.'
     },
-    Item_Name_3001 = {
-        ID = 'Item_Name_3001',
-        zh = '泡泡手枪',
-        CHT = '',
-        en = 'Bubble Gun',
-        ja = '',
-        id = 'Pistol Gelembung'
-    },
     Item_Des_3001 = {
         ID = 'Item_Des_3001',
         zh = '能够发出泡泡',
@@ -1318,14 +1654,6 @@ local LanguagePackXls = {
         en = 'Shoots bubbles.',
         ja = '',
         id = 'Menembakkan gelembung.'
-    },
-    Item_Name_4001 = {
-        ID = 'Item_Name_4001',
-        zh = '小型陷阱',
-        CHT = '',
-        en = 'Small Trap',
-        ja = '',
-        id = 'Perangkap Kecil'
     },
     Item_Des_4001 = {
         ID = 'Item_Des_4001',
@@ -1335,14 +1663,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Mungkin hanya bisa untuk menangkap hewan kecil.'
     },
-    Item_Name_4002 = {
-        ID = 'Item_Name_4002',
-        zh = '中型陷阱',
-        CHT = '',
-        en = 'Medium Trap',
-        ja = '',
-        id = 'Perangkap Menengah'
-    },
     Item_Des_4002 = {
         ID = 'Item_Des_4002',
         zh = '小概率捕捉所有动物',
@@ -1350,6 +1670,670 @@ local LanguagePackXls = {
         en = 'Easily catches critters, but will have trouble catching larger animals.',
         ja = '',
         id = 'Cocok untuk menangkap hewan kecil, tapi belum tentu bisa untuk menangkap hewan besar.'
+    },
+    Item_Des_4003 = {
+        ID = 'Item_Des_4003',
+        zh = '大概率捕捉所有动物',
+        CHT = '',
+        en = 'Can easily trap all kinds of animals.',
+        ja = '',
+        id = 'Cocok untuk menangkap semua jenis hewan.'
+    },
+    Item_Des_4004 = {
+        ID = 'Item_Des_4004',
+        zh = '使用后获得一个宠物',
+        CHT = '',
+        en = 'Use to receive a pet',
+        ja = '',
+        id = 'Gunakan untuk menerima hewan peliharaan'
+    },
+    Item_Des_4005 = {
+        ID = 'Item_Des_4005',
+        zh = '随时与你的伙伴下五子棋。',
+        CHT = '',
+        en = 'Gomoku Set',
+        ja = '',
+        id = 'Gomoku Set'
+    },
+    Item_Des_4006 = {
+        ID = 'Item_Des_4006',
+        zh = '随时与你的伙伴下围棋。',
+        CHT = '',
+        en = 'Go Set',
+        ja = '',
+        id = 'Go Set'
+    },
+    Item_Des_5001 = {
+        ID = 'Item_Des_5001',
+        zh = '我有一个梦想。',
+        CHT = '',
+        en = 'I have a dream.',
+        ja = '',
+        id = 'Penyelamat'
+    },
+    Item_Des_5002 = {
+        ID = 'Item_Des_5002',
+        zh = '安全第一。',
+        CHT = '',
+        en = 'Safety first.',
+        ja = '',
+        id = 'Aku punya mimpi.'
+    },
+    Item_Des_5003 = {
+        ID = 'Item_Des_5003',
+        zh = '触摸会发生意想不到的事情。',
+        CHT = '',
+        en = 'Touch it and something surprising will happen.',
+        ja = '',
+        id = 'Sentuh dan sesuatu yang mengejutkan akan terjadi.'
+    },
+    Item_Des_6001 = {
+        ID = 'Item_Des_6001',
+        zh = '跟导游打个招呼吧。',
+        CHT = '',
+        en = 'Say hi to the tour guide.',
+        ja = '',
+        id = 'Sapalah pemandu tur.'
+    },
+    Item_Des_6002 = {
+        ID = 'Item_Des_6002',
+        zh = '跟安全员鲍勃了解丛林探险的注意事项。',
+        CHT = '',
+        en = 'Learn what it takes to survive in the forest from Ranger Bob.',
+        ja = '',
+        id = 'Pelajari cara bertahan di hutan dari Ranger Bob.'
+    },
+    Item_Des_6003 = {
+        ID = 'Item_Des_6003',
+        zh = '跟热气球技师询问怎么乘坐热气球，他在河对岸的山上。',
+        CHT = '',
+        en = 'Ask the hot-air balloon technician how to ride it; he’s on top of the hill across the river.',
+        ja = '',
+        id = 'Tanyakan cara mengoperasikan balon udara ke teknisinya. Dia berada di puncak bukit di seberang sungai.'
+    },
+    Item_Des_6004 = {
+        ID = 'Item_Des_6004',
+        zh = '跟庆典师了解如何提升自己的魅力。',
+        CHT = '',
+        en = 'Learn how to be more attractive and fun at parties from the event planner.',
+        ja = '',
+        id = 'Pelajari cara tampil menarik dan menikmati pesta dari perencana pesta.'
+    },
+    Item_Des_6005 = {
+        ID = 'Item_Des_6005',
+        zh = '了解营地内的动物赛跑。',
+        CHT = '',
+        en = 'It concerns the animal race in the campground.',
+        ja = '',
+        id = 'Berhubungan dengan balapan hewan di kamp.'
+    },
+    Item_Des_6006 = {
+        ID = 'Item_Des_6006',
+        zh = '这个图鉴记载了有人在这片森林里发现飞碟的传说。',
+        CHT = '',
+        en = 'Someone sighted a UFO and drew it down in this notebook.',
+        ja = '',
+        id = 'Ada seseorang yang pernah menyaksikan UFO dan menggambarnya di buku ini.'
+    },
+    Item_Des_6007 = {
+        ID = 'Item_Des_6007',
+        zh = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = ''
+    },
+    Item_Des_7001 = {
+        ID = 'Item_Des_7001',
+        zh = '野生的胡萝卜，可以用于烹饪',
+        CHT = '',
+        en = 'A raw carrot that can be used for cooking.',
+        ja = '',
+        id = 'Wortel mentah yang bisa dimasak.'
+    },
+    Item_Des_7002 = {
+        ID = 'Item_Des_7002',
+        zh = '野生的白萝卜，可以用于烹饪',
+        CHT = '',
+        en = 'A raw white radish that can be used for cooking.',
+        ja = '',
+        id = 'Lobak putih mentah yang bisa dimasak.'
+    },
+    Item_Des_7003 = {
+        ID = 'Item_Des_7003',
+        zh = '野生的南瓜，可以用于烹饪',
+        CHT = '',
+        en = 'A raw pumpkin that can be used for cooking.',
+        ja = '',
+        id = 'Labu mentah yang bisa dimasak.'
+    },
+    Item_Des_7004 = {
+        ID = 'Item_Des_7004',
+        zh = '野猪的肉，可以用于烹饪',
+        CHT = '',
+        en = 'Meat of a wild boar that can be used for cooking. ',
+        ja = '',
+        id = 'Daging babi hutan yang bisa dimasak. '
+    },
+    Item_Des_7005 = {
+        ID = 'Item_Des_7005',
+        zh = '鸟类的肉，可以用于烹饪',
+        CHT = '',
+        en = 'Meat of a bird that can be used for cooking.',
+        ja = '',
+        id = 'Daging unggas yang bisa dimasak.'
+    },
+    Item_Des_7006 = {
+        ID = 'Item_Des_7006',
+        zh = '鹿的肉，可以用于烹饪',
+        CHT = '',
+        en = 'Meat of a deer that can be used for cooking.',
+        ja = '',
+        id = 'Daging rusa yang bisa dimasak.'
+    },
+    Item_Des_7007 = {
+        ID = 'Item_Des_7007',
+        zh = '熊的肉，可以用于烹饪',
+        CHT = '',
+        en = 'Meat of a bear that can be used for cooking.',
+        ja = '',
+        id = 'Daging beruang yang bisa dimasak.'
+    },
+    Item_Des_7008 = {
+        ID = 'Item_Des_7008',
+        zh = '狼的肉，可以用于烹饪',
+        CHT = '',
+        en = 'Meat of a wolf that can be used for cooking.',
+        ja = '',
+        id = 'Daging serigala yang bisa dimasak.'
+    },
+    Item_Des_7009 = {
+        ID = 'Item_Des_7009',
+        zh = '树上掉落的苹果，可以用于烹饪',
+        CHT = '',
+        en = 'An apple that fell off a tree; can be used for cooking.',
+        ja = '',
+        id = 'Apel yang jatuh dari pohonnya. Bisa dimasak.'
+    },
+    Item_Des_7010 = {
+        ID = 'Item_Des_7010',
+        zh = '鹿的角，可以用作药材，活血化瘀。',
+        CHT = '',
+        en = 'Antlers of a stag that are usually mounted on a hunter’s wall as trophy.',
+        ja = '',
+        id = 'Tanduk rusa jantan yang biasanya dijadikan trofi di dinding.'
+    },
+    Item_Des_7011 = {
+        ID = 'Item_Des_7011',
+        zh = '质地很柔软的优质皮草。',
+        CHT = '',
+        en = 'High-quality deer skin.',
+        ja = '',
+        id = 'Kulit rusa berkualitas tinggi.'
+    },
+    Item_Des_7012 = {
+        ID = 'Item_Des_7012',
+        zh = '雄鹿的分泌物，散发着芳香的气味，可以入药。',
+        CHT = '',
+        en = 'Secretion of a male musk deer; it smells fragrant and can be made into medicine.',
+        ja = '',
+        id = 'Sekresi dari rusa jantan. Berbau harum dan bisa diolah menjadi obat.'
+    },
+    Item_Des_7013 = {
+        ID = 'Item_Des_7013',
+        zh = '雄山鸡尾巴上的硬羽毛，十分华丽。',
+        CHT = '',
+        en = 'Splendid tail feather from a male pheasant.',
+        ja = '',
+        id = 'Bulu ekor pegar jantan yang indah.'
+    },
+    Item_Des_7014 = {
+        ID = 'Item_Des_7014',
+        zh = '黑野猪的皮，用作地毯是极好的。',
+        CHT = '',
+        en = 'The skin of a black wild boar that will make a good carpet some day.',
+        ja = '',
+        id = 'Kulit babi hutan hitam yang kelak bisa diolah menjadi karpet.'
+    },
+    Item_Des_7015 = {
+        ID = 'Item_Des_7015',
+        zh = '野猪的獠牙，可以做成挂饰。',
+        CHT = '',
+        en = 'The tusk of a wild boar that can be made into a decoration.',
+        ja = '',
+        id = 'Taring babi hutan yang bisa dibuat menjadi dekorasi.'
+    },
+    Item_Des_7016 = {
+        ID = 'Item_Des_7016',
+        zh = '白野猪的皮，常被用来制作衣服和皮包等物品。',
+        CHT = '',
+        en = 'The skin of a white wild boar that is usually used to make clothes and purses.',
+        ja = '',
+        id = 'Kulit babi hutan putih yang biasanya dibuat menjadi bahan pakaian dan tas.'
+    },
+    Item_Des_7017 = {
+        ID = 'Item_Des_7017',
+        zh = '罕见的动物药材，有解毒的功效。',
+        CHT = '',
+        en = 'Not really useful for anything.',
+        ja = '',
+        id = 'Tidak terlalu berguna.'
+    },
+    Item_Des_7018 = {
+        ID = 'Item_Des_7018',
+        zh = '针毛粗长、绒毛厚密，罕见的皮草。',
+        CHT = '',
+        en = 'A skin full of thick needle-like hair.',
+        ja = '',
+        id = 'Kulit dengan bulu rambut yang menyerupai jarum.'
+    },
+    Item_Des_7019 = {
+        ID = 'Item_Des_7019',
+        zh = '银色的毛皮，可以制作衣服和包。',
+        CHT = '',
+        en = 'Silver skin that can be turned into clothes and purses.',
+        ja = '',
+        id = 'Kulit abu-abu yang bisa dibuat menjadi pakaian dan tas.'
+    },
+    Item_Des_7020 = {
+        ID = 'Item_Des_7020',
+        zh = '狼的獠牙，可以做成挂饰。',
+        CHT = '',
+        en = 'The fang of an alpha wolf that can be strung into a necklace.',
+        ja = '',
+        id = 'Taring serigala jantan yang bisa dirangkai menjadi kalung.'
+    },
+    Item_Des_7021 = {
+        ID = 'Item_Des_7021',
+        zh = '想不到有什么用处。',
+        CHT = '',
+        en = 'Not really useful for anything.',
+        ja = '',
+        id = 'Tidak terlalu berguna.'
+    },
+    Item_Name_1001 = {
+        ID = 'Item_Name_1001',
+        zh = '坚硬的树枝',
+        CHT = '',
+        en = 'Hard Branch',
+        ja = '',
+        id = 'Cabang Keras'
+    },
+    Item_Name_1002 = {
+        ID = 'Item_Name_1002',
+        zh = '简易火把',
+        CHT = '',
+        en = 'Crude Torch',
+        ja = '',
+        id = 'Obor Kasar'
+    },
+    Item_Name_1003 = {
+        ID = 'Item_Name_1003',
+        zh = '棒球棍',
+        CHT = '',
+        en = 'Baseball Bat',
+        ja = '',
+        id = 'Tongkat Bisbol'
+    },
+    Item_Name_1004 = {
+        ID = 'Item_Name_1004',
+        zh = '锄头',
+        CHT = '',
+        en = 'Hoe',
+        ja = '',
+        id = 'Cangkul'
+    },
+    Item_Name_1005 = {
+        ID = 'Item_Name_1005',
+        zh = '大铁锤',
+        CHT = '',
+        en = 'Big Iron Hammer',
+        ja = '',
+        id = 'Palu Besi Besar'
+    },
+    Item_Name_1006 = {
+        ID = 'Item_Name_1006',
+        zh = '消防斧',
+        CHT = '',
+        en = 'Fireman Ax',
+        ja = '',
+        id = 'Kapak Damkar'
+    },
+    Item_Name_1007 = {
+        ID = 'Item_Name_1007',
+        zh = '轻便的匕首',
+        CHT = '',
+        en = 'Lightweight Dagger',
+        ja = '',
+        id = 'Belati Ringan'
+    },
+    Item_Name_1008 = {
+        ID = 'Item_Name_1008',
+        zh = '损坏的钉鞋',
+        CHT = '',
+        en = 'Worn-out Climbing Shoes',
+        ja = '',
+        id = 'Sepatu Pendaki yang Usang'
+    },
+    Item_Name_1009 = {
+        ID = 'Item_Name_1009',
+        zh = '登山斧',
+        CHT = '',
+        en = 'Ice Ax',
+        ja = '',
+        id = 'Kapak Es'
+    },
+    Item_Name_1010 = {
+        ID = 'Item_Name_1010',
+        zh = '简易的斧头',
+        CHT = '',
+        en = 'Basic Ax',
+        ja = '',
+        id = 'Kapak Biasa'
+    },
+    Item_Name_1011 = {
+        ID = 'Item_Name_1011',
+        zh = '旧斧头',
+        CHT = '',
+        en = 'Dull Ax',
+        ja = '',
+        id = 'Kapak Tumpul'
+    },
+    Item_Name_1012 = {
+        ID = 'Item_Name_1012',
+        zh = '平底锅',
+        CHT = '',
+        en = 'Frying Pan',
+        ja = '',
+        id = 'Wajan'
+    },
+    Item_Name_1013 = {
+        ID = 'Item_Name_1013',
+        zh = '掣电光剑',
+        CHT = '',
+        en = 'Lightning Saber',
+        ja = '',
+        id = 'Pedang Cahaya'
+    },
+    Item_Name_1014 = {
+        ID = 'Item_Name_1014',
+        zh = '暗能光剑',
+        CHT = '',
+        en = 'Dark Saber',
+        ja = '',
+        id = 'Pedang Gelap'
+    },
+    Item_Name_1015 = {
+        ID = 'Item_Name_1015',
+        zh = '磁铁',
+        CHT = '',
+        en = 'Magnet',
+        ja = '',
+        id = 'Magnet'
+    },
+    Item_Name_1016 = {
+        ID = 'Item_Name_1016',
+        zh = '皮搋子',
+        CHT = '',
+        en = 'Plunger',
+        ja = '',
+        id = 'Plunger'
+    },
+    Item_Name_1017 = {
+        ID = 'Item_Name_1017',
+        zh = '溢能锄',
+        CHT = '',
+        en = 'Energized Pickax',
+        ja = '',
+        id = 'Beliung Berenergi'
+    },
+    Item_Name_1018 = {
+        ID = 'Item_Name_1018',
+        zh = '耀光撬棍',
+        CHT = '',
+        en = 'Glowing Crowbar',
+        ja = '',
+        id = 'Linggis Berpendar'
+    },
+    Item_Name_1019 = {
+        ID = 'Item_Name_1019',
+        zh = '奇异勺',
+        CHT = '',
+        en = 'Wicked Spoon',
+        ja = '',
+        id = 'Sendok Aneh'
+    },
+    Item_Name_1020 = {
+        ID = 'Item_Name_1020',
+        zh = '聚能锹',
+        CHT = '',
+        en = 'Energized Shovel',
+        ja = '',
+        id = 'Sekop Berenergi'
+    },
+    Item_Name_1021 = {
+        ID = 'Item_Name_1021',
+        zh = '迷你松树',
+        CHT = '',
+        en = 'Minipine',
+        ja = '',
+        id = 'Pinus Mini'
+    },
+    Item_Name_1022 = {
+        ID = 'Item_Name_1022',
+        zh = '鱼竿',
+        CHT = '',
+        en = 'Fishing Pole',
+        ja = '',
+        id = 'Joran Pancing'
+    },
+    Item_Name_1023 = {
+        ID = 'Item_Name_1023',
+        zh = '手持烟花',
+        CHT = '',
+        en = 'Handheld Firework',
+        ja = '',
+        id = 'Petasan'
+    },
+    Item_Name_1024 = {
+        ID = 'Item_Name_1024',
+        zh = '雷鸣锤',
+        CHT = '',
+        en = 'Thunderous',
+        ja = '',
+        id = 'Guntur'
+    },
+    Item_Name_1025 = {
+        ID = 'Item_Name_1025',
+        zh = '月斧',
+        CHT = '',
+        en = 'Lunare',
+        ja = '',
+        id = 'Lunare'
+    },
+    Item_Name_1026 = {
+        ID = 'Item_Name_1026',
+        zh = '过载手斧',
+        CHT = '',
+        en = 'Overloaded Handax',
+        ja = '',
+        id = 'Kapak Genggam Mutakhir'
+    },
+    Item_Name_1027 = {
+        ID = 'Item_Name_1027',
+        zh = '异形之颚',
+        CHT = '',
+        en = 'Alien Jaw',
+        ja = '',
+        id = 'Rahang Alien'
+    },
+    Item_Name_1028 = {
+        ID = 'Item_Name_1028',
+        zh = '寒霜锤',
+        CHT = '',
+        en = 'Permafrost',
+        ja = '',
+        id = 'Es Abadi'
+    },
+    Item_Name_1029 = {
+        ID = 'Item_Name_1029',
+        zh = '锋利的匕首',
+        CHT = '',
+        en = 'Sharp Dagger',
+        ja = '',
+        id = 'Belati Tajam'
+    },
+    Item_Name_1030 = {
+        ID = 'Item_Name_1030',
+        zh = '原子分割器',
+        CHT = '',
+        en = 'Atom Splitter',
+        ja = '',
+        id = 'Pemisah Atom'
+    },
+    Item_Name_1031 = {
+        ID = 'Item_Name_1031',
+        zh = '日斧',
+        CHT = '',
+        en = 'Sunfire',
+        ja = '',
+        id = 'Panas Surya'
+    },
+    Item_Name_1032 = {
+        ID = 'Item_Name_1032',
+        zh = '火星陨落',
+        CHT = '',
+        en = 'Mar-teor',
+        ja = '',
+        id = 'Mar-teor'
+    },
+    Item_Name_1033 = {
+        ID = 'Item_Name_1033',
+        zh = '狼牙锤',
+        CHT = '',
+        en = 'Wolf Mace',
+        ja = '',
+        id = 'Gada Serigala'
+    },
+    Item_Name_1034 = {
+        ID = 'Item_Name_1034',
+        zh = '手持烟花',
+        CHT = '',
+        en = 'Handheld Firework',
+        ja = '',
+        id = 'Petasan'
+    },
+    Item_Name_1035 = {
+        ID = 'Item_Name_1035',
+        zh = '手持烟花',
+        CHT = '',
+        en = 'Handheld Firework',
+        ja = '',
+        id = 'Petasan'
+    },
+    Item_Name_1036 = {
+        ID = 'Item_Name_1036',
+        zh = '手持烟花',
+        CHT = '',
+        en = 'Handheld Firework',
+        ja = '',
+        id = 'Petasan'
+    },
+    Item_Name_1037 = {
+        ID = 'Item_Name_1037',
+        zh = '手持烟花',
+        CHT = '',
+        en = 'Handheld Firework',
+        ja = '',
+        id = 'Petasan'
+    },
+    Item_Name_1038 = {
+        ID = 'Item_Name_1038',
+        zh = '手持烟花',
+        CHT = '',
+        en = 'Handheld Firework',
+        ja = '',
+        id = 'Petasan'
+    },
+    Item_Name_2001 = {
+        ID = 'Item_Name_2001',
+        zh = '木弓',
+        CHT = '',
+        en = 'Wooden Bow',
+        ja = '',
+        id = 'Busur Kayu'
+    },
+    Item_Name_2002 = {
+        ID = 'Item_Name_2002',
+        zh = '弹弓',
+        CHT = '',
+        en = 'Slingshot',
+        ja = '',
+        id = 'Katapel'
+    },
+    Item_Name_2003 = {
+        ID = 'Item_Name_2003',
+        zh = '烈焰弓',
+        CHT = '',
+        en = 'Phoenix',
+        ja = '',
+        id = 'Phoenix'
+    },
+    Item_Name_2004 = {
+        ID = 'Item_Name_2004',
+        zh = '月芒',
+        CHT = '',
+        en = 'Lunarity',
+        ja = '',
+        id = 'Lunarity'
+    },
+    Item_Name_2005 = {
+        ID = 'Item_Name_2005',
+        zh = '星辉',
+        CHT = '',
+        en = 'Astra',
+        ja = '',
+        id = 'Astra'
+    },
+    Item_Name_2006 = {
+        ID = 'Item_Name_2006',
+        zh = '苍穹',
+        CHT = '',
+        en = 'Galaxy',
+        ja = '',
+        id = 'Galaksi'
+    },
+    Item_Name_2007 = {
+        ID = 'Item_Name_2007',
+        zh = '阳焰',
+        CHT = '',
+        en = 'Solarity',
+        ja = '',
+        id = 'Solarity'
+    },
+    Item_Name_3001 = {
+        ID = 'Item_Name_3001',
+        zh = '泡泡手枪',
+        CHT = '',
+        en = 'Bubble Gun',
+        ja = '',
+        id = 'Pistol Gelembung'
+    },
+    Item_Name_4001 = {
+        ID = 'Item_Name_4001',
+        zh = '小型陷阱',
+        CHT = '',
+        en = 'Small Trap',
+        ja = '',
+        id = 'Perangkap Kecil'
+    },
+    Item_Name_4002 = {
+        ID = 'Item_Name_4002',
+        zh = '中型陷阱',
+        CHT = '',
+        en = 'Medium Trap',
+        ja = '',
+        id = 'Perangkap Menengah'
     },
     Item_Name_4003 = {
         ID = 'Item_Name_4003',
@@ -1359,13 +2343,29 @@ local LanguagePackXls = {
         ja = '',
         id = 'Perangkap Besar'
     },
-    Item_Des_4003 = {
-        ID = 'Item_Des_4003',
-        zh = '大概率捕捉所有动物',
+    Item_Name_4004 = {
+        ID = 'Item_Name_4004',
+        zh = '神奇宠物箱',
         CHT = '',
-        en = 'Can easily trap all kinds of animals.',
+        en = 'Mystery Pet Box',
         ja = '',
-        id = 'Cocok untuk menangkap semua jenis hewan.'
+        id = 'Kotak Hewan Peliharaan'
+    },
+    Item_Name_4005 = {
+        ID = 'Item_Name_4005',
+        zh = '五子棋套装',
+        CHT = '',
+        en = 'Someone is already sitting here',
+        ja = '',
+        id = 'Seseorang sudah duduk di sini'
+    },
+    Item_Name_4006 = {
+        ID = 'Item_Name_4006',
+        zh = '围棋套装',
+        CHT = '',
+        en = 'Play Gomoku with your friends any time',
+        ja = '',
+        id = 'Mainkan Gomoku dengan teman kamu kapan saja'
     },
     Item_Name_5001 = {
         ID = 'Item_Name_5001',
@@ -1383,6 +2383,14 @@ local LanguagePackXls = {
         ja = '',
         id = 'Penyelamat'
     },
+    Item_Name_5003 = {
+        ID = 'Item_Name_5003',
+        zh = '畸变水晶',
+        CHT = '',
+        en = 'Mutated Crystal',
+        ja = '',
+        id = 'Kristal Bermutasi'
+    },
     Item_Name_6001 = {
         ID = 'Item_Name_6001',
         zh = '《野营活动指南》',
@@ -1390,14 +2398,6 @@ local LanguagePackXls = {
         en = 'Camping Guide',
         ja = '',
         id = 'Panduan Kamping'
-    },
-    Item_Des_6001 = {
-        ID = 'Item_Des_6001',
-        zh = '跟导游打个招呼吧。',
-        CHT = '',
-        en = 'Say hi to the tour guide.',
-        ja = '',
-        id = 'Sapalah pemandu tur.'
     },
     Item_Name_6002 = {
         ID = 'Item_Name_6002',
@@ -1407,14 +2407,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Panduan Bertahan di Hutan'
     },
-    Item_Des_6002 = {
-        ID = 'Item_Des_6002',
-        zh = '跟安全员鲍勃了解丛林探险的注意事项。',
-        CHT = '',
-        en = 'Learn what it takes to survive in the forest from Ranger Bob.',
-        ja = '',
-        id = 'Pelajari cara bertahan di hutan dari Ranger Bob.'
-    },
     Item_Name_6003 = {
         ID = 'Item_Name_6003',
         zh = '《热气球游览须知》',
@@ -1422,14 +2414,6 @@ local LanguagePackXls = {
         en = 'Hot-air Balloon Instructions',
         ja = '',
         id = 'Instruksi Balon Udara'
-    },
-    Item_Des_6003 = {
-        ID = 'Item_Des_6003',
-        zh = '跟热气球技师询问怎么乘坐热气球，他在河对岸的山上。',
-        CHT = '',
-        en = 'Ask the hot-air balloon technician how to ride it; he’s on top of the hill across the river.',
-        ja = '',
-        id = 'Tanyakan cara mengoperasikan balon udara ke teknisinya. Dia berada di puncak bukit di seberang sungai.'
     },
     Item_Name_6004 = {
         ID = 'Item_Name_6004',
@@ -1439,14 +2423,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Cara Bersenang-senang di Pesta'
     },
-    Item_Des_6004 = {
-        ID = 'Item_Des_6004',
-        zh = '跟庆典师了解如何提升自己的魅力。',
-        CHT = '',
-        en = 'Learn how to be more attractive and fun at parties from the event planner.',
-        ja = '',
-        id = 'Pelajari cara tampil menarik dan menikmati pesta dari perencana pesta.'
-    },
     Item_Name_6005 = {
         ID = 'Item_Name_6005',
         zh = '《动物赛跑报名表》',
@@ -1454,14 +2430,6 @@ local LanguagePackXls = {
         en = 'Animal Race Sign-up Sheet',
         ja = '',
         id = 'Formulir Pendaftaran Balapan Hewan'
-    },
-    Item_Des_6005 = {
-        ID = 'Item_Des_6005',
-        zh = '了解营地内的动物赛跑。',
-        CHT = '',
-        en = 'It concerns the animal race in the campground.',
-        ja = '',
-        id = 'Berhubungan dengan balapan hewan di kamp.'
     },
     Item_Name_6006 = {
         ID = 'Item_Name_6006',
@@ -1471,25 +2439,9 @@ local LanguagePackXls = {
         ja = '',
         id = 'Buku UFO'
     },
-    Item_Des_6006 = {
-        ID = 'Item_Des_6006',
-        zh = '这个图鉴记载了有人在这片森林里发现飞碟的传说。',
-        CHT = '',
-        en = 'Someone sighted a UFO and drew it down in this notebook.',
-        ja = '',
-        id = 'Ada seseorang yang pernah menyaksikan UFO dan menggambarnya di buku ini.'
-    },
     Item_Name_6007 = {
         ID = 'Item_Name_6007',
         zh = '野猪王的獠牙',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Item_Des_6007 = {
-        ID = 'Item_Des_6007',
-        zh = '你猎杀了野猪王，去跟Zander炫耀一下吧！',
         CHT = '',
         en = '',
         ja = '',
@@ -1503,14 +2455,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Wortel'
     },
-    Item_Des_7001 = {
-        ID = 'Item_Des_7001',
-        zh = '野生的胡萝卜，可以用于烹饪',
-        CHT = '',
-        en = 'A raw carrot that can be used for cooking.',
-        ja = '',
-        id = 'Wortel mentah yang bisa dimasak.'
-    },
     Item_Name_7002 = {
         ID = 'Item_Name_7002',
         zh = '白萝卜',
@@ -1518,14 +2462,6 @@ local LanguagePackXls = {
         en = 'White Radish',
         ja = '',
         id = 'Lobak Putih'
-    },
-    Item_Des_7002 = {
-        ID = 'Item_Des_7002',
-        zh = '野生的白萝卜，可以用于烹饪',
-        CHT = '',
-        en = 'A raw white radish that can be used for cooking.',
-        ja = '',
-        id = 'Lobak putih mentah yang bisa dimasak.'
     },
     Item_Name_7003 = {
         ID = 'Item_Name_7003',
@@ -1535,14 +2471,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Labu'
     },
-    Item_Des_7003 = {
-        ID = 'Item_Des_7003',
-        zh = '野生的南瓜，可以用于烹饪',
-        CHT = '',
-        en = 'A raw pumpkin that can be used for cooking.',
-        ja = '',
-        id = 'Labu mentah yang bisa dimasak.'
-    },
     Item_Name_7004 = {
         ID = 'Item_Name_7004',
         zh = '野猪肉',
@@ -1550,14 +2478,6 @@ local LanguagePackXls = {
         en = 'Wild Boar Meat',
         ja = '',
         id = 'Daging Babi Hutan'
-    },
-    Item_Des_7004 = {
-        ID = 'Item_Des_7004',
-        zh = '野猪的肉，可以用于烹饪',
-        CHT = '',
-        en = 'Meat of a wild boar that can be used for cooking. ',
-        ja = '',
-        id = 'Daging babi hutan yang bisa dimasak. '
     },
     Item_Name_7005 = {
         ID = 'Item_Name_7005',
@@ -1567,14 +2487,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Daging Unggas'
     },
-    Item_Des_7005 = {
-        ID = 'Item_Des_7005',
-        zh = '鸟类的肉，可以用于烹饪',
-        CHT = '',
-        en = 'Meat of a bird that can be used for cooking.',
-        ja = '',
-        id = 'Daging unggas yang bisa dimasak.'
-    },
     Item_Name_7006 = {
         ID = 'Item_Name_7006',
         zh = '鹿肉',
@@ -1582,14 +2494,6 @@ local LanguagePackXls = {
         en = 'Venison',
         ja = '',
         id = 'Daging Rusa'
-    },
-    Item_Des_7006 = {
-        ID = 'Item_Des_7006',
-        zh = '鹿的肉，可以用于烹饪',
-        CHT = '',
-        en = 'Meat of a deer that can be used for cooking.',
-        ja = '',
-        id = 'Daging rusa yang bisa dimasak.'
     },
     Item_Name_7007 = {
         ID = 'Item_Name_7007',
@@ -1599,14 +2503,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Daging Beruang'
     },
-    Item_Des_7007 = {
-        ID = 'Item_Des_7007',
-        zh = '熊的肉，可以用于烹饪',
-        CHT = '',
-        en = 'Meat of a bear that can be used for cooking.',
-        ja = '',
-        id = 'Daging beruang yang bisa dimasak.'
-    },
     Item_Name_7008 = {
         ID = 'Item_Name_7008',
         zh = '狼肉',
@@ -1614,14 +2510,6 @@ local LanguagePackXls = {
         en = 'Wolf Meat',
         ja = '',
         id = 'Daging Serigala'
-    },
-    Item_Des_7008 = {
-        ID = 'Item_Des_7008',
-        zh = '狼的肉，可以用于烹饪',
-        CHT = '',
-        en = 'Meat of a wolf that can be used for cooking.',
-        ja = '',
-        id = 'Daging serigala yang bisa dimasak.'
     },
     Item_Name_7009 = {
         ID = 'Item_Name_7009',
@@ -1631,14 +2519,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Apel'
     },
-    Item_Des_7009 = {
-        ID = 'Item_Des_7009',
-        zh = '树上掉落的苹果，可以用于烹饪',
-        CHT = '',
-        en = 'An apple that fell off a tree; can be used for cooking.',
-        ja = '',
-        id = 'Apel yang jatuh dari pohonnya. Bisa dimasak.'
-    },
     Item_Name_7010 = {
         ID = 'Item_Name_7010',
         zh = '鹿茸',
@@ -1646,14 +2526,6 @@ local LanguagePackXls = {
         en = 'Antlers',
         ja = '',
         id = 'Tanduk Rusa'
-    },
-    Item_Des_7010 = {
-        ID = 'Item_Des_7010',
-        zh = '鹿的角，可以用作药材，活血化瘀。',
-        CHT = '',
-        en = 'Antlers of a stag that are usually mounted on a hunter’s wall as trophy.',
-        ja = '',
-        id = 'Tanduk rusa jantan yang biasanya dijadikan trofi di dinding.'
     },
     Item_Name_7011 = {
         ID = 'Item_Name_7011',
@@ -1663,14 +2535,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kulit Rusa'
     },
-    Item_Des_7011 = {
-        ID = 'Item_Des_7011',
-        zh = '质地很柔软的优质皮草。',
-        CHT = '',
-        en = 'High-quality deer skin.',
-        ja = '',
-        id = 'Kulit rusa berkualitas tinggi.'
-    },
     Item_Name_7012 = {
         ID = 'Item_Name_7012',
         zh = '麝香',
@@ -1678,14 +2542,6 @@ local LanguagePackXls = {
         en = 'Musk',
         ja = '',
         id = 'Wewangian'
-    },
-    Item_Des_7012 = {
-        ID = 'Item_Des_7012',
-        zh = '雄鹿的分泌物，散发着芳香的气味，可以入药。',
-        CHT = '',
-        en = 'Secretion of a male musk deer; it smells fragrant and can be made into medicine.',
-        ja = '',
-        id = 'Sekresi dari rusa jantan. Berbau harum dan bisa diolah menjadi obat.'
     },
     Item_Name_7013 = {
         ID = 'Item_Name_7013',
@@ -1695,14 +2551,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Bulu Pegar'
     },
-    Item_Des_7013 = {
-        ID = 'Item_Des_7013',
-        zh = '雄山鸡尾巴上的硬羽毛，十分华丽。',
-        CHT = '',
-        en = 'Splendid tail feather from a male pheasant.',
-        ja = '',
-        id = 'Bulu ekor pegar jantan yang indah.'
-    },
     Item_Name_7014 = {
         ID = 'Item_Name_7014',
         zh = '黑野猪皮',
@@ -1710,14 +2558,6 @@ local LanguagePackXls = {
         en = 'Black Wild Boar Pelt',
         ja = '',
         id = 'Kulit Babi Hutan Hitam'
-    },
-    Item_Des_7014 = {
-        ID = 'Item_Des_7014',
-        zh = '黑野猪的皮，用作地毯是极好的。',
-        CHT = '',
-        en = 'The skin of a black wild boar that will make a good carpet some day.',
-        ja = '',
-        id = 'Kulit babi hutan hitam yang kelak bisa diolah menjadi karpet.'
     },
     Item_Name_7015 = {
         ID = 'Item_Name_7015',
@@ -1727,14 +2567,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Taring Babi Hutan'
     },
-    Item_Des_7015 = {
-        ID = 'Item_Des_7015',
-        zh = '野猪的獠牙，可以做成挂饰。',
-        CHT = '',
-        en = 'The tusk of a wild boar that can be made into a decoration.',
-        ja = '',
-        id = 'Taring babi hutan yang bisa dibuat menjadi dekorasi.'
-    },
     Item_Name_7016 = {
         ID = 'Item_Name_7016',
         zh = '白野猪皮',
@@ -1742,14 +2574,6 @@ local LanguagePackXls = {
         en = 'White Wild Boar Pelt',
         ja = '',
         id = 'Kulit Babi Hutan Putih'
-    },
-    Item_Des_7016 = {
-        ID = 'Item_Des_7016',
-        zh = '白野猪的皮，常被用来制作衣服和皮包等物品。',
-        CHT = '',
-        en = 'The skin of a white wild boar that is usually used to make clothes and purses.',
-        ja = '',
-        id = 'Kulit babi hutan putih yang biasanya dibuat menjadi bahan pakaian dan tas.'
     },
     Item_Name_7017 = {
         ID = 'Item_Name_7017',
@@ -1759,14 +2583,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Makanan yang Tak Dicerna'
     },
-    Item_Des_7017 = {
-        ID = 'Item_Des_7017',
-        zh = '罕见的动物药材，有解毒的功效。',
-        CHT = '',
-        en = 'Not really useful for anything.',
-        ja = '',
-        id = 'Tidak terlalu berguna.'
-    },
     Item_Name_7018 = {
         ID = 'Item_Name_7018',
         zh = '熊皮',
@@ -1774,14 +2590,6 @@ local LanguagePackXls = {
         en = 'Bear Pelt',
         ja = '',
         id = 'Kulit Beruang'
-    },
-    Item_Des_7018 = {
-        ID = 'Item_Des_7018',
-        zh = '针毛粗长、绒毛厚密，罕见的皮草。',
-        CHT = '',
-        en = 'A skin full of thick needle-like hair.',
-        ja = '',
-        id = 'Kulit dengan bulu rambut yang menyerupai jarum.'
     },
     Item_Name_7019 = {
         ID = 'Item_Name_7019',
@@ -1791,14 +2599,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kulit Serigala'
     },
-    Item_Des_7019 = {
-        ID = 'Item_Des_7019',
-        zh = '银色的毛皮，可以制作衣服和包。',
-        CHT = '',
-        en = 'Silver skin that can be turned into clothes and purses.',
-        ja = '',
-        id = 'Kulit abu-abu yang bisa dibuat menjadi pakaian dan tas.'
-    },
     Item_Name_7020 = {
         ID = 'Item_Name_7020',
         zh = '狼牙',
@@ -1806,14 +2606,6 @@ local LanguagePackXls = {
         en = 'Wolf Fang',
         ja = '',
         id = 'Taring Serigala'
-    },
-    Item_Des_7020 = {
-        ID = 'Item_Des_7020',
-        zh = '狼的獠牙，可以做成挂饰。',
-        CHT = '',
-        en = 'The fang of an alpha wolf that can be strung into a necklace.',
-        ja = '',
-        id = 'Taring serigala jantan yang bisa dirangkai menjadi kalung.'
     },
     Item_Name_7021 = {
         ID = 'Item_Name_7021',
@@ -1823,70 +2615,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Kulit Sobek'
     },
-    Item_Des_7021 = {
-        ID = 'Item_Des_7021',
-        zh = '想不到有什么用处。',
-        CHT = '',
-        en = 'Not really useful for anything.',
-        ja = '',
-        id = 'Tidak terlalu berguna.'
-    },
-    Task_NpcText_6001 = {
-        ID = 'Task_NpcText_6001',
-        zh = '你好，野营活动已经开始了，尽情狂欢吧！但是拿着器械的时候务必注意安全，不要伤害到营地里的人。',
-        CHT = '',
-        en = 'Hey, the event has started, go have fun! But remember, be careful with your weapon. Don’t hurt people in the campground.',
-        ja = '',
-        id = 'Hei, acaranya sudah dimulai. Selamat bersenang-senang! Ingat, jangan sampai kamu melukai orang dengan senjatamu di kamp.'
-    },
-    Task_NpcText_6002 = {
-        ID = 'Task_NpcText_6002',
-        zh = '安全事项？如果你要离开营地，记得在营地里挑选一个趁手的家伙以备不时之需，我这里也有一些，要看看吗？',
-        CHT = '',
-        en = 'Safety precautions? If you want to leave the campground, get something to protect yourself with. I happen to have some here, want to take a look?',
-        ja = '',
-        id = 'Pelindung? Jika kamu ingin pergi keluar dari kamp, bawa sesuatu untuk melindungi diri. Aku punya beberapa pelindung, mau lihat?'
-    },
-    Task_NpcText_6003 = {
-        ID = 'Task_NpcText_6003',
-        zh = '你好，我架设了用于游览的热气球，会不时在这里停靠，乘坐是免费的哦，要不要试一试？',
-        CHT = '',
-        en = 'Hello, the hot-air balloon I’ve set up for sightseeing will stop here from time to time. Want to go for a ride? It’s free.',
-        ja = '',
-        id = 'Halo, balon udara yang kusiapkan untuk wisata akan turun di sini dari waktu ke waktu. Ingin naik? Gratis, kok.'
-    },
-    Task_NpcText_6004 = {
-        ID = 'Task_NpcText_6004',
-        zh = '提升魅力的秘诀？当然是好好打扮自己！我布置了一些装饰物在营地里，你也可以从我这里选一些你喜欢的饰品。',
-        CHT = '',
-        en = 'The secret to be more attractive? Well, obviously you need to dress better. I’ve laid out some accessories in the campground, you can also choose from my selections.',
-        ja = '',
-        id = 'Rahasia tampil lebih menarik? Tentu saja kamu perlu berdandan lebih baik. Aku sudah menyiapkan beberapa aksesori di kamp, kamu bisa langsung memilihnya.'
-    },
-    Task_NpcText_6005 = {
-        ID = 'Task_NpcText_6005',
-        zh = '哦？你要了解动物赛跑嘛？没有比赛进行的时候随时可以进行投注，如果要参赛，记得带上自己的动物。',
-        CHT = '',
-        en = 'Oh? You want to know about the snail race? When there’s no race going on, you can place a bet. If you win the bet, you’ll be handsomely rewarded.',
-        ja = '',
-        id = 'Oh? Kamu ingin tahu tentang balapan siput? Ketika tidak ada balapan yang berlangsung, kamu bisa memasang taruhan. Jika menang, hadiahmu akan banyak.'
-    },
-    Task_NpcText_6006 = {
-        ID = 'Task_NpcText_6006',
-        zh = '检测到——异星——生命体征——',
-        CHT = '',
-        en = 'Alien—life form—detected—',
-        ja = '',
-        id = 'Ada organisme—alien'
-    },
-    Task_NpcText_6007 = {
-        ID = 'Task_NpcText_6007',
-        zh = '恭喜你，在我们这里每个成年的猎人都要猎杀野猪王证明自己，你已经是一个出色的猎人了，这是我新做的弓，这把弓或许能帮你更进一步！',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
     NpcInfo_Name_1 = {
         ID = 'NpcInfo_Name_1',
         zh = '里尔',
@@ -1895,13 +2623,37 @@ local LanguagePackXls = {
         ja = '',
         id = 'Learze'
     },
-    NpcInfo_Title_1 = {
-        ID = 'NpcInfo_Title_1',
-        zh = '昆虫学家',
+    NpcInfo_Name_10 = {
+        ID = 'NpcInfo_Name_10',
+        zh = 'Z先生',
         CHT = '',
-        en = 'Entomologist',
+        en = 'Mr.Z',
         ja = '',
-        id = 'Entomologis'
+        id = 'Mr.Z'
+    },
+    NpcInfo_Name_11 = {
+        ID = 'NpcInfo_Name_11',
+        zh = '鲍勃',
+        CHT = '',
+        en = 'Bob',
+        ja = '',
+        id = 'Bob'
+    },
+    NpcInfo_Name_12 = {
+        ID = 'NpcInfo_Name_12',
+        zh = '内蒂里',
+        CHT = '',
+        en = 'Neytiri',
+        ja = '',
+        id = 'Neytiri'
+    },
+    NpcInfo_Name_13 = {
+        ID = 'NpcInfo_Name_13',
+        zh = '托尼',
+        CHT = '',
+        en = 'Tony',
+        ja = '',
+        id = 'Tony'
     },
     NpcInfo_Name_2 = {
         ID = 'NpcInfo_Name_2',
@@ -1911,14 +2663,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Johnny Rico'
     },
-    NpcInfo_Title_2 = {
-        ID = 'NpcInfo_Title_2',
-        zh = '猎人',
-        CHT = '',
-        en = 'Hunter',
-        ja = '',
-        id = 'Pemburu'
-    },
     NpcInfo_Name_3 = {
         ID = 'NpcInfo_Name_3',
         zh = '赞德·巴卡洛',
@@ -1926,14 +2670,6 @@ local LanguagePackXls = {
         en = 'Zander Barcalow',
         ja = '',
         id = 'Zander Barcalow'
-    },
-    NpcInfo_Title_3 = {
-        ID = 'NpcInfo_Title_3',
-        zh = '热气球技师',
-        CHT = '',
-        en = 'Hot-air Balloon Technician',
-        ja = '',
-        id = 'Teknisi Balon Udara'
     },
     NpcInfo_Name_4 = {
         ID = 'NpcInfo_Name_4',
@@ -1943,14 +2679,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Lara Croft'
     },
-    NpcInfo_Title_4 = {
-        ID = 'NpcInfo_Title_4',
-        zh = '迷宫摊主',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
     NpcInfo_Name_5 = {
         ID = 'NpcInfo_Name_5',
         zh = '杰克·苏利',
@@ -1959,14 +2687,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Jake Sully'
     },
-    NpcInfo_Title_5 = {
-        ID = 'NpcInfo_Title_5',
-        zh = '庆典师',
-        CHT = '',
-        en = 'Event Planner',
-        ja = '',
-        id = 'Perencana Acara'
-    },
     NpcInfo_Name_6 = {
         ID = 'NpcInfo_Name_6',
         zh = '马诺雷特',
@@ -1974,14 +2694,6 @@ local LanguagePackXls = {
         en = 'Tony',
         ja = '',
         id = 'Tony'
-    },
-    NpcInfo_Title_6 = {
-        ID = 'NpcInfo_Title_6',
-        zh = '动物赛跑管理员',
-        CHT = '',
-        en = 'Snail Race Staff',
-        ja = '',
-        id = 'Staf Balapan Siput'
     },
     NpcInfo_Name_7 = {
         ID = 'NpcInfo_Name_7',
@@ -2007,13 +2719,13 @@ local LanguagePackXls = {
         ja = '',
         id = 'Penjelajah'
     },
-    NpcInfo_Name_10 = {
-        ID = 'NpcInfo_Name_10',
-        zh = 'Z先生',
+    NpcInfo_Title_1 = {
+        ID = 'NpcInfo_Title_1',
+        zh = '昆虫学家',
         CHT = '',
-        en = 'Mr.Z',
+        en = 'Entomologist',
         ja = '',
-        id = 'Mr.Z'
+        id = 'Entomologis'
     },
     NpcInfo_Title_10 = {
         ID = 'NpcInfo_Title_10',
@@ -2023,14 +2735,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'UFO AI'
     },
-    NpcInfo_Name_11 = {
-        ID = 'NpcInfo_Name_11',
-        zh = '鲍勃',
-        CHT = '',
-        en = 'Bob',
-        ja = '',
-        id = 'Bob'
-    },
     NpcInfo_Title_11 = {
         ID = 'NpcInfo_Title_11',
         zh = '营地安全员',
@@ -2038,14 +2742,6 @@ local LanguagePackXls = {
         en = 'Camp Safety Staff',
         ja = '',
         id = 'Staf Keamanan Kamp'
-    },
-    NpcInfo_Name_12 = {
-        ID = 'NpcInfo_Name_12',
-        zh = '内蒂里',
-        CHT = '',
-        en = 'Neytiri',
-        ja = '',
-        id = 'Neytiri'
     },
     NpcInfo_Title_12 = {
         ID = 'NpcInfo_Title_12',
@@ -2055,14 +2751,6 @@ local LanguagePackXls = {
         ja = '',
         id = 'Buku Petunjuk Pariwisata'
     },
-    NpcInfo_Name_13 = {
-        ID = 'NpcInfo_Name_13',
-        zh = '托尼',
-        CHT = '',
-        en = 'Tony',
-        ja = '',
-        id = 'Tony'
-    },
     NpcInfo_Title_13 = {
         ID = 'NpcInfo_Title_13',
         zh = '探险家',
@@ -2071,89 +2759,49 @@ local LanguagePackXls = {
         ja = '',
         id = 'Penjelajah'
     },
-    GameInfo_GameName_1 = {
-        ID = 'GameInfo_GameName_1',
-        zh = '打猎',
+    NpcInfo_Title_2 = {
+        ID = 'NpcInfo_Title_2',
+        zh = '猎人',
+        CHT = '',
+        en = 'Hunter',
+        ja = '',
+        id = 'Pemburu'
+    },
+    NpcInfo_Title_3 = {
+        ID = 'NpcInfo_Title_3',
+        zh = '热气球技师',
+        CHT = '',
+        en = 'Hot-air Balloon Technician',
+        ja = '',
+        id = 'Teknisi Balon Udara'
+    },
+    NpcInfo_Title_4 = {
+        ID = 'NpcInfo_Title_4',
+        zh = '迷宫摊主',
         CHT = '',
         en = '',
         ja = '',
         id = ''
     },
-    GameInfo_GameName_2 = {
-        ID = 'GameInfo_GameName_2',
-        zh = '打地鼠',
+    NpcInfo_Title_5 = {
+        ID = 'NpcInfo_Title_5',
+        zh = '庆典师',
         CHT = '',
-        en = '',
+        en = 'Event Planner',
         ja = '',
-        id = ''
+        id = 'Perencana Acara'
     },
-    GameInfo_GameName_3 = {
-        ID = 'GameInfo_GameName_3',
-        zh = '迷宫',
+    NpcInfo_Title_6 = {
+        ID = 'NpcInfo_Title_6',
+        zh = '动物赛跑管理员',
         CHT = '',
-        en = '',
+        en = 'Snail Race Staff',
         ja = '',
-        id = ''
+        id = 'Staf Balapan Siput'
     },
-    GameInfo_GameName_4 = {
-        ID = 'GameInfo_GameName_4',
-        zh = '人间大炮',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_5 = {
-        ID = 'GameInfo_GameName_5',
-        zh = '青蛙过河',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_6 = {
-        ID = 'GameInfo_GameName_6',
-        zh = '热气球',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_7 = {
-        ID = 'GameInfo_GameName_7',
-        zh = '种花',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_8 = {
-        ID = 'GameInfo_GameName_8',
-        zh = '赛蜗牛',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_9 = {
-        ID = 'GameInfo_GameName_9',
-        zh = '竞速',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_10 = {
-        ID = 'GameInfo_GameName_10',
-        zh = '摇摇椅',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_11 = {
-        ID = 'GameInfo_GameName_11',
-        zh = '斗怪物',
+    NpcText_Text_1000 = {
+        ID = 'NpcText_Text_1000',
+        zh = ' ',
         CHT = '',
         en = '',
         ja = '',
@@ -2239,6 +2887,14 @@ local LanguagePackXls = {
         ja = '',
         id = 'Ingin melihat busur yang kubuat?'
     },
+    NpcText_Text_1015 = {
+        ID = 'NpcText_Text_1015',
+        zh = '驯兽时要先布置陷阱，然后引导动物踩到你的陷阱上。',
+        CHT = '',
+        en = 'When you are trying to catch a beast, you need to set a trap and lure the beast into it.',
+        ja = '',
+        id = 'Saat kamu mencoba menangkap binatang, kamu harus memasang jebakan dan memancing binatang itu ke dalamnya.'
+    },
     NpcText_Text_1021 = {
         ID = 'NpcText_Text_1021',
         zh = '你好。',
@@ -2310,6 +2966,14 @@ local LanguagePackXls = {
         en = 'The dinner party is being prepared, please wait.',
         ja = '',
         id = 'Pesta makan malam sedang disiapkan, harap tunggu.'
+    },
+    NpcText_Text_1045 = {
+        ID = 'NpcText_Text_1045',
+        zh = '这片森林有一些东西非常神奇，碰到别人的时候可能会赋予他神奇的能量哦',
+        CHT = '',
+        en = 'This forest has some wonderful things that can grant wonderful powers when they touch someone.',
+        ja = '',
+        id = 'Hutan ini memiliki beberapa hal indah yang bisa memberikan kekuatan luar biasa saat menyentuh seseorang.'
     },
     NpcText_Text_1051 = {
         ID = 'NpcText_Text_1051',
@@ -2439,6 +3103,22 @@ local LanguagePackXls = {
         ja = '',
         id = 'Senjata juga berbahaya. Hati-hati, jangan sampai melukai orang-orang di kamp.'
     },
+    NpcText_Text_1173 = {
+        ID = 'NpcText_Text_1173',
+        zh = '如果要打猎的话用弓箭更容易一击毙命。',
+        CHT = '',
+        en = 'If you are going to hunt, it’s easier to kill using bow and arrows.',
+        ja = '',
+        id = 'Jika ingin berburu, lebih mudah membunuh dengan busur dan anak panah.'
+    },
+    NpcText_Text_1174 = {
+        ID = 'NpcText_Text_1174',
+        zh = '有经验的猎人会把动物赶到捕兽夹上来抓捕它，很厉害呢。',
+        CHT = '',
+        en = 'Experienced hunters lure animals into the trap they’ve set.',
+        ja = '',
+        id = 'Pemburu berpengalaman memancing hewan ke jebakan yang mereka pasang.'
+    },
     NpcText_Text_1181 = {
         ID = 'NpcText_Text_1181',
         zh = '我们已经到站了，这片森林人迹罕至，大家可以尽情亲近大自然！',
@@ -2471,6 +3151,14 @@ local LanguagePackXls = {
         ja = '',
         id = 'Lanskap hutan ini terlihat tidak asing. Apakah ini hasil ulah alien?'
     },
+    NpcText_Text_1185 = {
+        ID = 'NpcText_Text_1185',
+        zh = '湖边有一个峡谷，蘑菇比人还要高，你可以去看看。',
+        CHT = '',
+        en = 'There’s a valley by the lake, and the mushrooms there are taller than people. Go check it out!',
+        ja = '',
+        id = 'Ada lembah di tepi danau, dan jamur di sana lebih tinggi dari manusia. Ayo lihat!'
+    },
     NpcText_Text_1191 = {
         ID = 'NpcText_Text_1191',
         zh = '大自然的风光真是太好了！',
@@ -2502,6 +3190,14 @@ local LanguagePackXls = {
         en = 'Hunting requires control!',
         ja = '',
         id = 'Berburu memerlukan kontrol yang stabil!'
+    },
+    NpcText_Text_2013 = {
+        ID = 'NpcText_Text_2013',
+        zh = '小心别踩到捕兽夹！',
+        CHT = '',
+        en = 'Careful not to step on a trap!',
+        ja = '',
+        id = 'Berhati-hatilah untuk tidak menginjak jebakan!'
     },
     NpcText_Text_2021 = {
         ID = 'NpcText_Text_2021',
@@ -2559,845 +3255,61 @@ local LanguagePackXls = {
         ja = '',
         id = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!'
     },
-    NpcText_Text_1000 = {
-        ID = 'NpcText_Text_1000',
-        zh = ' ',
+    Task_NpcText_6001 = {
+        ID = 'Task_NpcText_6001',
+        zh = '你好，野营活动已经开始了，尽情狂欢吧！但是拿着器械的时候务必注意安全，不要伤害到营地里的人。',
+        CHT = '',
+        en = 'Hey, the event has started, go have fun! But remember, be careful with your weapon. Don’t hurt people in the campground.',
+        ja = '',
+        id = 'Hei, acaranya sudah dimulai. Selamat bersenang-senang! Ingat, jangan sampai kamu melukai orang dengan senjatamu di kamp.'
+    },
+    Task_NpcText_6002 = {
+        ID = 'Task_NpcText_6002',
+        zh = '安全事项？如果你要离开营地，记得在营地里挑选一个趁手的家伙以备不时之需，我这里也有一些，要看看吗？',
+        CHT = '',
+        en = 'Safety precautions? If you want to leave the campground, get something to protect yourself with. I happen to have some here, want to take a look?',
+        ja = '',
+        id = 'Pelindung? Jika kamu ingin pergi keluar dari kamp, bawa sesuatu untuk melindungi diri. Aku punya beberapa pelindung, mau lihat?'
+    },
+    Task_NpcText_6003 = {
+        ID = 'Task_NpcText_6003',
+        zh = '你好，我架设了用于游览的热气球，会不时在这里停靠，乘坐是免费的哦，要不要试一试？',
+        CHT = '',
+        en = 'Hello, the hot-air balloon I’ve set up for sightseeing will stop here from time to time. Want to go for a ride? It’s free.',
+        ja = '',
+        id = 'Halo, balon udara yang kusiapkan untuk wisata akan turun di sini dari waktu ke waktu. Ingin naik? Gratis, kok.'
+    },
+    Task_NpcText_6004 = {
+        ID = 'Task_NpcText_6004',
+        zh = '提升魅力的秘诀？当然是好好打扮自己！我布置了一些装饰物在营地里，你也可以从我这里选一些你喜欢的饰品。',
+        CHT = '',
+        en = 'The secret to be more attractive? Well, obviously you need to dress better. I’ve laid out some accessories in the campground, you can also choose from my selections.',
+        ja = '',
+        id = 'Rahasia tampil lebih menarik? Tentu saja kamu perlu berdandan lebih baik. Aku sudah menyiapkan beberapa aksesori di kamp, kamu bisa langsung memilihnya.'
+    },
+    Task_NpcText_6005 = {
+        ID = 'Task_NpcText_6005',
+        zh = '哦？你要了解动物赛跑嘛？没有比赛进行的时候随时可以进行投注，如果要参赛，记得带上自己的动物。',
+        CHT = '',
+        en = 'Oh? You want to know about the snail race? When there’s no race going on, you can place a bet. If you win the bet, you’ll be handsomely rewarded.',
+        ja = '',
+        id = 'Oh? Kamu ingin tahu tentang balapan siput? Ketika tidak ada balapan yang berlangsung, kamu bisa memasang taruhan. Jika menang, hadiahmu akan banyak.'
+    },
+    Task_NpcText_6006 = {
+        ID = 'Task_NpcText_6006',
+        zh = '检测到——异星——生命体征——',
+        CHT = '',
+        en = 'Alien—life form—detected—',
+        ja = '',
+        id = 'Ada organisme—alien'
+    },
+    Task_NpcText_6007 = {
+        ID = 'Task_NpcText_6007',
+        zh = '恭喜你，在我们这里每个成年的猎人都要猎杀野猪王证明自己，你已经是一个出色的猎人了，这是我新做的弓，这把弓或许能帮你更进一步！',
         CHT = '',
         en = '',
         ja = '',
         id = ''
-    },
-    Item_Des_5001 = {
-        ID = 'Item_Des_5001',
-        zh = '我有一个梦想。',
-        CHT = '',
-        en = 'I have a dream.',
-        ja = '',
-        id = 'Penyelamat'
-    },
-    Item_Des_5002 = {
-        ID = 'Item_Des_5002',
-        zh = '安全第一。',
-        CHT = '',
-        en = 'Safety first.',
-        ja = '',
-        id = 'Aku punya mimpi.'
-    },
-    Item_Name_5003 = {
-        ID = 'Item_Name_5003',
-        zh = '畸变水晶',
-        CHT = '',
-        en = 'Mutated Crystal',
-        ja = '',
-        id = 'Kristal Bermutasi'
-    },
-    Item_Des_5003 = {
-        ID = 'Item_Des_5003',
-        zh = '触摸会发生意想不到的事情。',
-        CHT = '',
-        en = 'Touch it and something surprising will happen.',
-        ja = '',
-        id = 'Sentuh dan sesuatu yang mengejutkan akan terjadi.'
-    },
-    GuiText_Txt_InfoGui_1 = {
-        ID = 'GuiText_Txt_InfoGui_1',
-        zh = '新的一天开始了',
-        CHT = '',
-        en = 'A new day has begun',
-        ja = '',
-        id = 'Hari baru telah dimulai'
-    },
-    GuiText_Txt_InfoGui_2 = {
-        ID = 'GuiText_Txt_InfoGui_2',
-        zh = '傍晚了，回去营地吧',
-        CHT = '',
-        en = 'It’s dusk, time to get back to the campground.',
-        ja = '',
-        id = 'Sudah petang, waktunya kembali ke kamp.'
-    },
-    GuiText_Txt_InfoGui_3 = {
-        ID = 'GuiText_Txt_InfoGui_3',
-        zh = '天黑了，准备狂欢吧！',
-        CHT = '',
-        en = 'It’s nighttime, time to party!',
-        ja = '',
-        id = 'Sudah malam, waktunya berpesta!'
-    },
-    GuiText_Txt_InfoGui_4 = {
-        ID = 'GuiText_Txt_InfoGui_4',
-        zh = '神秘的UFO出现了！',
-        CHT = '',
-        en = 'The mysterious UFO has appeared!',
-        ja = '',
-        id = 'UFO misterius telah muncul!'
-    },
-    GuiText_Txt_InfoGui_5 = {
-        ID = 'GuiText_Txt_InfoGui_5',
-        zh = '天空中出现了神秘的迷宫！',
-        CHT = '',
-        en = 'A mysterious maze has appeared in the sky!',
-        ja = '',
-        id = 'Labirin misterius muncul di langit!'
-    },
-    GuiText_Txt_SnailGui_1 = {
-        ID = 'GuiText_Txt_SnailGui_1',
-        zh = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
-        CHT = '',
-        en = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
-        ja = '',
-        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
-    },
-    GuiText_Txt_SnailGui_2 = {
-        ID = 'GuiText_Txt_SnailGui_2',
-        zh = '蜗牛赛跑开始了！',
-        CHT = '',
-        en = 'The snail race has begun!',
-        ja = '',
-        id = 'Balapan siput telah dimulai!'
-    },
-    GuiText_Txt_SnailGui_3 = {
-        ID = 'GuiText_Txt_SnailGui_3',
-        zh = '你不能多次投注或在比赛进行中投注',
-        CHT = '',
-        en = 'You cannot place multiple bets or place a bet while a race is underway.',
-        ja = '',
-        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
-    },
-    GuiText_Txt_SnailGui_4 = {
-        ID = 'GuiText_Txt_SnailGui_4',
-        zh = '你投注的蜗牛获得了第{rank}名，为你赢得了{coin}枚金币。',
-        CHT = '',
-        en = 'The snail you betted on obtained a rank of {rank}, and you won {coin} coins.',
-        ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat %d, dan kamu memenangkan %d koin.'
-    },
-    GuiText_Txt_SnailGui_5 = {
-        ID = 'GuiText_Txt_SnailGui_5',
-        zh = '你投注的蜗牛获得了第%d名，你输掉了你的金币。',
-        CHT = '',
-        en = 'The snail you betted on obtained a rank of %d, and you lost your coins.',
-        ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat %d, dan kamu kehilangan koin.'
-    },
-    GuiText_Txt_SnailGui_6 = {
-        ID = 'GuiText_Txt_SnailGui_6',
-        zh = '请选择投注数量',
-        CHT = '',
-        en = 'Place your bet.',
-        ja = '',
-        id = 'Pasang taruhanmu.'
-    },
-    GuiText_Txt_SnailGui_7 = {
-        ID = 'GuiText_Txt_SnailGui_7',
-        zh = '你没钱啦',
-        CHT = '',
-        en = 'You don’t have enough coins.',
-        ja = '',
-        id = 'Koinmu tidak cukup.'
-    },
-    GuiText_Txt_SnailGui_8 = {
-        ID = 'GuiText_Txt_SnailGui_8',
-        zh = '你成功给%d号蜗牛投注.',
-        CHT = '',
-        en = 'You successfully placed a bet on Snail number %d.',
-        ja = '',
-        id = 'Kamu berhasil memasang taruhan pada Siput nomor %d.'
-    },
-    GuiText_Txt_SnailGui_9 = {
-        ID = 'GuiText_Txt_SnailGui_9',
-        zh = '选择一个蜗牛',
-        CHT = '',
-        en = 'Bet on a snail by choosing its color.',
-        ja = '',
-        id = 'Pasang taruhan dengan memilih warna siput.'
-    },
-    GuiText_Txt_SnailGui_10 = {
-        ID = 'GuiText_Txt_SnailGui_10',
-        zh = '上轮冠军：',
-        CHT = '',
-        en = 'Champion:',
-        ja = '',
-        id = 'Juara'
-    },
-    GuiText_Txt_SnailGui_11 = {
-        ID = 'GuiText_Txt_SnailGui_11',
-        zh = '心情：',
-        CHT = '',
-        en = 'Mood:',
-        ja = '',
-        id = 'Mood:'
-    },
-    GuiText_Txt_SnailGui_12 = {
-        ID = 'GuiText_Txt_SnailGui_12',
-        zh = '普通',
-        CHT = '',
-        en = 'Normal',
-        ja = '',
-        id = 'Normal'
-    },
-    GuiText_Txt_SnailGui_13 = {
-        ID = 'GuiText_Txt_SnailGui_13',
-        zh = '开心',
-        CHT = '',
-        en = 'Happy',
-        ja = '',
-        id = 'Happy'
-    },
-    GuiText_Txt_SnailGui_14 = {
-        ID = 'GuiText_Txt_SnailGui_14',
-        zh = '难过',
-        CHT = '',
-        en = 'Sad',
-        ja = '',
-        id = 'Sad'
-    },
-    GuiText_Txt_SnailGui_15 = {
-        ID = 'GuiText_Txt_SnailGui_15',
-        zh = '兴奋',
-        CHT = '',
-        en = 'Excited',
-        ja = '',
-        id = 'Excited'
-    },
-    GuiText_Txt_SnailGui_16 = {
-        ID = 'GuiText_Txt_SnailGui_16',
-        zh = '迷惑',
-        CHT = '',
-        en = 'Confused',
-        ja = '',
-        id = 'Confused'
-    },
-    GuiText_Txt_PetGui_1 = {
-        ID = 'GuiText_Txt_PetGui_1',
-        zh = '你的陷阱困住了一只动物',
-        CHT = '',
-        en = 'Your trap caught an animal.',
-        ja = '',
-        id = 'Ada hewan yang terjebak di perangkapmu.'
-    },
-    GuiText_Txt_PetGui_2 = {
-        ID = 'GuiText_Txt_PetGui_2',
-        zh = '你的陷阱被动物挣脱了',
-        CHT = '',
-        en = 'An animal broke free from your trap.',
-        ja = '',
-        id = 'Ada hewan yang lolos dari perangkapmu.'
-    },
-    GuiText_Txt_PetGui_3 = {
-        ID = 'GuiText_Txt_PetGui_3',
-        zh = '动物距离你太远了',
-        CHT = '',
-        en = 'You’re too close to the animal.',
-        ja = '',
-        id = 'Jarakmu dengan hewan terlalu dekat.'
-    },
-    GuiText_Txt_PetGui_4 = {
-        ID = 'GuiText_Txt_PetGui_4',
-        zh = '恭喜，你抓到了这只动物。',
-        CHT = '',
-        en = 'Congratulations, you’ve caught this animal.',
-        ja = '',
-        id = 'Selamat, kamu berhasil menangkap hewan ini.'
-    },
-    GuiText_Txt_PetGui_5 = {
-        ID = 'GuiText_Txt_PetGui_5',
-        zh = '尝试用陷阱把动物困住再捕捉吧',
-        CHT = '',
-        en = 'Try to get the animal stuck with the trap first.',
-        ja = '',
-        id = 'Cobalah jebak hewannya dengan perangkap dulu.'
-    },
-    GuiText_Txt_PetGui_6 = {
-        ID = 'GuiText_Txt_PetGui_6',
-        zh = '你抓到了一个宠物，给他起个名字吧！',
-        CHT = '',
-        en = 'You’ve caught a pet! Give your pet a name!',
-        ja = '',
-        id = 'Kamu berhasil mendapat piaraan! Beri dia nama!'
-    },
-    GuiText_Txt_MoleGui_1 = {
-        ID = 'GuiText_Txt_MoleGui_1',
-        zh = '你需要向石像内塞入%s枚硬币来祈愿。',
-        CHT = '',
-        en = 'You need to put %s coins into the stone golem to make a wish.',
-        ja = '',
-        id = 'Kamu harus menaruh %s koin ke dalam golem batu untuk membuat permohonan.'
-    },
-    GuiText_Txt_ShopGui_1 = {
-        ID = 'GuiText_Txt_ShopGui_1',
-        zh = '是否购买%s',
-        CHT = '',
-        en = 'Do you want to purchase %s?',
-        ja = '',
-        id = 'Kamu ingin membeli %s?'
-    },
-    GuiText_Txt_NpcGui_1 = {
-        ID = 'GuiText_Txt_NpcGui_1',
-        zh = '进入游戏',
-        CHT = '',
-        en = 'Snail Race',
-        ja = '',
-        id = 'Balapan Siput'
-    },
-    GuiText_Txt_NpcGui_2 = {
-        ID = 'GuiText_Txt_NpcGui_2',
-        zh = '离开',
-        CHT = '',
-        en = 'Leave',
-        ja = '',
-        id = 'Keluar'
-    },
-    GuiText_Txt_NpcGui_3 = {
-        ID = 'GuiText_Txt_NpcGui_3',
-        zh = '购买',
-        CHT = '',
-        en = 'Buy',
-        ja = '',
-        id = 'Beli'
-    },
-    GuiText_Txt_ShopGui_2 = {
-        ID = 'GuiText_Txt_ShopGui_2',
-        zh = '金币不足',
-        CHT = '',
-        en = 'Not enough coins',
-        ja = '',
-        id = 'Koin tidak cukup'
-    },
-    GuiText_Txt_ShopGui_3 = {
-        ID = 'GuiText_Txt_ShopGui_3',
-        zh = '购买',
-        CHT = '',
-        en = 'Buy',
-        ja = '',
-        id = 'Beli'
-    },
-    GuiText_Txt_CookGui_1 = {
-        ID = 'GuiText_Txt_CookGui_1',
-        zh = '来做饭吧',
-        CHT = '',
-        en = 'Let’s Cook',
-        ja = '',
-        id = 'Ayo Memasak'
-    },
-    GuiText_Txt_CookGui_2 = {
-        ID = 'GuiText_Txt_CookGui_2',
-        zh = '选用食材',
-        CHT = '',
-        en = 'Ingredients',
-        ja = '',
-        id = 'Bahan'
-    },
-    GuiText_Txt_CookGui_3 = {
-        ID = 'GuiText_Txt_CookGui_3',
-        zh = '你做出了%s',
-        CHT = '',
-        en = 'You made %s!',
-        ja = '',
-        id = 'Kamu membuat %s!'
-    },
-    GuiText_Txt_CookGui_4 = {
-        ID = 'GuiText_Txt_CookGui_4',
-        zh = '吃掉它',
-        CHT = '',
-        en = 'Eat',
-        ja = '',
-        id = 'Makan'
-    },
-    GuiText_Txt_CookGui_5 = {
-        ID = 'GuiText_Txt_CookGui_5',
-        zh = '放到桌上',
-        CHT = '',
-        en = 'Put on table',
-        ja = '',
-        id = 'Letakkan di meja'
-    },
-    GuiText_Txt_CookGui_6 = {
-        ID = 'GuiText_Txt_CookGui_6',
-        zh = '打赏',
-        CHT = '',
-        en = 'Tip',
-        ja = '',
-        id = 'Kiat'
-    },
-    GuiText_Txt_ShopGui_4 = {
-        ID = 'GuiText_Txt_ShopGui_4',
-        zh = '已拥有',
-        CHT = '',
-        en = 'Owned',
-        ja = '',
-        id = 'Dimiliki'
-    },
-    GuiText_Txt_CookGui_7 = {
-        ID = 'GuiText_Txt_CookGui_7',
-        zh = '宴会还没有开始，晚上再来吧。',
-        CHT = '',
-        en = 'The party has not started yet, come back in the evening.',
-        ja = '',
-        id = 'Pestanya belum dimulai, kembalilah di sore hari.'
-    },
-    GuiText_Txt_CookGui_8 = {
-        ID = 'GuiText_Txt_CookGui_8',
-        zh = '你要打赏%s多少金币呢？',
-        CHT = '',
-        en = 'How many coins do you want to tip %s?',
-        ja = '',
-        id = 'Berapa banyak koin yang ingin kamu berikan tip %s?'
-    },
-    GuiText_Txt_CookGui_9 = {
-        ID = 'GuiText_Txt_CookGui_9',
-        zh = '你为{cooker}的{meal}支付了{coin}小费。',
-        CHT = '',
-        en = 'You tipped {cooker} {coin} coins for his {meal}.',
-        ja = '',
-        id = 'Kamu memberi tip {cooker} {coin} koin untuk {meal}.'
-    },
-    GuiText_Txt_PetGui_7 = {
-        ID = 'GuiText_Txt_PetGui_7',
-        zh = '%s的宠物',
-        CHT = '',
-        en = '%s\'s pet',
-        ja = '',
-        id = 'hewan peliharaan %s'
-    },
-    Item_Name_4004 = {
-        ID = 'Item_Name_4004',
-        zh = '神奇宠物箱',
-        CHT = '',
-        en = 'Mystery Pet Box',
-        ja = '',
-        id = 'Kotak Hewan Peliharaan'
-    },
-    Item_Des_4004 = {
-        ID = 'Item_Des_4004',
-        zh = '使用后获得一个宠物',
-        CHT = '',
-        en = 'Use to receive a pet',
-        ja = '',
-        id = 'Gunakan untuk menerima hewan peliharaan'
-    },
-    GuiText_Txt_CookGuide_1 = {
-        ID = 'GuiText_Txt_CookGuide_1',
-        zh = '让我们做一道菜吧！',
-        CHT = '',
-        en = 'Let’s make some food!',
-        ja = '',
-        id = 'Ayo kita buat makanan!'
-    },
-    GuiText_Txt_CookGuide_2 = {
-        ID = 'GuiText_Txt_CookGuide_2',
-        zh = '你获得过的食材会显示在这里。',
-        CHT = '',
-        en = 'The ingredients you’ve obtained will be shown here',
-        ja = '',
-        id = 'Bahan-bahan yang kamu peroleh akan ditampilkan di sini'
-    },
-    GuiText_Txt_CookGuide_3 = {
-        ID = 'GuiText_Txt_CookGuide_3',
-        zh = '这里会显示你准备使用的食材。',
-        CHT = '',
-        en = 'The ingredients you’re going to use will be shown here',
-        ja = '',
-        id = 'Bahan-bahan yang akan kamu gunakan akan ditampilkan di sini'
-    },
-    GuiText_Txt_CookGuide_4 = {
-        ID = 'GuiText_Txt_CookGuide_4',
-        zh = '点击食材将他们加入菜谱，一道菜一共需要三种食材。',
-        CHT = '',
-        en = 'Tap on an ingredient to add it to a recipe; a recipe needs 3 ingredients',
-        ja = '',
-        id = 'Ketuk bahan untuk menambahkannya ke resep; satu resep memerlukan 3 bahan'
-    },
-    GuiText_Txt_CookGuide_5 = {
-        ID = 'GuiText_Txt_CookGuide_5',
-        zh = '选好了！现在让我们看看你会做出什么样的美食！',
-        CHT = '',
-        en = 'Beautiful! Now let’s see what delicacy you are going to create!',
-        ja = '',
-        id = 'Cantiknya! Sekarang mari kita tes seberapa lezat makanan buatanmu!'
-    },
-    GuiText_Txt_MoleGui_2 = {
-        ID = 'GuiText_Txt_MoleGui_2',
-        zh = '金币——金币——金币——',
-        CHT = '',
-        en = 'Gold... gold... gold...',
-        ja = '',
-        id = 'Emas... emas... emas...'
-    },
-    GuiText_Txt_MoleGui_3 = {
-        ID = 'GuiText_Txt_MoleGui_3',
-        zh = '你获得了',
-        CHT = '',
-        en = 'You got',
-        ja = '',
-        id = 'Kamu mendapat'
-    },
-    GuiText_Txt_MoleGui_4 = {
-        ID = 'GuiText_Txt_MoleGui_4',
-        zh = '神秘石像',
-        CHT = '',
-        en = 'Mysterious Stone Golem',
-        ja = '',
-        id = 'Golem Batu Misterius'
-    },
-    NpcText_Text_1015 = {
-        ID = 'NpcText_Text_1015',
-        zh = '驯兽时要先布置陷阱，然后引导动物踩到你的陷阱上。',
-        CHT = '',
-        en = 'When you are trying to catch a beast, you need to set a trap and lure the beast into it.',
-        ja = '',
-        id = 'Saat kamu mencoba menangkap binatang, kamu harus memasang jebakan dan memancing binatang itu ke dalamnya.'
-    },
-    NpcText_Text_1045 = {
-        ID = 'NpcText_Text_1045',
-        zh = '这片森林有一些东西非常神奇，碰到别人的时候可能会赋予他神奇的能量哦',
-        CHT = '',
-        en = 'This forest has some wonderful things that can grant wonderful powers when they touch someone.',
-        ja = '',
-        id = 'Hutan ini memiliki beberapa hal indah yang bisa memberikan kekuatan luar biasa saat menyentuh seseorang.'
-    },
-    NpcText_Text_1173 = {
-        ID = 'NpcText_Text_1173',
-        zh = '如果要打猎的话用弓箭更容易一击毙命。',
-        CHT = '',
-        en = 'If you are going to hunt, it’s easier to kill using bow and arrows.',
-        ja = '',
-        id = 'Jika ingin berburu, lebih mudah membunuh dengan busur dan anak panah.'
-    },
-    NpcText_Text_1174 = {
-        ID = 'NpcText_Text_1174',
-        zh = '有经验的猎人会把动物赶到捕兽夹上来抓捕它，很厉害呢。',
-        CHT = '',
-        en = 'Experienced hunters lure animals into the trap they’ve set.',
-        ja = '',
-        id = 'Pemburu berpengalaman memancing hewan ke jebakan yang mereka pasang.'
-    },
-    NpcText_Text_1185 = {
-        ID = 'NpcText_Text_1185',
-        zh = '湖边有一个峡谷，蘑菇比人还要高，你可以去看看。',
-        CHT = '',
-        en = 'There’s a valley by the lake, and the mushrooms there are taller than people. Go check it out!',
-        ja = '',
-        id = 'Ada lembah di tepi danau, dan jamur di sana lebih tinggi dari manusia. Ayo lihat!'
-    },
-    NpcText_Text_2013 = {
-        ID = 'NpcText_Text_2013',
-        zh = '小心别踩到捕兽夹！',
-        CHT = '',
-        en = 'Careful not to step on a trap!',
-        ja = '',
-        id = 'Berhati-hatilah untuk tidak menginjak jebakan!'
-    },
-    GuiText_Txt_CookGui_10 = {
-        ID = 'GuiText_Txt_CookGui_10',
-        zh = '你的{meal}收到了{customer}的{coin}枚金币的小费。',
-        CHT = '',
-        en = 'Your {meal} received a tip of {coin} coins from {customer}.',
-        ja = '',
-        id = '{Meal} Anda menerima tip {coin} koin dari {customer}.'
-    },
-    GuiText_Txt_BoardGame_1 = {
-        ID = 'GuiText_Txt_BoardGame_1',
-        zh = '你不能在这里使用这个道具。',
-        CHT = '',
-        en = 'You can’t use this item here',
-        ja = '',
-        id = 'Kamu tidak dapat menggunakan item ini di sini'
-    },
-    GuiText_Txt_BoardGame_2 = {
-        ID = 'GuiText_Txt_BoardGame_2',
-        zh = '你不能在运动时使用这个道具。',
-        CHT = '',
-        en = 'You can’t use this item while you are moving',
-        ja = '',
-        id = 'Kamu tidak dapat menggunakan item ini saat bergerak'
-    },
-    GuiText_Txt_BoardGame_3 = {
-        ID = 'GuiText_Txt_BoardGame_3',
-        zh = '你离其他桌子太近了！',
-        CHT = '',
-        en = 'You are too close to the other tables',
-        ja = '',
-        id = 'Kamu terlalu dekat dengan meja lainnya'
-    },
-    GuiText_Txt_BoardGame_4 = {
-        ID = 'GuiText_Txt_BoardGame_4',
-        zh = '准备中',
-        CHT = '',
-        en = 'Ready',
-        ja = '',
-        id = 'Siap'
-    },
-    GuiText_Txt_BoardGame_5 = {
-        ID = 'GuiText_Txt_BoardGame_5',
-        zh = '这个桌子的人已经满了。',
-        CHT = '',
-        en = 'This table is full',
-        ja = '',
-        id = 'Meja ini penuh'
-    },
-    GuiText_Txt_BoardGame_6 = {
-        ID = 'GuiText_Txt_BoardGame_6',
-        zh = '你已经在一个桌子上了。',
-        CHT = '',
-        en = 'You are already seated at a table',
-        ja = '',
-        id = 'Kamu sudah duduk di meja'
-    },
-    GuiText_Txt_BoardGame_7 = {
-        ID = 'GuiText_Txt_BoardGame_7',
-        zh = '你需要先退出这个桌子。',
-        CHT = '',
-        en = 'You need to leave this table first',
-        ja = '',
-        id = 'Kamu harus meninggalkan meja ini terlebih dahulu'
-    },
-    GuiText_Txt_BoardGame_8 = {
-        ID = 'GuiText_Txt_BoardGame_8',
-        zh = '只有房主才可以同意玩家进入游戏。',
-        CHT = '',
-        en = 'Only the room host can approve players to enter',
-        ja = '',
-        id = 'Hanya tuan rumah ruangan yang bisa menyetujui pemain untuk masuk'
-    },
-    GuiText_Txt_BoardGame_9 = {
-        ID = 'GuiText_Txt_BoardGame_9',
-        zh = '你已经在游戏中了。',
-        CHT = '',
-        en = 'You are already in a game',
-        ja = '',
-        id = 'Kamu sudah dalam game'
-    },
-    GuiText_Txt_BoardGame_10 = {
-        ID = 'GuiText_Txt_BoardGame_10',
-        zh = '参与游戏的玩家已经达到上限。',
-        CHT = '',
-        en = 'The game already has a maximum number of players',
-        ja = '',
-        id = 'Game ini sudah mencakapi jumlah pemain maksimum'
-    },
-    GuiText_Txt_BoardGame_11 = {
-        ID = 'GuiText_Txt_BoardGame_11',
-        zh = '只有房主才可以对房间上锁状态进行更改。',
-        CHT = '',
-        en = 'Only the room host can lock or unlock the room',
-        ja = '',
-        id = 'Hanya tuan rumah ruangan yang bisa mengunci atau membuka kunci ruangan'
-    },
-    GuiText_Txt_BoardGame_12 = {
-        ID = 'GuiText_Txt_BoardGame_12',
-        zh = '房间已经被上锁了。',
-        CHT = '',
-        en = 'The room is already locked',
-        ja = '',
-        id = 'Ruangan sudah terkunci'
-    },
-    GuiText_Txt_BoardGame_13 = {
-        ID = 'GuiText_Txt_BoardGame_13',
-        zh = '房间已经解锁了。',
-        CHT = '',
-        en = 'The room is already unlocked',
-        ja = '',
-        id = 'Kunci ruangan sudah dibuka'
-    },
-    GuiText_Txt_BoardGame_14 = {
-        ID = 'GuiText_Txt_BoardGame_14',
-        zh = '你已经退出了这个桌子。',
-        CHT = '',
-        en = 'You already left this table',
-        ja = '',
-        id = 'Kamu sudah meninggalkan meja ini'
-    },
-    GuiText_Txt_BoardGame_15 = {
-        ID = 'GuiText_Txt_BoardGame_15',
-        zh = '你已经在观战了。',
-        CHT = '',
-        en = 'You are already spectating',
-        ja = '',
-        id = 'Kamu sudah menonton'
-    },
-    GuiText_Txt_BoardGame_16 = {
-        ID = 'GuiText_Txt_BoardGame_16',
-        zh = '你已经参与了游戏。',
-        CHT = '',
-        en = 'You already joined the game',
-        ja = '',
-        id = 'Kamu sudah bergabung dalam game'
-    },
-    GuiText_Txt_BoardGame_17 = {
-        ID = 'GuiText_Txt_BoardGame_17',
-        zh = '座位已经满了。',
-        CHT = '',
-        en = 'There are no more seats',
-        ja = '',
-        id = 'Tidak ada kursi lagi'
-    },
-    GuiText_Txt_BoardGame_18 = {
-        ID = 'GuiText_Txt_BoardGame_18',
-        zh = '这个座位已经有一个玩家了。',
-        CHT = '',
-        en = 'Someone is already sitting here',
-        ja = '',
-        id = 'Seseorang sudah duduk di sini'
-    },
-    Item_Name_4005 = {
-        ID = 'Item_Name_4005',
-        zh = '五子棋套装',
-        CHT = '',
-        en = 'Gomoku Set',
-        ja = '',
-        id = 'Gomoku Set'
-    },
-    Item_Des_4005 = {
-        ID = 'Item_Des_4005',
-        zh = '随时与你的伙伴下五子棋。',
-        CHT = '',
-        en = 'Play Gomoku with your friends any time',
-        ja = '',
-        id = 'Mainkan Gomoku dengan teman kamu kapan saja'
-    },
-    Item_Name_4006 = {
-        ID = 'Item_Name_4006',
-        zh = '围棋套装',
-        CHT = '',
-        en = 'Go Set',
-        ja = '',
-        id = 'Go Set'
-    },
-    Item_Des_4006 = {
-        ID = 'Item_Des_4006',
-        zh = '随时与你的伙伴下围棋。',
-        CHT = '',
-        en = 'Play Go with your friends any time',
-        ja = '',
-        id = 'Mainkan Go dengan teman kamu kapan saja'
-    },
-    Game_Name_1000 = {
-        ID = 'Game_Name_1000',
-        zh = '五子棋',
-        CHT = '',
-        en = 'Go',
-        ja = '',
-        id = 'Go'
-    },
-    Game_Des_1000 = {
-        ID = 'Game_Des_1000',
-        zh = '建议人数\n2人',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Game_Name_1001 = {
-        ID = 'Game_Name_1001',
-        zh = '扑克',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Game_Des_1001 = {
-        ID = 'Game_Des_1001',
-        zh = '建议人数\n2-4人',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Game_Name_1002 = {
-        ID = 'Game_Name_1002',
-        zh = '围棋',
-        CHT = '',
-        en = 'Gomoku',
-        ja = '',
-        id = 'Gomoku'
-    },
-    Game_Des_1002 = {
-        ID = 'Game_Des_1002',
-        zh = '建议人数\n2人',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GuiText_Txt_BoardGame_19 = {
-        ID = 'GuiText_Txt_BoardGame_19',
-        zh = '重置游戏',
-        CHT = '',
-        en = 'Reset game',
-        ja = '',
-        id = 'Atur ulang game'
-    },
-    GuiText_Txt_BoardGame_20 = {
-        ID = 'GuiText_Txt_BoardGame_20',
-        zh = '房间上锁',
-        CHT = '',
-        en = 'Lock room',
-        ja = '',
-        id = 'Kunci ruangan'
-    },
-    GuiText_Txt_BoardGame_21 = {
-        ID = 'GuiText_Txt_BoardGame_21',
-        zh = '房间解锁',
-        CHT = '',
-        en = 'Unlock room',
-        ja = '',
-        id = 'Buka kunci ruangan'
-    },
-    GuiText_Txt_BoardGame_22 = {
-        ID = 'GuiText_Txt_BoardGame_22',
-        zh = '观战',
-        CHT = '',
-        en = 'Spectate',
-        ja = '',
-        id = 'Tonton'
-    },
-    GuiText_Txt_BoardGame_23 = {
-        ID = 'GuiText_Txt_BoardGame_23',
-        zh = '加入游戏',
-        CHT = '',
-        en = 'Join game',
-        ja = '',
-        id = 'Bergabung dalam game'
-    },
-    GuiText_Txt_BoardGame_24 = {
-        ID = 'GuiText_Txt_BoardGame_24',
-        zh = '退出',
-        CHT = '',
-        en = 'Quit',
-        ja = '',
-        id = 'Keluar'
-    },
-    GuiText_Txt_BoardGame_25 = {
-        ID = 'GuiText_Txt_BoardGame_25',
-        zh = '取消',
-        CHT = '',
-        en = 'Cancel',
-        ja = '',
-        id = 'Batal'
-    },
-    GuiText_Txt_BoardGame_26 = {
-        ID = 'GuiText_Txt_BoardGame_26',
-        zh = '游戏中',
-        CHT = '',
-        en = 'In a game',
-        ja = '',
-        id = 'Dalam game'
-    },
-    GuiText_Txt_BoardGame_27 = {
-        ID = 'GuiText_Txt_BoardGame_27',
-        zh = '观战中',
-        CHT = '',
-        en = 'Spectating...',
-        ja = '',
-        id = 'Menonton...'
-    },
-    GuiText_Txt_SnailGui_17 = {
-        ID = 'GuiText_Txt_SnailGui_17',
-        zh = '你下注的太迟了，比赛已经开始了。',
-        CHT = '',
-        en = 'You bet too late, the game has already started.',
-        ja = '',
-        id = 'Anda bertaruh terlambat, permainan sudah dimulai.'
     }
 }
 
