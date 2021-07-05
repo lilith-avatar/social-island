@@ -7,6 +7,16 @@ local gui
 local snailBtn = {}
 local snailIndex = 0
 local arrowEffect = {}
+local emoText = {}
+
+-- 蜗牛心情
+local snailEmo = {
+    'Normal',
+    'Happy',
+    'Sad',
+    'Excited',
+    'Confused'
+}
 
 function GuiSnail:Init()
     ----print('[GuiSnail] Init()')
@@ -20,7 +30,23 @@ function GuiSnail:NodeRef()
     for i = 1, 4 do
         snailBtn[i] = gui.SnailPanel['Snail' .. i].SnailBtn
         arrowEffect[i] = world.MiniGames.Game_08_Snail.Snail['Snail' .. i].ArrowEffect
+		emoText[i] = world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel['Emo' .. i]
     end
+	
+	NotReplicate(function() 
+		world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel.TopText.Text =
+			LanguageUtil.GetText(Config.GuiText.SnailGui_10.Txt)
+		for i = 1, 4 do
+			world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel['SnailInfo' .. i].Text =
+				LanguageUtil.GetText(Config.GuiText.SnailGui_11.Txt)
+		end
+		for i = 1, 5 do
+			snailEmo[i] = LanguageUtil.GetText(Config.GuiText['SnailGui_' .. tostring(i + 11)].Txt)
+		end
+		for k, v in pairs(emoText) do
+			v.Text = snailEmo[math.random(5)]
+		end
+	end)
 end
 
 function GuiSnail:DataInit()
@@ -140,6 +166,12 @@ function GuiSnail:ShowNoticeInfoEventHandler(_eventId)
 	end
 end
 
+-- 更新心情面板
+function GuiSnail:UpdateSnailEmoEventHandler(_ui,_index)
+	NotReplicate(function() 
+		_ui.Text = snailEmo[_index]
+	end)
+end
 
 function GuiSnail:InteractCEventHandler(_id)
     if _id == 8 then

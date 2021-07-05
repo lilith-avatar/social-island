@@ -80,20 +80,12 @@ function Snail:NodeRef()
     end
     championPanel = world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel.ChampionPanel
     championEffect = world.MiniGames.Game_08_Snail.Track.ChampionEffect
-    world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel.TopText.Text =
-        LanguageUtil.GetText(Config.GuiText.SnailGui_10.Txt)
-    for i = 1, 4 do
-        world.MiniGames.Game_08_Snail.Track.Billboard.SurfaceGUI.Panel['SnailInfo' .. i].Text =
-            LanguageUtil.GetText(Config.GuiText.SnailGui_11.Txt)
-    end
 end
 
 --- 数据变量初始化
 function Snail:DataInit()
     dis = (endPoints[1].Position - startPoints[1].Position).Magnitude
-    for i = 1, 5 do
-        snailEmo[i] = LanguageUtil.GetText(Config.GuiText['SnailGui_' .. tostring(i + 11)].Txt)
-    end
+
     this:UpdateSnailEmo()
 end
 
@@ -390,7 +382,7 @@ end
 --- 更新蜗牛心情
 function Snail:UpdateSnailEmo()
     for k, v in pairs(emoText) do
-        v.Text = snailEmo[math.random(5)]
+		NetUtil.Broadcast('UpdateSnailEmoEvent', v, math.random(5))
     end
 end
 

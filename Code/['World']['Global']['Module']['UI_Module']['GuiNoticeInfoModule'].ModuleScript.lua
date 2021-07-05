@@ -225,9 +225,9 @@ end
 --- 插入玩家信息文字
 function GuiNoticeInfo:InsertInfoEventHandler(_text, _t,_isTop)
 	if  LanguageUtil.GetText(_text) then
-		local infoText = LanguageUtil.GetText(_text)
+		infoText = LanguageUtil.GetText(_text)
 	else
-		local infoText = _text
+		infoText = _text
 	end
 	
 	if GuiNoticeInfo:CheckInfoUnique(infoText,playerInfoList) then

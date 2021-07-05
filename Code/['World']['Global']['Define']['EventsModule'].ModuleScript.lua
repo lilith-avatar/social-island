@@ -203,7 +203,8 @@ Events.ClientEvents = {
     'PlayerInvincibleEvent',
     'PlayAnimationEvent',
     'PlayerSitEvent',
-    'PlayerGetForceEvent'
+    'PlayerGetForceEvent',
+	'UpdateSnailEmoEvent'
 }
 
 return Events

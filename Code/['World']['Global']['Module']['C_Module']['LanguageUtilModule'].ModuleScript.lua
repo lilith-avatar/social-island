@@ -19,20 +19,26 @@ end
 --- 根据ID返回当前游戏语言对应的文本信息，如果对应语言为空，默认返回'*'+中文内容
 -- @param @number _id LanguagePack.xls中的编号
 function LanguageUtil.GetText(_id)
-    assert(not string.isnilorempty(_id), '[LanguageUtil] 翻译ID为空，请检查策划表和LanguagePack')
+    --[[assert(not string.isnilorempty(_id), '[LanguageUtil] 翻译ID为空，请检查策划表和LanguagePack')
     assert(
         Config.LanguagePack[_id],
         string.format('[LanguageUtil] LanguagePack[%s] 不存在对应翻译ID，请检查策划表和LanguagePack', _id)
-    )
-    local text = Config.LanguagePack[_id][Localization:GetLanguage()]
-    if string.isnilorempty(text) then
-        text = '*' .. Config.LanguagePack[_id][Localization:GetLanguage()]
-    end
-    assert(
+    )]]
+    
+    --[[assert(
         not (valid and string.isnilorempty(text)),
         string.format('[LanguageUtil] LanguagePack[%s][%s] 不存在对应语言翻译内容，默认使用中文', _id, lang)
-    )
-    return text
+    )]]
+	if Config.LanguagePack[_id] then
+		local text = Config.LanguagePack[_id][Localization:GetLanguage()]
+		if string.isnilorempty(text) then
+			text = '*' .. Config.LanguagePack[_id][Localization:GetLanguage()]
+		end
+		return text
+	else
+		return nil
+	end
+	
 end
 
 local function utf8Len(str)
