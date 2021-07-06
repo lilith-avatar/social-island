@@ -456,6 +456,36 @@ local SocialAnimXls = {
         LoopMode = nil,
         speedScale = 1.0,
         Icon = 'Icon-SDance13'
+    },
+    [101] = {
+        ID = 101,
+        ShowName = 'PickUp',
+        anim = {'nil', 'PickUpLight', 'nil'},
+        Mode = 0,
+        dur = {0, 0, 0},
+        speed = 1.0,
+        layer = 0,
+        transIn = 0.2,
+        transOut = 0.2,
+        isInterrupt = true,
+        LoopMode = nil,
+        speedScale = 1.0,
+        Icon = ''
+    },
+    [102] = {
+        ID = 102,
+        ShowName = 'PushDoor',
+        anim = {'nil', 'PushDoor', 'nil'},
+        Mode = 0,
+        dur = {0, 0, 0},
+        speed = 1.0,
+        layer = 0,
+        transIn = 0.2,
+        transOut = 0.2,
+        isInterrupt = true,
+        LoopMode = nil,
+        speedScale = 1.0,
+        Icon = ''
     }
 }
 
