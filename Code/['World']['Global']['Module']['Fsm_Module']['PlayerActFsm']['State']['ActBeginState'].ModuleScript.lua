@@ -2,6 +2,10 @@ local ActBeginState = class('ActBeginState', PlayerActState)
 
 local isNext = false
 
+function ActBeginState:IsAbleMode()
+    return Config.PlayerActState[self.controller.curState.stateName].Mode == self.controller.actInfo.Mode
+end
+
 function ActBeginState:initialize(_controller, _stateName)
     PlayerActState.initialize(self, _controller, _stateName)
 end
@@ -10,7 +14,7 @@ function ActBeginState:InitData()
         'ToActBeginState',
         -1,
         function()
-            return self.controller.triggers['ActBeginState']
+            return self.controller.triggers['ActBeginState'] and self:IsAbleMode()
         end
     )
 end

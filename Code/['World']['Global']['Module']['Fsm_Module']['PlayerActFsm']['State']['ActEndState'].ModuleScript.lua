@@ -11,6 +11,8 @@ function ActEndState:AddActNextTransition(_dur, _func)
     local nextStateName = Config.PlayerActMode[self.controller.actAnimMode].ActNextState
     if nextStateName ~= '' then
         self:AddTransition('To' .. nextStateName, self.controller.states[nextStateName], _dur, _func)
+    else
+        self:AddTransition('ToIdleState', self.controller.states['IdleState'], _dur, _func)
     end
 end
 

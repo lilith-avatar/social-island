@@ -68,6 +68,7 @@ end
 
 ---获取动作信息
 function PlayerActController:GetActInfo(_data)
+    self.actInfo = {}
     for k, v in pairs(_data) do
         self.actInfo[k] = v
     end
