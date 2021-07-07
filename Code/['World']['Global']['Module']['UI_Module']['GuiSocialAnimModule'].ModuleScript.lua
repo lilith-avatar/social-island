@@ -77,6 +77,11 @@ function GuiSocialAnim:PlayActAnim(_data)
     FsmMgr.playerActCtrl:CallTrigger('ActBeginState')
 end
 
+function GuiSocialAnim:PlayActAnimEventHandler(_id)
+    FsmMgr.playerActCtrl:GetActInfo(Config.SocialAnim[_id])
+    FsmMgr.playerActCtrl:CallTrigger('ActBeginState')
+end
+
 function GuiSocialAnim:ActiveChildActBtn()
     if SocialAnimationGUI.ActiveSelf then
         actAnimTable = {}

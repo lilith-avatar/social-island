@@ -227,7 +227,7 @@ function ScenesInteract:InstanceInteractOBJ(_id, _pos)
             useCountMax = config.UseCount,
             resetTime = config.ResetTime,
             resetCD = 0,
-            anitName = config.AnitName,
+            actID = config.ActID,
             interactAEID = config.InteractAEID
         }
         world:CreateObject('IntValueObject', 'InteractID', temp.obj)
@@ -377,9 +377,8 @@ do
             for k2, v2 in pairs(v1.aroundPlayers) do
                 if v2 == _player.UserId then
                     if v1.useCount > 0 then
-                        if v1.anitName then
-                            --_player.Avatar:PlayAnimation(v1.anitName, 2, 1, 0.1, true, false, 1)
-                            NetUtil.Fire_C('PlayAnimationEvent', _player, v1.anitName, 0, 1, 0.2, 0.2, true, false, 1)
+                        if v1.actID then
+                            NetUtil.Fire_C('PlayActAnimEvent', _player, v1.actID)
                         end
                         if v1.interactAEID then
                             SoundUtil.Play3DSE(_player.Position, v1.interactAEID)
@@ -404,7 +403,7 @@ do
                     else
                         v1.obj:SetActive(false)
                     end
-                    NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
+                    --NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                     return
                 end
             end
@@ -478,7 +477,7 @@ do
                 NetUtil.Fire_C('ChangeMiniGameUIEvent', _player)
                 v.obj.UsingPlayerUid.Value = ''
                 NetUtil.Fire_C('PlayerSitEvent', _player)
-                --NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
+            --NetUtil.Fire_C('FsmTriggerEvent', _player, 'JumpBeginState')
             end
         end
     end

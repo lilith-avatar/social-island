@@ -206,7 +206,8 @@ Events.ClientEvents = {
     'PlayerGetForceEvent',
 	'UpdateSnailEmoEvent',
 	'ShowTableGameNameEvent',
-	'GetFoodRewardEvent'
+	'GetFoodRewardEvent',
+    'PlayActAnimEvent'
 }
 
 return Events
