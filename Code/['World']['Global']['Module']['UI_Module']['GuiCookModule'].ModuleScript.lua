@@ -163,7 +163,7 @@ function GuiCook:EventBind()
     )
     this.detailEatBtn.OnClick:Connect(
         function()
-            local cookerName = world:GetPlayerByUserId(this.cookUserId)
+            local cookerName = world:GetPlayerByUserId(this.cookUserId).Name
             CloudLogUtil.UploadLog(
                 'cook',
                 'cook_share_eat',
@@ -172,7 +172,7 @@ function GuiCook:EventBind()
                     customer_uid = localPlayer.UserId,
                     cooker_uid = this.cookUserId,
                     customer_name = localPlayer.Name,
-                    cooker_name = this.cookerName
+                    cooker_name = cookerName
                 }
             )
             this:EatFood()
@@ -181,7 +181,7 @@ function GuiCook:EventBind()
     )
     this.detailReward.OnClick:Connect(
         function()
-            local cookerName = world:GetPlayerByUserId(this.cookUserId)
+            local cookerName = world:GetPlayerByUserId(this.cookUserId).Name
             CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_yes')
             CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_payGui_show')
             CloudLogUtil.UploadLog(
@@ -280,7 +280,7 @@ function GuiCook:InteractCEventHandler(_gameId)
             this:ShowUI()
         end
     elseif _gameId == 27 then
-        local cookerName = world:GetPlayerByUserId(this.cookUserId)
+        local cookerName = world:GetPlayerByUserId(this.cookUserId).Name
         CloudLogUtil.UploadLog(
             'cook',
             'cook_meal_enter',
@@ -310,7 +310,7 @@ end
 function GuiCook:PurchaseCEventHandler(_purchaseCoin, _interactID)
     if _interactID == 27 then
         this:HideGui()
-        local cookerName = world:GetPlayerByUserId(this.cookUserId)
+        local cookerName = world:GetPlayerByUserId(this.cookUserId).Name
         NetUtil.Fire_C(
             'InsertInfoEvent',
             localPlayer,
@@ -348,7 +348,7 @@ function GuiCook:LeaveInteractCEventHandler(_gameId)
     elseif _gameId == 27 then
         CloudLogUtil.UploadLog('pannel_actions', 'window_cookGui_mealGui_close')
         if this.cookUserId then
-            local cookerName = world:GetPlayerByUserId(this.cookUserId)
+            local cookerName = world:GetPlayerByUserId(this.cookUserId).Name
         end
         CloudLogUtil.UploadLog(
             'cook',
