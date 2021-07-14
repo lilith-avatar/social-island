@@ -161,7 +161,7 @@ function GuiSnail:ShowNoticeInfoEventHandler(_eventId)
             3,
             true
         )
-		localPlayer.Local.SpecialTopUI.PurchaseGUI.PurchasePanel:SetActive(false)
+		localPlayer.Local.SpecialTopUI.PurchaseGUI:SetActive(false)
         NetUtil.Fire_C('ChangeMiniGameUIEvent', localPlayer)
 	end
 end
