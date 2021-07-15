@@ -136,6 +136,10 @@ function GuiNoticeInfo:RollInfoUI(dt)
 						NetUtil.Fire_C('InsertInfoEvent', localPlayer, LanguageUtil.GetText(Config.GuiText.BoardGame_7.Txt), 3, true)
 						return
 					end
+					for k, v in pairs(Config.Interact) do
+						NetUtil.Fire_S('LeaveInteractSEvent', localPlayer, k)
+						NetUtil.Fire_C('LeaveInteractCEvent', localPlayer, k)
+					end
                     this:PopUpNotice(tmpUI, false)
 					SoundUtil.Play2DSE(localPlayer.UserId, 108)
                     tempData.t = 0.5
