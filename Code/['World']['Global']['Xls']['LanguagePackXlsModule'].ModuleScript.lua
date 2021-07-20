@@ -13,7 +13,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Veggie Pies',
         ja = '',
-        id = 'Pai Sayuran'
+        id = 'Pai Sayuran',
+        es = 'Tortas Vegetarianas'
     },
     CookMenu_Name_10 = {
         ID = 'CookMenu_Name_10',
@@ -21,7 +22,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Fried Dumplings',
         ja = '',
-        id = 'Pangsit Goreng'
+        id = 'Pangsit Goreng',
+        es = 'Dumplings Fritos'
     },
     CookMenu_Name_11 = {
         ID = 'CookMenu_Name_11',
@@ -29,7 +31,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Juice',
         ja = '',
-        id = 'Jus Campur'
+        id = 'Jus Campur',
+        es = 'Suco de Várias Frutas'
     },
     CookMenu_Name_12 = {
         ID = 'CookMenu_Name_12',
@@ -37,7 +40,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Chicken Skewers',
         ja = '',
-        id = 'Tusuk Sate Ayam'
+        id = 'Tusuk Sate Ayam',
+        es = 'Espetinhos de Frango'
     },
     CookMenu_Name_13 = {
         ID = 'CookMenu_Name_13',
@@ -45,7 +49,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Fried Pork Chops',
         ja = '',
-        id = 'Potongan Daging Babi Goreng'
+        id = 'Potongan Daging Babi Goreng',
+        es = 'Costeleta de Porco Frita'
     },
     CookMenu_Name_14 = {
         ID = 'CookMenu_Name_14',
@@ -53,7 +58,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Blanched Venison',
         ja = '',
-        id = 'Daging Rusa Rebus'
+        id = 'Daging Rusa Rebus',
+        es = 'Carne de Veado Escaldada'
     },
     CookMenu_Name_15 = {
         ID = 'CookMenu_Name_15',
@@ -61,7 +67,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Strange-tasting Dish',
         ja = '',
-        id = 'Hidangan yang Rasanya Aneh'
+        id = 'Hidangan yang Rasanya Aneh',
+        es = 'Prato com Gosto Estranho'
     },
     CookMenu_Name_16 = {
         ID = 'CookMenu_Name_16',
@@ -69,7 +76,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Carrot and Meat Soup',
         ja = '',
-        id = 'Sup Wortel dan Daging'
+        id = 'Sup Wortel dan Daging',
+        es = 'Sopa de Cenoura e Carne'
     },
     CookMenu_Name_17 = {
         ID = 'CookMenu_Name_17',
@@ -77,7 +85,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Carrot and Meat Soup',
         ja = '',
-        id = 'Sup Wortel dan Daging'
+        id = 'Sup Wortel dan Daging',
+        es = 'Sopa de Cenoura e Carne'
     },
     CookMenu_Name_18 = {
         ID = 'CookMenu_Name_18',
@@ -85,7 +94,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Carrot and Meat Soup',
         ja = '',
-        id = 'Sup Wortel dan Daging'
+        id = 'Sup Wortel dan Daging',
+        es = 'Sopa de Cenoura e Carne'
     },
     CookMenu_Name_19 = {
         ID = 'CookMenu_Name_19',
@@ -93,7 +103,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Carrot and Meat Soup',
         ja = '',
-        id = 'Sup Wortel dan Daging'
+        id = 'Sup Wortel dan Daging',
+        es = 'Sopa de Cenoura e Carne'
     },
     CookMenu_Name_2 = {
         ID = 'CookMenu_Name_2',
@@ -101,7 +112,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Special Pies',
         ja = '',
-        id = 'Pai Spesial'
+        id = 'Pai Spesial',
+        es = 'Tortas Especiais'
     },
     CookMenu_Name_20 = {
         ID = 'CookMenu_Name_20',
@@ -109,7 +121,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Special Pies',
         ja = '',
-        id = 'Pai Spesial'
+        id = 'Pai Spesial',
+        es = 'Tortas Especiais'
     },
     CookMenu_Name_21 = {
         ID = 'CookMenu_Name_21',
@@ -117,7 +130,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Special Pies',
         ja = '',
-        id = 'Pai Spesial'
+        id = 'Pai Spesial',
+        es = 'Tortas Especiais'
     },
     CookMenu_Name_22 = {
         ID = 'CookMenu_Name_22',
@@ -125,7 +139,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Special Pies',
         ja = '',
-        id = 'Pai Spesial'
+        id = 'Pai Spesial',
+        es = 'Tortas Especiais'
     },
     CookMenu_Name_23 = {
         ID = 'CookMenu_Name_23',
@@ -133,7 +148,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Special Pies',
         ja = '',
-        id = 'Pai Spesial'
+        id = 'Pai Spesial',
+        es = 'Tortas Especiais'
     },
     CookMenu_Name_24 = {
         ID = 'CookMenu_Name_24',
@@ -141,7 +157,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Pumpkin Cake',
         ja = '',
-        id = 'Kue Labu'
+        id = 'Kue Labu',
+        es = 'Bolo de Abóbora'
     },
     CookMenu_Name_25 = {
         ID = 'CookMenu_Name_25',
@@ -149,7 +166,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Meat Soup',
         ja = '',
-        id = 'Sup Daging Campur'
+        id = 'Sup Daging Campur',
+        es = 'Sopa de Carnes'
     },
     CookMenu_Name_26 = {
         ID = 'CookMenu_Name_26',
@@ -157,7 +175,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Meat Soup',
         ja = '',
-        id = 'Sup Daging Campur'
+        id = 'Sup Daging Campur',
+        es = 'Sopa de Carnes'
     },
     CookMenu_Name_27 = {
         ID = 'CookMenu_Name_27',
@@ -165,7 +184,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Meat Soup',
         ja = '',
-        id = 'Sup Daging Campur'
+        id = 'Sup Daging Campur',
+        es = 'Sopa de Carnes'
     },
     CookMenu_Name_28 = {
         ID = 'CookMenu_Name_28',
@@ -173,7 +193,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Meat Soup',
         ja = '',
-        id = 'Sup Daging Campur'
+        id = 'Sup Daging Campur',
+        es = 'Sopa de Carnes'
     },
     CookMenu_Name_29 = {
         ID = 'CookMenu_Name_29',
@@ -181,7 +202,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Meat Soup',
         ja = '',
-        id = 'Sup Daging Campur'
+        id = 'Sup Daging Campur',
+        es = 'Sopa de Carnes'
     },
     CookMenu_Name_3 = {
         ID = 'CookMenu_Name_3',
@@ -189,7 +211,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Pumpkin Cake',
         ja = '',
-        id = 'Kue Labu'
+        id = 'Kue Labu',
+        es = 'Bolo de Abóbora'
     },
     CookMenu_Name_30 = {
         ID = 'CookMenu_Name_30',
@@ -197,7 +220,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Veggie Salad',
         ja = '',
-        id = 'Veggie Salad'
+        id = 'Veggie Salad',
+        es = 'Salada Vegetariana'
     },
     CookMenu_Name_4 = {
         ID = 'CookMenu_Name_4',
@@ -205,7 +229,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Beast Stew',
         ja = '',
-        id = 'Daging Rebus'
+        id = 'Daging Rebus',
+        es = 'Ensopado de Fera'
     },
     CookMenu_Name_5 = {
         ID = 'CookMenu_Name_5',
@@ -213,7 +238,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Unnameable Dish',
         ja = '',
-        id = 'Hidangan Tanpa Nama'
+        id = 'Hidangan Tanpa Nama',
+        es = 'Prato Indizível'
     },
     CookMenu_Name_6 = {
         ID = 'CookMenu_Name_6',
@@ -221,7 +247,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mixed Meat Soup',
         ja = '',
-        id = 'Sup Daging Campur'
+        id = 'Sup Daging Campur',
+        es = 'Sopa de Carnes'
     },
     CookMenu_Name_7 = {
         ID = 'CookMenu_Name_7',
@@ -229,7 +256,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Boiled Bird Meat',
         ja = '',
-        id = 'Daging Burung Rebus'
+        id = 'Daging Burung Rebus',
+        es = 'Ensopado de Carne de Ave'
     },
     CookMenu_Name_8 = {
         ID = 'CookMenu_Name_8',
@@ -237,7 +265,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Veggie Salad',
         ja = '',
-        id = 'Veggie Salad'
+        id = 'Veggie Salad',
+        es = 'Salada Vegetariana'
     },
     CookMenu_Name_9 = {
         ID = 'CookMenu_Name_9',
@@ -245,31 +274,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Curry Venison',
         ja = '',
-        id = 'Kari Daging Rusa'
-    },
-    Game_Des_1000 = {
-        ID = 'Game_Des_1000',
-        zh = '建议人数\n2人',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Game_Des_1001 = {
-        ID = 'Game_Des_1001',
-        zh = '建议人数\n2-4人',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    Game_Des_1002 = {
-        ID = 'Game_Des_1002',
-        zh = '建议人数\n2人',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
+        id = 'Kari Daging Rusa',
+        es = 'Carne de Veado ao Curry'
     },
     Game_Name_1000 = {
         ID = 'Game_Name_1000',
@@ -277,7 +283,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Gomoku',
         ja = '',
-        id = 'Gomoku'
+        id = 'Gomoku',
+        es = 'Gomoku'
     },
     Game_Name_1001 = {
         ID = 'Game_Name_1001',
@@ -285,7 +292,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     Game_Name_1002 = {
         ID = 'Game_Name_1002',
@@ -293,311 +301,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Go',
         ja = '',
-        id = 'Go'
-    },
-    GameInfo_GameName_1 = {
-        ID = 'GameInfo_GameName_1',
-        zh = '打猎',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_10 = {
-        ID = 'GameInfo_GameName_10',
-        zh = '摇摇椅',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_11 = {
-        ID = 'GameInfo_GameName_11',
-        zh = '斗怪物',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_2 = {
-        ID = 'GameInfo_GameName_2',
-        zh = '打地鼠',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_3 = {
-        ID = 'GameInfo_GameName_3',
-        zh = '迷宫',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_4 = {
-        ID = 'GameInfo_GameName_4',
-        zh = '人间大炮',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_5 = {
-        ID = 'GameInfo_GameName_5',
-        zh = '青蛙过河',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_6 = {
-        ID = 'GameInfo_GameName_6',
-        zh = '热气球',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_7 = {
-        ID = 'GameInfo_GameName_7',
-        zh = '种花',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_8 = {
-        ID = 'GameInfo_GameName_8',
-        zh = '赛蜗牛',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GameInfo_GameName_9 = {
-        ID = 'GameInfo_GameName_9',
-        zh = '竞速',
-        CHT = '',
-        en = '',
-        ja = '',
-        id = ''
-    },
-    GuiText_Txt_1 = {
-        ID = 'GuiText_Txt_1',
-        zh = '新的一天开始了',
-        CHT = '',
-        en = 'A new day has begun',
-        ja = '',
-        id = 'Hari baru telah dimulai'
-    },
-    GuiText_Txt_10 = {
-        ID = 'GuiText_Txt_10',
-        zh = '名，为你赢得了',
-        CHT = '',
-        en = ', and you won',
-        ja = '',
-        id = ', dan kamu memenangkan'
-    },
-    GuiText_Txt_11 = {
-        ID = 'GuiText_Txt_11',
-        zh = '枚金币。',
-        CHT = '',
-        en = 'coins.',
-        ja = '',
-        id = 'koin.'
-    },
-    GuiText_Txt_12 = {
-        ID = 'GuiText_Txt_12',
-        zh = '你投注的蜗牛获得了第',
-        CHT = '',
-        en = 'The snail you betted on obtained a rank of ',
-        ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat'
-    },
-    GuiText_Txt_13 = {
-        ID = 'GuiText_Txt_13',
-        zh = '名，你输掉了你的金币。',
-        CHT = '',
-        en = ', and you lost your coins.',
-        ja = '',
-        id = ', dan kamu kehilangan koin.'
-    },
-    GuiText_Txt_14 = {
-        ID = 'GuiText_Txt_14',
-        zh = '请选择投注数量',
-        CHT = '',
-        en = 'Place your bet.',
-        ja = '',
-        id = 'Pasang taruhanmu.'
-    },
-    GuiText_Txt_15 = {
-        ID = 'GuiText_Txt_15',
-        zh = '你没钱啦',
-        CHT = '',
-        en = 'You don’t have enough coins.',
-        ja = '',
-        id = 'Koinmu tidak cukup.'
-    },
-    GuiText_Txt_16 = {
-        ID = 'GuiText_Txt_16',
-        zh = '你成功给',
-        CHT = '',
-        en = 'You successfully placed a bet on Snail number ',
-        ja = '',
-        id = 'Kamu berhasil memasang taruhan pada Siput nomor'
-    },
-    GuiText_Txt_17 = {
-        ID = 'GuiText_Txt_17',
-        zh = '号蜗牛投注',
-        CHT = '',
-        en = '.',
-        ja = '',
-        id = '.'
-    },
-    GuiText_Txt_18 = {
-        ID = 'GuiText_Txt_18',
-        zh = '选择一个颜色的蜗牛',
-        CHT = '',
-        en = 'Bet on a snail by choosing its color.',
-        ja = '',
-        id = 'Pasang taruhan dengan memilih warna siput.'
-    },
-    GuiText_Txt_19 = {
-        ID = 'GuiText_Txt_19',
-        zh = '你的陷阱困住了一只动物',
-        CHT = '',
-        en = 'Your trap caught an animal.',
-        ja = '',
-        id = 'Ada hewan yang terjebak di perangkapmu.'
-    },
-    GuiText_Txt_2 = {
-        ID = 'GuiText_Txt_2',
-        zh = '傍晚了，回去营地吧',
-        CHT = '',
-        en = 'It’s dusk, time to get back to the campground.',
-        ja = '',
-        id = 'Sudah petang, waktunya kembali ke kamp.'
-    },
-    GuiText_Txt_20 = {
-        ID = 'GuiText_Txt_20',
-        zh = '你的陷阱被动物挣脱了',
-        CHT = '',
-        en = 'An animal broke free from your trap.',
-        ja = '',
-        id = 'Ada hewan yang lolos dari perangkapmu.'
-    },
-    GuiText_Txt_21 = {
-        ID = 'GuiText_Txt_21',
-        zh = '动物距离你太远了',
-        CHT = '',
-        en = 'You’re too close to the animal.',
-        ja = '',
-        id = 'Jarakmu dengan hewan terlalu dekat.'
-    },
-    GuiText_Txt_22 = {
-        ID = 'GuiText_Txt_22',
-        zh = '恭喜，你抓到了这只动物。',
-        CHT = '',
-        en = 'Congratulations, you’ve caught this animal.',
-        ja = '',
-        id = 'Selamat, kamu berhasil menangkap hewan ini.'
-    },
-    GuiText_Txt_23 = {
-        ID = 'GuiText_Txt_23',
-        zh = '尝试用陷阱把动物困住再捕捉吧',
-        CHT = '',
-        en = 'Try to get the animal stuck with the trap first.',
-        ja = '',
-        id = 'Cobalah jebak hewannya dengan perangkap dulu.'
-    },
-    GuiText_Txt_24 = {
-        ID = 'GuiText_Txt_24',
-        zh = '你抓到了一个宠物，给他起个名字吧！',
-        CHT = '',
-        en = 'You’ve caught a pet! Give your pet a name!',
-        ja = '',
-        id = 'Kamu berhasil mendapat piaraan! Beri dia nama!'
-    },
-    GuiText_Txt_25 = {
-        ID = 'GuiText_Txt_25',
-        zh = '你需要向石像内塞入',
-        CHT = '',
-        en = 'You need to put ',
-        ja = '',
-        id = 'Kamu harus menaruh '
-    },
-    GuiText_Txt_26 = {
-        ID = 'GuiText_Txt_26',
-        zh = '枚硬币来祈愿。',
-        CHT = '',
-        en = ' coins into the stone golem to make a wish.',
-        ja = '',
-        id = ' koin ke dalam golem batu untuk membuat permohonan.'
-    },
-    GuiText_Txt_27 = {
-        ID = 'GuiText_Txt_27',
-        zh = '是否购买',
-        CHT = '',
-        en = 'Do you want to purchase %s ?',
-        ja = '',
-        id = 'Kamu ingin membeli %s ?'
-    },
-    GuiText_Txt_3 = {
-        ID = 'GuiText_Txt_3',
-        zh = '天黑了，准备狂欢吧！',
-        CHT = '',
-        en = 'It’s nighttime, time to party!',
-        ja = '',
-        id = 'Sudah malam, waktunya berpesta!'
-    },
-    GuiText_Txt_4 = {
-        ID = 'GuiText_Txt_4',
-        zh = '神秘的UFO出现了！',
-        CHT = '',
-        en = 'The mysterious UFO has appeared!',
-        ja = '',
-        id = 'UFO misterius telah muncul!'
-    },
-    GuiText_Txt_5 = {
-        ID = 'GuiText_Txt_5',
-        zh = '天空中出现了神秘的迷宫！',
-        CHT = '',
-        en = 'A mysterious maze has appeared in the sky!',
-        ja = '',
-        id = 'Labirin misterius muncul di langit!'
-    },
-    GuiText_Txt_6 = {
-        ID = 'GuiText_Txt_6',
-        zh = '新一轮的蜗牛赛跑10秒钟后就要开始了，快来下注吧！',
-        CHT = '',
-        en = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
-        ja = '',
-        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
-    },
-    GuiText_Txt_7 = {
-        ID = 'GuiText_Txt_7',
-        zh = '蜗牛赛跑开始了！',
-        CHT = '',
-        en = 'The snail race has begun!',
-        ja = '',
-        id = 'Balapan siput telah dimulai!'
-    },
-    GuiText_Txt_8 = {
-        ID = 'GuiText_Txt_8',
-        zh = '你不能多次投注或在比赛进行中投注',
-        CHT = '',
-        en = 'You cannot place multiple bets or place a bet while a race is underway.',
-        ja = '',
-        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
-    },
-    GuiText_Txt_9 = {
-        ID = 'GuiText_Txt_9',
-        zh = '你投注的蜗牛获得了第',
-        CHT = '',
-        en = 'The snail you betted on obtained a rank of',
-        ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat'
+        id = 'Go',
+        es = 'Go'
     },
     GuiText_Txt_BagGui_1 = {
         ID = 'GuiText_Txt_BagGui_1',
@@ -605,7 +310,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Use',
         ja = '',
-        id = 'Gunakan'
+        id = 'Gunakan',
+        es = 'Usar'
     },
     GuiText_Txt_BoardGame_1 = {
         ID = 'GuiText_Txt_BoardGame_1',
@@ -613,7 +319,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You can’t use this item here',
         ja = '',
-        id = 'Kamu tidak dapat menggunakan item ini di sini'
+        id = 'Kamu tidak dapat menggunakan item ini di sini',
+        es = 'Você não pode usar este item aqui'
     },
     GuiText_Txt_BoardGame_10 = {
         ID = 'GuiText_Txt_BoardGame_10',
@@ -621,7 +328,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The game already has a maximum number of players',
         ja = '',
-        id = 'Game ini sudah mencakapi jumlah pemain maksimum'
+        id = 'Game ini sudah mencakapi jumlah pemain maksimum',
+        es = 'Número máximo de jogadores do jogo já alcançado'
     },
     GuiText_Txt_BoardGame_11 = {
         ID = 'GuiText_Txt_BoardGame_11',
@@ -629,7 +337,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Only the room host can lock or unlock the room',
         ja = '',
-        id = 'Hanya tuan rumah ruangan yang bisa mengunci atau membuka kunci ruangan'
+        id = 'Hanya tuan rumah ruangan yang bisa mengunci atau membuka kunci ruangan',
+        es = 'Somente o anfitrião da sala pode bloqueá-la ou desbloqueá-la'
     },
     GuiText_Txt_BoardGame_12 = {
         ID = 'GuiText_Txt_BoardGame_12',
@@ -637,7 +346,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The room is already locked',
         ja = '',
-        id = 'Ruangan sudah terkunci'
+        id = 'Ruangan sudah terkunci',
+        es = 'A sala já está bloqueada'
     },
     GuiText_Txt_BoardGame_13 = {
         ID = 'GuiText_Txt_BoardGame_13',
@@ -645,7 +355,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The room has been unlocked.',
         ja = '',
-        id = 'Kamar telah dibuka kuncinya.'
+        id = 'Kamar telah dibuka kuncinya.',
+        es = 'A sala já está desbloqueada'
     },
     GuiText_Txt_BoardGame_14 = {
         ID = 'GuiText_Txt_BoardGame_14',
@@ -653,7 +364,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You already left this table',
         ja = '',
-        id = 'Kamu sudah meninggalkan meja ini'
+        id = 'Kamu sudah meninggalkan meja ini',
+        es = 'Você já saiu desta mesa'
     },
     GuiText_Txt_BoardGame_15 = {
         ID = 'GuiText_Txt_BoardGame_15',
@@ -661,7 +373,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You are already spectating',
         ja = '',
-        id = 'Kamu sudah menonton'
+        id = 'Kamu sudah menonton',
+        es = 'Você já está assistindo'
     },
     GuiText_Txt_BoardGame_16 = {
         ID = 'GuiText_Txt_BoardGame_16',
@@ -669,7 +382,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You already joined the game',
         ja = '',
-        id = 'Kamu sudah bergabung dalam game'
+        id = 'Kamu sudah bergabung dalam game',
+        es = 'Você já entrou no jogo'
     },
     GuiText_Txt_BoardGame_17 = {
         ID = 'GuiText_Txt_BoardGame_17',
@@ -677,7 +391,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'There are no more seats',
         ja = '',
-        id = 'Tidak ada kursi lagi'
+        id = 'Tidak ada kursi lagi',
+        es = 'Não há mais assentos'
     },
     GuiText_Txt_BoardGame_18 = {
         ID = 'GuiText_Txt_BoardGame_18',
@@ -685,7 +400,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'There are no more seats',
         ja = '',
-        id = 'Tidak ada kursi lagi'
+        id = 'Tidak ada kursi lagi',
+        es = 'Alguém já está sentado aqui'
     },
     GuiText_Txt_BoardGame_19 = {
         ID = 'GuiText_Txt_BoardGame_19',
@@ -693,7 +409,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Reset game',
         ja = '',
-        id = 'Atur ulang game'
+        id = 'Atur ulang game',
+        es = 'Redefinir jogo'
     },
     GuiText_Txt_BoardGame_2 = {
         ID = 'GuiText_Txt_BoardGame_2',
@@ -701,7 +418,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You can’t use this item while you are moving',
         ja = '',
-        id = 'Kamu tidak dapat menggunakan item ini saat bergerak'
+        id = 'Kamu tidak dapat menggunakan item ini saat bergerak',
+        es = 'Você não pode usar este item enquanto está se movendo'
     },
     GuiText_Txt_BoardGame_20 = {
         ID = 'GuiText_Txt_BoardGame_20',
@@ -709,7 +427,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lock room',
         ja = '',
-        id = 'Kunci ruangan'
+        id = 'Kunci ruangan',
+        es = 'Bloquear sala'
     },
     GuiText_Txt_BoardGame_21 = {
         ID = 'GuiText_Txt_BoardGame_21',
@@ -717,7 +436,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Unlock room',
         ja = '',
-        id = 'Buka kunci ruangan'
+        id = 'Buka kunci ruangan',
+        es = 'Desbloquear sala'
     },
     GuiText_Txt_BoardGame_22 = {
         ID = 'GuiText_Txt_BoardGame_22',
@@ -725,7 +445,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Spectate',
         ja = '',
-        id = 'Tonton'
+        id = 'Tonton',
+        es = 'Assistir'
     },
     GuiText_Txt_BoardGame_23 = {
         ID = 'GuiText_Txt_BoardGame_23',
@@ -733,7 +454,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Join game',
         ja = '',
-        id = 'Bergabung dalam game'
+        id = 'Bergabung dalam game',
+        es = 'Entrar no jogo'
     },
     GuiText_Txt_BoardGame_24 = {
         ID = 'GuiText_Txt_BoardGame_24',
@@ -741,7 +463,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Quit',
         ja = '',
-        id = 'Keluar'
+        id = 'Keluar',
+        es = 'Sair'
     },
     GuiText_Txt_BoardGame_25 = {
         ID = 'GuiText_Txt_BoardGame_25',
@@ -749,7 +472,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Cancel',
         ja = '',
-        id = 'Batal'
+        id = 'Batal',
+        es = 'Cancelar'
     },
     GuiText_Txt_BoardGame_26 = {
         ID = 'GuiText_Txt_BoardGame_26',
@@ -757,7 +481,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'In a game',
         ja = '',
-        id = 'Dalam game'
+        id = 'Dalam game',
+        es = 'Em um jogo'
     },
     GuiText_Txt_BoardGame_27 = {
         ID = 'GuiText_Txt_BoardGame_27',
@@ -765,7 +490,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Spectating...',
         ja = '',
-        id = 'Menonton...'
+        id = 'Menonton...',
+        es = 'Assistindo...'
     },
     GuiText_Txt_BoardGame_3 = {
         ID = 'GuiText_Txt_BoardGame_3',
@@ -773,7 +499,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You are too close to the other tables',
         ja = '',
-        id = 'Kamu terlalu dekat dengan meja lainnya'
+        id = 'Kamu terlalu dekat dengan meja lainnya',
+        es = 'Você está perto demais das outras mesas'
     },
     GuiText_Txt_BoardGame_4 = {
         ID = 'GuiText_Txt_BoardGame_4',
@@ -781,7 +508,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Ready',
         ja = '',
-        id = 'Siap'
+        id = 'Siap',
+        es = 'Pronto'
     },
     GuiText_Txt_BoardGame_5 = {
         ID = 'GuiText_Txt_BoardGame_5',
@@ -789,7 +517,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This table is full',
         ja = '',
-        id = 'Meja ini penuh'
+        id = 'Meja ini penuh',
+        es = 'Esta mesa está cheia'
     },
     GuiText_Txt_BoardGame_6 = {
         ID = 'GuiText_Txt_BoardGame_6',
@@ -797,7 +526,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You are already seated at a table',
         ja = '',
-        id = 'Kamu sudah duduk di meja'
+        id = 'Kamu sudah duduk di meja',
+        es = 'Você já se sentou a uma mesa'
     },
     GuiText_Txt_BoardGame_7 = {
         ID = 'GuiText_Txt_BoardGame_7',
@@ -805,7 +535,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You need to leave this table first',
         ja = '',
-        id = 'Kamu harus meninggalkan meja ini terlebih dahulu'
+        id = 'Kamu harus meninggalkan meja ini terlebih dahulu',
+        es = 'Primeiro, você precisa sair desta mesa'
     },
     GuiText_Txt_BoardGame_8 = {
         ID = 'GuiText_Txt_BoardGame_8',
@@ -813,7 +544,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Only the room host can approve players to enter',
         ja = '',
-        id = 'Hanya tuan rumah ruangan yang bisa menyetujui pemain untuk masuk'
+        id = 'Hanya tuan rumah ruangan yang bisa menyetujui pemain untuk masuk',
+        es = 'Somente o anfitrião da sala pode aprovar a entrada de jogadores'
     },
     GuiText_Txt_BoardGame_9 = {
         ID = 'GuiText_Txt_BoardGame_9',
@@ -821,7 +553,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You are already in a game',
         ja = '',
-        id = 'Kamu sudah dalam game'
+        id = 'Kamu sudah dalam game',
+        es = 'Você já está em um jogo'
     },
     GuiText_Txt_CookGui_1 = {
         ID = 'GuiText_Txt_CookGui_1',
@@ -829,7 +562,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Let’s Cook',
         ja = '',
-        id = 'Ayo Memasak'
+        id = 'Ayo Memasak',
+        es = 'Vamos cozinhar'
     },
     GuiText_Txt_CookGui_10 = {
         ID = 'GuiText_Txt_CookGui_10',
@@ -837,7 +571,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Your {meal} received a tip of {coin} coins from {customer}.',
         ja = '',
-        id = '{Meal} Anda menerima tip {coin} koin dari {customer}.'
+        id = '{Meal} Anda menerima tip {coin} koin dari {customer}.',
+        es = 'Sua {meal} recebeu uma gorjeta de {coin} moedas de {customer}.'
     },
     GuiText_Txt_CookGui_11 = {
         ID = 'GuiText_Txt_CookGui_11',
@@ -845,7 +580,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Pick One',
         ja = '',
-        id = 'Pilih satu'
+        id = 'Pilih satu',
+        es = 'Escolha um'
     },
     GuiText_Txt_CookGui_12 = {
         ID = 'GuiText_Txt_CookGui_12',
@@ -853,7 +589,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Cook',
         ja = '',
-        id = 'Memasak'
+        id = 'Memasak',
+        es = 'Cozinheiro'
     },
     GuiText_Txt_CookGui_2 = {
         ID = 'GuiText_Txt_CookGui_2',
@@ -861,7 +598,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Ingredients',
         ja = '',
-        id = 'Bahan'
+        id = 'Bahan',
+        es = 'Ingredientes'
     },
     GuiText_Txt_CookGui_3 = {
         ID = 'GuiText_Txt_CookGui_3',
@@ -869,7 +607,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You made %s!',
         ja = '',
-        id = 'Kamu membuat %s!'
+        id = 'Kamu membuat %s!',
+        es = 'Você fez %s!'
     },
     GuiText_Txt_CookGui_4 = {
         ID = 'GuiText_Txt_CookGui_4',
@@ -877,7 +616,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Eat',
         ja = '',
-        id = 'Makan'
+        id = 'Makan',
+        es = 'Comer'
     },
     GuiText_Txt_CookGui_5 = {
         ID = 'GuiText_Txt_CookGui_5',
@@ -885,7 +625,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Put on table',
         ja = '',
-        id = 'Letakkan di meja'
+        id = 'Letakkan di meja',
+        es = 'Colocar na mesa'
     },
     GuiText_Txt_CookGui_6 = {
         ID = 'GuiText_Txt_CookGui_6',
@@ -893,7 +634,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Tip',
         ja = '',
-        id = 'Kiat'
+        id = 'Kiat',
+        es = 'Dica'
     },
     GuiText_Txt_CookGui_7 = {
         ID = 'GuiText_Txt_CookGui_7',
@@ -901,7 +643,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The party has not started yet, come back in the evening.',
         ja = '',
-        id = 'Pestanya belum dimulai, kembalilah di sore hari.'
+        id = 'Pestanya belum dimulai, kembalilah di sore hari.',
+        es = 'A festa ainda não começou. Volte à noite.'
     },
     GuiText_Txt_CookGui_8 = {
         ID = 'GuiText_Txt_CookGui_8',
@@ -909,7 +652,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'How many coins do you want to tip %s?',
         ja = '',
-        id = 'Berapa banyak koin yang ingin kamu berikan tip %s?'
+        id = 'Berapa banyak koin yang ingin kamu berikan tip %s?',
+        es = 'Quantas moedas você deseja dar de gorjeta a %s?'
     },
     GuiText_Txt_CookGui_9 = {
         ID = 'GuiText_Txt_CookGui_9',
@@ -917,7 +661,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You tipped {cooker} {coin} coins for his {meal}.',
         ja = '',
-        id = 'Kamu memberi tip {cooker} {coin} koin untuk {meal}.'
+        id = 'Kamu memberi tip {cooker} {coin} koin untuk {meal}.',
+        es = 'Você deu {CoinNum} de gorjeta a {PlayerName} pelo prato “{Meal}”.'
     },
     GuiText_Txt_CookGuide_1 = {
         ID = 'GuiText_Txt_CookGuide_1',
@@ -925,7 +670,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Let’s make some food!',
         ja = '',
-        id = 'Ayo kita buat makanan!'
+        id = 'Ayo kita buat makanan!',
+        es = 'Vamos fazer comida!'
     },
     GuiText_Txt_CookGuide_2 = {
         ID = 'GuiText_Txt_CookGuide_2',
@@ -933,7 +679,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The ingredients you’ve obtained will be shown here',
         ja = '',
-        id = 'Bahan-bahan yang kamu peroleh akan ditampilkan di sini'
+        id = 'Bahan-bahan yang kamu peroleh akan ditampilkan di sini',
+        es = 'Os ingredientes obtidos serão exibidos aqui'
     },
     GuiText_Txt_CookGuide_3 = {
         ID = 'GuiText_Txt_CookGuide_3',
@@ -941,7 +688,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The ingredients you’re going to use will be shown here',
         ja = '',
-        id = 'Bahan-bahan yang akan kamu gunakan akan ditampilkan di sini'
+        id = 'Bahan-bahan yang akan kamu gunakan akan ditampilkan di sini',
+        es = 'Os ingredientes que você usará serão exibidos aqui'
     },
     GuiText_Txt_CookGuide_4 = {
         ID = 'GuiText_Txt_CookGuide_4',
@@ -949,7 +697,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Tap on an ingredient to add it to a recipe; a recipe needs 3 ingredients',
         ja = '',
-        id = 'Ketuk bahan untuk menambahkannya ke resep; satu resep memerlukan 3 bahan'
+        id = 'Ketuk bahan untuk menambahkannya ke resep; satu resep memerlukan 3 bahan',
+        es = 'Toque em um ingrediente para adicioná-lo a uma receita. Cada receita precisa de 3 ingredientes'
     },
     GuiText_Txt_CookGuide_5 = {
         ID = 'GuiText_Txt_CookGuide_5',
@@ -957,7 +706,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Beautiful! Now let’s see what delicacy you are going to create!',
         ja = '',
-        id = 'Cantiknya! Sekarang mari kita tes seberapa lezat makanan buatanmu!'
+        id = 'Cantiknya! Sekarang mari kita tes seberapa lezat makanan buatanmu!',
+        es = 'Maravilha! Agora, vamos ver que iguaria você vai criar!'
     },
     GuiText_Txt_InfoGui_1 = {
         ID = 'GuiText_Txt_InfoGui_1',
@@ -965,7 +715,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A new day has begun',
         ja = '',
-        id = 'Hari baru telah dimulai'
+        id = 'Hari baru telah dimulai',
+        es = 'Um novo dia começou'
     },
     GuiText_Txt_InfoGui_2 = {
         ID = 'GuiText_Txt_InfoGui_2',
@@ -973,7 +724,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It’s dusk, time to get back to the campground.',
         ja = '',
-        id = 'Sudah petang, waktunya kembali ke kamp.'
+        id = 'Sudah petang, waktunya kembali ke kamp.',
+        es = 'Está anoitecendo, chegou a hora de voltar ao acampamento.'
     },
     GuiText_Txt_InfoGui_3 = {
         ID = 'GuiText_Txt_InfoGui_3',
@@ -981,7 +733,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It’s nighttime, time to party!',
         ja = '',
-        id = 'Sudah malam, waktunya berpesta!'
+        id = 'Sudah malam, waktunya berpesta!',
+        es = 'Já é de noite, hora de se divertir!'
     },
     GuiText_Txt_InfoGui_4 = {
         ID = 'GuiText_Txt_InfoGui_4',
@@ -989,7 +742,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The mysterious UFO has appeared!',
         ja = '',
-        id = 'UFO misterius telah muncul!'
+        id = 'UFO misterius telah muncul!',
+        es = 'O óvni misterioso apareceu!'
     },
     GuiText_Txt_InfoGui_5 = {
         ID = 'GuiText_Txt_InfoGui_5',
@@ -997,7 +751,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A mysterious maze has appeared in the sky!',
         ja = '',
-        id = 'Labirin misterius muncul di langit!'
+        id = 'Labirin misterius muncul di langit!',
+        es = 'Um labirinto misterioso apareceu no céu!'
     },
     GuiText_Txt_InfoGui_6 = {
         ID = 'GuiText_Txt_InfoGui_6',
@@ -1005,7 +760,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Join',
         ja = '',
-        id = 'Ikuti'
+        id = 'Ikuti',
+        es = 'Juntar'
     },
     GuiText_Txt_MoleGui_1 = {
         ID = 'GuiText_Txt_MoleGui_1',
@@ -1013,7 +769,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You need to put %s coins into the stone golem to make a wish.',
         ja = '',
-        id = 'Kamu harus menaruh %s koin ke dalam golem batu untuk membuat permohonan.'
+        id = 'Kamu harus menaruh %s koin ke dalam golem batu untuk membuat permohonan.',
+        es = 'Você precisa colocar %s moedas no golem de pedra para fazer um pedido.'
     },
     GuiText_Txt_MoleGui_2 = {
         ID = 'GuiText_Txt_MoleGui_2',
@@ -1021,7 +778,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Gold... gold... gold...',
         ja = '',
-        id = 'Emas... emas... emas...'
+        id = 'Emas... emas... emas...',
+        es = 'Ouro... ouro... ouro...'
     },
     GuiText_Txt_MoleGui_3 = {
         ID = 'GuiText_Txt_MoleGui_3',
@@ -1029,7 +787,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You got',
         ja = '',
-        id = 'Kamu mendapat'
+        id = 'Kamu mendapat',
+        es = 'Você ganhou'
     },
     GuiText_Txt_MoleGui_4 = {
         ID = 'GuiText_Txt_MoleGui_4',
@@ -1037,7 +796,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mysterious Stone Golem',
         ja = '',
-        id = 'Golem Batu Misterius'
+        id = 'Golem Batu Misterius',
+        es = 'Golem de Pedra Misterioso'
     },
     GuiText_Txt_NpcGui_1 = {
         ID = 'GuiText_Txt_NpcGui_1',
@@ -1045,7 +805,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Snail Race',
         ja = '',
-        id = 'Balapan Siput'
+        id = 'Balapan Siput',
+        es = 'Snail Race'
     },
     GuiText_Txt_NpcGui_2 = {
         ID = 'GuiText_Txt_NpcGui_2',
@@ -1053,7 +814,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Leave',
         ja = '',
-        id = 'Keluar'
+        id = 'Keluar',
+        es = 'Sair'
     },
     GuiText_Txt_NpcGui_3 = {
         ID = 'GuiText_Txt_NpcGui_3',
@@ -1061,7 +823,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Buy',
         ja = '',
-        id = 'Beli'
+        id = 'Beli',
+        es = 'Comprar'
     },
     GuiText_Txt_PetGui_1 = {
         ID = 'GuiText_Txt_PetGui_1',
@@ -1069,7 +832,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Your trap caught an animal.',
         ja = '',
-        id = 'Ada hewan yang terjebak di perangkapmu.'
+        id = 'Ada hewan yang terjebak di perangkapmu.',
+        es = 'Sua armadilha capturou um animal.'
     },
     GuiText_Txt_PetGui_2 = {
         ID = 'GuiText_Txt_PetGui_2',
@@ -1077,7 +841,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'An animal broke free from your trap.',
         ja = '',
-        id = 'Ada hewan yang lolos dari perangkapmu.'
+        id = 'Ada hewan yang lolos dari perangkapmu.',
+        es = 'Um animal se libertou da sua armadilha.'
     },
     GuiText_Txt_PetGui_3 = {
         ID = 'GuiText_Txt_PetGui_3',
@@ -1085,7 +850,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You’re too close to the animal.',
         ja = '',
-        id = 'Jarakmu dengan hewan terlalu dekat.'
+        id = 'Jarakmu dengan hewan terlalu dekat.',
+        es = 'Você está perto demais do animal.'
     },
     GuiText_Txt_PetGui_4 = {
         ID = 'GuiText_Txt_PetGui_4',
@@ -1093,7 +859,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Congratulations, you’ve caught this animal.',
         ja = '',
-        id = 'Selamat, kamu berhasil menangkap hewan ini.'
+        id = 'Selamat, kamu berhasil menangkap hewan ini.',
+        es = 'Parabéns, você capturou este animal!'
     },
     GuiText_Txt_PetGui_5 = {
         ID = 'GuiText_Txt_PetGui_5',
@@ -1101,7 +868,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Try to get the animal stuck with the trap first.',
         ja = '',
-        id = 'Cobalah jebak hewannya dengan perangkap dulu.'
+        id = 'Cobalah jebak hewannya dengan perangkap dulu.',
+        es = 'Tente pegar o animal preso na armadilha primeiro.'
     },
     GuiText_Txt_PetGui_6 = {
         ID = 'GuiText_Txt_PetGui_6',
@@ -1109,7 +877,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You’ve caught a pet! Give your pet a name!',
         ja = '',
-        id = 'Kamu berhasil mendapat piaraan! Beri dia nama!'
+        id = 'Kamu berhasil mendapat piaraan! Beri dia nama!',
+        es = 'Você capturou um pet! Dê um nome a ele!'
     },
     GuiText_Txt_PetGui_7 = {
         ID = 'GuiText_Txt_PetGui_7',
@@ -1117,7 +886,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '%s\'s pet',
         ja = '',
-        id = 'hewan peliharaan %s'
+        id = 'hewan peliharaan %s',
+        es = 'animal de estimação de %s'
     },
     GuiText_Txt_ShopGui_1 = {
         ID = 'GuiText_Txt_ShopGui_1',
@@ -1125,7 +895,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Do you want to purchase %s?',
         ja = '',
-        id = 'Kamu ingin membeli %s?'
+        id = 'Kamu ingin membeli %s?',
+        es = 'Deseja comprar %s?'
     },
     GuiText_Txt_ShopGui_2 = {
         ID = 'GuiText_Txt_ShopGui_2',
@@ -1133,7 +904,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Not enough coins',
         ja = '',
-        id = 'Koin tidak cukup'
+        id = 'Koin tidak cukup',
+        es = 'Moedas insuficientes'
     },
     GuiText_Txt_ShopGui_3 = {
         ID = 'GuiText_Txt_ShopGui_3',
@@ -1141,7 +913,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Buy',
         ja = '',
-        id = 'Beli'
+        id = 'Beli',
+        es = 'Comprar'
     },
     GuiText_Txt_ShopGui_4 = {
         ID = 'GuiText_Txt_ShopGui_4',
@@ -1149,7 +922,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Owned',
         ja = '',
-        id = 'Dimiliki'
+        id = 'Dimiliki',
+        es = 'Já tem'
     },
     GuiText_Txt_SnailGui_1 = {
         ID = 'GuiText_Txt_SnailGui_1',
@@ -1157,7 +931,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The next round of snail race will begin in 10 seconds. Place your bets now!',
         ja = '',
-        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!'
+        id = 'Ronde balapan siput berikutnya dimulai 10 detik lagi. Pasang taruhanmu!',
+        es = 'A próxima rodada da corrida de lesmas começará em 10 segundos. Façam suas apostas agora!'
     },
     GuiText_Txt_SnailGui_10 = {
         ID = 'GuiText_Txt_SnailGui_10',
@@ -1165,7 +940,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Champion:',
         ja = '',
-        id = 'Juara'
+        id = 'Juara',
+        es = 'Campeão'
     },
     GuiText_Txt_SnailGui_11 = {
         ID = 'GuiText_Txt_SnailGui_11',
@@ -1173,7 +949,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mood:',
         ja = '',
-        id = 'Negara:'
+        id = 'Negara:',
+        es = 'Humor:'
     },
     GuiText_Txt_SnailGui_12 = {
         ID = 'GuiText_Txt_SnailGui_12',
@@ -1181,7 +958,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Normal',
         ja = '',
-        id = 'Normal'
+        id = 'Normal',
+        es = 'Normal'
     },
     GuiText_Txt_SnailGui_13 = {
         ID = 'GuiText_Txt_SnailGui_13',
@@ -1189,7 +967,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Happy',
         ja = '',
-        id = 'Senang'
+        id = 'Senang',
+        es = 'Feliz'
     },
     GuiText_Txt_SnailGui_14 = {
         ID = 'GuiText_Txt_SnailGui_14',
@@ -1197,7 +976,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Sad',
         ja = '',
-        id = 'Sedih'
+        id = 'Sedih',
+        es = 'Triste'
     },
     GuiText_Txt_SnailGui_15 = {
         ID = 'GuiText_Txt_SnailGui_15',
@@ -1205,7 +985,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Excited',
         ja = '',
-        id = 'Bergairah'
+        id = 'Bergairah',
+        es = 'Animado'
     },
     GuiText_Txt_SnailGui_16 = {
         ID = 'GuiText_Txt_SnailGui_16',
@@ -1213,7 +994,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Confused',
         ja = '',
-        id = 'Bingung'
+        id = 'Bingung',
+        es = 'Confuso'
     },
     GuiText_Txt_SnailGui_17 = {
         ID = 'GuiText_Txt_SnailGui_17',
@@ -1221,7 +1003,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You bet too late, the game has already started.',
         ja = '',
-        id = 'Anda bertaruh terlambat, permainan sudah dimulai.'
+        id = 'Anda bertaruh terlambat, permainan sudah dimulai.',
+        es = 'Você aposta tarde demais, o jogo já começou.'
     },
     GuiText_Txt_SnailGui_2 = {
         ID = 'GuiText_Txt_SnailGui_2',
@@ -1229,7 +1012,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The snail race has begun!',
         ja = '',
-        id = 'Balapan siput telah dimulai!'
+        id = 'Balapan siput telah dimulai!',
+        es = 'A corrida de lesmas começou!'
     },
     GuiText_Txt_SnailGui_3 = {
         ID = 'GuiText_Txt_SnailGui_3',
@@ -1237,7 +1021,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You cannot place multiple bets or place a bet while a race is underway.',
         ja = '',
-        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.'
+        id = 'Kamu tak bisa memasang beberapa taruhan sekaligus atau bertaruh saat balapan berlangsung.',
+        es = 'Você não pode fazer várias apostas ou fazer uma aposta quando uma corrida está em andamento.'
     },
     GuiText_Txt_SnailGui_4 = {
         ID = 'GuiText_Txt_SnailGui_4',
@@ -1245,7 +1030,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The snail you betted on obtained a rank of {rank}, and you won {coin} coins.',
         ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat {rank}, dan kamu memenangkan  {coin} koin.'
+        id = 'Siput yang kamu pilih meraih peringkat {rank}, dan kamu memenangkan  {coin} koin.',
+        es = 'A lesma na qual você apostou ficou em {rank}º lugar, e você ganhou {coin} moedas.'
     },
     GuiText_Txt_SnailGui_5 = {
         ID = 'GuiText_Txt_SnailGui_5',
@@ -1253,7 +1039,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The snail you betted on obtained a rank of %d, and you lost your coins.',
         ja = '',
-        id = 'Siput yang kamu pilih meraih peringkat %d, dan kamu kehilangan koin.'
+        id = 'Siput yang kamu pilih meraih peringkat %d, dan kamu kehilangan koin.',
+        es = 'A lesma na qual você apostou ficou em %dº lugar, e você perdeu suas moedas.'
     },
     GuiText_Txt_SnailGui_6 = {
         ID = 'GuiText_Txt_SnailGui_6',
@@ -1261,7 +1048,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Place your bet.',
         ja = '',
-        id = 'Pasang taruhanmu.'
+        id = 'Pasang taruhanmu.',
+        es = 'Faça sua aposta.'
     },
     GuiText_Txt_SnailGui_7 = {
         ID = 'GuiText_Txt_SnailGui_7',
@@ -1269,7 +1057,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You don’t have enough coins.',
         ja = '',
-        id = 'Koinmu tidak cukup.'
+        id = 'Koinmu tidak cukup.',
+        es = 'Você não tem moedas suficientes.'
     },
     GuiText_Txt_SnailGui_8 = {
         ID = 'GuiText_Txt_SnailGui_8',
@@ -1277,7 +1066,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You successfully placed a bet on Snail number %d.',
         ja = '',
-        id = 'Kamu berhasil memasang taruhan pada Siput nomor %d.'
+        id = 'Kamu berhasil memasang taruhan pada Siput nomor %d.',
+        es = 'Você fez uma aposta na lesma número %d.'
     },
     GuiText_Txt_SnailGui_9 = {
         ID = 'GuiText_Txt_SnailGui_9',
@@ -1285,7 +1075,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Bet on a snail by choosing its color.',
         ja = '',
-        id = 'Pasang taruhan dengan memilih warna siput.'
+        id = 'Pasang taruhan dengan memilih warna siput.',
+        es = 'Aposte em um caracol escolhendo sua cor.'
     },
     Item_Des_1001 = {
         ID = 'Item_Des_1001',
@@ -1293,7 +1084,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A tree branch good for swinging around.',
         ja = '',
-        id = 'Cabang pohon yang bisa diayun.'
+        id = 'Cabang pohon yang bisa diayun.',
+        es = 'galho de árvore ótimo para usar como balanço.'
     },
     Item_Des_1002 = {
         ID = 'Item_Des_1002',
@@ -1301,7 +1093,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A torch made from a forest tree branch.',
         ja = '',
-        id = 'Obor dari cabang pohon hutan.'
+        id = 'Obor dari cabang pohon hutan.',
+        es = 'tocha feita com um galho de árvore da floresta.'
     },
     Item_Des_1003 = {
         ID = 'Item_Des_1003',
@@ -1309,7 +1102,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Made from a polished tree branch.',
         ja = '',
-        id = 'Dibuat dari cabang pohon yang dipoles.'
+        id = 'Dibuat dari cabang pohon yang dipoles.',
+        es = 'feito com um galho de árvore polido.'
     },
     Item_Des_1004 = {
         ID = 'Item_Des_1004',
@@ -1317,7 +1111,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Just an ordinary hoe.',
         ja = '',
-        id = 'Cangkul biasa.'
+        id = 'Cangkul biasa.',
+        es = 'apenas uma enxada qualquer.'
     },
     Item_Des_1005 = {
         ID = 'Item_Des_1005',
@@ -1325,7 +1120,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Not even a bear can take a hit from this thing.',
         ja = '',
-        id = 'Beruangpun tak akan bisa kena pukulan palu ini.'
+        id = 'Beruangpun tak akan bisa kena pukulan palu ini.',
+        es = 'nem mesmo um urso aguenta um golpe desta arma.'
     },
     Item_Des_1006 = {
         ID = 'Item_Des_1006',
@@ -1333,7 +1129,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A handy tool for chopping things that aren’t too tough.',
         ja = '',
-        id = 'Praktis untuk memotong barang yang tidak terlalu tebal.'
+        id = 'Praktis untuk memotong barang yang tidak terlalu tebal.',
+        es = 'ferramenta útil para cortar itens que não são muito resistentes.'
     },
     Item_Des_1007 = {
         ID = 'Item_Des_1007',
@@ -1341,7 +1138,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Comes in handy when trying to survive in the forest.',
         ja = '',
-        id = 'Praktis dipakai untuk bertahan hidup di hutan.'
+        id = 'Praktis dipakai untuk bertahan hidup di hutan.',
+        es = 'vem a calhar ao tentar sobreviver na floresta.'
     },
     Item_Des_1008 = {
         ID = 'Item_Des_1008',
@@ -1349,7 +1147,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A pair of shoes fitted with spikes for mountain climbing.',
         ja = '',
-        id = 'Sepasang sepatu dengan sol berpaku untuk memanjat gunung.'
+        id = 'Sepasang sepatu dengan sol berpaku untuk memanjat gunung.',
+        es = 'sapatos equipados com travas para escalar montanhas.'
     },
     Item_Des_1009 = {
         ID = 'Item_Des_1009',
@@ -1357,7 +1156,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Can be swung into the face of a cliff with one hand.',
         ja = '',
-        id = 'Bisa ditancapkan di tebing dengan satu tangan.'
+        id = 'Bisa ditancapkan di tebing dengan satu tangan.',
+        es = 'pode ser enfiado em um penhasco com uma mão.'
     },
     Item_Des_1010 = {
         ID = 'Item_Des_1010',
@@ -1365,7 +1165,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Ax used for chopping wood.',
         ja = '',
-        id = 'Kapak untuk menebang kayu.'
+        id = 'Kapak untuk menebang kayu.',
+        es = 'usado para cortar madeira.'
     },
     Item_Des_1011 = {
         ID = 'Item_Des_1011',
@@ -1373,7 +1174,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It’s no longer sharp, but good thing it’s not rusted.',
         ja = '',
-        id = 'Sudah tidak tajam lagi, tapi untungnya tidak berkarat.'
+        id = 'Sudah tidak tajam lagi, tapi untungnya tidak berkarat.',
+        es = 'não está mais afiado, mas pelo menos não está enferrujado.'
     },
     Item_Des_1012 = {
         ID = 'Item_Des_1012',
@@ -1381,7 +1183,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A necessity whether or not you are traveling!',
         ja = '',
-        id = 'Barang wajib, baik saat dalam perjalanan maupun tidak!'
+        id = 'Barang wajib, baik saat dalam perjalanan maupun tidak!',
+        es = 'uma necessidade, não importa se você esteja viajando ou não!'
     },
     Item_Des_1013 = {
         ID = 'Item_Des_1013',
@@ -1389,7 +1192,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The last glimmer of light in the end of days.',
         ja = '',
-        id = 'Pancaran cahaya terakhir di penghujung masa.'
+        id = 'Pancaran cahaya terakhir di penghujung masa.',
+        es = 'espada corrompida pelo poder da escuridão.'
     },
     Item_Des_1014 = {
         ID = 'Item_Des_1014',
@@ -1397,7 +1201,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A sword corrupted by the power of darkness.',
         ja = '',
-        id = 'Pedang yang ternoda oleh kekuatan kegelapan.'
+        id = 'Pedang yang ternoda oleh kekuatan kegelapan.',
+        es = 'o último brilho de luz no fim dos tempos.'
     },
     Item_Des_1015 = {
         ID = 'Item_Des_1015',
@@ -1405,7 +1210,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Some people firmly believe that aliens can be found using this thing.',
         ja = '',
-        id = 'Sebagian orang meyakini bahwa alien menggunakan benda ini.'
+        id = 'Sebagian orang meyakini bahwa alien menggunakan benda ini.',
+        es = 'algumas pessoas acreditam fielmente que alienígenas podem ser encontrados com isto.'
     },
     Item_Des_1016 = {
         ID = 'Item_Des_1016',
@@ -1413,7 +1219,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Goes hand in hand with a toilet.',
         ja = '',
-        id = 'Teman setia toilet.'
+        id = 'Teman setia toilet.',
+        es = 'vem a calhar em um vaso sanitário.'
     },
     Item_Des_1017 = {
         ID = 'Item_Des_1017',
@@ -1421,7 +1228,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A mining pickax imbued with mysterious energy.',
         ja = '',
-        id = 'Beliung tambang yang memiliki energi misterius.'
+        id = 'Beliung tambang yang memiliki energi misterius.',
+        es = 'uma picareta de mineração dotada de uma energia misteriosa.'
     },
     Item_Des_1018 = {
         ID = 'Item_Des_1018',
@@ -1429,7 +1237,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It influences the mind of the user.',
         ja = '',
-        id = 'Benda ini memengaruhi pikiran pemakainya.'
+        id = 'Benda ini memengaruhi pikiran pemakainya.',
+        es = 'influencia a mente do portador.'
     },
     Item_Des_1019 = {
         ID = 'Item_Des_1019',
@@ -1437,7 +1246,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Glittering with vitality.',
         ja = '',
-        id = 'Memancarkan cahaya terang.'
+        id = 'Memancarkan cahaya terang.',
+        es = 'brilha com vitalidade.'
     },
     Item_Des_1020 = {
         ID = 'Item_Des_1020',
@@ -1445,7 +1255,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It seems to be searching the planet for energy.',
         ja = '',
-        id = 'Terlihat seperti mencari keberadaan energi di planet.'
+        id = 'Terlihat seperti mencari keberadaan energi di planet.',
+        es = 'parece estar à procura de energia no planeta.'
     },
     Item_Des_1021 = {
         ID = 'Item_Des_1021',
@@ -1453,7 +1264,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This tree seems to have been shrunk by something.',
         ja = '',
-        id = 'Sepertinya ada sesuatu yang membuat pohon ini menjadi kecil.'
+        id = 'Sepertinya ada sesuatu yang membuat pohon ini menjadi kecil.',
+        es = 'esta árvore parece ter sido encolhida por alguma coisa.'
     },
     Item_Des_1022 = {
         ID = 'Item_Des_1022',
@@ -1461,7 +1273,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A great pole for angling.',
         ja = '',
-        id = 'Joran yang pas untuk memancing.'
+        id = 'Joran yang pas untuk memancing.',
+        es = 'excelente vara para pescarias.'
     },
     Item_Des_1023 = {
         ID = 'Item_Des_1023',
@@ -1469,7 +1282,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A celebration isn’t festive without it.',
         ja = '',
-        id = 'Perayaan tidak akan meriah tanpanya.'
+        id = 'Perayaan tidak akan meriah tanpanya.',
+        es = 'uma comemoração não é festiva sem ele.'
     },
     Item_Des_1024 = {
         ID = 'Item_Des_1024',
@@ -1477,7 +1291,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A stone hammer engraved with the rune of thunder.',
         ja = '',
-        id = 'Palu batu dengan ukiran sajak guntur.'
+        id = 'Palu batu dengan ukiran sajak guntur.',
+        es = 'martelo de pedra com uma runa de trovão entalhada.'
     },
     Item_Des_1025 = {
         ID = 'Item_Des_1025',
@@ -1485,7 +1300,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'An ax brimming with the starkness of the moon.',
         ja = '',
-        id = 'Kapak yang bercahaya bagai bulan.'
+        id = 'Kapak yang bercahaya bagai bulan.',
+        es = 'machado cheio da resistência da Lua.'
     },
     Item_Des_1026 = {
         ID = 'Item_Des_1026',
@@ -1493,7 +1309,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A handax energized by alien technology.',
         ja = '',
-        id = 'Kapak genggam dengan energi dari teknologi alien.'
+        id = 'Kapak genggam dengan energi dari teknologi alien.',
+        es = 'machado de mão energizado com tecnologia alienígena.'
     },
     Item_Des_1027 = {
         ID = 'Item_Des_1027',
@@ -1501,7 +1318,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A jaw with sharp teeth still on it—out of this world!',
         ja = '',
-        id = 'Rahang dengan gigi-gigi tajam. Sangat langka!'
+        id = 'Rahang dengan gigi-gigi tajam. Sangat langka!',
+        es = 'mandíbula com dentes afiados de outro planeta!'
     },
     Item_Des_1028 = {
         ID = 'Item_Des_1028',
@@ -1509,7 +1327,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A stone hammer engraved with the rune of frost.',
         ja = '',
-        id = 'Palu batu dengan ukiran sajak es.'
+        id = 'Palu batu dengan ukiran sajak es.',
+        es = 'martelo de pedra com uma runa de gelo entalhada.'
     },
     Item_Des_1029 = {
         ID = 'Item_Des_1029',
@@ -1517,7 +1336,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Emanating a chilling glow.',
         ja = '',
-        id = 'Kilatannya menakutkan.'
+        id = 'Kilatannya menakutkan.',
+        es = 'emana um brilho assustador.'
     },
     Item_Des_1030 = {
         ID = 'Item_Des_1030',
@@ -1525,7 +1345,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Looks like something that can halve anything it comes into contact with.',
         ja = '',
-        id = 'Sepertinya bisa memisahkan apa pun yang disentuhnya.'
+        id = 'Sepertinya bisa memisahkan apa pun yang disentuhnya.',
+        es = 'parece que consegue cortar pela metade tudo que toca.'
     },
     Item_Des_1031 = {
         ID = 'Item_Des_1031',
@@ -1533,7 +1354,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This ax has incorporated the flames of the sun.',
         ja = '',
-        id = 'Kapak ini memanfaatkan api dari matahari.'
+        id = 'Kapak ini memanfaatkan api dari matahari.',
+        es = 'este machado incorporou as chamas do Sol.'
     },
     Item_Des_1032 = {
         ID = 'Item_Des_1032',
@@ -1541,7 +1363,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Get it? Powerful like a meteor the size ofMars...',
         ja = '',
-        id = 'Dinamai begitu karena benda ini kuat seperti meteor yang berukuran planet Mars...'
+        id = 'Dinamai begitu karena benda ini kuat seperti meteor yang berukuran planet Mars...',
+        es = 'entendeu? Poderoso como um meteoro do tamanho de Marte...'
     },
     Item_Des_1033 = {
         ID = 'Item_Des_1033',
@@ -1549,7 +1372,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It takes only one pummel to kill a prey, and it also tenderizes the meat!',
         ja = '',
-        id = 'Hanya perlu sekali ayun untuk membunuh hewan dan membuat lembut dagingnya!'
+        id = 'Hanya perlu sekali ayun untuk membunuh hewan dan membuat lembut dagingnya!',
+        es = 'basta um golpe para matar uma presa, e também amacia a carne!'
     },
     Item_Des_1034 = {
         ID = 'Item_Des_1034',
@@ -1557,7 +1381,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A celebration isn’t festive without it.',
         ja = '',
-        id = 'Perayaan tidak akan meriah tanpanya.'
+        id = 'Perayaan tidak akan meriah tanpanya.',
+        es = 'uma comemoração não é festiva sem ele.'
     },
     Item_Des_1035 = {
         ID = 'Item_Des_1035',
@@ -1565,7 +1390,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A celebration isn’t festive without it.',
         ja = '',
-        id = 'Perayaan tidak akan meriah tanpanya.'
+        id = 'Perayaan tidak akan meriah tanpanya.',
+        es = 'uma comemoração não é festiva sem ele.'
     },
     Item_Des_1036 = {
         ID = 'Item_Des_1036',
@@ -1573,7 +1399,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A celebration isn’t festive without it.',
         ja = '',
-        id = 'Perayaan tidak akan meriah tanpanya.'
+        id = 'Perayaan tidak akan meriah tanpanya.',
+        es = 'uma comemoração não é festiva sem ele.'
     },
     Item_Des_1037 = {
         ID = 'Item_Des_1037',
@@ -1581,7 +1408,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A celebration isn’t festive without it.',
         ja = '',
-        id = 'Perayaan tidak akan meriah tanpanya.'
+        id = 'Perayaan tidak akan meriah tanpanya.',
+        es = 'uma comemoração não é festiva sem ele.'
     },
     Item_Des_1038 = {
         ID = 'Item_Des_1038',
@@ -1589,7 +1417,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A celebration isn’t festive without it.',
         ja = '',
-        id = 'Perayaan tidak akan meriah tanpanya.'
+        id = 'Perayaan tidak akan meriah tanpanya.',
+        es = 'uma comemoração não é festiva sem ele.'
     },
     Item_Des_2001 = {
         ID = 'Item_Des_2001',
@@ -1597,7 +1426,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A hunting bow provided by the campground.',
         ja = '',
-        id = 'Busur untuk berburu yang diperoleh dari kamp.'
+        id = 'Busur untuk berburu yang diperoleh dari kamp.',
+        es = 'arco de caça fornecido pelo acampamento.'
     },
     Item_Des_2002 = {
         ID = 'Item_Des_2002',
@@ -1605,7 +1435,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It tends to backfire on you.',
         ja = '',
-        id = 'Mungkin kamu akan terkena tembakannya.'
+        id = 'Mungkin kamu akan terkena tembakannya.',
+        es = 'o tiro costuma sair pela culatra.'
     },
     Item_Des_2003 = {
         ID = 'Item_Des_2003',
@@ -1613,7 +1444,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Fires fire.',
         ja = '',
-        id = 'Menembakkan api.'
+        id = 'Menembakkan api.',
+        es = 'sopra fogo.'
     },
     Item_Des_2004 = {
         ID = 'Item_Des_2004',
@@ -1621,7 +1453,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This bow emits the gentle glow akin to that of the moon.',
         ja = '',
-        id = 'Busur ini memancarkan cahaya yang lembut seperti bulan.'
+        id = 'Busur ini memancarkan cahaya yang lembut seperti bulan.',
+        es = 'este arco emite o brilho suave parecido com o da Lua.'
     },
     Item_Des_2005 = {
         ID = 'Item_Des_2005',
@@ -1629,7 +1462,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This bow can harness the power of lightning.',
         ja = '',
-        id = 'Busur ini bisa memanfaatkan kekuatan petir.'
+        id = 'Busur ini bisa memanfaatkan kekuatan petir.',
+        es = 'esta arco consegue aproveitar o poder dos raios.'
     },
     Item_Des_2006 = {
         ID = 'Item_Des_2006',
@@ -1637,7 +1471,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This bow is suffused with the energy of the universe.',
         ja = '',
-        id = 'Busur ini memiliki energi semesta.'
+        id = 'Busur ini memiliki energi semesta.',
+        es = 'este arco está repleto da energia do universo.'
     },
     Item_Des_2007 = {
         ID = 'Item_Des_2007',
@@ -1645,7 +1480,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This bow is made from the smoldering fire of the sun.',
         ja = '',
-        id = 'Busur ini dibuat dari api matahari yang membara.'
+        id = 'Busur ini dibuat dari api matahari yang membara.',
+        es = 'este arco é feito com o fogo escorchante do Sol.'
     },
     Item_Des_3001 = {
         ID = 'Item_Des_3001',
@@ -1653,7 +1489,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Shoots bubbles.',
         ja = '',
-        id = 'Menembakkan gelembung.'
+        id = 'Menembakkan gelembung.',
+        es = ''
     },
     Item_Des_4001 = {
         ID = 'Item_Des_4001',
@@ -1661,7 +1498,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Can probably only catch critters.',
         ja = '',
-        id = 'Mungkin hanya bisa untuk menangkap hewan kecil.'
+        id = 'Mungkin hanya bisa untuk menangkap hewan kecil.',
+        es = 'provavelmente consegue capturar apenas bichinhos.'
     },
     Item_Des_4002 = {
         ID = 'Item_Des_4002',
@@ -1669,7 +1507,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Easily catches critters, but will have trouble catching larger animals.',
         ja = '',
-        id = 'Cocok untuk menangkap hewan kecil, tapi belum tentu bisa untuk menangkap hewan besar.'
+        id = 'Cocok untuk menangkap hewan kecil, tapi belum tentu bisa untuk menangkap hewan besar.',
+        es = 'captura bichinhos com facilidade, mas tem dificuldades de capturar animais maiores.'
     },
     Item_Des_4003 = {
         ID = 'Item_Des_4003',
@@ -1677,7 +1516,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Can easily trap all kinds of animals.',
         ja = '',
-        id = 'Cocok untuk menangkap semua jenis hewan.'
+        id = 'Cocok untuk menangkap semua jenis hewan.',
+        es = 'captura com facilidade todos os tipos de animais.'
     },
     Item_Des_4004 = {
         ID = 'Item_Des_4004',
@@ -1685,7 +1525,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Use to receive a pet',
         ja = '',
-        id = 'Gunakan untuk menerima hewan peliharaan'
+        id = 'Gunakan untuk menerima hewan peliharaan',
+        es = 'use para receber um pet'
     },
     Item_Des_4005 = {
         ID = 'Item_Des_4005',
@@ -1693,7 +1534,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Play Gomoku with your friends any time',
         ja = '',
-        id = 'Mainkan Gomoku dengan teman kamu kapan saja'
+        id = 'Mainkan Gomoku dengan teman kamu kapan saja',
+        es = 'jogue Gomoku com seus amigos quando quiser'
     },
     Item_Des_4006 = {
         ID = 'Item_Des_4006',
@@ -1701,7 +1543,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Play Go with your friends any time',
         ja = '',
-        id = 'Mainkan Gomoku dengan teman kamu kapan saja'
+        id = 'Mainkan Gomoku dengan teman kamu kapan saja',
+        es = 'jogue Go com seus amigos quando quiser'
     },
     Item_Des_5001 = {
         ID = 'Item_Des_5001',
@@ -1709,7 +1552,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'I have a dream.',
         ja = '',
-        id = 'Penyelamat'
+        id = 'Penyelamat',
+        es = 'tenho um sonho.'
     },
     Item_Des_5002 = {
         ID = 'Item_Des_5002',
@@ -1717,7 +1561,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Safety first.',
         ja = '',
-        id = 'Aku punya mimpi.'
+        id = 'Aku punya mimpi.',
+        es = 'segurança em primeiro lugar.'
     },
     Item_Des_5003 = {
         ID = 'Item_Des_5003',
@@ -1725,7 +1570,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Touch it and something surprising will happen.',
         ja = '',
-        id = 'Sentuh dan sesuatu yang mengejutkan akan terjadi.'
+        id = 'Sentuh dan sesuatu yang mengejutkan akan terjadi.',
+        es = 'ao tocá-lo, algo surpreendente vai acontecer.'
     },
     Item_Des_6001 = {
         ID = 'Item_Des_6001',
@@ -1733,7 +1579,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Say hi to the tour guide.',
         ja = '',
-        id = 'Sapalah pemandu tur.'
+        id = 'Sapalah pemandu tur.',
+        es = 'diga “oi” ao guia do tour.'
     },
     Item_Des_6002 = {
         ID = 'Item_Des_6002',
@@ -1741,7 +1588,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Learn what it takes to survive in the forest from Ranger Bob.',
         ja = '',
-        id = 'Pelajari cara bertahan di hutan dari Ranger Bob.'
+        id = 'Pelajari cara bertahan di hutan dari Ranger Bob.',
+        es = 'saiba o que é preciso para sobreviver na floresta com o Guarda Florestal Bob.'
     },
     Item_Des_6003 = {
         ID = 'Item_Des_6003',
@@ -1749,7 +1597,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Ask the hot-air balloon technician how to ride it; he’s on top of the hill across the river.',
         ja = '',
-        id = 'Tanyakan cara mengoperasikan balon udara ke teknisinya. Dia berada di puncak bukit di seberang sungai.'
+        id = 'Tanyakan cara mengoperasikan balon udara ke teknisinya. Dia berada di puncak bukit di seberang sungai.',
+        es = 'pergunte ao técnico do balão de ar quente como andar no balão. Ele está no topo da colina após o rio.'
     },
     Item_Des_6004 = {
         ID = 'Item_Des_6004',
@@ -1757,7 +1606,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Learn how to be more attractive and fun at parties from the event planner.',
         ja = '',
-        id = 'Pelajari cara tampil menarik dan menikmati pesta dari perencana pesta.'
+        id = 'Pelajari cara tampil menarik dan menikmati pesta dari perencana pesta.',
+        es = 'aprenda a ser mais interessante e divertido em festas com o planejador de eventos.'
     },
     Item_Des_6005 = {
         ID = 'Item_Des_6005',
@@ -1765,7 +1615,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It concerns the animal race in the campground.',
         ja = '',
-        id = 'Berhubungan dengan balapan hewan di kamp.'
+        id = 'Berhubungan dengan balapan hewan di kamp.',
+        es = 'para a corrida de animais no acampamento.'
     },
     Item_Des_6006 = {
         ID = 'Item_Des_6006',
@@ -1773,7 +1624,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Someone sighted a UFO and drew it down in this notebook.',
         ja = '',
-        id = 'Ada seseorang yang pernah menyaksikan UFO dan menggambarnya di buku ini.'
+        id = 'Ada seseorang yang pernah menyaksikan UFO dan menggambarnya di buku ini.',
+        es = 'alguém avistou um óvni e o desenhou neste caderno.'
     },
     Item_Des_6007 = {
         ID = 'Item_Des_6007',
@@ -1781,7 +1633,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     Item_Des_7001 = {
         ID = 'Item_Des_7001',
@@ -1789,7 +1642,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A raw carrot that can be used for cooking.',
         ja = '',
-        id = 'Wortel mentah yang bisa dimasak.'
+        id = 'Wortel mentah yang bisa dimasak.',
+        es = 'cenoura crua que pode ser usada para cozinhar.'
     },
     Item_Des_7002 = {
         ID = 'Item_Des_7002',
@@ -1797,7 +1651,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A raw white radish that can be used for cooking.',
         ja = '',
-        id = 'Lobak putih mentah yang bisa dimasak.'
+        id = 'Lobak putih mentah yang bisa dimasak.',
+        es = 'rabanete branco cru que pode ser usado para cozinhar.'
     },
     Item_Des_7003 = {
         ID = 'Item_Des_7003',
@@ -1805,7 +1660,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A raw pumpkin that can be used for cooking.',
         ja = '',
-        id = 'Labu mentah yang bisa dimasak.'
+        id = 'Labu mentah yang bisa dimasak.',
+        es = 'abóbora crua que pode ser usada para cozinhar.'
     },
     Item_Des_7004 = {
         ID = 'Item_Des_7004',
@@ -1813,7 +1669,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Meat of a wild boar that can be used for cooking. ',
         ja = '',
-        id = 'Daging babi hutan yang bisa dimasak. '
+        id = 'Daging babi hutan yang bisa dimasak. ',
+        es = 'carne de um javali que pode ser usada para cozinhar.'
     },
     Item_Des_7005 = {
         ID = 'Item_Des_7005',
@@ -1821,7 +1678,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Meat of a bird that can be used for cooking.',
         ja = '',
-        id = 'Daging unggas yang bisa dimasak.'
+        id = 'Daging unggas yang bisa dimasak.',
+        es = 'carne de um pássaro que pode ser usada para cozinhar.'
     },
     Item_Des_7006 = {
         ID = 'Item_Des_7006',
@@ -1829,7 +1687,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Meat of a deer that can be used for cooking.',
         ja = '',
-        id = 'Daging rusa yang bisa dimasak.'
+        id = 'Daging rusa yang bisa dimasak.',
+        es = 'carne de um veado que pode ser usada para cozinhar.'
     },
     Item_Des_7007 = {
         ID = 'Item_Des_7007',
@@ -1837,7 +1696,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Meat of a bear that can be used for cooking.',
         ja = '',
-        id = 'Daging beruang yang bisa dimasak.'
+        id = 'Daging beruang yang bisa dimasak.',
+        es = 'carne de um urso que pode ser usada para cozinhar.'
     },
     Item_Des_7008 = {
         ID = 'Item_Des_7008',
@@ -1845,7 +1705,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Meat of a wolf that can be used for cooking.',
         ja = '',
-        id = 'Daging serigala yang bisa dimasak.'
+        id = 'Daging serigala yang bisa dimasak.',
+        es = 'carne de um lobo que pode ser usada para cozinhar.'
     },
     Item_Des_7009 = {
         ID = 'Item_Des_7009',
@@ -1853,7 +1714,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'An apple that fell off a tree; can be used for cooking.',
         ja = '',
-        id = 'Apel yang jatuh dari pohonnya. Bisa dimasak.'
+        id = 'Apel yang jatuh dari pohonnya. Bisa dimasak.',
+        es = 'maçã que caiu de uma árvore e que pode ser usada para cozinhar.'
     },
     Item_Des_7010 = {
         ID = 'Item_Des_7010',
@@ -1861,7 +1723,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Antlers of a stag that are usually mounted on a hunter’s wall as trophy.',
         ja = '',
-        id = 'Tanduk rusa jantan yang biasanya dijadikan trofi di dinding.'
+        id = 'Tanduk rusa jantan yang biasanya dijadikan trofi di dinding.',
+        es = 'galhada de um veado que costuma ser colocada na parede de um caçador como troféu.'
     },
     Item_Des_7011 = {
         ID = 'Item_Des_7011',
@@ -1869,7 +1732,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'High-quality deer skin.',
         ja = '',
-        id = 'Kulit rusa berkualitas tinggi.'
+        id = 'Kulit rusa berkualitas tinggi.',
+        es = 'pele de veado de alta qualidade.'
     },
     Item_Des_7012 = {
         ID = 'Item_Des_7012',
@@ -1877,7 +1741,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Secretion of a male musk deer; it smells fragrant and can be made into medicine.',
         ja = '',
-        id = 'Sekresi dari rusa jantan. Berbau harum dan bisa diolah menjadi obat.'
+        id = 'Sekresi dari rusa jantan. Berbau harum dan bisa diolah menjadi obat.',
+        es = 'secreção de um cervo-almiscarado macho. Tem uma fragrância e pode ser transformado em remédio.'
     },
     Item_Des_7013 = {
         ID = 'Item_Des_7013',
@@ -1885,7 +1750,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Splendid tail feather from a male pheasant.',
         ja = '',
-        id = 'Bulu ekor pegar jantan yang indah.'
+        id = 'Bulu ekor pegar jantan yang indah.',
+        es = 'incrível pena de rabo de um faisão macho.'
     },
     Item_Des_7014 = {
         ID = 'Item_Des_7014',
@@ -1893,7 +1759,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The skin of a black wild boar that will make a good carpet some day.',
         ja = '',
-        id = 'Kulit babi hutan hitam yang kelak bisa diolah menjadi karpet.'
+        id = 'Kulit babi hutan hitam yang kelak bisa diolah menjadi karpet.',
+        es = 'pele de um javali negro que um dia fará um bom tapete.'
     },
     Item_Des_7015 = {
         ID = 'Item_Des_7015',
@@ -1901,7 +1768,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The tusk of a wild boar that can be made into a decoration.',
         ja = '',
-        id = 'Taring babi hutan yang bisa dibuat menjadi dekorasi.'
+        id = 'Taring babi hutan yang bisa dibuat menjadi dekorasi.',
+        es = 'presa de um javali que pode ser transformada em decoração.'
     },
     Item_Des_7016 = {
         ID = 'Item_Des_7016',
@@ -1909,7 +1777,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The skin of a white wild boar that is usually used to make clothes and purses.',
         ja = '',
-        id = 'Kulit babi hutan putih yang biasanya dibuat menjadi bahan pakaian dan tas.'
+        id = 'Kulit babi hutan putih yang biasanya dibuat menjadi bahan pakaian dan tas.',
+        es = 'pele de um javali branco que costuma ser usada para fazer roupas e bolsas.'
     },
     Item_Des_7017 = {
         ID = 'Item_Des_7017',
@@ -1917,7 +1786,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Not really useful for anything.',
         ja = '',
-        id = 'Tidak terlalu berguna.'
+        id = 'Tidak terlalu berguna.',
+        es = 'não é útil para nada.'
     },
     Item_Des_7018 = {
         ID = 'Item_Des_7018',
@@ -1925,7 +1795,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'A skin full of thick needle-like hair.',
         ja = '',
-        id = 'Kulit dengan bulu rambut yang menyerupai jarum.'
+        id = 'Kulit dengan bulu rambut yang menyerupai jarum.',
+        es = 'pele cheia de pelos grossos parecidos com agulhas.'
     },
     Item_Des_7019 = {
         ID = 'Item_Des_7019',
@@ -1933,7 +1804,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Silver skin that can be turned into clothes and purses.',
         ja = '',
-        id = 'Kulit abu-abu yang bisa dibuat menjadi pakaian dan tas.'
+        id = 'Kulit abu-abu yang bisa dibuat menjadi pakaian dan tas.',
+        es = 'pele prateada que pode ser transformada em roupas e bolsas.'
     },
     Item_Des_7020 = {
         ID = 'Item_Des_7020',
@@ -1941,7 +1813,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The fang of an alpha wolf that can be strung into a necklace.',
         ja = '',
-        id = 'Taring serigala jantan yang bisa dirangkai menjadi kalung.'
+        id = 'Taring serigala jantan yang bisa dirangkai menjadi kalung.',
+        es = 'presa de um lobo alfa que pode ser colocada em um colar.'
     },
     Item_Des_7021 = {
         ID = 'Item_Des_7021',
@@ -1949,7 +1822,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Not really useful for anything.',
         ja = '',
-        id = 'Tidak terlalu berguna.'
+        id = 'Tidak terlalu berguna.',
+        es = 'não é útil para nada.'
     },
     Item_Name_1001 = {
         ID = 'Item_Name_1001',
@@ -1957,7 +1831,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hard Branch',
         ja = '',
-        id = 'Cabang Keras'
+        id = 'Cabang Keras',
+        es = 'Galho Resistente'
     },
     Item_Name_1002 = {
         ID = 'Item_Name_1002',
@@ -1965,7 +1840,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Crude Torch',
         ja = '',
-        id = 'Obor Kasar'
+        id = 'Obor Kasar',
+        es = 'Tocha Grosseira'
     },
     Item_Name_1003 = {
         ID = 'Item_Name_1003',
@@ -1973,7 +1849,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Baseball Bat',
         ja = '',
-        id = 'Tongkat Bisbol'
+        id = 'Tongkat Bisbol',
+        es = 'Taco de Beisebol'
     },
     Item_Name_1004 = {
         ID = 'Item_Name_1004',
@@ -1981,7 +1858,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hoe',
         ja = '',
-        id = 'Cangkul'
+        id = 'Cangkul',
+        es = 'Enxada'
     },
     Item_Name_1005 = {
         ID = 'Item_Name_1005',
@@ -1989,7 +1867,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Big Iron Hammer',
         ja = '',
-        id = 'Palu Besi Besar'
+        id = 'Palu Besi Besar',
+        es = 'Martelão de Ferro'
     },
     Item_Name_1006 = {
         ID = 'Item_Name_1006',
@@ -1997,7 +1876,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Fireman Ax',
         ja = '',
-        id = 'Kapak Damkar'
+        id = 'Kapak Damkar',
+        es = 'Machado de Bombeiro'
     },
     Item_Name_1007 = {
         ID = 'Item_Name_1007',
@@ -2005,7 +1885,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lightweight Dagger',
         ja = '',
-        id = 'Belati Ringan'
+        id = 'Belati Ringan',
+        es = 'Adaga Leve'
     },
     Item_Name_1008 = {
         ID = 'Item_Name_1008',
@@ -2013,7 +1894,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Worn-out Climbing Shoes',
         ja = '',
-        id = 'Sepatu Pendaki yang Usang'
+        id = 'Sepatu Pendaki yang Usang',
+        es = 'Sapatos de Escalada Desgastados'
     },
     Item_Name_1009 = {
         ID = 'Item_Name_1009',
@@ -2021,7 +1903,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Ice Ax',
         ja = '',
-        id = 'Kapak Es'
+        id = 'Kapak Es',
+        es = 'Piolet'
     },
     Item_Name_1010 = {
         ID = 'Item_Name_1010',
@@ -2029,7 +1912,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Basic Ax',
         ja = '',
-        id = 'Kapak Biasa'
+        id = 'Kapak Biasa',
+        es = 'Machado Básico'
     },
     Item_Name_1011 = {
         ID = 'Item_Name_1011',
@@ -2037,7 +1921,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Dull Ax',
         ja = '',
-        id = 'Kapak Tumpul'
+        id = 'Kapak Tumpul',
+        es = 'Machado Cego'
     },
     Item_Name_1012 = {
         ID = 'Item_Name_1012',
@@ -2045,7 +1930,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Frying Pan',
         ja = '',
-        id = 'Wajan'
+        id = 'Wajan',
+        es = 'Frigideira'
     },
     Item_Name_1013 = {
         ID = 'Item_Name_1013',
@@ -2053,7 +1939,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lightning Saber',
         ja = '',
-        id = 'Pedang Cahaya'
+        id = 'Pedang Cahaya',
+        es = 'Sabre de Luz'
     },
     Item_Name_1014 = {
         ID = 'Item_Name_1014',
@@ -2061,7 +1948,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Dark Saber',
         ja = '',
-        id = 'Pedang Gelap'
+        id = 'Pedang Gelap',
+        es = 'Sabre Sombrio'
     },
     Item_Name_1015 = {
         ID = 'Item_Name_1015',
@@ -2069,7 +1957,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Magnet',
         ja = '',
-        id = 'Magnet'
+        id = 'Magnet',
+        es = 'Ímã'
     },
     Item_Name_1016 = {
         ID = 'Item_Name_1016',
@@ -2077,7 +1966,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Plunger',
         ja = '',
-        id = 'Plunger'
+        id = 'Plunger',
+        es = 'Desentupidor'
     },
     Item_Name_1017 = {
         ID = 'Item_Name_1017',
@@ -2085,7 +1975,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Energized Pickax',
         ja = '',
-        id = 'Beliung Berenergi'
+        id = 'Beliung Berenergi',
+        es = 'Picareta Energizada'
     },
     Item_Name_1018 = {
         ID = 'Item_Name_1018',
@@ -2093,7 +1984,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Glowing Crowbar',
         ja = '',
-        id = 'Linggis Berpendar'
+        id = 'Linggis Berpendar',
+        es = 'Pé-de-Cabra Brilhante'
     },
     Item_Name_1019 = {
         ID = 'Item_Name_1019',
@@ -2101,7 +1993,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wicked Spoon',
         ja = '',
-        id = 'Sendok Aneh'
+        id = 'Sendok Aneh',
+        es = 'Colher Perversa'
     },
     Item_Name_1020 = {
         ID = 'Item_Name_1020',
@@ -2109,7 +2002,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Energized Shovel',
         ja = '',
-        id = 'Sekop Berenergi'
+        id = 'Sekop Berenergi',
+        es = 'Pá Energizada'
     },
     Item_Name_1021 = {
         ID = 'Item_Name_1021',
@@ -2117,7 +2011,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Minipine',
         ja = '',
-        id = 'Pinus Mini'
+        id = 'Pinus Mini',
+        es = 'Minipinheiro'
     },
     Item_Name_1022 = {
         ID = 'Item_Name_1022',
@@ -2125,7 +2020,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Fishing Pole',
         ja = '',
-        id = 'Joran Pancing'
+        id = 'Joran Pancing',
+        es = 'Vara de Pesca'
     },
     Item_Name_1023 = {
         ID = 'Item_Name_1023',
@@ -2133,7 +2029,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Handheld Firework',
         ja = '',
-        id = 'Petasan'
+        id = 'Petasan',
+        es = 'Fogo de Artifício Portátil'
     },
     Item_Name_1024 = {
         ID = 'Item_Name_1024',
@@ -2141,7 +2038,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Thunderous',
         ja = '',
-        id = 'Guntur'
+        id = 'Guntur',
+        es = 'Trovejante'
     },
     Item_Name_1025 = {
         ID = 'Item_Name_1025',
@@ -2149,7 +2047,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lunare',
         ja = '',
-        id = 'Lunare'
+        id = 'Lunare',
+        es = 'Lunar'
     },
     Item_Name_1026 = {
         ID = 'Item_Name_1026',
@@ -2157,7 +2056,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Overloaded Handax',
         ja = '',
-        id = 'Kapak Genggam Mutakhir'
+        id = 'Kapak Genggam Mutakhir',
+        es = 'Machado de Mão Sobrecarregado'
     },
     Item_Name_1027 = {
         ID = 'Item_Name_1027',
@@ -2165,7 +2065,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Alien Jaw',
         ja = '',
-        id = 'Rahang Alien'
+        id = 'Rahang Alien',
+        es = 'Mandíbula Alienígena'
     },
     Item_Name_1028 = {
         ID = 'Item_Name_1028',
@@ -2173,7 +2074,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Permafrost',
         ja = '',
-        id = 'Es Abadi'
+        id = 'Es Abadi',
+        es = 'Permafrost'
     },
     Item_Name_1029 = {
         ID = 'Item_Name_1029',
@@ -2181,7 +2083,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Sharp Dagger',
         ja = '',
-        id = 'Belati Tajam'
+        id = 'Belati Tajam',
+        es = 'Adaga Afiada'
     },
     Item_Name_1030 = {
         ID = 'Item_Name_1030',
@@ -2189,7 +2092,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Atom Splitter',
         ja = '',
-        id = 'Pemisah Atom'
+        id = 'Pemisah Atom',
+        es = 'Divisor de Átomos'
     },
     Item_Name_1031 = {
         ID = 'Item_Name_1031',
@@ -2197,7 +2101,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Sunfire',
         ja = '',
-        id = 'Panas Surya'
+        id = 'Panas Surya',
+        es = 'Fogo Solar'
     },
     Item_Name_1032 = {
         ID = 'Item_Name_1032',
@@ -2205,7 +2110,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mar-teor',
         ja = '',
-        id = 'Mar-teor'
+        id = 'Mar-teor',
+        es = 'Marteoro'
     },
     Item_Name_1033 = {
         ID = 'Item_Name_1033',
@@ -2213,7 +2119,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wolf Mace',
         ja = '',
-        id = 'Gada Serigala'
+        id = 'Gada Serigala',
+        es = 'Clava de Lobo'
     },
     Item_Name_1034 = {
         ID = 'Item_Name_1034',
@@ -2221,7 +2128,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Handheld Firework',
         ja = '',
-        id = 'Petasan'
+        id = 'Petasan',
+        es = 'Fogo de Artifício Portátil'
     },
     Item_Name_1035 = {
         ID = 'Item_Name_1035',
@@ -2229,7 +2137,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Handheld Firework',
         ja = '',
-        id = 'Petasan'
+        id = 'Petasan',
+        es = 'Fogo de Artifício Portátil'
     },
     Item_Name_1036 = {
         ID = 'Item_Name_1036',
@@ -2237,7 +2146,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Handheld Firework',
         ja = '',
-        id = 'Petasan'
+        id = 'Petasan',
+        es = 'Fogo de Artifício Portátil'
     },
     Item_Name_1037 = {
         ID = 'Item_Name_1037',
@@ -2245,7 +2155,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Handheld Firework',
         ja = '',
-        id = 'Petasan'
+        id = 'Petasan',
+        es = 'Fogo de Artifício Portátil'
     },
     Item_Name_1038 = {
         ID = 'Item_Name_1038',
@@ -2253,7 +2164,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Handheld Firework',
         ja = '',
-        id = 'Petasan'
+        id = 'Petasan',
+        es = 'Fogo de Artifício Portátil'
     },
     Item_Name_2001 = {
         ID = 'Item_Name_2001',
@@ -2261,7 +2173,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wooden Bow',
         ja = '',
-        id = 'Busur Kayu'
+        id = 'Busur Kayu',
+        es = 'Arco de Madeira'
     },
     Item_Name_2002 = {
         ID = 'Item_Name_2002',
@@ -2269,7 +2182,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Slingshot',
         ja = '',
-        id = 'Katapel'
+        id = 'Katapel',
+        es = 'Estilingue'
     },
     Item_Name_2003 = {
         ID = 'Item_Name_2003',
@@ -2277,7 +2191,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Phoenix',
         ja = '',
-        id = 'Phoenix'
+        id = 'Phoenix',
+        es = 'Fênix'
     },
     Item_Name_2004 = {
         ID = 'Item_Name_2004',
@@ -2285,7 +2200,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lunarity',
         ja = '',
-        id = 'Lunarity'
+        id = 'Lunarity',
+        es = 'Lunaridade'
     },
     Item_Name_2005 = {
         ID = 'Item_Name_2005',
@@ -2293,7 +2209,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Astra',
         ja = '',
-        id = 'Astra'
+        id = 'Astra',
+        es = 'Astra'
     },
     Item_Name_2006 = {
         ID = 'Item_Name_2006',
@@ -2301,7 +2218,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Galaxy',
         ja = '',
-        id = 'Galaksi'
+        id = 'Galaksi',
+        es = 'Galáxia'
     },
     Item_Name_2007 = {
         ID = 'Item_Name_2007',
@@ -2309,7 +2227,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Solarity',
         ja = '',
-        id = 'Solarity'
+        id = 'Solarity',
+        es = 'Solaridade'
     },
     Item_Name_3001 = {
         ID = 'Item_Name_3001',
@@ -2317,7 +2236,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Bubble Gun',
         ja = '',
-        id = 'Pistol Gelembung'
+        id = 'Pistol Gelembung',
+        es = ''
     },
     Item_Name_4001 = {
         ID = 'Item_Name_4001',
@@ -2325,7 +2245,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Small Trap',
         ja = '',
-        id = 'Perangkap Kecil'
+        id = 'Perangkap Kecil',
+        es = 'Armadilha Pequena'
     },
     Item_Name_4002 = {
         ID = 'Item_Name_4002',
@@ -2333,7 +2254,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Medium Trap',
         ja = '',
-        id = 'Perangkap Menengah'
+        id = 'Perangkap Menengah',
+        es = 'Armadilha Média'
     },
     Item_Name_4003 = {
         ID = 'Item_Name_4003',
@@ -2341,7 +2263,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Large Trap',
         ja = '',
-        id = 'Perangkap Besar'
+        id = 'Perangkap Besar',
+        es = 'Armadilha Grande'
     },
     Item_Name_4004 = {
         ID = 'Item_Name_4004',
@@ -2349,7 +2272,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mystery Pet Box',
         ja = '',
-        id = 'Kotak Hewan Peliharaan'
+        id = 'Kotak Hewan Peliharaan',
+        es = 'Caixa de Pet Misteriosa'
     },
     Item_Name_4005 = {
         ID = 'Item_Name_4005',
@@ -2357,7 +2281,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Gomoku Set',
         ja = '',
-        id = 'Gomoku Set'
+        id = 'Gomoku Set',
+        es = 'Tabuleiro de Gomoku'
     },
     Item_Name_4006 = {
         ID = 'Item_Name_4006',
@@ -2365,7 +2290,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Go Set',
         ja = '',
-        id = 'Go Set'
+        id = 'Go Set',
+        es = 'Tabuleiro de Go'
     },
     Item_Name_5001 = {
         ID = 'Item_Name_5001',
@@ -2373,7 +2299,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Space Suit',
         ja = '',
-        id = 'Baju Luar Angkasa'
+        id = 'Baju Luar Angkasa',
+        es = 'Roupa Espacial'
     },
     Item_Name_5002 = {
         ID = 'Item_Name_5002',
@@ -2381,7 +2308,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lifesaver',
         ja = '',
-        id = 'Penyelamat'
+        id = 'Penyelamat',
+        es = 'Boia Salva-vidas'
     },
     Item_Name_5003 = {
         ID = 'Item_Name_5003',
@@ -2389,7 +2317,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mutated Crystal',
         ja = '',
-        id = 'Kristal Bermutasi'
+        id = 'Kristal Bermutasi',
+        es = 'Cristal Mutante'
     },
     Item_Name_6001 = {
         ID = 'Item_Name_6001',
@@ -2397,7 +2326,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Camping Guide',
         ja = '',
-        id = 'Panduan Kamping'
+        id = 'Panduan Kamping',
+        es = 'Guia de Acampamento'
     },
     Item_Name_6002 = {
         ID = 'Item_Name_6002',
@@ -2405,7 +2335,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Forest Survival Guide',
         ja = '',
-        id = 'Panduan Bertahan di Hutan'
+        id = 'Panduan Bertahan di Hutan',
+        es = 'Guia de Sobrevivência Florestal'
     },
     Item_Name_6003 = {
         ID = 'Item_Name_6003',
@@ -2413,7 +2344,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hot-air Balloon Instructions',
         ja = '',
-        id = 'Instruksi Balon Udara'
+        id = 'Instruksi Balon Udara',
+        es = 'Instruções do Balão de Ar Quente'
     },
     Item_Name_6004 = {
         ID = 'Item_Name_6004',
@@ -2421,7 +2353,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'How to be Fun at Parties',
         ja = '',
-        id = 'Cara Bersenang-senang di Pesta'
+        id = 'Cara Bersenang-senang di Pesta',
+        es = 'Como Ser Divertido em Festas'
     },
     Item_Name_6005 = {
         ID = 'Item_Name_6005',
@@ -2429,7 +2362,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Animal Race Sign-up Sheet',
         ja = '',
-        id = 'Formulir Pendaftaran Balapan Hewan'
+        id = 'Formulir Pendaftaran Balapan Hewan',
+        es = 'Formulário de Inscrição da Corrida de Animais'
     },
     Item_Name_6006 = {
         ID = 'Item_Name_6006',
@@ -2437,7 +2371,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'UFO Notebook',
         ja = '',
-        id = 'Buku UFO'
+        id = 'Buku UFO',
+        es = 'Caderno com óvni'
     },
     Item_Name_6007 = {
         ID = 'Item_Name_6007',
@@ -2445,7 +2380,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     Item_Name_7001 = {
         ID = 'Item_Name_7001',
@@ -2453,7 +2389,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Carrot',
         ja = '',
-        id = 'Wortel'
+        id = 'Wortel',
+        es = 'Cenoura'
     },
     Item_Name_7002 = {
         ID = 'Item_Name_7002',
@@ -2461,7 +2398,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'White Radish',
         ja = '',
-        id = 'Lobak Putih'
+        id = 'Lobak Putih',
+        es = 'Rabanete Branco'
     },
     Item_Name_7003 = {
         ID = 'Item_Name_7003',
@@ -2469,7 +2407,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Pumpkin',
         ja = '',
-        id = 'Labu'
+        id = 'Labu',
+        es = 'Abóbora'
     },
     Item_Name_7004 = {
         ID = 'Item_Name_7004',
@@ -2477,7 +2416,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wild Boar Meat',
         ja = '',
-        id = 'Daging Babi Hutan'
+        id = 'Daging Babi Hutan',
+        es = 'Carne de Javali'
     },
     Item_Name_7005 = {
         ID = 'Item_Name_7005',
@@ -2485,7 +2425,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Poultry',
         ja = '',
-        id = 'Daging Unggas'
+        id = 'Daging Unggas',
+        es = 'Aves'
     },
     Item_Name_7006 = {
         ID = 'Item_Name_7006',
@@ -2493,7 +2434,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Venison',
         ja = '',
-        id = 'Daging Rusa'
+        id = 'Daging Rusa',
+        es = 'Carne de Veado'
     },
     Item_Name_7007 = {
         ID = 'Item_Name_7007',
@@ -2501,7 +2443,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Bear Meat',
         ja = '',
-        id = 'Daging Beruang'
+        id = 'Daging Beruang',
+        es = 'Carne de Urso'
     },
     Item_Name_7008 = {
         ID = 'Item_Name_7008',
@@ -2509,7 +2452,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wolf Meat',
         ja = '',
-        id = 'Daging Serigala'
+        id = 'Daging Serigala',
+        es = 'Carne de Lobo'
     },
     Item_Name_7009 = {
         ID = 'Item_Name_7009',
@@ -2517,7 +2461,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Apple',
         ja = '',
-        id = 'Apel'
+        id = 'Apel',
+        es = 'Maçã'
     },
     Item_Name_7010 = {
         ID = 'Item_Name_7010',
@@ -2525,7 +2470,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Antlers',
         ja = '',
-        id = 'Tanduk Rusa'
+        id = 'Tanduk Rusa',
+        es = 'Galhada'
     },
     Item_Name_7011 = {
         ID = 'Item_Name_7011',
@@ -2533,7 +2479,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Deer Pelt',
         ja = '',
-        id = 'Kulit Rusa'
+        id = 'Kulit Rusa',
+        es = 'Couro de Veado'
     },
     Item_Name_7012 = {
         ID = 'Item_Name_7012',
@@ -2541,7 +2488,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Musk',
         ja = '',
-        id = 'Wewangian'
+        id = 'Wewangian',
+        es = 'Almíscar'
     },
     Item_Name_7013 = {
         ID = 'Item_Name_7013',
@@ -2549,7 +2497,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Pheasant Feather',
         ja = '',
-        id = 'Bulu Pegar'
+        id = 'Bulu Pegar',
+        es = 'Pena de Faisão'
     },
     Item_Name_7014 = {
         ID = 'Item_Name_7014',
@@ -2557,7 +2506,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Black Wild Boar Pelt',
         ja = '',
-        id = 'Kulit Babi Hutan Hitam'
+        id = 'Kulit Babi Hutan Hitam',
+        es = 'Couro de Javali Negro'
     },
     Item_Name_7015 = {
         ID = 'Item_Name_7015',
@@ -2565,7 +2515,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wild Boar Tusk',
         ja = '',
-        id = 'Taring Babi Hutan'
+        id = 'Taring Babi Hutan',
+        es = 'Presa de Javali'
     },
     Item_Name_7016 = {
         ID = 'Item_Name_7016',
@@ -2573,7 +2524,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'White Wild Boar Pelt',
         ja = '',
-        id = 'Kulit Babi Hutan Putih'
+        id = 'Kulit Babi Hutan Putih',
+        es = 'Couro de Javali Branco'
     },
     Item_Name_7017 = {
         ID = 'Item_Name_7017',
@@ -2581,7 +2533,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Undigested Food',
         ja = '',
-        id = 'Makanan yang Tak Dicerna'
+        id = 'Makanan yang Tak Dicerna',
+        es = 'Comida Não Digerida'
     },
     Item_Name_7018 = {
         ID = 'Item_Name_7018',
@@ -2589,7 +2542,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Bear Pelt',
         ja = '',
-        id = 'Kulit Beruang'
+        id = 'Kulit Beruang',
+        es = 'Couro de Urso'
     },
     Item_Name_7019 = {
         ID = 'Item_Name_7019',
@@ -2597,7 +2551,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wolf Pelt',
         ja = '',
-        id = 'Kulit Serigala'
+        id = 'Kulit Serigala',
+        es = 'Couro de Lobo'
     },
     Item_Name_7020 = {
         ID = 'Item_Name_7020',
@@ -2605,7 +2560,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Wolf Fang',
         ja = '',
-        id = 'Taring Serigala'
+        id = 'Taring Serigala',
+        es = 'Presa de Lobo'
     },
     Item_Name_7021 = {
         ID = 'Item_Name_7021',
@@ -2613,7 +2569,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Tattered Pelt',
         ja = '',
-        id = 'Kulit Sobek'
+        id = 'Kulit Sobek',
+        es = 'Couro Esfarrapado'
     },
     NpcInfo_Name_1 = {
         ID = 'NpcInfo_Name_1',
@@ -2621,7 +2578,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Learze',
         ja = '',
-        id = 'Learze'
+        id = 'Learze',
+        es = 'Learze'
     },
     NpcInfo_Name_10 = {
         ID = 'NpcInfo_Name_10',
@@ -2629,7 +2587,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mr.Z',
         ja = '',
-        id = 'Mr.Z'
+        id = 'Mr.Z',
+        es = 'Mr.Z'
     },
     NpcInfo_Name_11 = {
         ID = 'NpcInfo_Name_11',
@@ -2637,7 +2596,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Bob',
         ja = '',
-        id = 'Bob'
+        id = 'Bob',
+        es = 'Bob'
     },
     NpcInfo_Name_12 = {
         ID = 'NpcInfo_Name_12',
@@ -2645,7 +2605,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Neytiri',
         ja = '',
-        id = 'Neytiri'
+        id = 'Neytiri',
+        es = 'Neytiri'
     },
     NpcInfo_Name_13 = {
         ID = 'NpcInfo_Name_13',
@@ -2653,7 +2614,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Tony',
         ja = '',
-        id = 'Tony'
+        id = 'Tony',
+        es = 'Tony'
     },
     NpcInfo_Name_2 = {
         ID = 'NpcInfo_Name_2',
@@ -2661,7 +2623,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Johnny Rico',
         ja = '',
-        id = 'Johnny Rico'
+        id = 'Johnny Rico',
+        es = 'Johnny Rico'
     },
     NpcInfo_Name_3 = {
         ID = 'NpcInfo_Name_3',
@@ -2669,7 +2632,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Zander Barcalow',
         ja = '',
-        id = 'Zander Barcalow'
+        id = 'Zander Barcalow',
+        es = 'Zander Barcalow'
     },
     NpcInfo_Name_4 = {
         ID = 'NpcInfo_Name_4',
@@ -2677,7 +2641,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lara Croft',
         ja = '',
-        id = 'Lara Croft'
+        id = 'Lara Croft',
+        es = 'Lara Croft'
     },
     NpcInfo_Name_5 = {
         ID = 'NpcInfo_Name_5',
@@ -2685,7 +2650,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Jake Sully',
         ja = '',
-        id = 'Jake Sully'
+        id = 'Jake Sully',
+        es = 'Jake Sully'
     },
     NpcInfo_Name_6 = {
         ID = 'NpcInfo_Name_6',
@@ -2693,7 +2659,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Tony',
         ja = '',
-        id = 'Tony'
+        id = 'Tony',
+        es = 'Tony'
     },
     NpcInfo_Name_7 = {
         ID = 'NpcInfo_Name_7',
@@ -2701,7 +2668,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lover',
         ja = '',
-        id = 'Lover'
+        id = 'Lover',
+        es = 'Casais'
     },
     NpcInfo_Name_8 = {
         ID = 'NpcInfo_Name_8',
@@ -2709,7 +2677,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Lover',
         ja = '',
-        id = 'Lover'
+        id = 'Lover',
+        es = 'Casais'
     },
     NpcInfo_Name_9 = {
         ID = 'NpcInfo_Name_9',
@@ -2717,7 +2686,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Explorer',
         ja = '',
-        id = 'Penjelajah'
+        id = 'Penjelajah',
+        es = 'Explorador'
     },
     NpcInfo_Title_1 = {
         ID = 'NpcInfo_Title_1',
@@ -2725,7 +2695,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Entomologist',
         ja = '',
-        id = 'Entomologis'
+        id = 'Entomologis',
+        es = 'Entomólogo'
     },
     NpcInfo_Title_10 = {
         ID = 'NpcInfo_Title_10',
@@ -2733,7 +2704,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'UFO AI',
         ja = '',
-        id = 'UFO AI'
+        id = 'UFO AI',
+        es = 'UFO AI'
     },
     NpcInfo_Title_11 = {
         ID = 'NpcInfo_Title_11',
@@ -2741,7 +2713,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Camp Safety Staff',
         ja = '',
-        id = 'Staf Keamanan Kamp'
+        id = 'Staf Keamanan Kamp',
+        es = 'Funcionário de Segurança do Acampamento'
     },
     NpcInfo_Title_12 = {
         ID = 'NpcInfo_Title_12',
@@ -2749,7 +2722,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Tourist Guide',
         ja = '',
-        id = 'Buku Petunjuk Pariwisata'
+        id = 'Buku Petunjuk Pariwisata',
+        es = 'Guia turístico'
     },
     NpcInfo_Title_13 = {
         ID = 'NpcInfo_Title_13',
@@ -2757,7 +2731,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Explorer',
         ja = '',
-        id = 'Penjelajah'
+        id = 'Penjelajah',
+        es = 'Explorador'
     },
     NpcInfo_Title_2 = {
         ID = 'NpcInfo_Title_2',
@@ -2765,7 +2740,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hunter',
         ja = '',
-        id = 'Pemburu'
+        id = 'Pemburu',
+        es = 'Caçador'
     },
     NpcInfo_Title_3 = {
         ID = 'NpcInfo_Title_3',
@@ -2773,7 +2749,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hot-air Balloon Technician',
         ja = '',
-        id = 'Teknisi Balon Udara'
+        id = 'Teknisi Balon Udara',
+        es = 'Técnico do Balão de Ar Quente'
     },
     NpcInfo_Title_4 = {
         ID = 'NpcInfo_Title_4',
@@ -2781,7 +2758,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     NpcInfo_Title_5 = {
         ID = 'NpcInfo_Title_5',
@@ -2789,7 +2767,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Event Planner',
         ja = '',
-        id = 'Perencana Acara'
+        id = 'Perencana Acara',
+        es = 'Planejador de Eventos'
     },
     NpcInfo_Title_6 = {
         ID = 'NpcInfo_Title_6',
@@ -2797,7 +2776,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Snail Race Staff',
         ja = '',
-        id = 'Staf Balapan Siput'
+        id = 'Staf Balapan Siput',
+        es = 'Cajado de caracol'
     },
     NpcText_Text_1000 = {
         ID = 'NpcText_Text_1000',
@@ -2805,7 +2785,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     NpcText_Text_1001 = {
         ID = 'NpcText_Text_1001',
@@ -2813,7 +2794,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello, friend!',
         ja = '',
-        id = 'Halo, teman!'
+        id = 'Halo, teman!',
+        es = 'Olá, amigo!'
     },
     NpcText_Text_1002 = {
         ID = 'NpcText_Text_1002',
@@ -2821,7 +2803,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The ecosystem of this forest is so fascinating.',
         ja = '',
-        id = 'Ekosistem di hutan ini sangat menarik.'
+        id = 'Ekosistem di hutan ini sangat menarik.',
+        es = 'O ecossistema desta floresta é tão fascinante!'
     },
     NpcText_Text_1003 = {
         ID = 'NpcText_Text_1003',
@@ -2829,7 +2812,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Nature will always reward you in some way.',
         ja = '',
-        id = 'Alam akan selalu memberimu rezeki.'
+        id = 'Alam akan selalu memberimu rezeki.',
+        es = 'A natureza sempre te recompensará de alguma forma.'
     },
     NpcText_Text_1004 = {
         ID = 'NpcText_Text_1004',
@@ -2837,7 +2821,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'I heard there are strange snails in this forest. I’m guessing it has something to do with the rumor that there are aliens about.',
         ja = '',
-        id = 'Kudengar ada siput yang aneh di hutan ini. Kurasa itu ada kaitannya dengan rumor adanya alien yang berkeliaran.'
+        id = 'Kudengar ada siput yang aneh di hutan ini. Kurasa itu ada kaitannya dengan rumor adanya alien yang berkeliaran.',
+        es = 'Ouvi falar que há lesmas estranhas nesta floresta. Imagino que deva ter a ver com os boatos de que há alienígenas por lá.'
     },
     NpcText_Text_1005 = {
         ID = 'NpcText_Text_1005',
@@ -2845,7 +2830,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Look somewhere else. Don’t be afraid, there’s no report of people getting hurt here.',
         ja = '',
-        id = 'Carilah di tempat lain. Jangan takut, tidak ada orang yang mengadu karena terluka di sini.'
+        id = 'Carilah di tempat lain. Jangan takut, tidak ada orang yang mengadu karena terluka di sini.',
+        es = 'Procure em outro lugar. Não tenha medo, pois não há relatos de pessoas machucadas aqui.'
     },
     NpcText_Text_1006 = {
         ID = 'NpcText_Text_1006',
@@ -2853,7 +2839,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Shhh, don’t scare away the insects.',
         ja = '',
-        id = 'Shhh, jangan membuat serangganya kabur.'
+        id = 'Shhh, jangan membuat serangganya kabur.',
+        es = 'Xiu! Não afugente os insetos.'
     },
     NpcText_Text_1011 = {
         ID = 'NpcText_Text_1011',
@@ -2861,7 +2848,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'You want to be friends with me? It’s not impossible.',
         ja = '',
-        id = 'Kamu ingin berteman denganku? Boleh saja.'
+        id = 'Kamu ingin berteman denganku? Boleh saja.',
+        es = 'Você quer fazer amizade comigo? Não é impossível.'
     },
     NpcText_Text_1012 = {
         ID = 'NpcText_Text_1012',
@@ -2869,7 +2857,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'If you caught something, be sure to show it to me!',
         ja = '',
-        id = 'Jika kamu menangkap sesuatu, tunjukkan kepadaku!'
+        id = 'Jika kamu menangkap sesuatu, tunjukkan kepadaku!',
+        es = 'Se você capturou alguma coisa, não deixe de me mostrar!'
     },
     NpcText_Text_1013 = {
         ID = 'NpcText_Text_1013',
@@ -2877,7 +2866,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello stranger!',
         ja = '',
-        id = 'Halo, orang asing!'
+        id = 'Halo, orang asing!',
+        es = 'Ei, você aí. Olá!'
     },
     NpcText_Text_1014 = {
         ID = 'NpcText_Text_1014',
@@ -2885,7 +2875,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Want to see the bow I made?',
         ja = '',
-        id = 'Ingin melihat busur yang kubuat?'
+        id = 'Ingin melihat busur yang kubuat?',
+        es = 'Quer ver o arco que fiz?'
     },
     NpcText_Text_1015 = {
         ID = 'NpcText_Text_1015',
@@ -2893,7 +2884,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'When you are trying to catch a beast, you need to set a trap and lure the beast into it.',
         ja = '',
-        id = 'Saat kamu mencoba menangkap binatang, kamu harus memasang jebakan dan memancing binatang itu ke dalamnya.'
+        id = 'Saat kamu mencoba menangkap binatang, kamu harus memasang jebakan dan memancing binatang itu ke dalamnya.',
+        es = 'Quando você estiver tentando capturar uma fera, precisa colocar uma armadilha e atrair a fera até ela.'
     },
     NpcText_Text_1021 = {
         ID = 'NpcText_Text_1021',
@@ -2901,7 +2893,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello.',
         ja = '',
-        id = 'Halo.'
+        id = 'Halo.',
+        es = 'Olá.'
     },
     NpcText_Text_1022 = {
         ID = 'NpcText_Text_1022',
@@ -2909,7 +2902,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Try the hot-air balloon I just set up!',
         ja = '',
-        id = 'Cobalah balon udara yang baru kusiapkan!'
+        id = 'Cobalah balon udara yang baru kusiapkan!',
+        es = 'Experimente o balão de ar quente que acabei de montar!'
     },
     NpcText_Text_1023 = {
         ID = 'NpcText_Text_1023',
@@ -2917,7 +2911,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Be careful. Don’t fall.',
         ja = '',
-        id = 'Hati-hati. Jangan sampai jatuh.'
+        id = 'Hati-hati. Jangan sampai jatuh.',
+        es = 'Tenha cuidado para não cair.'
     },
     NpcText_Text_1024 = {
         ID = 'NpcText_Text_1024',
@@ -2925,7 +2920,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Do you think I can find aliens by going on a hot-air balloon ride?',
         ja = '',
-        id = 'Apakah kira-kira aku bisa bertemu alien dengan memakai balon udara?'
+        id = 'Apakah kira-kira aku bisa bertemu alien dengan memakai balon udara?',
+        es = 'Você acha que conseguirei encontrar alienígenas se eu andar em um balão de ar quente?'
     },
     NpcText_Text_1025 = {
         ID = 'NpcText_Text_1025',
@@ -2933,7 +2929,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The hot-air balloon can take two people.',
         ja = '',
-        id = 'Balon udara muat untuk dua orang.'
+        id = 'Balon udara muat untuk dua orang.',
+        es = 'O balão de ar quente consegue acomodar duas pessoas.'
     },
     NpcText_Text_1041 = {
         ID = 'NpcText_Text_1041',
@@ -2941,7 +2938,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Do you need to dress yourself up?',
         ja = '',
-        id = 'Kamu perlu berdandan?'
+        id = 'Kamu perlu berdandan?',
+        es = 'Você precisa de roupas melhores?'
     },
     NpcText_Text_1042 = {
         ID = 'NpcText_Text_1042',
@@ -2949,7 +2947,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Dance away!',
         ja = '',
-        id = 'Berdansalah!'
+        id = 'Berdansalah!',
+        es = 'Dancem à vontade!'
     },
     NpcText_Text_1043 = {
         ID = 'NpcText_Text_1043',
@@ -2957,7 +2956,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello.',
         ja = '',
-        id = 'Halo.'
+        id = 'Halo.',
+        es = 'Olá.'
     },
     NpcText_Text_1044 = {
         ID = 'NpcText_Text_1044',
@@ -2965,7 +2965,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The dinner party is being prepared, please wait.',
         ja = '',
-        id = 'Pesta makan malam sedang disiapkan, harap tunggu.'
+        id = 'Pesta makan malam sedang disiapkan, harap tunggu.',
+        es = 'O jantar festivo está sendo preparado. Aguarde.'
     },
     NpcText_Text_1045 = {
         ID = 'NpcText_Text_1045',
@@ -2973,7 +2974,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This forest has some wonderful things that can grant wonderful powers when they touch someone.',
         ja = '',
-        id = 'Hutan ini memiliki beberapa hal indah yang bisa memberikan kekuatan luar biasa saat menyentuh seseorang.'
+        id = 'Hutan ini memiliki beberapa hal indah yang bisa memberikan kekuatan luar biasa saat menyentuh seseorang.',
+        es = 'Esta floresta tem coisas incríveis que podem conceder poderes maravilhosos ao serem tocadas.'
     },
     NpcText_Text_1051 = {
         ID = 'NpcText_Text_1051',
@@ -2981,7 +2983,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The snails I’ve raised are the cutest, are they not?',
         ja = '',
-        id = 'Siput yang kubesarkan adalah siput yang terlucu, ya kan?'
+        id = 'Siput yang kubesarkan adalah siput yang terlucu, ya kan?',
+        es = 'As lesmas que criei são as mais fofas de todas, não acha?'
     },
     NpcText_Text_1052 = {
         ID = 'NpcText_Text_1052',
@@ -2989,7 +2992,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Let’s have a great race!',
         ja = '',
-        id = 'Ayo kita mulai balapan!'
+        id = 'Ayo kita mulai balapan!',
+        es = 'Vamos ter uma excelente corrida!'
     },
     NpcText_Text_1053 = {
         ID = 'NpcText_Text_1053',
@@ -2997,7 +3001,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Which snail is the fastest? Guess right and you’ll win a prize!',
         ja = '',
-        id = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!'
+        id = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!',
+        es = 'Qual lesma é a mais rápida? Se você acertar o palpite, ganhará um prêmio!'
     },
     NpcText_Text_1054 = {
         ID = 'NpcText_Text_1054',
@@ -3005,7 +3010,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'These snails are so strange. No, all the snails in this forest are like this.',
         ja = '',
-        id = 'Siput-siput ini aneh sekali. Tidak, semua siput di hutan ini memang seperti ini.'
+        id = 'Siput-siput ini aneh sekali. Tidak, semua siput di hutan ini memang seperti ini.',
+        es = 'Estas lesmas são tão estranhas... Não, todas as lesmas desta floresta são assim.'
     },
     NpcText_Text_1061 = {
         ID = 'NpcText_Text_1061',
@@ -3013,7 +3019,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'It’s so beautiful here.',
         ja = '',
-        id = 'Pemandangannya bagus sekali di sini.'
+        id = 'Pemandangannya bagus sekali di sini.',
+        es = 'A paisagem aqui é tão linda!'
     },
     NpcText_Text_1062 = {
         ID = 'NpcText_Text_1062',
@@ -3021,7 +3028,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello!',
         ja = '',
-        id = 'Halo!'
+        id = 'Halo!',
+        es = 'Olá!'
     },
     NpcText_Text_1071 = {
         ID = 'NpcText_Text_1071',
@@ -3029,7 +3037,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello!',
         ja = '',
-        id = 'Halo!'
+        id = 'Halo!',
+        es = 'Olá!'
     },
     NpcText_Text_1072 = {
         ID = 'NpcText_Text_1072',
@@ -3037,7 +3046,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'I heard there are aliens here!',
         ja = '',
-        id = 'Dengar-dengar ada alien di sini!'
+        id = 'Dengar-dengar ada alien di sini!',
+        es = 'Ouvi dizer que existem alienígenas aqui.'
     },
     NpcText_Text_1151 = {
         ID = 'NpcText_Text_1151',
@@ -3045,7 +3055,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello!',
         ja = '',
-        id = 'Halo!'
+        id = 'Halo!',
+        es = 'Olá!'
     },
     NpcText_Text_1152 = {
         ID = 'NpcText_Text_1152',
@@ -3053,7 +3064,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     NpcText_Text_1161 = {
         ID = 'NpcText_Text_1161',
@@ -3061,7 +3073,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Welcome.',
         ja = '',
-        id = 'Selamat datang.'
+        id = 'Selamat datang.',
+        es = 'Olá.'
     },
     NpcText_Text_1162 = {
         ID = 'NpcText_Text_1162',
@@ -3069,7 +3082,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '%*&&&?/.@!@!',
         ja = '',
-        id = '%*&&&?/.@!@!'
+        id = '%*&&&?/.@!@!',
+        es = '%*&&&?/.@!@!'
     },
     NpcText_Text_1163 = {
         ID = 'NpcText_Text_1163',
@@ -3077,7 +3091,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Mission underway... All systems running as intended.',
         ja = '',
-        id = 'Misi sudah dimulai... Semua sistem berjalan lancar.'
+        id = 'Misi sudah dimulai... Semua sistem berjalan lancar.',
+        es = 'Missão em andamento... Todos os sistemas funcionando conforme o esperado.'
     },
     NpcText_Text_1164 = {
         ID = 'NpcText_Text_1164',
@@ -3085,7 +3100,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Unknown life form detected.',
         ja = '',
-        id = 'Ada organisme tak dikenal.'
+        id = 'Ada organisme tak dikenal.',
+        es = 'Forma de vida desconhecida detectada.'
     },
     NpcText_Text_1171 = {
         ID = 'NpcText_Text_1171',
@@ -3093,7 +3109,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The wilderness is very dangerous. Don’t forget to take a weapon with you when you go out there.',
         ja = '',
-        id = 'Alam belantara adalah tempat yang berbahaya. Jangan lupa untuk membawa senjata saat kamu di sana.'
+        id = 'Alam belantara adalah tempat yang berbahaya. Jangan lupa untuk membawa senjata saat kamu di sana.',
+        es = 'Os ermos são muito perigosos. Não se esqueça de levar uma arma quando sair por aí.'
     },
     NpcText_Text_1172 = {
         ID = 'NpcText_Text_1172',
@@ -3101,7 +3118,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Weapons are dangerous too. Careful not to hurt the people in the campground.',
         ja = '',
-        id = 'Senjata juga berbahaya. Hati-hati, jangan sampai melukai orang-orang di kamp.'
+        id = 'Senjata juga berbahaya. Hati-hati, jangan sampai melukai orang-orang di kamp.',
+        es = 'As armas também são perigosas. Cuidado para não machucar as pessoas no acampamento.'
     },
     NpcText_Text_1173 = {
         ID = 'NpcText_Text_1173',
@@ -3109,7 +3127,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'If you are going to hunt, it’s easier to kill using bow and arrows.',
         ja = '',
-        id = 'Jika ingin berburu, lebih mudah membunuh dengan busur dan anak panah.'
+        id = 'Jika ingin berburu, lebih mudah membunuh dengan busur dan anak panah.',
+        es = 'Se você for caçar, é mais fácil matar usando arco e flechas.'
     },
     NpcText_Text_1174 = {
         ID = 'NpcText_Text_1174',
@@ -3117,7 +3136,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Experienced hunters lure animals into the trap they’ve set.',
         ja = '',
-        id = 'Pemburu berpengalaman memancing hewan ke jebakan yang mereka pasang.'
+        id = 'Pemburu berpengalaman memancing hewan ke jebakan yang mereka pasang.',
+        es = 'Caçadores experientes atraem animais para a armadilha posicionada.'
     },
     NpcText_Text_1181 = {
         ID = 'NpcText_Text_1181',
@@ -3125,7 +3145,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'We’ve arrived! Lucky for you, this forest is not open to visitors yet. This is the perfect opportunity to get close to nature!',
         ja = '',
-        id = 'Kita sudah sampai! Kamu beruntung, hutan ini belum dibuka untuk umum. Sekarang saat yang pas untuk mengenal alam dengan lebih baik!'
+        id = 'Kita sudah sampai! Kamu beruntung, hutan ini belum dibuka untuk umum. Sekarang saat yang pas untuk mengenal alam dengan lebih baik!',
+        es = 'Chegamos! Felizmente para você, esta floresta ainda não está aberta para visitantes. É a oportunidade perfeita para se aproximar da natureza!'
     },
     NpcText_Text_1182 = {
         ID = 'NpcText_Text_1182',
@@ -3133,7 +3154,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'I heard someone has sighted a UFO here, so be careful when you explore the forest.',
         ja = '',
-        id = 'Kudengar ada orang yang pernah melihat UFO di sini, berhati-hatilah saat menjelajah hutan.'
+        id = 'Kudengar ada orang yang pernah melihat UFO di sini, berhati-hatilah saat menjelajah hutan.',
+        es = 'Ouvi falar que alguém avistou um óvni aqui, então tenha cuidado ao explorar a floresta.'
     },
     NpcText_Text_1183 = {
         ID = 'NpcText_Text_1183',
@@ -3141,7 +3163,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'This place is perfect for camping.',
         ja = '',
-        id = 'Tempat ini pas untuk kamping.'
+        id = 'Tempat ini pas untuk kamping.',
+        es = 'Esta ilha é muito adequada para acampar.'
     },
     NpcText_Text_1184 = {
         ID = 'NpcText_Text_1184',
@@ -3149,7 +3172,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The landscape of this forest is peculiar. Could it be the work of aliens?',
         ja = '',
-        id = 'Lanskap hutan ini terlihat tidak asing. Apakah ini hasil ulah alien?'
+        id = 'Lanskap hutan ini terlihat tidak asing. Apakah ini hasil ulah alien?',
+        es = 'Está com fome? Posso cozinhar alguns pratos do meu lado esquerdo. Vamos preparar um jantar com todos.'
     },
     NpcText_Text_1185 = {
         ID = 'NpcText_Text_1185',
@@ -3157,7 +3181,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'There’s a valley by the lake, and the mushrooms there are taller than people. Go check it out!',
         ja = '',
-        id = 'Ada lembah di tepi danau, dan jamur di sana lebih tinggi dari manusia. Ayo lihat!'
+        id = 'Ada lembah di tepi danau, dan jamur di sana lebih tinggi dari manusia. Ayo lihat!',
+        es = 'Há um vale perto do lago, e os cogumelos que nascem lá são mais altos que pessoas. Vá conferir!'
     },
     NpcText_Text_1191 = {
         ID = 'NpcText_Text_1191',
@@ -3165,7 +3190,8 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
     },
     NpcText_Text_2001 = {
         ID = 'NpcText_Text_2001',
@@ -3173,7 +3199,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Red mushroom... yellow mushroom... purple mushroom...',
         ja = '',
-        id = 'Jamur merah... jamur kuning... jamur ungu...'
+        id = 'Jamur merah... jamur kuning... jamur ungu...',
+        es = 'Cogumelo vermelho... cogumelo amarelo... cogumelo roxo...'
     },
     NpcText_Text_2011 = {
         ID = 'NpcText_Text_2011',
@@ -3181,7 +3208,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Aim, hold your breath, and shoot.',
         ja = '',
-        id = 'Bidik, tahan napas, lalu tembak.'
+        id = 'Bidik, tahan napas, lalu tembak.',
+        es = 'Mire, prenda a respiração e solte a flecha.'
     },
     NpcText_Text_2012 = {
         ID = 'NpcText_Text_2012',
@@ -3189,7 +3217,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hunting requires control!',
         ja = '',
-        id = 'Berburu memerlukan kontrol yang stabil!'
+        id = 'Berburu memerlukan kontrol yang stabil!',
+        es = 'É preciso ter controle para caçar!'
     },
     NpcText_Text_2013 = {
         ID = 'NpcText_Text_2013',
@@ -3197,7 +3226,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Careful not to step on a trap!',
         ja = '',
-        id = 'Berhati-hatilah untuk tidak menginjak jebakan!'
+        id = 'Berhati-hatilah untuk tidak menginjak jebakan!',
+        es = 'Cuidado para não pisar em uma armadilha!'
     },
     NpcText_Text_2021 = {
         ID = 'NpcText_Text_2021',
@@ -3205,7 +3235,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Try the hot-air balloon I’ve set up!',
         ja = '',
-        id = 'Cobalah balon udara yang sudah kusiapkan!'
+        id = 'Cobalah balon udara yang sudah kusiapkan!',
+        es = 'Experimentem o balão de ar quente que acabei de montar!'
     },
     NpcText_Text_2022 = {
         ID = 'NpcText_Text_2022',
@@ -3213,7 +3244,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Line up in an orderly fashion, and be careful!',
         ja = '',
-        id = 'Antre dengan tertib, dan berhati-hatilah!'
+        id = 'Antre dengan tertib, dan berhati-hatilah!',
+        es = 'Formem uma fila de maneira organizada e tenham cuidado!'
     },
     NpcText_Text_2023 = {
         ID = 'NpcText_Text_2023',
@@ -3221,7 +3253,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'What a great day today!',
         ja = '',
-        id = 'Hari ini sangat luar biasa!'
+        id = 'Hari ini sangat luar biasa!',
+        es = 'Que excelente dia!'
     },
     NpcText_Text_2024 = {
         ID = 'NpcText_Text_2024',
@@ -3229,7 +3262,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hot-air balloon is coming! Does anyone else want to go for a ride?',
         ja = '',
-        id = 'Balon udara sudah datang! Ada orang yang mau naik?'
+        id = 'Balon udara sudah datang! Ada orang yang mau naik?',
+        es = 'O balão de ar quente está vindo! Alguém mais quer andar nele?'
     },
     NpcText_Text_2051 = {
         ID = 'NpcText_Text_2051',
@@ -3237,7 +3271,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Take a good look!',
         ja = '',
-        id = 'Lihatlah!'
+        id = 'Lihatlah!',
+        es = 'Dê uma olhada!'
     },
     NpcText_Text_2052 = {
         ID = 'NpcText_Text_2052',
@@ -3245,7 +3280,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'No backing out after you’ve placed your bet!',
         ja = '',
-        id = 'Setelah taruhan dipasang, tidak bisa dibatalkan!'
+        id = 'Setelah taruhan dipasang, tidak bisa dibatalkan!',
+        es = 'Não é permitido desistir após fazer a aposta!'
     },
     NpcText_Text_2053 = {
         ID = 'NpcText_Text_2053',
@@ -3253,7 +3289,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Which snail is the fastest? Guess right and you’ll win a prize!',
         ja = '',
-        id = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!'
+        id = 'Siput mana yang paling cepat? Jika tebakanmu benar, kamu akan dapat hadiah!',
+        es = 'Adivinha quem vai ganhar! Há um prêmio por acertar'
     },
     Task_NpcText_6001 = {
         ID = 'Task_NpcText_6001',
@@ -3261,7 +3298,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hey, the event has started, go have fun! But remember, be careful with your weapon. Don’t hurt people in the campground.',
         ja = '',
-        id = 'Hei, acaranya sudah dimulai. Selamat bersenang-senang! Ingat, jangan sampai kamu melukai orang dengan senjatamu di kamp.'
+        id = 'Hei, acaranya sudah dimulai. Selamat bersenang-senang! Ingat, jangan sampai kamu melukai orang dengan senjatamu di kamp.',
+        es = 'O evento já começou, vá se divertir! Mas lembre-se: cuidado com sua arma. Não machuque as pessoas no acampamento.'
     },
     Task_NpcText_6002 = {
         ID = 'Task_NpcText_6002',
@@ -3269,7 +3307,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Safety precautions? If you want to leave the campground, get something to protect yourself with. I happen to have some here, want to take a look?',
         ja = '',
-        id = 'Pelindung? Jika kamu ingin pergi keluar dari kamp, bawa sesuatu untuk melindungi diri. Aku punya beberapa pelindung, mau lihat?'
+        id = 'Pelindung? Jika kamu ingin pergi keluar dari kamp, bawa sesuatu untuk melindungi diri. Aku punya beberapa pelindung, mau lihat?',
+        es = 'Precauções de segurança? Se você quiser sair do acampamento, leve alguma coisa para proteção. Tenho algumas coisas aqui, quer dar uma olhada?'
     },
     Task_NpcText_6003 = {
         ID = 'Task_NpcText_6003',
@@ -3277,7 +3316,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Hello, the hot-air balloon I’ve set up for sightseeing will stop here from time to time. Want to go for a ride? It’s free.',
         ja = '',
-        id = 'Halo, balon udara yang kusiapkan untuk wisata akan turun di sini dari waktu ke waktu. Ingin naik? Gratis, kok.'
+        id = 'Halo, balon udara yang kusiapkan untuk wisata akan turun di sini dari waktu ke waktu. Ingin naik? Gratis, kok.',
+        es = 'Olá, o balão de ar quente que montei para o passeio turístico vai parar aqui de tempos em tempos. Quer andar nele? É de graça.'
     },
     Task_NpcText_6004 = {
         ID = 'Task_NpcText_6004',
@@ -3285,7 +3325,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'The secret to be more attractive? Well, obviously you need to dress better. I’ve laid out some accessories in the campground, you can also choose from my selections.',
         ja = '',
-        id = 'Rahasia tampil lebih menarik? Tentu saja kamu perlu berdandan lebih baik. Aku sudah menyiapkan beberapa aksesori di kamp, kamu bisa langsung memilihnya.'
+        id = 'Rahasia tampil lebih menarik? Tentu saja kamu perlu berdandan lebih baik. Aku sudah menyiapkan beberapa aksesori di kamp, kamu bisa langsung memilihnya.',
+        es = 'O segredo para ser mais interessante? Bem, você precisa se vestir melhor, é claro. Coloquei alguns acessórios no acampamento. Além disso, você pode dar uma olhada nas minhas seleções.'
     },
     Task_NpcText_6005 = {
         ID = 'Task_NpcText_6005',
@@ -3293,7 +3334,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Oh? You want to know about the snail race? When there’s no race going on, you can place a bet. If you win the bet, you’ll be handsomely rewarded.',
         ja = '',
-        id = 'Oh? Kamu ingin tahu tentang balapan siput? Ketika tidak ada balapan yang berlangsung, kamu bisa memasang taruhan. Jika menang, hadiahmu akan banyak.'
+        id = 'Oh? Kamu ingin tahu tentang balapan siput? Ketika tidak ada balapan yang berlangsung, kamu bisa memasang taruhan. Jika menang, hadiahmu akan banyak.',
+        es = 'Oh? Você quer entender as raças de animais? Você pode fazer apostas a qualquer momento quando o jogo não estiver em andamento. Se quiser participar, lembre-se de trazer seus próprios animais.'
     },
     Task_NpcText_6006 = {
         ID = 'Task_NpcText_6006',
@@ -3301,7 +3343,8 @@ local LanguagePackXls = {
         CHT = '',
         en = 'Alien—life form—detected—',
         ja = '',
-        id = 'Ada organisme—alien'
+        id = 'Ada organisme—alien',
+        es = 'Detectado-alien-sinais vitais-'
     },
     Task_NpcText_6007 = {
         ID = 'Task_NpcText_6007',
@@ -3309,7 +3352,134 @@ local LanguagePackXls = {
         CHT = '',
         en = '',
         ja = '',
-        id = ''
+        id = '',
+        es = ''
+    },
+    Game_Des_1000 = {
+        ID = 'Game_Des_1000',
+        zh = '建议人数\n2人',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    Game_Des_1001 = {
+        ID = 'Game_Des_1001',
+        zh = '建议人数\n2-4人',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    Game_Des_1002 = {
+        ID = 'Game_Des_1002',
+        zh = '建议人数\n2人',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_1 = {
+        ID = 'GameInfo_GameName_1',
+        zh = '打猎',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_2 = {
+        ID = 'GameInfo_GameName_2',
+        zh = '打地鼠',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_3 = {
+        ID = 'GameInfo_GameName_3',
+        zh = '迷宫',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_4 = {
+        ID = 'GameInfo_GameName_4',
+        zh = '人间大炮',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_5 = {
+        ID = 'GameInfo_GameName_5',
+        zh = '青蛙过河',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_6 = {
+        ID = 'GameInfo_GameName_6',
+        zh = '热气球',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_7 = {
+        ID = 'GameInfo_GameName_7',
+        zh = '种花',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_8 = {
+        ID = 'GameInfo_GameName_8',
+        zh = '赛蜗牛',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_9 = {
+        ID = 'GameInfo_GameName_9',
+        zh = '竞速',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_10 = {
+        ID = 'GameInfo_GameName_10',
+        zh = '摇摇椅',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
+    },
+    GameInfo_GameName_11 = {
+        ID = 'GameInfo_GameName_11',
+        zh = '斗怪物',
+        CHT = '',
+        en = '',
+        ja = '',
+        id = '',
+        es = ''
     }
 }
 
